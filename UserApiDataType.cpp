@@ -845,11 +845,11 @@ int PyModule_AddCTPConstant(PyObject *m)
 	///是否强制认证
 	if( PyModule_AddCharMacro(m, THOST_FTDC_TPID_IsAuthForce) != 0 ) return -1;
 	///是否冻结证券持仓
-	if( PyModule_AddCharMacro(m, THOST_FTDC_TPID_IsPosiFreeze) != 0 ) return -1;
+	//if( PyModule_AddCharMacro(m, THOST_FTDC_TPID_IsPosiFreeze) != 0 ) return -1;
 	///是否限仓
-	if( PyModule_AddCharMacro(m, THOST_FTDC_TPID_IsPosiLimit) != 0 ) return -1;
+	//if( PyModule_AddCharMacro(m, THOST_FTDC_TPID_IsPosiLimit) != 0 ) return -1;
 	///郑商所询价时间间隔
-	if( PyModule_AddCharMacro(m, THOST_FTDC_TPID_ForQuoteTimeInterval) != 0 ) return -1;
+	//if( PyModule_AddCharMacro(m, THOST_FTDC_TPID_ForQuoteTimeInterval) != 0 ) return -1;
 
 	/////////////////////////////////////////////////////////////////////////
 	///TFtdcFileIDType是一个文件标识类型

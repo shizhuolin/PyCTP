@@ -2562,7 +2562,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCommRateModelField *pCommRateModelFi
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderField *pOrderField)
 {
 	if(pOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:i,s:y,s:y,s:i,s:y,s:y,s:i,s:c,s:y,s:y,s:i,s:y,s:i,s:y,s:c,s:y,s:i,s:d,s:y,s:i,s:y,s:c,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:c,s:c,s:y,s:i,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:i,s:d,s:c,s:y,s:y,s:c,s:y,s:c,s:y,s:y,s:c,s:i}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:i,s:y,s:y,s:i,s:y,s:y,s:i,s:c,s:y,s:y,s:i,s:y,s:i,s:y,s:c,s:y,s:i,s:d,s:y,s:i,s:y,s:c,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:c,s:c,s:y,s:i,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:i,s:d,s:c,s:y,s:y,s:c,s:y,s:c,s:y,s:y,s:c,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "TraderID", pOrderField->TraderID
 		, "StatusMsg", pOrderField->StatusMsg
 		, "OrderSysID", pOrderField->OrderSysID
@@ -2620,6 +2620,12 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderField *pOrderField)
 		, "ClientID", pOrderField->ClientID
 		, "ContingentCondition", pOrderField->ContingentCondition
 		, "FrontID", pOrderField->FrontID
+		, "AccountID", pOrderField->AccountID
+		, "BranchID", pOrderField->BranchID
+		, "CurrencyID", pOrderField->CurrencyID
+		, "InvestUnitID", pOrderField->InvestUnitID
+		, "IPAddress", pOrderField->IPAddress
+		, "MacAddress", pOrderField->MacAddress
 		);
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrDeltaField *pOptionInstrDeltaField)

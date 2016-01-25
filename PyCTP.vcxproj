@@ -66,27 +66,27 @@
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.pyd</TargetExt>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20150515_traderapi_win32;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\Python-3.4.3\PCbuild;..\v6.3.6_20150515_traderapi_win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20151215_tradeapi_windows;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Python-3.4.3\PCbuild;..\v6.3.6_20151215_tradeapi_windows;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.pyd</TargetExt>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20150515_traderapi_win64;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\Python-3.4.3\PCbuild\amd64;..\v6.3.6_20150515_traderapi_win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20151215_tradeapi64_windows;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Python-3.4.3\PCbuild\amd64;..\v6.3.6_20151215_tradeapi64_windows;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.pyd</TargetExt>
-    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20150515_traderapi_win32;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\Python-3.4.3\PCbuild;..\v6.3.6_20150515_traderapi_win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20151215_tradeapi_windows;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Python-3.4.3\PCbuild;..\v6.3.6_20151215_tradeapi_windows;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.pyd</TargetExt>
-    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20150515_traderapi_win64;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\Python-3.4.3\PCbuild\amd64;..\v6.3.6_20150515_traderapi_win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\Python-3.4.3\Include;..\..\Python-3.4.3\PC;..\v6.3.6_20151215_tradeapi64_windows;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Python-3.4.3\PCbuild\amd64;..\v6.3.6_20151215_tradeapi64_windows;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -102,7 +102,7 @@
       <AdditionalDependencies>thostmduserapi.lib;thosttraderapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)v6.3.6_20150515_traderapi_win32\*.dll"  "$(OutDir)"
+      <Command>copy "$(SolutionDir)v6.3.6_20151215_tradeapi_windows\*.dll"  "$(OutDir)"
 copy "$(SolutionDir)$(ProjectName)\test.py"  "$(OutDir)\PyCTP_test.py"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -120,7 +120,7 @@ copy "$(SolutionDir)$(ProjectName)\test.py"  "$(OutDir)\PyCTP_test.py"</Command>
       <AdditionalDependencies>thostmduserapi.lib;thosttraderapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)v6.3.6_20150515_traderapi_win64\*.dll"  "$(OutDir)"
+      <Command>copy "$(SolutionDir)v6.3.6_20151215_tradeapi64_windows\*.dll"  "$(OutDir)"
 copy "$(SolutionDir)$(ProjectName)\test.py"  "$(OutDir)\PyCTP_test.py"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -142,7 +142,7 @@ copy "$(SolutionDir)$(ProjectName)\test.py"  "$(OutDir)\PyCTP_test.py"</Command>
       <AdditionalDependencies>thostmduserapi.lib;thosttraderapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)v6.3.6_20150515_traderapi_win32\*.dll"  "$(OutDir)"
+      <Command>copy "$(SolutionDir)v6.3.6_20151215_tradeapi_windows\*.dll"  "$(OutDir)"
 copy "$(SolutionDir)$(ProjectName)\test.py"  "$(OutDir)\PyCTP_test.py"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -164,7 +164,7 @@ copy "$(SolutionDir)$(ProjectName)\test.py"  "$(OutDir)\PyCTP_test.py"</Command>
       <AdditionalDependencies>thostmduserapi.lib;thosttraderapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)v6.3.6_20150515_traderapi_win64\*.dll"  "$(OutDir)"
+      <Command>copy "$(SolutionDir)v6.3.6_20151215_tradeapi64_windows\*.dll"  "$(OutDir)"
 copy "$(SolutionDir)$(ProjectName)\test.py"  "$(OutDir)\PyCTP_test.py"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

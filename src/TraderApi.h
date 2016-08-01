@@ -44,13 +44,13 @@ PyObject *CTP_THOST_FTDC_TRADER_API_GetTradingDay(PyObject *self, PyObject *args
 
 ///注册前置机网络地址
 ///@param pszFrontAddress：前置机网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。 
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
 PyObject *CTP_THOST_FTDC_TRADER_API_RegisterFront(PyObject *self, PyObject *args);
 
 ///注册名字服务器网络地址
 ///@param pszNsAddress：名字服务器网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。 
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
 ///@remark RegisterNameServer优先于RegisterFront
 PyObject *CTP_THOST_FTDC_TRADER_API_RegisterNameServer(PyObject *self, PyObject *args);
@@ -64,7 +64,7 @@ PyObject *CTP_THOST_FTDC_TRADER_API_RegisterFensUserInfo(PyObject *self, PyObjec
 PyObject *CTP_THOST_FTDC_TRADER_API_RegisterSpi(PyObject *self, PyObject *args);
 
 ///订阅私有流。
-///@param nResumeType 私有流重传方式  
+///@param nResumeType 私有流重传方式
 ///        THOST_TERT_RESTART:从本交易日开始重传
 ///        THOST_TERT_RESUME:从上次收到的续传
 ///        THOST_TERT_QUICK:只传送登录后私有流的内容
@@ -72,7 +72,7 @@ PyObject *CTP_THOST_FTDC_TRADER_API_RegisterSpi(PyObject *self, PyObject *args);
 PyObject *CTP_THOST_FTDC_TRADER_API_SubscribePrivateTopic(PyObject *self, PyObject *args);
 
 ///订阅公共流。
-///@param nResumeType 公共流重传方式  
+///@param nResumeType 公共流重传方式
 ///        THOST_TERT_RESTART:从本交易日开始重传
 ///        THOST_TERT_RESUME:从上次收到的续传
 ///        THOST_TERT_QUICK:只传送登录后公共流的内容
@@ -281,212 +281,13 @@ PyObject *CTP_THOST_FTDC_TRADER_API_ReqQueryBankAccountMoneyByFuture(PyObject *s
 void CTP_THOST_FTDC_TRADER_API_dealloc(PyObject *self);
 
 // API方法
-static PyMethodDef CTP_THOST_FTDC_TRADER_API_methods[] = {
-	///创建TraderApi
-	{"CreateFtdcTraderApi", (PyCFunction) CTP_THOST_FTDC_TRADER_API_CreateFtdcTraderApi, METH_VARARGS | METH_CLASS, nullptr},
-	///获取API的版本信息
-	{"GetApiVersion", CTP_THOST_FTDC_TRADER_API_GetApiVersion, METH_NOARGS | METH_STATIC, nullptr},
-	///删除接口对象本身
-	{"Release", CTP_THOST_FTDC_TRADER_API_Release, METH_NOARGS, nullptr},
-	///初始化
-	{"Init", CTP_THOST_FTDC_TRADER_API_Init, METH_NOARGS, nullptr},
-	///等待接口线程结束运行
-	{"Join", CTP_THOST_FTDC_TRADER_API_Join, METH_NOARGS, nullptr},
-	///获取当前交易日
-	{"GetTradingDay", CTP_THOST_FTDC_TRADER_API_GetTradingDay, METH_NOARGS, nullptr},
-	///注册前置机网络地址
-	{"RegisterFront", CTP_THOST_FTDC_TRADER_API_RegisterFront, METH_VARARGS, nullptr},
-	///注册名字服务器网络地址
-	{"RegisterNameServer", CTP_THOST_FTDC_TRADER_API_RegisterNameServer, METH_VARARGS, nullptr},	
-	///注册名字服务器用户信息
-	{"RegisterFensUserInfo", CTP_THOST_FTDC_TRADER_API_RegisterFensUserInfo, METH_VARARGS, nullptr},	
-	///注册回调接口
-	{"RegisterSpi", CTP_THOST_FTDC_TRADER_API_RegisterSpi, METH_VARARGS, nullptr},	
-	///订阅私有流。
-	{"SubscribePrivateTopic", CTP_THOST_FTDC_TRADER_API_SubscribePrivateTopic, METH_VARARGS, nullptr},	
-	///订阅公共流。
-	{"SubscribePublicTopic", CTP_THOST_FTDC_TRADER_API_SubscribePublicTopic, METH_VARARGS, nullptr},
-	///客户端认证请求
-	{"ReqAuthenticate", CTP_THOST_FTDC_TRADER_API_ReqAuthenticate, METH_VARARGS, nullptr},
-	///用户登录请求
-	{"ReqUserLogin", CTP_THOST_FTDC_TRADER_API_ReqUserLogin, METH_VARARGS, nullptr},	
-	///登出请求
-	{"ReqUserLogout", CTP_THOST_FTDC_TRADER_API_ReqUserLogout, METH_VARARGS, nullptr},
-	///用户口令更新请求
-	{"ReqUserPasswordUpdate", CTP_THOST_FTDC_TRADER_API_ReqUserPasswordUpdate, METH_VARARGS, nullptr},
-	///资金账户口令更新请求
-	{"ReqTradingAccountPasswordUpdate", CTP_THOST_FTDC_TRADER_API_ReqTradingAccountPasswordUpdate, METH_VARARGS, nullptr},
-	///报单录入请求
-	{"ReqOrderInsert", CTP_THOST_FTDC_TRADER_API_ReqOrderInsert, METH_VARARGS, nullptr},
-	///预埋单录入请求
-	{"ReqParkedOrderInsert", CTP_THOST_FTDC_TRADER_API_ReqParkedOrderInsert, METH_VARARGS, nullptr},
-	///预埋撤单录入请求
-	{"ReqParkedOrderAction", CTP_THOST_FTDC_TRADER_API_ReqParkedOrderAction, METH_VARARGS, nullptr},
-	///报单操作请求
-	{"ReqOrderAction", CTP_THOST_FTDC_TRADER_API_ReqOrderAction, METH_VARARGS, nullptr},
-	///查询最大报单数量请求
-	{"ReqQueryMaxOrderVolume", CTP_THOST_FTDC_TRADER_API_ReqQueryMaxOrderVolume, METH_VARARGS, nullptr},
-	///投资者结算结果确认
-	{"ReqSettlementInfoConfirm", CTP_THOST_FTDC_TRADER_API_ReqSettlementInfoConfirm, METH_VARARGS, nullptr},
-	///请求删除预埋单
-	{"ReqRemoveParkedOrder", CTP_THOST_FTDC_TRADER_API_ReqRemoveParkedOrder, METH_VARARGS, nullptr},
-	///请求删除预埋撤单
-	{"ReqRemoveParkedOrderAction", CTP_THOST_FTDC_TRADER_API_ReqRemoveParkedOrderAction, METH_VARARGS, nullptr},
-	///执行宣告录入请求
-	{"ReqExecOrderInsert", CTP_THOST_FTDC_TRADER_API_ReqExecOrderInsert, METH_VARARGS, nullptr},
-	///执行宣告操作请求
-	{"ReqExecOrderAction", CTP_THOST_FTDC_TRADER_API_ReqExecOrderAction, METH_VARARGS, nullptr},
-	///询价录入请求
-	{"ReqForQuoteInsert", CTP_THOST_FTDC_TRADER_API_ReqForQuoteInsert, METH_VARARGS, nullptr},
-	///报价录入请求
-	{"ReqQuoteInsert", CTP_THOST_FTDC_TRADER_API_ReqQuoteInsert, METH_VARARGS, nullptr},
-	///报价操作请求
-	{"ReqQuoteAction", CTP_THOST_FTDC_TRADER_API_ReqQuoteAction, METH_VARARGS, nullptr},
-	///批量报单操作请求
-	{"ReqBatchOrderAction", CTP_THOST_FTDC_TRADER_API_ReqBatchOrderAction, METH_VARARGS, nullptr},
-	///申请组合录入请求
-	{"ReqCombActionInsert", CTP_THOST_FTDC_TRADER_API_ReqCombActionInsert, METH_VARARGS, nullptr},
-	///请求查询报单
-	{"ReqQryOrder", CTP_THOST_FTDC_TRADER_API_ReqQryOrder, METH_VARARGS, nullptr},
-	///请求查询成交
-	{"ReqQryTrade", CTP_THOST_FTDC_TRADER_API_ReqQryTrade, METH_VARARGS, nullptr},
-	///请求查询投资者持仓
-	{"ReqQryInvestorPosition", CTP_THOST_FTDC_TRADER_API_ReqQryInvestorPosition, METH_VARARGS, nullptr},
-	///请求查询资金账户
-	{"ReqQryTradingAccount", CTP_THOST_FTDC_TRADER_API_ReqQryTradingAccount, METH_VARARGS, nullptr},
-	///请求查询投资者
-	{"ReqQryInvestor", CTP_THOST_FTDC_TRADER_API_ReqQryInvestor, METH_VARARGS, nullptr},
-	///请求查询交易编码
-	{"ReqQryTradingCode", CTP_THOST_FTDC_TRADER_API_ReqQryTradingCode, METH_VARARGS, nullptr},
-	///请求查询合约保证金率
-	{"ReqQryInstrumentMarginRate", CTP_THOST_FTDC_TRADER_API_ReqQryInstrumentMarginRate, METH_VARARGS, nullptr},
-	///请求查询合约手续费率
-	{"ReqQryInstrumentCommissionRate", CTP_THOST_FTDC_TRADER_API_ReqQryInstrumentCommissionRate, METH_VARARGS, nullptr},
-	///请求查询交易所
-	{"ReqQryExchange", CTP_THOST_FTDC_TRADER_API_ReqQryExchange, METH_VARARGS, nullptr},
-	///请求查询产品
-	{"ReqQryProduct", CTP_THOST_FTDC_TRADER_API_ReqQryProduct, METH_VARARGS, nullptr},
-	///请求查询合约
-	{"ReqQryInstrument", CTP_THOST_FTDC_TRADER_API_ReqQryInstrument, METH_VARARGS, nullptr},
-	///请求查询行情
-	{"ReqQryDepthMarketData", CTP_THOST_FTDC_TRADER_API_ReqQryDepthMarketData, METH_VARARGS, nullptr},
-	///请求查询投资者结算结果
-	{"ReqQrySettlementInfo", CTP_THOST_FTDC_TRADER_API_ReqQrySettlementInfo, METH_VARARGS, nullptr},
-	///请求查询转帐银行
-	{"ReqQryTransferBank", CTP_THOST_FTDC_TRADER_API_ReqQryTransferBank, METH_VARARGS, nullptr},
-	///请求查询投资者持仓明细
-	{"ReqQryInvestorPositionDetail", CTP_THOST_FTDC_TRADER_API_ReqQryInvestorPositionDetail, METH_VARARGS, nullptr},
-	///请求查询客户通知
-	{"ReqQryNotice", CTP_THOST_FTDC_TRADER_API_ReqQryNotice, METH_VARARGS, nullptr},
-	///请求查询结算信息确认
-	{"ReqQrySettlementInfoConfirm", CTP_THOST_FTDC_TRADER_API_ReqQrySettlementInfoConfirm, METH_VARARGS, nullptr},
-	///请求查询投资者持仓明细
-	{"ReqQryInvestorPositionCombineDetail", CTP_THOST_FTDC_TRADER_API_ReqQryInvestorPositionCombineDetail, METH_VARARGS, nullptr},
-	///请求查询保证金监管系统经纪公司资金账户密钥
-	{"ReqQryCFMMCTradingAccountKey", CTP_THOST_FTDC_TRADER_API_ReqQryCFMMCTradingAccountKey, METH_VARARGS, nullptr},
-	///请求查询仓单折抵信息
-	{"ReqQryEWarrantOffset", CTP_THOST_FTDC_TRADER_API_ReqQryEWarrantOffset, METH_VARARGS, nullptr},
-	///请求查询投资者品种/跨品种保证金
-	{"ReqQryInvestorProductGroupMargin", CTP_THOST_FTDC_TRADER_API_ReqQryInvestorProductGroupMargin, METH_VARARGS, nullptr},
-	///请求查询交易所保证金率
-	{"ReqQryExchangeMarginRate", CTP_THOST_FTDC_TRADER_API_ReqQryExchangeMarginRate, METH_VARARGS, nullptr},
-	///请求查询交易所调整保证金率
-	{"ReqQryExchangeMarginRateAdjust", CTP_THOST_FTDC_TRADER_API_ReqQryExchangeMarginRateAdjust, METH_VARARGS, nullptr},
-	///请求查询汇率
-	{"ReqQryExchangeRate", CTP_THOST_FTDC_TRADER_API_ReqQryExchangeRate, METH_VARARGS, nullptr},
-	///请求查询二级代理操作员银期权限
-	{"ReqQrySecAgentACIDMap", CTP_THOST_FTDC_TRADER_API_ReqQrySecAgentACIDMap, METH_VARARGS, nullptr},
-	///请求查询产品报价汇率
-	{"ReqQryProductExchRate", CTP_THOST_FTDC_TRADER_API_ReqQryProductExchRate, METH_VARARGS, nullptr},
-	///请求查询产品组
-	{"ReqQryProductGroup", CTP_THOST_FTDC_TRADER_API_ReqQryProductGroup, METH_VARARGS, nullptr},
-	///请求查询期权交易成本
-	{"ReqQryOptionInstrTradeCost", CTP_THOST_FTDC_TRADER_API_ReqQryOptionInstrTradeCost, METH_VARARGS, nullptr},
-	///请求查询期权合约手续费
-	{"ReqQryOptionInstrCommRate", CTP_THOST_FTDC_TRADER_API_ReqQryOptionInstrCommRate, METH_VARARGS, nullptr},
-	///请求查询执行宣告
-	{"ReqQryExecOrder", CTP_THOST_FTDC_TRADER_API_ReqQryExecOrder, METH_VARARGS, nullptr},
-	///请求查询询价
-	{"ReqQryForQuote", CTP_THOST_FTDC_TRADER_API_ReqQryForQuote, METH_VARARGS, nullptr},
-	///请求查询报价
-	{"ReqQryQuote", CTP_THOST_FTDC_TRADER_API_ReqQryQuote, METH_VARARGS, nullptr},
-	///请求查询组合合约安全系数
-	{"ReqQryCombInstrumentGuard", CTP_THOST_FTDC_TRADER_API_ReqQryCombInstrumentGuard, METH_VARARGS, nullptr},
-	///请求查询申请组合
-	{"ReqQryCombAction", CTP_THOST_FTDC_TRADER_API_ReqQryCombAction, METH_VARARGS, nullptr},
-	///请求查询转帐流水
-	{"ReqQryTransferSerial", CTP_THOST_FTDC_TRADER_API_ReqQryTransferSerial, METH_VARARGS, nullptr},
-	///请求查询银期签约关系
-	{"ReqQryAccountregister", CTP_THOST_FTDC_TRADER_API_ReqQryAccountregister, METH_VARARGS, nullptr},
-	///请求查询签约银行
-	{"ReqQryContractBank", CTP_THOST_FTDC_TRADER_API_ReqQryContractBank, METH_VARARGS, nullptr},
-	///请求查询预埋单
-	{"ReqQryParkedOrder", CTP_THOST_FTDC_TRADER_API_ReqQryParkedOrder, METH_VARARGS, nullptr},
-	///请求查询预埋撤单
-	{"ReqQryParkedOrderAction", CTP_THOST_FTDC_TRADER_API_ReqQryParkedOrderAction, METH_VARARGS, nullptr},
-	///请求查询交易通知
-	{"ReqQryTradingNotice", CTP_THOST_FTDC_TRADER_API_ReqQryTradingNotice, METH_VARARGS, nullptr},
-	///请求查询经纪公司交易参数
-	{"ReqQryBrokerTradingParams", CTP_THOST_FTDC_TRADER_API_ReqQryBrokerTradingParams, METH_VARARGS, nullptr},
-	///请求查询经纪公司交易算法
-	{"ReqQryBrokerTradingAlgos", CTP_THOST_FTDC_TRADER_API_ReqQryBrokerTradingAlgos, METH_VARARGS, nullptr},
-	///请求查询监控中心用户令牌
-	{"ReqQueryCFMMCTradingAccountToken", CTP_THOST_FTDC_TRADER_API_ReqQueryCFMMCTradingAccountToken, METH_VARARGS, nullptr},
-	///期货发起银行资金转期货请求
-	{"ReqFromBankToFutureByFuture", CTP_THOST_FTDC_TRADER_API_ReqFromBankToFutureByFuture, METH_VARARGS, nullptr},
-	///期货发起期货资金转银行请求
-	{"ReqFromFutureToBankByFuture", CTP_THOST_FTDC_TRADER_API_ReqFromFutureToBankByFuture, METH_VARARGS, nullptr},
-	///期货发起查询银行余额请求
-	{"ReqQueryBankAccountMoneyByFuture", CTP_THOST_FTDC_TRADER_API_ReqQueryBankAccountMoneyByFuture, METH_VARARGS, nullptr},
-	{nullptr}  /* Sentinel */
-};
+extern PyMethodDef CTP_THOST_FTDC_TRADER_API_methods[];
 
 // API属性
-static PyMemberDef CTP_THOST_FTDC_TRADER_API_members[] = {
-	{nullptr}  /* Sentinel */
-};
+extern PyMemberDef CTP_THOST_FTDC_TRADER_API_members[];
 
 // 交易结构py类型定义
-static PyTypeObject CTP_THOST_FTDC_TRADER_API_TYPE = {
-	PyVarObject_HEAD_INIT(NULL, 0)
-	"PyCTP.CThostFtdcTraderApi",/* tp_name */
-	sizeof(CTP_THOST_FTDC_TRADER_API),/* tp_basicsize */
-	0,                          /* tp_itemsize */
-	CTP_THOST_FTDC_TRADER_API_dealloc,/* tp_dealloc */
-	0,                          /* tp_print */
-	0,                          /* tp_getattr */
-	0,                          /* tp_setattr */
-	0,                          /* tp_reserved */
-	0,                          /* tp_repr */
-	0,                          /* tp_as_number */
-	0,                          /* tp_as_sequence */
-	0,                          /* tp_as_mapping */
-	0,                          /* tp_hash  */
-	0,                          /* tp_call */
-	0,                          /* tp_str */
-	0,                          /* tp_getattro */
-	0,                          /* tp_setattro */
-	0,                          /* tp_as_buffer */
-	Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,/* tp_flags */
-	"equivalent to CThostFtdcTraderApi for cpp", /* tp_doc */
-	0,                          /* tp_traverse */
-	0,                          /* tp_clear */
-	0,                          /* tp_richcompare */
-	0,                          /* tp_weaklistoffset */
-	0,                          /* tp_iter */
-	0,                          /* tp_iternext */
-	CTP_THOST_FTDC_TRADER_API_methods, /* tp_methods */
-	CTP_THOST_FTDC_TRADER_API_members, /* tp_members */
-	0,                          /* tp_getset */
-	0,                          /* tp_base */
-	0,                          /* tp_dict */
-	0,                          /* tp_descr_get */
-	0,                          /* tp_descr_set */
-	0,                          /* tp_dictoffset */
-	0,							/* tp_init */
-	0,                          /* tp_alloc */
-	0,							/* tp_new */
-};
+extern PyTypeObject CTP_THOST_FTDC_TRADER_API_TYPE;
 
 class CTP_THOST_FTDC_TRADER_SPI : public CThostFtdcTraderSpi
 {
@@ -494,7 +295,7 @@ protected:
 	CTP_THOST_FTDC_TRADER_API *api;
 public:
 	CTP_THOST_FTDC_TRADER_SPI(CTP_THOST_FTDC_TRADER_API *userapi): api(userapi) {};
-	~CTP_THOST_FTDC_TRADER_SPI() {};
+	virtual ~CTP_THOST_FTDC_TRADER_SPI() {};
 
 	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 	virtual void OnFrontConnected();

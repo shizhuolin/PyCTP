@@ -19,7 +19,7 @@
 	if (PyDict_Check(dict)){ args = PyTuple_New(0); keywords = dict; delptr = args;} \
 	else if (PyTuple_Check(dict)){ args = dict; keywords = PyDict_New(); delptr = keywords;} \
 	else{return 0;} \
-	if (!PyArg_ParseTupleAndKeywords(args, keywords, _in_format, kwlist
+	if (!PyArg_ParseTupleAndKeywords(args, keywords, _in_format, const_cast<char **>(kwlist)
 #define PyCTP_PyDict_FromStruct_END )){Py_DECREF(delptr); return 0;}
 #define PyCTP_PyDict_FromStruct_RETURN Py_DECREF(delptr); return 1;
 
@@ -4965,7 +4965,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputCombActionField *pInputCombActi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryProductExchRateField *pQryProductExchRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", nullptr};
+	static const char *kwlist[] = {"ProductID", nullptr};
 	char *pQryProductExchRateField_ProductID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryProductExchRateField, "|y")
 		, &pQryProductExchRateField_ProductID
@@ -4976,7 +4976,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryProductExchRateField *pQryProductExchRa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderActionField *pExchangeExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderActionStatus", "ActionLocalID", "ActionTime", "ExecOrderSysID", "ExecOrderLocalID", "TraderID", "UserID", "InstallID", "ExchangeID", "ActionFlag", "ActionType", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", nullptr};
+	static const char *kwlist[] = {"OrderActionStatus", "ActionLocalID", "ActionTime", "ExecOrderSysID", "ExecOrderLocalID", "TraderID", "UserID", "InstallID", "ExchangeID", "ActionFlag", "ActionType", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", nullptr};
 	char pExchangeExecOrderActionField_OrderActionStatus = 0;
 	char *pExchangeExecOrderActionField_ActionLocalID = nullptr;
 	char *pExchangeExecOrderActionField_ActionTime = nullptr;
@@ -5029,7 +5029,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderActionField *pExchangeExe
 
 int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteParamField *pForQuoteParamField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "PriceInterval", "LastPrice", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "PriceInterval", "LastPrice", "InstrumentID", nullptr};
 	char *pForQuoteParamField_BrokerID = nullptr;
 	char *pForQuoteParamField_ExchangeID = nullptr;
 	double pForQuoteParamField_PriceInterval = 0.0;
@@ -5052,7 +5052,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteParamField *pForQuoteParamField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncFundMortgageField *pQrySyncFundMortgageField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "MortgageSeqNo", nullptr};
+	static const char *kwlist[] = {"BrokerID", "MortgageSeqNo", nullptr};
 	char *pQrySyncFundMortgageField_BrokerID = nullptr;
 	char *pQrySyncFundMortgageField_MortgageSeqNo = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQrySyncFundMortgageField, "|yy")
@@ -5066,7 +5066,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncFundMortgageField *pQrySyncFundMort
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderField *pInputExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OffsetFlag", "ActionType", "BrokerID", "InvestorID", "UserID", "PosiDirection", "Volume", "ExecOrderRef", "RequestID", "ReservePositionFlag", "BusinessUnit", "CloseFlag", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OffsetFlag", "ActionType", "BrokerID", "InvestorID", "UserID", "PosiDirection", "Volume", "ExecOrderRef", "RequestID", "ReservePositionFlag", "BusinessUnit", "CloseFlag", "HedgeFlag", "InstrumentID", nullptr};
 	char pInputExecOrderField_OffsetFlag = 0;
 	char pInputExecOrderField_ActionType = 0;
 	char *pInputExecOrderField_BrokerID = nullptr;
@@ -5116,7 +5116,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderField *pInputExecOrderField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderActionField *pErrOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "OrderActionRef", "ActionTime", "InstallID", "StatusMsg", "LimitPrice", "ActionFlag", "ErrorID", "RequestID", "SessionID", "ActionDate", "ClientID", "OrderActionStatus", "ActionLocalID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "ErrorMsg", "VolumeChange", "BusinessUnit", "ParticipantID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "OrderActionRef", "ActionTime", "InstallID", "StatusMsg", "LimitPrice", "ActionFlag", "ErrorID", "RequestID", "SessionID", "ActionDate", "ClientID", "OrderActionStatus", "ActionLocalID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "ErrorMsg", "VolumeChange", "BusinessUnit", "ParticipantID", "InstrumentID", nullptr};
 	char *pErrOrderActionField_OrderLocalID = nullptr;
 	int pErrOrderActionField_OrderActionRef = 0;
 	char *pErrOrderActionField_ActionTime = nullptr;
@@ -5205,7 +5205,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderActionField *pErrOrderActionField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserFunctionField *pBrokerUserFunctionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "BrokerFunctionCode", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "BrokerFunctionCode", "UserID", nullptr};
 	char *pBrokerUserFunctionField_BrokerID = nullptr;
 	char pBrokerUserFunctionField_BrokerFunctionCode = 0;
 	char *pBrokerUserFunctionField_UserID = nullptr;
@@ -5222,7 +5222,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserFunctionField *pBrokerUserFuncti
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorPositionField *pSyncingInvestorPositionField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "FrozenCash", "CloseProfitByTrade", "PositionProfit", "CashIn", "ShortFrozenAmount", "CloseProfit", "FrozenCommission", "PreMargin", "SettlementID", "CloseAmount", "PosiDirection", "CloseProfitByDate", "StrikeFrozenAmount", "CombPosition", "PreSettlementPrice", "ExchangeMargin", "CloseVolume", "HedgeFlag", "StrikeFrozen", "PositionDate", "LongFrozenAmount", "CombShortFrozen", "YdPosition", "OpenCost", "BrokerID", "UseMargin", "Position", "InvestorID", "LongFrozen", "SettlementPrice", "AbandonFrozen", "PositionCost", "TodayPosition", "MarginRateByMoney", "ShortFrozen", "OpenAmount", "OpenVolume", "CombLongFrozen", "Commission", "FrozenMargin", "MarginRateByVolume", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"TradingDay", "FrozenCash", "CloseProfitByTrade", "PositionProfit", "CashIn", "ShortFrozenAmount", "CloseProfit", "FrozenCommission", "PreMargin", "SettlementID", "CloseAmount", "PosiDirection", "CloseProfitByDate", "StrikeFrozenAmount", "CombPosition", "PreSettlementPrice", "ExchangeMargin", "CloseVolume", "HedgeFlag", "StrikeFrozen", "PositionDate", "LongFrozenAmount", "CombShortFrozen", "YdPosition", "OpenCost", "BrokerID", "UseMargin", "Position", "InvestorID", "LongFrozen", "SettlementPrice", "AbandonFrozen", "PositionCost", "TodayPosition", "MarginRateByMoney", "ShortFrozen", "OpenAmount", "OpenVolume", "CombLongFrozen", "Commission", "FrozenMargin", "MarginRateByVolume", "InstrumentID", nullptr};
 	char *pSyncingInvestorPositionField_TradingDay = nullptr;
 	double pSyncingInvestorPositionField_FrozenCash = 0.0;
 	double pSyncingInvestorPositionField_CloseProfitByTrade = 0.0;
@@ -5359,7 +5359,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorPositionField *pSyncingInve
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrCommRateField *pQryOptionInstrCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryOptionInstrCommRateField_BrokerID = nullptr;
 	char *pQryOptionInstrCommRateField_InvestorID = nullptr;
 	char *pQryOptionInstrCommRateField_InstrumentID = nullptr;
@@ -5376,7 +5376,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrCommRateField *pQryOptionIns
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeWithPriceField *pQueryMaxOrderVolumeWithPriceField, PyObject *dict)
 {
-	static char *kwlist[] = {"OffsetFlag", "MaxVolume", "Direction", "BrokerID", "Price", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OffsetFlag", "MaxVolume", "Direction", "BrokerID", "Price", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
 	char pQueryMaxOrderVolumeWithPriceField_OffsetFlag = 0;
 	int pQueryMaxOrderVolumeWithPriceField_MaxVolume = 0;
 	char pQueryMaxOrderVolumeWithPriceField_Direction = 0;
@@ -5408,7 +5408,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeWithPriceField *pQueryM
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryEWarrantOffsetField *pQryEWarrantOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryEWarrantOffsetField_BrokerID = nullptr;
 	char *pQryEWarrantOffsetField_ExchangeID = nullptr;
 	char *pQryEWarrantOffsetField_InvestorID = nullptr;
@@ -5428,7 +5428,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryEWarrantOffsetField *pQryEWarrantOffset
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLogoutAllField *pLogoutAllField, PyObject *dict)
 {
-	static char *kwlist[] = {"FrontID", "SystemName", "SessionID", nullptr};
+	static const char *kwlist[] = {"FrontID", "SystemName", "SessionID", nullptr};
 	int pLogoutAllField_FrontID = 0;
 	char *pLogoutAllField_SystemName = nullptr;
 	int pLogoutAllField_SessionID = 0;
@@ -5445,7 +5445,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLogoutAllField *pLogoutAllField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqRepealField *pReqRepealField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankPassWord", "TradeDate", "TradeAmount", "BankSecuAccType", "Digest", "InstallID", "Message", "BrokerBranchID", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "VerifyCertNoFlag", "BrokerID", "FeePayFlag", "IdentifiedCardNo", "RepealedTimes", "SecuPwdFlag", "CustomerName", "FutureRepealSerial", "BankRepealSerial", "Password", "BrokerFee", "BankID", "RepealTimeInterval", "FutureFetchAmount", "TradingDay", "BankAccType", "CustType", "BrokerRepealFlag", "CustFee", "BankBranchID", "BankSecuAcc", "BankSerial", "BankRepealFlag", "LastFragment", "IdCardType", "SessionID", "BankPwdFlag", "BrokerIDByBank", "TransferStatus", "CurrencyID", "UserID", "PlateRepealSerial", "OperNo", "BankAccount", "TID", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"BankPassWord", "TradeDate", "TradeAmount", "BankSecuAccType", "Digest", "InstallID", "Message", "BrokerBranchID", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "VerifyCertNoFlag", "BrokerID", "FeePayFlag", "IdentifiedCardNo", "RepealedTimes", "SecuPwdFlag", "CustomerName", "FutureRepealSerial", "BankRepealSerial", "Password", "BrokerFee", "BankID", "RepealTimeInterval", "FutureFetchAmount", "TradingDay", "BankAccType", "CustType", "BrokerRepealFlag", "CustFee", "BankBranchID", "BankSecuAcc", "BankSerial", "BankRepealFlag", "LastFragment", "IdCardType", "SessionID", "BankPwdFlag", "BrokerIDByBank", "TransferStatus", "CurrencyID", "UserID", "PlateRepealSerial", "OperNo", "BankAccount", "TID", "TradeTime", "TradeCode", nullptr};
 	char *pReqRepealField_BankPassWord = nullptr;
 	char *pReqRepealField_TradeDate = nullptr;
 	double pReqRepealField_TradeAmount = 0.0;
@@ -5603,7 +5603,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqRepealField *pReqRepealField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataExchangeField *pMarketDataExchangeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", nullptr};
 	char *pMarketDataExchangeField_ExchangeID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pMarketDataExchangeField, "|y")
 		, &pMarketDataExchangeField_ExchangeID
@@ -5614,7 +5614,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataExchangeField *pMarketDataExchan
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOrderField *pQryOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "OrderSysID", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "OrderSysID", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
 	char *pQryOrderField_ExchangeID = nullptr;
 	char *pQryOrderField_InsertTimeEnd = nullptr;
 	char *pQryOrderField_OrderSysID = nullptr;
@@ -5643,7 +5643,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryOrderField *pQryOrderField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferFutureToBankReqField *pTransferFutureToBankReqField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccPwd", "FutureAccount", "FuturePwdFlag", nullptr};
+	static const char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccPwd", "FutureAccount", "FuturePwdFlag", nullptr};
 	char *pTransferFutureToBankReqField_CurrencyCode = nullptr;
 	double pTransferFutureToBankReqField_CustFee = 0.0;
 	double pTransferFutureToBankReqField_TradeAmt = 0.0;
@@ -5669,7 +5669,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferFutureToBankReqField *pTransferFut
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSettlementInfoField *pSettlementInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "Content", "SequenceNo", "BrokerID", "InvestorID", "SettlementID", nullptr};
+	static const char *kwlist[] = {"TradingDay", "Content", "SequenceNo", "BrokerID", "InvestorID", "SettlementID", nullptr};
 	char *pSettlementInfoField_TradingDay = nullptr;
 	char *pSettlementInfoField_Content = nullptr;
 	int pSettlementInfoField_SequenceNo = 0;
@@ -5695,7 +5695,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSettlementInfoField *pSettlementInfoField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBid23Field *pMarketDataBid23Field, PyObject *dict)
 {
-	static char *kwlist[] = {"BidPrice2", "BidVolume3", "BidPrice3", "BidVolume2", nullptr};
+	static const char *kwlist[] = {"BidPrice2", "BidVolume3", "BidPrice3", "BidVolume2", nullptr};
 	double pMarketDataBid23Field_BidPrice2 = 0.0;
 	int pMarketDataBid23Field_BidVolume3 = 0;
 	double pMarketDataBid23Field_BidPrice3 = 0.0;
@@ -5715,7 +5715,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBid23Field *pMarketDataBid23Fiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcForceUserLogoutField *pForceUserLogoutField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserID", nullptr};
 	char *pForceUserLogoutField_BrokerID = nullptr;
 	char *pForceUserLogoutField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pForceUserLogoutField, "|yy")
@@ -5729,7 +5729,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcForceUserLogoutField *pForceUserLogoutFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSuperUserFunctionField *pSuperUserFunctionField, PyObject *dict)
 {
-	static char *kwlist[] = {"FunctionCode", "UserID", nullptr};
+	static const char *kwlist[] = {"FunctionCode", "UserID", nullptr};
 	char pSuperUserFunctionField_FunctionCode = 0;
 	char *pSuperUserFunctionField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pSuperUserFunctionField, "|cy")
@@ -5743,7 +5743,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSuperUserFunctionField *pSuperUserFunction
 
 int PyCTP_Struct_FromPyDict(CThostFtdcVerifyInvestorPasswordField *pVerifyInvestorPasswordField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "Password", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "Password", nullptr};
 	char *pVerifyInvestorPasswordField_BrokerID = nullptr;
 	char *pVerifyInvestorPasswordField_InvestorID = nullptr;
 	char *pVerifyInvestorPasswordField_Password = nullptr;
@@ -5760,7 +5760,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcVerifyInvestorPasswordField *pVerifyInvest
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferFutureToBankRspField *pTransferFutureToBankRspField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccount", "RetInfo", "RetCode", nullptr};
+	static const char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccount", "RetInfo", "RetCode", nullptr};
 	char *pTransferFutureToBankRspField_CurrencyCode = nullptr;
 	double pTransferFutureToBankRspField_CustFee = 0.0;
 	double pTransferFutureToBankRspField_TradeAmt = 0.0;
@@ -5786,7 +5786,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferFutureToBankRspField *pTransferFut
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqOpenAccountField *pReqOpenAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "TID", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "TID", "TradeTime", "TradeCode", nullptr};
 	char *pReqOpenAccountField_BankPassWord = nullptr;
 	char *pReqOpenAccountField_TradeDate = nullptr;
 	char *pReqOpenAccountField_CountryCode = nullptr;
@@ -5926,7 +5926,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqOpenAccountField *pReqOpenAccountField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"HedgeFlag", "SequenceNo", "ActionLocalID", "ExchangeInstID", "Direction", "TradingDay", "TraderID", "InstallID", "CombDirection", "ExchangeID", "Volume", "ActionStatus", "NotifySequence", "ParticipantID", "ClientID", "SettlementID", nullptr};
+	static const char *kwlist[] = {"HedgeFlag", "SequenceNo", "ActionLocalID", "ExchangeInstID", "Direction", "TradingDay", "TraderID", "InstallID", "CombDirection", "ExchangeID", "Volume", "ActionStatus", "NotifySequence", "ParticipantID", "ClientID", "SettlementID", nullptr};
 	char pExchangeCombActionField_HedgeFlag = 0;
 	int pExchangeCombActionField_SequenceNo = 0;
 	char *pExchangeCombActionField_ActionLocalID = nullptr;
@@ -5982,7 +5982,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentStatusField *pQryInstrumentStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ExchangeInstID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ExchangeInstID", nullptr};
 	char *pQryInstrumentStatusField_ExchangeID = nullptr;
 	char *pQryInstrumentStatusField_ExchangeInstID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentStatusField, "|yy")
@@ -5996,7 +5996,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentStatusField *pQryInstrumentSt
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderActionField *pInputOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"LimitPrice", "SessionID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "ActionFlag", "RequestID", "OrderActionRef", "VolumeChange", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"LimitPrice", "SessionID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "ActionFlag", "RequestID", "OrderActionRef", "VolumeChange", "InstrumentID", nullptr};
 	double pInputOrderActionField_LimitPrice = 0.0;
 	int pInputOrderActionField_SessionID = 0;
 	char *pInputOrderActionField_BrokerID = nullptr;
@@ -6046,7 +6046,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderActionField *pInputOrderActionFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMarginField, PyObject *dict)
 {
-	static char *kwlist[] = {"OffsetAmount", "ExchOffsetAmount", "FrozenCash", "PositionProfit", "CashIn", "CloseProfit", "TradingDay", "LongUseMargin", "LongOffsetAmount", "ShortExchOffsetAmount", "ProductGroupID", "LongFrozenMargin", "Commission", "SettlementID", "ExchMargin", "LongExchMargin", "BrokerID", "UseMargin", "InvestorID", "ShortFrozenMargin", "ShortOffsetAmount", "ShortUseMargin", "FrozenMargin", "HedgeFlag", "FrozenCommission", "ShortExchMargin", "LongExchOffsetAmount", nullptr};
+	static const char *kwlist[] = {"OffsetAmount", "ExchOffsetAmount", "FrozenCash", "PositionProfit", "CashIn", "CloseProfit", "TradingDay", "LongUseMargin", "LongOffsetAmount", "ShortExchOffsetAmount", "ProductGroupID", "LongFrozenMargin", "Commission", "SettlementID", "ExchMargin", "LongExchMargin", "BrokerID", "UseMargin", "InvestorID", "ShortFrozenMargin", "ShortOffsetAmount", "ShortUseMargin", "FrozenMargin", "HedgeFlag", "FrozenCommission", "ShortExchMargin", "LongExchOffsetAmount", nullptr};
 	double pInvestorProductGroupMarginField_OffsetAmount = 0.0;
 	double pInvestorProductGroupMarginField_ExchOffsetAmount = 0.0;
 	double pInvestorProductGroupMarginField_FrozenCash = 0.0;
@@ -6135,7 +6135,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProductGroupMarginField *pInvestor
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBestPriceField *pMarketDataBestPriceField, PyObject *dict)
 {
-	static char *kwlist[] = {"BidPrice1", "AskPrice1", "BidVolume1", "AskVolume1", nullptr};
+	static const char *kwlist[] = {"BidPrice1", "AskPrice1", "BidVolume1", "AskVolume1", nullptr};
 	double pMarketDataBestPriceField_BidPrice1 = 0.0;
 	double pMarketDataBestPriceField_AskPrice1 = 0.0;
 	int pMarketDataBestPriceField_BidVolume1 = 0;
@@ -6155,7 +6155,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBestPriceField *pMarketDataBestP
 
 int PyCTP_Struct_FromPyDict(CThostFtdcNotifyQueryAccountField *pNotifyQueryAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"Password", "TradeDate", "BankFetchAmount", "BankID", "BankSecuAccType", "BankAccType", "TradingDay", "Digest", "CustType", "InstallID", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "ErrorMsg", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankUseAmount", "ErrorID", "BankAccount", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "TradeCode", nullptr};
+	static const char *kwlist[] = {"Password", "TradeDate", "BankFetchAmount", "BankID", "BankSecuAccType", "BankAccType", "TradingDay", "Digest", "CustType", "InstallID", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "ErrorMsg", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankUseAmount", "ErrorID", "BankAccount", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "TradeCode", nullptr};
 	char *pNotifyQueryAccountField_Password = nullptr;
 	char *pNotifyQueryAccountField_TradeDate = nullptr;
 	double pNotifyQueryAccountField_BankFetchAmount = 0.0;
@@ -6283,7 +6283,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcNotifyQueryAccountField *pNotifyQueryAccou
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeExecOrderField *pQryExchangeExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
 	char *pQryExchangeExecOrderField_ExchangeID = nullptr;
 	char *pQryExchangeExecOrderField_TraderID = nullptr;
 	char *pQryExchangeExecOrderField_ParticipantID = nullptr;
@@ -6306,7 +6306,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeExecOrderField *pQryExchangeExe
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspTransferField *pRspTransferField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankPassWord", "TradeDate", "ErrorID", "TradeAmount", "AccountID", "Digest", "InstallID", "Message", "BrokerBranchID", "BankSecuAccType", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "VerifyCertNoFlag", "BrokerID", "FeePayFlag", "IdentifiedCardNo", "SecuPwdFlag", "BankAccount", "CustomerName", "Password", "BrokerFee", "BankID", "FutureFetchAmount", "TradingDay", "BankAccType", "CustType", "CustFee", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "IdCardType", "SessionID", "BrokerIDByBank", "TransferStatus", "CurrencyID", "UserID", "BankPwdFlag", "ErrorMsg", "TID", "TradeTime", "TradeCode", "OperNo", nullptr};
+	static const char *kwlist[] = {"BankPassWord", "TradeDate", "ErrorID", "TradeAmount", "AccountID", "Digest", "InstallID", "Message", "BrokerBranchID", "BankSecuAccType", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "VerifyCertNoFlag", "BrokerID", "FeePayFlag", "IdentifiedCardNo", "SecuPwdFlag", "BankAccount", "CustomerName", "Password", "BrokerFee", "BankID", "FutureFetchAmount", "TradingDay", "BankAccType", "CustType", "CustFee", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "IdCardType", "SessionID", "BrokerIDByBank", "TransferStatus", "CurrencyID", "UserID", "BankPwdFlag", "ErrorMsg", "TID", "TradeTime", "TradeCode", "OperNo", nullptr};
 	char *pRspTransferField_BankPassWord = nullptr;
 	char *pRspTransferField_TradeDate = nullptr;
 	int pRspTransferField_ErrorID = 0;
@@ -6449,7 +6449,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspTransferField *pRspTransferField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncStatusField *pSyncStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"DataSyncStatus", "TradingDay", nullptr};
+	static const char *kwlist[] = {"DataSyncStatus", "TradingDay", nullptr};
 	char pSyncStatusField_DataSyncStatus = 0;
 	char *pSyncStatusField_TradingDay = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pSyncStatusField, "|cy")
@@ -6463,7 +6463,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncStatusField *pSyncStatusField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBaseField *pMarketDataBaseField, PyObject *dict)
 {
-	static char *kwlist[] = {"PreSettlementPrice", "TradingDay", "PreDelta", "PreOpenInterest", "PreClosePrice", nullptr};
+	static const char *kwlist[] = {"PreSettlementPrice", "TradingDay", "PreDelta", "PreOpenInterest", "PreClosePrice", nullptr};
 	double pMarketDataBaseField_PreSettlementPrice = 0.0;
 	char *pMarketDataBaseField_TradingDay = nullptr;
 	double pMarketDataBaseField_PreDelta = 0.0;
@@ -6486,7 +6486,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBaseField *pMarketDataBaseField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderField *pInputOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorID", "Direction", "CombHedgeFlag", "VolumeTotalOriginal", "IsAutoSuspend", "UserForceClose", "OrderPriceType", "RequestID", "ForceCloseReason", "GTDDate", "ContingentCondition", "BrokerID", "TimeCondition", "CombOffsetFlag", "UserID", "StopPrice", "OrderRef", "MinVolume", "LimitPrice", "VolumeCondition", "BusinessUnit", "IsSwapOrder", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"InvestorID", "Direction", "CombHedgeFlag", "VolumeTotalOriginal", "IsAutoSuspend", "UserForceClose", "OrderPriceType", "RequestID", "ForceCloseReason", "GTDDate", "ContingentCondition", "BrokerID", "TimeCondition", "CombOffsetFlag", "UserID", "StopPrice", "OrderRef", "MinVolume", "LimitPrice", "VolumeCondition", "BusinessUnit", "IsSwapOrder", "InstrumentID", nullptr};
 	char *pInputOrderField_InvestorID = nullptr;
 	char pInputOrderField_Direction = 0;
 	char *pInputOrderField_CombHedgeFlag = nullptr;
@@ -6563,7 +6563,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderField *pInputOrderField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeField *pQryExchangeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", nullptr};
 	char *pQryExchangeField_ExchangeID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeField, "|y")
 		, &pQryExchangeField_ExchangeID
@@ -6574,7 +6574,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeField *pQryExchangeField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcPositionProfitAlgorithmField *pPositionProfitAlgorithmField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrencyID", "Memo", "Algorithm", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrencyID", "Memo", "Algorithm", "AccountID", nullptr};
 	char *pPositionProfitAlgorithmField_BrokerID = nullptr;
 	char *pPositionProfitAlgorithmField_CurrencyID = nullptr;
 	char *pPositionProfitAlgorithmField_Memo = nullptr;
@@ -6597,7 +6597,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcPositionProfitAlgorithmField *pPositionPro
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"SequenceNo", "AskHedgeFlag", "ClearingPartID", "InstallID", "StatusMsg", "OrderSubmitStatus", "RequestID", "ClientID", "ActiveUserID", "InsertDate", "ExchangeInstID", "BrokerID", "AskOrderSysID", "TraderID", "BidHedgeFlag", "BidVolume", "SettlementID", "QuoteRef", "InsertTime", "AskOrderRef", "NotifySequence", "ParticipantID", "QuoteLocalID", "InstrumentID", "BidOrderRef", "ForQuoteSysID", "BrokerQuoteSeq", "UserProductInfo", "TradingDay", "AskPrice", "BidPrice", "QuoteSysID", "AskOffsetFlag", "BidOffsetFlag", "SessionID", "QuoteStatus", "InvestorID", "UserID", "ExchangeID", "FrontID", "CancelTime", "AskVolume", "BusinessUnit", "BidOrderSysID", nullptr};
+	static const char *kwlist[] = {"SequenceNo", "AskHedgeFlag", "ClearingPartID", "InstallID", "StatusMsg", "OrderSubmitStatus", "RequestID", "ClientID", "ActiveUserID", "InsertDate", "ExchangeInstID", "BrokerID", "AskOrderSysID", "TraderID", "BidHedgeFlag", "BidVolume", "SettlementID", "QuoteRef", "InsertTime", "AskOrderRef", "NotifySequence", "ParticipantID", "QuoteLocalID", "InstrumentID", "BidOrderRef", "ForQuoteSysID", "BrokerQuoteSeq", "UserProductInfo", "TradingDay", "AskPrice", "BidPrice", "QuoteSysID", "AskOffsetFlag", "BidOffsetFlag", "SessionID", "QuoteStatus", "InvestorID", "UserID", "ExchangeID", "FrontID", "CancelTime", "AskVolume", "BusinessUnit", "BidOrderSysID", nullptr};
 	int pQuoteField_SequenceNo = 0;
 	char pQuoteField_AskHedgeFlag = 0;
 	char *pQuoteField_ClearingPartID = nullptr;
@@ -6737,7 +6737,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankField *pTransferBankField, PyObject *dict)
 {
-	static char *kwlist[] = {"IsActive", "BankName", "BankID", "BankBrchID", nullptr};
+	static const char *kwlist[] = {"IsActive", "BankName", "BankID", "BankBrchID", nullptr};
 	int pTransferBankField_IsActive = 0;
 	char *pTransferBankField_BankName = nullptr;
 	char *pTransferBankField_BankID = nullptr;
@@ -6757,7 +6757,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankField *pTransferBankField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCurrTransferIdentityField *pCurrTransferIdentityField, PyObject *dict)
 {
-	static char *kwlist[] = {"IdentityID", nullptr};
+	static const char *kwlist[] = {"IdentityID", nullptr};
 	int pCurrTransferIdentityField_IdentityID = 0;
 	PyCTP_PyDict_FromStruct_BEGIN(pCurrTransferIdentityField, "|i")
 		, &pCurrTransferIdentityField_IdentityID
@@ -6768,7 +6768,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCurrTransferIdentityField *pCurrTransferId
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqAuthenticateField *pReqAuthenticateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "AuthCode", "UserID", "UserProductInfo", nullptr};
+	static const char *kwlist[] = {"BrokerID", "AuthCode", "UserID", "UserProductInfo", nullptr};
 	char *pReqAuthenticateField_BrokerID = nullptr;
 	char *pReqAuthenticateField_AuthCode = nullptr;
 	char *pReqAuthenticateField_UserID = nullptr;
@@ -6788,7 +6788,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqAuthenticateField *pReqAuthenticateFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryDetailReqField *pTransferQryDetailReqField, PyObject *dict)
 {
-	static char *kwlist[] = {"FutureAccount", nullptr};
+	static const char *kwlist[] = {"FutureAccount", nullptr};
 	char *pTransferQryDetailReqField_FutureAccount = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pTransferQryDetailReqField, "|y")
 		, &pTransferQryDetailReqField_FutureAccount
@@ -6799,7 +6799,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryDetailReqField *pTransferQryDet
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarginModelField *pMarginModelField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "MarginModelName", "MarginModelID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "MarginModelName", "MarginModelID", nullptr};
 	char *pMarginModelField_BrokerID = nullptr;
 	char *pMarginModelField_MarginModelName = nullptr;
 	char *pMarginModelField_MarginModelID = nullptr;
@@ -6816,7 +6816,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarginModelField *pMarginModelField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTraderField *pQryTraderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", nullptr};
 	char *pQryTraderField_ExchangeID = nullptr;
 	char *pQryTraderField_TraderID = nullptr;
 	char *pQryTraderField_ParticipantID = nullptr;
@@ -6833,7 +6833,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTraderField *pQryTraderField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMulticastGroupInfoField *pMulticastGroupInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"SourceIP", "GroupIP", "GroupPort", nullptr};
+	static const char *kwlist[] = {"SourceIP", "GroupIP", "GroupPort", nullptr};
 	char *pMulticastGroupInfoField_SourceIP = nullptr;
 	char *pMulticastGroupInfoField_GroupIP = nullptr;
 	int pMulticastGroupInfoField_GroupPort = 0;
@@ -6850,7 +6850,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMulticastGroupInfoField *pMulticastGroupIn
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerWithdrawAlgorithmField *pBrokerWithdrawAlgorithmField, PyObject *dict)
 {
-	static char *kwlist[] = {"WithdrawAlgorithm", "UsingRatio", "FundMortgageRatio", "IncludeCloseProfit", "IsBrokerUserEvent", "BalanceAlgorithm", "BrokerID", "AllWithoutTrade", "AvailIncludeCloseProfit", "CurrencyID", nullptr};
+	static const char *kwlist[] = {"WithdrawAlgorithm", "UsingRatio", "FundMortgageRatio", "IncludeCloseProfit", "IsBrokerUserEvent", "BalanceAlgorithm", "BrokerID", "AllWithoutTrade", "AvailIncludeCloseProfit", "CurrencyID", nullptr};
 	char pBrokerWithdrawAlgorithmField_WithdrawAlgorithm = 0;
 	double pBrokerWithdrawAlgorithmField_UsingRatio = 0.0;
 	double pBrokerWithdrawAlgorithmField_FundMortgageRatio = 0.0;
@@ -6888,7 +6888,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerWithdrawAlgorithmField *pBrokerWithd
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspFutureSignInField *pRspFutureSignInField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "MacKey", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "PinKey", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "MacKey", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "PinKey", "TradeTime", "TradeCode", nullptr};
 	char *pRspFutureSignInField_TradeDate = nullptr;
 	int pRspFutureSignInField_ErrorID = 0;
 	char *pRspFutureSignInField_BankID = nullptr;
@@ -6971,7 +6971,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspFutureSignInField *pRspFutureSignInFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"CZCETime", "Password", "SessionID", "UserProductInfo", "BrokerID", "OneTimePassword", "MacAddress", "ProtocolInfo", "InterfaceProductInfo", "UserID", "LoginTime", "FrontID", "LoginDate", "MaxOrderRef", "INETime", "FFEXTime", "SHFETime", "SystemName", "IPAddress", "DCETime", nullptr};
+	static const char *kwlist[] = {"CZCETime", "Password", "SessionID", "UserProductInfo", "BrokerID", "OneTimePassword", "MacAddress", "ProtocolInfo", "InterfaceProductInfo", "UserID", "LoginTime", "FrontID", "LoginDate", "MaxOrderRef", "INETime", "FFEXTime", "SHFETime", "SystemName", "IPAddress", "DCETime", nullptr};
 	char *pLoginInfoField_CZCETime = nullptr;
 	char *pLoginInfoField_Password = nullptr;
 	int pLoginInfoField_SessionID = 0;
@@ -7039,7 +7039,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserPasswordUpdateField *pUserPasswordUpdateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "NewPassword", "OldPassword", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "NewPassword", "OldPassword", "UserID", nullptr};
 	char *pUserPasswordUpdateField_BrokerID = nullptr;
 	char *pUserPasswordUpdateField_NewPassword = nullptr;
 	char *pUserPasswordUpdateField_OldPassword = nullptr;
@@ -7059,7 +7059,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserPasswordUpdateField *pUserPasswordUpda
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderField *pErrOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorID", "ErrorID", "Direction", "CombHedgeFlag", "VolumeTotalOriginal", "IsAutoSuspend", "UserForceClose", "OrderPriceType", "RequestID", "ForceCloseReason", "GTDDate", "ContingentCondition", "BrokerID", "TimeCondition", "CombOffsetFlag", "UserID", "StopPrice", "OrderRef", "ErrorMsg", "MinVolume", "LimitPrice", "VolumeCondition", "BusinessUnit", "IsSwapOrder", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"InvestorID", "ErrorID", "Direction", "CombHedgeFlag", "VolumeTotalOriginal", "IsAutoSuspend", "UserForceClose", "OrderPriceType", "RequestID", "ForceCloseReason", "GTDDate", "ContingentCondition", "BrokerID", "TimeCondition", "CombOffsetFlag", "UserID", "StopPrice", "OrderRef", "ErrorMsg", "MinVolume", "LimitPrice", "VolumeCondition", "BusinessUnit", "IsSwapOrder", "InstrumentID", nullptr};
 	char *pErrOrderField_InvestorID = nullptr;
 	int pErrOrderField_ErrorID = 0;
 	char pErrOrderField_Direction = 0;
@@ -7142,7 +7142,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderField *pErrOrderField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputBatchOrderActionField *pInputBatchOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "RequestID", "FrontID", "OrderActionRef", "BrokerID", "SessionID", "InvestorID", "UserID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "RequestID", "FrontID", "OrderActionRef", "BrokerID", "SessionID", "InvestorID", "UserID", nullptr};
 	char *pInputBatchOrderActionField_ExchangeID = nullptr;
 	int pInputBatchOrderActionField_RequestID = 0;
 	int pInputBatchOrderActionField_FrontID = 0;
@@ -7174,7 +7174,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputBatchOrderActionField *pInputBatchOrd
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryErrExecOrderActionField *pQryErrExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryErrExecOrderActionField_BrokerID = nullptr;
 	char *pQryErrExecOrderActionField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryErrExecOrderActionField, "|yy")
@@ -7188,7 +7188,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryErrExecOrderActionField *pQryErrExecOrd
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateAdjustField *pQryExchangeMarginRateAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "HedgeFlag", "InstrumentID", nullptr};
 	char *pQryExchangeMarginRateAdjustField_BrokerID = nullptr;
 	char pQryExchangeMarginRateAdjustField_HedgeFlag = 0;
 	char *pQryExchangeMarginRateAdjustField_InstrumentID = nullptr;
@@ -7205,7 +7205,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateAdjustField *pQryExch
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserField *pQryBrokerUserField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserID", nullptr};
 	char *pQryBrokerUserField_BrokerID = nullptr;
 	char *pQryBrokerUserField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryBrokerUserField, "|yy")
@@ -7219,7 +7219,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserField *pQryBrokerUserField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryErrOrderActionField *pQryErrOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryErrOrderActionField_BrokerID = nullptr;
 	char *pQryErrOrderActionField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryErrOrderActionField, "|yy")
@@ -7233,7 +7233,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryErrOrderActionField *pQryErrOrderAction
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspSyncKeyField *pRspSyncKeyField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradeDate", "BankSerial", "BankID", "TradingDay", "InstallID", "Message", "BankBranchID", "OperNo", "ErrorID", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"TradeDate", "BankSerial", "BankID", "TradingDay", "InstallID", "Message", "BankBranchID", "OperNo", "ErrorID", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
 	char *pRspSyncKeyField_TradeDate = nullptr;
 	char *pRspSyncKeyField_BankSerial = nullptr;
 	char *pRspSyncKeyField_BankID = nullptr;
@@ -7307,7 +7307,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspSyncKeyField *pRspSyncKeyField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateAdjustField *pInstrumentMarginRateAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"LongMarginRatioByVolume", "IsRelative", "ShortMarginRatioByVolume", "InstrumentID", "BrokerID", "InvestorID", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"LongMarginRatioByVolume", "IsRelative", "ShortMarginRatioByVolume", "InstrumentID", "BrokerID", "InvestorID", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InvestorRange", nullptr};
 	double pInstrumentMarginRateAdjustField_LongMarginRatioByVolume = 0.0;
 	int pInstrumentMarginRateAdjustField_IsRelative = 0;
 	double pInstrumentMarginRateAdjustField_ShortMarginRatioByVolume = 0.0;
@@ -7345,7 +7345,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateAdjustField *pInstrume
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderField *pQryParkedOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryParkedOrderField_BrokerID = nullptr;
 	char *pQryParkedOrderField_ExchangeID = nullptr;
 	char *pQryParkedOrderField_InvestorID = nullptr;
@@ -7365,7 +7365,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderField *pQryParkedOrderField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySuperUserField *pQrySuperUserField, PyObject *dict)
 {
-	static char *kwlist[] = {"UserID", nullptr};
+	static const char *kwlist[] = {"UserID", nullptr};
 	char *pQrySuperUserField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQrySuperUserField, "|y")
 		, &pQrySuperUserField_UserID
@@ -7376,7 +7376,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySuperUserField *pQrySuperUserField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorField *pQryInvestorField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryInvestorField_BrokerID = nullptr;
 	char *pQryInvestorField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorField, "|yy")
@@ -7390,7 +7390,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorField *pQryInvestorField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeExecOrderActionField *pQryExchangeExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", nullptr};
 	char *pQryExchangeExecOrderActionField_ExchangeID = nullptr;
 	char *pQryExchangeExecOrderActionField_TraderID = nullptr;
 	char *pQryExchangeExecOrderActionField_ParticipantID = nullptr;
@@ -7410,7 +7410,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeExecOrderActionField *pQryExcha
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCancelAccountField *pCancelAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "ErrorID", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "ErrorMsg", "TID", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "ErrorID", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "ErrorMsg", "TID", "TradeTime", "TradeCode", nullptr};
 	char *pCancelAccountField_BankPassWord = nullptr;
 	char *pCancelAccountField_TradeDate = nullptr;
 	char *pCancelAccountField_CountryCode = nullptr;
@@ -7556,7 +7556,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCancelAccountField *pCancelAccountField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteRspField *pForQuoteRspField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ForQuoteTime", "ForQuoteSysID", "TradingDay", "ActionDay", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ForQuoteTime", "ForQuoteSysID", "TradingDay", "ActionDay", "InstrumentID", nullptr};
 	char *pForQuoteRspField_ExchangeID = nullptr;
 	char *pForQuoteRspField_ForQuoteTime = nullptr;
 	char *pForQuoteRspField_ForQuoteSysID = nullptr;
@@ -7582,7 +7582,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteRspField *pForQuoteRspField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryFrontStatusField *pQryFrontStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"FrontID", nullptr};
+	static const char *kwlist[] = {"FrontID", nullptr};
 	int pQryFrontStatusField_FrontID = 0;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryFrontStatusField, "|i")
 		, &pQryFrontStatusField_FrontID
@@ -7593,7 +7593,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryFrontStatusField *pQryFrontStatusField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcManualSyncBrokerUserOTPField *pManualSyncBrokerUserOTPField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "OTPType", "SecondOTP", "UserID", "FirstOTP", nullptr};
+	static const char *kwlist[] = {"BrokerID", "OTPType", "SecondOTP", "UserID", "FirstOTP", nullptr};
 	char *pManualSyncBrokerUserOTPField_BrokerID = nullptr;
 	char pManualSyncBrokerUserOTPField_OTPType = 0;
 	char *pManualSyncBrokerUserOTPField_SecondOTP = nullptr;
@@ -7616,7 +7616,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcManualSyncBrokerUserOTPField *pManualSyncB
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"LongMarginRatioByVolume", "IsRelative", "ShortMarginRatioByVolume", "InstrumentID", "BrokerID", "InvestorID", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"LongMarginRatioByVolume", "IsRelative", "ShortMarginRatioByVolume", "InstrumentID", "BrokerID", "InvestorID", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InvestorRange", nullptr};
 	double pInstrumentMarginRateField_LongMarginRatioByVolume = 0.0;
 	int pInstrumentMarginRateField_IsRelative = 0;
 	double pInstrumentMarginRateField_ShortMarginRatioByVolume = 0.0;
@@ -7654,7 +7654,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateField *pInstrumentMarg
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqQueryTradeResultBySerialField *pReqQueryTradeResultBySerialField, PyObject *dict)
 {
-	static char *kwlist[] = {"RefrenceIssure", "BankPassWord", "TradeDate", "Reference", "BankID", "TradeAmount", "TradingDay", "Digest", "CustType", "BankAccount", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "PlateSerial", "CurrencyID", "LastFragment", "IdCardType", "SessionID", "Password", "BrokerID", "RefrenceIssureType", "BrokerBranchID", "TradeTime", "CustomerName", "TradeCode", nullptr};
+	static const char *kwlist[] = {"RefrenceIssure", "BankPassWord", "TradeDate", "Reference", "BankID", "TradeAmount", "TradingDay", "Digest", "CustType", "BankAccount", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "PlateSerial", "CurrencyID", "LastFragment", "IdCardType", "SessionID", "Password", "BrokerID", "RefrenceIssureType", "BrokerBranchID", "TradeTime", "CustomerName", "TradeCode", nullptr};
 	char *pReqQueryTradeResultBySerialField_RefrenceIssure = nullptr;
 	char *pReqQueryTradeResultBySerialField_BankPassWord = nullptr;
 	char *pReqQueryTradeResultBySerialField_TradeDate = nullptr;
@@ -7740,7 +7740,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqQueryTradeResultBySerialField *pReqQuer
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTraderOfferField *pTraderOfferField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "StartTime", "Password", "ConnectTime", "StartDate", "MaxOrderMessageReference", "TradingDay", "TraderID", "InstallID", "ParticipantID", "ExchangeID", "BrokerID", "TraderConnectStatus", "ConnectRequestDate", "MaxTradeID", "ConnectRequestTime", "ConnectDate", "LastReportTime", "LastReportDate", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "StartTime", "Password", "ConnectTime", "StartDate", "MaxOrderMessageReference", "TradingDay", "TraderID", "InstallID", "ParticipantID", "ExchangeID", "BrokerID", "TraderConnectStatus", "ConnectRequestDate", "MaxTradeID", "ConnectRequestTime", "ConnectDate", "LastReportTime", "LastReportDate", nullptr};
 	char *pTraderOfferField_OrderLocalID = nullptr;
 	char *pTraderOfferField_StartTime = nullptr;
 	char *pTraderOfferField_Password = nullptr;
@@ -7805,7 +7805,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTraderOfferField *pTraderOfferField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqSyncKeyField *pReqSyncKeyField, PyObject *dict)
 {
-	static char *kwlist[] = {"LastFragment", "TradeDate", "BankID", "BrokerIDByBank", "BrokerID", "TradingDay", "UserID", "BrokerBranchID", "OperNo", "Message", "BankBranchID", "InstallID", "BankSerial", "TID", "RequestID", "SessionID", "TradeTime", "DeviceID", "PlateSerial", "TradeCode", nullptr};
+	static const char *kwlist[] = {"LastFragment", "TradeDate", "BankID", "BrokerIDByBank", "BrokerID", "TradingDay", "UserID", "BrokerBranchID", "OperNo", "Message", "BankBranchID", "InstallID", "BankSerial", "TID", "RequestID", "SessionID", "TradeTime", "DeviceID", "PlateSerial", "TradeCode", nullptr};
 	char pReqSyncKeyField_LastFragment = 0;
 	char *pReqSyncKeyField_TradeDate = nullptr;
 	char *pReqSyncKeyField_BankID = nullptr;
@@ -7873,7 +7873,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqSyncKeyField *pReqSyncKeyField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "OffsetFlag", "SequenceNo", "TradeDate", "Direction", "Price", "ClearingPartID", "ClientID", "TradeType", "TradingRole", "TraderID", "SettlementID", "HedgeFlag", "TradeID", "BrokerOrderSeq", "ExchangeInstID", "BrokerID", "InvestorID", "PriceSource", "UserID", "TradeSource", "ExchangeID", "OrderSysID", "OrderRef", "Volume", "TradeTime", "BusinessUnit", "ParticipantID", "TradingDay", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "OffsetFlag", "SequenceNo", "TradeDate", "Direction", "Price", "ClearingPartID", "ClientID", "TradeType", "TradingRole", "TraderID", "SettlementID", "HedgeFlag", "TradeID", "BrokerOrderSeq", "ExchangeInstID", "BrokerID", "InvestorID", "PriceSource", "UserID", "TradeSource", "ExchangeID", "OrderSysID", "OrderRef", "Volume", "TradeTime", "BusinessUnit", "ParticipantID", "TradingDay", "InstrumentID", nullptr};
 	char *pTradeField_OrderLocalID = nullptr;
 	char pTradeField_OffsetFlag = 0;
 	int pTradeField_SequenceNo = 0;
@@ -7971,7 +7971,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateField *pQryExchangeMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "HedgeFlag", "InstrumentID", nullptr};
 	char *pQryExchangeMarginRateField_BrokerID = nullptr;
 	char pQryExchangeMarginRateField_HedgeFlag = 0;
 	char *pQryExchangeMarginRateField_InstrumentID = nullptr;
@@ -7988,7 +7988,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateField *pQryExchangeMa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcChangeAccountField *pChangeAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"MoneyAccountStatus", "TradeDate", "CountryCode", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "InstallID", "Gender", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "PlateSerial", "CurrencyID", "EMail", "LastFragment", "IdCardType", "SessionID", "MobilePhone", "Password", "BrokerIDByBank", "BrokerID", "Fax", "Telephone", "BankPassWord", "ErrorMsg", "BrokerBranchID", "BankPwdFlag", "NewBankPassWord", "ErrorID", "BankAccount", "Digest", "SecuPwdFlag", "VerifyCertNoFlag", "TID", "TradeTime", "TradeCode", "CustomerName", "NewBankAccount", "Address", nullptr};
+	static const char *kwlist[] = {"MoneyAccountStatus", "TradeDate", "CountryCode", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "InstallID", "Gender", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "PlateSerial", "CurrencyID", "EMail", "LastFragment", "IdCardType", "SessionID", "MobilePhone", "Password", "BrokerIDByBank", "BrokerID", "Fax", "Telephone", "BankPassWord", "ErrorMsg", "BrokerBranchID", "BankPwdFlag", "NewBankPassWord", "ErrorID", "BankAccount", "Digest", "SecuPwdFlag", "VerifyCertNoFlag", "TID", "TradeTime", "TradeCode", "CustomerName", "NewBankAccount", "Address", nullptr};
 	char pChangeAccountField_MoneyAccountStatus = 0;
 	char *pChangeAccountField_TradeDate = nullptr;
 	char *pChangeAccountField_CountryCode = nullptr;
@@ -8122,7 +8122,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcChangeAccountField *pChangeAccountField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCommRateModelField *pQryCommRateModelField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CommModelID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CommModelID", nullptr};
 	char *pQryCommRateModelField_BrokerID = nullptr;
 	char *pQryCommRateModelField_CommModelID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryCommRateModelField, "|yy")
@@ -8136,7 +8136,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryCommRateModelField *pQryCommRateModelFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerSyncField *pBrokerSyncField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", nullptr};
+	static const char *kwlist[] = {"BrokerID", nullptr};
 	char *pBrokerSyncField_BrokerID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pBrokerSyncField, "|y")
 		, &pBrokerSyncField_BrokerID
@@ -8147,7 +8147,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerSyncField *pBrokerSyncField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCurrentTimeField *pCurrentTimeField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrMillisec", "ActionDay", "CurrTime", "CurrDate", nullptr};
+	static const char *kwlist[] = {"CurrMillisec", "ActionDay", "CurrTime", "CurrDate", nullptr};
 	int pCurrentTimeField_CurrMillisec = 0;
 	char *pCurrentTimeField_ActionDay = nullptr;
 	char *pCurrentTimeField_CurrTime = nullptr;
@@ -8167,7 +8167,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCurrentTimeField *pCurrentTimeField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcFrontStatusField *pFrontStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"FrontID", "LastReportTime", "LastReportDate", "IsActive", nullptr};
+	static const char *kwlist[] = {"FrontID", "LastReportTime", "LastReportDate", "IsActive", nullptr};
 	int pFrontStatusField_FrontID = 0;
 	char *pFrontStatusField_LastReportTime = nullptr;
 	char *pFrontStatusField_LastReportDate = nullptr;
@@ -8187,7 +8187,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcFrontStatusField *pFrontStatusField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryErrOrderField *pQryErrOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryErrOrderField_BrokerID = nullptr;
 	char *pQryErrOrderField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryErrOrderField, "|yy")
@@ -8201,7 +8201,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryErrOrderField *pQryErrOrderField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySettlementInfoConfirmField *pQrySettlementInfoConfirmField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQrySettlementInfoConfirmField_BrokerID = nullptr;
 	char *pQrySettlementInfoConfirmField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQrySettlementInfoConfirmField, "|yy")
@@ -8215,7 +8215,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySettlementInfoConfirmField *pQrySettlem
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataUpdateTimeField *pMarketDataUpdateTimeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ActionDay", "UpdateTime", "UpdateMillisec", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ActionDay", "UpdateTime", "UpdateMillisec", "InstrumentID", nullptr};
 	char *pMarketDataUpdateTimeField_ActionDay = nullptr;
 	char *pMarketDataUpdateTimeField_UpdateTime = nullptr;
 	int pMarketDataUpdateTimeField_UpdateMillisec = 0;
@@ -8235,7 +8235,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataUpdateTimeField *pMarketDataUpda
 
 int PyCTP_Struct_FromPyDict(CThostFtdcNotifySyncKeyField *pNotifySyncKeyField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradeDate", "BankSerial", "BankID", "TradingDay", "InstallID", "Message", "BankBranchID", "OperNo", "ErrorID", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"TradeDate", "BankSerial", "BankID", "TradingDay", "InstallID", "Message", "BankBranchID", "OperNo", "ErrorID", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
 	char *pNotifySyncKeyField_TradeDate = nullptr;
 	char *pNotifySyncKeyField_BankSerial = nullptr;
 	char *pNotifySyncKeyField_BankID = nullptr;
@@ -8309,7 +8309,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcNotifySyncKeyField *pNotifySyncKeyField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserEventField *pQryBrokerUserEventField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserEventType", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserEventType", "UserID", nullptr};
 	char *pQryBrokerUserEventField_BrokerID = nullptr;
 	char pQryBrokerUserEventField_UserEventType = 0;
 	char *pQryBrokerUserEventField_UserID = nullptr;
@@ -8326,7 +8326,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserEventField *pQryBrokerUserEve
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingNoticeInfoField *pTradingNoticeInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"SendTime", "FieldContent", "SequenceNo", "BrokerID", "InvestorID", "SequenceSeries", nullptr};
+	static const char *kwlist[] = {"SendTime", "FieldContent", "SequenceNo", "BrokerID", "InvestorID", "SequenceSeries", nullptr};
 	char *pTradingNoticeInfoField_SendTime = nullptr;
 	char *pTradingNoticeInfoField_FieldContent = nullptr;
 	int pTradingNoticeInfoField_SequenceNo = 0;
@@ -8352,7 +8352,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingNoticeInfoField *pTradingNoticeInfo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerField *pQryBrokerField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", nullptr};
+	static const char *kwlist[] = {"BrokerID", nullptr};
 	char *pQryBrokerField_BrokerID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryBrokerField, "|y")
 		, &pQryBrokerField_BrokerID
@@ -8363,7 +8363,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerField *pQryBrokerField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcDRTransferField *pDRTransferField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrigBrokerID", "DestBrokerID", "DestDRIdentityID", "OrigDRIdentityID", nullptr};
+	static const char *kwlist[] = {"OrigBrokerID", "DestBrokerID", "DestDRIdentityID", "OrigDRIdentityID", nullptr};
 	char *pDRTransferField_OrigBrokerID = nullptr;
 	char *pDRTransferField_DestBrokerID = nullptr;
 	int pDRTransferField_DestDRIdentityID = 0;
@@ -8383,7 +8383,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDRTransferField *pDRTransferField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderActionField *pInputExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"SessionID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "ActionFlag", "ExecOrderRef", "RequestID", "ExecOrderActionRef", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"SessionID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "ActionFlag", "ExecOrderRef", "RequestID", "ExecOrderActionRef", "InstrumentID", nullptr};
 	int pInputExecOrderActionField_SessionID = 0;
 	char *pInputExecOrderActionField_BrokerID = nullptr;
 	char *pInputExecOrderActionField_InvestorID = nullptr;
@@ -8427,7 +8427,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderActionField *pInputExecOrder
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMDTraderOfferField *pMDTraderOfferField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "StartTime", "Password", "ConnectTime", "StartDate", "MaxOrderMessageReference", "TradingDay", "TraderID", "InstallID", "ParticipantID", "ExchangeID", "BrokerID", "TraderConnectStatus", "ConnectRequestDate", "MaxTradeID", "ConnectRequestTime", "ConnectDate", "LastReportTime", "LastReportDate", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "StartTime", "Password", "ConnectTime", "StartDate", "MaxOrderMessageReference", "TradingDay", "TraderID", "InstallID", "ParticipantID", "ExchangeID", "BrokerID", "TraderConnectStatus", "ConnectRequestDate", "MaxTradeID", "ConnectRequestTime", "ConnectDate", "LastReportTime", "LastReportDate", nullptr};
 	char *pMDTraderOfferField_OrderLocalID = nullptr;
 	char *pMDTraderOfferField_StartTime = nullptr;
 	char *pMDTraderOfferField_Password = nullptr;
@@ -8492,7 +8492,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMDTraderOfferField *pMDTraderOfferField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLinkManField *pLinkManField, PyObject *dict)
 {
-	static char *kwlist[] = {"PersonType", "Telephone", "Priority", "ZipCode", "IdentifiedCardType", "PersonName", "IdentifiedCardNo", "BrokerID", "InvestorID", "PersonFullName", "UOAZipCode", "Address", nullptr};
+	static const char *kwlist[] = {"PersonType", "Telephone", "Priority", "ZipCode", "IdentifiedCardType", "PersonName", "IdentifiedCardNo", "BrokerID", "InvestorID", "PersonFullName", "UOAZipCode", "Address", nullptr};
 	char pLinkManField_PersonType = 0;
 	char *pLinkManField_Telephone = nullptr;
 	int pLinkManField_Priority = 0;
@@ -8536,7 +8536,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLinkManField *pLinkManField, PyObject *dic
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqTransferField *pReqTransferField, PyObject *dict)
 {
-	static char *kwlist[] = {"Password", "TradeDate", "BrokerFee", "BankID", "BankSecuAccType", "BankAccType", "TradeAmount", "TradingDay", "Digest", "CustType", "InstallID", "FeePayFlag", "Message", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "CustFee", "DeviceID", "FutureSerial", "PlateSerial", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankAccount", "TransferStatus", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "FutureFetchAmount", "TradeCode", nullptr};
+	static const char *kwlist[] = {"Password", "TradeDate", "BrokerFee", "BankID", "BankSecuAccType", "BankAccType", "TradeAmount", "TradingDay", "Digest", "CustType", "InstallID", "FeePayFlag", "Message", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "CustFee", "DeviceID", "FutureSerial", "PlateSerial", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankAccount", "TransferStatus", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "FutureFetchAmount", "TradeCode", nullptr};
 	char *pReqTransferField_Password = nullptr;
 	char *pReqTransferField_TradeDate = nullptr;
 	double pReqTransferField_BrokerFee = 0.0;
@@ -8673,7 +8673,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqTransferField *pReqTransferField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradeID", "ExchMargin", "TradingDay", "Direction", "Margin", "BrokerID", "InvestorID", "TotalAmt", "OpenDate", "SettlementID", "LegID", "ExchangeID", "CombInstrumentID", "ComTradeID", "MarginRateByVolume", "LegMultiple", "MarginRateByMoney", "TradeGroupID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"TradeID", "ExchMargin", "TradingDay", "Direction", "Margin", "BrokerID", "InvestorID", "TotalAmt", "OpenDate", "SettlementID", "LegID", "ExchangeID", "CombInstrumentID", "ComTradeID", "MarginRateByVolume", "LegMultiple", "MarginRateByMoney", "TradeGroupID", "HedgeFlag", "InstrumentID", nullptr};
 	char *pInvestorPositionCombineDetailField_TradeID = nullptr;
 	double pInvestorPositionCombineDetailField_ExchMargin = 0.0;
 	char *pInvestorPositionCombineDetailField_TradingDay = nullptr;
@@ -8741,7 +8741,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInves
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteActionField *pExchangeQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderActionStatus", "ActionLocalID", "ActionTime", "TraderID", "UserID", "InstallID", "ExchangeID", "ActionFlag", "QuoteSysID", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", "QuoteLocalID", nullptr};
+	static const char *kwlist[] = {"OrderActionStatus", "ActionLocalID", "ActionTime", "TraderID", "UserID", "InstallID", "ExchangeID", "ActionFlag", "QuoteSysID", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", "QuoteLocalID", nullptr};
 	char pExchangeQuoteActionField_OrderActionStatus = 0;
 	char *pExchangeQuoteActionField_ActionLocalID = nullptr;
 	char *pExchangeQuoteActionField_ActionTime = nullptr;
@@ -8791,7 +8791,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteActionField *pExchangeQuoteAc
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserRightAssignField *pBrokerUserRightAssignField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "Tradeable", "DRIdentityID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "Tradeable", "DRIdentityID", nullptr};
 	char *pBrokerUserRightAssignField_BrokerID = nullptr;
 	int pBrokerUserRightAssignField_Tradeable = 0;
 	int pBrokerUserRightAssignField_DRIdentityID = 0;
@@ -8808,7 +8808,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserRightAssignField *pBrokerUserRig
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryErrExecOrderField *pQryErrExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryErrExecOrderField_BrokerID = nullptr;
 	char *pQryErrExecOrderField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryErrExecOrderField, "|yy")
@@ -8822,7 +8822,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryErrExecOrderField *pQryErrExecOrderFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSecAgentACIDMapField *pSecAgentACIDMapField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "BrokerSecAgentID", "CurrencyID", "UserID", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "BrokerSecAgentID", "CurrencyID", "UserID", "AccountID", nullptr};
 	char *pSecAgentACIDMapField_BrokerID = nullptr;
 	char *pSecAgentACIDMapField_BrokerSecAgentID = nullptr;
 	char *pSecAgentACIDMapField_CurrencyID = nullptr;
@@ -8845,7 +8845,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSecAgentACIDMapField *pSecAgentACIDMapFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryDepthMarketDataField *pQryDepthMarketDataField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", nullptr};
+	static const char *kwlist[] = {"InstrumentID", nullptr};
 	char *pQryDepthMarketDataField_InstrumentID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryDepthMarketDataField, "|y")
 		, &pQryDepthMarketDataField_InstrumentID
@@ -8856,7 +8856,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryDepthMarketDataField *pQryDepthMarketDa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMarginAdjustField *pOptionInstrMarginAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"HShortMarginRatioByVolume", "InvestorID", "InstrumentID", "HShortMarginRatioByMoney", "SShortMarginRatioByVolume", "BrokerID", "SShortMarginRatioByMoney", "IsRelative", "AShortMarginRatioByVolume", "AShortMarginRatioByMoney", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"HShortMarginRatioByVolume", "InvestorID", "InstrumentID", "HShortMarginRatioByMoney", "SShortMarginRatioByVolume", "BrokerID", "SShortMarginRatioByMoney", "IsRelative", "AShortMarginRatioByVolume", "AShortMarginRatioByMoney", "InvestorRange", nullptr};
 	double pOptionInstrMarginAdjustField_HShortMarginRatioByVolume = 0.0;
 	char *pOptionInstrMarginAdjustField_InvestorID = nullptr;
 	char *pOptionInstrMarginAdjustField_InstrumentID = nullptr;
@@ -8897,7 +8897,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMarginAdjustField *pOptionInstr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentField *pQryInstrumentField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ProductID", "ExchangeInstID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ProductID", "ExchangeInstID", "InstrumentID", nullptr};
 	char *pQryInstrumentField_ExchangeID = nullptr;
 	char *pQryInstrumentField_ProductID = nullptr;
 	char *pQryInstrumentField_ExchangeInstID = nullptr;
@@ -8917,7 +8917,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentField *pQryInstrumentField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeOrderField *pQryExchangeOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
 	char *pQryExchangeOrderField_ExchangeID = nullptr;
 	char *pQryExchangeOrderField_TraderID = nullptr;
 	char *pQryExchangeOrderField_ParticipantID = nullptr;
@@ -8940,7 +8940,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeOrderField *pQryExchangeOrderFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorProductGroupMarginField *pQryInvestorProductGroupMarginField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ProductGroupID", "InvestorID", "HedgeFlag", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ProductGroupID", "InvestorID", "HedgeFlag", nullptr};
 	char *pQryInvestorProductGroupMarginField_BrokerID = nullptr;
 	char *pQryInvestorProductGroupMarginField_ProductGroupID = nullptr;
 	char *pQryInvestorProductGroupMarginField_InvestorID = nullptr;
@@ -8960,7 +8960,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorProductGroupMarginField *pQryIn
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "TimeCondition", "ErrorID", "CombOffsetFlag", "ClearingPartID", "InstallID", "StatusMsg", "IsAutoSuspend", "OrderSubmitStatus", "RequestID", "StopPrice", "ForceCloseReason", "SettlementID", "VolumeTotal", "InsertDate", "ExchangeInstID", "BrokerID", "SequenceNo", "TraderID", "ActiveUserID", "BrokerOrderSeq", "OrderSysID", "OrderRef", "GTDDate", "MinVolume", "InsertTime", "BusinessUnit", "OrderType", "ParticipantID", "ClientID", "LimitPrice", "UserProductInfo", "Direction", "ContingentCondition", "RelativeOrderSysID", "CombHedgeFlag", "VolumeTotalOriginal", "TradingDay", "VolumeTraded", "OrderSource", "UserForceClose", "SuspendTime", "OrderStatus", "ActiveTraderID", "SessionID", "ZCETotalTradedVolume", "NotifySequence", "InvestorID", "UserID", "ActiveTime", "ExchangeID", "FrontID", "ErrorMsg", "CancelTime", "OrderPriceType", "VolumeCondition", "InstrumentID", "UpdateTime", "IsSwapOrder", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "TimeCondition", "ErrorID", "CombOffsetFlag", "ClearingPartID", "InstallID", "StatusMsg", "IsAutoSuspend", "OrderSubmitStatus", "RequestID", "StopPrice", "ForceCloseReason", "SettlementID", "VolumeTotal", "InsertDate", "ExchangeInstID", "BrokerID", "SequenceNo", "TraderID", "ActiveUserID", "BrokerOrderSeq", "OrderSysID", "OrderRef", "GTDDate", "MinVolume", "InsertTime", "BusinessUnit", "OrderType", "ParticipantID", "ClientID", "LimitPrice", "UserProductInfo", "Direction", "ContingentCondition", "RelativeOrderSysID", "CombHedgeFlag", "VolumeTotalOriginal", "TradingDay", "VolumeTraded", "OrderSource", "UserForceClose", "SuspendTime", "OrderStatus", "ActiveTraderID", "SessionID", "ZCETotalTradedVolume", "NotifySequence", "InvestorID", "UserID", "ActiveTime", "ExchangeID", "FrontID", "ErrorMsg", "CancelTime", "OrderPriceType", "VolumeCondition", "InstrumentID", "UpdateTime", "IsSwapOrder", nullptr};
 	char *pErrorConditionalOrderField_OrderLocalID = nullptr;
 	char pErrorConditionalOrderField_TimeCondition = 0;
 	int pErrorConditionalOrderField_ErrorID = 0;
@@ -9145,7 +9145,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditio
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataLastMatchField *pMarketDataLastMatchField, PyObject *dict)
 {
-	static char *kwlist[] = {"Turnover", "OpenInterest", "LastPrice", "Volume", nullptr};
+	static const char *kwlist[] = {"Turnover", "OpenInterest", "LastPrice", "Volume", nullptr};
 	double pMarketDataLastMatchField_Turnover = 0.0;
 	double pMarketDataLastMatchField_OpenInterest = 0.0;
 	double pMarketDataLastMatchField_LastPrice = 0.0;
@@ -9165,7 +9165,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataLastMatchField *pMarketDataLastM
 
 int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderActionField *pParkedOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"Status", "LimitPrice", "SessionID", "BrokerID", "InvestorID", "UserType", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "ActionFlag", "ErrorID", "RequestID", "OrderActionRef", "ParkedOrderActionID", "VolumeChange", "ErrorMsg", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"Status", "LimitPrice", "SessionID", "BrokerID", "InvestorID", "UserType", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "ActionFlag", "ErrorID", "RequestID", "OrderActionRef", "ParkedOrderActionID", "VolumeChange", "ErrorMsg", "InstrumentID", nullptr};
 	char pParkedOrderActionField_Status = 0;
 	double pParkedOrderActionField_LimitPrice = 0.0;
 	int pParkedOrderActionField_SessionID = 0;
@@ -9230,7 +9230,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderActionField *pParkedOrderAction
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserPasswordField *pBrokerUserPasswordField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "Password", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "Password", "UserID", nullptr};
 	char *pBrokerUserPasswordField_BrokerID = nullptr;
 	char *pBrokerUserPasswordField_Password = nullptr;
 	char *pBrokerUserPasswordField_UserID = nullptr;
@@ -9247,7 +9247,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserPasswordField *pBrokerUserPasswo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ParkedOrderActionID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "ParkedOrderActionID", nullptr};
 	char *pRemoveParkedOrderActionField_BrokerID = nullptr;
 	char *pRemoveParkedOrderActionField_InvestorID = nullptr;
 	char *pRemoveParkedOrderActionField_ParkedOrderActionID = nullptr;
@@ -9264,7 +9264,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRemoveParkedOrderActionField *pRemoveParke
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ClearingPartID", "AskHedgeFlag", "TradingDay", "InstallID", "AskPrice", "ForQuoteSysID", "AskOrderSysID", "BidPrice", "QuoteSysID", "OrderSubmitStatus", "RequestID", "AskOffsetFlag", "BidOffsetFlag", "SettlementID", "InsertDate", "ExchangeInstID", "QuoteStatus", "BusinessUnit", "SequenceNo", "TraderID", "BidHedgeFlag", "ExchangeID", "BidVolume", "ClientID", "CancelTime", "InsertTime", "AskVolume", "NotifySequence", "ParticipantID", "QuoteLocalID", "BidOrderSysID", nullptr};
+	static const char *kwlist[] = {"ClearingPartID", "AskHedgeFlag", "TradingDay", "InstallID", "AskPrice", "ForQuoteSysID", "AskOrderSysID", "BidPrice", "QuoteSysID", "OrderSubmitStatus", "RequestID", "AskOffsetFlag", "BidOffsetFlag", "SettlementID", "InsertDate", "ExchangeInstID", "QuoteStatus", "BusinessUnit", "SequenceNo", "TraderID", "BidHedgeFlag", "ExchangeID", "BidVolume", "ClientID", "CancelTime", "InsertTime", "AskVolume", "NotifySequence", "ParticipantID", "QuoteLocalID", "BidOrderSysID", nullptr};
 	char *pExchangeQuoteField_ClearingPartID = nullptr;
 	char pExchangeQuoteField_AskHedgeFlag = 0;
 	char *pExchangeQuoteField_TradingDay = nullptr;
@@ -9365,7 +9365,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OffsetFlag", "ClearingPartID", "ActionType", "ExecOrderLocalID", "TradingDay", "ExecResult", "InstallID", "PosiDirection", "OrderSubmitStatus", "RequestID", "CloseFlag", "ClientID", "InsertDate", "ExchangeInstID", "ExecOrderSysID", "BusinessUnit", "SequenceNo", "TraderID", "ExchangeID", "Volume", "CancelTime", "InsertTime", "ReservePositionFlag", "NotifySequence", "ParticipantID", "HedgeFlag", "SettlementID", nullptr};
+	static const char *kwlist[] = {"OffsetFlag", "ClearingPartID", "ActionType", "ExecOrderLocalID", "TradingDay", "ExecResult", "InstallID", "PosiDirection", "OrderSubmitStatus", "RequestID", "CloseFlag", "ClientID", "InsertDate", "ExchangeInstID", "ExecOrderSysID", "BusinessUnit", "SequenceNo", "TraderID", "ExchangeID", "Volume", "CancelTime", "InsertTime", "ReservePositionFlag", "NotifySequence", "ParticipantID", "HedgeFlag", "SettlementID", nullptr};
 	char pExchangeExecOrderField_OffsetFlag = 0;
 	char *pExchangeExecOrderField_ClearingPartID = nullptr;
 	char pExchangeExecOrderField_ActionType = 0;
@@ -9454,7 +9454,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrder
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReturnResultField *pReturnResultField, PyObject *dict)
 {
-	static char *kwlist[] = {"DescrInfoForReturnCode", "ReturnCode", nullptr};
+	static const char *kwlist[] = {"DescrInfoForReturnCode", "ReturnCode", nullptr};
 	char *pReturnResultField_DescrInfoForReturnCode = nullptr;
 	char *pReturnResultField_ReturnCode = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pReturnResultField, "|yy")
@@ -9468,7 +9468,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReturnResultField *pReturnResultField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLoginField *pRspUserLoginField, PyObject *dict)
 {
-	static char *kwlist[] = {"CZCETime", "DCETime", "SessionID", "BrokerID", "TradingDay", "UserID", "LoginTime", "FrontID", "MaxOrderRef", "INETime", "FFEXTime", "SHFETime", "SystemName", nullptr};
+	static const char *kwlist[] = {"CZCETime", "DCETime", "SessionID", "BrokerID", "TradingDay", "UserID", "LoginTime", "FrontID", "MaxOrderRef", "INETime", "FFEXTime", "SHFETime", "SystemName", nullptr};
 	char *pRspUserLoginField_CZCETime = nullptr;
 	char *pRspUserLoginField_DCETime = nullptr;
 	int pRspUserLoginField_SessionID = 0;
@@ -9515,7 +9515,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLoginField *pRspUserLoginField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryAccountregisterField *pQryAccountregisterField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrencyID", "BankBranchID", "BankID", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrencyID", "BankBranchID", "BankID", "AccountID", nullptr};
 	char *pQryAccountregisterField_BrokerID = nullptr;
 	char *pQryAccountregisterField_CurrencyID = nullptr;
 	char *pQryAccountregisterField_BankBranchID = nullptr;
@@ -9538,7 +9538,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryAccountregisterField *pQryAccountregist
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorGroupField *pInvestorGroupField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorGroupID", "InvestorGroupName", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorGroupID", "InvestorGroupName", nullptr};
 	char *pInvestorGroupField_BrokerID = nullptr;
 	char *pInvestorGroupField_InvestorGroupID = nullptr;
 	char *pInvestorGroupField_InvestorGroupName = nullptr;
@@ -9555,7 +9555,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorGroupField *pInvestorGroupField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "TradingDay", "Direction", "VolumeTotal", "CombHedgeFlag", "VolumeTotalOriginal", "OrderSubmitStatus", "ClearingPartID", "TraderID", "InstallID", "UpdateTime", "VolumeTraded", "IsAutoSuspend", "CancelTime", "OrderPriceType", "RequestID", "ActiveTime", "ForceCloseReason", "ClientID", "OrderType", "ContingentCondition", "OrderStatus", "ActiveTraderID", "ExchangeInstID", "OrderSource", "NotifySequence", "TimeCondition", "CombOffsetFlag", "SuspendTime", "StopPrice", "ExchangeID", "OrderSysID", "GTDDate", "MinVolume", "InsertTime", "LimitPrice", "VolumeCondition", "SequenceNo", "BusinessUnit", "ParticipantID", "InsertDate", "SettlementID", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "TradingDay", "Direction", "VolumeTotal", "CombHedgeFlag", "VolumeTotalOriginal", "OrderSubmitStatus", "ClearingPartID", "TraderID", "InstallID", "UpdateTime", "VolumeTraded", "IsAutoSuspend", "CancelTime", "OrderPriceType", "RequestID", "ActiveTime", "ForceCloseReason", "ClientID", "OrderType", "ContingentCondition", "OrderStatus", "ActiveTraderID", "ExchangeInstID", "OrderSource", "NotifySequence", "TimeCondition", "CombOffsetFlag", "SuspendTime", "StopPrice", "ExchangeID", "OrderSysID", "GTDDate", "MinVolume", "InsertTime", "LimitPrice", "VolumeCondition", "SequenceNo", "BusinessUnit", "ParticipantID", "InsertDate", "SettlementID", nullptr};
 	char *pExchangeOrderField_OrderLocalID = nullptr;
 	char *pExchangeOrderField_TradingDay = nullptr;
 	char pExchangeOrderField_Direction = 0;
@@ -9689,7 +9689,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspRepealField *pRspRepealField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankPassWord", "TradeDate", "ErrorID", "TradeAmount", "BankSecuAccType", "Digest", "InstallID", "Message", "BrokerBranchID", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "VerifyCertNoFlag", "BrokerID", "FeePayFlag", "IdentifiedCardNo", "RepealedTimes", "SecuPwdFlag", "CustomerName", "FutureRepealSerial", "BankRepealSerial", "Password", "BrokerFee", "BankID", "RepealTimeInterval", "FutureFetchAmount", "TradingDay", "BankAccType", "CustType", "BrokerRepealFlag", "CustFee", "BankBranchID", "BankSecuAcc", "BankSerial", "BankRepealFlag", "LastFragment", "IdCardType", "SessionID", "BankPwdFlag", "BrokerIDByBank", "TransferStatus", "CurrencyID", "UserID", "PlateRepealSerial", "OperNo", "BankAccount", "ErrorMsg", "TID", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"BankPassWord", "TradeDate", "ErrorID", "TradeAmount", "BankSecuAccType", "Digest", "InstallID", "Message", "BrokerBranchID", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "VerifyCertNoFlag", "BrokerID", "FeePayFlag", "IdentifiedCardNo", "RepealedTimes", "SecuPwdFlag", "CustomerName", "FutureRepealSerial", "BankRepealSerial", "Password", "BrokerFee", "BankID", "RepealTimeInterval", "FutureFetchAmount", "TradingDay", "BankAccType", "CustType", "BrokerRepealFlag", "CustFee", "BankBranchID", "BankSecuAcc", "BankSerial", "BankRepealFlag", "LastFragment", "IdCardType", "SessionID", "BankPwdFlag", "BrokerIDByBank", "TransferStatus", "CurrencyID", "UserID", "PlateRepealSerial", "OperNo", "BankAccount", "ErrorMsg", "TID", "TradeTime", "TradeCode", nullptr};
 	char *pRspRepealField_BankPassWord = nullptr;
 	char *pRspRepealField_TradeDate = nullptr;
 	int pRspRepealField_ErrorID = 0;
@@ -9853,7 +9853,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspRepealField *pRspRepealField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerField *pBrokerField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "BrokerAbbr", "IsActive", "BrokerName", nullptr};
+	static const char *kwlist[] = {"BrokerID", "BrokerAbbr", "IsActive", "BrokerName", nullptr};
 	char *pBrokerField_BrokerID = nullptr;
 	char *pBrokerField_BrokerAbbr = nullptr;
 	int pBrokerField_IsActive = 0;
@@ -9873,7 +9873,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerField *pBrokerField, PyObject *dict)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirmField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ConfirmDate", "ConfirmTime", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "ConfirmDate", "ConfirmTime", nullptr};
 	char *pSettlementInfoConfirmField_BrokerID = nullptr;
 	char *pSettlementInfoConfirmField_InvestorID = nullptr;
 	char *pSettlementInfoConfirmField_ConfirmDate = nullptr;
@@ -9893,7 +9893,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSettlementInfoConfirmField *pSettlementInf
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserOTPParamField *pBrokerUserOTPParamField, PyObject *dict)
 {
-	static char *kwlist[] = {"OTPType", "AuthKey", "OTPVendorsID", "LastSuccess", "BrokerID", "SerialNumber", "UserID", "LastDrift", nullptr};
+	static const char *kwlist[] = {"OTPType", "AuthKey", "OTPVendorsID", "LastSuccess", "BrokerID", "SerialNumber", "UserID", "LastDrift", nullptr};
 	char pBrokerUserOTPParamField_OTPType = 0;
 	char *pBrokerUserOTPParamField_AuthKey = nullptr;
 	char *pBrokerUserOTPParamField_OTPVendorsID = nullptr;
@@ -9925,7 +9925,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserOTPParamField *pBrokerUserOTPPar
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncDepositField *pSyncDepositField, PyObject *dict)
 {
-	static char *kwlist[] = {"DepositSeqNo", "Deposit", "CurrencyID", "BrokerID", "IsForce", "InvestorID", nullptr};
+	static const char *kwlist[] = {"DepositSeqNo", "Deposit", "CurrencyID", "BrokerID", "IsForce", "InvestorID", nullptr};
 	char *pSyncDepositField_DepositSeqNo = nullptr;
 	double pSyncDepositField_Deposit = 0.0;
 	char *pSyncDepositField_CurrencyID = nullptr;
@@ -9951,7 +9951,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncDepositField *pSyncDepositField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTraderField *pTraderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "Password", "BrokerID", "TraderID", "InstallCount", "ParticipantID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "Password", "BrokerID", "TraderID", "InstallCount", "ParticipantID", nullptr};
 	char *pTraderField_ExchangeID = nullptr;
 	char *pTraderField_Password = nullptr;
 	char *pTraderField_BrokerID = nullptr;
@@ -9977,7 +9977,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTraderField *pTraderField, PyObject *dict)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeRateField *pQryExchangeRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "FromCurrencyID", "ToCurrencyID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "FromCurrencyID", "ToCurrencyID", nullptr};
 	char *pQryExchangeRateField_BrokerID = nullptr;
 	char *pQryExchangeRateField_FromCurrencyID = nullptr;
 	char *pQryExchangeRateField_ToCurrencyID = nullptr;
@@ -9994,7 +9994,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeRateField *pQryExchangeRateFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataField, PyObject *dict)
 {
-	static char *kwlist[] = {"OpenPrice", "OpenInterest", "ClosePrice", "SettlementPrice", "ActionDay", "LastPrice", "AskVolume3", "BidVolume5", "CurrDelta", "BidVolume3", "Turnover", "AskPrice2", "ExchangeInstID", "PreDelta", "LowerLimitPrice", "AveragePrice", "BidPrice5", "AskPrice5", "UpdateMillisec", "AskVolume2", "InstrumentID", "PreOpenInterest", "BidVolume4", "TradingDay", "BidPrice2", "LowestPrice", "AskVolume5", "AskPrice3", "PreSettlementPrice", "BidPrice4", "AskPrice1", "AskPrice4", "UpperLimitPrice", "HighestPrice", "BidPrice3", "ExchangeID", "PreClosePrice", "BidVolume1", "Volume", "BidVolume2", "BidPrice1", "UpdateTime", "AskVolume1", "AskVolume4", nullptr};
+	static const char *kwlist[] = {"OpenPrice", "OpenInterest", "ClosePrice", "SettlementPrice", "ActionDay", "LastPrice", "AskVolume3", "BidVolume5", "CurrDelta", "BidVolume3", "Turnover", "AskPrice2", "ExchangeInstID", "PreDelta", "LowerLimitPrice", "AveragePrice", "BidPrice5", "AskPrice5", "UpdateMillisec", "AskVolume2", "InstrumentID", "PreOpenInterest", "BidVolume4", "TradingDay", "BidPrice2", "LowestPrice", "AskVolume5", "AskPrice3", "PreSettlementPrice", "BidPrice4", "AskPrice1", "AskPrice4", "UpperLimitPrice", "HighestPrice", "BidPrice3", "ExchangeID", "PreClosePrice", "BidVolume1", "Volume", "BidVolume2", "BidPrice1", "UpdateTime", "AskVolume1", "AskVolume4", nullptr};
 	double pDepthMarketDataField_OpenPrice = 0.0;
 	double pDepthMarketDataField_OpenInterest = 0.0;
 	double pDepthMarketDataField_ClosePrice = 0.0;
@@ -10134,7 +10134,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncDepositField *pQrySyncDepositField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "DepositSeqNo", nullptr};
+	static const char *kwlist[] = {"BrokerID", "DepositSeqNo", nullptr};
 	char *pQrySyncDepositField_BrokerID = nullptr;
 	char *pQrySyncDepositField_DepositSeqNo = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQrySyncDepositField, "|yy")
@@ -10148,7 +10148,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncDepositField *pQrySyncDepositField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqDayEndFileReadyField *pReqDayEndFileReadyField, PyObject *dict)
 {
-	static char *kwlist[] = {"LastFragment", "TradeDate", "BankID", "BrokerID", "TradingDay", "Digest", "BrokerBranchID", "BankBranchID", "BankSerial", "SessionID", "TradeTime", "FileBusinessCode", "PlateSerial", "TradeCode", nullptr};
+	static const char *kwlist[] = {"LastFragment", "TradeDate", "BankID", "BrokerID", "TradingDay", "Digest", "BrokerBranchID", "BankBranchID", "BankSerial", "SessionID", "TradeTime", "FileBusinessCode", "PlateSerial", "TradeCode", nullptr};
 	char pReqDayEndFileReadyField_LastFragment = 0;
 	char *pReqDayEndFileReadyField_TradeDate = nullptr;
 	char *pReqDayEndFileReadyField_BankID = nullptr;
@@ -10198,7 +10198,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqDayEndFileReadyField *pReqDayEndFileRea
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSettlementRefField *pSettlementRefField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "SettlementID", nullptr};
+	static const char *kwlist[] = {"TradingDay", "SettlementID", nullptr};
 	char *pSettlementRefField_TradingDay = nullptr;
 	int pSettlementRefField_SettlementID = 0;
 	PyCTP_PyDict_FromStruct_BEGIN(pSettlementRefField, "|yi")
@@ -10212,7 +10212,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSettlementRefField *pSettlementRefField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTransferSerialField *pQryTransferSerialField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrencyID", "BankID", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrencyID", "BankID", "AccountID", nullptr};
 	char *pQryTransferSerialField_BrokerID = nullptr;
 	char *pQryTransferSerialField_CurrencyID = nullptr;
 	char *pQryTransferSerialField_BankID = nullptr;
@@ -10232,7 +10232,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTransferSerialField *pQryTransferSerial
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerDepositField *pBrokerDepositField, PyObject *dict)
 {
-	static char *kwlist[] = {"Deposit", "Available", "Balance", "CurrMargin", "PreBalance", "BrokerID", "CloseProfit", "TradingDay", "FrozenMargin", "Reserve", "ExchangeID", "ParticipantID", "Withdraw", nullptr};
+	static const char *kwlist[] = {"Deposit", "Available", "Balance", "CurrMargin", "PreBalance", "BrokerID", "CloseProfit", "TradingDay", "FrozenMargin", "Reserve", "ExchangeID", "ParticipantID", "Withdraw", nullptr};
 	double pBrokerDepositField_Deposit = 0.0;
 	double pBrokerDepositField_Available = 0.0;
 	double pBrokerDepositField_Balance = 0.0;
@@ -10279,7 +10279,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerDepositField *pBrokerDepositField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserRightsAssignField *pUserRightsAssignField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", "DRIdentityID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserID", "DRIdentityID", nullptr};
 	char *pUserRightsAssignField_BrokerID = nullptr;
 	char *pUserRightsAssignField_UserID = nullptr;
 	int pUserRightsAssignField_DRIdentityID = 0;
@@ -10296,7 +10296,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserRightsAssignField *pUserRightsAssignFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataField *pMarketDataField, PyObject *dict)
 {
-	static char *kwlist[] = {"PreOpenInterest", "OpenInterest", "OpenPrice", "SettlementPrice", "TradingDay", "ActionDay", "LastPrice", "CurrDelta", "PreSettlementPrice", "Turnover", "ClosePrice", "ExchangeInstID", "PreDelta", "LowerLimitPrice", "UpperLimitPrice", "HighestPrice", "ExchangeID", "PreClosePrice", "Volume", "LowestPrice", "UpdateTime", "UpdateMillisec", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"PreOpenInterest", "OpenInterest", "OpenPrice", "SettlementPrice", "TradingDay", "ActionDay", "LastPrice", "CurrDelta", "PreSettlementPrice", "Turnover", "ClosePrice", "ExchangeInstID", "PreDelta", "LowerLimitPrice", "UpperLimitPrice", "HighestPrice", "ExchangeID", "PreClosePrice", "Volume", "LowestPrice", "UpdateTime", "UpdateMillisec", "InstrumentID", nullptr};
 	double pMarketDataField_PreOpenInterest = 0.0;
 	double pMarketDataField_OpenInterest = 0.0;
 	double pMarketDataField_OpenPrice = 0.0;
@@ -10373,7 +10373,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataField *pMarketDataField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCTradingAccountKeyField *pCFMMCTradingAccountKeyField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrentKey", "KeyID", "ParticipantID", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrentKey", "KeyID", "ParticipantID", "AccountID", nullptr};
 	char *pCFMMCTradingAccountKeyField_BrokerID = nullptr;
 	char *pCFMMCTradingAccountKeyField_CurrentKey = nullptr;
 	int pCFMMCTradingAccountKeyField_KeyID = 0;
@@ -10396,7 +10396,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCTradingAccountKeyField *pCFMMCTrading
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCTradingAccountTokenField *pCFMMCTradingAccountTokenField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "KeyID", "Token", "ParticipantID", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "KeyID", "Token", "ParticipantID", "AccountID", nullptr};
 	char *pCFMMCTradingAccountTokenField_BrokerID = nullptr;
 	int pCFMMCTradingAccountTokenField_KeyID = 0;
 	char *pCFMMCTradingAccountTokenField_Token = nullptr;
@@ -10419,7 +10419,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCTradingAccountTokenField *pCFMMCTradi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferSerialField *pTransferSerialField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyID", "TradeDate", "BrokerFee", "BankID", "FutureAccType", "BankNewAccount", "TradeAmount", "TradingDay", "BankAccType", "BankAccount", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "FutureSerial", "PlateSerial", "AvailabilityFlag", "IdCardType", "SessionID", "BrokerID", "InvestorID", "BrokerBranchID", "ErrorID", "CustFee", "ErrorMsg", "TradeTime", "OperatorCode", "TradeCode", nullptr};
+	static const char *kwlist[] = {"CurrencyID", "TradeDate", "BrokerFee", "BankID", "FutureAccType", "BankNewAccount", "TradeAmount", "TradingDay", "BankAccType", "BankAccount", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "FutureSerial", "PlateSerial", "AvailabilityFlag", "IdCardType", "SessionID", "BrokerID", "InvestorID", "BrokerBranchID", "ErrorID", "CustFee", "ErrorMsg", "TradeTime", "OperatorCode", "TradeCode", nullptr};
 	char *pTransferSerialField_CurrencyID = nullptr;
 	char *pTransferSerialField_TradeDate = nullptr;
 	double pTransferSerialField_BrokerFee = 0.0;
@@ -10511,7 +10511,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferSerialField *pTransferSerialField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryBankRspField *pTransferQryBankRspField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyCode", "UseAmt", "RetCode", "TradeAmt", "FetchAmt", "RetInfo", "FutureAccount", nullptr};
+	static const char *kwlist[] = {"CurrencyCode", "UseAmt", "RetCode", "TradeAmt", "FetchAmt", "RetInfo", "FutureAccount", nullptr};
 	char *pTransferQryBankRspField_CurrencyCode = nullptr;
 	double pTransferQryBankRspField_UseAmt = 0.0;
 	char *pTransferQryBankRspField_RetCode = nullptr;
@@ -10540,7 +10540,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryBankRspField *pTransferQryBankR
 
 int PyCTP_Struct_FromPyDict(CThostFtdcNotifyFutureSignInField *pNotifyFutureSignInField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "MacKey", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "PinKey", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "MacKey", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "PinKey", "TradeTime", "TradeCode", nullptr};
 	char *pNotifyFutureSignInField_TradeDate = nullptr;
 	int pNotifyFutureSignInField_ErrorID = 0;
 	char *pNotifyFutureSignInField_BankID = nullptr;
@@ -10623,7 +10623,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcNotifyFutureSignInField *pNotifyFutureSign
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderField *pErrExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OffsetFlag", "ErrorMsg", "ActionType", "ErrorID", "BrokerID", "InvestorID", "UserID", "PosiDirection", "Volume", "ExecOrderRef", "RequestID", "ReservePositionFlag", "BusinessUnit", "CloseFlag", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OffsetFlag", "ErrorMsg", "ActionType", "ErrorID", "BrokerID", "InvestorID", "UserID", "PosiDirection", "Volume", "ExecOrderRef", "RequestID", "ReservePositionFlag", "BusinessUnit", "CloseFlag", "HedgeFlag", "InstrumentID", nullptr};
 	char pErrExecOrderField_OffsetFlag = 0;
 	char *pErrExecOrderField_ErrorMsg = nullptr;
 	char pErrExecOrderField_ActionType = 0;
@@ -10679,7 +10679,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderField *pErrExecOrderField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderField *pParkedOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorID", "ErrorID", "ParkedOrderID", "Direction", "CombHedgeFlag", "VolumeTotalOriginal", "UserType", "IsAutoSuspend", "UserForceClose", "OrderPriceType", "RequestID", "ForceCloseReason", "GTDDate", "ContingentCondition", "Status", "BrokerID", "TimeCondition", "CombOffsetFlag", "UserID", "StopPrice", "ExchangeID", "OrderRef", "ErrorMsg", "MinVolume", "LimitPrice", "VolumeCondition", "BusinessUnit", "IsSwapOrder", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"InvestorID", "ErrorID", "ParkedOrderID", "Direction", "CombHedgeFlag", "VolumeTotalOriginal", "UserType", "IsAutoSuspend", "UserForceClose", "OrderPriceType", "RequestID", "ForceCloseReason", "GTDDate", "ContingentCondition", "Status", "BrokerID", "TimeCondition", "CombOffsetFlag", "UserID", "StopPrice", "ExchangeID", "OrderRef", "ErrorMsg", "MinVolume", "LimitPrice", "VolumeCondition", "BusinessUnit", "IsSwapOrder", "InstrumentID", nullptr};
 	char *pParkedOrderField_InvestorID = nullptr;
 	int pParkedOrderField_ErrorID = 0;
 	char *pParkedOrderField_ParkedOrderID = nullptr;
@@ -10774,7 +10774,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderField *pParkedOrderField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountReserveField *pTradingAccountReserveField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrencyID", "Reserve", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrencyID", "Reserve", "AccountID", nullptr};
 	char *pTradingAccountReserveField_BrokerID = nullptr;
 	char *pTradingAccountReserveField_CurrencyID = nullptr;
 	double pTradingAccountReserveField_Reserve = 0.0;
@@ -10794,7 +10794,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountReserveField *pTradingAccoun
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSuperUserField *pSuperUserField, PyObject *dict)
 {
-	static char *kwlist[] = {"IsActive", "Password", "UserID", "UserName", nullptr};
+	static const char *kwlist[] = {"IsActive", "Password", "UserID", "UserName", nullptr};
 	int pSuperUserField_IsActive = 0;
 	char *pSuperUserField_Password = nullptr;
 	char *pSuperUserField_UserID = nullptr;
@@ -10814,7 +10814,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSuperUserField *pSuperUserField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingCodeField *pQryTradingCodeField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "ClientID", "ClientIDType", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "ClientID", "ClientIDType", nullptr};
 	char *pQryTradingCodeField_BrokerID = nullptr;
 	char *pQryTradingCodeField_ExchangeID = nullptr;
 	char *pQryTradingCodeField_InvestorID = nullptr;
@@ -10837,7 +10837,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingCodeField *pQryTradingCodeField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerTradingParamsField *pBrokerTradingParamsField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyID", "OptionRoyaltyPriceType", "BrokerID", "MarginPriceType", "AvailIncludeCloseProfit", "InvestorID", "Algorithm", nullptr};
+	static const char *kwlist[] = {"CurrencyID", "OptionRoyaltyPriceType", "BrokerID", "MarginPriceType", "AvailIncludeCloseProfit", "InvestorID", "Algorithm", nullptr};
 	char *pBrokerTradingParamsField_CurrencyID = nullptr;
 	char pBrokerTradingParamsField_OptionRoyaltyPriceType = 0;
 	char *pBrokerTradingParamsField_BrokerID = nullptr;
@@ -10866,7 +10866,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerTradingParamsField *pBrokerTradingPa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OffsetFlag", "ClearingPartID", "ActionType", "UserProductInfo", "BrokerExecOrderSeq", "ExecOrderLocalID", "TradingDay", "ExecResult", "InstallID", "PosiDirection", "SequenceNo", "OrderSubmitStatus", "RequestID", "CloseFlag", "ClientID", "ActiveUserID", "InsertDate", "SessionID", "ExchangeInstID", "StatusMsg", "BrokerID", "NotifySequence", "InvestorID", "TraderID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "Volume", "ExecOrderRef", "CancelTime", "InsertTime", "SettlementID", "InstrumentID", "BusinessUnit", "ParticipantID", "HedgeFlag", "ReservePositionFlag", nullptr};
+	static const char *kwlist[] = {"OffsetFlag", "ClearingPartID", "ActionType", "UserProductInfo", "BrokerExecOrderSeq", "ExecOrderLocalID", "TradingDay", "ExecResult", "InstallID", "PosiDirection", "SequenceNo", "OrderSubmitStatus", "RequestID", "CloseFlag", "ClientID", "ActiveUserID", "InsertDate", "SessionID", "ExchangeInstID", "StatusMsg", "BrokerID", "NotifySequence", "InvestorID", "TraderID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "Volume", "ExecOrderRef", "CancelTime", "InsertTime", "SettlementID", "InstrumentID", "BusinessUnit", "ParticipantID", "HedgeFlag", "ReservePositionFlag", nullptr};
 	char pExecOrderField_OffsetFlag = 0;
 	char *pExecOrderField_ClearingPartID = nullptr;
 	char pExecOrderField_ActionType = 0;
@@ -10988,7 +10988,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderInsertErrorField *pExchangeOrderInsertErrorField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "OrderLocalID", "ErrorMsg", "ErrorID", "TraderID", "ParticipantID", "InstallID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "OrderLocalID", "ErrorMsg", "ErrorID", "TraderID", "ParticipantID", "InstallID", nullptr};
 	char *pExchangeOrderInsertErrorField_ExchangeID = nullptr;
 	char *pExchangeOrderInsertErrorField_OrderLocalID = nullptr;
 	char *pExchangeOrderInsertErrorField_ErrorMsg = nullptr;
@@ -11017,7 +11017,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderInsertErrorField *pExchangeOr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryPartBrokerField *pQryPartBrokerField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "BrokerID", "ParticipantID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "BrokerID", "ParticipantID", nullptr};
 	char *pQryPartBrokerField_ExchangeID = nullptr;
 	char *pQryPartBrokerField_BrokerID = nullptr;
 	char *pQryPartBrokerField_ParticipantID = nullptr;
@@ -11034,7 +11034,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryPartBrokerField *pQryPartBrokerField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorAccountField *pInvestorAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrencyID", "InvestorID", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrencyID", "InvestorID", "AccountID", nullptr};
 	char *pInvestorAccountField_BrokerID = nullptr;
 	char *pInvestorAccountField_CurrencyID = nullptr;
 	char *pInvestorAccountField_InvestorID = nullptr;
@@ -11054,7 +11054,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorAccountField *pInvestorAccountFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentTradingRightField *pQryInstrumentTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryInstrumentTradingRightField_BrokerID = nullptr;
 	char *pQryInstrumentTradingRightField_InvestorID = nullptr;
 	char *pQryInstrumentTradingRightField_InstrumentID = nullptr;
@@ -11071,7 +11071,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentTradingRightField *pQryInstru
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingTradingCodeField *pSyncingTradingCodeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ClientIDType", "BrokerID", "IsActive", "InvestorID", "ClientID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ClientIDType", "BrokerID", "IsActive", "InvestorID", "ClientID", nullptr};
 	char *pSyncingTradingCodeField_ExchangeID = nullptr;
 	char pSyncingTradingCodeField_ClientIDType = 0;
 	char *pSyncingTradingCodeField_BrokerID = nullptr;
@@ -11097,7 +11097,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingTradingCodeField *pSyncingTradingCo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLoadSettlementInfoField *pLoadSettlementInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", nullptr};
+	static const char *kwlist[] = {"BrokerID", nullptr};
 	char *pLoadSettlementInfoField_BrokerID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pLoadSettlementInfoField, "|y")
 		, &pLoadSettlementInfoField_BrokerID
@@ -11108,7 +11108,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLoadSettlementInfoField *pLoadSettlementIn
 
 int PyCTP_Struct_FromPyDict(CThostFtdcDepositResultInformField *pDepositResultInformField, PyObject *dict)
 {
-	static char *kwlist[] = {"DepositSeqNo", "Deposit", "ReturnCode", "BrokerID", "InvestorID", "RequestID", "DescrInfoForReturnCode", nullptr};
+	static const char *kwlist[] = {"DepositSeqNo", "Deposit", "ReturnCode", "BrokerID", "InvestorID", "RequestID", "DescrInfoForReturnCode", nullptr};
 	char *pDepositResultInformField_DepositSeqNo = nullptr;
 	double pDepositResultInformField_Deposit = 0.0;
 	char *pDepositResultInformField_ReturnCode = nullptr;
@@ -11137,7 +11137,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepositResultInformField *pDepositResultIn
 
 int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteField *pForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ActiveUserID", "InsertDate", "BrokerForQutoSeq", "ForQuoteRef", "ExchangeInstID", "BrokerID", "InvestorID", "TraderID", "UserID", "InstallID", "ForQuoteLocalID", "ExchangeID", "StatusMsg", "FrontID", "ForQuoteStatus", "InsertTime", "SessionID", "ParticipantID", "ClientID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ActiveUserID", "InsertDate", "BrokerForQutoSeq", "ForQuoteRef", "ExchangeInstID", "BrokerID", "InvestorID", "TraderID", "UserID", "InstallID", "ForQuoteLocalID", "ExchangeID", "StatusMsg", "FrontID", "ForQuoteStatus", "InsertTime", "SessionID", "ParticipantID", "ClientID", "InstrumentID", nullptr};
 	char *pForQuoteField_ActiveUserID = nullptr;
 	char *pForQuoteField_InsertDate = nullptr;
 	int pForQuoteField_BrokerForQutoSeq = 0;
@@ -11205,7 +11205,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteField *pForQuoteField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcAuthenticationInfoField *pAuthenticationInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "IsResult", "AuthInfo", "UserID", "UserProductInfo", nullptr};
+	static const char *kwlist[] = {"BrokerID", "IsResult", "AuthInfo", "UserID", "UserProductInfo", nullptr};
 	char *pAuthenticationInfoField_BrokerID = nullptr;
 	int pAuthenticationInfoField_IsResult = 0;
 	char *pAuthenticationInfoField_AuthInfo = nullptr;
@@ -11228,7 +11228,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcAuthenticationInfoField *pAuthenticationIn
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderActionField *pExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ActionType", "ActionTime", "InstallID", "StatusMsg", "ExecOrderLocalID", "ActionFlag", "RequestID", "ActionLocalID", "ActionDate", "ExecOrderActionRef", "ClientID", "OrderActionStatus", "SessionID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "ExecOrderRef", "BusinessUnit", "ParticipantID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ActionType", "ActionTime", "InstallID", "StatusMsg", "ExecOrderLocalID", "ActionFlag", "RequestID", "ActionLocalID", "ActionDate", "ExecOrderActionRef", "ClientID", "OrderActionStatus", "SessionID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "ExecOrderRef", "BusinessUnit", "ParticipantID", "InstrumentID", nullptr};
 	char pExecOrderActionField_ActionType = 0;
 	char *pExecOrderActionField_ActionTime = nullptr;
 	int pExecOrderActionField_InstallID = 0;
@@ -11308,7 +11308,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderActionField *pExecOrderActionFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentCommissionRateField *pQryInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryInstrumentCommissionRateField_BrokerID = nullptr;
 	char *pQryInstrumentCommissionRateField_InvestorID = nullptr;
 	char *pQryInstrumentCommissionRateField_InstrumentID = nullptr;
@@ -11325,7 +11325,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentCommissionRateField *pQryInst
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBatchOrderActionField *pBatchOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ActionLocalID", "OrderActionRef", "ActionTime", "BrokerID", "InvestorID", "TraderID", "UserID", "InstallID", "ExchangeID", "StatusMsg", "FrontID", "OrderActionStatus", "RequestID", "SessionID", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", nullptr};
+	static const char *kwlist[] = {"ActionLocalID", "OrderActionRef", "ActionTime", "BrokerID", "InvestorID", "TraderID", "UserID", "InstallID", "ExchangeID", "StatusMsg", "FrontID", "OrderActionStatus", "RequestID", "SessionID", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", nullptr};
 	char *pBatchOrderActionField_ActionLocalID = nullptr;
 	int pBatchOrderActionField_OrderActionRef = 0;
 	char *pBatchOrderActionField_ActionTime = nullptr;
@@ -11387,7 +11387,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBatchOrderActionField *pBatchOrderActionFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySecAgentACIDMapField *pQrySecAgentACIDMapField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrencyID", "UserID", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrencyID", "UserID", "AccountID", nullptr};
 	char *pQrySecAgentACIDMapField_BrokerID = nullptr;
 	char *pQrySecAgentACIDMapField_CurrencyID = nullptr;
 	char *pQrySecAgentACIDMapField_UserID = nullptr;
@@ -11407,7 +11407,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySecAgentACIDMapField *pQrySecAgentACIDM
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryBankReqField *pTransferQryBankReqField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyCode", "FutureAccPwd", "FuturePwdFlag", "FutureAccount", nullptr};
+	static const char *kwlist[] = {"CurrencyCode", "FutureAccPwd", "FuturePwdFlag", "FutureAccount", nullptr};
 	char *pTransferQryBankReqField_CurrencyCode = nullptr;
 	char *pTransferQryBankReqField_FutureAccPwd = nullptr;
 	char pTransferQryBankReqField_FuturePwdFlag = 0;
@@ -11427,7 +11427,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryBankReqField *pTransferQryBankR
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTraderOfferField *pQryTraderOfferField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", nullptr};
 	char *pQryTraderOfferField_ExchangeID = nullptr;
 	char *pQryTraderOfferField_TraderID = nullptr;
 	char *pQryTraderOfferField_ParticipantID = nullptr;
@@ -11444,7 +11444,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTraderOfferField *pQryTraderOfferField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCombActionField *pQryCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryCombActionField_BrokerID = nullptr;
 	char *pQryCombActionField_ExchangeID = nullptr;
 	char *pQryCombActionField_InvestorID = nullptr;
@@ -11464,7 +11464,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryCombActionField *pQryCombActionField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingNoticeField *pTradingNoticeField, PyObject *dict)
 {
-	static char *kwlist[] = {"SendTime", "SequenceSeries", "SequenceNo", "FieldContent", "BrokerID", "InvestorID", "UserID", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"SendTime", "SequenceSeries", "SequenceNo", "FieldContent", "BrokerID", "InvestorID", "UserID", "InvestorRange", nullptr};
 	char *pTradingNoticeField_SendTime = nullptr;
 	short pTradingNoticeField_SequenceSeries = 0;
 	int pTradingNoticeField_SequenceNo = 0;
@@ -11496,7 +11496,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingNoticeField *pTradingNoticeField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorField *pInvestorField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorID", "Mobile", "CommModelID", "BrokerID", "IdentifiedCardType", "Telephone", "OpenDate", "IdentifiedCardNo", "MarginModelID", "InvestorName", "InvestorGroupID", "IsActive", "Address", nullptr};
+	static const char *kwlist[] = {"InvestorID", "Mobile", "CommModelID", "BrokerID", "IdentifiedCardType", "Telephone", "OpenDate", "IdentifiedCardNo", "MarginModelID", "InvestorName", "InvestorGroupID", "IsActive", "Address", nullptr};
 	char *pInvestorField_InvestorID = nullptr;
 	char *pInvestorField_Mobile = nullptr;
 	char *pInvestorField_CommModelID = nullptr;
@@ -11543,7 +11543,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorField *pInvestorField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryMarginModelField *pQryMarginModelField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "MarginModelID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "MarginModelID", nullptr};
 	char *pQryMarginModelField_BrokerID = nullptr;
 	char *pQryMarginModelField_MarginModelID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryMarginModelField, "|yy")
@@ -11557,7 +11557,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryMarginModelField *pQryMarginModelField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeForQuoteField *pQryExchangeForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
 	char *pQryExchangeForQuoteField_ExchangeID = nullptr;
 	char *pQryExchangeForQuoteField_TraderID = nullptr;
 	char *pQryExchangeForQuoteField_ParticipantID = nullptr;
@@ -11580,7 +11580,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeForQuoteField *pQryExchangeForQ
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQueryCFMMCTradingAccountTokenField *pQueryCFMMCTradingAccountTokenField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQueryCFMMCTradingAccountTokenField_BrokerID = nullptr;
 	char *pQueryCFMMCTradingAccountTokenField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQueryCFMMCTradingAccountTokenField, "|yy")
@@ -11594,7 +11594,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQueryCFMMCTradingAccountTokenField *pQuery
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorWithdrawAlgorithmField *pInvestorWithdrawAlgorithmField, PyObject *dict)
 {
-	static char *kwlist[] = {"UsingRatio", "CurrencyID", "BrokerID", "FundMortgageRatio", "InvestorID", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"UsingRatio", "CurrencyID", "BrokerID", "FundMortgageRatio", "InvestorID", "InvestorRange", nullptr};
 	double pInvestorWithdrawAlgorithmField_UsingRatio = 0.0;
 	char *pInvestorWithdrawAlgorithmField_CurrencyID = nullptr;
 	char *pInvestorWithdrawAlgorithmField_BrokerID = nullptr;
@@ -11620,7 +11620,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorWithdrawAlgorithmField *pInvestorW
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingAccountField *pQryTradingAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "CurrencyID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "CurrencyID", nullptr};
 	char *pQryTradingAccountField_BrokerID = nullptr;
 	char *pQryTradingAccountField_InvestorID = nullptr;
 	char *pQryTradingAccountField_CurrencyID = nullptr;
@@ -11637,7 +11637,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingAccountField *pQryTradingAccount
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqFutureSignOutField *pReqFutureSignOutField, PyObject *dict)
 {
-	static char *kwlist[] = {"LastFragment", "CurrencyID", "TradeDate", "BankID", "BrokerIDByBank", "BrokerID", "TradingDay", "Digest", "UserID", "BrokerBranchID", "OperNo", "BankBranchID", "InstallID", "BankSerial", "TID", "RequestID", "SessionID", "TradeTime", "DeviceID", "PlateSerial", "TradeCode", nullptr};
+	static const char *kwlist[] = {"LastFragment", "CurrencyID", "TradeDate", "BankID", "BrokerIDByBank", "BrokerID", "TradingDay", "Digest", "UserID", "BrokerBranchID", "OperNo", "BankBranchID", "InstallID", "BankSerial", "TID", "RequestID", "SessionID", "TradeTime", "DeviceID", "PlateSerial", "TradeCode", nullptr};
 	char pReqFutureSignOutField_LastFragment = 0;
 	char *pReqFutureSignOutField_CurrencyID = nullptr;
 	char *pReqFutureSignOutField_TradeDate = nullptr;
@@ -11708,7 +11708,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqFutureSignOutField *pReqFutureSignOutFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcFutureSignIOField *pFutureSignIOField, PyObject *dict)
 {
-	static char *kwlist[] = {"LastFragment", "CurrencyID", "TradeDate", "BankID", "BrokerIDByBank", "BrokerID", "TradingDay", "Digest", "UserID", "BrokerBranchID", "OperNo", "BankBranchID", "InstallID", "BankSerial", "TID", "RequestID", "SessionID", "TradeTime", "DeviceID", "PlateSerial", "TradeCode", nullptr};
+	static const char *kwlist[] = {"LastFragment", "CurrencyID", "TradeDate", "BankID", "BrokerIDByBank", "BrokerID", "TradingDay", "Digest", "UserID", "BrokerBranchID", "OperNo", "BankBranchID", "InstallID", "BankSerial", "TID", "RequestID", "SessionID", "TradeTime", "DeviceID", "PlateSerial", "TradeCode", nullptr};
 	char pFutureSignIOField_LastFragment = 0;
 	char *pFutureSignIOField_CurrencyID = nullptr;
 	char *pFutureSignIOField_TradeDate = nullptr;
@@ -11779,7 +11779,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcFutureSignIOField *pFutureSignIOField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserField *pBrokerUserField, PyObject *dict)
 {
-	static char *kwlist[] = {"IsUsingOTP", "BrokerID", "IsActive", "UserType", "UserID", "UserName", nullptr};
+	static const char *kwlist[] = {"IsUsingOTP", "BrokerID", "IsActive", "UserType", "UserID", "UserName", nullptr};
 	int pBrokerUserField_IsUsingOTP = 0;
 	char *pBrokerUserField_BrokerID = nullptr;
 	int pBrokerUserField_IsActive = 0;
@@ -11805,7 +11805,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserField *pBrokerUserField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeSequenceField *pExchangeSequenceField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "SequenceNo", "MarketStatus", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "SequenceNo", "MarketStatus", nullptr};
 	char *pExchangeSequenceField_ExchangeID = nullptr;
 	int pExchangeSequenceField_SequenceNo = 0;
 	char pExchangeSequenceField_MarketStatus = 0;
@@ -11822,7 +11822,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeSequenceField *pExchangeSequenceFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingTradingAccountField *pSyncingTradingAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"Deposit", "Available", "WithdrawQuota", "FrozenCash", "PreBalance", "CashIn", "Credit", "CloseProfit", "InterestBase", "FundMortgageOut", "FundMortgageIn", "AccountID", "Balance", "Reserve", "SettlementID", "Withdraw", "SpecProductFrozenMargin", "ExchangeMargin", "PreCredit", "DeliveryMargin", "Mortgage", "SpecProductFrozenCommission", "ExchangeDeliveryMargin", "SpecProductPositionProfit", "FrozenCommission", "Interest", "ReserveBalance", "PreDeposit", "PreFundMortgageIn", "SpecProductExchangeMargin", "PositionProfit", "TradingDay", "Commission", "SpecProductCloseProfit", "PreMargin", "CurrMargin", "SpecProductPositionProfitByAlg", "SpecProductCommission", "PreFundMortgageOut", "CurrencyID", "PreMortgage", "FrozenMargin", "BrokerID", "MortgageableFund", "SpecProductMargin", "FundMortgageAvailable", nullptr};
+	static const char *kwlist[] = {"Deposit", "Available", "WithdrawQuota", "FrozenCash", "PreBalance", "CashIn", "Credit", "CloseProfit", "InterestBase", "FundMortgageOut", "FundMortgageIn", "AccountID", "Balance", "Reserve", "SettlementID", "Withdraw", "SpecProductFrozenMargin", "ExchangeMargin", "PreCredit", "DeliveryMargin", "Mortgage", "SpecProductFrozenCommission", "ExchangeDeliveryMargin", "SpecProductPositionProfit", "FrozenCommission", "Interest", "ReserveBalance", "PreDeposit", "PreFundMortgageIn", "SpecProductExchangeMargin", "PositionProfit", "TradingDay", "Commission", "SpecProductCloseProfit", "PreMargin", "CurrMargin", "SpecProductPositionProfitByAlg", "SpecProductCommission", "PreFundMortgageOut", "CurrencyID", "PreMortgage", "FrozenMargin", "BrokerID", "MortgageableFund", "SpecProductMargin", "FundMortgageAvailable", nullptr};
 	double pSyncingTradingAccountField_Deposit = 0.0;
 	double pSyncingTradingAccountField_Available = 0.0;
 	double pSyncingTradingAccountField_WithdrawQuota = 0.0;
@@ -11968,7 +11968,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingTradingAccountField *pSyncingTradin
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeOrderActionField *pQryExchangeOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", nullptr};
 	char *pQryExchangeOrderActionField_ExchangeID = nullptr;
 	char *pQryExchangeOrderActionField_TraderID = nullptr;
 	char *pQryExchangeOrderActionField_ParticipantID = nullptr;
@@ -11988,7 +11988,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeOrderActionField *pQryExchangeO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBid45Field *pMarketDataBid45Field, PyObject *dict)
 {
-	static char *kwlist[] = {"BidPrice4", "BidVolume4", "BidPrice5", "BidVolume5", nullptr};
+	static const char *kwlist[] = {"BidPrice4", "BidVolume4", "BidPrice5", "BidVolume5", nullptr};
 	double pMarketDataBid45Field_BidPrice4 = 0.0;
 	int pMarketDataBid45Field_BidVolume4 = 0;
 	double pMarketDataBid45Field_BidPrice5 = 0.0;
@@ -12008,7 +12008,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBid45Field *pMarketDataBid45Fiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentMarginRateField *pSyncingInstrumentMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"LongMarginRatioByVolume", "IsRelative", "ShortMarginRatioByVolume", "InstrumentID", "BrokerID", "InvestorID", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"LongMarginRatioByVolume", "IsRelative", "ShortMarginRatioByVolume", "InstrumentID", "BrokerID", "InvestorID", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InvestorRange", nullptr};
 	double pSyncingInstrumentMarginRateField_LongMarginRatioByVolume = 0.0;
 	int pSyncingInstrumentMarginRateField_IsRelative = 0;
 	double pSyncingInstrumentMarginRateField_ShortMarginRatioByVolume = 0.0;
@@ -12046,7 +12046,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentMarginRateField *pSyncing
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCommPhaseField *pCommPhaseField, PyObject *dict)
 {
-	static char *kwlist[] = {"SystemID", "TradingDay", "CommPhaseNo", nullptr};
+	static const char *kwlist[] = {"SystemID", "TradingDay", "CommPhaseNo", nullptr};
 	char *pCommPhaseField_SystemID = nullptr;
 	char *pCommPhaseField_TradingDay = nullptr;
 	short pCommPhaseField_CommPhaseNo = 0;
@@ -12063,7 +12063,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCommPhaseField *pCommPhaseField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingNoticeField *pQryTradingNoticeField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryTradingNoticeField_BrokerID = nullptr;
 	char *pQryTradingNoticeField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryTradingNoticeField, "|yy")
@@ -12077,7 +12077,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingNoticeField *pQryTradingNoticeFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcVerifyCustInfoField *pVerifyCustInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"IdCardType", "CustomerName", "CustType", "IdentifiedCardNo", nullptr};
+	static const char *kwlist[] = {"IdCardType", "CustomerName", "CustType", "IdentifiedCardNo", nullptr};
 	char pVerifyCustInfoField_IdCardType = 0;
 	char *pVerifyCustInfoField_CustomerName = nullptr;
 	char pVerifyCustInfoField_CustType = 0;
@@ -12097,7 +12097,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcVerifyCustInfoField *pVerifyCustInfoField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingCodeField *pTradingCodeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ClientIDType", "BrokerID", "IsActive", "InvestorID", "ClientID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ClientIDType", "BrokerID", "IsActive", "InvestorID", "ClientID", nullptr};
 	char *pTradingCodeField_ExchangeID = nullptr;
 	char pTradingCodeField_ClientIDType = 0;
 	char *pTradingCodeField_BrokerID = nullptr;
@@ -12123,7 +12123,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingCodeField *pTradingCodeField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginField *pReqUserLoginField, PyObject *dict)
 {
-	static char *kwlist[] = {"Password", "UserProductInfo", "ProtocolInfo", "BrokerID", "OneTimePassword", "MacAddress", "TradingDay", "InterfaceProductInfo", "UserID", "ClientIPAddress", nullptr};
+	static const char *kwlist[] = {"Password", "UserProductInfo", "ProtocolInfo", "BrokerID", "OneTimePassword", "MacAddress", "TradingDay", "InterfaceProductInfo", "UserID", "ClientIPAddress", nullptr};
 	char *pReqUserLoginField_Password = nullptr;
 	char *pReqUserLoginField_UserProductInfo = nullptr;
 	char *pReqUserLoginField_ProtocolInfo = nullptr;
@@ -12161,7 +12161,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginField *pReqUserLoginField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ParkedOrderID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "ParkedOrderID", nullptr};
 	char *pRemoveParkedOrderField_BrokerID = nullptr;
 	char *pRemoveParkedOrderField_InvestorID = nullptr;
 	char *pRemoveParkedOrderField_ParkedOrderID = nullptr;
@@ -12178,7 +12178,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrder
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQuoteActionField *pQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ActionTime", "InstallID", "StatusMsg", "ActionFlag", "QuoteSysID", "RequestID", "ActionLocalID", "ActionDate", "ClientID", "QuoteActionRef", "OrderActionStatus", "SessionID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "FrontID", "QuoteRef", "BusinessUnit", "ParticipantID", "QuoteLocalID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ActionTime", "InstallID", "StatusMsg", "ActionFlag", "QuoteSysID", "RequestID", "ActionLocalID", "ActionDate", "ClientID", "QuoteActionRef", "OrderActionStatus", "SessionID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "FrontID", "QuoteRef", "BusinessUnit", "ParticipantID", "QuoteLocalID", "InstrumentID", nullptr};
 	char *pQuoteActionField_ActionTime = nullptr;
 	int pQuoteActionField_InstallID = 0;
 	char *pQuoteActionField_StatusMsg = nullptr;
@@ -12255,7 +12255,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteActionField *pQuoteActionField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorGroupField *pQryInvestorGroupField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", nullptr};
+	static const char *kwlist[] = {"BrokerID", nullptr};
 	char *pQryInvestorGroupField_BrokerID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorGroupField, "|y")
 		, &pQryInvestorGroupField_BrokerID
@@ -12266,7 +12266,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorGroupField *pQryInvestorGroupFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcDisseminationField *pDisseminationField, PyObject *dict)
 {
-	static char *kwlist[] = {"SequenceSeries", "SequenceNo", nullptr};
+	static const char *kwlist[] = {"SequenceSeries", "SequenceNo", nullptr};
 	short pDisseminationField_SequenceSeries = 0;
 	int pDisseminationField_SequenceNo = 0;
 	PyCTP_PyDict_FromStruct_BEGIN(pDisseminationField, "|hi")
@@ -12280,7 +12280,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDisseminationField *pDisseminationField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentCommissionRateField *pSyncingInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"CloseRatioByMoney", "CloseTodayRatioByVolume", "CloseRatioByVolume", "InstrumentID", "BrokerID", "OpenRatioByMoney", "InvestorID", "OpenRatioByVolume", "CloseTodayRatioByMoney", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"CloseRatioByMoney", "CloseTodayRatioByVolume", "CloseRatioByVolume", "InstrumentID", "BrokerID", "OpenRatioByMoney", "InvestorID", "OpenRatioByVolume", "CloseTodayRatioByMoney", "InvestorRange", nullptr};
 	double pSyncingInstrumentCommissionRateField_CloseRatioByMoney = 0.0;
 	double pSyncingInstrumentCommissionRateField_CloseTodayRatioByVolume = 0.0;
 	double pSyncingInstrumentCommissionRateField_CloseRatioByVolume = 0.0;
@@ -12318,7 +12318,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentCommissionRateField *pSyn
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradeCostField *pQryOptionInstrTradeCostField, PyObject *dict)
 {
-	static char *kwlist[] = {"InputPrice", "UnderlyingPrice", "BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"InputPrice", "UnderlyingPrice", "BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
 	double pQryOptionInstrTradeCostField_InputPrice = 0.0;
 	double pQryOptionInstrTradeCostField_UnderlyingPrice = 0.0;
 	char *pQryOptionInstrTradeCostField_BrokerID = nullptr;
@@ -12344,7 +12344,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradeCostField *pQryOptionIn
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOrderActionField *pOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "OrderActionRef", "ActionTime", "InstallID", "StatusMsg", "LimitPrice", "ActionFlag", "RequestID", "SessionID", "ActionDate", "ClientID", "OrderActionStatus", "ActionLocalID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "VolumeChange", "BusinessUnit", "ParticipantID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "OrderActionRef", "ActionTime", "InstallID", "StatusMsg", "LimitPrice", "ActionFlag", "RequestID", "SessionID", "ActionDate", "ClientID", "OrderActionStatus", "ActionLocalID", "BrokerID", "InvestorID", "TraderID", "UserID", "ExchangeID", "FrontID", "OrderSysID", "OrderRef", "VolumeChange", "BusinessUnit", "ParticipantID", "InstrumentID", nullptr};
 	char *pOrderActionField_OrderLocalID = nullptr;
 	int pOrderActionField_OrderActionRef = 0;
 	char *pOrderActionField_ActionTime = nullptr;
@@ -12427,7 +12427,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderActionField *pOrderActionField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTransferBankField *pQryTransferBankField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankID", "BankBrchID", nullptr};
+	static const char *kwlist[] = {"BankID", "BankBrchID", nullptr};
 	char *pQryTransferBankField_BankID = nullptr;
 	char *pQryTransferBankField_BankBrchID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryTransferBankField, "|yy")
@@ -12441,7 +12441,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTransferBankField *pQryTransferBankFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryContractBankField *pQryContractBankField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "BankID", "BankBrchID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "BankID", "BankBrchID", nullptr};
 	char *pQryContractBankField_BrokerID = nullptr;
 	char *pQryContractBankField_BankID = nullptr;
 	char *pQryContractBankField_BankBrchID = nullptr;
@@ -12458,7 +12458,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryContractBankField *pQryContractBankFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncFundMortgageField *pSyncFundMortgageField, PyObject *dict)
 {
-	static char *kwlist[] = {"MortgageSeqNo", "MortgageAmount", "BrokerID", "FromCurrencyID", "InvestorID", "ToCurrencyID", nullptr};
+	static const char *kwlist[] = {"MortgageSeqNo", "MortgageAmount", "BrokerID", "FromCurrencyID", "InvestorID", "ToCurrencyID", nullptr};
 	char *pSyncFundMortgageField_MortgageSeqNo = nullptr;
 	double pSyncFundMortgageField_MortgageAmount = 0.0;
 	char *pSyncFundMortgageField_BrokerID = nullptr;
@@ -12484,7 +12484,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncFundMortgageField *pSyncFundMortgageFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordField *pTradingAccountPasswordField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CurrencyID", "Password", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CurrencyID", "Password", "AccountID", nullptr};
 	char *pTradingAccountPasswordField_BrokerID = nullptr;
 	char *pTradingAccountPasswordField_CurrencyID = nullptr;
 	char *pTradingAccountPasswordField_Password = nullptr;
@@ -12504,7 +12504,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordField *pTradingAccou
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspInfoField *pRspInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"ErrorMsg", "ErrorID", nullptr};
+	static const char *kwlist[] = {"ErrorMsg", "ErrorID", nullptr};
 	char *pRspInfoField_ErrorMsg = nullptr;
 	int pRspInfoField_ErrorID = 0;
 	PyCTP_PyDict_FromStruct_BEGIN(pRspInfoField, "|yi")
@@ -12518,7 +12518,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspInfoField *pRspInfoField, PyObject *dic
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeQuoteField *pQryExchangeQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
 	char *pQryExchangeQuoteField_ExchangeID = nullptr;
 	char *pQryExchangeQuoteField_TraderID = nullptr;
 	char *pQryExchangeQuoteField_ParticipantID = nullptr;
@@ -12541,7 +12541,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeQuoteField *pQryExchangeQuoteFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeCombActionField *pQryExchangeCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", "ExchangeInstID", nullptr};
 	char *pQryExchangeCombActionField_ExchangeID = nullptr;
 	char *pQryExchangeCombActionField_TraderID = nullptr;
 	char *pQryExchangeCombActionField_ParticipantID = nullptr;
@@ -12564,7 +12564,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeCombActionField *pQryExchangeCo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionDetailField *pQryInvestorPositionDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryInvestorPositionDetailField_BrokerID = nullptr;
 	char *pQryInvestorPositionDetailField_InvestorID = nullptr;
 	char *pQryInvestorPositionDetailField_InstrumentID = nullptr;
@@ -12581,7 +12581,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionDetailField *pQryInvest
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSpecificInstrumentField *pSpecificInstrumentField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", nullptr};
+	static const char *kwlist[] = {"InstrumentID", nullptr};
 	char *pSpecificInstrumentField_InstrumentID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pSpecificInstrumentField, "|y")
 		, &pSpecificInstrumentField_InstrumentID
@@ -12592,7 +12592,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSpecificInstrumentField *pSpecificInstrume
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySettlementInfoField *pQrySettlementInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "TradingDay", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "TradingDay", nullptr};
 	char *pQrySettlementInfoField_BrokerID = nullptr;
 	char *pQrySettlementInfoField_InvestorID = nullptr;
 	char *pQrySettlementInfoField_TradingDay = nullptr;
@@ -12609,7 +12609,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySettlementInfoField *pQrySettlementInfo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentTradingRightField *pSyncingInstrumentTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "TradingRight", "InvestorID", "InvestorRange", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "TradingRight", "InvestorID", "InvestorRange", "InstrumentID", nullptr};
 	char *pSyncingInstrumentTradingRightField_BrokerID = nullptr;
 	char pSyncingInstrumentTradingRightField_TradingRight = 0;
 	char *pSyncingInstrumentTradingRightField_InvestorID = nullptr;
@@ -12632,7 +12632,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentTradingRightField *pSynci
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"OpenPrice", "Margin", "Direction", "SettlementPrice", "TradingDay", "SettlementID", "LastSettlementPrice", "TradeType", "CombInstrumentID", "CloseProfitByDate", "MarginRateByVolume", "CloseVolume", "HedgeFlag", "TradeID", "ExchMargin", "CloseAmount", "CloseProfitByTrade", "PositionProfitByTrade", "BrokerID", "InvestorID", "PositionProfitByDate", "OpenDate", "ExchangeID", "Volume", "MarginRateByMoney", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OpenPrice", "Margin", "Direction", "SettlementPrice", "TradingDay", "SettlementID", "LastSettlementPrice", "TradeType", "CombInstrumentID", "CloseProfitByDate", "MarginRateByVolume", "CloseVolume", "HedgeFlag", "TradeID", "ExchMargin", "CloseAmount", "CloseProfitByTrade", "PositionProfitByTrade", "BrokerID", "InvestorID", "PositionProfitByDate", "OpenDate", "ExchangeID", "Volume", "MarginRateByMoney", "InstrumentID", nullptr};
 	double pInvestorPositionDetailField_OpenPrice = 0.0;
 	double pInvestorPositionDetailField_Margin = 0.0;
 	char pInvestorPositionDetailField_Direction = 0;
@@ -12718,7 +12718,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPosi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcDiscountField *pDiscountField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "Discount", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "Discount", "InvestorRange", nullptr};
 	char *pDiscountField_BrokerID = nullptr;
 	char *pDiscountField_InvestorID = nullptr;
 	double pDiscountField_Discount = 0.0;
@@ -12738,7 +12738,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDiscountField *pDiscountField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgosField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "HandlePositionAlgoID", "BrokerID", "FindMarginRateAlgoID", "HandleTradingAccountAlgoID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "HandlePositionAlgoID", "BrokerID", "FindMarginRateAlgoID", "HandleTradingAccountAlgoID", "InstrumentID", nullptr};
 	char *pBrokerTradingAlgosField_ExchangeID = nullptr;
 	char pBrokerTradingAlgosField_HandlePositionAlgoID = 0;
 	char *pBrokerTradingAlgosField_BrokerID = nullptr;
@@ -12764,7 +12764,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlg
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchShortMarginRatioByVolume", "NoLongMarginRatioByVolume", "BrokerID", "NoShortMarginRatioByVolume", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ExchLongMarginRatioByVolume", "NoShortMarginRatioByMoney", "HedgeFlag", "NoLongMarginRatioByMoney", "LongMarginRatioByVolume", "ExchShortMarginRatioByMoney", "ExchLongMarginRatioByMoney", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchShortMarginRatioByVolume", "NoLongMarginRatioByVolume", "BrokerID", "NoShortMarginRatioByVolume", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ExchLongMarginRatioByVolume", "NoShortMarginRatioByMoney", "HedgeFlag", "NoLongMarginRatioByMoney", "LongMarginRatioByVolume", "ExchShortMarginRatioByMoney", "ExchLongMarginRatioByMoney", "InstrumentID", nullptr};
 	double pExchangeMarginRateAdjustField_ExchShortMarginRatioByVolume = 0.0;
 	double pExchangeMarginRateAdjustField_NoLongMarginRatioByVolume = 0.0;
 	char *pExchangeMarginRateAdjustField_BrokerID = nullptr;
@@ -12817,7 +12817,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateAdjustField *pExchangeMa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBatchOrderActionField *pQryBatchOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
 	char *pQryBatchOrderActionField_BrokerID = nullptr;
 	char *pQryBatchOrderActionField_ExchangeID = nullptr;
 	char *pQryBatchOrderActionField_InvestorID = nullptr;
@@ -12834,7 +12834,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryBatchOrderActionField *pQryBatchOrderAc
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQueryBrokerDepositField *pQueryBrokerDepositField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", nullptr};
 	char *pQueryBrokerDepositField_BrokerID = nullptr;
 	char *pQueryBrokerDepositField_ExchangeID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQueryBrokerDepositField, "|yy")
@@ -12848,7 +12848,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQueryBrokerDepositField *pQueryBrokerDepos
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingAlgosField *pQryBrokerTradingAlgosField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InstrumentID", nullptr};
 	char *pQryBrokerTradingAlgosField_BrokerID = nullptr;
 	char *pQryBrokerTradingAlgosField_ExchangeID = nullptr;
 	char *pQryBrokerTradingAlgosField_InstrumentID = nullptr;
@@ -12865,7 +12865,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingAlgosField *pQryBrokerTrad
 
 int PyCTP_Struct_FromPyDict(CThostFtdcAccountregisterField *pAccountregisterField, PyObject *dict)
 {
-	static char *kwlist[] = {"OutDate", "IdCardType", "TradeDay", "OpenOrDestroy", "BankID", "BrokerID", "CurrencyID", "BankAccType", "CustType", "IdentifiedCardNo", "BankAccount", "BankBranchID", "BrokerBranchID", "RegDate", "AccountID", "TID", "CustomerName", nullptr};
+	static const char *kwlist[] = {"OutDate", "IdCardType", "TradeDay", "OpenOrDestroy", "BankID", "BrokerID", "CurrencyID", "BankAccType", "CustType", "IdentifiedCardNo", "BankAccount", "BankBranchID", "BrokerBranchID", "RegDate", "AccountID", "TID", "CustomerName", nullptr};
 	char *pAccountregisterField_OutDate = nullptr;
 	char pAccountregisterField_IdCardType = 0;
 	char *pAccountregisterField_TradeDay = nullptr;
@@ -12924,7 +12924,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcAccountregisterField *pAccountregisterFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataStaticField *pMarketDataStaticField, PyObject *dict)
 {
-	static char *kwlist[] = {"OpenPrice", "CurrDelta", "HighestPrice", "ClosePrice", "LowestPrice", "UpperLimitPrice", "LowerLimitPrice", "SettlementPrice", nullptr};
+	static const char *kwlist[] = {"OpenPrice", "CurrDelta", "HighestPrice", "ClosePrice", "LowestPrice", "UpperLimitPrice", "LowerLimitPrice", "SettlementPrice", nullptr};
 	double pMarketDataStaticField_OpenPrice = 0.0;
 	double pMarketDataStaticField_CurrDelta = 0.0;
 	double pMarketDataStaticField_HighestPrice = 0.0;
@@ -12956,7 +12956,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataStaticField *pMarketDataStaticFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncStatusField *pQrySyncStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", nullptr};
+	static const char *kwlist[] = {"TradingDay", nullptr};
 	char *pQrySyncStatusField_TradingDay = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQrySyncStatusField, "|y")
 		, &pQrySyncStatusField_TradingDay
@@ -12967,7 +12967,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncStatusField *pQrySyncStatusField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionErrorField *pExchangeOrderActionErrorField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "OrderLocalID", "OrderSysID", "ActionLocalID", "ErrorMsg", "ErrorID", "TraderID", "InstallID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "OrderLocalID", "OrderSysID", "ActionLocalID", "ErrorMsg", "ErrorID", "TraderID", "InstallID", nullptr};
 	char *pExchangeOrderActionErrorField_ExchangeID = nullptr;
 	char *pExchangeOrderActionErrorField_OrderLocalID = nullptr;
 	char *pExchangeOrderActionErrorField_OrderSysID = nullptr;
@@ -12999,7 +12999,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionErrorField *pExchangeOr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionCombineDetailField *pQryInvestorPositionCombineDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CombInstrumentID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CombInstrumentID", "InvestorID", nullptr};
 	char *pQryInvestorPositionCombineDetailField_BrokerID = nullptr;
 	char *pQryInvestorPositionCombineDetailField_CombInstrumentID = nullptr;
 	char *pQryInvestorPositionCombineDetailField_InvestorID = nullptr;
@@ -13016,7 +13016,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionCombineDetailField *pQr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryQuoteActionField *pQryQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
 	char *pQryQuoteActionField_BrokerID = nullptr;
 	char *pQryQuoteActionField_ExchangeID = nullptr;
 	char *pQryQuoteActionField_InvestorID = nullptr;
@@ -13033,7 +13033,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryQuoteActionField *pQryQuoteActionField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTradeField *pQryTradeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TradeID", "TradeTimeEnd", "BrokerID", "InvestorID", "TradeTimeStart", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TradeID", "TradeTimeEnd", "BrokerID", "InvestorID", "TradeTimeStart", "InstrumentID", nullptr};
 	char *pQryTradeField_ExchangeID = nullptr;
 	char *pQryTradeField_TradeID = nullptr;
 	char *pQryTradeField_TradeTimeEnd = nullptr;
@@ -13062,7 +13062,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryTradeField *pQryTradeField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordUpdateV1Field *pTradingAccountPasswordUpdateV1Field, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "NewPassword", "OldPassword", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "NewPassword", "OldPassword", "InvestorID", nullptr};
 	char *pTradingAccountPasswordUpdateV1Field_BrokerID = nullptr;
 	char *pTradingAccountPasswordUpdateV1Field_NewPassword = nullptr;
 	char *pTradingAccountPasswordUpdateV1Field_OldPassword = nullptr;
@@ -13082,7 +13082,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordUpdateV1Field *pTrad
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryMDTraderOfferField *pQryMDTraderOfferField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", nullptr};
 	char *pQryMDTraderOfferField_ExchangeID = nullptr;
 	char *pQryMDTraderOfferField_TraderID = nullptr;
 	char *pQryMDTraderOfferField_ParticipantID = nullptr;
@@ -13099,7 +13099,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryMDTraderOfferField *pQryMDTraderOfferFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserIPField *pUserIPField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "MacAddress", "IPAddress", "UserID", "IPMask", nullptr};
+	static const char *kwlist[] = {"BrokerID", "MacAddress", "IPAddress", "UserID", "IPMask", nullptr};
 	char *pUserIPField_BrokerID = nullptr;
 	char *pUserIPField_MacAddress = nullptr;
 	char *pUserIPField_IPAddress = nullptr;
@@ -13122,7 +13122,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserIPField *pUserIPField, PyObject *dict)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAsk45Field *pMarketDataAsk45Field, PyObject *dict)
 {
-	static char *kwlist[] = {"AskPrice5", "AskPrice4", "AskVolume5", "AskVolume4", nullptr};
+	static const char *kwlist[] = {"AskPrice5", "AskPrice4", "AskVolume5", "AskVolume4", nullptr};
 	double pMarketDataAsk45Field_AskPrice5 = 0.0;
 	double pMarketDataAsk45Field_AskPrice4 = 0.0;
 	int pMarketDataAsk45Field_AskVolume5 = 0;
@@ -13142,7 +13142,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAsk45Field *pMarketDataAsk45Fiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCombInstrumentGuardField *pQryCombInstrumentGuardField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InstrumentID", nullptr};
 	char *pQryCombInstrumentGuardField_BrokerID = nullptr;
 	char *pQryCombInstrumentGuardField_InstrumentID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryCombInstrumentGuardField, "|yy")
@@ -13156,7 +13156,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryCombInstrumentGuardField *pQryCombInstr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeField *pExchangeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ExchangeProperty", "ExchangeName", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ExchangeProperty", "ExchangeName", nullptr};
 	char *pExchangeField_ExchangeID = nullptr;
 	char pExchangeField_ExchangeProperty = 0;
 	char *pExchangeField_ExchangeName = nullptr;
@@ -13173,7 +13173,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeField *pExchangeField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteParamField *pQryForQuoteParamField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InstrumentID", nullptr};
 	char *pQryForQuoteParamField_BrokerID = nullptr;
 	char *pQryForQuoteParamField_ExchangeID = nullptr;
 	char *pQryForQuoteParamField_InstrumentID = nullptr;
@@ -13190,7 +13190,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteParamField *pQryForQuoteParamFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcNoticeField *pNoticeField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "SequenceLabel", "Content", nullptr};
+	static const char *kwlist[] = {"BrokerID", "SequenceLabel", "Content", nullptr};
 	char *pNoticeField_BrokerID = nullptr;
 	char *pNoticeField_SequenceLabel = nullptr;
 	char *pNoticeField_Content = nullptr;
@@ -13207,7 +13207,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcNoticeField *pNoticeField, PyObject *dict)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryHisOrderField *pQryHisOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "OrderSysID", "SettlementID", "BrokerID", "InsertTimeStart", "InvestorID", "TradingDay", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "OrderSysID", "SettlementID", "BrokerID", "InsertTimeStart", "InvestorID", "TradingDay", "InstrumentID", nullptr};
 	char *pQryHisOrderField_ExchangeID = nullptr;
 	char *pQryHisOrderField_InsertTimeEnd = nullptr;
 	char *pQryHisOrderField_OrderSysID = nullptr;
@@ -13242,7 +13242,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryHisOrderField *pQryHisOrderField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentStatusField *pInstrumentStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "EnterTime", "ExchangeInstID", "InstrumentStatus", "SettlementGroupID", "TradingSegmentSN", "EnterReason", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "EnterTime", "ExchangeInstID", "InstrumentStatus", "SettlementGroupID", "TradingSegmentSN", "EnterReason", "InstrumentID", nullptr};
 	char *pInstrumentStatusField_ExchangeID = nullptr;
 	char *pInstrumentStatusField_EnterTime = nullptr;
 	char *pInstrumentStatusField_ExchangeInstID = nullptr;
@@ -13274,7 +13274,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentStatusField *pInstrumentStatusFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryUserSessionField *pQryUserSessionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "FrontID", "SessionID", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "FrontID", "SessionID", "UserID", nullptr};
 	char *pQryUserSessionField_BrokerID = nullptr;
 	int pQryUserSessionField_FrontID = 0;
 	int pQryUserSessionField_SessionID = 0;
@@ -13294,7 +13294,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryUserSessionField *pQryUserSessionField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExecOrderField *pQryExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ExecOrderSysID", "InsertTimeEnd", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ExecOrderSysID", "InsertTimeEnd", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
 	char *pQryExecOrderField_ExchangeID = nullptr;
 	char *pQryExecOrderField_ExecOrderSysID = nullptr;
 	char *pQryExecOrderField_InsertTimeEnd = nullptr;
@@ -13323,7 +13323,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExecOrderField *pQryExecOrderField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentTradingRightField *pInstrumentTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "TradingRight", "InvestorID", "InvestorRange", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "TradingRight", "InvestorID", "InvestorRange", "InstrumentID", nullptr};
 	char *pInstrumentTradingRightField_BrokerID = nullptr;
 	char pInstrumentTradingRightField_TradingRight = 0;
 	char *pInstrumentTradingRightField_InvestorID = nullptr;
@@ -13346,7 +13346,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentTradingRightField *pInstrumentTr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryLinkManField *pQryLinkManField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryLinkManField_BrokerID = nullptr;
 	char *pQryLinkManField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryLinkManField, "|yy")
@@ -13360,7 +13360,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryLinkManField *pQryLinkManField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentField *pInstrumentField, PyObject *dict)
 {
-	static char *kwlist[] = {"DeliveryYear", "PriceTick", "InstLifePhase", "DeliveryMonth", "UnderlyingInstrID", "ShortMarginRatio", "MaxMarketOrderVolume", "MaxLimitOrderVolume", "StrikePrice", "PositionType", "ProductID", "CreateDate", "VolumeMultiple", "OptionsType", "ExchangeID", "PositionDateType", "InstrumentName", "ExchangeInstID", "CombinationType", "ProductClass", "MinLimitOrderVolume", "MaxMarginSideAlgorithm", "LongMarginRatio", "OpenDate", "UnderlyingMultiple", "IsTrading", "StartDelivDate", "ExpireDate", "MinMarketOrderVolume", "EndDelivDate", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"DeliveryYear", "PriceTick", "InstLifePhase", "DeliveryMonth", "UnderlyingInstrID", "ShortMarginRatio", "MaxMarketOrderVolume", "MaxLimitOrderVolume", "StrikePrice", "PositionType", "ProductID", "CreateDate", "VolumeMultiple", "OptionsType", "ExchangeID", "PositionDateType", "InstrumentName", "ExchangeInstID", "CombinationType", "ProductClass", "MinLimitOrderVolume", "MaxMarginSideAlgorithm", "LongMarginRatio", "OpenDate", "UnderlyingMultiple", "IsTrading", "StartDelivDate", "ExpireDate", "MinMarketOrderVolume", "EndDelivDate", "InstrumentID", nullptr};
 	int pInstrumentField_DeliveryYear = 0;
 	double pInstrumentField_PriceTick = 0.0;
 	char pInstrumentField_InstLifePhase = 0;
@@ -13461,7 +13461,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentField *pInstrumentField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankToFutureReqField *pTransferBankToFutureReqField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccPwd", "FutureAccount", "FuturePwdFlag", nullptr};
+	static const char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccPwd", "FutureAccount", "FuturePwdFlag", nullptr};
 	char *pTransferBankToFutureReqField_CurrencyCode = nullptr;
 	double pTransferBankToFutureReqField_CustFee = 0.0;
 	double pTransferBankToFutureReqField_TradeAmt = 0.0;
@@ -13487,7 +13487,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankToFutureReqField *pTransferBan
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountField *pTradingAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"Deposit", "Available", "WithdrawQuota", "FrozenCash", "PreBalance", "CashIn", "Credit", "CloseProfit", "InterestBase", "FundMortgageOut", "FundMortgageIn", "AccountID", "Balance", "Reserve", "SettlementID", "Withdraw", "SpecProductFrozenMargin", "ExchangeMargin", "PreCredit", "DeliveryMargin", "Mortgage", "SpecProductFrozenCommission", "ExchangeDeliveryMargin", "SpecProductPositionProfit", "FrozenCommission", "Interest", "ReserveBalance", "PreDeposit", "PreFundMortgageIn", "SpecProductExchangeMargin", "PositionProfit", "TradingDay", "Commission", "SpecProductCloseProfit", "PreMargin", "CurrMargin", "SpecProductPositionProfitByAlg", "SpecProductCommission", "PreFundMortgageOut", "CurrencyID", "PreMortgage", "FrozenMargin", "BrokerID", "MortgageableFund", "SpecProductMargin", "FundMortgageAvailable", nullptr};
+	static const char *kwlist[] = {"Deposit", "Available", "WithdrawQuota", "FrozenCash", "PreBalance", "CashIn", "Credit", "CloseProfit", "InterestBase", "FundMortgageOut", "FundMortgageIn", "AccountID", "Balance", "Reserve", "SettlementID", "Withdraw", "SpecProductFrozenMargin", "ExchangeMargin", "PreCredit", "DeliveryMargin", "Mortgage", "SpecProductFrozenCommission", "ExchangeDeliveryMargin", "SpecProductPositionProfit", "FrozenCommission", "Interest", "ReserveBalance", "PreDeposit", "PreFundMortgageIn", "SpecProductExchangeMargin", "PositionProfit", "TradingDay", "Commission", "SpecProductCloseProfit", "PreMargin", "CurrMargin", "SpecProductPositionProfitByAlg", "SpecProductCommission", "PreFundMortgageOut", "CurrencyID", "PreMortgage", "FrozenMargin", "BrokerID", "MortgageableFund", "SpecProductMargin", "FundMortgageAvailable", nullptr};
 	double pTradingAccountField_Deposit = 0.0;
 	double pTradingAccountField_Available = 0.0;
 	double pTradingAccountField_WithdrawQuota = 0.0;
@@ -13633,7 +13633,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountField *pTradingAccountField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dict)
 {
-	static char *kwlist[] = {"MaxMarketOrderVolume", "PriceTick", "ProductName", "ProductClass", "MinLimitOrderVolume", "TradeCurrencyID", "PositionDateType", "UnderlyingMultiple", "ExchangeID", "MinMarketOrderVolume", "PositionType", "CloseDealType", "ProductID", "ExchangeProductID", "MortgageFundUseRange", "VolumeMultiple", "MaxLimitOrderVolume", nullptr};
+	static const char *kwlist[] = {"MaxMarketOrderVolume", "PriceTick", "ProductName", "ProductClass", "MinLimitOrderVolume", "TradeCurrencyID", "PositionDateType", "UnderlyingMultiple", "ExchangeID", "MinMarketOrderVolume", "PositionType", "CloseDealType", "ProductID", "ExchangeProductID", "MortgageFundUseRange", "VolumeMultiple", "MaxLimitOrderVolume", nullptr};
 	int pProductField_MaxMarketOrderVolume = 0;
 	double pProductField_PriceTick = 0.0;
 	char *pProductField_ProductName = nullptr;
@@ -13692,7 +13692,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dic
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"SequenceNo", "UserProductInfo", "Direction", "TradingDay", "InstallID", "CombDirection", "StatusMsg", "SessionID", "ClientID", "ActionLocalID", "ExchangeInstID", "BrokerID", "InvestorID", "TraderID", "UserID", "CombActionRef", "ExchangeID", "FrontID", "Volume", "ActionStatus", "InstrumentID", "NotifySequence", "ParticipantID", "HedgeFlag", "SettlementID", nullptr};
+	static const char *kwlist[] = {"SequenceNo", "UserProductInfo", "Direction", "TradingDay", "InstallID", "CombDirection", "StatusMsg", "SessionID", "ClientID", "ActionLocalID", "ExchangeInstID", "BrokerID", "InvestorID", "TraderID", "UserID", "CombActionRef", "ExchangeID", "FrontID", "Volume", "ActionStatus", "InstrumentID", "NotifySequence", "ParticipantID", "HedgeFlag", "SettlementID", nullptr};
 	int pCombActionField_SequenceNo = 0;
 	char *pCombActionField_UserProductInfo = nullptr;
 	char pCombActionField_Direction = 0;
@@ -13775,7 +13775,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAsk23Field *pMarketDataAsk23Field, PyObject *dict)
 {
-	static char *kwlist[] = {"AskVolume3", "AskPrice2", "AskPrice3", "AskVolume2", nullptr};
+	static const char *kwlist[] = {"AskVolume3", "AskPrice2", "AskPrice3", "AskVolume2", nullptr};
 	int pMarketDataAsk23Field_AskVolume3 = 0;
 	double pMarketDataAsk23Field_AskPrice2 = 0.0;
 	double pMarketDataAsk23Field_AskPrice3 = 0.0;
@@ -13795,7 +13795,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAsk23Field *pMarketDataAsk23Fiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryNoticeField *pQryNoticeField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", nullptr};
+	static const char *kwlist[] = {"BrokerID", nullptr};
 	char *pQryNoticeField_BrokerID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryNoticeField, "|y")
 		, &pQryNoticeField_BrokerID
@@ -13806,7 +13806,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryNoticeField *pQryNoticeField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrDeltaField *pOptionInstrDeltaField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InvestorRange", "Delta", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InvestorRange", "Delta", "InstrumentID", nullptr};
 	char *pOptionInstrDeltaField_BrokerID = nullptr;
 	char *pOptionInstrDeltaField_InvestorID = nullptr;
 	char pOptionInstrDeltaField_InvestorRange = 0;
@@ -13829,7 +13829,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrDeltaField *pOptionInstrDeltaFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspAuthenticateField *pRspAuthenticateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", "UserProductInfo", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserID", "UserProductInfo", nullptr};
 	char *pRspAuthenticateField_BrokerID = nullptr;
 	char *pRspAuthenticateField_UserID = nullptr;
 	char *pRspAuthenticateField_UserProductInfo = nullptr;
@@ -13846,7 +13846,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspAuthenticateField *pRspAuthenticateFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOrderActionField *pQryOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
 	char *pQryOrderActionField_BrokerID = nullptr;
 	char *pQryOrderActionField_ExchangeID = nullptr;
 	char *pQryOrderActionField_InvestorID = nullptr;
@@ -13863,7 +13863,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryOrderActionField *pQryOrderActionField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradingRightField *pQryOptionInstrTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "Direction", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "Direction", "InstrumentID", nullptr};
 	char *pQryOptionInstrTradingRightField_BrokerID = nullptr;
 	char *pQryOptionInstrTradingRightField_InvestorID = nullptr;
 	char pQryOptionInstrTradingRightField_Direction = 0;
@@ -13883,7 +13883,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradingRightField *pQryOptio
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserEventField *pBrokerUserEventField, PyObject *dict)
 {
-	static char *kwlist[] = {"UserEventInfo", "InstrumentID", "EventSequenceNo", "BrokerID", "UserEventType", "EventTime", "InvestorID", "UserID", "EventDate", nullptr};
+	static const char *kwlist[] = {"UserEventInfo", "InstrumentID", "EventSequenceNo", "BrokerID", "UserEventType", "EventTime", "InvestorID", "UserID", "EventDate", nullptr};
 	char *pBrokerUserEventField_UserEventInfo = nullptr;
 	char *pBrokerUserEventField_InstrumentID = nullptr;
 	int pBrokerUserEventField_EventSequenceNo = 0;
@@ -13918,7 +13918,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserEventField *pBrokerUserEventFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcProductExchRateField *pProductExchRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "QuoteCurrencyID", "ExchangeRate", nullptr};
+	static const char *kwlist[] = {"ProductID", "QuoteCurrencyID", "ExchangeRate", nullptr};
 	char *pProductExchRateField_ProductID = nullptr;
 	char *pProductExchRateField_QuoteCurrencyID = nullptr;
 	double pProductExchRateField_ExchangeRate = 0.0;
@@ -13935,7 +13935,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductExchRateField *pProductExchRateFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserFunctionField *pQryBrokerUserFunctionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserID", nullptr};
 	char *pQryBrokerUserFunctionField_BrokerID = nullptr;
 	char *pQryBrokerUserFunctionField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryBrokerUserFunctionField, "|yy")
@@ -13949,7 +13949,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserFunctionField *pQryBrokerUser
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExecOrderActionField *pQryExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", nullptr};
 	char *pQryExecOrderActionField_BrokerID = nullptr;
 	char *pQryExecOrderActionField_ExchangeID = nullptr;
 	char *pQryExecOrderActionField_InvestorID = nullptr;
@@ -13966,7 +13966,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExecOrderActionField *pQryExecOrderActi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspQueryAccountField *pRspQueryAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"Password", "TradeDate", "BankFetchAmount", "BankID", "BankSecuAccType", "BankAccType", "TradingDay", "Digest", "CustType", "InstallID", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankUseAmount", "BankAccount", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "TradeCode", nullptr};
+	static const char *kwlist[] = {"Password", "TradeDate", "BankFetchAmount", "BankID", "BankSecuAccType", "BankAccType", "TradingDay", "Digest", "CustType", "InstallID", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankUseAmount", "BankAccount", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "TradeCode", nullptr};
 	char *pRspQueryAccountField_Password = nullptr;
 	char *pRspQueryAccountField_TradeDate = nullptr;
 	double pRspQueryAccountField_BankFetchAmount = 0.0;
@@ -14088,7 +14088,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspQueryAccountField *pRspQueryAccountFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputCombActionField *pInputCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"HedgeFlag", "Volume", "InstrumentID", "Direction", "BrokerID", "InvestorID", "UserID", "CombDirection", "CombActionRef", nullptr};
+	static const char *kwlist[] = {"HedgeFlag", "Volume", "InstrumentID", "Direction", "BrokerID", "InvestorID", "UserID", "CombDirection", "CombActionRef", nullptr};
 	char pInputCombActionField_HedgeFlag = 0;
 	int pInputCombActionField_Volume = 0;
 	char *pInputCombActionField_InstrumentID = nullptr;
@@ -14123,7 +14123,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputCombActionField *pInputCombActionFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "TimeCondition", "CombOffsetFlag", "ClearingPartID", "InstallID", "StatusMsg", "IsAutoSuspend", "OrderSubmitStatus", "RequestID", "StopPrice", "ForceCloseReason", "SettlementID", "VolumeTotal", "InsertDate", "ExchangeInstID", "BrokerID", "SequenceNo", "TraderID", "ActiveUserID", "BrokerOrderSeq", "OrderSysID", "OrderRef", "GTDDate", "MinVolume", "InsertTime", "BusinessUnit", "OrderType", "ParticipantID", "ClientID", "LimitPrice", "UserProductInfo", "Direction", "ContingentCondition", "RelativeOrderSysID", "CombHedgeFlag", "VolumeTotalOriginal", "TradingDay", "VolumeTraded", "OrderSource", "UserForceClose", "SuspendTime", "OrderStatus", "ActiveTraderID", "SessionID", "ZCETotalTradedVolume", "NotifySequence", "InvestorID", "UserID", "ActiveTime", "ExchangeID", "FrontID", "CancelTime", "OrderPriceType", "VolumeCondition", "InstrumentID", "UpdateTime", "IsSwapOrder", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "TimeCondition", "CombOffsetFlag", "ClearingPartID", "InstallID", "StatusMsg", "IsAutoSuspend", "OrderSubmitStatus", "RequestID", "StopPrice", "ForceCloseReason", "SettlementID", "VolumeTotal", "InsertDate", "ExchangeInstID", "BrokerID", "SequenceNo", "TraderID", "ActiveUserID", "BrokerOrderSeq", "OrderSysID", "OrderRef", "GTDDate", "MinVolume", "InsertTime", "BusinessUnit", "OrderType", "ParticipantID", "ClientID", "LimitPrice", "UserProductInfo", "Direction", "ContingentCondition", "RelativeOrderSysID", "CombHedgeFlag", "VolumeTotalOriginal", "TradingDay", "VolumeTraded", "OrderSource", "UserForceClose", "SuspendTime", "OrderStatus", "ActiveTraderID", "SessionID", "ZCETotalTradedVolume", "NotifySequence", "InvestorID", "UserID", "ActiveTime", "ExchangeID", "FrontID", "CancelTime", "OrderPriceType", "VolumeCondition", "InstrumentID", "UpdateTime", "IsSwapOrder", nullptr};
 	char *pOrderField_OrderLocalID = nullptr;
 	char pOrderField_TimeCondition = 0;
 	char *pOrderField_CombOffsetFlag = nullptr;
@@ -14302,7 +14302,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCombInstrumentGuardField *pCombInstrumentGuardField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "GuarantRatio", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "GuarantRatio", "InstrumentID", nullptr};
 	char *pCombInstrumentGuardField_BrokerID = nullptr;
 	double pCombInstrumentGuardField_GuarantRatio = 0.0;
 	char *pCombInstrumentGuardField_InstrumentID = nullptr;
@@ -14319,7 +14319,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombInstrumentGuardField *pCombInstrumentG
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryQuoteField *pQryQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "QuoteSysID", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "QuoteSysID", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
 	char *pQryQuoteField_ExchangeID = nullptr;
 	char *pQryQuoteField_InsertTimeEnd = nullptr;
 	char *pQryQuoteField_QuoteSysID = nullptr;
@@ -14348,7 +14348,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryQuoteField *pQryQuoteField, PyObject *d
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorField *pSyncingInvestorField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorID", "Mobile", "CommModelID", "BrokerID", "IdentifiedCardType", "Telephone", "OpenDate", "IdentifiedCardNo", "MarginModelID", "InvestorName", "InvestorGroupID", "IsActive", "Address", nullptr};
+	static const char *kwlist[] = {"InvestorID", "Mobile", "CommModelID", "BrokerID", "IdentifiedCardType", "Telephone", "OpenDate", "IdentifiedCardNo", "MarginModelID", "InvestorName", "InvestorGroupID", "IsActive", "Address", nullptr};
 	char *pSyncingInvestorField_InvestorID = nullptr;
 	char *pSyncingInvestorField_Mobile = nullptr;
 	char *pSyncingInvestorField_CommModelID = nullptr;
@@ -14395,7 +14395,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorField *pSyncingInvestorFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferHeaderField *pTransferHeaderField, PyObject *dict)
 {
-	static char *kwlist[] = {"FutureID", "TradeDate", "BankID", "RecordNum", "Version", "TradeSerial", "OperNo", "RequestID", "SessionID", "TradeTime", "TradeCode", "DeviceID", "BankBrchID", nullptr};
+	static const char *kwlist[] = {"FutureID", "TradeDate", "BankID", "RecordNum", "Version", "TradeSerial", "OperNo", "RequestID", "SessionID", "TradeTime", "TradeCode", "DeviceID", "BankBrchID", nullptr};
 	char *pTransferHeaderField_FutureID = nullptr;
 	char *pTransferHeaderField_TradeDate = nullptr;
 	char *pTransferHeaderField_BankID = nullptr;
@@ -14442,7 +14442,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferHeaderField *pTransferHeaderField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryProductField *pQryProductField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "ProductClass", nullptr};
+	static const char *kwlist[] = {"ProductID", "ProductClass", nullptr};
 	char *pQryProductField_ProductID = nullptr;
 	char pQryProductField_ProductClass = 0;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryProductField, "|yc")
@@ -14456,7 +14456,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryProductField *pQryProductField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankToFutureRspField *pTransferBankToFutureRspField, PyObject *dict)
 {
-	static char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccount", "RetInfo", "RetCode", nullptr};
+	static const char *kwlist[] = {"CurrencyCode", "CustFee", "TradeAmt", "FutureAccount", "RetInfo", "RetCode", nullptr};
 	char *pTransferBankToFutureRspField_CurrencyCode = nullptr;
 	double pTransferBankToFutureRspField_CustFee = 0.0;
 	double pTransferBankToFutureRspField_TradeAmt = 0.0;
@@ -14482,7 +14482,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankToFutureRspField *pTransferBan
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCBrokerKeyField *pCFMMCBrokerKeyField, PyObject *dict)
 {
-	static char *kwlist[] = {"KeyKind", "KeyID", "BrokerID", "CurrentKey", "CreateDate", "ParticipantID", "CreateTime", nullptr};
+	static const char *kwlist[] = {"KeyKind", "KeyID", "BrokerID", "CurrentKey", "CreateDate", "ParticipantID", "CreateTime", nullptr};
 	char pCFMMCBrokerKeyField_KeyKind = 0;
 	int pCFMMCBrokerKeyField_KeyID = 0;
 	char *pCFMMCBrokerKeyField_BrokerID = nullptr;
@@ -14511,7 +14511,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCBrokerKeyField *pCFMMCBrokerKeyField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionField *pInvestorPositionField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "FrozenCash", "CloseProfitByTrade", "PositionProfit", "CashIn", "ShortFrozenAmount", "CloseProfit", "FrozenCommission", "PreMargin", "SettlementID", "CloseAmount", "PosiDirection", "CloseProfitByDate", "StrikeFrozenAmount", "CombPosition", "PreSettlementPrice", "ExchangeMargin", "CloseVolume", "HedgeFlag", "StrikeFrozen", "PositionDate", "LongFrozenAmount", "CombShortFrozen", "YdPosition", "OpenCost", "BrokerID", "UseMargin", "Position", "InvestorID", "LongFrozen", "SettlementPrice", "AbandonFrozen", "PositionCost", "TodayPosition", "MarginRateByMoney", "ShortFrozen", "OpenAmount", "OpenVolume", "CombLongFrozen", "Commission", "FrozenMargin", "MarginRateByVolume", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"TradingDay", "FrozenCash", "CloseProfitByTrade", "PositionProfit", "CashIn", "ShortFrozenAmount", "CloseProfit", "FrozenCommission", "PreMargin", "SettlementID", "CloseAmount", "PosiDirection", "CloseProfitByDate", "StrikeFrozenAmount", "CombPosition", "PreSettlementPrice", "ExchangeMargin", "CloseVolume", "HedgeFlag", "StrikeFrozen", "PositionDate", "LongFrozenAmount", "CombShortFrozen", "YdPosition", "OpenCost", "BrokerID", "UseMargin", "Position", "InvestorID", "LongFrozen", "SettlementPrice", "AbandonFrozen", "PositionCost", "TodayPosition", "MarginRateByMoney", "ShortFrozen", "OpenAmount", "OpenVolume", "CombLongFrozen", "Commission", "FrozenMargin", "MarginRateByVolume", "InstrumentID", nullptr};
 	char *pInvestorPositionField_TradingDay = nullptr;
 	double pInvestorPositionField_FrozenCash = 0.0;
 	double pInvestorPositionField_CloseProfitByTrade = 0.0;
@@ -14648,7 +14648,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionField *pInvestorPositionFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeQuoteActionField *pQryExchangeQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "ClientID", nullptr};
 	char *pQryExchangeQuoteActionField_ExchangeID = nullptr;
 	char *pQryExchangeQuoteActionField_TraderID = nullptr;
 	char *pQryExchangeQuoteActionField_ParticipantID = nullptr;
@@ -14668,7 +14668,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeQuoteActionField *pQryExchangeQ
 
 int PyCTP_Struct_FromPyDict(CThostFtdcStrikeOffsetField *pStrikeOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InvestorRange", "Offset", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InvestorRange", "Offset", "InstrumentID", nullptr};
 	char *pStrikeOffsetField_BrokerID = nullptr;
 	char *pStrikeOffsetField_InvestorID = nullptr;
 	char pStrikeOffsetField_InvestorRange = 0;
@@ -14691,7 +14691,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcStrikeOffsetField *pStrikeOffsetField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAveragePriceField *pMarketDataAveragePriceField, PyObject *dict)
 {
-	static char *kwlist[] = {"AveragePrice", nullptr};
+	static const char *kwlist[] = {"AveragePrice", nullptr};
 	double pMarketDataAveragePriceField_AveragePrice = 0.0;
 	PyCTP_PyDict_FromStruct_BEGIN(pMarketDataAveragePriceField, "|d")
 		, &pMarketDataAveragePriceField_AveragePrice
@@ -14702,7 +14702,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAveragePriceField *pMarketDataAv
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCostField, PyObject *dict)
 {
-	static char *kwlist[] = {"FixedMargin", "ExchMiniMargin", "Royalty", "BrokerID", "MiniMargin", "InvestorID", "ExchFixedMargin", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"FixedMargin", "ExchMiniMargin", "Royalty", "BrokerID", "MiniMargin", "InvestorID", "ExchFixedMargin", "HedgeFlag", "InstrumentID", nullptr};
 	double pOptionInstrTradeCostField_FixedMargin = 0.0;
 	double pOptionInstrTradeCostField_ExchMiniMargin = 0.0;
 	double pOptionInstrTradeCostField_Royalty = 0.0;
@@ -14737,7 +14737,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradeCostField *pOptionInstrTra
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeSequenceField *pQryExchangeSequenceField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", nullptr};
 	char *pQryExchangeSequenceField_ExchangeID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeSequenceField, "|y")
 		, &pQryExchangeSequenceField_ExchangeID
@@ -14748,7 +14748,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeSequenceField *pQryExchangeSequ
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCommRateModelField *pCommRateModelField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "CommModelName", "CommModelID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "CommModelName", "CommModelID", nullptr};
 	char *pCommRateModelField_BrokerID = nullptr;
 	char *pCommRateModelField_CommModelName = nullptr;
 	char *pCommRateModelField_CommModelID = nullptr;
@@ -14765,7 +14765,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCommRateModelField *pCommRateModelField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "OffsetFlag", "TradeDate", "Direction", "Price", "ClearingPartID", "TradeType", "TradingRole", "TraderID", "ClientID", "TradeID", "ExchangeInstID", "SequenceNo", "PriceSource", "TradeSource", "ExchangeID", "OrderSysID", "HedgeFlag", "TradeTime", "BusinessUnit", "ParticipantID", "Volume", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "OffsetFlag", "TradeDate", "Direction", "Price", "ClearingPartID", "TradeType", "TradingRole", "TraderID", "ClientID", "TradeID", "ExchangeInstID", "SequenceNo", "PriceSource", "TradeSource", "ExchangeID", "OrderSysID", "HedgeFlag", "TradeTime", "BusinessUnit", "ParticipantID", "Volume", nullptr};
 	char *pExchangeTradeField_OrderLocalID = nullptr;
 	char pExchangeTradeField_OffsetFlag = 0;
 	char *pExchangeTradeField_TradeDate = nullptr;
@@ -14839,7 +14839,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputForQuoteField *pInputForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ForQuoteRef", "UserID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "ForQuoteRef", "UserID", "InstrumentID", nullptr};
 	char *pInputForQuoteField_BrokerID = nullptr;
 	char *pInputForQuoteField_InvestorID = nullptr;
 	char *pInputForQuoteField_ForQuoteRef = nullptr;
@@ -14862,7 +14862,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputForQuoteField *pInputForQuoteField, P
 
 int PyCTP_Struct_FromPyDict(CThostFtdcEWarrantOffsetField *pEWarrantOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TradingDay", "Volume", "Direction", "BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "TradingDay", "Volume", "Direction", "BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
 	char *pEWarrantOffsetField_ExchangeID = nullptr;
 	char *pEWarrantOffsetField_TradingDay = nullptr;
 	int pEWarrantOffsetField_Volume = 0;
@@ -14894,7 +14894,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcEWarrantOffsetField *pEWarrantOffsetField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"CloseRatioByVolume", "CloseTodayRatioByMoney", "StrikeRatioByVolume", "BrokerID", "OpenRatioByMoney", "InvestorID", "OpenRatioByVolume", "CloseTodayRatioByVolume", "CloseRatioByMoney", "StrikeRatioByMoney", "InvestorRange", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"CloseRatioByVolume", "CloseTodayRatioByMoney", "StrikeRatioByVolume", "BrokerID", "OpenRatioByMoney", "InvestorID", "OpenRatioByVolume", "CloseTodayRatioByVolume", "CloseRatioByMoney", "StrikeRatioByMoney", "InvestorRange", "InstrumentID", nullptr};
 	double pOptionInstrCommRateField_CloseRatioByVolume = 0.0;
 	double pOptionInstrCommRateField_CloseTodayRatioByMoney = 0.0;
 	double pOptionInstrCommRateField_StrikeRatioByVolume = 0.0;
@@ -14938,7 +14938,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrCommRateField *pOptionInstrComm
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryDetailRspField *pTransferQryDetailRspField, PyObject *dict)
 {
-	static char *kwlist[] = {"FutureID", "TradeDate", "BankID", "CertCode", "FutureAccount", "Flag", "CurrencyCode", "BankAccount", "TxAmount", "BankSerial", "TradeTime", "TradeCode", "FutureSerial", "BankBrchID", nullptr};
+	static const char *kwlist[] = {"FutureID", "TradeDate", "BankID", "CertCode", "FutureAccount", "Flag", "CurrencyCode", "BankAccount", "TxAmount", "BankSerial", "TradeTime", "TradeCode", "FutureSerial", "BankBrchID", nullptr};
 	char *pTransferQryDetailRspField_FutureID = nullptr;
 	char *pTransferQryDetailRspField_TradeDate = nullptr;
 	char *pTransferQryDetailRspField_BankID = nullptr;
@@ -14988,7 +14988,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryDetailRspField *pTransferQryDet
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BidOrderRef", "ForQuoteSysID", "AskHedgeFlag", "BrokerID", "InvestorID", "UserID", "BidHedgeFlag", "AskPrice", "BidVolume", "BidPrice", "QuoteRef", "AskOrderRef", "RequestID", "AskOffsetFlag", "AskVolume", "BusinessUnit", "BidOffsetFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BidOrderRef", "ForQuoteSysID", "AskHedgeFlag", "BrokerID", "InvestorID", "UserID", "BidHedgeFlag", "AskPrice", "BidVolume", "BidPrice", "QuoteRef", "AskOrderRef", "RequestID", "AskOffsetFlag", "AskVolume", "BusinessUnit", "BidOffsetFlag", "InstrumentID", nullptr};
 	char *pInputQuoteField_BidOrderRef = nullptr;
 	char *pInputQuoteField_ForQuoteSysID = nullptr;
 	char pInputQuoteField_AskHedgeFlag = 0;
@@ -15050,7 +15050,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLoginForbiddenUserField *pLoginForbiddenUserField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "IPAddress", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "IPAddress", "UserID", nullptr};
 	char *pLoginForbiddenUserField_BrokerID = nullptr;
 	char *pLoginForbiddenUserField_IPAddress = nullptr;
 	char *pLoginForbiddenUserField_UserID = nullptr;
@@ -15067,7 +15067,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLoginForbiddenUserField *pLoginForbiddenUs
 
 int PyCTP_Struct_FromPyDict(CThostFtdcProductGroupField *pProductGroupField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ProductID", "ProductGroupID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ProductID", "ProductGroupID", nullptr};
 	char *pProductGroupField_ExchangeID = nullptr;
 	char *pProductGroupField_ProductID = nullptr;
 	char *pProductGroupField_ProductGroupID = nullptr;
@@ -15084,7 +15084,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductGroupField *pProductGroupField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserRightField *pUserRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "IsForbidden", "UserID", "UserRightType", nullptr};
+	static const char *kwlist[] = {"BrokerID", "IsForbidden", "UserID", "UserRightType", nullptr};
 	char *pUserRightField_BrokerID = nullptr;
 	int pUserRightField_IsForbidden = 0;
 	char *pUserRightField_UserID = nullptr;
@@ -15104,7 +15104,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserRightField *pUserRightField, PyObject 
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCFMMCBrokerKeyField *pQryCFMMCBrokerKeyField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", nullptr};
+	static const char *kwlist[] = {"BrokerID", nullptr};
 	char *pQryCFMMCBrokerKeyField_BrokerID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryCFMMCBrokerKeyField, "|y")
 		, &pQryCFMMCBrokerKeyField_BrokerID
@@ -15115,7 +15115,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryCFMMCBrokerKeyField *pQryCFMMCBrokerKey
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserSessionField *pUserSessionField, PyObject *dict)
 {
-	static char *kwlist[] = {"MacAddress", "FrontID", "SessionID", "LoginDate", "BrokerID", "InterfaceProductInfo", "UserProductInfo", "ProtocolInfo", "IPAddress", "UserID", "LoginTime", nullptr};
+	static const char *kwlist[] = {"MacAddress", "FrontID", "SessionID", "LoginDate", "BrokerID", "InterfaceProductInfo", "UserProductInfo", "ProtocolInfo", "IPAddress", "UserID", "LoginTime", nullptr};
 	char *pUserSessionField_MacAddress = nullptr;
 	int pUserSessionField_FrontID = 0;
 	int pUserSessionField_SessionID = 0;
@@ -15156,7 +15156,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserSessionField *pUserSessionField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryStrikeOffsetField *pQryStrikeOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryStrikeOffsetField_BrokerID = nullptr;
 	char *pQryStrikeOffsetField_InvestorID = nullptr;
 	char *pQryStrikeOffsetField_InstrumentID = nullptr;
@@ -15173,7 +15173,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryStrikeOffsetField *pQryStrikeOffsetFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCombinationLegField *pCombinationLegField, PyObject *dict)
 {
-	static char *kwlist[] = {"LegMultiple", "CombInstrumentID", "Direction", "LegInstrumentID", "ImplyLevel", "LegID", nullptr};
+	static const char *kwlist[] = {"LegMultiple", "CombInstrumentID", "Direction", "LegInstrumentID", "ImplyLevel", "LegID", nullptr};
 	int pCombinationLegField_LegMultiple = 0;
 	char *pCombinationLegField_CombInstrumentID = nullptr;
 	char pCombinationLegField_Direction = 0;
@@ -15199,7 +15199,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombinationLegField *pCombinationLegField,
 
 int PyCTP_Struct_FromPyDict(CThostFtdcVerifyFuturePasswordAndCustInfoField *pVerifyFuturePasswordAndCustInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"IdCardType", "Password", "AccountID", "CurrencyID", "CustomerName", "CustType", "IdentifiedCardNo", nullptr};
+	static const char *kwlist[] = {"IdCardType", "Password", "AccountID", "CurrencyID", "CustomerName", "CustType", "IdentifiedCardNo", nullptr};
 	char pVerifyFuturePasswordAndCustInfoField_IdCardType = 0;
 	char *pVerifyFuturePasswordAndCustInfoField_Password = nullptr;
 	char *pVerifyFuturePasswordAndCustInfoField_AccountID = nullptr;
@@ -15228,7 +15228,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcVerifyFuturePasswordAndCustInfoField *pVer
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryProductGroupField *pQryProductGroupField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ProductID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "ProductID", nullptr};
 	char *pQryProductGroupField_ExchangeID = nullptr;
 	char *pQryProductGroupField_ProductID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryProductGroupField, "|yy")
@@ -15242,7 +15242,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryProductGroupField *pQryProductGroupFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteActionField *pInputQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"QuoteActionRef", "SessionID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "FrontID", "ActionFlag", "QuoteRef", "QuoteSysID", "RequestID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"QuoteActionRef", "SessionID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "FrontID", "ActionFlag", "QuoteRef", "QuoteSysID", "RequestID", "InstrumentID", nullptr};
 	int pInputQuoteActionField_QuoteActionRef = 0;
 	int pInputQuoteActionField_SessionID = 0;
 	char *pInputQuoteActionField_BrokerID = nullptr;
@@ -15286,7 +15286,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteActionField *pInputQuoteActionFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateField *pExchangeMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"LongMarginRatioByVolume", "BrokerID", "ShortMarginRatioByVolume", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"LongMarginRatioByVolume", "BrokerID", "ShortMarginRatioByVolume", "LongMarginRatioByMoney", "ShortMarginRatioByMoney", "HedgeFlag", "InstrumentID", nullptr};
 	double pExchangeMarginRateField_LongMarginRatioByVolume = 0.0;
 	char *pExchangeMarginRateField_BrokerID = nullptr;
 	double pExchangeMarginRateField_ShortMarginRatioByVolume = 0.0;
@@ -15315,7 +15315,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateField *pExchangeMarginRa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcIndexPriceField *pIndexPriceField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ClosePrice", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ClosePrice", "InstrumentID", nullptr};
 	char *pIndexPriceField_BrokerID = nullptr;
 	double pIndexPriceField_ClosePrice = 0.0;
 	char *pIndexPriceField_InstrumentID = nullptr;
@@ -15332,7 +15332,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcIndexPriceField *pIndexPriceField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionField *pQryInvestorPositionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryInvestorPositionField_BrokerID = nullptr;
 	char *pQryInvestorPositionField_InvestorID = nullptr;
 	char *pQryInvestorPositionField_InstrumentID = nullptr;
@@ -15349,7 +15349,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionField *pQryInvestorPosi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMiniMarginField *pOptionInstrMiniMarginField, PyObject *dict)
 {
-	static char *kwlist[] = {"IsRelative", "ValueMethod", "MinMargin", "InstrumentID", "BrokerID", "InvestorID", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"IsRelative", "ValueMethod", "MinMargin", "InstrumentID", "BrokerID", "InvestorID", "InvestorRange", nullptr};
 	int pOptionInstrMiniMarginField_IsRelative = 0;
 	char pOptionInstrMiniMarginField_ValueMethod = 0;
 	double pOptionInstrMiniMarginField_MinMargin = 0.0;
@@ -15378,7 +15378,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMiniMarginField *pOptionInstrMi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspQueryTradeResultBySerialField *pRspQueryTradeResultBySerialField, PyObject *dict)
 {
-	static char *kwlist[] = {"RefrenceIssure", "BankPassWord", "TradeDate", "Reference", "BankID", "AccountID", "TradeAmount", "TradingDay", "Digest", "OriginDescrInfoForReturnCode", "BankAccount", "BankBranchID", "ErrorID", "OriginReturnCode", "BankSerial", "PlateSerial", "CurrencyID", "LastFragment", "SessionID", "Password", "BrokerID", "RefrenceIssureType", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"RefrenceIssure", "BankPassWord", "TradeDate", "Reference", "BankID", "AccountID", "TradeAmount", "TradingDay", "Digest", "OriginDescrInfoForReturnCode", "BankAccount", "BankBranchID", "ErrorID", "OriginReturnCode", "BankSerial", "PlateSerial", "CurrencyID", "LastFragment", "SessionID", "Password", "BrokerID", "RefrenceIssureType", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
 	char *pRspQueryTradeResultBySerialField_RefrenceIssure = nullptr;
 	char *pRspQueryTradeResultBySerialField_BankPassWord = nullptr;
 	char *pRspQueryTradeResultBySerialField_TradeDate = nullptr;
@@ -15464,7 +15464,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspQueryTradeResultBySerialField *pRspQuer
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionField *pExchangeOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderLocalID", "OrderActionStatus", "ActionLocalID", "ActionTime", "TraderID", "UserID", "InstallID", "ExchangeID", "OrderSysID", "VolumeChange", "ActionFlag", "LimitPrice", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", nullptr};
+	static const char *kwlist[] = {"OrderLocalID", "OrderActionStatus", "ActionLocalID", "ActionTime", "TraderID", "UserID", "InstallID", "ExchangeID", "OrderSysID", "VolumeChange", "ActionFlag", "LimitPrice", "ActionDate", "BusinessUnit", "ParticipantID", "ClientID", nullptr};
 	char *pExchangeOrderActionField_OrderLocalID = nullptr;
 	char pExchangeOrderActionField_OrderActionStatus = 0;
 	char *pExchangeOrderActionField_ActionLocalID = nullptr;
@@ -15520,7 +15520,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionField *pExchangeOrderAc
 
 int PyCTP_Struct_FromPyDict(CThostFtdcVerifyFuturePasswordField *pVerifyFuturePasswordField, PyObject *dict)
 {
-	static char *kwlist[] = {"LastFragment", "Password", "TradeDate", "BankID", "BrokerID", "TradingDay", "BankPassWord", "BrokerBranchID", "CurrencyID", "BankAccount", "BankBranchID", "InstallID", "BankSerial", "AccountID", "TID", "SessionID", "TradeTime", "PlateSerial", "TradeCode", nullptr};
+	static const char *kwlist[] = {"LastFragment", "Password", "TradeDate", "BankID", "BrokerID", "TradingDay", "BankPassWord", "BrokerBranchID", "CurrencyID", "BankAccount", "BankBranchID", "InstallID", "BankSerial", "AccountID", "TID", "SessionID", "TradeTime", "PlateSerial", "TradeCode", nullptr};
 	char pVerifyFuturePasswordField_LastFragment = 0;
 	char *pVerifyFuturePasswordField_Password = nullptr;
 	char *pVerifyFuturePasswordField_TradeDate = nullptr;
@@ -15585,7 +15585,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcVerifyFuturePasswordField *pVerifyFuturePa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeBatchOrderActionField *pExchangeBatchOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "OrderActionStatus", "ActionLocalID", "ClientID", "ActionTime", "BusinessUnit", "ActionDate", "TraderID", "ParticipantID", "InstallID", "UserID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "OrderActionStatus", "ActionLocalID", "ClientID", "ActionTime", "BusinessUnit", "ActionDate", "TraderID", "ParticipantID", "InstallID", "UserID", nullptr};
 	char *pExchangeBatchOrderActionField_ExchangeID = nullptr;
 	char pExchangeBatchOrderActionField_OrderActionStatus = 0;
 	char *pExchangeBatchOrderActionField_ActionLocalID = nullptr;
@@ -15626,7 +15626,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeBatchOrderActionField *pExchangeBa
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingParamsField *pQryBrokerTradingParamsField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "CurrencyID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "CurrencyID", nullptr};
 	char *pQryBrokerTradingParamsField_BrokerID = nullptr;
 	char *pQryBrokerTradingParamsField_InvestorID = nullptr;
 	char *pQryBrokerTradingParamsField_CurrencyID = nullptr;
@@ -15643,7 +15643,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingParamsField *pQryBrokerTra
 
 int PyCTP_Struct_FromPyDict(CThostFtdcContractBankField *pContractBankField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "BankName", "BankID", "BankBrchID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "BankName", "BankID", "BankBrchID", nullptr};
 	char *pContractBankField_BrokerID = nullptr;
 	char *pContractBankField_BankName = nullptr;
 	char *pContractBankField_BankID = nullptr;
@@ -15663,7 +15663,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcContractBankField *pContractBankField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderActionField *pErrExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ErrorMsg", "SessionID", "ErrorID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "ActionFlag", "ExecOrderRef", "RequestID", "ExecOrderActionRef", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ErrorMsg", "SessionID", "ErrorID", "BrokerID", "InvestorID", "UserID", "ExchangeID", "ExecOrderSysID", "FrontID", "ActionFlag", "ExecOrderRef", "RequestID", "ExecOrderActionRef", "InstrumentID", nullptr};
 	char *pErrExecOrderActionField_ErrorMsg = nullptr;
 	int pErrExecOrderActionField_SessionID = 0;
 	int pErrExecOrderActionField_ErrorID = 0;
@@ -15713,7 +15713,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderActionField *pErrExecOrderActi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspFutureSignOutField *pRspFutureSignOutField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
 	char *pRspFutureSignOutField_TradeDate = nullptr;
 	int pRspFutureSignOutField_ErrorID = 0;
 	char *pRspFutureSignOutField_BankID = nullptr;
@@ -15790,7 +15790,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspFutureSignOutField *pRspFutureSignOutFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcPartBrokerField *pPartBrokerField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "IsActive", "ParticipantID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "IsActive", "ParticipantID", nullptr};
 	char *pPartBrokerField_BrokerID = nullptr;
 	char *pPartBrokerField_ExchangeID = nullptr;
 	int pPartBrokerField_IsActive = 0;
@@ -15810,7 +15810,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcPartBrokerField *pPartBrokerField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserLogoutField *pUserLogoutField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserID", nullptr};
 	char *pUserLogoutField_BrokerID = nullptr;
 	char *pUserLogoutField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pUserLogoutField, "|yy")
@@ -15824,7 +15824,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserLogoutField *pUserLogoutField, PyObjec
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorGroupField *pSyncingInvestorGroupField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorGroupID", "InvestorGroupName", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorGroupID", "InvestorGroupName", nullptr};
 	char *pSyncingInvestorGroupField_BrokerID = nullptr;
 	char *pSyncingInvestorGroupField_InvestorGroupID = nullptr;
 	char *pSyncingInvestorGroupField_InvestorGroupName = nullptr;
@@ -15841,7 +15841,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorGroupField *pSyncingInvesto
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryLoginForbiddenUserField *pQryLoginForbiddenUserField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "UserID", nullptr};
 	char *pQryLoginForbiddenUserField_BrokerID = nullptr;
 	char *pQryLoginForbiddenUserField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryLoginForbiddenUserField, "|yy")
@@ -15855,7 +15855,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryLoginForbiddenUserField *pQryLoginForbi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolumeField, PyObject *dict)
 {
-	static char *kwlist[] = {"OffsetFlag", "MaxVolume", "Direction", "BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"OffsetFlag", "MaxVolume", "Direction", "BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
 	char pQueryMaxOrderVolumeField_OffsetFlag = 0;
 	int pQueryMaxOrderVolumeField_MaxVolume = 0;
 	char pQueryMaxOrderVolumeField_Direction = 0;
@@ -15884,7 +15884,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentMarginRateField *pQryInstrumentMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", "HedgeFlag", "InstrumentID", nullptr};
 	char *pQryInstrumentMarginRateField_BrokerID = nullptr;
 	char *pQryInstrumentMarginRateField_InvestorID = nullptr;
 	char pQryInstrumentMarginRateField_HedgeFlag = 0;
@@ -15904,7 +15904,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentMarginRateField *pQryInstrume
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordUpdateField *pTradingAccountPasswordUpdateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "NewPassword", "CurrencyID", "OldPassword", "AccountID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "NewPassword", "CurrencyID", "OldPassword", "AccountID", nullptr};
 	char *pTradingAccountPasswordUpdateField_BrokerID = nullptr;
 	char *pTradingAccountPasswordUpdateField_NewPassword = nullptr;
 	char *pTradingAccountPasswordUpdateField_CurrencyID = nullptr;
@@ -15927,7 +15927,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordUpdateField *pTradin
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeForQuoteField *pExchangeForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "InsertDate", "ForQuoteStatus", "ExchangeInstID", "InstallID", "InsertTime", "TraderID", "ParticipantID", "ClientID", "ForQuoteLocalID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "InsertDate", "ForQuoteStatus", "ExchangeInstID", "InstallID", "InsertTime", "TraderID", "ParticipantID", "ClientID", "ForQuoteLocalID", nullptr};
 	char *pExchangeForQuoteField_ExchangeID = nullptr;
 	char *pExchangeForQuoteField_InsertDate = nullptr;
 	char pExchangeForQuoteField_ForQuoteStatus = 0;
@@ -15965,7 +15965,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeForQuoteField *pExchangeForQuoteFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqChangeAccountField *pReqChangeAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"MoneyAccountStatus", "TradeDate", "CountryCode", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "InstallID", "Gender", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "PlateSerial", "CurrencyID", "EMail", "LastFragment", "IdCardType", "SessionID", "MobilePhone", "Password", "BrokerIDByBank", "BrokerID", "Fax", "Telephone", "BankPassWord", "BrokerBranchID", "BankPwdFlag", "NewBankPassWord", "BankAccount", "Digest", "SecuPwdFlag", "VerifyCertNoFlag", "TID", "TradeTime", "TradeCode", "CustomerName", "NewBankAccount", "Address", nullptr};
+	static const char *kwlist[] = {"MoneyAccountStatus", "TradeDate", "CountryCode", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "InstallID", "Gender", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "PlateSerial", "CurrencyID", "EMail", "LastFragment", "IdCardType", "SessionID", "MobilePhone", "Password", "BrokerIDByBank", "BrokerID", "Fax", "Telephone", "BankPassWord", "BrokerBranchID", "BankPwdFlag", "NewBankPassWord", "BankAccount", "Digest", "SecuPwdFlag", "VerifyCertNoFlag", "TID", "TradeTime", "TradeCode", "CustomerName", "NewBankAccount", "Address", nullptr};
 	char pReqChangeAccountField_MoneyAccountStatus = 0;
 	char *pReqChangeAccountField_TradeDate = nullptr;
 	char *pReqChangeAccountField_CountryCode = nullptr;
@@ -16093,7 +16093,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqChangeAccountField *pReqChangeAccountFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCombinationLegField *pQryCombinationLegField, PyObject *dict)
 {
-	static char *kwlist[] = {"CombInstrumentID", "LegInstrumentID", "LegID", nullptr};
+	static const char *kwlist[] = {"CombInstrumentID", "LegInstrumentID", "LegID", nullptr};
 	char *pQryCombinationLegField_CombInstrumentID = nullptr;
 	char *pQryCombinationLegField_LegInstrumentID = nullptr;
 	int pQryCombinationLegField_LegID = 0;
@@ -16110,7 +16110,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryCombinationLegField *pQryCombinationLeg
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqCancelAccountField *pReqCancelAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "TID", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "TID", "TradeTime", "TradeCode", nullptr};
 	char *pReqCancelAccountField_BankPassWord = nullptr;
 	char *pReqCancelAccountField_TradeDate = nullptr;
 	char *pReqCancelAccountField_CountryCode = nullptr;
@@ -16250,7 +16250,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqCancelAccountField *pReqCancelAccountFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCFMMCTradingAccountKeyField *pQryCFMMCTradingAccountKeyField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "InvestorID", nullptr};
 	char *pQryCFMMCTradingAccountKeyField_BrokerID = nullptr;
 	char *pQryCFMMCTradingAccountKeyField_InvestorID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQryCFMMCTradingAccountKeyField, "|yy")
@@ -16264,7 +16264,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryCFMMCTradingAccountKeyField *pQryCFMMCT
 
 int PyCTP_Struct_FromPyDict(CThostFtdcFensUserInfoField *pFensUserInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "LoginMode", "UserID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "LoginMode", "UserID", nullptr};
 	char *pFensUserInfoField_BrokerID = nullptr;
 	char pFensUserInfoField_LoginMode = 0;
 	char *pFensUserInfoField_UserID = nullptr;
@@ -16281,7 +16281,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcFensUserInfoField *pFensUserInfoField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradingRightField *pOptionInstrTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "Direction", "BrokerID", "TradingRight", "InvestorID", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"InstrumentID", "Direction", "BrokerID", "TradingRight", "InvestorID", "InvestorRange", nullptr};
 	char *pOptionInstrTradingRightField_InstrumentID = nullptr;
 	char pOptionInstrTradingRightField_Direction = 0;
 	char *pOptionInstrTradingRightField_BrokerID = nullptr;
@@ -16307,7 +16307,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradingRightField *pOptionInstr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySuperUserFunctionField *pQrySuperUserFunctionField, PyObject *dict)
 {
-	static char *kwlist[] = {"UserID", nullptr};
+	static const char *kwlist[] = {"UserID", nullptr};
 	char *pQrySuperUserFunctionField_UserID = nullptr;
 	PyCTP_PyDict_FromStruct_BEGIN(pQrySuperUserFunctionField, "|y")
 		, &pQrySuperUserFunctionField_UserID
@@ -16318,7 +16318,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQrySuperUserFunctionField *pQrySuperUserFu
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeRateField *pExchangeRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "FromCurrencyID", "ToCurrencyID", "ExchangeRate", "FromCurrencyUnit", nullptr};
+	static const char *kwlist[] = {"BrokerID", "FromCurrencyID", "ToCurrencyID", "ExchangeRate", "FromCurrencyUnit", nullptr};
 	char *pExchangeRateField_BrokerID = nullptr;
 	char *pExchangeRateField_FromCurrencyID = nullptr;
 	char *pExchangeRateField_ToCurrencyID = nullptr;
@@ -16341,7 +16341,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeRateField *pExchangeRateField, PyO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderActionField *pQryParkedOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"BrokerID", "ExchangeID", "InvestorID", "InstrumentID", nullptr};
 	char *pQryParkedOrderActionField_BrokerID = nullptr;
 	char *pQryParkedOrderActionField_ExchangeID = nullptr;
 	char *pQryParkedOrderActionField_InvestorID = nullptr;
@@ -16361,7 +16361,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderActionField *pQryParkedOrder
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteField *pQryForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
+	static const char *kwlist[] = {"ExchangeID", "InsertTimeEnd", "BrokerID", "InsertTimeStart", "InvestorID", "InstrumentID", nullptr};
 	char *pQryForQuoteField_ExchangeID = nullptr;
 	char *pQryForQuoteField_InsertTimeEnd = nullptr;
 	char *pQryForQuoteField_BrokerID = nullptr;
@@ -16387,7 +16387,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteField *pQryForQuoteField, PyObj
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"CloseRatioByMoney", "CloseTodayRatioByVolume", "CloseRatioByVolume", "InstrumentID", "BrokerID", "OpenRatioByMoney", "InvestorID", "OpenRatioByVolume", "CloseTodayRatioByMoney", "InvestorRange", nullptr};
+	static const char *kwlist[] = {"CloseRatioByMoney", "CloseTodayRatioByVolume", "CloseRatioByVolume", "InstrumentID", "BrokerID", "OpenRatioByMoney", "InvestorID", "OpenRatioByVolume", "CloseTodayRatioByMoney", "InvestorRange", nullptr};
 	double pInstrumentCommissionRateField_CloseRatioByMoney = 0.0;
 	double pInstrumentCommissionRateField_CloseTodayRatioByVolume = 0.0;
 	double pInstrumentCommissionRateField_CloseRatioByVolume = 0.0;
@@ -16425,7 +16425,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentCommissionRateField *pInstrument
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqQueryAccountField *pReqQueryAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"Password", "TradeDate", "BankID", "BankSecuAccType", "BankAccType", "TradingDay", "Digest", "CustType", "InstallID", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankAccount", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "TradeCode", nullptr};
+	static const char *kwlist[] = {"Password", "TradeDate", "BankID", "BankSecuAccType", "BankAccType", "TradingDay", "Digest", "CustType", "InstallID", "BankPassWord", "BankBranchID", "IdentifiedCardNo", "BankSerial", "AccountID", "RequestID", "DeviceID", "FutureSerial", "PlateSerial", "LastFragment", "IdCardType", "SessionID", "VerifyCertNoFlag", "BankPwdFlag", "BrokerIDByBank", "BrokerID", "BankSecuAcc", "CurrencyID", "UserID", "BrokerBranchID", "OperNo", "BankAccount", "SecuPwdFlag", "TID", "TradeTime", "CustomerName", "TradeCode", nullptr};
 	char *pReqQueryAccountField_Password = nullptr;
 	char *pReqQueryAccountField_TradeDate = nullptr;
 	char *pReqQueryAccountField_BankID = nullptr;
@@ -16541,7 +16541,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqQueryAccountField *pReqQueryAccountFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcNotifyFutureSignOutField *pNotifyFutureSignOutField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
+	static const char *kwlist[] = {"TradeDate", "ErrorID", "BankID", "TradingDay", "Digest", "InstallID", "BankBranchID", "OperNo", "BankSerial", "TID", "RequestID", "DeviceID", "PlateSerial", "LastFragment", "SessionID", "BrokerIDByBank", "BrokerID", "CurrencyID", "UserID", "BrokerBranchID", "ErrorMsg", "TradeTime", "TradeCode", nullptr};
 	char *pNotifyFutureSignOutField_TradeDate = nullptr;
 	int pNotifyFutureSignOutField_ErrorID = 0;
 	char *pNotifyFutureSignOutField_BankID = nullptr;
@@ -16618,7 +16618,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcNotifyFutureSignOutField *pNotifyFutureSig
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOpenAccountField *pOpenAccountField, PyObject *dict)
 {
-	static char *kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "ErrorID", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "ErrorMsg", "TID", "TradeTime", "TradeCode", nullptr};
+    static const char* kwlist[] = {"BankPassWord", "TradeDate", "CountryCode", "AccountID", "Digest", "InstallID", "BrokerBranchID", "BankAccount", "OperNo", "BankSecuAccType", "DeviceID", "PlateSerial", "EMail", "VerifyCertNoFlag", "MobilePhone", "BrokerID", "Fax", "Telephone", "MoneyAccountStatus", "IdentifiedCardNo", "SecuPwdFlag", "CustomerName", "Address", "Password", "ErrorID", "BankID", "ZipCode", "TradingDay", "BankAccType", "CustType", "IdCardType", "BankBranchID", "BankSecuAcc", "BankSerial", "LastFragment", "Gender", "SessionID", "BrokerIDByBank", "CashExchangeCode", "CurrencyID", "UserID", "BankPwdFlag", "ErrorMsg", "TID", "TradeTime", "TradeCode", nullptr};
 	char *pOpenAccountField_BankPassWord = nullptr;
 	char *pOpenAccountField_TradeDate = nullptr;
 	char *pOpenAccountField_CountryCode = nullptr;

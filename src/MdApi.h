@@ -45,13 +45,13 @@ PyObject *CTP_THOST_FTDC_MD_API_GetTradingDay(PyObject *self, PyObject *args);
 
 ///注册前置机网络地址
 ///@param pszFrontAddress：前置机网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。 
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
 PyObject *CTP_THOST_FTDC_MD_API_RegisterFront(PyObject *self, PyObject *args);
 
 ///注册名字服务器网络地址
 ///@param pszNsAddress：名字服务器网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。 
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
 ///@remark RegisterNameServer优先于RegisterFront
 PyObject *CTP_THOST_FTDC_MD_API_RegisterNameServer(PyObject *self, PyObject *args);
@@ -65,27 +65,27 @@ PyObject *CTP_THOST_FTDC_MD_API_RegisterFensUserInfo(PyObject *self, PyObject *a
 PyObject *CTP_THOST_FTDC_MD_API_RegisterSpi(PyObject *self, PyObject *args);
 
 ///订阅行情。
-///@param ppInstrumentID 合约ID  
+///@param ppInstrumentID 合约ID
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark 
+///@remark
 PyObject *CTP_THOST_FTDC_MD_API_SubscribeMarketData(PyObject *self, PyObject *args);
 
 ///退订行情。
-///@param ppInstrumentID 合约ID  
+///@param ppInstrumentID 合约ID
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark 
+///@remark
 PyObject *CTP_THOST_FTDC_MD_API_UnSubscribeMarketData(PyObject *self, PyObject *args);
 
 ///订阅询价。
-///@param ppInstrumentID 合约ID  
+///@param ppInstrumentID 合约ID
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark 
+///@remark
 PyObject *CTP_THOST_FTDC_MD_API_SubscribeForQuoteRsp(PyObject *self, PyObject *args);
 
 ///退订询价。
-///@param ppInstrumentID 合约ID  
+///@param ppInstrumentID 合约ID
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark 
+///@remark
 PyObject *CTP_THOST_FTDC_MD_API_UnSubscribeForQuoteRsp(PyObject *self, PyObject *args);
 
 ///用户登录请求
@@ -98,88 +98,13 @@ PyObject *CTP_THOST_FTDC_MD_API_ReqUserLogout(PyObject *self, PyObject *args);
 void CTP_THOST_FTDC_MD_API_dealloc(PyObject *self);
 
 // API属性
-static PyMemberDef CTP_THOST_FTDC_MD_API_members[] = {
-	{nullptr}  /* Sentinel */
-};
+extern PyMemberDef CTP_THOST_FTDC_MD_API_members[];
 
 // API方法
-static PyMethodDef CTP_THOST_FTDC_MD_API_methods[] = {
-	///创建MdApi
-	{"CreateFtdcMdApi", (PyCFunction) CTP_THOST_FTDC_MD_API_CreateFtdcMdApi, METH_VARARGS | METH_CLASS, nullptr},
-	///获取API的版本信息
-	{"GetApiVersion", CTP_THOST_FTDC_MD_API_GetApiVersion, METH_NOARGS | METH_STATIC, nullptr},
-	///删除接口对象本身
-	{"Release", CTP_THOST_FTDC_MD_API_Release, METH_NOARGS, nullptr},
-	///初始化
-	{"Init", CTP_THOST_FTDC_MD_API_Init, METH_NOARGS, nullptr},
-	///等待接口线程结束运行
-	{"Join", CTP_THOST_FTDC_MD_API_Join, METH_NOARGS, nullptr},
-	///获取当前交易日
-	{"GetTradingDay", CTP_THOST_FTDC_MD_API_GetTradingDay, METH_NOARGS, nullptr},
-	///注册前置机网络地址
-	{"RegisterFront", CTP_THOST_FTDC_MD_API_RegisterFront, METH_VARARGS, nullptr},
-	///注册名字服务器网络地址
-	{"RegisterNameServer", CTP_THOST_FTDC_MD_API_RegisterNameServer, METH_VARARGS, nullptr},
-	///注册名字服务器用户信息
-	{"RegisterFensUserInfo", CTP_THOST_FTDC_MD_API_RegisterFensUserInfo, METH_VARARGS, nullptr},
-	///注册回调接口
-	{"RegisterSpi", CTP_THOST_FTDC_MD_API_RegisterSpi, METH_VARARGS, nullptr},
-	///订阅行情。
-	{"SubscribeMarketData", CTP_THOST_FTDC_MD_API_SubscribeMarketData, METH_VARARGS, nullptr},
-	///退订行情。
-	{"UnSubscribeMarketData", CTP_THOST_FTDC_MD_API_UnSubscribeMarketData, METH_VARARGS, nullptr},
-	///订阅询价。
-	{"SubscribeForQuoteRsp", CTP_THOST_FTDC_MD_API_SubscribeForQuoteRsp, METH_VARARGS, nullptr},
-	///退订询价。
-	{"UnSubscribeForQuoteRsp", CTP_THOST_FTDC_MD_API_UnSubscribeForQuoteRsp, METH_VARARGS, nullptr},
-	///用户登录请求
-	{"ReqUserLogin", CTP_THOST_FTDC_MD_API_ReqUserLogin, METH_VARARGS, nullptr},
-	///登出请求
-	{"ReqUserLogout", CTP_THOST_FTDC_MD_API_ReqUserLogout, METH_VARARGS, nullptr},
-	{nullptr}  /* Sentinel */
-};
+extern PyMethodDef CTP_THOST_FTDC_MD_API_methods[];
 
 // 行情结构py类型定义
-static PyTypeObject CTP_THOST_FTDC_MD_API_TYPE = {
-	PyVarObject_HEAD_INIT(NULL, 0)
-	"PyCTP.CThostFtdcMdApi",	/* tp_name */
-	sizeof(CTP_THOST_FTDC_MD_API),/* tp_basicsize */
-	0,                          /* tp_itemsize */
-	CTP_THOST_FTDC_MD_API_dealloc,/* tp_dealloc */
-	0,                          /* tp_print */
-	0,                          /* tp_getattr */
-	0,                          /* tp_setattr */
-	0,                          /* tp_reserved */
-	0,                          /* tp_repr */
-	0,                          /* tp_as_number */
-	0,                          /* tp_as_sequence */
-	0,                          /* tp_as_mapping */
-	0,                          /* tp_hash  */
-	0,                          /* tp_call */
-	0,                          /* tp_str */
-	0,                          /* tp_getattro */
-	0,                          /* tp_setattro */
-	0,                          /* tp_as_buffer */
-	Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,/* tp_flags */
-	"equivalent to CThostFtdcMdApi for cpp", /* tp_doc */
-	0,                          /* tp_traverse */
-	0,                          /* tp_clear */
-	0,                          /* tp_richcompare */
-	0,                          /* tp_weaklistoffset */
-	0,                          /* tp_iter */
-	0,                          /* tp_iternext */
-	CTP_THOST_FTDC_MD_API_methods,/* tp_methods */
-	CTP_THOST_FTDC_MD_API_members,/* tp_members */
-	0,                          /* tp_getset */
-	0,                          /* tp_base */
-	0,                          /* tp_dict */
-	0,                          /* tp_descr_get */
-	0,                          /* tp_descr_set */
-	0,                          /* tp_dictoffset */
-	0,							/* tp_init */
-	0,                          /* tp_alloc */
-	0,							/* tp_new */
-};
+extern PyTypeObject CTP_THOST_FTDC_MD_API_TYPE;
 
 class CTP_THOST_FTDC_MD_SPI : public CThostFtdcMdSpi
 {
@@ -187,7 +112,7 @@ protected:
 	CTP_THOST_FTDC_MD_API *api;
 public:
 	CTP_THOST_FTDC_MD_SPI(CTP_THOST_FTDC_MD_API *mdapi) : api(mdapi) {}
-	~CTP_THOST_FTDC_MD_SPI() {}
+	virtual ~CTP_THOST_FTDC_MD_SPI() {}
 
 	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 	virtual void OnFrontConnected();

@@ -17,7 +17,7 @@
 //设置模块
 static struct PyModuleDef PyCTP_Module = {
 	PyModuleDef_HEAD_INIT
-	, "PyCTP", "CTP 201507230629 for Python author:http://www.shizhuolin.com shizhuolin@hotmail.com qq:383193853", -1
+	, "PyCTP", "CTP 201609102028 for Python author:http://www.shizhuolin.com shizhuolin@hotmail.com qq:383193853", -1
 };
 
 //初始化模块

@@ -187,7 +187,7 @@ void CTP_THOST_FTDC_MD_API_dealloc(PyObject *self)
 	if(obj->api != nullptr)
 	{
 		obj->api->RegisterSpi(nullptr);
-		obj->api->Release();
+		//obj->api->Release();
 		obj->api = nullptr;
 	}
 
@@ -204,7 +204,8 @@ void CTP_THOST_FTDC_MD_API_dealloc(PyObject *self)
 void CTP_THOST_FTDC_MD_SPI::OnFrontConnected()
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), nullptr);
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), nullptr);
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnFrontConnected"), nullptr);
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -214,7 +215,8 @@ void CTP_THOST_FTDC_MD_SPI::OnFrontConnected()
 void CTP_THOST_FTDC_MD_SPI::OnFrontDisconnected(int nReason)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("i"), nReason);
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("i"), nReason);
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnFrontDisconnected"), const_cast<char *>("i"), nReason);
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -224,7 +226,8 @@ void CTP_THOST_FTDC_MD_SPI::OnFrontDisconnected(int nReason)
 void CTP_THOST_FTDC_MD_SPI::OnHeartBeatWarning(int nTimeLapse)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("i"), nTimeLapse);
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("i"), nTimeLapse);
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnHeartBeatWarning"), const_cast<char *>("i"), nTimeLapse);
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -234,7 +237,8 @@ void CTP_THOST_FTDC_MD_SPI::OnHeartBeatWarning(int nTimeLapse)
 void CTP_THOST_FTDC_MD_SPI::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pRspUserLogin), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pRspUserLogin), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspUserLogin"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pRspUserLogin), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -244,7 +248,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUser
 void CTP_THOST_FTDC_MD_SPI::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pUserLogout), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pUserLogout), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspUserLogout"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pUserLogout), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -254,7 +259,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogo
 void CTP_THOST_FTDC_MD_SPI::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NiN"), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NiN"), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspError"), const_cast<char *>("NiN"), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -264,7 +270,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRe
 void CTP_THOST_FTDC_MD_SPI::OnRspSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspSubMarketData"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -274,7 +281,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRspSubMarketData(CThostFtdcSpecificInstrumentField
 void CTP_THOST_FTDC_MD_SPI::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspUnSubMarketData"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -284,7 +292,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentFie
 void CTP_THOST_FTDC_MD_SPI::OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspSubForQuoteRsp"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -294,7 +303,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentFiel
 void CTP_THOST_FTDC_MD_SPI::OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspUnSubForQuoteRsp"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSpecificInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -304,7 +314,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentFi
 void CTP_THOST_FTDC_MD_SPI::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("N"), PyCTP_PyDict_FromStruct(pDepthMarketData));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("N"), PyCTP_PyDict_FromStruct(pDepthMarketData));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRtnDepthMarketData"), const_cast<char *>("N"), PyCTP_PyDict_FromStruct(pDepthMarketData));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);
@@ -314,7 +325,8 @@ void CTP_THOST_FTDC_MD_SPI::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField 
 void CTP_THOST_FTDC_MD_SPI::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();
-	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("N"), PyCTP_PyDict_FromStruct(pForQuoteRsp));
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("N"), PyCTP_PyDict_FromStruct(pForQuoteRsp));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRtnForQuoteRsp"), const_cast<char *>("N"), PyCTP_PyDict_FromStruct(pForQuoteRsp));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);

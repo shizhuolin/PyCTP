@@ -1,4 +1,4 @@
-//交易API转PyCTP
+﻿//交易API转PyCTP
 
 #ifndef PYCTP_TRADERAPI_H
 #define PYCTP_TRADERAPI_H

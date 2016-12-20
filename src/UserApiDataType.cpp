@@ -1,4 +1,4 @@
-// UserApiDataType.cpp : 转换定义CTP预处理定义.
+﻿// UserApiDataType.cpp : 转换定义CTP预处理定义.
 //
 
 #include "stdafx.h"

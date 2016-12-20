@@ -1,4 +1,4 @@
-//转换CTP预处理定义
+﻿//转换CTP预处理定义
 
 #ifndef PYCTP_USERAPIDATATYPE_H
 #define PYCTP_USERAPIDATATYPE_H

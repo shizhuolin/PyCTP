@@ -12,6 +12,4 @@ int PyModule_AddCharConstant(PyObject *m, const char *name, char value);
 //增加CTP常量定义
 int PyModule_AddCTPConstant(PyObject *m);
 
-
-
 #endif

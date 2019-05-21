@@ -3471,6 +3471,10 @@ int PyModule_AddCTPConstant(PyObject *m)
 	///申请拆分
 	if( PyModule_AddCharMacro(m, THOST_FTDC_CMDR_UnComb) != 0 ) return -1;
 	
+        if( PyModule_AddCharMacro(m, THOST_FTDC_APP_TYPE_Investor) != 0 ) return -1;
+        if( PyModule_AddCharMacro(m, THOST_FTDC_APP_TYPE_InvestorRelay) != 0 ) return -1;
+        if( PyModule_AddCharMacro(m, THOST_FTDC_APP_TYPE_InvestorRelay) != 0 ) return -1;
+        if( PyModule_AddCharMacro(m, THOST_FTDC_APP_TYPE_UnKnown) != 0 ) return -1;
 
 	return 0;
 }

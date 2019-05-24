@@ -26,20 +26,20 @@ if platform.system() == 'Windows':
     optional['include_dirs'] = ['./v6.3.6_20160606_tradeapi_windows']
     optional['library_dirs'] = ['./v6.3.6_20160606_tradeapi_windows']
     if '64 bit' in platform.python_compiler():
-        optional['include_dirs'] = ['./v6.3.6_20160606_tradeapi64_windows']
-        optional['library_dirs'] = ['./v6.3.6_20160606_tradeapi64_windows']
+        optional['include_dirs'] = ['./v6.3.15_20190220_tradeapi64_se_windows','v6.3.15_20190220_clientdll64_windows']
+        optional['library_dirs'] = ['./v6.3.15_20190220_tradeapi64_se_windows','v6.3.15_20190220_clientdll64_windows']
 #    depend_dynamics = ['thostmduserapi.dll', 'thosttraderapi.dll']
 argments = dict(name='PyCTP',
                 sources=sources,
                 language='c++',
-                libraries=['thostmduserapi', 'thosttraderapi'],
+                libraries=['thostmduserapi_se', 'thosttraderapi_se','WinDataCollect'],
                 depends=depends)
 argments.update(optional)
 
 setup(name='PyCTP',
-      version='1.0.1',
+      version='1.1.0',
       description='CTP for Python',
-      long_description='CTP v6.3.6_20160606 for Python',
+      long_description='CTP v6.3.15_20190220 for Python',
       author='Shi Zhuolin',
       author_email='shizhuolin@hotmail.com',
       url='http://www.pyctp.org/',

@@ -13,13 +13,31 @@
 #include "UserApiDataType.h"
 #include "MdApi.h"
 #include "TraderApi.h"
+#include "DataCollect.h"
 
 #define MODULE_NAME "PyCTP"
-#define MODULE_DOC "CTP 201612191535 for Python author:http://www.shizhuolin.com shizhuolin@hotmail.com qq:383193853"
+#define MODULE_DOC "CTP v6.3.15_20190220 for Python author:http://www.shizhuolin.com shizhuolin@hotmail.com qq:383193853"
+
+///获取AES加密和RSA加密的终端信息
+PyObject *METHOD_CTP_GetSystemInfo(PyObject *self, PyObject *args)
+{
+	char pSystemInfo[270];
+	int nLen;
+	int ret = CTP_GetSystemInfo(pSystemInfo, nLen);
+	return Py_BuildValue("{s:y,s:i,s:i}",
+		"SystemInfo", pSystemInfo,
+		"nLen", nLen,
+		"ret", ret);
+}
+
+static PyMethodDef PyCTPMethods[] = {
+	{"CTP_GetSystemInfo",  METHOD_CTP_GetSystemInfo, METH_NOARGS, "获取AES加密和RSA加密的终端信息"},
+	{nullptr} /* Sentinel */
+};
 
 //设置模块
 #if PY_MAJOR_VERSION >= 3
-static struct PyModuleDef PyCTP_Module = {PyModuleDef_HEAD_INIT, MODULE_NAME, MODULE_DOC, -1};
+static struct PyModuleDef PyCTP_Module = {PyModuleDef_HEAD_INIT, MODULE_NAME, MODULE_DOC, -1, PyCTPMethods};
 #endif
 
 //初始化模块

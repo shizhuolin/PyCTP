@@ -595,6 +595,7 @@ def __main__():
     Password = b''
     ExchangeID = b'SHFE'
     InstrumentID = b'cu1610'
+    print('终端信息:', PyCTP.CTP_GetSystemInfo())
     trader = PyCTP_Trader.CreateFtdcTraderApi(b'_tmp_t_')    
     market = PyCTP_Market.CreateFtdcMdApi(b'_tmp_m_')    
     print('连接前置', trader.Connect(b'tcp://180.168.146.187:10000'))

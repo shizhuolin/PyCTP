@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include "UserApiStruct.h"
 
-//×Ö·û±àÂë×ª»»
-//Êı¾İÀàĞÍ×ª»»(²»°üº¬Êı¾İ½á¹¹×ª»»)
+//å­—ç¬¦ç¼–ç è½¬æ¢
+//æ•°æ®ç±»å‹è½¬æ¢(ä¸åŒ…å«æ•°æ®ç»“æ„è½¬æ¢)
 //char  <=> c
 //char* <=> y
 //int   <=> i
 //short <=> h
 //double<=> d
 //bool  => pybool => p => int(0/1)
-//char*ÖĞÎÄ=>PyCTP_PyCTP_PyUnicode_DecodeGB2312
+//char*ä¸­æ–‡=>PyCTP_PyCTP_PyUnicode_DecodeGB2312
 //struct <=> dict
 
 #define PyCTP_PyDict_FromStruct_BEGIN(_in_name, _in_format) \

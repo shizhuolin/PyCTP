@@ -16,7 +16,7 @@
 #include "DataCollect.h"
 
 #define MODULE_NAME "PyCTP"
-#define MODULE_DOC "CTP v6.3.15_20190220 for Python author:http://www.shizhuolin.com shizhuolin@hotmail.com qq:383193853"
+#define MODULE_DOC "CTP for Python author:http://www.shizhuolin.com shizhuolin@hotmail.com qq:383193853"
 
 ///获取AES加密和RSA加密的终端信息
 PyObject *METHOD_CTP_GetSystemInfo(PyObject *self, PyObject *args)
@@ -26,8 +26,8 @@ PyObject *METHOD_CTP_GetSystemInfo(PyObject *self, PyObject *args)
 	int ret = CTP_GetSystemInfo(pSystemInfo, nLen);
 	return Py_BuildValue("{s:y,s:i,s:i}",
 		"SystemInfo", pSystemInfo,
-		"nLen", nLen,
-		"ret", ret);
+		"Length", nLen,
+		"Return", ret);
 }
 
 static PyMethodDef PyCTPMethods[] = {

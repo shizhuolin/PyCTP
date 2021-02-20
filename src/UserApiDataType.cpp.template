@@ -1,0 +1,35 @@
+﻿// UserApiDataType.cpp : 转换定义CTP预处理定义.
+//
+
+#include "stdafx.h"
+#include "UserApiDataType.h"
+#include <ThostFtdcUserApiDataType.h>
+
+
+int PyModule_AddCharConstant(PyObject *m, const char *name, char value)
+{
+	PyObject *o = PyBytes_FromFormat("%c", value);
+	if (!o)
+		return -1;
+	if (PyModule_AddObject(m, name, o) == 0)
+		return 0;
+	Py_DECREF(o);
+	return -1;
+}
+
+int PyModule_AddStrConstant(PyObject *m, const char *name, char *value)
+{
+	PyObject *o = PyBytes_FromFormat("%s", value);
+	if (!o)
+		return -1;
+	if (PyModule_AddObject(m, name, o) == 0)
+		return 0;
+	Py_DECREF(o);
+	return -1;
+}
+
+int PyModule_AddCTPConstant(PyObject *m)
+{
+	{{ body }}
+	return 0;
+}

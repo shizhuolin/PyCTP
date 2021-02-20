@@ -47,12 +47,20 @@
 	(( _in_class *) self)->api->_in_fun(&arg1); \
 	Py_RETURN_NONE; }
 
-#define PyCTP_FUNCTION_MAGIC_INT_STRUCTI_INT(_in_class, _in_fun, _in_type) \
+#define PyCTP_FUNCTION_MAGIC_INT_STRUCT(_in_class, _in_fun, _in_type) \
+	PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
+	_in_type arg1 = {}; int ret; PyObject *pArg1 = nullptr; \
+	if (!PyArg_ParseTuple(args, "O", &pArg1)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return nullptr; } \
+	if (!PyCTP_Struct_FromPyDict(&arg1, pArg1)) { PyErr_SetString(PyExc_ValueError, "The first arguments is invalid."); return nullptr; } \
+	ret = (( _in_class *) self)->api->_in_fun(&arg1); \
+	return PyLong_FromLong(ret); }
+
+#define PyCTP_FUNCTION_MAGIC_INT_STRUCT_INT(_in_class, _in_fun, _in_type) \
 	PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
 	_in_type arg1 = {}; int arg2, ret; PyObject *pArg1 = nullptr; \
 	if (!PyArg_ParseTuple(args, "Oi", &pArg1, &arg2)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return nullptr; } \
 	if (!PyCTP_Struct_FromPyDict(&arg1, pArg1)) { PyErr_SetString(PyExc_ValueError, "The first arguments is invalid."); return nullptr; } \
-	ret = (( _in_class * ) self)->api->_in_fun(&arg1, arg2); \
+	ret = (( _in_class *) self)->api->_in_fun(&arg1, arg2); \
 	return PyLong_FromLong(ret); }
 
 #define PyCTP_FUNCTION_MAGIC_INT_SUBSCRIBE(_in_class, _in_fun) \

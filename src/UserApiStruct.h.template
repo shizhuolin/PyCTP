@@ -1,0 +1,8 @@
+#ifndef PYCTP_USERAPISTRUCT_H
+#define PYCTP_USERAPISTRUCT_H
+
+#include <ThostFtdcUserApiStruct.h>
+
+{{ body }}
+
+#endif

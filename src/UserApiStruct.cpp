@@ -22,6 +22,7 @@
 #define PyCTP_PyDict_FromStruct_END )){Py_DECREF(delptr); return 0;}
 #define PyCTP_PyDict_FromStruct_RETURN Py_DECREF(delptr); return 1;
 
+
 int PyCTP_Struct_FromPyDict(CThostFtdcDisseminationField *pDisseminationField, PyObject *dict)
 {
 	static char *kwlist[] = {"SequenceSeries", "SequenceNo", nullptr};
@@ -46,7 +47,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDisseminationField *pDisseminationFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginField *pReqUserLoginField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "OneTimePassword", "ClientIPAddress", "LoginRemark", "ClientIPPort", nullptr};
+	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "OneTimePassword", "reserve1", "LoginRemark", "ClientIPPort", "ClientIPAddress", nullptr};
 	char *pReqUserLoginField_TradingDay = nullptr;
 	char *pReqUserLoginField_BrokerID = nullptr;
 	char *pReqUserLoginField_UserID = nullptr;
@@ -56,10 +57,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginField *pReqUserLoginField, PyO
 	char *pReqUserLoginField_ProtocolInfo = nullptr;
 	char *pReqUserLoginField_MacAddress = nullptr;
 	char *pReqUserLoginField_OneTimePassword = nullptr;
-	char *pReqUserLoginField_ClientIPAddress = nullptr;
+	char *pReqUserLoginField_reserve1 = nullptr;
 	char *pReqUserLoginField_LoginRemark = nullptr;
 	int pReqUserLoginField_ClientIPPort = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginField, "|yyyyyyyyyyyi")
+	char *pReqUserLoginField_ClientIPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginField, "|yyyyyyyyyyyiy")
 		, &pReqUserLoginField_TradingDay
 		, &pReqUserLoginField_BrokerID
 		, &pReqUserLoginField_UserID
@@ -69,9 +71,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginField *pReqUserLoginField, PyO
 		, &pReqUserLoginField_ProtocolInfo
 		, &pReqUserLoginField_MacAddress
 		, &pReqUserLoginField_OneTimePassword
-		, &pReqUserLoginField_ClientIPAddress
+		, &pReqUserLoginField_reserve1
 		, &pReqUserLoginField_LoginRemark
 		, &pReqUserLoginField_ClientIPPort
+		, &pReqUserLoginField_ClientIPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pReqUserLoginField_TradingDay != nullptr){ strcpy_s(pReqUserLoginField->TradingDay, pReqUserLoginField_TradingDay); pReqUserLoginField_TradingDay = nullptr; }
 		if(pReqUserLoginField_BrokerID != nullptr){ strcpy_s(pReqUserLoginField->BrokerID, pReqUserLoginField_BrokerID); pReqUserLoginField_BrokerID = nullptr; }
@@ -82,15 +85,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginField *pReqUserLoginField, PyO
 		if(pReqUserLoginField_ProtocolInfo != nullptr){ strcpy_s(pReqUserLoginField->ProtocolInfo, pReqUserLoginField_ProtocolInfo); pReqUserLoginField_ProtocolInfo = nullptr; }
 		if(pReqUserLoginField_MacAddress != nullptr){ strcpy_s(pReqUserLoginField->MacAddress, pReqUserLoginField_MacAddress); pReqUserLoginField_MacAddress = nullptr; }
 		if(pReqUserLoginField_OneTimePassword != nullptr){ strcpy_s(pReqUserLoginField->OneTimePassword, pReqUserLoginField_OneTimePassword); pReqUserLoginField_OneTimePassword = nullptr; }
-		if(pReqUserLoginField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginField->ClientIPAddress, pReqUserLoginField_ClientIPAddress); pReqUserLoginField_ClientIPAddress = nullptr; }
+		if(pReqUserLoginField_reserve1 != nullptr){ strcpy_s(pReqUserLoginField->reserve1, pReqUserLoginField_reserve1); pReqUserLoginField_reserve1 = nullptr; }
 		if(pReqUserLoginField_LoginRemark != nullptr){ strcpy_s(pReqUserLoginField->LoginRemark, pReqUserLoginField_LoginRemark); pReqUserLoginField_LoginRemark = nullptr; }
 		pReqUserLoginField->ClientIPPort = pReqUserLoginField_ClientIPPort;
+		if(pReqUserLoginField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginField->ClientIPAddress, pReqUserLoginField_ClientIPAddress); pReqUserLoginField_ClientIPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginField *pReqUserLoginField)
 {
 	if(pReqUserLoginField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
 		, "TradingDay", pReqUserLoginField->TradingDay
 		, "BrokerID", pReqUserLoginField->BrokerID
 		, "UserID", pReqUserLoginField->UserID
@@ -100,9 +104,10 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginField *pReqUserLoginFiel
 		, "ProtocolInfo", pReqUserLoginField->ProtocolInfo
 		, "MacAddress", pReqUserLoginField->MacAddress
 		, "OneTimePassword", pReqUserLoginField->OneTimePassword
-		, "ClientIPAddress", pReqUserLoginField->ClientIPAddress
+		, "reserve1", pReqUserLoginField->reserve1
 		, "LoginRemark", pReqUserLoginField->LoginRemark
 		, "ClientIPPort", pReqUserLoginField->ClientIPPort
+		, "ClientIPAddress", pReqUserLoginField->ClientIPAddress
 		);
 }
 
@@ -286,7 +291,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspAuthenticateField *pRspAuthentica
 
 int PyCTP_Struct_FromPyDict(CThostFtdcAuthenticationInfoField *pAuthenticationInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", "UserProductInfo", "AuthInfo", "IsResult", "AppID", "AppType", nullptr};
+	static char *kwlist[] = {"BrokerID", "UserID", "UserProductInfo", "AuthInfo", "IsResult", "AppID", "AppType", "reserve1", "ClientIPAddress", nullptr};
 	char *pAuthenticationInfoField_BrokerID = nullptr;
 	char *pAuthenticationInfoField_UserID = nullptr;
 	char *pAuthenticationInfoField_UserProductInfo = nullptr;
@@ -294,7 +299,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcAuthenticationInfoField *pAuthenticationIn
 	int pAuthenticationInfoField_IsResult = 0;
 	char *pAuthenticationInfoField_AppID = nullptr;
 	char pAuthenticationInfoField_AppType = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pAuthenticationInfoField, "|yyyyiyc")
+	char *pAuthenticationInfoField_reserve1 = nullptr;
+	char *pAuthenticationInfoField_ClientIPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pAuthenticationInfoField, "|yyyyiycyy")
 		, &pAuthenticationInfoField_BrokerID
 		, &pAuthenticationInfoField_UserID
 		, &pAuthenticationInfoField_UserProductInfo
@@ -302,6 +309,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcAuthenticationInfoField *pAuthenticationIn
 		, &pAuthenticationInfoField_IsResult
 		, &pAuthenticationInfoField_AppID
 		, &pAuthenticationInfoField_AppType
+		, &pAuthenticationInfoField_reserve1
+		, &pAuthenticationInfoField_ClientIPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pAuthenticationInfoField_BrokerID != nullptr){ strcpy_s(pAuthenticationInfoField->BrokerID, pAuthenticationInfoField_BrokerID); pAuthenticationInfoField_BrokerID = nullptr; }
 		if(pAuthenticationInfoField_UserID != nullptr){ strcpy_s(pAuthenticationInfoField->UserID, pAuthenticationInfoField_UserID); pAuthenticationInfoField_UserID = nullptr; }
@@ -310,12 +319,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcAuthenticationInfoField *pAuthenticationIn
 		pAuthenticationInfoField->IsResult = pAuthenticationInfoField_IsResult;
 		if(pAuthenticationInfoField_AppID != nullptr){ strcpy_s(pAuthenticationInfoField->AppID, pAuthenticationInfoField_AppID); pAuthenticationInfoField_AppID = nullptr; }
 		pAuthenticationInfoField->AppType = pAuthenticationInfoField_AppType;
+		if(pAuthenticationInfoField_reserve1 != nullptr){ strcpy_s(pAuthenticationInfoField->reserve1, pAuthenticationInfoField_reserve1); pAuthenticationInfoField_reserve1 = nullptr; }
+		if(pAuthenticationInfoField_ClientIPAddress != nullptr){ strcpy_s(pAuthenticationInfoField->ClientIPAddress, pAuthenticationInfoField_ClientIPAddress); pAuthenticationInfoField_ClientIPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthenticationInfoField *pAuthenticationInfoField)
 {
 	if(pAuthenticationInfoField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:c}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:c,s:y,s:y}"
 		, "BrokerID", pAuthenticationInfoField->BrokerID
 		, "UserID", pAuthenticationInfoField->UserID
 		, "UserProductInfo", pAuthenticationInfoField->UserProductInfo
@@ -323,6 +334,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthenticationInfoField *pAuthentica
 		, "IsResult", pAuthenticationInfoField->IsResult
 		, "AppID", pAuthenticationInfoField->AppID
 		, "AppType", pAuthenticationInfoField->AppType
+		, "reserve1", pAuthenticationInfoField->reserve1
+		, "ClientIPAddress", pAuthenticationInfoField->ClientIPAddress
 		);
 }
 
@@ -824,8 +837,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeField *pExchangeField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "ProductName", "ExchangeID", "ProductClass", "VolumeMultiple", "PriceTick", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "PositionType", "PositionDateType", "CloseDealType", "TradeCurrencyID", "MortgageFundUseRange", "ExchangeProductID", "UnderlyingMultiple", nullptr};
-	char *pProductField_ProductID = nullptr;
+	static char *kwlist[] = {"reserve1", "ProductName", "ExchangeID", "ProductClass", "VolumeMultiple", "PriceTick", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "PositionType", "PositionDateType", "CloseDealType", "TradeCurrencyID", "MortgageFundUseRange", "reserve2", "UnderlyingMultiple", "ProductID", "ExchangeProductID", nullptr};
+	char *pProductField_reserve1 = nullptr;
 	char *pProductField_ProductName = nullptr;
 	char *pProductField_ExchangeID = nullptr;
 	char pProductField_ProductClass = 0;
@@ -840,10 +853,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dic
 	char pProductField_CloseDealType = 0;
 	char *pProductField_TradeCurrencyID = nullptr;
 	char pProductField_MortgageFundUseRange = 0;
-	char *pProductField_ExchangeProductID = nullptr;
+	char *pProductField_reserve2 = nullptr;
 	double pProductField_UnderlyingMultiple = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pProductField, "|yyycidiiiicccycyd")
-		, &pProductField_ProductID
+	char *pProductField_ProductID = nullptr;
+	char *pProductField_ExchangeProductID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pProductField, "|yyycidiiiicccycydyy")
+		, &pProductField_reserve1
 		, &pProductField_ProductName
 		, &pProductField_ExchangeID
 		, &pProductField_ProductClass
@@ -858,10 +873,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dic
 		, &pProductField_CloseDealType
 		, &pProductField_TradeCurrencyID
 		, &pProductField_MortgageFundUseRange
-		, &pProductField_ExchangeProductID
+		, &pProductField_reserve2
 		, &pProductField_UnderlyingMultiple
+		, &pProductField_ProductID
+		, &pProductField_ExchangeProductID
 	PyCTP_PyDict_FromStruct_END
-		if(pProductField_ProductID != nullptr){ strcpy_s(pProductField->ProductID, pProductField_ProductID); pProductField_ProductID = nullptr; }
+		if(pProductField_reserve1 != nullptr){ strcpy_s(pProductField->reserve1, pProductField_reserve1); pProductField_reserve1 = nullptr; }
 		if(pProductField_ProductName != nullptr){ strcpy_s(pProductField->ProductName, pProductField_ProductName); pProductField_ProductName = nullptr; }
 		if(pProductField_ExchangeID != nullptr){ strcpy_s(pProductField->ExchangeID, pProductField_ExchangeID); pProductField_ExchangeID = nullptr; }
 		pProductField->ProductClass = pProductField_ProductClass;
@@ -876,15 +893,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dic
 		pProductField->CloseDealType = pProductField_CloseDealType;
 		if(pProductField_TradeCurrencyID != nullptr){ strcpy_s(pProductField->TradeCurrencyID, pProductField_TradeCurrencyID); pProductField_TradeCurrencyID = nullptr; }
 		pProductField->MortgageFundUseRange = pProductField_MortgageFundUseRange;
-		if(pProductField_ExchangeProductID != nullptr){ strcpy_s(pProductField->ExchangeProductID, pProductField_ExchangeProductID); pProductField_ExchangeProductID = nullptr; }
+		if(pProductField_reserve2 != nullptr){ strcpy_s(pProductField->reserve2, pProductField_reserve2); pProductField_reserve2 = nullptr; }
 		pProductField->UnderlyingMultiple = pProductField_UnderlyingMultiple;
+		if(pProductField_ProductID != nullptr){ strcpy_s(pProductField->ProductID, pProductField_ProductID); pProductField_ProductID = nullptr; }
+		if(pProductField_ExchangeProductID != nullptr){ strcpy_s(pProductField->ExchangeProductID, pProductField_ExchangeProductID); pProductField_ExchangeProductID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductField *pProductField)
 {
 	if(pProductField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:i,s:d,s:i,s:i,s:i,s:i,s:c,s:c,s:c,s:y,s:c,s:y,s:d}"
-		, "ProductID", pProductField->ProductID
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:i,s:d,s:i,s:i,s:i,s:i,s:c,s:c,s:c,s:y,s:c,s:y,s:d,s:y,s:y}"
+		, "reserve1", pProductField->reserve1
 		, "ProductName", pProductField->ProductName
 		, "ExchangeID", pProductField->ExchangeID
 		, "ProductClass", pProductField->ProductClass
@@ -899,19 +918,21 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductField *pProductField)
 		, "CloseDealType", pProductField->CloseDealType
 		, "TradeCurrencyID", pProductField->TradeCurrencyID
 		, "MortgageFundUseRange", pProductField->MortgageFundUseRange
-		, "ExchangeProductID", pProductField->ExchangeProductID
+		, "reserve2", pProductField->reserve2
 		, "UnderlyingMultiple", pProductField->UnderlyingMultiple
+		, "ProductID", pProductField->ProductID
+		, "ExchangeProductID", pProductField->ExchangeProductID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentField *pInstrumentField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "ExchangeID", "InstrumentName", "ExchangeInstID", "ProductID", "ProductClass", "DeliveryYear", "DeliveryMonth", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "VolumeMultiple", "PriceTick", "CreateDate", "OpenDate", "ExpireDate", "StartDelivDate", "EndDelivDate", "InstLifePhase", "IsTrading", "PositionType", "PositionDateType", "LongMarginRatio", "ShortMarginRatio", "MaxMarginSideAlgorithm", "UnderlyingInstrID", "StrikePrice", "OptionsType", "UnderlyingMultiple", "CombinationType", nullptr};
-	char *pInstrumentField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "ExchangeID", "InstrumentName", "reserve2", "reserve3", "ProductClass", "DeliveryYear", "DeliveryMonth", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "VolumeMultiple", "PriceTick", "CreateDate", "OpenDate", "ExpireDate", "StartDelivDate", "EndDelivDate", "InstLifePhase", "IsTrading", "PositionType", "PositionDateType", "LongMarginRatio", "ShortMarginRatio", "MaxMarginSideAlgorithm", "reserve4", "StrikePrice", "OptionsType", "UnderlyingMultiple", "CombinationType", "InstrumentID", "ExchangeInstID", "ProductID", "UnderlyingInstrID", nullptr};
+	char *pInstrumentField_reserve1 = nullptr;
 	char *pInstrumentField_ExchangeID = nullptr;
 	char *pInstrumentField_InstrumentName = nullptr;
-	char *pInstrumentField_ExchangeInstID = nullptr;
-	char *pInstrumentField_ProductID = nullptr;
+	char *pInstrumentField_reserve2 = nullptr;
+	char *pInstrumentField_reserve3 = nullptr;
 	char pInstrumentField_ProductClass = 0;
 	int pInstrumentField_DeliveryYear = 0;
 	int pInstrumentField_DeliveryMonth = 0;
@@ -933,17 +954,21 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentField *pInstrumentField, PyObjec
 	double pInstrumentField_LongMarginRatio = 0.0;
 	double pInstrumentField_ShortMarginRatio = 0.0;
 	char pInstrumentField_MaxMarginSideAlgorithm = 0;
-	char *pInstrumentField_UnderlyingInstrID = nullptr;
+	char *pInstrumentField_reserve4 = nullptr;
 	double pInstrumentField_StrikePrice = 0.0;
 	char pInstrumentField_OptionsType = 0;
 	double pInstrumentField_UnderlyingMultiple = 0.0;
 	char pInstrumentField_CombinationType = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentField, "|yyyyyciiiiiiidyyyyyciccddcydcdc")
-		, &pInstrumentField_InstrumentID
+	char *pInstrumentField_InstrumentID = nullptr;
+	char *pInstrumentField_ExchangeInstID = nullptr;
+	char *pInstrumentField_ProductID = nullptr;
+	char *pInstrumentField_UnderlyingInstrID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentField, "|yyyyyciiiiiiidyyyyyciccddcydcdcyyyy")
+		, &pInstrumentField_reserve1
 		, &pInstrumentField_ExchangeID
 		, &pInstrumentField_InstrumentName
-		, &pInstrumentField_ExchangeInstID
-		, &pInstrumentField_ProductID
+		, &pInstrumentField_reserve2
+		, &pInstrumentField_reserve3
 		, &pInstrumentField_ProductClass
 		, &pInstrumentField_DeliveryYear
 		, &pInstrumentField_DeliveryMonth
@@ -965,17 +990,21 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentField *pInstrumentField, PyObjec
 		, &pInstrumentField_LongMarginRatio
 		, &pInstrumentField_ShortMarginRatio
 		, &pInstrumentField_MaxMarginSideAlgorithm
-		, &pInstrumentField_UnderlyingInstrID
+		, &pInstrumentField_reserve4
 		, &pInstrumentField_StrikePrice
 		, &pInstrumentField_OptionsType
 		, &pInstrumentField_UnderlyingMultiple
 		, &pInstrumentField_CombinationType
+		, &pInstrumentField_InstrumentID
+		, &pInstrumentField_ExchangeInstID
+		, &pInstrumentField_ProductID
+		, &pInstrumentField_UnderlyingInstrID
 	PyCTP_PyDict_FromStruct_END
-		if(pInstrumentField_InstrumentID != nullptr){ strcpy_s(pInstrumentField->InstrumentID, pInstrumentField_InstrumentID); pInstrumentField_InstrumentID = nullptr; }
+		if(pInstrumentField_reserve1 != nullptr){ strcpy_s(pInstrumentField->reserve1, pInstrumentField_reserve1); pInstrumentField_reserve1 = nullptr; }
 		if(pInstrumentField_ExchangeID != nullptr){ strcpy_s(pInstrumentField->ExchangeID, pInstrumentField_ExchangeID); pInstrumentField_ExchangeID = nullptr; }
 		if(pInstrumentField_InstrumentName != nullptr){ strcpy_s(pInstrumentField->InstrumentName, pInstrumentField_InstrumentName); pInstrumentField_InstrumentName = nullptr; }
-		if(pInstrumentField_ExchangeInstID != nullptr){ strcpy_s(pInstrumentField->ExchangeInstID, pInstrumentField_ExchangeInstID); pInstrumentField_ExchangeInstID = nullptr; }
-		if(pInstrumentField_ProductID != nullptr){ strcpy_s(pInstrumentField->ProductID, pInstrumentField_ProductID); pInstrumentField_ProductID = nullptr; }
+		if(pInstrumentField_reserve2 != nullptr){ strcpy_s(pInstrumentField->reserve2, pInstrumentField_reserve2); pInstrumentField_reserve2 = nullptr; }
+		if(pInstrumentField_reserve3 != nullptr){ strcpy_s(pInstrumentField->reserve3, pInstrumentField_reserve3); pInstrumentField_reserve3 = nullptr; }
 		pInstrumentField->ProductClass = pInstrumentField_ProductClass;
 		pInstrumentField->DeliveryYear = pInstrumentField_DeliveryYear;
 		pInstrumentField->DeliveryMonth = pInstrumentField_DeliveryMonth;
@@ -997,22 +1026,26 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentField *pInstrumentField, PyObjec
 		pInstrumentField->LongMarginRatio = pInstrumentField_LongMarginRatio;
 		pInstrumentField->ShortMarginRatio = pInstrumentField_ShortMarginRatio;
 		pInstrumentField->MaxMarginSideAlgorithm = pInstrumentField_MaxMarginSideAlgorithm;
-		if(pInstrumentField_UnderlyingInstrID != nullptr){ strcpy_s(pInstrumentField->UnderlyingInstrID, pInstrumentField_UnderlyingInstrID); pInstrumentField_UnderlyingInstrID = nullptr; }
+		if(pInstrumentField_reserve4 != nullptr){ strcpy_s(pInstrumentField->reserve4, pInstrumentField_reserve4); pInstrumentField_reserve4 = nullptr; }
 		pInstrumentField->StrikePrice = pInstrumentField_StrikePrice;
 		pInstrumentField->OptionsType = pInstrumentField_OptionsType;
 		pInstrumentField->UnderlyingMultiple = pInstrumentField_UnderlyingMultiple;
 		pInstrumentField->CombinationType = pInstrumentField_CombinationType;
+		if(pInstrumentField_InstrumentID != nullptr){ strcpy_s(pInstrumentField->InstrumentID, pInstrumentField_InstrumentID); pInstrumentField_InstrumentID = nullptr; }
+		if(pInstrumentField_ExchangeInstID != nullptr){ strcpy_s(pInstrumentField->ExchangeInstID, pInstrumentField_ExchangeInstID); pInstrumentField_ExchangeInstID = nullptr; }
+		if(pInstrumentField_ProductID != nullptr){ strcpy_s(pInstrumentField->ProductID, pInstrumentField_ProductID); pInstrumentField_ProductID = nullptr; }
+		if(pInstrumentField_UnderlyingInstrID != nullptr){ strcpy_s(pInstrumentField->UnderlyingInstrID, pInstrumentField_UnderlyingInstrID); pInstrumentField_UnderlyingInstrID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentField *pInstrumentField)
 {
 	if(pInstrumentField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:i,s:i,s:i,s:i,s:i,s:i,s:d,s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:c,s:c,s:d,s:d,s:c,s:y,s:d,s:c,s:d,s:c}"
-		, "InstrumentID", pInstrumentField->InstrumentID
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:i,s:i,s:i,s:i,s:i,s:i,s:d,s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:c,s:c,s:d,s:d,s:c,s:y,s:d,s:c,s:d,s:c,s:y,s:y,s:y,s:y}"
+		, "reserve1", pInstrumentField->reserve1
 		, "ExchangeID", pInstrumentField->ExchangeID
 		, "InstrumentName", pInstrumentField->InstrumentName
-		, "ExchangeInstID", pInstrumentField->ExchangeInstID
-		, "ProductID", pInstrumentField->ProductID
+		, "reserve2", pInstrumentField->reserve2
+		, "reserve3", pInstrumentField->reserve3
 		, "ProductClass", pInstrumentField->ProductClass
 		, "DeliveryYear", pInstrumentField->DeliveryYear
 		, "DeliveryMonth", pInstrumentField->DeliveryMonth
@@ -1034,11 +1067,15 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentField *pInstrumentField)
 		, "LongMarginRatio", pInstrumentField->LongMarginRatio
 		, "ShortMarginRatio", pInstrumentField->ShortMarginRatio
 		, "MaxMarginSideAlgorithm", pInstrumentField->MaxMarginSideAlgorithm
-		, "UnderlyingInstrID", pInstrumentField->UnderlyingInstrID
+		, "reserve4", pInstrumentField->reserve4
 		, "StrikePrice", pInstrumentField->StrikePrice
 		, "OptionsType", pInstrumentField->OptionsType
 		, "UnderlyingMultiple", pInstrumentField->UnderlyingMultiple
 		, "CombinationType", pInstrumentField->CombinationType
+		, "InstrumentID", pInstrumentField->InstrumentID
+		, "ExchangeInstID", pInstrumentField->ExchangeInstID
+		, "ProductID", pInstrumentField->ProductID
+		, "UnderlyingInstrID", pInstrumentField->UnderlyingInstrID
 		);
 }
 
@@ -1546,8 +1583,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountField *pTradingAccount
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionField *pInvestorPositionField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "BrokerID", "InvestorID", "PosiDirection", "HedgeFlag", "PositionDate", "YdPosition", "Position", "LongFrozen", "ShortFrozen", "LongFrozenAmount", "ShortFrozenAmount", "OpenVolume", "CloseVolume", "OpenAmount", "CloseAmount", "PositionCost", "PreMargin", "UseMargin", "FrozenMargin", "FrozenCash", "FrozenCommission", "CashIn", "Commission", "CloseProfit", "PositionProfit", "PreSettlementPrice", "SettlementPrice", "TradingDay", "SettlementID", "OpenCost", "ExchangeMargin", "CombPosition", "CombLongFrozen", "CombShortFrozen", "CloseProfitByDate", "CloseProfitByTrade", "TodayPosition", "MarginRateByMoney", "MarginRateByVolume", "StrikeFrozen", "StrikeFrozenAmount", "AbandonFrozen", "ExchangeID", "YdStrikeFrozen", "InvestUnitID", nullptr};
-	char *pInvestorPositionField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "BrokerID", "InvestorID", "PosiDirection", "HedgeFlag", "PositionDate", "YdPosition", "Position", "LongFrozen", "ShortFrozen", "LongFrozenAmount", "ShortFrozenAmount", "OpenVolume", "CloseVolume", "OpenAmount", "CloseAmount", "PositionCost", "PreMargin", "UseMargin", "FrozenMargin", "FrozenCash", "FrozenCommission", "CashIn", "Commission", "CloseProfit", "PositionProfit", "PreSettlementPrice", "SettlementPrice", "TradingDay", "SettlementID", "OpenCost", "ExchangeMargin", "CombPosition", "CombLongFrozen", "CombShortFrozen", "CloseProfitByDate", "CloseProfitByTrade", "TodayPosition", "MarginRateByMoney", "MarginRateByVolume", "StrikeFrozen", "StrikeFrozenAmount", "AbandonFrozen", "ExchangeID", "YdStrikeFrozen", "InvestUnitID", "PositionCostOffset", "TasPosition", "TasPositionCost", "InstrumentID", nullptr};
+	char *pInvestorPositionField_reserve1 = nullptr;
 	char *pInvestorPositionField_BrokerID = nullptr;
 	char *pInvestorPositionField_InvestorID = nullptr;
 	char pInvestorPositionField_PosiDirection = 0;
@@ -1593,8 +1630,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionField *pInvestorPositionFi
 	char *pInvestorPositionField_ExchangeID = nullptr;
 	int pInvestorPositionField_YdStrikeFrozen = 0;
 	char *pInvestorPositionField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInvestorPositionField, "|yyyccciiiiddiiddddddddddddddyiddiiiddiddidiyiy")
-		, &pInvestorPositionField_InstrumentID
+	double pInvestorPositionField_PositionCostOffset = 0.0;
+	int pInvestorPositionField_TasPosition = 0;
+	double pInvestorPositionField_TasPositionCost = 0.0;
+	char *pInvestorPositionField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInvestorPositionField, "|yyyccciiiiddiiddddddddddddddyiddiiiddiddidiyiydidy")
+		, &pInvestorPositionField_reserve1
 		, &pInvestorPositionField_BrokerID
 		, &pInvestorPositionField_InvestorID
 		, &pInvestorPositionField_PosiDirection
@@ -1640,8 +1681,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionField *pInvestorPositionFi
 		, &pInvestorPositionField_ExchangeID
 		, &pInvestorPositionField_YdStrikeFrozen
 		, &pInvestorPositionField_InvestUnitID
+		, &pInvestorPositionField_PositionCostOffset
+		, &pInvestorPositionField_TasPosition
+		, &pInvestorPositionField_TasPositionCost
+		, &pInvestorPositionField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInvestorPositionField_InstrumentID != nullptr){ strcpy_s(pInvestorPositionField->InstrumentID, pInvestorPositionField_InstrumentID); pInvestorPositionField_InstrumentID = nullptr; }
+		if(pInvestorPositionField_reserve1 != nullptr){ strcpy_s(pInvestorPositionField->reserve1, pInvestorPositionField_reserve1); pInvestorPositionField_reserve1 = nullptr; }
 		if(pInvestorPositionField_BrokerID != nullptr){ strcpy_s(pInvestorPositionField->BrokerID, pInvestorPositionField_BrokerID); pInvestorPositionField_BrokerID = nullptr; }
 		if(pInvestorPositionField_InvestorID != nullptr){ strcpy_s(pInvestorPositionField->InvestorID, pInvestorPositionField_InvestorID); pInvestorPositionField_InvestorID = nullptr; }
 		pInvestorPositionField->PosiDirection = pInvestorPositionField_PosiDirection;
@@ -1687,13 +1732,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionField *pInvestorPositionFi
 		if(pInvestorPositionField_ExchangeID != nullptr){ strcpy_s(pInvestorPositionField->ExchangeID, pInvestorPositionField_ExchangeID); pInvestorPositionField_ExchangeID = nullptr; }
 		pInvestorPositionField->YdStrikeFrozen = pInvestorPositionField_YdStrikeFrozen;
 		if(pInvestorPositionField_InvestUnitID != nullptr){ strcpy_s(pInvestorPositionField->InvestUnitID, pInvestorPositionField_InvestUnitID); pInvestorPositionField_InvestUnitID = nullptr; }
+		pInvestorPositionField->PositionCostOffset = pInvestorPositionField_PositionCostOffset;
+		pInvestorPositionField->TasPosition = pInvestorPositionField_TasPosition;
+		pInvestorPositionField->TasPositionCost = pInvestorPositionField_TasPositionCost;
+		if(pInvestorPositionField_InstrumentID != nullptr){ strcpy_s(pInvestorPositionField->InstrumentID, pInvestorPositionField_InstrumentID); pInvestorPositionField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionField *pInvestorPositionField)
 {
 	if(pInvestorPositionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:i,s:i,s:i,s:d,s:d,s:i,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:d,s:i,s:i,s:i,s:d,s:d,s:i,s:d,s:d,s:i,s:d,s:i,s:y,s:i,s:y}"
-		, "InstrumentID", pInvestorPositionField->InstrumentID
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:i,s:i,s:i,s:d,s:d,s:i,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:d,s:i,s:i,s:i,s:d,s:d,s:i,s:d,s:d,s:i,s:d,s:i,s:y,s:i,s:y,s:d,s:i,s:d,s:y}"
+		, "reserve1", pInvestorPositionField->reserve1
 		, "BrokerID", pInvestorPositionField->BrokerID
 		, "InvestorID", pInvestorPositionField->InvestorID
 		, "PosiDirection", pInvestorPositionField->PosiDirection
@@ -1739,13 +1788,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionField *pInvestorPosi
 		, "ExchangeID", pInvestorPositionField->ExchangeID
 		, "YdStrikeFrozen", pInvestorPositionField->YdStrikeFrozen
 		, "InvestUnitID", pInvestorPositionField->InvestUnitID
+		, "PositionCostOffset", pInvestorPositionField->PositionCostOffset
+		, "TasPosition", pInvestorPositionField->TasPosition
+		, "TasPositionCost", pInvestorPositionField->TasPositionCost
+		, "InstrumentID", pInvestorPositionField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", "ExchangeID", "InvestUnitID", nullptr};
-	char *pInstrumentMarginRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
+	char *pInstrumentMarginRateField_reserve1 = nullptr;
 	char pInstrumentMarginRateField_InvestorRange = 0;
 	char *pInstrumentMarginRateField_BrokerID = nullptr;
 	char *pInstrumentMarginRateField_InvestorID = nullptr;
@@ -1757,8 +1810,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateField *pInstrumentMarg
 	int pInstrumentMarginRateField_IsRelative = 0;
 	char *pInstrumentMarginRateField_ExchangeID = nullptr;
 	char *pInstrumentMarginRateField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentMarginRateField, "|ycyycddddiyy")
-		, &pInstrumentMarginRateField_InstrumentID
+	char *pInstrumentMarginRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentMarginRateField, "|ycyycddddiyyy")
+		, &pInstrumentMarginRateField_reserve1
 		, &pInstrumentMarginRateField_InvestorRange
 		, &pInstrumentMarginRateField_BrokerID
 		, &pInstrumentMarginRateField_InvestorID
@@ -1770,8 +1824,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateField *pInstrumentMarg
 		, &pInstrumentMarginRateField_IsRelative
 		, &pInstrumentMarginRateField_ExchangeID
 		, &pInstrumentMarginRateField_InvestUnitID
+		, &pInstrumentMarginRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInstrumentMarginRateField_InstrumentID != nullptr){ strcpy_s(pInstrumentMarginRateField->InstrumentID, pInstrumentMarginRateField_InstrumentID); pInstrumentMarginRateField_InstrumentID = nullptr; }
+		if(pInstrumentMarginRateField_reserve1 != nullptr){ strcpy_s(pInstrumentMarginRateField->reserve1, pInstrumentMarginRateField_reserve1); pInstrumentMarginRateField_reserve1 = nullptr; }
 		pInstrumentMarginRateField->InvestorRange = pInstrumentMarginRateField_InvestorRange;
 		if(pInstrumentMarginRateField_BrokerID != nullptr){ strcpy_s(pInstrumentMarginRateField->BrokerID, pInstrumentMarginRateField_BrokerID); pInstrumentMarginRateField_BrokerID = nullptr; }
 		if(pInstrumentMarginRateField_InvestorID != nullptr){ strcpy_s(pInstrumentMarginRateField->InvestorID, pInstrumentMarginRateField_InvestorID); pInstrumentMarginRateField_InvestorID = nullptr; }
@@ -1783,13 +1838,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateField *pInstrumentMarg
 		pInstrumentMarginRateField->IsRelative = pInstrumentMarginRateField_IsRelative;
 		if(pInstrumentMarginRateField_ExchangeID != nullptr){ strcpy_s(pInstrumentMarginRateField->ExchangeID, pInstrumentMarginRateField_ExchangeID); pInstrumentMarginRateField_ExchangeID = nullptr; }
 		if(pInstrumentMarginRateField_InvestUnitID != nullptr){ strcpy_s(pInstrumentMarginRateField->InvestUnitID, pInstrumentMarginRateField_InvestUnitID); pInstrumentMarginRateField_InvestUnitID = nullptr; }
+		if(pInstrumentMarginRateField_InstrumentID != nullptr){ strcpy_s(pInstrumentMarginRateField->InstrumentID, pInstrumentMarginRateField_InstrumentID); pInstrumentMarginRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRateField)
 {
 	if(pInstrumentMarginRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:i,s:y,s:y}"
-		, "InstrumentID", pInstrumentMarginRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:i,s:y,s:y,s:y}"
+		, "reserve1", pInstrumentMarginRateField->reserve1
 		, "InvestorRange", pInstrumentMarginRateField->InvestorRange
 		, "BrokerID", pInstrumentMarginRateField->BrokerID
 		, "InvestorID", pInstrumentMarginRateField->InvestorID
@@ -1801,13 +1857,14 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateField *pInstrume
 		, "IsRelative", pInstrumentMarginRateField->IsRelative
 		, "ExchangeID", pInstrumentMarginRateField->ExchangeID
 		, "InvestUnitID", pInstrumentMarginRateField->InvestUnitID
+		, "InstrumentID", pInstrumentMarginRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "ExchangeID", "BizType", "InvestUnitID", nullptr};
-	char *pInstrumentCommissionRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "ExchangeID", "BizType", "InvestUnitID", "InstrumentID", nullptr};
+	char *pInstrumentCommissionRateField_reserve1 = nullptr;
 	char pInstrumentCommissionRateField_InvestorRange = 0;
 	char *pInstrumentCommissionRateField_BrokerID = nullptr;
 	char *pInstrumentCommissionRateField_InvestorID = nullptr;
@@ -1820,8 +1877,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentCommissionRateField *pInstrument
 	char *pInstrumentCommissionRateField_ExchangeID = nullptr;
 	char pInstrumentCommissionRateField_BizType = 0;
 	char *pInstrumentCommissionRateField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentCommissionRateField, "|ycyyddddddycy")
-		, &pInstrumentCommissionRateField_InstrumentID
+	char *pInstrumentCommissionRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentCommissionRateField, "|ycyyddddddycyy")
+		, &pInstrumentCommissionRateField_reserve1
 		, &pInstrumentCommissionRateField_InvestorRange
 		, &pInstrumentCommissionRateField_BrokerID
 		, &pInstrumentCommissionRateField_InvestorID
@@ -1834,8 +1892,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentCommissionRateField *pInstrument
 		, &pInstrumentCommissionRateField_ExchangeID
 		, &pInstrumentCommissionRateField_BizType
 		, &pInstrumentCommissionRateField_InvestUnitID
+		, &pInstrumentCommissionRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pInstrumentCommissionRateField->InstrumentID, pInstrumentCommissionRateField_InstrumentID); pInstrumentCommissionRateField_InstrumentID = nullptr; }
+		if(pInstrumentCommissionRateField_reserve1 != nullptr){ strcpy_s(pInstrumentCommissionRateField->reserve1, pInstrumentCommissionRateField_reserve1); pInstrumentCommissionRateField_reserve1 = nullptr; }
 		pInstrumentCommissionRateField->InvestorRange = pInstrumentCommissionRateField_InvestorRange;
 		if(pInstrumentCommissionRateField_BrokerID != nullptr){ strcpy_s(pInstrumentCommissionRateField->BrokerID, pInstrumentCommissionRateField_BrokerID); pInstrumentCommissionRateField_BrokerID = nullptr; }
 		if(pInstrumentCommissionRateField_InvestorID != nullptr){ strcpy_s(pInstrumentCommissionRateField->InvestorID, pInstrumentCommissionRateField_InvestorID); pInstrumentCommissionRateField_InvestorID = nullptr; }
@@ -1848,13 +1907,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentCommissionRateField *pInstrument
 		if(pInstrumentCommissionRateField_ExchangeID != nullptr){ strcpy_s(pInstrumentCommissionRateField->ExchangeID, pInstrumentCommissionRateField_ExchangeID); pInstrumentCommissionRateField_ExchangeID = nullptr; }
 		pInstrumentCommissionRateField->BizType = pInstrumentCommissionRateField_BizType;
 		if(pInstrumentCommissionRateField_InvestUnitID != nullptr){ strcpy_s(pInstrumentCommissionRateField->InvestUnitID, pInstrumentCommissionRateField_InvestUnitID); pInstrumentCommissionRateField_InvestUnitID = nullptr; }
+		if(pInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pInstrumentCommissionRateField->InstrumentID, pInstrumentCommissionRateField_InstrumentID); pInstrumentCommissionRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRateField)
 {
 	if(pInstrumentCommissionRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:c,s:y}"
-		, "InstrumentID", pInstrumentCommissionRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:c,s:y,s:y}"
+		, "reserve1", pInstrumentCommissionRateField->reserve1
 		, "InvestorRange", pInstrumentCommissionRateField->InvestorRange
 		, "BrokerID", pInstrumentCommissionRateField->BrokerID
 		, "InvestorID", pInstrumentCommissionRateField->InvestorID
@@ -1867,16 +1927,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentCommissionRateField *pInst
 		, "ExchangeID", pInstrumentCommissionRateField->ExchangeID
 		, "BizType", pInstrumentCommissionRateField->BizType
 		, "InvestUnitID", pInstrumentCommissionRateField->InvestUnitID
+		, "InstrumentID", pInstrumentCommissionRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "InstrumentID", "ExchangeID", "ExchangeInstID", "LastPrice", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "OpenPrice", "HighestPrice", "LowestPrice", "Volume", "Turnover", "OpenInterest", "ClosePrice", "SettlementPrice", "UpperLimitPrice", "LowerLimitPrice", "PreDelta", "CurrDelta", "UpdateTime", "UpdateMillisec", "BidPrice1", "BidVolume1", "AskPrice1", "AskVolume1", "BidPrice2", "BidVolume2", "AskPrice2", "AskVolume2", "BidPrice3", "BidVolume3", "AskPrice3", "AskVolume3", "BidPrice4", "BidVolume4", "AskPrice4", "AskVolume4", "BidPrice5", "BidVolume5", "AskPrice5", "AskVolume5", "AveragePrice", "ActionDay", nullptr};
+	static char *kwlist[] = {"TradingDay", "reserve1", "ExchangeID", "reserve2", "LastPrice", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "OpenPrice", "HighestPrice", "LowestPrice", "Volume", "Turnover", "OpenInterest", "ClosePrice", "SettlementPrice", "UpperLimitPrice", "LowerLimitPrice", "PreDelta", "CurrDelta", "UpdateTime", "UpdateMillisec", "BidPrice1", "BidVolume1", "AskPrice1", "AskVolume1", "BidPrice2", "BidVolume2", "AskPrice2", "AskVolume2", "BidPrice3", "BidVolume3", "AskPrice3", "AskVolume3", "BidPrice4", "BidVolume4", "AskPrice4", "AskVolume4", "BidPrice5", "BidVolume5", "AskPrice5", "AskVolume5", "AveragePrice", "ActionDay", "InstrumentID", "ExchangeInstID", nullptr};
 	char *pDepthMarketDataField_TradingDay = nullptr;
-	char *pDepthMarketDataField_InstrumentID = nullptr;
+	char *pDepthMarketDataField_reserve1 = nullptr;
 	char *pDepthMarketDataField_ExchangeID = nullptr;
-	char *pDepthMarketDataField_ExchangeInstID = nullptr;
+	char *pDepthMarketDataField_reserve2 = nullptr;
 	double pDepthMarketDataField_LastPrice = 0.0;
 	double pDepthMarketDataField_PreSettlementPrice = 0.0;
 	double pDepthMarketDataField_PreClosePrice = 0.0;
@@ -1917,11 +1978,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataFiel
 	int pDepthMarketDataField_AskVolume5 = 0;
 	double pDepthMarketDataField_AveragePrice = 0.0;
 	char *pDepthMarketDataField_ActionDay = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pDepthMarketDataField, "|yyyydddddddiddddddddyidididididididididididy")
+	char *pDepthMarketDataField_InstrumentID = nullptr;
+	char *pDepthMarketDataField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pDepthMarketDataField, "|yyyydddddddiddddddddyidididididididididididyyy")
 		, &pDepthMarketDataField_TradingDay
-		, &pDepthMarketDataField_InstrumentID
+		, &pDepthMarketDataField_reserve1
 		, &pDepthMarketDataField_ExchangeID
-		, &pDepthMarketDataField_ExchangeInstID
+		, &pDepthMarketDataField_reserve2
 		, &pDepthMarketDataField_LastPrice
 		, &pDepthMarketDataField_PreSettlementPrice
 		, &pDepthMarketDataField_PreClosePrice
@@ -1962,11 +2025,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataFiel
 		, &pDepthMarketDataField_AskVolume5
 		, &pDepthMarketDataField_AveragePrice
 		, &pDepthMarketDataField_ActionDay
+		, &pDepthMarketDataField_InstrumentID
+		, &pDepthMarketDataField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pDepthMarketDataField_TradingDay != nullptr){ strcpy_s(pDepthMarketDataField->TradingDay, pDepthMarketDataField_TradingDay); pDepthMarketDataField_TradingDay = nullptr; }
-		if(pDepthMarketDataField_InstrumentID != nullptr){ strcpy_s(pDepthMarketDataField->InstrumentID, pDepthMarketDataField_InstrumentID); pDepthMarketDataField_InstrumentID = nullptr; }
+		if(pDepthMarketDataField_reserve1 != nullptr){ strcpy_s(pDepthMarketDataField->reserve1, pDepthMarketDataField_reserve1); pDepthMarketDataField_reserve1 = nullptr; }
 		if(pDepthMarketDataField_ExchangeID != nullptr){ strcpy_s(pDepthMarketDataField->ExchangeID, pDepthMarketDataField_ExchangeID); pDepthMarketDataField_ExchangeID = nullptr; }
-		if(pDepthMarketDataField_ExchangeInstID != nullptr){ strcpy_s(pDepthMarketDataField->ExchangeInstID, pDepthMarketDataField_ExchangeInstID); pDepthMarketDataField_ExchangeInstID = nullptr; }
+		if(pDepthMarketDataField_reserve2 != nullptr){ strcpy_s(pDepthMarketDataField->reserve2, pDepthMarketDataField_reserve2); pDepthMarketDataField_reserve2 = nullptr; }
 		pDepthMarketDataField->LastPrice = pDepthMarketDataField_LastPrice;
 		pDepthMarketDataField->PreSettlementPrice = pDepthMarketDataField_PreSettlementPrice;
 		pDepthMarketDataField->PreClosePrice = pDepthMarketDataField_PreClosePrice;
@@ -2007,16 +2072,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataFiel
 		pDepthMarketDataField->AskVolume5 = pDepthMarketDataField_AskVolume5;
 		pDepthMarketDataField->AveragePrice = pDepthMarketDataField_AveragePrice;
 		if(pDepthMarketDataField_ActionDay != nullptr){ strcpy_s(pDepthMarketDataField->ActionDay, pDepthMarketDataField_ActionDay); pDepthMarketDataField_ActionDay = nullptr; }
+		if(pDepthMarketDataField_InstrumentID != nullptr){ strcpy_s(pDepthMarketDataField->InstrumentID, pDepthMarketDataField_InstrumentID); pDepthMarketDataField_InstrumentID = nullptr; }
+		if(pDepthMarketDataField_ExchangeInstID != nullptr){ strcpy_s(pDepthMarketDataField->ExchangeInstID, pDepthMarketDataField_ExchangeInstID); pDepthMarketDataField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepthMarketDataField *pDepthMarketDataField)
 {
 	if(pDepthMarketDataField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:y,s:y,s:y}"
 		, "TradingDay", pDepthMarketDataField->TradingDay
-		, "InstrumentID", pDepthMarketDataField->InstrumentID
+		, "reserve1", pDepthMarketDataField->reserve1
 		, "ExchangeID", pDepthMarketDataField->ExchangeID
-		, "ExchangeInstID", pDepthMarketDataField->ExchangeInstID
+		, "reserve2", pDepthMarketDataField->reserve2
 		, "LastPrice", pDepthMarketDataField->LastPrice
 		, "PreSettlementPrice", pDepthMarketDataField->PreSettlementPrice
 		, "PreClosePrice", pDepthMarketDataField->PreClosePrice
@@ -2057,40 +2124,46 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepthMarketDataField *pDepthMarketDa
 		, "AskVolume5", pDepthMarketDataField->AskVolume5
 		, "AveragePrice", pDepthMarketDataField->AveragePrice
 		, "ActionDay", pDepthMarketDataField->ActionDay
+		, "InstrumentID", pDepthMarketDataField->InstrumentID
+		, "ExchangeInstID", pDepthMarketDataField->ExchangeInstID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentTradingRightField *pInstrumentTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "TradingRight", nullptr};
-	char *pInstrumentTradingRightField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "TradingRight", "InstrumentID", nullptr};
+	char *pInstrumentTradingRightField_reserve1 = nullptr;
 	char pInstrumentTradingRightField_InvestorRange = 0;
 	char *pInstrumentTradingRightField_BrokerID = nullptr;
 	char *pInstrumentTradingRightField_InvestorID = nullptr;
 	char pInstrumentTradingRightField_TradingRight = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentTradingRightField, "|ycyyc")
-		, &pInstrumentTradingRightField_InstrumentID
+	char *pInstrumentTradingRightField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentTradingRightField, "|ycyycy")
+		, &pInstrumentTradingRightField_reserve1
 		, &pInstrumentTradingRightField_InvestorRange
 		, &pInstrumentTradingRightField_BrokerID
 		, &pInstrumentTradingRightField_InvestorID
 		, &pInstrumentTradingRightField_TradingRight
+		, &pInstrumentTradingRightField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInstrumentTradingRightField_InstrumentID != nullptr){ strcpy_s(pInstrumentTradingRightField->InstrumentID, pInstrumentTradingRightField_InstrumentID); pInstrumentTradingRightField_InstrumentID = nullptr; }
+		if(pInstrumentTradingRightField_reserve1 != nullptr){ strcpy_s(pInstrumentTradingRightField->reserve1, pInstrumentTradingRightField_reserve1); pInstrumentTradingRightField_reserve1 = nullptr; }
 		pInstrumentTradingRightField->InvestorRange = pInstrumentTradingRightField_InvestorRange;
 		if(pInstrumentTradingRightField_BrokerID != nullptr){ strcpy_s(pInstrumentTradingRightField->BrokerID, pInstrumentTradingRightField_BrokerID); pInstrumentTradingRightField_BrokerID = nullptr; }
 		if(pInstrumentTradingRightField_InvestorID != nullptr){ strcpy_s(pInstrumentTradingRightField->InvestorID, pInstrumentTradingRightField_InvestorID); pInstrumentTradingRightField_InvestorID = nullptr; }
 		pInstrumentTradingRightField->TradingRight = pInstrumentTradingRightField_TradingRight;
+		if(pInstrumentTradingRightField_InstrumentID != nullptr){ strcpy_s(pInstrumentTradingRightField->InstrumentID, pInstrumentTradingRightField_InstrumentID); pInstrumentTradingRightField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentTradingRightField *pInstrumentTradingRightField)
 {
 	if(pInstrumentTradingRightField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c}"
-		, "InstrumentID", pInstrumentTradingRightField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:y}"
+		, "reserve1", pInstrumentTradingRightField->reserve1
 		, "InvestorRange", pInstrumentTradingRightField->InvestorRange
 		, "BrokerID", pInstrumentTradingRightField->BrokerID
 		, "InvestorID", pInstrumentTradingRightField->InvestorID
 		, "TradingRight", pInstrumentTradingRightField->TradingRight
+		, "InstrumentID", pInstrumentTradingRightField->InstrumentID
 		);
 }
 
@@ -2342,8 +2415,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSettlementInfoField *pSettlementInfo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateAdjustField *pInstrumentMarginRateAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", nullptr};
-	char *pInstrumentMarginRateAdjustField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", "InstrumentID", nullptr};
+	char *pInstrumentMarginRateAdjustField_reserve1 = nullptr;
 	char pInstrumentMarginRateAdjustField_InvestorRange = 0;
 	char *pInstrumentMarginRateAdjustField_BrokerID = nullptr;
 	char *pInstrumentMarginRateAdjustField_InvestorID = nullptr;
@@ -2353,8 +2426,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateAdjustField *pInstrume
 	double pInstrumentMarginRateAdjustField_ShortMarginRatioByMoney = 0.0;
 	double pInstrumentMarginRateAdjustField_ShortMarginRatioByVolume = 0.0;
 	int pInstrumentMarginRateAdjustField_IsRelative = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentMarginRateAdjustField, "|ycyycddddi")
-		, &pInstrumentMarginRateAdjustField_InstrumentID
+	char *pInstrumentMarginRateAdjustField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentMarginRateAdjustField, "|ycyycddddiy")
+		, &pInstrumentMarginRateAdjustField_reserve1
 		, &pInstrumentMarginRateAdjustField_InvestorRange
 		, &pInstrumentMarginRateAdjustField_BrokerID
 		, &pInstrumentMarginRateAdjustField_InvestorID
@@ -2364,8 +2438,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateAdjustField *pInstrume
 		, &pInstrumentMarginRateAdjustField_ShortMarginRatioByMoney
 		, &pInstrumentMarginRateAdjustField_ShortMarginRatioByVolume
 		, &pInstrumentMarginRateAdjustField_IsRelative
+		, &pInstrumentMarginRateAdjustField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInstrumentMarginRateAdjustField_InstrumentID != nullptr){ strcpy_s(pInstrumentMarginRateAdjustField->InstrumentID, pInstrumentMarginRateAdjustField_InstrumentID); pInstrumentMarginRateAdjustField_InstrumentID = nullptr; }
+		if(pInstrumentMarginRateAdjustField_reserve1 != nullptr){ strcpy_s(pInstrumentMarginRateAdjustField->reserve1, pInstrumentMarginRateAdjustField_reserve1); pInstrumentMarginRateAdjustField_reserve1 = nullptr; }
 		pInstrumentMarginRateAdjustField->InvestorRange = pInstrumentMarginRateAdjustField_InvestorRange;
 		if(pInstrumentMarginRateAdjustField_BrokerID != nullptr){ strcpy_s(pInstrumentMarginRateAdjustField->BrokerID, pInstrumentMarginRateAdjustField_BrokerID); pInstrumentMarginRateAdjustField_BrokerID = nullptr; }
 		if(pInstrumentMarginRateAdjustField_InvestorID != nullptr){ strcpy_s(pInstrumentMarginRateAdjustField->InvestorID, pInstrumentMarginRateAdjustField_InvestorID); pInstrumentMarginRateAdjustField_InvestorID = nullptr; }
@@ -2375,13 +2450,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateAdjustField *pInstrume
 		pInstrumentMarginRateAdjustField->ShortMarginRatioByMoney = pInstrumentMarginRateAdjustField_ShortMarginRatioByMoney;
 		pInstrumentMarginRateAdjustField->ShortMarginRatioByVolume = pInstrumentMarginRateAdjustField_ShortMarginRatioByVolume;
 		pInstrumentMarginRateAdjustField->IsRelative = pInstrumentMarginRateAdjustField_IsRelative;
+		if(pInstrumentMarginRateAdjustField_InstrumentID != nullptr){ strcpy_s(pInstrumentMarginRateAdjustField->InstrumentID, pInstrumentMarginRateAdjustField_InstrumentID); pInstrumentMarginRateAdjustField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateAdjustField *pInstrumentMarginRateAdjustField)
 {
 	if(pInstrumentMarginRateAdjustField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:i}"
-		, "InstrumentID", pInstrumentMarginRateAdjustField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:i,s:y}"
+		, "reserve1", pInstrumentMarginRateAdjustField->reserve1
 		, "InvestorRange", pInstrumentMarginRateAdjustField->InvestorRange
 		, "BrokerID", pInstrumentMarginRateAdjustField->BrokerID
 		, "InvestorID", pInstrumentMarginRateAdjustField->InvestorID
@@ -2391,60 +2467,65 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateAdjustField *pIn
 		, "ShortMarginRatioByMoney", pInstrumentMarginRateAdjustField->ShortMarginRatioByMoney
 		, "ShortMarginRatioByVolume", pInstrumentMarginRateAdjustField->ShortMarginRatioByVolume
 		, "IsRelative", pInstrumentMarginRateAdjustField->IsRelative
+		, "InstrumentID", pInstrumentMarginRateAdjustField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateField *pExchangeMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ExchangeID", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ExchangeID", "InstrumentID", nullptr};
 	char *pExchangeMarginRateField_BrokerID = nullptr;
-	char *pExchangeMarginRateField_InstrumentID = nullptr;
+	char *pExchangeMarginRateField_reserve1 = nullptr;
 	char pExchangeMarginRateField_HedgeFlag = 0;
 	double pExchangeMarginRateField_LongMarginRatioByMoney = 0.0;
 	double pExchangeMarginRateField_LongMarginRatioByVolume = 0.0;
 	double pExchangeMarginRateField_ShortMarginRatioByMoney = 0.0;
 	double pExchangeMarginRateField_ShortMarginRatioByVolume = 0.0;
 	char *pExchangeMarginRateField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeMarginRateField, "|yycddddy")
+	char *pExchangeMarginRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeMarginRateField, "|yycddddyy")
 		, &pExchangeMarginRateField_BrokerID
-		, &pExchangeMarginRateField_InstrumentID
+		, &pExchangeMarginRateField_reserve1
 		, &pExchangeMarginRateField_HedgeFlag
 		, &pExchangeMarginRateField_LongMarginRatioByMoney
 		, &pExchangeMarginRateField_LongMarginRatioByVolume
 		, &pExchangeMarginRateField_ShortMarginRatioByMoney
 		, &pExchangeMarginRateField_ShortMarginRatioByVolume
 		, &pExchangeMarginRateField_ExchangeID
+		, &pExchangeMarginRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeMarginRateField_BrokerID != nullptr){ strcpy_s(pExchangeMarginRateField->BrokerID, pExchangeMarginRateField_BrokerID); pExchangeMarginRateField_BrokerID = nullptr; }
-		if(pExchangeMarginRateField_InstrumentID != nullptr){ strcpy_s(pExchangeMarginRateField->InstrumentID, pExchangeMarginRateField_InstrumentID); pExchangeMarginRateField_InstrumentID = nullptr; }
+		if(pExchangeMarginRateField_reserve1 != nullptr){ strcpy_s(pExchangeMarginRateField->reserve1, pExchangeMarginRateField_reserve1); pExchangeMarginRateField_reserve1 = nullptr; }
 		pExchangeMarginRateField->HedgeFlag = pExchangeMarginRateField_HedgeFlag;
 		pExchangeMarginRateField->LongMarginRatioByMoney = pExchangeMarginRateField_LongMarginRatioByMoney;
 		pExchangeMarginRateField->LongMarginRatioByVolume = pExchangeMarginRateField_LongMarginRatioByVolume;
 		pExchangeMarginRateField->ShortMarginRatioByMoney = pExchangeMarginRateField_ShortMarginRatioByMoney;
 		pExchangeMarginRateField->ShortMarginRatioByVolume = pExchangeMarginRateField_ShortMarginRatioByVolume;
 		if(pExchangeMarginRateField_ExchangeID != nullptr){ strcpy_s(pExchangeMarginRateField->ExchangeID, pExchangeMarginRateField_ExchangeID); pExchangeMarginRateField_ExchangeID = nullptr; }
+		if(pExchangeMarginRateField_InstrumentID != nullptr){ strcpy_s(pExchangeMarginRateField->InstrumentID, pExchangeMarginRateField_InstrumentID); pExchangeMarginRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeMarginRateField *pExchangeMarginRateField)
 {
 	if(pExchangeMarginRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:y,s:y}"
 		, "BrokerID", pExchangeMarginRateField->BrokerID
-		, "InstrumentID", pExchangeMarginRateField->InstrumentID
+		, "reserve1", pExchangeMarginRateField->reserve1
 		, "HedgeFlag", pExchangeMarginRateField->HedgeFlag
 		, "LongMarginRatioByMoney", pExchangeMarginRateField->LongMarginRatioByMoney
 		, "LongMarginRatioByVolume", pExchangeMarginRateField->LongMarginRatioByVolume
 		, "ShortMarginRatioByMoney", pExchangeMarginRateField->ShortMarginRatioByMoney
 		, "ShortMarginRatioByVolume", pExchangeMarginRateField->ShortMarginRatioByVolume
 		, "ExchangeID", pExchangeMarginRateField->ExchangeID
+		, "InstrumentID", pExchangeMarginRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ExchLongMarginRatioByMoney", "ExchLongMarginRatioByVolume", "ExchShortMarginRatioByMoney", "ExchShortMarginRatioByVolume", "NoLongMarginRatioByMoney", "NoLongMarginRatioByVolume", "NoShortMarginRatioByMoney", "NoShortMarginRatioByVolume", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ExchLongMarginRatioByMoney", "ExchLongMarginRatioByVolume", "ExchShortMarginRatioByMoney", "ExchShortMarginRatioByVolume", "NoLongMarginRatioByMoney", "NoLongMarginRatioByVolume", "NoShortMarginRatioByMoney", "NoShortMarginRatioByVolume", "InstrumentID", nullptr};
 	char *pExchangeMarginRateAdjustField_BrokerID = nullptr;
-	char *pExchangeMarginRateAdjustField_InstrumentID = nullptr;
+	char *pExchangeMarginRateAdjustField_reserve1 = nullptr;
 	char pExchangeMarginRateAdjustField_HedgeFlag = 0;
 	double pExchangeMarginRateAdjustField_LongMarginRatioByMoney = 0.0;
 	double pExchangeMarginRateAdjustField_LongMarginRatioByVolume = 0.0;
@@ -2458,9 +2539,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateAdjustField *pExchangeMa
 	double pExchangeMarginRateAdjustField_NoLongMarginRatioByVolume = 0.0;
 	double pExchangeMarginRateAdjustField_NoShortMarginRatioByMoney = 0.0;
 	double pExchangeMarginRateAdjustField_NoShortMarginRatioByVolume = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeMarginRateAdjustField, "|yycdddddddddddd")
+	char *pExchangeMarginRateAdjustField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeMarginRateAdjustField, "|yycddddddddddddy")
 		, &pExchangeMarginRateAdjustField_BrokerID
-		, &pExchangeMarginRateAdjustField_InstrumentID
+		, &pExchangeMarginRateAdjustField_reserve1
 		, &pExchangeMarginRateAdjustField_HedgeFlag
 		, &pExchangeMarginRateAdjustField_LongMarginRatioByMoney
 		, &pExchangeMarginRateAdjustField_LongMarginRatioByVolume
@@ -2474,9 +2556,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateAdjustField *pExchangeMa
 		, &pExchangeMarginRateAdjustField_NoLongMarginRatioByVolume
 		, &pExchangeMarginRateAdjustField_NoShortMarginRatioByMoney
 		, &pExchangeMarginRateAdjustField_NoShortMarginRatioByVolume
+		, &pExchangeMarginRateAdjustField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeMarginRateAdjustField_BrokerID != nullptr){ strcpy_s(pExchangeMarginRateAdjustField->BrokerID, pExchangeMarginRateAdjustField_BrokerID); pExchangeMarginRateAdjustField_BrokerID = nullptr; }
-		if(pExchangeMarginRateAdjustField_InstrumentID != nullptr){ strcpy_s(pExchangeMarginRateAdjustField->InstrumentID, pExchangeMarginRateAdjustField_InstrumentID); pExchangeMarginRateAdjustField_InstrumentID = nullptr; }
+		if(pExchangeMarginRateAdjustField_reserve1 != nullptr){ strcpy_s(pExchangeMarginRateAdjustField->reserve1, pExchangeMarginRateAdjustField_reserve1); pExchangeMarginRateAdjustField_reserve1 = nullptr; }
 		pExchangeMarginRateAdjustField->HedgeFlag = pExchangeMarginRateAdjustField_HedgeFlag;
 		pExchangeMarginRateAdjustField->LongMarginRatioByMoney = pExchangeMarginRateAdjustField_LongMarginRatioByMoney;
 		pExchangeMarginRateAdjustField->LongMarginRatioByVolume = pExchangeMarginRateAdjustField_LongMarginRatioByVolume;
@@ -2490,14 +2573,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateAdjustField *pExchangeMa
 		pExchangeMarginRateAdjustField->NoLongMarginRatioByVolume = pExchangeMarginRateAdjustField_NoLongMarginRatioByVolume;
 		pExchangeMarginRateAdjustField->NoShortMarginRatioByMoney = pExchangeMarginRateAdjustField_NoShortMarginRatioByMoney;
 		pExchangeMarginRateAdjustField->NoShortMarginRatioByVolume = pExchangeMarginRateAdjustField_NoShortMarginRatioByVolume;
+		if(pExchangeMarginRateAdjustField_InstrumentID != nullptr){ strcpy_s(pExchangeMarginRateAdjustField->InstrumentID, pExchangeMarginRateAdjustField_InstrumentID); pExchangeMarginRateAdjustField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjustField)
 {
 	if(pExchangeMarginRateAdjustField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y}"
 		, "BrokerID", pExchangeMarginRateAdjustField->BrokerID
-		, "InstrumentID", pExchangeMarginRateAdjustField->InstrumentID
+		, "reserve1", pExchangeMarginRateAdjustField->reserve1
 		, "HedgeFlag", pExchangeMarginRateAdjustField->HedgeFlag
 		, "LongMarginRatioByMoney", pExchangeMarginRateAdjustField->LongMarginRatioByMoney
 		, "LongMarginRatioByVolume", pExchangeMarginRateAdjustField->LongMarginRatioByVolume
@@ -2511,6 +2595,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeMarginRateAdjustField *pExch
 		, "NoLongMarginRatioByVolume", pExchangeMarginRateAdjustField->NoLongMarginRatioByVolume
 		, "NoShortMarginRatioByMoney", pExchangeMarginRateAdjustField->NoShortMarginRatioByMoney
 		, "NoShortMarginRatioByVolume", pExchangeMarginRateAdjustField->NoShortMarginRatioByVolume
+		, "InstrumentID", pExchangeMarginRateAdjustField->InstrumentID
 		);
 }
 
@@ -2628,14 +2713,14 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCommPhaseField *pCommPhaseField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"FrontID", "SessionID", "BrokerID", "UserID", "LoginDate", "LoginTime", "IPAddress", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "SystemName", "PasswordDeprecated", "MaxOrderRef", "SHFETime", "DCETime", "CZCETime", "FFEXTime", "MacAddress", "OneTimePassword", "INETime", "IsQryControl", "LoginRemark", "Password", nullptr};
+	static char *kwlist[] = {"FrontID", "SessionID", "BrokerID", "UserID", "LoginDate", "LoginTime", "reserve1", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "SystemName", "PasswordDeprecated", "MaxOrderRef", "SHFETime", "DCETime", "CZCETime", "FFEXTime", "MacAddress", "OneTimePassword", "INETime", "IsQryControl", "LoginRemark", "Password", "IPAddress", nullptr};
 	int pLoginInfoField_FrontID = 0;
 	int pLoginInfoField_SessionID = 0;
 	char *pLoginInfoField_BrokerID = nullptr;
 	char *pLoginInfoField_UserID = nullptr;
 	char *pLoginInfoField_LoginDate = nullptr;
 	char *pLoginInfoField_LoginTime = nullptr;
-	char *pLoginInfoField_IPAddress = nullptr;
+	char *pLoginInfoField_reserve1 = nullptr;
 	char *pLoginInfoField_UserProductInfo = nullptr;
 	char *pLoginInfoField_InterfaceProductInfo = nullptr;
 	char *pLoginInfoField_ProtocolInfo = nullptr;
@@ -2652,14 +2737,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject 
 	int pLoginInfoField_IsQryControl = 0;
 	char *pLoginInfoField_LoginRemark = nullptr;
 	char *pLoginInfoField_Password = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pLoginInfoField, "|iiyyyyyyyyyyyyyyyyyyiyy")
+	char *pLoginInfoField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pLoginInfoField, "|iiyyyyyyyyyyyyyyyyyyiyyy")
 		, &pLoginInfoField_FrontID
 		, &pLoginInfoField_SessionID
 		, &pLoginInfoField_BrokerID
 		, &pLoginInfoField_UserID
 		, &pLoginInfoField_LoginDate
 		, &pLoginInfoField_LoginTime
-		, &pLoginInfoField_IPAddress
+		, &pLoginInfoField_reserve1
 		, &pLoginInfoField_UserProductInfo
 		, &pLoginInfoField_InterfaceProductInfo
 		, &pLoginInfoField_ProtocolInfo
@@ -2676,6 +2762,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject 
 		, &pLoginInfoField_IsQryControl
 		, &pLoginInfoField_LoginRemark
 		, &pLoginInfoField_Password
+		, &pLoginInfoField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		pLoginInfoField->FrontID = pLoginInfoField_FrontID;
 		pLoginInfoField->SessionID = pLoginInfoField_SessionID;
@@ -2683,7 +2770,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject 
 		if(pLoginInfoField_UserID != nullptr){ strcpy_s(pLoginInfoField->UserID, pLoginInfoField_UserID); pLoginInfoField_UserID = nullptr; }
 		if(pLoginInfoField_LoginDate != nullptr){ strcpy_s(pLoginInfoField->LoginDate, pLoginInfoField_LoginDate); pLoginInfoField_LoginDate = nullptr; }
 		if(pLoginInfoField_LoginTime != nullptr){ strcpy_s(pLoginInfoField->LoginTime, pLoginInfoField_LoginTime); pLoginInfoField_LoginTime = nullptr; }
-		if(pLoginInfoField_IPAddress != nullptr){ strcpy_s(pLoginInfoField->IPAddress, pLoginInfoField_IPAddress); pLoginInfoField_IPAddress = nullptr; }
+		if(pLoginInfoField_reserve1 != nullptr){ strcpy_s(pLoginInfoField->reserve1, pLoginInfoField_reserve1); pLoginInfoField_reserve1 = nullptr; }
 		if(pLoginInfoField_UserProductInfo != nullptr){ strcpy_s(pLoginInfoField->UserProductInfo, pLoginInfoField_UserProductInfo); pLoginInfoField_UserProductInfo = nullptr; }
 		if(pLoginInfoField_InterfaceProductInfo != nullptr){ strcpy_s(pLoginInfoField->InterfaceProductInfo, pLoginInfoField_InterfaceProductInfo); pLoginInfoField_InterfaceProductInfo = nullptr; }
 		if(pLoginInfoField_ProtocolInfo != nullptr){ strcpy_s(pLoginInfoField->ProtocolInfo, pLoginInfoField_ProtocolInfo); pLoginInfoField_ProtocolInfo = nullptr; }
@@ -2700,19 +2787,20 @@ int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject 
 		pLoginInfoField->IsQryControl = pLoginInfoField_IsQryControl;
 		if(pLoginInfoField_LoginRemark != nullptr){ strcpy_s(pLoginInfoField->LoginRemark, pLoginInfoField_LoginRemark); pLoginInfoField_LoginRemark = nullptr; }
 		if(pLoginInfoField_Password != nullptr){ strcpy_s(pLoginInfoField->Password, pLoginInfoField_Password); pLoginInfoField_Password = nullptr; }
+		if(pLoginInfoField_IPAddress != nullptr){ strcpy_s(pLoginInfoField->IPAddress, pLoginInfoField_IPAddress); pLoginInfoField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginInfoField *pLoginInfoField)
 {
 	if(pLoginInfoField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y}"
+	return Py_BuildValue("{s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y}"
 		, "FrontID", pLoginInfoField->FrontID
 		, "SessionID", pLoginInfoField->SessionID
 		, "BrokerID", pLoginInfoField->BrokerID
 		, "UserID", pLoginInfoField->UserID
 		, "LoginDate", pLoginInfoField->LoginDate
 		, "LoginTime", pLoginInfoField->LoginTime
-		, "IPAddress", pLoginInfoField->IPAddress
+		, "reserve1", pLoginInfoField->reserve1
 		, "UserProductInfo", pLoginInfoField->UserProductInfo
 		, "InterfaceProductInfo", pLoginInfoField->InterfaceProductInfo
 		, "ProtocolInfo", pLoginInfoField->ProtocolInfo
@@ -2729,6 +2817,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginInfoField *pLoginInfoField)
 		, "IsQryControl", pLoginInfoField->IsQryControl
 		, "LoginRemark", pLoginInfoField->LoginRemark
 		, "Password", pLoginInfoField->Password
+		, "IPAddress", pLoginInfoField->IPAddress
 		);
 }
 
@@ -2820,10 +2909,10 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserPasswordUpdateField *pUserPasswo
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderField *pInputOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "UserForceClose", "IsSwapOrder", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "UserForceClose", "IsSwapOrder", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputOrderField_BrokerID = nullptr;
 	char *pInputOrderField_InvestorID = nullptr;
-	char *pInputOrderField_InstrumentID = nullptr;
+	char *pInputOrderField_reserve1 = nullptr;
 	char *pInputOrderField_OrderRef = nullptr;
 	char *pInputOrderField_UserID = nullptr;
 	char pInputOrderField_OrderPriceType = 0;
@@ -2849,12 +2938,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderField *pInputOrderField, PyObjec
 	char *pInputOrderField_AccountID = nullptr;
 	char *pInputOrderField_CurrencyID = nullptr;
 	char *pInputOrderField_ClientID = nullptr;
-	char *pInputOrderField_IPAddress = nullptr;
+	char *pInputOrderField_reserve2 = nullptr;
 	char *pInputOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputOrderField, "|yyyyyccyydicycicdciyiiiyyyyyyy")
+	char *pInputOrderField_InstrumentID = nullptr;
+	char *pInputOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputOrderField, "|yyyyyccyydicycicdciyiiiyyyyyyyyy")
 		, &pInputOrderField_BrokerID
 		, &pInputOrderField_InvestorID
-		, &pInputOrderField_InstrumentID
+		, &pInputOrderField_reserve1
 		, &pInputOrderField_OrderRef
 		, &pInputOrderField_UserID
 		, &pInputOrderField_OrderPriceType
@@ -2880,12 +2971,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderField *pInputOrderField, PyObjec
 		, &pInputOrderField_AccountID
 		, &pInputOrderField_CurrencyID
 		, &pInputOrderField_ClientID
-		, &pInputOrderField_IPAddress
+		, &pInputOrderField_reserve2
 		, &pInputOrderField_MacAddress
+		, &pInputOrderField_InstrumentID
+		, &pInputOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputOrderField_BrokerID != nullptr){ strcpy_s(pInputOrderField->BrokerID, pInputOrderField_BrokerID); pInputOrderField_BrokerID = nullptr; }
 		if(pInputOrderField_InvestorID != nullptr){ strcpy_s(pInputOrderField->InvestorID, pInputOrderField_InvestorID); pInputOrderField_InvestorID = nullptr; }
-		if(pInputOrderField_InstrumentID != nullptr){ strcpy_s(pInputOrderField->InstrumentID, pInputOrderField_InstrumentID); pInputOrderField_InstrumentID = nullptr; }
+		if(pInputOrderField_reserve1 != nullptr){ strcpy_s(pInputOrderField->reserve1, pInputOrderField_reserve1); pInputOrderField_reserve1 = nullptr; }
 		if(pInputOrderField_OrderRef != nullptr){ strcpy_s(pInputOrderField->OrderRef, pInputOrderField_OrderRef); pInputOrderField_OrderRef = nullptr; }
 		if(pInputOrderField_UserID != nullptr){ strcpy_s(pInputOrderField->UserID, pInputOrderField_UserID); pInputOrderField_UserID = nullptr; }
 		pInputOrderField->OrderPriceType = pInputOrderField_OrderPriceType;
@@ -2911,17 +3004,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderField *pInputOrderField, PyObjec
 		if(pInputOrderField_AccountID != nullptr){ strcpy_s(pInputOrderField->AccountID, pInputOrderField_AccountID); pInputOrderField_AccountID = nullptr; }
 		if(pInputOrderField_CurrencyID != nullptr){ strcpy_s(pInputOrderField->CurrencyID, pInputOrderField_CurrencyID); pInputOrderField_CurrencyID = nullptr; }
 		if(pInputOrderField_ClientID != nullptr){ strcpy_s(pInputOrderField->ClientID, pInputOrderField_ClientID); pInputOrderField_ClientID = nullptr; }
-		if(pInputOrderField_IPAddress != nullptr){ strcpy_s(pInputOrderField->IPAddress, pInputOrderField_IPAddress); pInputOrderField_IPAddress = nullptr; }
+		if(pInputOrderField_reserve2 != nullptr){ strcpy_s(pInputOrderField->reserve2, pInputOrderField_reserve2); pInputOrderField_reserve2 = nullptr; }
 		if(pInputOrderField_MacAddress != nullptr){ strcpy_s(pInputOrderField->MacAddress, pInputOrderField_MacAddress); pInputOrderField_MacAddress = nullptr; }
+		if(pInputOrderField_InstrumentID != nullptr){ strcpy_s(pInputOrderField->InstrumentID, pInputOrderField_InstrumentID); pInputOrderField_InstrumentID = nullptr; }
+		if(pInputOrderField_IPAddress != nullptr){ strcpy_s(pInputOrderField->IPAddress, pInputOrderField_IPAddress); pInputOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOrderField *pInputOrderField)
 {
 	if(pInputOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputOrderField->BrokerID
 		, "InvestorID", pInputOrderField->InvestorID
-		, "InstrumentID", pInputOrderField->InstrumentID
+		, "reserve1", pInputOrderField->reserve1
 		, "OrderRef", pInputOrderField->OrderRef
 		, "UserID", pInputOrderField->UserID
 		, "OrderPriceType", pInputOrderField->OrderPriceType
@@ -2947,17 +3042,19 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOrderField *pInputOrderField)
 		, "AccountID", pInputOrderField->AccountID
 		, "CurrencyID", pInputOrderField->CurrencyID
 		, "ClientID", pInputOrderField->ClientID
-		, "IPAddress", pInputOrderField->IPAddress
+		, "reserve2", pInputOrderField->reserve2
 		, "MacAddress", pInputOrderField->MacAddress
+		, "InstrumentID", pInputOrderField->InstrumentID
+		, "IPAddress", pInputOrderField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "OrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OrderSysID", "OrderSource", "OrderStatus", "OrderType", "VolumeTraded", "VolumeTotal", "InsertDate", "InsertTime", "ActiveTime", "SuspendTime", "UpdateTime", "CancelTime", "ActiveTraderID", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "UserForceClose", "ActiveUserID", "BrokerOrderSeq", "RelativeOrderSysID", "ZCETotalTradedVolume", "IsSwapOrder", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "OrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OrderSysID", "OrderSource", "OrderStatus", "OrderType", "VolumeTraded", "VolumeTotal", "InsertDate", "InsertTime", "ActiveTime", "SuspendTime", "UpdateTime", "CancelTime", "ActiveTraderID", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "UserForceClose", "ActiveUserID", "BrokerOrderSeq", "RelativeOrderSysID", "ZCETotalTradedVolume", "IsSwapOrder", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
 	char *pOrderField_BrokerID = nullptr;
 	char *pOrderField_InvestorID = nullptr;
-	char *pOrderField_InstrumentID = nullptr;
+	char *pOrderField_reserve1 = nullptr;
 	char *pOrderField_OrderRef = nullptr;
 	char *pOrderField_UserID = nullptr;
 	char pOrderField_OrderPriceType = 0;
@@ -2980,7 +3077,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 	char *pOrderField_ExchangeID = nullptr;
 	char *pOrderField_ParticipantID = nullptr;
 	char *pOrderField_ClientID = nullptr;
-	char *pOrderField_ExchangeInstID = nullptr;
+	char *pOrderField_reserve2 = nullptr;
 	char *pOrderField_TraderID = nullptr;
 	int pOrderField_InstallID = 0;
 	char pOrderField_OrderSubmitStatus = 0;
@@ -3016,12 +3113,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 	char *pOrderField_InvestUnitID = nullptr;
 	char *pOrderField_AccountID = nullptr;
 	char *pOrderField_CurrencyID = nullptr;
-	char *pOrderField_IPAddress = nullptr;
+	char *pOrderField_reserve3 = nullptr;
 	char *pOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pOrderField, "|yyyyyccyydicycicdciyiyyyyyyiciyiyccciiyyyyyyyyiiiyyiyiyiiyyyyyy")
+	char *pOrderField_InstrumentID = nullptr;
+	char *pOrderField_ExchangeInstID = nullptr;
+	char *pOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOrderField, "|yyyyyccyydicycicdciyiyyyyyyiciyiyccciiyyyyyyyyiiiyyiyiyiiyyyyyyyyy")
 		, &pOrderField_BrokerID
 		, &pOrderField_InvestorID
-		, &pOrderField_InstrumentID
+		, &pOrderField_reserve1
 		, &pOrderField_OrderRef
 		, &pOrderField_UserID
 		, &pOrderField_OrderPriceType
@@ -3044,7 +3144,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 		, &pOrderField_ExchangeID
 		, &pOrderField_ParticipantID
 		, &pOrderField_ClientID
-		, &pOrderField_ExchangeInstID
+		, &pOrderField_reserve2
 		, &pOrderField_TraderID
 		, &pOrderField_InstallID
 		, &pOrderField_OrderSubmitStatus
@@ -3080,12 +3180,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 		, &pOrderField_InvestUnitID
 		, &pOrderField_AccountID
 		, &pOrderField_CurrencyID
-		, &pOrderField_IPAddress
+		, &pOrderField_reserve3
 		, &pOrderField_MacAddress
+		, &pOrderField_InstrumentID
+		, &pOrderField_ExchangeInstID
+		, &pOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pOrderField_BrokerID != nullptr){ strcpy_s(pOrderField->BrokerID, pOrderField_BrokerID); pOrderField_BrokerID = nullptr; }
 		if(pOrderField_InvestorID != nullptr){ strcpy_s(pOrderField->InvestorID, pOrderField_InvestorID); pOrderField_InvestorID = nullptr; }
-		if(pOrderField_InstrumentID != nullptr){ strcpy_s(pOrderField->InstrumentID, pOrderField_InstrumentID); pOrderField_InstrumentID = nullptr; }
+		if(pOrderField_reserve1 != nullptr){ strcpy_s(pOrderField->reserve1, pOrderField_reserve1); pOrderField_reserve1 = nullptr; }
 		if(pOrderField_OrderRef != nullptr){ strcpy_s(pOrderField->OrderRef, pOrderField_OrderRef); pOrderField_OrderRef = nullptr; }
 		if(pOrderField_UserID != nullptr){ strcpy_s(pOrderField->UserID, pOrderField_UserID); pOrderField_UserID = nullptr; }
 		pOrderField->OrderPriceType = pOrderField_OrderPriceType;
@@ -3108,7 +3211,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 		if(pOrderField_ExchangeID != nullptr){ strcpy_s(pOrderField->ExchangeID, pOrderField_ExchangeID); pOrderField_ExchangeID = nullptr; }
 		if(pOrderField_ParticipantID != nullptr){ strcpy_s(pOrderField->ParticipantID, pOrderField_ParticipantID); pOrderField_ParticipantID = nullptr; }
 		if(pOrderField_ClientID != nullptr){ strcpy_s(pOrderField->ClientID, pOrderField_ClientID); pOrderField_ClientID = nullptr; }
-		if(pOrderField_ExchangeInstID != nullptr){ strcpy_s(pOrderField->ExchangeInstID, pOrderField_ExchangeInstID); pOrderField_ExchangeInstID = nullptr; }
+		if(pOrderField_reserve2 != nullptr){ strcpy_s(pOrderField->reserve2, pOrderField_reserve2); pOrderField_reserve2 = nullptr; }
 		if(pOrderField_TraderID != nullptr){ strcpy_s(pOrderField->TraderID, pOrderField_TraderID); pOrderField_TraderID = nullptr; }
 		pOrderField->InstallID = pOrderField_InstallID;
 		pOrderField->OrderSubmitStatus = pOrderField_OrderSubmitStatus;
@@ -3144,17 +3247,20 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict)
 		if(pOrderField_InvestUnitID != nullptr){ strcpy_s(pOrderField->InvestUnitID, pOrderField_InvestUnitID); pOrderField_InvestUnitID = nullptr; }
 		if(pOrderField_AccountID != nullptr){ strcpy_s(pOrderField->AccountID, pOrderField_AccountID); pOrderField_AccountID = nullptr; }
 		if(pOrderField_CurrencyID != nullptr){ strcpy_s(pOrderField->CurrencyID, pOrderField_CurrencyID); pOrderField_CurrencyID = nullptr; }
-		if(pOrderField_IPAddress != nullptr){ strcpy_s(pOrderField->IPAddress, pOrderField_IPAddress); pOrderField_IPAddress = nullptr; }
+		if(pOrderField_reserve3 != nullptr){ strcpy_s(pOrderField->reserve3, pOrderField_reserve3); pOrderField_reserve3 = nullptr; }
 		if(pOrderField_MacAddress != nullptr){ strcpy_s(pOrderField->MacAddress, pOrderField_MacAddress); pOrderField_MacAddress = nullptr; }
+		if(pOrderField_InstrumentID != nullptr){ strcpy_s(pOrderField->InstrumentID, pOrderField_InstrumentID); pOrderField_InstrumentID = nullptr; }
+		if(pOrderField_ExchangeInstID != nullptr){ strcpy_s(pOrderField->ExchangeInstID, pOrderField_ExchangeInstID); pOrderField_ExchangeInstID = nullptr; }
+		if(pOrderField_IPAddress != nullptr){ strcpy_s(pOrderField->IPAddress, pOrderField_IPAddress); pOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderField *pOrderField)
 {
 	if(pOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:c,s:c,s:c,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:i,s:y,s:y,s:i,s:y,s:i,s:y,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:c,s:c,s:c,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:i,s:y,s:y,s:i,s:y,s:i,s:y,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pOrderField->BrokerID
 		, "InvestorID", pOrderField->InvestorID
-		, "InstrumentID", pOrderField->InstrumentID
+		, "reserve1", pOrderField->reserve1
 		, "OrderRef", pOrderField->OrderRef
 		, "UserID", pOrderField->UserID
 		, "OrderPriceType", pOrderField->OrderPriceType
@@ -3177,7 +3283,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderField *pOrderField)
 		, "ExchangeID", pOrderField->ExchangeID
 		, "ParticipantID", pOrderField->ParticipantID
 		, "ClientID", pOrderField->ClientID
-		, "ExchangeInstID", pOrderField->ExchangeInstID
+		, "reserve2", pOrderField->reserve2
 		, "TraderID", pOrderField->TraderID
 		, "InstallID", pOrderField->InstallID
 		, "OrderSubmitStatus", pOrderField->OrderSubmitStatus
@@ -3213,14 +3319,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderField *pOrderField)
 		, "InvestUnitID", pOrderField->InvestUnitID
 		, "AccountID", pOrderField->AccountID
 		, "CurrencyID", pOrderField->CurrencyID
-		, "IPAddress", pOrderField->IPAddress
+		, "reserve3", pOrderField->reserve3
 		, "MacAddress", pOrderField->MacAddress
+		, "InstrumentID", pOrderField->InstrumentID
+		, "ExchangeInstID", pOrderField->ExchangeInstID
+		, "IPAddress", pOrderField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "OrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OrderSysID", "OrderSource", "OrderStatus", "OrderType", "VolumeTraded", "VolumeTotal", "InsertDate", "InsertTime", "ActiveTime", "SuspendTime", "UpdateTime", "CancelTime", "ActiveTraderID", "ClearingPartID", "SequenceNo", "BranchID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "OrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve1", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OrderSysID", "OrderSource", "OrderStatus", "OrderType", "VolumeTraded", "VolumeTotal", "InsertDate", "InsertTime", "ActiveTime", "SuspendTime", "UpdateTime", "CancelTime", "ActiveTraderID", "ClearingPartID", "SequenceNo", "BranchID", "reserve2", "MacAddress", "ExchangeInstID", "IPAddress", nullptr};
 	char pExchangeOrderField_OrderPriceType = 0;
 	char pExchangeOrderField_Direction = 0;
 	char *pExchangeOrderField_CombOffsetFlag = nullptr;
@@ -3241,7 +3350,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, P
 	char *pExchangeOrderField_ExchangeID = nullptr;
 	char *pExchangeOrderField_ParticipantID = nullptr;
 	char *pExchangeOrderField_ClientID = nullptr;
-	char *pExchangeOrderField_ExchangeInstID = nullptr;
+	char *pExchangeOrderField_reserve1 = nullptr;
 	char *pExchangeOrderField_TraderID = nullptr;
 	int pExchangeOrderField_InstallID = 0;
 	char pExchangeOrderField_OrderSubmitStatus = 0;
@@ -3264,9 +3373,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, P
 	char *pExchangeOrderField_ClearingPartID = nullptr;
 	int pExchangeOrderField_SequenceNo = 0;
 	char *pExchangeOrderField_BranchID = nullptr;
-	char *pExchangeOrderField_IPAddress = nullptr;
+	char *pExchangeOrderField_reserve2 = nullptr;
 	char *pExchangeOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOrderField, "|ccyydicycicdciyiyyyyyyiciyiyccciiyyyyyyyyiyyy")
+	char *pExchangeOrderField_ExchangeInstID = nullptr;
+	char *pExchangeOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOrderField, "|ccyydicycicdciyiyyyyyyiciyiyccciiyyyyyyyyiyyyyy")
 		, &pExchangeOrderField_OrderPriceType
 		, &pExchangeOrderField_Direction
 		, &pExchangeOrderField_CombOffsetFlag
@@ -3287,7 +3398,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, P
 		, &pExchangeOrderField_ExchangeID
 		, &pExchangeOrderField_ParticipantID
 		, &pExchangeOrderField_ClientID
-		, &pExchangeOrderField_ExchangeInstID
+		, &pExchangeOrderField_reserve1
 		, &pExchangeOrderField_TraderID
 		, &pExchangeOrderField_InstallID
 		, &pExchangeOrderField_OrderSubmitStatus
@@ -3310,8 +3421,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, P
 		, &pExchangeOrderField_ClearingPartID
 		, &pExchangeOrderField_SequenceNo
 		, &pExchangeOrderField_BranchID
-		, &pExchangeOrderField_IPAddress
+		, &pExchangeOrderField_reserve2
 		, &pExchangeOrderField_MacAddress
+		, &pExchangeOrderField_ExchangeInstID
+		, &pExchangeOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		pExchangeOrderField->OrderPriceType = pExchangeOrderField_OrderPriceType;
 		pExchangeOrderField->Direction = pExchangeOrderField_Direction;
@@ -3333,7 +3446,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, P
 		if(pExchangeOrderField_ExchangeID != nullptr){ strcpy_s(pExchangeOrderField->ExchangeID, pExchangeOrderField_ExchangeID); pExchangeOrderField_ExchangeID = nullptr; }
 		if(pExchangeOrderField_ParticipantID != nullptr){ strcpy_s(pExchangeOrderField->ParticipantID, pExchangeOrderField_ParticipantID); pExchangeOrderField_ParticipantID = nullptr; }
 		if(pExchangeOrderField_ClientID != nullptr){ strcpy_s(pExchangeOrderField->ClientID, pExchangeOrderField_ClientID); pExchangeOrderField_ClientID = nullptr; }
-		if(pExchangeOrderField_ExchangeInstID != nullptr){ strcpy_s(pExchangeOrderField->ExchangeInstID, pExchangeOrderField_ExchangeInstID); pExchangeOrderField_ExchangeInstID = nullptr; }
+		if(pExchangeOrderField_reserve1 != nullptr){ strcpy_s(pExchangeOrderField->reserve1, pExchangeOrderField_reserve1); pExchangeOrderField_reserve1 = nullptr; }
 		if(pExchangeOrderField_TraderID != nullptr){ strcpy_s(pExchangeOrderField->TraderID, pExchangeOrderField_TraderID); pExchangeOrderField_TraderID = nullptr; }
 		pExchangeOrderField->InstallID = pExchangeOrderField_InstallID;
 		pExchangeOrderField->OrderSubmitStatus = pExchangeOrderField_OrderSubmitStatus;
@@ -3356,14 +3469,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, P
 		if(pExchangeOrderField_ClearingPartID != nullptr){ strcpy_s(pExchangeOrderField->ClearingPartID, pExchangeOrderField_ClearingPartID); pExchangeOrderField_ClearingPartID = nullptr; }
 		pExchangeOrderField->SequenceNo = pExchangeOrderField_SequenceNo;
 		if(pExchangeOrderField_BranchID != nullptr){ strcpy_s(pExchangeOrderField->BranchID, pExchangeOrderField_BranchID); pExchangeOrderField_BranchID = nullptr; }
-		if(pExchangeOrderField_IPAddress != nullptr){ strcpy_s(pExchangeOrderField->IPAddress, pExchangeOrderField_IPAddress); pExchangeOrderField_IPAddress = nullptr; }
+		if(pExchangeOrderField_reserve2 != nullptr){ strcpy_s(pExchangeOrderField->reserve2, pExchangeOrderField_reserve2); pExchangeOrderField_reserve2 = nullptr; }
 		if(pExchangeOrderField_MacAddress != nullptr){ strcpy_s(pExchangeOrderField->MacAddress, pExchangeOrderField_MacAddress); pExchangeOrderField_MacAddress = nullptr; }
+		if(pExchangeOrderField_ExchangeInstID != nullptr){ strcpy_s(pExchangeOrderField->ExchangeInstID, pExchangeOrderField_ExchangeInstID); pExchangeOrderField_ExchangeInstID = nullptr; }
+		if(pExchangeOrderField_IPAddress != nullptr){ strcpy_s(pExchangeOrderField->IPAddress, pExchangeOrderField_IPAddress); pExchangeOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderField *pExchangeOrderField)
 {
 	if(pExchangeOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:c,s:c,s:c,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:c,s:c,s:c,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y}"
 		, "OrderPriceType", pExchangeOrderField->OrderPriceType
 		, "Direction", pExchangeOrderField->Direction
 		, "CombOffsetFlag", pExchangeOrderField->CombOffsetFlag
@@ -3384,7 +3499,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderField *pExchangeOrderFi
 		, "ExchangeID", pExchangeOrderField->ExchangeID
 		, "ParticipantID", pExchangeOrderField->ParticipantID
 		, "ClientID", pExchangeOrderField->ClientID
-		, "ExchangeInstID", pExchangeOrderField->ExchangeInstID
+		, "reserve1", pExchangeOrderField->reserve1
 		, "TraderID", pExchangeOrderField->TraderID
 		, "InstallID", pExchangeOrderField->InstallID
 		, "OrderSubmitStatus", pExchangeOrderField->OrderSubmitStatus
@@ -3407,8 +3522,10 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderField *pExchangeOrderFi
 		, "ClearingPartID", pExchangeOrderField->ClearingPartID
 		, "SequenceNo", pExchangeOrderField->SequenceNo
 		, "BranchID", pExchangeOrderField->BranchID
-		, "IPAddress", pExchangeOrderField->IPAddress
+		, "reserve2", pExchangeOrderField->reserve2
 		, "MacAddress", pExchangeOrderField->MacAddress
+		, "ExchangeInstID", pExchangeOrderField->ExchangeInstID
+		, "IPAddress", pExchangeOrderField->IPAddress
 		);
 }
 
@@ -3456,7 +3573,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderInsertErrorField *pExch
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderActionField *pInputOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "UserID", "InstrumentID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "UserID", "reserve1", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputOrderActionField_BrokerID = nullptr;
 	char *pInputOrderActionField_InvestorID = nullptr;
 	int pInputOrderActionField_OrderActionRef = 0;
@@ -3470,11 +3587,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderActionField *pInputOrderActionFi
 	double pInputOrderActionField_LimitPrice = 0.0;
 	int pInputOrderActionField_VolumeChange = 0;
 	char *pInputOrderActionField_UserID = nullptr;
-	char *pInputOrderActionField_InstrumentID = nullptr;
+	char *pInputOrderActionField_reserve1 = nullptr;
 	char *pInputOrderActionField_InvestUnitID = nullptr;
-	char *pInputOrderActionField_IPAddress = nullptr;
+	char *pInputOrderActionField_reserve2 = nullptr;
 	char *pInputOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputOrderActionField, "|yyiyiiiyycdiyyyyy")
+	char *pInputOrderActionField_InstrumentID = nullptr;
+	char *pInputOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputOrderActionField, "|yyiyiiiyycdiyyyyyyy")
 		, &pInputOrderActionField_BrokerID
 		, &pInputOrderActionField_InvestorID
 		, &pInputOrderActionField_OrderActionRef
@@ -3488,10 +3607,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderActionField *pInputOrderActionFi
 		, &pInputOrderActionField_LimitPrice
 		, &pInputOrderActionField_VolumeChange
 		, &pInputOrderActionField_UserID
-		, &pInputOrderActionField_InstrumentID
+		, &pInputOrderActionField_reserve1
 		, &pInputOrderActionField_InvestUnitID
-		, &pInputOrderActionField_IPAddress
+		, &pInputOrderActionField_reserve2
 		, &pInputOrderActionField_MacAddress
+		, &pInputOrderActionField_InstrumentID
+		, &pInputOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputOrderActionField_BrokerID != nullptr){ strcpy_s(pInputOrderActionField->BrokerID, pInputOrderActionField_BrokerID); pInputOrderActionField_BrokerID = nullptr; }
 		if(pInputOrderActionField_InvestorID != nullptr){ strcpy_s(pInputOrderActionField->InvestorID, pInputOrderActionField_InvestorID); pInputOrderActionField_InvestorID = nullptr; }
@@ -3506,16 +3627,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderActionField *pInputOrderActionFi
 		pInputOrderActionField->LimitPrice = pInputOrderActionField_LimitPrice;
 		pInputOrderActionField->VolumeChange = pInputOrderActionField_VolumeChange;
 		if(pInputOrderActionField_UserID != nullptr){ strcpy_s(pInputOrderActionField->UserID, pInputOrderActionField_UserID); pInputOrderActionField_UserID = nullptr; }
-		if(pInputOrderActionField_InstrumentID != nullptr){ strcpy_s(pInputOrderActionField->InstrumentID, pInputOrderActionField_InstrumentID); pInputOrderActionField_InstrumentID = nullptr; }
+		if(pInputOrderActionField_reserve1 != nullptr){ strcpy_s(pInputOrderActionField->reserve1, pInputOrderActionField_reserve1); pInputOrderActionField_reserve1 = nullptr; }
 		if(pInputOrderActionField_InvestUnitID != nullptr){ strcpy_s(pInputOrderActionField->InvestUnitID, pInputOrderActionField_InvestUnitID); pInputOrderActionField_InvestUnitID = nullptr; }
-		if(pInputOrderActionField_IPAddress != nullptr){ strcpy_s(pInputOrderActionField->IPAddress, pInputOrderActionField_IPAddress); pInputOrderActionField_IPAddress = nullptr; }
+		if(pInputOrderActionField_reserve2 != nullptr){ strcpy_s(pInputOrderActionField->reserve2, pInputOrderActionField_reserve2); pInputOrderActionField_reserve2 = nullptr; }
 		if(pInputOrderActionField_MacAddress != nullptr){ strcpy_s(pInputOrderActionField->MacAddress, pInputOrderActionField_MacAddress); pInputOrderActionField_MacAddress = nullptr; }
+		if(pInputOrderActionField_InstrumentID != nullptr){ strcpy_s(pInputOrderActionField->InstrumentID, pInputOrderActionField_InstrumentID); pInputOrderActionField_InstrumentID = nullptr; }
+		if(pInputOrderActionField_IPAddress != nullptr){ strcpy_s(pInputOrderActionField->IPAddress, pInputOrderActionField_IPAddress); pInputOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOrderActionField *pInputOrderActionField)
 {
 	if(pInputOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputOrderActionField->BrokerID
 		, "InvestorID", pInputOrderActionField->InvestorID
 		, "OrderActionRef", pInputOrderActionField->OrderActionRef
@@ -3529,16 +3652,18 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOrderActionField *pInputOrderAc
 		, "LimitPrice", pInputOrderActionField->LimitPrice
 		, "VolumeChange", pInputOrderActionField->VolumeChange
 		, "UserID", pInputOrderActionField->UserID
-		, "InstrumentID", pInputOrderActionField->InstrumentID
+		, "reserve1", pInputOrderActionField->reserve1
 		, "InvestUnitID", pInputOrderActionField->InvestUnitID
-		, "IPAddress", pInputOrderActionField->IPAddress
+		, "reserve2", pInputOrderActionField->reserve2
 		, "MacAddress", pInputOrderActionField->MacAddress
+		, "InstrumentID", pInputOrderActionField->InstrumentID
+		, "IPAddress", pInputOrderActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOrderActionField *pOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "ActionDate", "ActionTime", "TraderID", "InstallID", "OrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "InstrumentID", "BranchID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "ActionDate", "ActionTime", "TraderID", "InstallID", "OrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "reserve1", "BranchID", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pOrderActionField_BrokerID = nullptr;
 	char *pOrderActionField_InvestorID = nullptr;
 	int pOrderActionField_OrderActionRef = 0;
@@ -3563,12 +3688,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderActionField *pOrderActionField, PyObj
 	char pOrderActionField_OrderActionStatus = 0;
 	char *pOrderActionField_UserID = nullptr;
 	char *pOrderActionField_StatusMsg = nullptr;
-	char *pOrderActionField_InstrumentID = nullptr;
+	char *pOrderActionField_reserve1 = nullptr;
 	char *pOrderActionField_BranchID = nullptr;
 	char *pOrderActionField_InvestUnitID = nullptr;
-	char *pOrderActionField_IPAddress = nullptr;
+	char *pOrderActionField_reserve2 = nullptr;
 	char *pOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pOrderActionField, "|yyiyiiiyycdiyyyiyyyyycyyyyyyy")
+	char *pOrderActionField_InstrumentID = nullptr;
+	char *pOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOrderActionField, "|yyiyiiiyycdiyyyiyyyyycyyyyyyyyy")
 		, &pOrderActionField_BrokerID
 		, &pOrderActionField_InvestorID
 		, &pOrderActionField_OrderActionRef
@@ -3593,11 +3720,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderActionField *pOrderActionField, PyObj
 		, &pOrderActionField_OrderActionStatus
 		, &pOrderActionField_UserID
 		, &pOrderActionField_StatusMsg
-		, &pOrderActionField_InstrumentID
+		, &pOrderActionField_reserve1
 		, &pOrderActionField_BranchID
 		, &pOrderActionField_InvestUnitID
-		, &pOrderActionField_IPAddress
+		, &pOrderActionField_reserve2
 		, &pOrderActionField_MacAddress
+		, &pOrderActionField_InstrumentID
+		, &pOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pOrderActionField_BrokerID != nullptr){ strcpy_s(pOrderActionField->BrokerID, pOrderActionField_BrokerID); pOrderActionField_BrokerID = nullptr; }
 		if(pOrderActionField_InvestorID != nullptr){ strcpy_s(pOrderActionField->InvestorID, pOrderActionField_InvestorID); pOrderActionField_InvestorID = nullptr; }
@@ -3623,17 +3752,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOrderActionField *pOrderActionField, PyObj
 		pOrderActionField->OrderActionStatus = pOrderActionField_OrderActionStatus;
 		if(pOrderActionField_UserID != nullptr){ strcpy_s(pOrderActionField->UserID, pOrderActionField_UserID); pOrderActionField_UserID = nullptr; }
 		if(pOrderActionField_StatusMsg != nullptr){ strcpy_s(pOrderActionField->StatusMsg, pOrderActionField_StatusMsg); pOrderActionField_StatusMsg = nullptr; }
-		if(pOrderActionField_InstrumentID != nullptr){ strcpy_s(pOrderActionField->InstrumentID, pOrderActionField_InstrumentID); pOrderActionField_InstrumentID = nullptr; }
+		if(pOrderActionField_reserve1 != nullptr){ strcpy_s(pOrderActionField->reserve1, pOrderActionField_reserve1); pOrderActionField_reserve1 = nullptr; }
 		if(pOrderActionField_BranchID != nullptr){ strcpy_s(pOrderActionField->BranchID, pOrderActionField_BranchID); pOrderActionField_BranchID = nullptr; }
 		if(pOrderActionField_InvestUnitID != nullptr){ strcpy_s(pOrderActionField->InvestUnitID, pOrderActionField_InvestUnitID); pOrderActionField_InvestUnitID = nullptr; }
-		if(pOrderActionField_IPAddress != nullptr){ strcpy_s(pOrderActionField->IPAddress, pOrderActionField_IPAddress); pOrderActionField_IPAddress = nullptr; }
+		if(pOrderActionField_reserve2 != nullptr){ strcpy_s(pOrderActionField->reserve2, pOrderActionField_reserve2); pOrderActionField_reserve2 = nullptr; }
 		if(pOrderActionField_MacAddress != nullptr){ strcpy_s(pOrderActionField->MacAddress, pOrderActionField_MacAddress); pOrderActionField_MacAddress = nullptr; }
+		if(pOrderActionField_InstrumentID != nullptr){ strcpy_s(pOrderActionField->InstrumentID, pOrderActionField_InstrumentID); pOrderActionField_InstrumentID = nullptr; }
+		if(pOrderActionField_IPAddress != nullptr){ strcpy_s(pOrderActionField->IPAddress, pOrderActionField_IPAddress); pOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderActionField *pOrderActionField)
 {
 	if(pOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pOrderActionField->BrokerID
 		, "InvestorID", pOrderActionField->InvestorID
 		, "OrderActionRef", pOrderActionField->OrderActionRef
@@ -3658,17 +3789,19 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderActionField *pOrderActionField)
 		, "OrderActionStatus", pOrderActionField->OrderActionStatus
 		, "UserID", pOrderActionField->UserID
 		, "StatusMsg", pOrderActionField->StatusMsg
-		, "InstrumentID", pOrderActionField->InstrumentID
+		, "reserve1", pOrderActionField->reserve1
 		, "BranchID", pOrderActionField->BranchID
 		, "InvestUnitID", pOrderActionField->InvestUnitID
-		, "IPAddress", pOrderActionField->IPAddress
+		, "reserve2", pOrderActionField->reserve2
 		, "MacAddress", pOrderActionField->MacAddress
+		, "InstrumentID", pOrderActionField->InstrumentID
+		, "IPAddress", pOrderActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionField *pExchangeOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "ActionDate", "ActionTime", "TraderID", "InstallID", "OrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "BranchID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "ActionDate", "ActionTime", "TraderID", "InstallID", "OrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "BranchID", "reserve1", "MacAddress", "IPAddress", nullptr};
 	char *pExchangeOrderActionField_ExchangeID = nullptr;
 	char *pExchangeOrderActionField_OrderSysID = nullptr;
 	char pExchangeOrderActionField_ActionFlag = 0;
@@ -3686,9 +3819,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionField *pExchangeOrderAc
 	char pExchangeOrderActionField_OrderActionStatus = 0;
 	char *pExchangeOrderActionField_UserID = nullptr;
 	char *pExchangeOrderActionField_BranchID = nullptr;
-	char *pExchangeOrderActionField_IPAddress = nullptr;
+	char *pExchangeOrderActionField_reserve1 = nullptr;
 	char *pExchangeOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOrderActionField, "|yycdiyyyiyyyyycyyyy")
+	char *pExchangeOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOrderActionField, "|yycdiyyyiyyyyycyyyyy")
 		, &pExchangeOrderActionField_ExchangeID
 		, &pExchangeOrderActionField_OrderSysID
 		, &pExchangeOrderActionField_ActionFlag
@@ -3706,8 +3840,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionField *pExchangeOrderAc
 		, &pExchangeOrderActionField_OrderActionStatus
 		, &pExchangeOrderActionField_UserID
 		, &pExchangeOrderActionField_BranchID
-		, &pExchangeOrderActionField_IPAddress
+		, &pExchangeOrderActionField_reserve1
 		, &pExchangeOrderActionField_MacAddress
+		, &pExchangeOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeOrderActionField_ExchangeID != nullptr){ strcpy_s(pExchangeOrderActionField->ExchangeID, pExchangeOrderActionField_ExchangeID); pExchangeOrderActionField_ExchangeID = nullptr; }
 		if(pExchangeOrderActionField_OrderSysID != nullptr){ strcpy_s(pExchangeOrderActionField->OrderSysID, pExchangeOrderActionField_OrderSysID); pExchangeOrderActionField_OrderSysID = nullptr; }
@@ -3726,14 +3861,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionField *pExchangeOrderAc
 		pExchangeOrderActionField->OrderActionStatus = pExchangeOrderActionField_OrderActionStatus;
 		if(pExchangeOrderActionField_UserID != nullptr){ strcpy_s(pExchangeOrderActionField->UserID, pExchangeOrderActionField_UserID); pExchangeOrderActionField_UserID = nullptr; }
 		if(pExchangeOrderActionField_BranchID != nullptr){ strcpy_s(pExchangeOrderActionField->BranchID, pExchangeOrderActionField_BranchID); pExchangeOrderActionField_BranchID = nullptr; }
-		if(pExchangeOrderActionField_IPAddress != nullptr){ strcpy_s(pExchangeOrderActionField->IPAddress, pExchangeOrderActionField_IPAddress); pExchangeOrderActionField_IPAddress = nullptr; }
+		if(pExchangeOrderActionField_reserve1 != nullptr){ strcpy_s(pExchangeOrderActionField->reserve1, pExchangeOrderActionField_reserve1); pExchangeOrderActionField_reserve1 = nullptr; }
 		if(pExchangeOrderActionField_MacAddress != nullptr){ strcpy_s(pExchangeOrderActionField->MacAddress, pExchangeOrderActionField_MacAddress); pExchangeOrderActionField_MacAddress = nullptr; }
+		if(pExchangeOrderActionField_IPAddress != nullptr){ strcpy_s(pExchangeOrderActionField->IPAddress, pExchangeOrderActionField_IPAddress); pExchangeOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderActionField *pExchangeOrderActionField)
 {
 	if(pExchangeOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y}"
 		, "ExchangeID", pExchangeOrderActionField->ExchangeID
 		, "OrderSysID", pExchangeOrderActionField->OrderSysID
 		, "ActionFlag", pExchangeOrderActionField->ActionFlag
@@ -3751,8 +3887,9 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderActionField *pExchangeO
 		, "OrderActionStatus", pExchangeOrderActionField->OrderActionStatus
 		, "UserID", pExchangeOrderActionField->UserID
 		, "BranchID", pExchangeOrderActionField->BranchID
-		, "IPAddress", pExchangeOrderActionField->IPAddress
+		, "reserve1", pExchangeOrderActionField->reserve1
 		, "MacAddress", pExchangeOrderActionField->MacAddress
+		, "IPAddress", pExchangeOrderActionField->IPAddress
 		);
 }
 
@@ -3804,7 +3941,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderActionErrorField *pExch
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TradeID", "Direction", "OrderSysID", "ParticipantID", "ClientID", "TradingRole", "ExchangeInstID", "OffsetFlag", "HedgeFlag", "Price", "Volume", "TradeDate", "TradeTime", "TradeType", "PriceSource", "TraderID", "OrderLocalID", "ClearingPartID", "BusinessUnit", "SequenceNo", "TradeSource", nullptr};
+	static char *kwlist[] = {"ExchangeID", "TradeID", "Direction", "OrderSysID", "ParticipantID", "ClientID", "TradingRole", "reserve1", "OffsetFlag", "HedgeFlag", "Price", "Volume", "TradeDate", "TradeTime", "TradeType", "PriceSource", "TraderID", "OrderLocalID", "ClearingPartID", "BusinessUnit", "SequenceNo", "TradeSource", "ExchangeInstID", nullptr};
 	char *pExchangeTradeField_ExchangeID = nullptr;
 	char *pExchangeTradeField_TradeID = nullptr;
 	char pExchangeTradeField_Direction = 0;
@@ -3812,7 +3949,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, P
 	char *pExchangeTradeField_ParticipantID = nullptr;
 	char *pExchangeTradeField_ClientID = nullptr;
 	char pExchangeTradeField_TradingRole = 0;
-	char *pExchangeTradeField_ExchangeInstID = nullptr;
+	char *pExchangeTradeField_reserve1 = nullptr;
 	char pExchangeTradeField_OffsetFlag = 0;
 	char pExchangeTradeField_HedgeFlag = 0;
 	double pExchangeTradeField_Price = 0.0;
@@ -3827,7 +3964,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, P
 	char *pExchangeTradeField_BusinessUnit = nullptr;
 	int pExchangeTradeField_SequenceNo = 0;
 	char pExchangeTradeField_TradeSource = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeTradeField, "|yycyyycyccdiyyccyyyyic")
+	char *pExchangeTradeField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeTradeField, "|yycyyycyccdiyyccyyyyicy")
 		, &pExchangeTradeField_ExchangeID
 		, &pExchangeTradeField_TradeID
 		, &pExchangeTradeField_Direction
@@ -3835,7 +3973,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, P
 		, &pExchangeTradeField_ParticipantID
 		, &pExchangeTradeField_ClientID
 		, &pExchangeTradeField_TradingRole
-		, &pExchangeTradeField_ExchangeInstID
+		, &pExchangeTradeField_reserve1
 		, &pExchangeTradeField_OffsetFlag
 		, &pExchangeTradeField_HedgeFlag
 		, &pExchangeTradeField_Price
@@ -3850,6 +3988,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, P
 		, &pExchangeTradeField_BusinessUnit
 		, &pExchangeTradeField_SequenceNo
 		, &pExchangeTradeField_TradeSource
+		, &pExchangeTradeField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeTradeField_ExchangeID != nullptr){ strcpy_s(pExchangeTradeField->ExchangeID, pExchangeTradeField_ExchangeID); pExchangeTradeField_ExchangeID = nullptr; }
 		if(pExchangeTradeField_TradeID != nullptr){ strcpy_s(pExchangeTradeField->TradeID, pExchangeTradeField_TradeID); pExchangeTradeField_TradeID = nullptr; }
@@ -3858,7 +3997,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, P
 		if(pExchangeTradeField_ParticipantID != nullptr){ strcpy_s(pExchangeTradeField->ParticipantID, pExchangeTradeField_ParticipantID); pExchangeTradeField_ParticipantID = nullptr; }
 		if(pExchangeTradeField_ClientID != nullptr){ strcpy_s(pExchangeTradeField->ClientID, pExchangeTradeField_ClientID); pExchangeTradeField_ClientID = nullptr; }
 		pExchangeTradeField->TradingRole = pExchangeTradeField_TradingRole;
-		if(pExchangeTradeField_ExchangeInstID != nullptr){ strcpy_s(pExchangeTradeField->ExchangeInstID, pExchangeTradeField_ExchangeInstID); pExchangeTradeField_ExchangeInstID = nullptr; }
+		if(pExchangeTradeField_reserve1 != nullptr){ strcpy_s(pExchangeTradeField->reserve1, pExchangeTradeField_reserve1); pExchangeTradeField_reserve1 = nullptr; }
 		pExchangeTradeField->OffsetFlag = pExchangeTradeField_OffsetFlag;
 		pExchangeTradeField->HedgeFlag = pExchangeTradeField_HedgeFlag;
 		pExchangeTradeField->Price = pExchangeTradeField_Price;
@@ -3873,12 +4012,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, P
 		if(pExchangeTradeField_BusinessUnit != nullptr){ strcpy_s(pExchangeTradeField->BusinessUnit, pExchangeTradeField_BusinessUnit); pExchangeTradeField_BusinessUnit = nullptr; }
 		pExchangeTradeField->SequenceNo = pExchangeTradeField_SequenceNo;
 		pExchangeTradeField->TradeSource = pExchangeTradeField_TradeSource;
+		if(pExchangeTradeField_ExchangeInstID != nullptr){ strcpy_s(pExchangeTradeField->ExchangeInstID, pExchangeTradeField_ExchangeInstID); pExchangeTradeField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeTradeField *pExchangeTradeField)
 {
 	if(pExchangeTradeField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:c,s:y,s:c,s:c,s:d,s:i,s:y,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:i,s:c}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:c,s:y,s:c,s:c,s:d,s:i,s:y,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:i,s:c,s:y}"
 		, "ExchangeID", pExchangeTradeField->ExchangeID
 		, "TradeID", pExchangeTradeField->TradeID
 		, "Direction", pExchangeTradeField->Direction
@@ -3886,7 +4026,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeTradeField *pExchangeTradeFi
 		, "ParticipantID", pExchangeTradeField->ParticipantID
 		, "ClientID", pExchangeTradeField->ClientID
 		, "TradingRole", pExchangeTradeField->TradingRole
-		, "ExchangeInstID", pExchangeTradeField->ExchangeInstID
+		, "reserve1", pExchangeTradeField->reserve1
 		, "OffsetFlag", pExchangeTradeField->OffsetFlag
 		, "HedgeFlag", pExchangeTradeField->HedgeFlag
 		, "Price", pExchangeTradeField->Price
@@ -3901,15 +4041,16 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeTradeField *pExchangeTradeFi
 		, "BusinessUnit", pExchangeTradeField->BusinessUnit
 		, "SequenceNo", pExchangeTradeField->SequenceNo
 		, "TradeSource", pExchangeTradeField->TradeSource
+		, "ExchangeInstID", pExchangeTradeField->ExchangeInstID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OrderRef", "UserID", "ExchangeID", "TradeID", "Direction", "OrderSysID", "ParticipantID", "ClientID", "TradingRole", "ExchangeInstID", "OffsetFlag", "HedgeFlag", "Price", "Volume", "TradeDate", "TradeTime", "TradeType", "PriceSource", "TraderID", "OrderLocalID", "ClearingPartID", "BusinessUnit", "SequenceNo", "TradingDay", "SettlementID", "BrokerOrderSeq", "TradeSource", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OrderRef", "UserID", "ExchangeID", "TradeID", "Direction", "OrderSysID", "ParticipantID", "ClientID", "TradingRole", "reserve2", "OffsetFlag", "HedgeFlag", "Price", "Volume", "TradeDate", "TradeTime", "TradeType", "PriceSource", "TraderID", "OrderLocalID", "ClearingPartID", "BusinessUnit", "SequenceNo", "TradingDay", "SettlementID", "BrokerOrderSeq", "TradeSource", "InvestUnitID", "InstrumentID", "ExchangeInstID", nullptr};
 	char *pTradeField_BrokerID = nullptr;
 	char *pTradeField_InvestorID = nullptr;
-	char *pTradeField_InstrumentID = nullptr;
+	char *pTradeField_reserve1 = nullptr;
 	char *pTradeField_OrderRef = nullptr;
 	char *pTradeField_UserID = nullptr;
 	char *pTradeField_ExchangeID = nullptr;
@@ -3919,7 +4060,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 	char *pTradeField_ParticipantID = nullptr;
 	char *pTradeField_ClientID = nullptr;
 	char pTradeField_TradingRole = 0;
-	char *pTradeField_ExchangeInstID = nullptr;
+	char *pTradeField_reserve2 = nullptr;
 	char pTradeField_OffsetFlag = 0;
 	char pTradeField_HedgeFlag = 0;
 	double pTradeField_Price = 0.0;
@@ -3938,10 +4079,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 	int pTradeField_BrokerOrderSeq = 0;
 	char pTradeField_TradeSource = 0;
 	char *pTradeField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pTradeField, "|yyyyyyycyyycyccdiyyccyyyyiyiicy")
+	char *pTradeField_InstrumentID = nullptr;
+	char *pTradeField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pTradeField, "|yyyyyyycyyycyccdiyyccyyyyiyiicyyy")
 		, &pTradeField_BrokerID
 		, &pTradeField_InvestorID
-		, &pTradeField_InstrumentID
+		, &pTradeField_reserve1
 		, &pTradeField_OrderRef
 		, &pTradeField_UserID
 		, &pTradeField_ExchangeID
@@ -3951,7 +4094,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 		, &pTradeField_ParticipantID
 		, &pTradeField_ClientID
 		, &pTradeField_TradingRole
-		, &pTradeField_ExchangeInstID
+		, &pTradeField_reserve2
 		, &pTradeField_OffsetFlag
 		, &pTradeField_HedgeFlag
 		, &pTradeField_Price
@@ -3970,10 +4113,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 		, &pTradeField_BrokerOrderSeq
 		, &pTradeField_TradeSource
 		, &pTradeField_InvestUnitID
+		, &pTradeField_InstrumentID
+		, &pTradeField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pTradeField_BrokerID != nullptr){ strcpy_s(pTradeField->BrokerID, pTradeField_BrokerID); pTradeField_BrokerID = nullptr; }
 		if(pTradeField_InvestorID != nullptr){ strcpy_s(pTradeField->InvestorID, pTradeField_InvestorID); pTradeField_InvestorID = nullptr; }
-		if(pTradeField_InstrumentID != nullptr){ strcpy_s(pTradeField->InstrumentID, pTradeField_InstrumentID); pTradeField_InstrumentID = nullptr; }
+		if(pTradeField_reserve1 != nullptr){ strcpy_s(pTradeField->reserve1, pTradeField_reserve1); pTradeField_reserve1 = nullptr; }
 		if(pTradeField_OrderRef != nullptr){ strcpy_s(pTradeField->OrderRef, pTradeField_OrderRef); pTradeField_OrderRef = nullptr; }
 		if(pTradeField_UserID != nullptr){ strcpy_s(pTradeField->UserID, pTradeField_UserID); pTradeField_UserID = nullptr; }
 		if(pTradeField_ExchangeID != nullptr){ strcpy_s(pTradeField->ExchangeID, pTradeField_ExchangeID); pTradeField_ExchangeID = nullptr; }
@@ -3983,7 +4128,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 		if(pTradeField_ParticipantID != nullptr){ strcpy_s(pTradeField->ParticipantID, pTradeField_ParticipantID); pTradeField_ParticipantID = nullptr; }
 		if(pTradeField_ClientID != nullptr){ strcpy_s(pTradeField->ClientID, pTradeField_ClientID); pTradeField_ClientID = nullptr; }
 		pTradeField->TradingRole = pTradeField_TradingRole;
-		if(pTradeField_ExchangeInstID != nullptr){ strcpy_s(pTradeField->ExchangeInstID, pTradeField_ExchangeInstID); pTradeField_ExchangeInstID = nullptr; }
+		if(pTradeField_reserve2 != nullptr){ strcpy_s(pTradeField->reserve2, pTradeField_reserve2); pTradeField_reserve2 = nullptr; }
 		pTradeField->OffsetFlag = pTradeField_OffsetFlag;
 		pTradeField->HedgeFlag = pTradeField_HedgeFlag;
 		pTradeField->Price = pTradeField_Price;
@@ -4002,15 +4147,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict)
 		pTradeField->BrokerOrderSeq = pTradeField_BrokerOrderSeq;
 		pTradeField->TradeSource = pTradeField_TradeSource;
 		if(pTradeField_InvestUnitID != nullptr){ strcpy_s(pTradeField->InvestUnitID, pTradeField_InvestUnitID); pTradeField_InvestUnitID = nullptr; }
+		if(pTradeField_InstrumentID != nullptr){ strcpy_s(pTradeField->InstrumentID, pTradeField_InstrumentID); pTradeField_InstrumentID = nullptr; }
+		if(pTradeField_ExchangeInstID != nullptr){ strcpy_s(pTradeField->ExchangeInstID, pTradeField_ExchangeInstID); pTradeField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradeField *pTradeField)
 {
 	if(pTradeField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:c,s:y,s:c,s:c,s:d,s:i,s:y,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:i,s:y,s:i,s:i,s:c,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:c,s:y,s:c,s:c,s:d,s:i,s:y,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:i,s:y,s:i,s:i,s:c,s:y,s:y,s:y}"
 		, "BrokerID", pTradeField->BrokerID
 		, "InvestorID", pTradeField->InvestorID
-		, "InstrumentID", pTradeField->InstrumentID
+		, "reserve1", pTradeField->reserve1
 		, "OrderRef", pTradeField->OrderRef
 		, "UserID", pTradeField->UserID
 		, "ExchangeID", pTradeField->ExchangeID
@@ -4020,7 +4167,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradeField *pTradeField)
 		, "ParticipantID", pTradeField->ParticipantID
 		, "ClientID", pTradeField->ClientID
 		, "TradingRole", pTradeField->TradingRole
-		, "ExchangeInstID", pTradeField->ExchangeInstID
+		, "reserve2", pTradeField->reserve2
 		, "OffsetFlag", pTradeField->OffsetFlag
 		, "HedgeFlag", pTradeField->HedgeFlag
 		, "Price", pTradeField->Price
@@ -4039,37 +4186,41 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradeField *pTradeField)
 		, "BrokerOrderSeq", pTradeField->BrokerOrderSeq
 		, "TradeSource", pTradeField->TradeSource
 		, "InvestUnitID", pTradeField->InvestUnitID
+		, "InstrumentID", pTradeField->InstrumentID
+		, "ExchangeInstID", pTradeField->ExchangeInstID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserSessionField *pUserSessionField, PyObject *dict)
 {
-	static char *kwlist[] = {"FrontID", "SessionID", "BrokerID", "UserID", "LoginDate", "LoginTime", "IPAddress", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "LoginRemark", nullptr};
+	static char *kwlist[] = {"FrontID", "SessionID", "BrokerID", "UserID", "LoginDate", "LoginTime", "reserve1", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "LoginRemark", "IPAddress", nullptr};
 	int pUserSessionField_FrontID = 0;
 	int pUserSessionField_SessionID = 0;
 	char *pUserSessionField_BrokerID = nullptr;
 	char *pUserSessionField_UserID = nullptr;
 	char *pUserSessionField_LoginDate = nullptr;
 	char *pUserSessionField_LoginTime = nullptr;
-	char *pUserSessionField_IPAddress = nullptr;
+	char *pUserSessionField_reserve1 = nullptr;
 	char *pUserSessionField_UserProductInfo = nullptr;
 	char *pUserSessionField_InterfaceProductInfo = nullptr;
 	char *pUserSessionField_ProtocolInfo = nullptr;
 	char *pUserSessionField_MacAddress = nullptr;
 	char *pUserSessionField_LoginRemark = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pUserSessionField, "|iiyyyyyyyyyy")
+	char *pUserSessionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pUserSessionField, "|iiyyyyyyyyyyy")
 		, &pUserSessionField_FrontID
 		, &pUserSessionField_SessionID
 		, &pUserSessionField_BrokerID
 		, &pUserSessionField_UserID
 		, &pUserSessionField_LoginDate
 		, &pUserSessionField_LoginTime
-		, &pUserSessionField_IPAddress
+		, &pUserSessionField_reserve1
 		, &pUserSessionField_UserProductInfo
 		, &pUserSessionField_InterfaceProductInfo
 		, &pUserSessionField_ProtocolInfo
 		, &pUserSessionField_MacAddress
 		, &pUserSessionField_LoginRemark
+		, &pUserSessionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		pUserSessionField->FrontID = pUserSessionField_FrontID;
 		pUserSessionField->SessionID = pUserSessionField_SessionID;
@@ -4077,80 +4228,86 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserSessionField *pUserSessionField, PyObj
 		if(pUserSessionField_UserID != nullptr){ strcpy_s(pUserSessionField->UserID, pUserSessionField_UserID); pUserSessionField_UserID = nullptr; }
 		if(pUserSessionField_LoginDate != nullptr){ strcpy_s(pUserSessionField->LoginDate, pUserSessionField_LoginDate); pUserSessionField_LoginDate = nullptr; }
 		if(pUserSessionField_LoginTime != nullptr){ strcpy_s(pUserSessionField->LoginTime, pUserSessionField_LoginTime); pUserSessionField_LoginTime = nullptr; }
-		if(pUserSessionField_IPAddress != nullptr){ strcpy_s(pUserSessionField->IPAddress, pUserSessionField_IPAddress); pUserSessionField_IPAddress = nullptr; }
+		if(pUserSessionField_reserve1 != nullptr){ strcpy_s(pUserSessionField->reserve1, pUserSessionField_reserve1); pUserSessionField_reserve1 = nullptr; }
 		if(pUserSessionField_UserProductInfo != nullptr){ strcpy_s(pUserSessionField->UserProductInfo, pUserSessionField_UserProductInfo); pUserSessionField_UserProductInfo = nullptr; }
 		if(pUserSessionField_InterfaceProductInfo != nullptr){ strcpy_s(pUserSessionField->InterfaceProductInfo, pUserSessionField_InterfaceProductInfo); pUserSessionField_InterfaceProductInfo = nullptr; }
 		if(pUserSessionField_ProtocolInfo != nullptr){ strcpy_s(pUserSessionField->ProtocolInfo, pUserSessionField_ProtocolInfo); pUserSessionField_ProtocolInfo = nullptr; }
 		if(pUserSessionField_MacAddress != nullptr){ strcpy_s(pUserSessionField->MacAddress, pUserSessionField_MacAddress); pUserSessionField_MacAddress = nullptr; }
 		if(pUserSessionField_LoginRemark != nullptr){ strcpy_s(pUserSessionField->LoginRemark, pUserSessionField_LoginRemark); pUserSessionField_LoginRemark = nullptr; }
+		if(pUserSessionField_IPAddress != nullptr){ strcpy_s(pUserSessionField->IPAddress, pUserSessionField_IPAddress); pUserSessionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSessionField *pUserSessionField)
 {
 	if(pUserSessionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "FrontID", pUserSessionField->FrontID
 		, "SessionID", pUserSessionField->SessionID
 		, "BrokerID", pUserSessionField->BrokerID
 		, "UserID", pUserSessionField->UserID
 		, "LoginDate", pUserSessionField->LoginDate
 		, "LoginTime", pUserSessionField->LoginTime
-		, "IPAddress", pUserSessionField->IPAddress
+		, "reserve1", pUserSessionField->reserve1
 		, "UserProductInfo", pUserSessionField->UserProductInfo
 		, "InterfaceProductInfo", pUserSessionField->InterfaceProductInfo
 		, "ProtocolInfo", pUserSessionField->ProtocolInfo
 		, "MacAddress", pUserSessionField->MacAddress
 		, "LoginRemark", pUserSessionField->LoginRemark
+		, "IPAddress", pUserSessionField->IPAddress
 		);
 }
 
-int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolumeField, PyObject *dict)
+int PyCTP_Struct_FromPyDict(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolumeField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "Direction", "OffsetFlag", "HedgeFlag", "MaxVolume", "ExchangeID", "InvestUnitID", nullptr};
-	char *pQueryMaxOrderVolumeField_BrokerID = nullptr;
-	char *pQueryMaxOrderVolumeField_InvestorID = nullptr;
-	char *pQueryMaxOrderVolumeField_InstrumentID = nullptr;
-	char pQueryMaxOrderVolumeField_Direction = 0;
-	char pQueryMaxOrderVolumeField_OffsetFlag = 0;
-	char pQueryMaxOrderVolumeField_HedgeFlag = 0;
-	int pQueryMaxOrderVolumeField_MaxVolume = 0;
-	char *pQueryMaxOrderVolumeField_ExchangeID = nullptr;
-	char *pQueryMaxOrderVolumeField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQueryMaxOrderVolumeField, "|yyyccciyy")
-		, &pQueryMaxOrderVolumeField_BrokerID
-		, &pQueryMaxOrderVolumeField_InvestorID
-		, &pQueryMaxOrderVolumeField_InstrumentID
-		, &pQueryMaxOrderVolumeField_Direction
-		, &pQueryMaxOrderVolumeField_OffsetFlag
-		, &pQueryMaxOrderVolumeField_HedgeFlag
-		, &pQueryMaxOrderVolumeField_MaxVolume
-		, &pQueryMaxOrderVolumeField_ExchangeID
-		, &pQueryMaxOrderVolumeField_InvestUnitID
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "Direction", "OffsetFlag", "HedgeFlag", "MaxVolume", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
+	char *pQryMaxOrderVolumeField_BrokerID = nullptr;
+	char *pQryMaxOrderVolumeField_InvestorID = nullptr;
+	char *pQryMaxOrderVolumeField_reserve1 = nullptr;
+	char pQryMaxOrderVolumeField_Direction = 0;
+	char pQryMaxOrderVolumeField_OffsetFlag = 0;
+	char pQryMaxOrderVolumeField_HedgeFlag = 0;
+	int pQryMaxOrderVolumeField_MaxVolume = 0;
+	char *pQryMaxOrderVolumeField_ExchangeID = nullptr;
+	char *pQryMaxOrderVolumeField_InvestUnitID = nullptr;
+	char *pQryMaxOrderVolumeField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryMaxOrderVolumeField, "|yyyccciyyy")
+		, &pQryMaxOrderVolumeField_BrokerID
+		, &pQryMaxOrderVolumeField_InvestorID
+		, &pQryMaxOrderVolumeField_reserve1
+		, &pQryMaxOrderVolumeField_Direction
+		, &pQryMaxOrderVolumeField_OffsetFlag
+		, &pQryMaxOrderVolumeField_HedgeFlag
+		, &pQryMaxOrderVolumeField_MaxVolume
+		, &pQryMaxOrderVolumeField_ExchangeID
+		, &pQryMaxOrderVolumeField_InvestUnitID
+		, &pQryMaxOrderVolumeField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pQueryMaxOrderVolumeField_BrokerID != nullptr){ strcpy_s(pQueryMaxOrderVolumeField->BrokerID, pQueryMaxOrderVolumeField_BrokerID); pQueryMaxOrderVolumeField_BrokerID = nullptr; }
-		if(pQueryMaxOrderVolumeField_InvestorID != nullptr){ strcpy_s(pQueryMaxOrderVolumeField->InvestorID, pQueryMaxOrderVolumeField_InvestorID); pQueryMaxOrderVolumeField_InvestorID = nullptr; }
-		if(pQueryMaxOrderVolumeField_InstrumentID != nullptr){ strcpy_s(pQueryMaxOrderVolumeField->InstrumentID, pQueryMaxOrderVolumeField_InstrumentID); pQueryMaxOrderVolumeField_InstrumentID = nullptr; }
-		pQueryMaxOrderVolumeField->Direction = pQueryMaxOrderVolumeField_Direction;
-		pQueryMaxOrderVolumeField->OffsetFlag = pQueryMaxOrderVolumeField_OffsetFlag;
-		pQueryMaxOrderVolumeField->HedgeFlag = pQueryMaxOrderVolumeField_HedgeFlag;
-		pQueryMaxOrderVolumeField->MaxVolume = pQueryMaxOrderVolumeField_MaxVolume;
-		if(pQueryMaxOrderVolumeField_ExchangeID != nullptr){ strcpy_s(pQueryMaxOrderVolumeField->ExchangeID, pQueryMaxOrderVolumeField_ExchangeID); pQueryMaxOrderVolumeField_ExchangeID = nullptr; }
-		if(pQueryMaxOrderVolumeField_InvestUnitID != nullptr){ strcpy_s(pQueryMaxOrderVolumeField->InvestUnitID, pQueryMaxOrderVolumeField_InvestUnitID); pQueryMaxOrderVolumeField_InvestUnitID = nullptr; }
+		if(pQryMaxOrderVolumeField_BrokerID != nullptr){ strcpy_s(pQryMaxOrderVolumeField->BrokerID, pQryMaxOrderVolumeField_BrokerID); pQryMaxOrderVolumeField_BrokerID = nullptr; }
+		if(pQryMaxOrderVolumeField_InvestorID != nullptr){ strcpy_s(pQryMaxOrderVolumeField->InvestorID, pQryMaxOrderVolumeField_InvestorID); pQryMaxOrderVolumeField_InvestorID = nullptr; }
+		if(pQryMaxOrderVolumeField_reserve1 != nullptr){ strcpy_s(pQryMaxOrderVolumeField->reserve1, pQryMaxOrderVolumeField_reserve1); pQryMaxOrderVolumeField_reserve1 = nullptr; }
+		pQryMaxOrderVolumeField->Direction = pQryMaxOrderVolumeField_Direction;
+		pQryMaxOrderVolumeField->OffsetFlag = pQryMaxOrderVolumeField_OffsetFlag;
+		pQryMaxOrderVolumeField->HedgeFlag = pQryMaxOrderVolumeField_HedgeFlag;
+		pQryMaxOrderVolumeField->MaxVolume = pQryMaxOrderVolumeField_MaxVolume;
+		if(pQryMaxOrderVolumeField_ExchangeID != nullptr){ strcpy_s(pQryMaxOrderVolumeField->ExchangeID, pQryMaxOrderVolumeField_ExchangeID); pQryMaxOrderVolumeField_ExchangeID = nullptr; }
+		if(pQryMaxOrderVolumeField_InvestUnitID != nullptr){ strcpy_s(pQryMaxOrderVolumeField->InvestUnitID, pQryMaxOrderVolumeField_InvestUnitID); pQryMaxOrderVolumeField_InvestUnitID = nullptr; }
+		if(pQryMaxOrderVolumeField_InstrumentID != nullptr){ strcpy_s(pQryMaxOrderVolumeField->InstrumentID, pQryMaxOrderVolumeField_InstrumentID); pQryMaxOrderVolumeField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolumeField)
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolumeField)
 {
-	if(pQueryMaxOrderVolumeField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:y,s:y}"
-		, "BrokerID", pQueryMaxOrderVolumeField->BrokerID
-		, "InvestorID", pQueryMaxOrderVolumeField->InvestorID
-		, "InstrumentID", pQueryMaxOrderVolumeField->InstrumentID
-		, "Direction", pQueryMaxOrderVolumeField->Direction
-		, "OffsetFlag", pQueryMaxOrderVolumeField->OffsetFlag
-		, "HedgeFlag", pQueryMaxOrderVolumeField->HedgeFlag
-		, "MaxVolume", pQueryMaxOrderVolumeField->MaxVolume
-		, "ExchangeID", pQueryMaxOrderVolumeField->ExchangeID
-		, "InvestUnitID", pQueryMaxOrderVolumeField->InvestUnitID
+	if(pQryMaxOrderVolumeField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:y,s:y,s:y}"
+		, "BrokerID", pQryMaxOrderVolumeField->BrokerID
+		, "InvestorID", pQryMaxOrderVolumeField->InvestorID
+		, "reserve1", pQryMaxOrderVolumeField->reserve1
+		, "Direction", pQryMaxOrderVolumeField->Direction
+		, "OffsetFlag", pQryMaxOrderVolumeField->OffsetFlag
+		, "HedgeFlag", pQryMaxOrderVolumeField->HedgeFlag
+		, "MaxVolume", pQryMaxOrderVolumeField->MaxVolume
+		, "ExchangeID", pQryMaxOrderVolumeField->ExchangeID
+		, "InvestUnitID", pQryMaxOrderVolumeField->InvestUnitID
+		, "InstrumentID", pQryMaxOrderVolumeField->InstrumentID
 		);
 }
 
@@ -4628,8 +4785,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingTradingAccountField *pSyncing
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorPositionField *pSyncingInvestorPositionField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "BrokerID", "InvestorID", "PosiDirection", "HedgeFlag", "PositionDate", "YdPosition", "Position", "LongFrozen", "ShortFrozen", "LongFrozenAmount", "ShortFrozenAmount", "OpenVolume", "CloseVolume", "OpenAmount", "CloseAmount", "PositionCost", "PreMargin", "UseMargin", "FrozenMargin", "FrozenCash", "FrozenCommission", "CashIn", "Commission", "CloseProfit", "PositionProfit", "PreSettlementPrice", "SettlementPrice", "TradingDay", "SettlementID", "OpenCost", "ExchangeMargin", "CombPosition", "CombLongFrozen", "CombShortFrozen", "CloseProfitByDate", "CloseProfitByTrade", "TodayPosition", "MarginRateByMoney", "MarginRateByVolume", "StrikeFrozen", "StrikeFrozenAmount", "AbandonFrozen", "ExchangeID", "YdStrikeFrozen", "InvestUnitID", nullptr};
-	char *pSyncingInvestorPositionField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "BrokerID", "InvestorID", "PosiDirection", "HedgeFlag", "PositionDate", "YdPosition", "Position", "LongFrozen", "ShortFrozen", "LongFrozenAmount", "ShortFrozenAmount", "OpenVolume", "CloseVolume", "OpenAmount", "CloseAmount", "PositionCost", "PreMargin", "UseMargin", "FrozenMargin", "FrozenCash", "FrozenCommission", "CashIn", "Commission", "CloseProfit", "PositionProfit", "PreSettlementPrice", "SettlementPrice", "TradingDay", "SettlementID", "OpenCost", "ExchangeMargin", "CombPosition", "CombLongFrozen", "CombShortFrozen", "CloseProfitByDate", "CloseProfitByTrade", "TodayPosition", "MarginRateByMoney", "MarginRateByVolume", "StrikeFrozen", "StrikeFrozenAmount", "AbandonFrozen", "ExchangeID", "YdStrikeFrozen", "InvestUnitID", "PositionCostOffset", "TasPosition", "TasPositionCost", "InstrumentID", nullptr};
+	char *pSyncingInvestorPositionField_reserve1 = nullptr;
 	char *pSyncingInvestorPositionField_BrokerID = nullptr;
 	char *pSyncingInvestorPositionField_InvestorID = nullptr;
 	char pSyncingInvestorPositionField_PosiDirection = 0;
@@ -4675,8 +4832,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorPositionField *pSyncingInve
 	char *pSyncingInvestorPositionField_ExchangeID = nullptr;
 	int pSyncingInvestorPositionField_YdStrikeFrozen = 0;
 	char *pSyncingInvestorPositionField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInvestorPositionField, "|yyyccciiiiddiiddddddddddddddyiddiiiddiddidiyiy")
-		, &pSyncingInvestorPositionField_InstrumentID
+	double pSyncingInvestorPositionField_PositionCostOffset = 0.0;
+	int pSyncingInvestorPositionField_TasPosition = 0;
+	double pSyncingInvestorPositionField_TasPositionCost = 0.0;
+	char *pSyncingInvestorPositionField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInvestorPositionField, "|yyyccciiiiddiiddddddddddddddyiddiiiddiddidiyiydidy")
+		, &pSyncingInvestorPositionField_reserve1
 		, &pSyncingInvestorPositionField_BrokerID
 		, &pSyncingInvestorPositionField_InvestorID
 		, &pSyncingInvestorPositionField_PosiDirection
@@ -4722,8 +4883,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorPositionField *pSyncingInve
 		, &pSyncingInvestorPositionField_ExchangeID
 		, &pSyncingInvestorPositionField_YdStrikeFrozen
 		, &pSyncingInvestorPositionField_InvestUnitID
+		, &pSyncingInvestorPositionField_PositionCostOffset
+		, &pSyncingInvestorPositionField_TasPosition
+		, &pSyncingInvestorPositionField_TasPositionCost
+		, &pSyncingInvestorPositionField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pSyncingInvestorPositionField_InstrumentID != nullptr){ strcpy_s(pSyncingInvestorPositionField->InstrumentID, pSyncingInvestorPositionField_InstrumentID); pSyncingInvestorPositionField_InstrumentID = nullptr; }
+		if(pSyncingInvestorPositionField_reserve1 != nullptr){ strcpy_s(pSyncingInvestorPositionField->reserve1, pSyncingInvestorPositionField_reserve1); pSyncingInvestorPositionField_reserve1 = nullptr; }
 		if(pSyncingInvestorPositionField_BrokerID != nullptr){ strcpy_s(pSyncingInvestorPositionField->BrokerID, pSyncingInvestorPositionField_BrokerID); pSyncingInvestorPositionField_BrokerID = nullptr; }
 		if(pSyncingInvestorPositionField_InvestorID != nullptr){ strcpy_s(pSyncingInvestorPositionField->InvestorID, pSyncingInvestorPositionField_InvestorID); pSyncingInvestorPositionField_InvestorID = nullptr; }
 		pSyncingInvestorPositionField->PosiDirection = pSyncingInvestorPositionField_PosiDirection;
@@ -4769,13 +4934,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorPositionField *pSyncingInve
 		if(pSyncingInvestorPositionField_ExchangeID != nullptr){ strcpy_s(pSyncingInvestorPositionField->ExchangeID, pSyncingInvestorPositionField_ExchangeID); pSyncingInvestorPositionField_ExchangeID = nullptr; }
 		pSyncingInvestorPositionField->YdStrikeFrozen = pSyncingInvestorPositionField_YdStrikeFrozen;
 		if(pSyncingInvestorPositionField_InvestUnitID != nullptr){ strcpy_s(pSyncingInvestorPositionField->InvestUnitID, pSyncingInvestorPositionField_InvestUnitID); pSyncingInvestorPositionField_InvestUnitID = nullptr; }
+		pSyncingInvestorPositionField->PositionCostOffset = pSyncingInvestorPositionField_PositionCostOffset;
+		pSyncingInvestorPositionField->TasPosition = pSyncingInvestorPositionField_TasPosition;
+		pSyncingInvestorPositionField->TasPositionCost = pSyncingInvestorPositionField_TasPositionCost;
+		if(pSyncingInvestorPositionField_InstrumentID != nullptr){ strcpy_s(pSyncingInvestorPositionField->InstrumentID, pSyncingInvestorPositionField_InstrumentID); pSyncingInvestorPositionField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInvestorPositionField *pSyncingInvestorPositionField)
 {
 	if(pSyncingInvestorPositionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:i,s:i,s:i,s:d,s:d,s:i,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:d,s:i,s:i,s:i,s:d,s:d,s:i,s:d,s:d,s:i,s:d,s:i,s:y,s:i,s:y}"
-		, "InstrumentID", pSyncingInvestorPositionField->InstrumentID
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:i,s:i,s:i,s:d,s:d,s:i,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:d,s:i,s:i,s:i,s:d,s:d,s:i,s:d,s:d,s:i,s:d,s:i,s:y,s:i,s:y,s:d,s:i,s:d,s:y}"
+		, "reserve1", pSyncingInvestorPositionField->reserve1
 		, "BrokerID", pSyncingInvestorPositionField->BrokerID
 		, "InvestorID", pSyncingInvestorPositionField->InvestorID
 		, "PosiDirection", pSyncingInvestorPositionField->PosiDirection
@@ -4821,13 +4990,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInvestorPositionField *pSynci
 		, "ExchangeID", pSyncingInvestorPositionField->ExchangeID
 		, "YdStrikeFrozen", pSyncingInvestorPositionField->YdStrikeFrozen
 		, "InvestUnitID", pSyncingInvestorPositionField->InvestUnitID
+		, "PositionCostOffset", pSyncingInvestorPositionField->PositionCostOffset
+		, "TasPosition", pSyncingInvestorPositionField->TasPosition
+		, "TasPositionCost", pSyncingInvestorPositionField->TasPositionCost
+		, "InstrumentID", pSyncingInvestorPositionField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentMarginRateField *pSyncingInstrumentMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", nullptr};
-	char *pSyncingInstrumentMarginRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", "InstrumentID", nullptr};
+	char *pSyncingInstrumentMarginRateField_reserve1 = nullptr;
 	char pSyncingInstrumentMarginRateField_InvestorRange = 0;
 	char *pSyncingInstrumentMarginRateField_BrokerID = nullptr;
 	char *pSyncingInstrumentMarginRateField_InvestorID = nullptr;
@@ -4837,8 +5010,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentMarginRateField *pSyncing
 	double pSyncingInstrumentMarginRateField_ShortMarginRatioByMoney = 0.0;
 	double pSyncingInstrumentMarginRateField_ShortMarginRatioByVolume = 0.0;
 	int pSyncingInstrumentMarginRateField_IsRelative = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInstrumentMarginRateField, "|ycyycddddi")
-		, &pSyncingInstrumentMarginRateField_InstrumentID
+	char *pSyncingInstrumentMarginRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInstrumentMarginRateField, "|ycyycddddiy")
+		, &pSyncingInstrumentMarginRateField_reserve1
 		, &pSyncingInstrumentMarginRateField_InvestorRange
 		, &pSyncingInstrumentMarginRateField_BrokerID
 		, &pSyncingInstrumentMarginRateField_InvestorID
@@ -4848,8 +5022,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentMarginRateField *pSyncing
 		, &pSyncingInstrumentMarginRateField_ShortMarginRatioByMoney
 		, &pSyncingInstrumentMarginRateField_ShortMarginRatioByVolume
 		, &pSyncingInstrumentMarginRateField_IsRelative
+		, &pSyncingInstrumentMarginRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pSyncingInstrumentMarginRateField_InstrumentID != nullptr){ strcpy_s(pSyncingInstrumentMarginRateField->InstrumentID, pSyncingInstrumentMarginRateField_InstrumentID); pSyncingInstrumentMarginRateField_InstrumentID = nullptr; }
+		if(pSyncingInstrumentMarginRateField_reserve1 != nullptr){ strcpy_s(pSyncingInstrumentMarginRateField->reserve1, pSyncingInstrumentMarginRateField_reserve1); pSyncingInstrumentMarginRateField_reserve1 = nullptr; }
 		pSyncingInstrumentMarginRateField->InvestorRange = pSyncingInstrumentMarginRateField_InvestorRange;
 		if(pSyncingInstrumentMarginRateField_BrokerID != nullptr){ strcpy_s(pSyncingInstrumentMarginRateField->BrokerID, pSyncingInstrumentMarginRateField_BrokerID); pSyncingInstrumentMarginRateField_BrokerID = nullptr; }
 		if(pSyncingInstrumentMarginRateField_InvestorID != nullptr){ strcpy_s(pSyncingInstrumentMarginRateField->InvestorID, pSyncingInstrumentMarginRateField_InvestorID); pSyncingInstrumentMarginRateField_InvestorID = nullptr; }
@@ -4859,13 +5034,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentMarginRateField *pSyncing
 		pSyncingInstrumentMarginRateField->ShortMarginRatioByMoney = pSyncingInstrumentMarginRateField_ShortMarginRatioByMoney;
 		pSyncingInstrumentMarginRateField->ShortMarginRatioByVolume = pSyncingInstrumentMarginRateField_ShortMarginRatioByVolume;
 		pSyncingInstrumentMarginRateField->IsRelative = pSyncingInstrumentMarginRateField_IsRelative;
+		if(pSyncingInstrumentMarginRateField_InstrumentID != nullptr){ strcpy_s(pSyncingInstrumentMarginRateField->InstrumentID, pSyncingInstrumentMarginRateField_InstrumentID); pSyncingInstrumentMarginRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentMarginRateField *pSyncingInstrumentMarginRateField)
 {
 	if(pSyncingInstrumentMarginRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:i}"
-		, "InstrumentID", pSyncingInstrumentMarginRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:i,s:y}"
+		, "reserve1", pSyncingInstrumentMarginRateField->reserve1
 		, "InvestorRange", pSyncingInstrumentMarginRateField->InvestorRange
 		, "BrokerID", pSyncingInstrumentMarginRateField->BrokerID
 		, "InvestorID", pSyncingInstrumentMarginRateField->InvestorID
@@ -4875,13 +5051,14 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentMarginRateField *pS
 		, "ShortMarginRatioByMoney", pSyncingInstrumentMarginRateField->ShortMarginRatioByMoney
 		, "ShortMarginRatioByVolume", pSyncingInstrumentMarginRateField->ShortMarginRatioByVolume
 		, "IsRelative", pSyncingInstrumentMarginRateField->IsRelative
+		, "InstrumentID", pSyncingInstrumentMarginRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentCommissionRateField *pSyncingInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", nullptr};
-	char *pSyncingInstrumentCommissionRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "InstrumentID", nullptr};
+	char *pSyncingInstrumentCommissionRateField_reserve1 = nullptr;
 	char pSyncingInstrumentCommissionRateField_InvestorRange = 0;
 	char *pSyncingInstrumentCommissionRateField_BrokerID = nullptr;
 	char *pSyncingInstrumentCommissionRateField_InvestorID = nullptr;
@@ -4891,8 +5068,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentCommissionRateField *pSyn
 	double pSyncingInstrumentCommissionRateField_CloseRatioByVolume = 0.0;
 	double pSyncingInstrumentCommissionRateField_CloseTodayRatioByMoney = 0.0;
 	double pSyncingInstrumentCommissionRateField_CloseTodayRatioByVolume = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInstrumentCommissionRateField, "|ycyydddddd")
-		, &pSyncingInstrumentCommissionRateField_InstrumentID
+	char *pSyncingInstrumentCommissionRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInstrumentCommissionRateField, "|ycyyddddddy")
+		, &pSyncingInstrumentCommissionRateField_reserve1
 		, &pSyncingInstrumentCommissionRateField_InvestorRange
 		, &pSyncingInstrumentCommissionRateField_BrokerID
 		, &pSyncingInstrumentCommissionRateField_InvestorID
@@ -4902,8 +5080,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentCommissionRateField *pSyn
 		, &pSyncingInstrumentCommissionRateField_CloseRatioByVolume
 		, &pSyncingInstrumentCommissionRateField_CloseTodayRatioByMoney
 		, &pSyncingInstrumentCommissionRateField_CloseTodayRatioByVolume
+		, &pSyncingInstrumentCommissionRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pSyncingInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pSyncingInstrumentCommissionRateField->InstrumentID, pSyncingInstrumentCommissionRateField_InstrumentID); pSyncingInstrumentCommissionRateField_InstrumentID = nullptr; }
+		if(pSyncingInstrumentCommissionRateField_reserve1 != nullptr){ strcpy_s(pSyncingInstrumentCommissionRateField->reserve1, pSyncingInstrumentCommissionRateField_reserve1); pSyncingInstrumentCommissionRateField_reserve1 = nullptr; }
 		pSyncingInstrumentCommissionRateField->InvestorRange = pSyncingInstrumentCommissionRateField_InvestorRange;
 		if(pSyncingInstrumentCommissionRateField_BrokerID != nullptr){ strcpy_s(pSyncingInstrumentCommissionRateField->BrokerID, pSyncingInstrumentCommissionRateField_BrokerID); pSyncingInstrumentCommissionRateField_BrokerID = nullptr; }
 		if(pSyncingInstrumentCommissionRateField_InvestorID != nullptr){ strcpy_s(pSyncingInstrumentCommissionRateField->InvestorID, pSyncingInstrumentCommissionRateField_InvestorID); pSyncingInstrumentCommissionRateField_InvestorID = nullptr; }
@@ -4913,13 +5092,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentCommissionRateField *pSyn
 		pSyncingInstrumentCommissionRateField->CloseRatioByVolume = pSyncingInstrumentCommissionRateField_CloseRatioByVolume;
 		pSyncingInstrumentCommissionRateField->CloseTodayRatioByMoney = pSyncingInstrumentCommissionRateField_CloseTodayRatioByMoney;
 		pSyncingInstrumentCommissionRateField->CloseTodayRatioByVolume = pSyncingInstrumentCommissionRateField_CloseTodayRatioByVolume;
+		if(pSyncingInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pSyncingInstrumentCommissionRateField->InstrumentID, pSyncingInstrumentCommissionRateField_InstrumentID); pSyncingInstrumentCommissionRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentCommissionRateField *pSyncingInstrumentCommissionRateField)
 {
 	if(pSyncingInstrumentCommissionRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d}"
-		, "InstrumentID", pSyncingInstrumentCommissionRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:y}"
+		, "reserve1", pSyncingInstrumentCommissionRateField->reserve1
 		, "InvestorRange", pSyncingInstrumentCommissionRateField->InvestorRange
 		, "BrokerID", pSyncingInstrumentCommissionRateField->BrokerID
 		, "InvestorID", pSyncingInstrumentCommissionRateField->InvestorID
@@ -4929,166 +5109,183 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentCommissionRateField
 		, "CloseRatioByVolume", pSyncingInstrumentCommissionRateField->CloseRatioByVolume
 		, "CloseTodayRatioByMoney", pSyncingInstrumentCommissionRateField->CloseTodayRatioByMoney
 		, "CloseTodayRatioByVolume", pSyncingInstrumentCommissionRateField->CloseTodayRatioByVolume
+		, "InstrumentID", pSyncingInstrumentCommissionRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentTradingRightField *pSyncingInstrumentTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "TradingRight", nullptr};
-	char *pSyncingInstrumentTradingRightField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "TradingRight", "InstrumentID", nullptr};
+	char *pSyncingInstrumentTradingRightField_reserve1 = nullptr;
 	char pSyncingInstrumentTradingRightField_InvestorRange = 0;
 	char *pSyncingInstrumentTradingRightField_BrokerID = nullptr;
 	char *pSyncingInstrumentTradingRightField_InvestorID = nullptr;
 	char pSyncingInstrumentTradingRightField_TradingRight = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInstrumentTradingRightField, "|ycyyc")
-		, &pSyncingInstrumentTradingRightField_InstrumentID
+	char *pSyncingInstrumentTradingRightField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInstrumentTradingRightField, "|ycyycy")
+		, &pSyncingInstrumentTradingRightField_reserve1
 		, &pSyncingInstrumentTradingRightField_InvestorRange
 		, &pSyncingInstrumentTradingRightField_BrokerID
 		, &pSyncingInstrumentTradingRightField_InvestorID
 		, &pSyncingInstrumentTradingRightField_TradingRight
+		, &pSyncingInstrumentTradingRightField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pSyncingInstrumentTradingRightField_InstrumentID != nullptr){ strcpy_s(pSyncingInstrumentTradingRightField->InstrumentID, pSyncingInstrumentTradingRightField_InstrumentID); pSyncingInstrumentTradingRightField_InstrumentID = nullptr; }
+		if(pSyncingInstrumentTradingRightField_reserve1 != nullptr){ strcpy_s(pSyncingInstrumentTradingRightField->reserve1, pSyncingInstrumentTradingRightField_reserve1); pSyncingInstrumentTradingRightField_reserve1 = nullptr; }
 		pSyncingInstrumentTradingRightField->InvestorRange = pSyncingInstrumentTradingRightField_InvestorRange;
 		if(pSyncingInstrumentTradingRightField_BrokerID != nullptr){ strcpy_s(pSyncingInstrumentTradingRightField->BrokerID, pSyncingInstrumentTradingRightField_BrokerID); pSyncingInstrumentTradingRightField_BrokerID = nullptr; }
 		if(pSyncingInstrumentTradingRightField_InvestorID != nullptr){ strcpy_s(pSyncingInstrumentTradingRightField->InvestorID, pSyncingInstrumentTradingRightField_InvestorID); pSyncingInstrumentTradingRightField_InvestorID = nullptr; }
 		pSyncingInstrumentTradingRightField->TradingRight = pSyncingInstrumentTradingRightField_TradingRight;
+		if(pSyncingInstrumentTradingRightField_InstrumentID != nullptr){ strcpy_s(pSyncingInstrumentTradingRightField->InstrumentID, pSyncingInstrumentTradingRightField_InstrumentID); pSyncingInstrumentTradingRightField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentTradingRightField *pSyncingInstrumentTradingRightField)
 {
 	if(pSyncingInstrumentTradingRightField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c}"
-		, "InstrumentID", pSyncingInstrumentTradingRightField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:y}"
+		, "reserve1", pSyncingInstrumentTradingRightField->reserve1
 		, "InvestorRange", pSyncingInstrumentTradingRightField->InvestorRange
 		, "BrokerID", pSyncingInstrumentTradingRightField->BrokerID
 		, "InvestorID", pSyncingInstrumentTradingRightField->InvestorID
 		, "TradingRight", pSyncingInstrumentTradingRightField->TradingRight
+		, "InstrumentID", pSyncingInstrumentTradingRightField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOrderField *pQryOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "OrderSysID", "InsertTimeStart", "InsertTimeEnd", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "OrderSysID", "InsertTimeStart", "InsertTimeEnd", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryOrderField_BrokerID = nullptr;
 	char *pQryOrderField_InvestorID = nullptr;
-	char *pQryOrderField_InstrumentID = nullptr;
+	char *pQryOrderField_reserve1 = nullptr;
 	char *pQryOrderField_ExchangeID = nullptr;
 	char *pQryOrderField_OrderSysID = nullptr;
 	char *pQryOrderField_InsertTimeStart = nullptr;
 	char *pQryOrderField_InsertTimeEnd = nullptr;
 	char *pQryOrderField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryOrderField, "|yyyyyyyy")
+	char *pQryOrderField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryOrderField, "|yyyyyyyyy")
 		, &pQryOrderField_BrokerID
 		, &pQryOrderField_InvestorID
-		, &pQryOrderField_InstrumentID
+		, &pQryOrderField_reserve1
 		, &pQryOrderField_ExchangeID
 		, &pQryOrderField_OrderSysID
 		, &pQryOrderField_InsertTimeStart
 		, &pQryOrderField_InsertTimeEnd
 		, &pQryOrderField_InvestUnitID
+		, &pQryOrderField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryOrderField_BrokerID != nullptr){ strcpy_s(pQryOrderField->BrokerID, pQryOrderField_BrokerID); pQryOrderField_BrokerID = nullptr; }
 		if(pQryOrderField_InvestorID != nullptr){ strcpy_s(pQryOrderField->InvestorID, pQryOrderField_InvestorID); pQryOrderField_InvestorID = nullptr; }
-		if(pQryOrderField_InstrumentID != nullptr){ strcpy_s(pQryOrderField->InstrumentID, pQryOrderField_InstrumentID); pQryOrderField_InstrumentID = nullptr; }
+		if(pQryOrderField_reserve1 != nullptr){ strcpy_s(pQryOrderField->reserve1, pQryOrderField_reserve1); pQryOrderField_reserve1 = nullptr; }
 		if(pQryOrderField_ExchangeID != nullptr){ strcpy_s(pQryOrderField->ExchangeID, pQryOrderField_ExchangeID); pQryOrderField_ExchangeID = nullptr; }
 		if(pQryOrderField_OrderSysID != nullptr){ strcpy_s(pQryOrderField->OrderSysID, pQryOrderField_OrderSysID); pQryOrderField_OrderSysID = nullptr; }
 		if(pQryOrderField_InsertTimeStart != nullptr){ strcpy_s(pQryOrderField->InsertTimeStart, pQryOrderField_InsertTimeStart); pQryOrderField_InsertTimeStart = nullptr; }
 		if(pQryOrderField_InsertTimeEnd != nullptr){ strcpy_s(pQryOrderField->InsertTimeEnd, pQryOrderField_InsertTimeEnd); pQryOrderField_InsertTimeEnd = nullptr; }
 		if(pQryOrderField_InvestUnitID != nullptr){ strcpy_s(pQryOrderField->InvestUnitID, pQryOrderField_InvestUnitID); pQryOrderField_InvestUnitID = nullptr; }
+		if(pQryOrderField_InstrumentID != nullptr){ strcpy_s(pQryOrderField->InstrumentID, pQryOrderField_InstrumentID); pQryOrderField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOrderField *pQryOrderField)
 {
 	if(pQryOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryOrderField->BrokerID
 		, "InvestorID", pQryOrderField->InvestorID
-		, "InstrumentID", pQryOrderField->InstrumentID
+		, "reserve1", pQryOrderField->reserve1
 		, "ExchangeID", pQryOrderField->ExchangeID
 		, "OrderSysID", pQryOrderField->OrderSysID
 		, "InsertTimeStart", pQryOrderField->InsertTimeStart
 		, "InsertTimeEnd", pQryOrderField->InsertTimeEnd
 		, "InvestUnitID", pQryOrderField->InvestUnitID
+		, "InstrumentID", pQryOrderField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryTradeField *pQryTradeField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "TradeID", "TradeTimeStart", "TradeTimeEnd", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "TradeID", "TradeTimeStart", "TradeTimeEnd", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryTradeField_BrokerID = nullptr;
 	char *pQryTradeField_InvestorID = nullptr;
-	char *pQryTradeField_InstrumentID = nullptr;
+	char *pQryTradeField_reserve1 = nullptr;
 	char *pQryTradeField_ExchangeID = nullptr;
 	char *pQryTradeField_TradeID = nullptr;
 	char *pQryTradeField_TradeTimeStart = nullptr;
 	char *pQryTradeField_TradeTimeEnd = nullptr;
 	char *pQryTradeField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryTradeField, "|yyyyyyyy")
+	char *pQryTradeField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryTradeField, "|yyyyyyyyy")
 		, &pQryTradeField_BrokerID
 		, &pQryTradeField_InvestorID
-		, &pQryTradeField_InstrumentID
+		, &pQryTradeField_reserve1
 		, &pQryTradeField_ExchangeID
 		, &pQryTradeField_TradeID
 		, &pQryTradeField_TradeTimeStart
 		, &pQryTradeField_TradeTimeEnd
 		, &pQryTradeField_InvestUnitID
+		, &pQryTradeField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryTradeField_BrokerID != nullptr){ strcpy_s(pQryTradeField->BrokerID, pQryTradeField_BrokerID); pQryTradeField_BrokerID = nullptr; }
 		if(pQryTradeField_InvestorID != nullptr){ strcpy_s(pQryTradeField->InvestorID, pQryTradeField_InvestorID); pQryTradeField_InvestorID = nullptr; }
-		if(pQryTradeField_InstrumentID != nullptr){ strcpy_s(pQryTradeField->InstrumentID, pQryTradeField_InstrumentID); pQryTradeField_InstrumentID = nullptr; }
+		if(pQryTradeField_reserve1 != nullptr){ strcpy_s(pQryTradeField->reserve1, pQryTradeField_reserve1); pQryTradeField_reserve1 = nullptr; }
 		if(pQryTradeField_ExchangeID != nullptr){ strcpy_s(pQryTradeField->ExchangeID, pQryTradeField_ExchangeID); pQryTradeField_ExchangeID = nullptr; }
 		if(pQryTradeField_TradeID != nullptr){ strcpy_s(pQryTradeField->TradeID, pQryTradeField_TradeID); pQryTradeField_TradeID = nullptr; }
 		if(pQryTradeField_TradeTimeStart != nullptr){ strcpy_s(pQryTradeField->TradeTimeStart, pQryTradeField_TradeTimeStart); pQryTradeField_TradeTimeStart = nullptr; }
 		if(pQryTradeField_TradeTimeEnd != nullptr){ strcpy_s(pQryTradeField->TradeTimeEnd, pQryTradeField_TradeTimeEnd); pQryTradeField_TradeTimeEnd = nullptr; }
 		if(pQryTradeField_InvestUnitID != nullptr){ strcpy_s(pQryTradeField->InvestUnitID, pQryTradeField_InvestUnitID); pQryTradeField_InvestUnitID = nullptr; }
+		if(pQryTradeField_InstrumentID != nullptr){ strcpy_s(pQryTradeField->InstrumentID, pQryTradeField_InstrumentID); pQryTradeField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTradeField *pQryTradeField)
 {
 	if(pQryTradeField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryTradeField->BrokerID
 		, "InvestorID", pQryTradeField->InvestorID
-		, "InstrumentID", pQryTradeField->InstrumentID
+		, "reserve1", pQryTradeField->reserve1
 		, "ExchangeID", pQryTradeField->ExchangeID
 		, "TradeID", pQryTradeField->TradeID
 		, "TradeTimeStart", pQryTradeField->TradeTimeStart
 		, "TradeTimeEnd", pQryTradeField->TradeTimeEnd
 		, "InvestUnitID", pQryTradeField->InvestUnitID
+		, "InstrumentID", pQryTradeField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionField *pQryInvestorPositionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryInvestorPositionField_BrokerID = nullptr;
 	char *pQryInvestorPositionField_InvestorID = nullptr;
-	char *pQryInvestorPositionField_InstrumentID = nullptr;
+	char *pQryInvestorPositionField_reserve1 = nullptr;
 	char *pQryInvestorPositionField_ExchangeID = nullptr;
 	char *pQryInvestorPositionField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorPositionField, "|yyyyy")
+	char *pQryInvestorPositionField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorPositionField, "|yyyyyy")
 		, &pQryInvestorPositionField_BrokerID
 		, &pQryInvestorPositionField_InvestorID
-		, &pQryInvestorPositionField_InstrumentID
+		, &pQryInvestorPositionField_reserve1
 		, &pQryInvestorPositionField_ExchangeID
 		, &pQryInvestorPositionField_InvestUnitID
+		, &pQryInvestorPositionField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInvestorPositionField_BrokerID != nullptr){ strcpy_s(pQryInvestorPositionField->BrokerID, pQryInvestorPositionField_BrokerID); pQryInvestorPositionField_BrokerID = nullptr; }
 		if(pQryInvestorPositionField_InvestorID != nullptr){ strcpy_s(pQryInvestorPositionField->InvestorID, pQryInvestorPositionField_InvestorID); pQryInvestorPositionField_InvestorID = nullptr; }
-		if(pQryInvestorPositionField_InstrumentID != nullptr){ strcpy_s(pQryInvestorPositionField->InstrumentID, pQryInvestorPositionField_InstrumentID); pQryInvestorPositionField_InstrumentID = nullptr; }
+		if(pQryInvestorPositionField_reserve1 != nullptr){ strcpy_s(pQryInvestorPositionField->reserve1, pQryInvestorPositionField_reserve1); pQryInvestorPositionField_reserve1 = nullptr; }
 		if(pQryInvestorPositionField_ExchangeID != nullptr){ strcpy_s(pQryInvestorPositionField->ExchangeID, pQryInvestorPositionField_ExchangeID); pQryInvestorPositionField_ExchangeID = nullptr; }
 		if(pQryInvestorPositionField_InvestUnitID != nullptr){ strcpy_s(pQryInvestorPositionField->InvestUnitID, pQryInvestorPositionField_InvestUnitID); pQryInvestorPositionField_InvestUnitID = nullptr; }
+		if(pQryInvestorPositionField_InstrumentID != nullptr){ strcpy_s(pQryInvestorPositionField->InstrumentID, pQryInvestorPositionField_InstrumentID); pQryInvestorPositionField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPositionField *pQryInvestorPositionField)
 {
 	if(pQryInvestorPositionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryInvestorPositionField->BrokerID
 		, "InvestorID", pQryInvestorPositionField->InvestorID
-		, "InstrumentID", pQryInvestorPositionField->InstrumentID
+		, "reserve1", pQryInvestorPositionField->reserve1
 		, "ExchangeID", pQryInvestorPositionField->ExchangeID
 		, "InvestUnitID", pQryInvestorPositionField->InvestUnitID
+		, "InstrumentID", pQryInvestorPositionField->InstrumentID
 		);
 }
 
@@ -5206,98 +5403,110 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorGroupField *pQryInvestorG
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentMarginRateField *pQryInstrumentMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "HedgeFlag", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "HedgeFlag", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryInstrumentMarginRateField_BrokerID = nullptr;
 	char *pQryInstrumentMarginRateField_InvestorID = nullptr;
-	char *pQryInstrumentMarginRateField_InstrumentID = nullptr;
+	char *pQryInstrumentMarginRateField_reserve1 = nullptr;
 	char pQryInstrumentMarginRateField_HedgeFlag = 0;
 	char *pQryInstrumentMarginRateField_ExchangeID = nullptr;
 	char *pQryInstrumentMarginRateField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentMarginRateField, "|yyycyy")
+	char *pQryInstrumentMarginRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentMarginRateField, "|yyycyyy")
 		, &pQryInstrumentMarginRateField_BrokerID
 		, &pQryInstrumentMarginRateField_InvestorID
-		, &pQryInstrumentMarginRateField_InstrumentID
+		, &pQryInstrumentMarginRateField_reserve1
 		, &pQryInstrumentMarginRateField_HedgeFlag
 		, &pQryInstrumentMarginRateField_ExchangeID
 		, &pQryInstrumentMarginRateField_InvestUnitID
+		, &pQryInstrumentMarginRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInstrumentMarginRateField_BrokerID != nullptr){ strcpy_s(pQryInstrumentMarginRateField->BrokerID, pQryInstrumentMarginRateField_BrokerID); pQryInstrumentMarginRateField_BrokerID = nullptr; }
 		if(pQryInstrumentMarginRateField_InvestorID != nullptr){ strcpy_s(pQryInstrumentMarginRateField->InvestorID, pQryInstrumentMarginRateField_InvestorID); pQryInstrumentMarginRateField_InvestorID = nullptr; }
-		if(pQryInstrumentMarginRateField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentMarginRateField->InstrumentID, pQryInstrumentMarginRateField_InstrumentID); pQryInstrumentMarginRateField_InstrumentID = nullptr; }
+		if(pQryInstrumentMarginRateField_reserve1 != nullptr){ strcpy_s(pQryInstrumentMarginRateField->reserve1, pQryInstrumentMarginRateField_reserve1); pQryInstrumentMarginRateField_reserve1 = nullptr; }
 		pQryInstrumentMarginRateField->HedgeFlag = pQryInstrumentMarginRateField_HedgeFlag;
 		if(pQryInstrumentMarginRateField_ExchangeID != nullptr){ strcpy_s(pQryInstrumentMarginRateField->ExchangeID, pQryInstrumentMarginRateField_ExchangeID); pQryInstrumentMarginRateField_ExchangeID = nullptr; }
 		if(pQryInstrumentMarginRateField_InvestUnitID != nullptr){ strcpy_s(pQryInstrumentMarginRateField->InvestUnitID, pQryInstrumentMarginRateField_InvestUnitID); pQryInstrumentMarginRateField_InvestUnitID = nullptr; }
+		if(pQryInstrumentMarginRateField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentMarginRateField->InstrumentID, pQryInstrumentMarginRateField_InstrumentID); pQryInstrumentMarginRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentMarginRateField *pQryInstrumentMarginRateField)
 {
 	if(pQryInstrumentMarginRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:y,s:y,s:y}"
 		, "BrokerID", pQryInstrumentMarginRateField->BrokerID
 		, "InvestorID", pQryInstrumentMarginRateField->InvestorID
-		, "InstrumentID", pQryInstrumentMarginRateField->InstrumentID
+		, "reserve1", pQryInstrumentMarginRateField->reserve1
 		, "HedgeFlag", pQryInstrumentMarginRateField->HedgeFlag
 		, "ExchangeID", pQryInstrumentMarginRateField->ExchangeID
 		, "InvestUnitID", pQryInstrumentMarginRateField->InvestUnitID
+		, "InstrumentID", pQryInstrumentMarginRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentCommissionRateField *pQryInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryInstrumentCommissionRateField_BrokerID = nullptr;
 	char *pQryInstrumentCommissionRateField_InvestorID = nullptr;
-	char *pQryInstrumentCommissionRateField_InstrumentID = nullptr;
+	char *pQryInstrumentCommissionRateField_reserve1 = nullptr;
 	char *pQryInstrumentCommissionRateField_ExchangeID = nullptr;
 	char *pQryInstrumentCommissionRateField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentCommissionRateField, "|yyyyy")
+	char *pQryInstrumentCommissionRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentCommissionRateField, "|yyyyyy")
 		, &pQryInstrumentCommissionRateField_BrokerID
 		, &pQryInstrumentCommissionRateField_InvestorID
-		, &pQryInstrumentCommissionRateField_InstrumentID
+		, &pQryInstrumentCommissionRateField_reserve1
 		, &pQryInstrumentCommissionRateField_ExchangeID
 		, &pQryInstrumentCommissionRateField_InvestUnitID
+		, &pQryInstrumentCommissionRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInstrumentCommissionRateField_BrokerID != nullptr){ strcpy_s(pQryInstrumentCommissionRateField->BrokerID, pQryInstrumentCommissionRateField_BrokerID); pQryInstrumentCommissionRateField_BrokerID = nullptr; }
 		if(pQryInstrumentCommissionRateField_InvestorID != nullptr){ strcpy_s(pQryInstrumentCommissionRateField->InvestorID, pQryInstrumentCommissionRateField_InvestorID); pQryInstrumentCommissionRateField_InvestorID = nullptr; }
-		if(pQryInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentCommissionRateField->InstrumentID, pQryInstrumentCommissionRateField_InstrumentID); pQryInstrumentCommissionRateField_InstrumentID = nullptr; }
+		if(pQryInstrumentCommissionRateField_reserve1 != nullptr){ strcpy_s(pQryInstrumentCommissionRateField->reserve1, pQryInstrumentCommissionRateField_reserve1); pQryInstrumentCommissionRateField_reserve1 = nullptr; }
 		if(pQryInstrumentCommissionRateField_ExchangeID != nullptr){ strcpy_s(pQryInstrumentCommissionRateField->ExchangeID, pQryInstrumentCommissionRateField_ExchangeID); pQryInstrumentCommissionRateField_ExchangeID = nullptr; }
 		if(pQryInstrumentCommissionRateField_InvestUnitID != nullptr){ strcpy_s(pQryInstrumentCommissionRateField->InvestUnitID, pQryInstrumentCommissionRateField_InvestUnitID); pQryInstrumentCommissionRateField_InvestUnitID = nullptr; }
+		if(pQryInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentCommissionRateField->InstrumentID, pQryInstrumentCommissionRateField_InstrumentID); pQryInstrumentCommissionRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentCommissionRateField *pQryInstrumentCommissionRateField)
 {
 	if(pQryInstrumentCommissionRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryInstrumentCommissionRateField->BrokerID
 		, "InvestorID", pQryInstrumentCommissionRateField->InvestorID
-		, "InstrumentID", pQryInstrumentCommissionRateField->InstrumentID
+		, "reserve1", pQryInstrumentCommissionRateField->reserve1
 		, "ExchangeID", pQryInstrumentCommissionRateField->ExchangeID
 		, "InvestUnitID", pQryInstrumentCommissionRateField->InvestUnitID
+		, "InstrumentID", pQryInstrumentCommissionRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentTradingRightField *pQryInstrumentTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "InstrumentID", nullptr};
 	char *pQryInstrumentTradingRightField_BrokerID = nullptr;
 	char *pQryInstrumentTradingRightField_InvestorID = nullptr;
+	char *pQryInstrumentTradingRightField_reserve1 = nullptr;
 	char *pQryInstrumentTradingRightField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentTradingRightField, "|yyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentTradingRightField, "|yyyy")
 		, &pQryInstrumentTradingRightField_BrokerID
 		, &pQryInstrumentTradingRightField_InvestorID
+		, &pQryInstrumentTradingRightField_reserve1
 		, &pQryInstrumentTradingRightField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInstrumentTradingRightField_BrokerID != nullptr){ strcpy_s(pQryInstrumentTradingRightField->BrokerID, pQryInstrumentTradingRightField_BrokerID); pQryInstrumentTradingRightField_BrokerID = nullptr; }
 		if(pQryInstrumentTradingRightField_InvestorID != nullptr){ strcpy_s(pQryInstrumentTradingRightField->InvestorID, pQryInstrumentTradingRightField_InvestorID); pQryInstrumentTradingRightField_InvestorID = nullptr; }
+		if(pQryInstrumentTradingRightField_reserve1 != nullptr){ strcpy_s(pQryInstrumentTradingRightField->reserve1, pQryInstrumentTradingRightField_reserve1); pQryInstrumentTradingRightField_reserve1 = nullptr; }
 		if(pQryInstrumentTradingRightField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentTradingRightField->InstrumentID, pQryInstrumentTradingRightField_InstrumentID); pQryInstrumentTradingRightField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentTradingRightField *pQryInstrumentTradingRightField)
 {
 	if(pQryInstrumentTradingRightField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryInstrumentTradingRightField->BrokerID
 		, "InvestorID", pQryInstrumentTradingRightField->InvestorID
+		, "reserve1", pQryInstrumentTradingRightField->reserve1
 		, "InstrumentID", pQryInstrumentTradingRightField->InstrumentID
 		);
 }
@@ -5440,35 +5649,39 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryFrontStatusField *pQryFrontStatus
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeOrderField *pQryExchangeOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ParticipantID", "ClientID", "ExchangeInstID", "ExchangeID", "TraderID", nullptr};
+	static char *kwlist[] = {"ParticipantID", "ClientID", "reserve1", "ExchangeID", "TraderID", "ExchangeInstID", nullptr};
 	char *pQryExchangeOrderField_ParticipantID = nullptr;
 	char *pQryExchangeOrderField_ClientID = nullptr;
-	char *pQryExchangeOrderField_ExchangeInstID = nullptr;
+	char *pQryExchangeOrderField_reserve1 = nullptr;
 	char *pQryExchangeOrderField_ExchangeID = nullptr;
 	char *pQryExchangeOrderField_TraderID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeOrderField, "|yyyyy")
+	char *pQryExchangeOrderField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeOrderField, "|yyyyyy")
 		, &pQryExchangeOrderField_ParticipantID
 		, &pQryExchangeOrderField_ClientID
-		, &pQryExchangeOrderField_ExchangeInstID
+		, &pQryExchangeOrderField_reserve1
 		, &pQryExchangeOrderField_ExchangeID
 		, &pQryExchangeOrderField_TraderID
+		, &pQryExchangeOrderField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExchangeOrderField_ParticipantID != nullptr){ strcpy_s(pQryExchangeOrderField->ParticipantID, pQryExchangeOrderField_ParticipantID); pQryExchangeOrderField_ParticipantID = nullptr; }
 		if(pQryExchangeOrderField_ClientID != nullptr){ strcpy_s(pQryExchangeOrderField->ClientID, pQryExchangeOrderField_ClientID); pQryExchangeOrderField_ClientID = nullptr; }
-		if(pQryExchangeOrderField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeOrderField->ExchangeInstID, pQryExchangeOrderField_ExchangeInstID); pQryExchangeOrderField_ExchangeInstID = nullptr; }
+		if(pQryExchangeOrderField_reserve1 != nullptr){ strcpy_s(pQryExchangeOrderField->reserve1, pQryExchangeOrderField_reserve1); pQryExchangeOrderField_reserve1 = nullptr; }
 		if(pQryExchangeOrderField_ExchangeID != nullptr){ strcpy_s(pQryExchangeOrderField->ExchangeID, pQryExchangeOrderField_ExchangeID); pQryExchangeOrderField_ExchangeID = nullptr; }
 		if(pQryExchangeOrderField_TraderID != nullptr){ strcpy_s(pQryExchangeOrderField->TraderID, pQryExchangeOrderField_TraderID); pQryExchangeOrderField_TraderID = nullptr; }
+		if(pQryExchangeOrderField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeOrderField->ExchangeInstID, pQryExchangeOrderField_ExchangeInstID); pQryExchangeOrderField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeOrderField *pQryExchangeOrderField)
 {
 	if(pQryExchangeOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "ParticipantID", pQryExchangeOrderField->ParticipantID
 		, "ClientID", pQryExchangeOrderField->ClientID
-		, "ExchangeInstID", pQryExchangeOrderField->ExchangeInstID
+		, "reserve1", pQryExchangeOrderField->reserve1
 		, "ExchangeID", pQryExchangeOrderField->ExchangeID
 		, "TraderID", pQryExchangeOrderField->TraderID
+		, "ExchangeInstID", pQryExchangeOrderField->ExchangeInstID
 		);
 }
 
@@ -5566,45 +5779,58 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeField *pQryExchangeField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryProductField *pQryProductField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "ProductClass", "ExchangeID", nullptr};
-	char *pQryProductField_ProductID = nullptr;
+	static char *kwlist[] = {"reserve1", "ProductClass", "ExchangeID", "ProductID", nullptr};
+	char *pQryProductField_reserve1 = nullptr;
 	char pQryProductField_ProductClass = 0;
 	char *pQryProductField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryProductField, "|ycy")
-		, &pQryProductField_ProductID
+	char *pQryProductField_ProductID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryProductField, "|ycyy")
+		, &pQryProductField_reserve1
 		, &pQryProductField_ProductClass
 		, &pQryProductField_ExchangeID
+		, &pQryProductField_ProductID
 	PyCTP_PyDict_FromStruct_END
-		if(pQryProductField_ProductID != nullptr){ strcpy_s(pQryProductField->ProductID, pQryProductField_ProductID); pQryProductField_ProductID = nullptr; }
+		if(pQryProductField_reserve1 != nullptr){ strcpy_s(pQryProductField->reserve1, pQryProductField_reserve1); pQryProductField_reserve1 = nullptr; }
 		pQryProductField->ProductClass = pQryProductField_ProductClass;
 		if(pQryProductField_ExchangeID != nullptr){ strcpy_s(pQryProductField->ExchangeID, pQryProductField_ExchangeID); pQryProductField_ExchangeID = nullptr; }
+		if(pQryProductField_ProductID != nullptr){ strcpy_s(pQryProductField->ProductID, pQryProductField_ProductID); pQryProductField_ProductID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryProductField *pQryProductField)
 {
 	if(pQryProductField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y}"
-		, "ProductID", pQryProductField->ProductID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y}"
+		, "reserve1", pQryProductField->reserve1
 		, "ProductClass", pQryProductField->ProductClass
 		, "ExchangeID", pQryProductField->ExchangeID
+		, "ProductID", pQryProductField->ProductID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentField *pQryInstrumentField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "ExchangeID", "ExchangeInstID", "ProductID", nullptr};
-	char *pQryInstrumentField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "ExchangeID", "reserve2", "reserve3", "InstrumentID", "ExchangeInstID", "ProductID", nullptr};
+	char *pQryInstrumentField_reserve1 = nullptr;
 	char *pQryInstrumentField_ExchangeID = nullptr;
+	char *pQryInstrumentField_reserve2 = nullptr;
+	char *pQryInstrumentField_reserve3 = nullptr;
+	char *pQryInstrumentField_InstrumentID = nullptr;
 	char *pQryInstrumentField_ExchangeInstID = nullptr;
 	char *pQryInstrumentField_ProductID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentField, "|yyyy")
-		, &pQryInstrumentField_InstrumentID
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentField, "|yyyyyyy")
+		, &pQryInstrumentField_reserve1
 		, &pQryInstrumentField_ExchangeID
+		, &pQryInstrumentField_reserve2
+		, &pQryInstrumentField_reserve3
+		, &pQryInstrumentField_InstrumentID
 		, &pQryInstrumentField_ExchangeInstID
 		, &pQryInstrumentField_ProductID
 	PyCTP_PyDict_FromStruct_END
-		if(pQryInstrumentField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentField->InstrumentID, pQryInstrumentField_InstrumentID); pQryInstrumentField_InstrumentID = nullptr; }
+		if(pQryInstrumentField_reserve1 != nullptr){ strcpy_s(pQryInstrumentField->reserve1, pQryInstrumentField_reserve1); pQryInstrumentField_reserve1 = nullptr; }
 		if(pQryInstrumentField_ExchangeID != nullptr){ strcpy_s(pQryInstrumentField->ExchangeID, pQryInstrumentField_ExchangeID); pQryInstrumentField_ExchangeID = nullptr; }
+		if(pQryInstrumentField_reserve2 != nullptr){ strcpy_s(pQryInstrumentField->reserve2, pQryInstrumentField_reserve2); pQryInstrumentField_reserve2 = nullptr; }
+		if(pQryInstrumentField_reserve3 != nullptr){ strcpy_s(pQryInstrumentField->reserve3, pQryInstrumentField_reserve3); pQryInstrumentField_reserve3 = nullptr; }
+		if(pQryInstrumentField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentField->InstrumentID, pQryInstrumentField_InstrumentID); pQryInstrumentField_InstrumentID = nullptr; }
 		if(pQryInstrumentField_ExchangeInstID != nullptr){ strcpy_s(pQryInstrumentField->ExchangeInstID, pQryInstrumentField_ExchangeInstID); pQryInstrumentField_ExchangeInstID = nullptr; }
 		if(pQryInstrumentField_ProductID != nullptr){ strcpy_s(pQryInstrumentField->ProductID, pQryInstrumentField_ProductID); pQryInstrumentField_ProductID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
@@ -5612,9 +5838,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentField *pQryInstrumentField, P
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentField *pQryInstrumentField)
 {
 	if(pQryInstrumentField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
-		, "InstrumentID", pQryInstrumentField->InstrumentID
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+		, "reserve1", pQryInstrumentField->reserve1
 		, "ExchangeID", pQryInstrumentField->ExchangeID
+		, "reserve2", pQryInstrumentField->reserve2
+		, "reserve3", pQryInstrumentField->reserve3
+		, "InstrumentID", pQryInstrumentField->InstrumentID
 		, "ExchangeInstID", pQryInstrumentField->ExchangeInstID
 		, "ProductID", pQryInstrumentField->ProductID
 		);
@@ -5622,23 +5851,27 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentField *pQryInstrumentFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryDepthMarketDataField *pQryDepthMarketDataField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "ExchangeID", nullptr};
-	char *pQryDepthMarketDataField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "ExchangeID", "InstrumentID", nullptr};
+	char *pQryDepthMarketDataField_reserve1 = nullptr;
 	char *pQryDepthMarketDataField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryDepthMarketDataField, "|yy")
-		, &pQryDepthMarketDataField_InstrumentID
+	char *pQryDepthMarketDataField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryDepthMarketDataField, "|yyy")
+		, &pQryDepthMarketDataField_reserve1
 		, &pQryDepthMarketDataField_ExchangeID
+		, &pQryDepthMarketDataField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pQryDepthMarketDataField_InstrumentID != nullptr){ strcpy_s(pQryDepthMarketDataField->InstrumentID, pQryDepthMarketDataField_InstrumentID); pQryDepthMarketDataField_InstrumentID = nullptr; }
+		if(pQryDepthMarketDataField_reserve1 != nullptr){ strcpy_s(pQryDepthMarketDataField->reserve1, pQryDepthMarketDataField_reserve1); pQryDepthMarketDataField_reserve1 = nullptr; }
 		if(pQryDepthMarketDataField_ExchangeID != nullptr){ strcpy_s(pQryDepthMarketDataField->ExchangeID, pQryDepthMarketDataField_ExchangeID); pQryDepthMarketDataField_ExchangeID = nullptr; }
+		if(pQryDepthMarketDataField_InstrumentID != nullptr){ strcpy_s(pQryDepthMarketDataField->InstrumentID, pQryDepthMarketDataField_InstrumentID); pQryDepthMarketDataField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryDepthMarketDataField *pQryDepthMarketDataField)
 {
 	if(pQryDepthMarketDataField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y}"
-		, "InstrumentID", pQryDepthMarketDataField->InstrumentID
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "reserve1", pQryDepthMarketDataField->reserve1
 		, "ExchangeID", pQryDepthMarketDataField->ExchangeID
+		, "InstrumentID", pQryDepthMarketDataField->InstrumentID
 		);
 }
 
@@ -5770,57 +6003,65 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySettlementInfoField *pQrySettleme
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateField *pQryExchangeMarginRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "HedgeFlag", "ExchangeID", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "HedgeFlag", "ExchangeID", "InstrumentID", nullptr};
 	char *pQryExchangeMarginRateField_BrokerID = nullptr;
-	char *pQryExchangeMarginRateField_InstrumentID = nullptr;
+	char *pQryExchangeMarginRateField_reserve1 = nullptr;
 	char pQryExchangeMarginRateField_HedgeFlag = 0;
 	char *pQryExchangeMarginRateField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeMarginRateField, "|yycy")
+	char *pQryExchangeMarginRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeMarginRateField, "|yycyy")
 		, &pQryExchangeMarginRateField_BrokerID
-		, &pQryExchangeMarginRateField_InstrumentID
+		, &pQryExchangeMarginRateField_reserve1
 		, &pQryExchangeMarginRateField_HedgeFlag
 		, &pQryExchangeMarginRateField_ExchangeID
+		, &pQryExchangeMarginRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExchangeMarginRateField_BrokerID != nullptr){ strcpy_s(pQryExchangeMarginRateField->BrokerID, pQryExchangeMarginRateField_BrokerID); pQryExchangeMarginRateField_BrokerID = nullptr; }
-		if(pQryExchangeMarginRateField_InstrumentID != nullptr){ strcpy_s(pQryExchangeMarginRateField->InstrumentID, pQryExchangeMarginRateField_InstrumentID); pQryExchangeMarginRateField_InstrumentID = nullptr; }
+		if(pQryExchangeMarginRateField_reserve1 != nullptr){ strcpy_s(pQryExchangeMarginRateField->reserve1, pQryExchangeMarginRateField_reserve1); pQryExchangeMarginRateField_reserve1 = nullptr; }
 		pQryExchangeMarginRateField->HedgeFlag = pQryExchangeMarginRateField_HedgeFlag;
 		if(pQryExchangeMarginRateField_ExchangeID != nullptr){ strcpy_s(pQryExchangeMarginRateField->ExchangeID, pQryExchangeMarginRateField_ExchangeID); pQryExchangeMarginRateField_ExchangeID = nullptr; }
+		if(pQryExchangeMarginRateField_InstrumentID != nullptr){ strcpy_s(pQryExchangeMarginRateField->InstrumentID, pQryExchangeMarginRateField_InstrumentID); pQryExchangeMarginRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeMarginRateField *pQryExchangeMarginRateField)
 {
 	if(pQryExchangeMarginRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y}"
 		, "BrokerID", pQryExchangeMarginRateField->BrokerID
-		, "InstrumentID", pQryExchangeMarginRateField->InstrumentID
+		, "reserve1", pQryExchangeMarginRateField->reserve1
 		, "HedgeFlag", pQryExchangeMarginRateField->HedgeFlag
 		, "ExchangeID", pQryExchangeMarginRateField->ExchangeID
+		, "InstrumentID", pQryExchangeMarginRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateAdjustField *pQryExchangeMarginRateAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "HedgeFlag", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "HedgeFlag", "InstrumentID", nullptr};
 	char *pQryExchangeMarginRateAdjustField_BrokerID = nullptr;
-	char *pQryExchangeMarginRateAdjustField_InstrumentID = nullptr;
+	char *pQryExchangeMarginRateAdjustField_reserve1 = nullptr;
 	char pQryExchangeMarginRateAdjustField_HedgeFlag = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeMarginRateAdjustField, "|yyc")
+	char *pQryExchangeMarginRateAdjustField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeMarginRateAdjustField, "|yycy")
 		, &pQryExchangeMarginRateAdjustField_BrokerID
-		, &pQryExchangeMarginRateAdjustField_InstrumentID
+		, &pQryExchangeMarginRateAdjustField_reserve1
 		, &pQryExchangeMarginRateAdjustField_HedgeFlag
+		, &pQryExchangeMarginRateAdjustField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExchangeMarginRateAdjustField_BrokerID != nullptr){ strcpy_s(pQryExchangeMarginRateAdjustField->BrokerID, pQryExchangeMarginRateAdjustField_BrokerID); pQryExchangeMarginRateAdjustField_BrokerID = nullptr; }
-		if(pQryExchangeMarginRateAdjustField_InstrumentID != nullptr){ strcpy_s(pQryExchangeMarginRateAdjustField->InstrumentID, pQryExchangeMarginRateAdjustField_InstrumentID); pQryExchangeMarginRateAdjustField_InstrumentID = nullptr; }
+		if(pQryExchangeMarginRateAdjustField_reserve1 != nullptr){ strcpy_s(pQryExchangeMarginRateAdjustField->reserve1, pQryExchangeMarginRateAdjustField_reserve1); pQryExchangeMarginRateAdjustField_reserve1 = nullptr; }
 		pQryExchangeMarginRateAdjustField->HedgeFlag = pQryExchangeMarginRateAdjustField_HedgeFlag;
+		if(pQryExchangeMarginRateAdjustField_InstrumentID != nullptr){ strcpy_s(pQryExchangeMarginRateAdjustField->InstrumentID, pQryExchangeMarginRateAdjustField_InstrumentID); pQryExchangeMarginRateAdjustField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeMarginRateAdjustField *pQryExchangeMarginRateAdjustField)
 {
 	if(pQryExchangeMarginRateAdjustField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:y}"
 		, "BrokerID", pQryExchangeMarginRateAdjustField->BrokerID
-		, "InstrumentID", pQryExchangeMarginRateAdjustField->InstrumentID
+		, "reserve1", pQryExchangeMarginRateAdjustField->reserve1
 		, "HedgeFlag", pQryExchangeMarginRateAdjustField->HedgeFlag
+		, "InstrumentID", pQryExchangeMarginRateAdjustField->InstrumentID
 		);
 }
 
@@ -5874,100 +6115,108 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySyncFundMortgageField *pQrySyncFu
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryHisOrderField *pQryHisOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "OrderSysID", "InsertTimeStart", "InsertTimeEnd", "TradingDay", "SettlementID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "OrderSysID", "InsertTimeStart", "InsertTimeEnd", "TradingDay", "SettlementID", "InstrumentID", nullptr};
 	char *pQryHisOrderField_BrokerID = nullptr;
 	char *pQryHisOrderField_InvestorID = nullptr;
-	char *pQryHisOrderField_InstrumentID = nullptr;
+	char *pQryHisOrderField_reserve1 = nullptr;
 	char *pQryHisOrderField_ExchangeID = nullptr;
 	char *pQryHisOrderField_OrderSysID = nullptr;
 	char *pQryHisOrderField_InsertTimeStart = nullptr;
 	char *pQryHisOrderField_InsertTimeEnd = nullptr;
 	char *pQryHisOrderField_TradingDay = nullptr;
 	int pQryHisOrderField_SettlementID = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryHisOrderField, "|yyyyyyyyi")
+	char *pQryHisOrderField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryHisOrderField, "|yyyyyyyyiy")
 		, &pQryHisOrderField_BrokerID
 		, &pQryHisOrderField_InvestorID
-		, &pQryHisOrderField_InstrumentID
+		, &pQryHisOrderField_reserve1
 		, &pQryHisOrderField_ExchangeID
 		, &pQryHisOrderField_OrderSysID
 		, &pQryHisOrderField_InsertTimeStart
 		, &pQryHisOrderField_InsertTimeEnd
 		, &pQryHisOrderField_TradingDay
 		, &pQryHisOrderField_SettlementID
+		, &pQryHisOrderField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryHisOrderField_BrokerID != nullptr){ strcpy_s(pQryHisOrderField->BrokerID, pQryHisOrderField_BrokerID); pQryHisOrderField_BrokerID = nullptr; }
 		if(pQryHisOrderField_InvestorID != nullptr){ strcpy_s(pQryHisOrderField->InvestorID, pQryHisOrderField_InvestorID); pQryHisOrderField_InvestorID = nullptr; }
-		if(pQryHisOrderField_InstrumentID != nullptr){ strcpy_s(pQryHisOrderField->InstrumentID, pQryHisOrderField_InstrumentID); pQryHisOrderField_InstrumentID = nullptr; }
+		if(pQryHisOrderField_reserve1 != nullptr){ strcpy_s(pQryHisOrderField->reserve1, pQryHisOrderField_reserve1); pQryHisOrderField_reserve1 = nullptr; }
 		if(pQryHisOrderField_ExchangeID != nullptr){ strcpy_s(pQryHisOrderField->ExchangeID, pQryHisOrderField_ExchangeID); pQryHisOrderField_ExchangeID = nullptr; }
 		if(pQryHisOrderField_OrderSysID != nullptr){ strcpy_s(pQryHisOrderField->OrderSysID, pQryHisOrderField_OrderSysID); pQryHisOrderField_OrderSysID = nullptr; }
 		if(pQryHisOrderField_InsertTimeStart != nullptr){ strcpy_s(pQryHisOrderField->InsertTimeStart, pQryHisOrderField_InsertTimeStart); pQryHisOrderField_InsertTimeStart = nullptr; }
 		if(pQryHisOrderField_InsertTimeEnd != nullptr){ strcpy_s(pQryHisOrderField->InsertTimeEnd, pQryHisOrderField_InsertTimeEnd); pQryHisOrderField_InsertTimeEnd = nullptr; }
 		if(pQryHisOrderField_TradingDay != nullptr){ strcpy_s(pQryHisOrderField->TradingDay, pQryHisOrderField_TradingDay); pQryHisOrderField_TradingDay = nullptr; }
 		pQryHisOrderField->SettlementID = pQryHisOrderField_SettlementID;
+		if(pQryHisOrderField_InstrumentID != nullptr){ strcpy_s(pQryHisOrderField->InstrumentID, pQryHisOrderField_InstrumentID); pQryHisOrderField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryHisOrderField *pQryHisOrderField)
 {
 	if(pQryHisOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
 		, "BrokerID", pQryHisOrderField->BrokerID
 		, "InvestorID", pQryHisOrderField->InvestorID
-		, "InstrumentID", pQryHisOrderField->InstrumentID
+		, "reserve1", pQryHisOrderField->reserve1
 		, "ExchangeID", pQryHisOrderField->ExchangeID
 		, "OrderSysID", pQryHisOrderField->OrderSysID
 		, "InsertTimeStart", pQryHisOrderField->InsertTimeStart
 		, "InsertTimeEnd", pQryHisOrderField->InsertTimeEnd
 		, "TradingDay", pQryHisOrderField->TradingDay
 		, "SettlementID", pQryHisOrderField->SettlementID
+		, "InstrumentID", pQryHisOrderField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMiniMarginField *pOptionInstrMiniMarginField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "MinMargin", "ValueMethod", "IsRelative", nullptr};
-	char *pOptionInstrMiniMarginField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "MinMargin", "ValueMethod", "IsRelative", "InstrumentID", nullptr};
+	char *pOptionInstrMiniMarginField_reserve1 = nullptr;
 	char pOptionInstrMiniMarginField_InvestorRange = 0;
 	char *pOptionInstrMiniMarginField_BrokerID = nullptr;
 	char *pOptionInstrMiniMarginField_InvestorID = nullptr;
 	double pOptionInstrMiniMarginField_MinMargin = 0.0;
 	char pOptionInstrMiniMarginField_ValueMethod = 0;
 	int pOptionInstrMiniMarginField_IsRelative = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrMiniMarginField, "|ycyydci")
-		, &pOptionInstrMiniMarginField_InstrumentID
+	char *pOptionInstrMiniMarginField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrMiniMarginField, "|ycyydciy")
+		, &pOptionInstrMiniMarginField_reserve1
 		, &pOptionInstrMiniMarginField_InvestorRange
 		, &pOptionInstrMiniMarginField_BrokerID
 		, &pOptionInstrMiniMarginField_InvestorID
 		, &pOptionInstrMiniMarginField_MinMargin
 		, &pOptionInstrMiniMarginField_ValueMethod
 		, &pOptionInstrMiniMarginField_IsRelative
+		, &pOptionInstrMiniMarginField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pOptionInstrMiniMarginField_InstrumentID != nullptr){ strcpy_s(pOptionInstrMiniMarginField->InstrumentID, pOptionInstrMiniMarginField_InstrumentID); pOptionInstrMiniMarginField_InstrumentID = nullptr; }
+		if(pOptionInstrMiniMarginField_reserve1 != nullptr){ strcpy_s(pOptionInstrMiniMarginField->reserve1, pOptionInstrMiniMarginField_reserve1); pOptionInstrMiniMarginField_reserve1 = nullptr; }
 		pOptionInstrMiniMarginField->InvestorRange = pOptionInstrMiniMarginField_InvestorRange;
 		if(pOptionInstrMiniMarginField_BrokerID != nullptr){ strcpy_s(pOptionInstrMiniMarginField->BrokerID, pOptionInstrMiniMarginField_BrokerID); pOptionInstrMiniMarginField_BrokerID = nullptr; }
 		if(pOptionInstrMiniMarginField_InvestorID != nullptr){ strcpy_s(pOptionInstrMiniMarginField->InvestorID, pOptionInstrMiniMarginField_InvestorID); pOptionInstrMiniMarginField_InvestorID = nullptr; }
 		pOptionInstrMiniMarginField->MinMargin = pOptionInstrMiniMarginField_MinMargin;
 		pOptionInstrMiniMarginField->ValueMethod = pOptionInstrMiniMarginField_ValueMethod;
 		pOptionInstrMiniMarginField->IsRelative = pOptionInstrMiniMarginField_IsRelative;
+		if(pOptionInstrMiniMarginField_InstrumentID != nullptr){ strcpy_s(pOptionInstrMiniMarginField->InstrumentID, pOptionInstrMiniMarginField_InstrumentID); pOptionInstrMiniMarginField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrMiniMarginField *pOptionInstrMiniMarginField)
 {
 	if(pOptionInstrMiniMarginField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:c,s:i}"
-		, "InstrumentID", pOptionInstrMiniMarginField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:c,s:i,s:y}"
+		, "reserve1", pOptionInstrMiniMarginField->reserve1
 		, "InvestorRange", pOptionInstrMiniMarginField->InvestorRange
 		, "BrokerID", pOptionInstrMiniMarginField->BrokerID
 		, "InvestorID", pOptionInstrMiniMarginField->InvestorID
 		, "MinMargin", pOptionInstrMiniMarginField->MinMargin
 		, "ValueMethod", pOptionInstrMiniMarginField->ValueMethod
 		, "IsRelative", pOptionInstrMiniMarginField->IsRelative
+		, "InstrumentID", pOptionInstrMiniMarginField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMarginAdjustField *pOptionInstrMarginAdjustField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "SShortMarginRatioByMoney", "SShortMarginRatioByVolume", "HShortMarginRatioByMoney", "HShortMarginRatioByVolume", "AShortMarginRatioByMoney", "AShortMarginRatioByVolume", "IsRelative", "MShortMarginRatioByMoney", "MShortMarginRatioByVolume", nullptr};
-	char *pOptionInstrMarginAdjustField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "SShortMarginRatioByMoney", "SShortMarginRatioByVolume", "HShortMarginRatioByMoney", "HShortMarginRatioByVolume", "AShortMarginRatioByMoney", "AShortMarginRatioByVolume", "IsRelative", "MShortMarginRatioByMoney", "MShortMarginRatioByVolume", "InstrumentID", nullptr};
+	char *pOptionInstrMarginAdjustField_reserve1 = nullptr;
 	char pOptionInstrMarginAdjustField_InvestorRange = 0;
 	char *pOptionInstrMarginAdjustField_BrokerID = nullptr;
 	char *pOptionInstrMarginAdjustField_InvestorID = nullptr;
@@ -5980,8 +6229,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMarginAdjustField *pOptionInstr
 	int pOptionInstrMarginAdjustField_IsRelative = 0;
 	double pOptionInstrMarginAdjustField_MShortMarginRatioByMoney = 0.0;
 	double pOptionInstrMarginAdjustField_MShortMarginRatioByVolume = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrMarginAdjustField, "|ycyyddddddidd")
-		, &pOptionInstrMarginAdjustField_InstrumentID
+	char *pOptionInstrMarginAdjustField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrMarginAdjustField, "|ycyyddddddiddy")
+		, &pOptionInstrMarginAdjustField_reserve1
 		, &pOptionInstrMarginAdjustField_InvestorRange
 		, &pOptionInstrMarginAdjustField_BrokerID
 		, &pOptionInstrMarginAdjustField_InvestorID
@@ -5994,8 +6244,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMarginAdjustField *pOptionInstr
 		, &pOptionInstrMarginAdjustField_IsRelative
 		, &pOptionInstrMarginAdjustField_MShortMarginRatioByMoney
 		, &pOptionInstrMarginAdjustField_MShortMarginRatioByVolume
+		, &pOptionInstrMarginAdjustField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pOptionInstrMarginAdjustField_InstrumentID != nullptr){ strcpy_s(pOptionInstrMarginAdjustField->InstrumentID, pOptionInstrMarginAdjustField_InstrumentID); pOptionInstrMarginAdjustField_InstrumentID = nullptr; }
+		if(pOptionInstrMarginAdjustField_reserve1 != nullptr){ strcpy_s(pOptionInstrMarginAdjustField->reserve1, pOptionInstrMarginAdjustField_reserve1); pOptionInstrMarginAdjustField_reserve1 = nullptr; }
 		pOptionInstrMarginAdjustField->InvestorRange = pOptionInstrMarginAdjustField_InvestorRange;
 		if(pOptionInstrMarginAdjustField_BrokerID != nullptr){ strcpy_s(pOptionInstrMarginAdjustField->BrokerID, pOptionInstrMarginAdjustField_BrokerID); pOptionInstrMarginAdjustField_BrokerID = nullptr; }
 		if(pOptionInstrMarginAdjustField_InvestorID != nullptr){ strcpy_s(pOptionInstrMarginAdjustField->InvestorID, pOptionInstrMarginAdjustField_InvestorID); pOptionInstrMarginAdjustField_InvestorID = nullptr; }
@@ -6008,13 +6259,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMarginAdjustField *pOptionInstr
 		pOptionInstrMarginAdjustField->IsRelative = pOptionInstrMarginAdjustField_IsRelative;
 		pOptionInstrMarginAdjustField->MShortMarginRatioByMoney = pOptionInstrMarginAdjustField_MShortMarginRatioByMoney;
 		pOptionInstrMarginAdjustField->MShortMarginRatioByVolume = pOptionInstrMarginAdjustField_MShortMarginRatioByVolume;
+		if(pOptionInstrMarginAdjustField_InstrumentID != nullptr){ strcpy_s(pOptionInstrMarginAdjustField->InstrumentID, pOptionInstrMarginAdjustField_InstrumentID); pOptionInstrMarginAdjustField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrMarginAdjustField *pOptionInstrMarginAdjustField)
 {
 	if(pOptionInstrMarginAdjustField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d}"
-		, "InstrumentID", pOptionInstrMarginAdjustField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:y}"
+		, "reserve1", pOptionInstrMarginAdjustField->reserve1
 		, "InvestorRange", pOptionInstrMarginAdjustField->InvestorRange
 		, "BrokerID", pOptionInstrMarginAdjustField->BrokerID
 		, "InvestorID", pOptionInstrMarginAdjustField->InvestorID
@@ -6027,13 +6279,14 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrMarginAdjustField *pOptio
 		, "IsRelative", pOptionInstrMarginAdjustField->IsRelative
 		, "MShortMarginRatioByMoney", pOptionInstrMarginAdjustField->MShortMarginRatioByMoney
 		, "MShortMarginRatioByVolume", pOptionInstrMarginAdjustField->MShortMarginRatioByVolume
+		, "InstrumentID", pOptionInstrMarginAdjustField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "StrikeRatioByMoney", "StrikeRatioByVolume", "ExchangeID", "InvestUnitID", nullptr};
-	char *pOptionInstrCommRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "StrikeRatioByMoney", "StrikeRatioByVolume", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
+	char *pOptionInstrCommRateField_reserve1 = nullptr;
 	char pOptionInstrCommRateField_InvestorRange = 0;
 	char *pOptionInstrCommRateField_BrokerID = nullptr;
 	char *pOptionInstrCommRateField_InvestorID = nullptr;
@@ -6047,8 +6300,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrCommRateField *pOptionInstrComm
 	double pOptionInstrCommRateField_StrikeRatioByVolume = 0.0;
 	char *pOptionInstrCommRateField_ExchangeID = nullptr;
 	char *pOptionInstrCommRateField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrCommRateField, "|ycyyddddddddyy")
-		, &pOptionInstrCommRateField_InstrumentID
+	char *pOptionInstrCommRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrCommRateField, "|ycyyddddddddyyy")
+		, &pOptionInstrCommRateField_reserve1
 		, &pOptionInstrCommRateField_InvestorRange
 		, &pOptionInstrCommRateField_BrokerID
 		, &pOptionInstrCommRateField_InvestorID
@@ -6062,8 +6316,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrCommRateField *pOptionInstrComm
 		, &pOptionInstrCommRateField_StrikeRatioByVolume
 		, &pOptionInstrCommRateField_ExchangeID
 		, &pOptionInstrCommRateField_InvestUnitID
+		, &pOptionInstrCommRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pOptionInstrCommRateField_InstrumentID != nullptr){ strcpy_s(pOptionInstrCommRateField->InstrumentID, pOptionInstrCommRateField_InstrumentID); pOptionInstrCommRateField_InstrumentID = nullptr; }
+		if(pOptionInstrCommRateField_reserve1 != nullptr){ strcpy_s(pOptionInstrCommRateField->reserve1, pOptionInstrCommRateField_reserve1); pOptionInstrCommRateField_reserve1 = nullptr; }
 		pOptionInstrCommRateField->InvestorRange = pOptionInstrCommRateField_InvestorRange;
 		if(pOptionInstrCommRateField_BrokerID != nullptr){ strcpy_s(pOptionInstrCommRateField->BrokerID, pOptionInstrCommRateField_BrokerID); pOptionInstrCommRateField_BrokerID = nullptr; }
 		if(pOptionInstrCommRateField_InvestorID != nullptr){ strcpy_s(pOptionInstrCommRateField->InvestorID, pOptionInstrCommRateField_InvestorID); pOptionInstrCommRateField_InvestorID = nullptr; }
@@ -6077,13 +6332,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrCommRateField *pOptionInstrComm
 		pOptionInstrCommRateField->StrikeRatioByVolume = pOptionInstrCommRateField_StrikeRatioByVolume;
 		if(pOptionInstrCommRateField_ExchangeID != nullptr){ strcpy_s(pOptionInstrCommRateField->ExchangeID, pOptionInstrCommRateField_ExchangeID); pOptionInstrCommRateField_ExchangeID = nullptr; }
 		if(pOptionInstrCommRateField_InvestUnitID != nullptr){ strcpy_s(pOptionInstrCommRateField->InvestUnitID, pOptionInstrCommRateField_InvestUnitID); pOptionInstrCommRateField_InvestUnitID = nullptr; }
+		if(pOptionInstrCommRateField_InstrumentID != nullptr){ strcpy_s(pOptionInstrCommRateField->InstrumentID, pOptionInstrCommRateField_InstrumentID); pOptionInstrCommRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRateField)
 {
 	if(pOptionInstrCommRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:y}"
-		, "InstrumentID", pOptionInstrCommRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:y,s:y}"
+		, "reserve1", pOptionInstrCommRateField->reserve1
 		, "InvestorRange", pOptionInstrCommRateField->InvestorRange
 		, "BrokerID", pOptionInstrCommRateField->BrokerID
 		, "InvestorID", pOptionInstrCommRateField->InvestorID
@@ -6097,15 +6353,16 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrCommRateField *pOptionIns
 		, "StrikeRatioByVolume", pOptionInstrCommRateField->StrikeRatioByVolume
 		, "ExchangeID", pOptionInstrCommRateField->ExchangeID
 		, "InvestUnitID", pOptionInstrCommRateField->InvestUnitID
+		, "InstrumentID", pOptionInstrCommRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCostField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "HedgeFlag", "FixedMargin", "MiniMargin", "Royalty", "ExchFixedMargin", "ExchMiniMargin", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "HedgeFlag", "FixedMargin", "MiniMargin", "Royalty", "ExchFixedMargin", "ExchMiniMargin", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pOptionInstrTradeCostField_BrokerID = nullptr;
 	char *pOptionInstrTradeCostField_InvestorID = nullptr;
-	char *pOptionInstrTradeCostField_InstrumentID = nullptr;
+	char *pOptionInstrTradeCostField_reserve1 = nullptr;
 	char pOptionInstrTradeCostField_HedgeFlag = 0;
 	double pOptionInstrTradeCostField_FixedMargin = 0.0;
 	double pOptionInstrTradeCostField_MiniMargin = 0.0;
@@ -6114,10 +6371,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradeCostField *pOptionInstrTra
 	double pOptionInstrTradeCostField_ExchMiniMargin = 0.0;
 	char *pOptionInstrTradeCostField_ExchangeID = nullptr;
 	char *pOptionInstrTradeCostField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrTradeCostField, "|yyycdddddyy")
+	char *pOptionInstrTradeCostField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrTradeCostField, "|yyycdddddyyy")
 		, &pOptionInstrTradeCostField_BrokerID
 		, &pOptionInstrTradeCostField_InvestorID
-		, &pOptionInstrTradeCostField_InstrumentID
+		, &pOptionInstrTradeCostField_reserve1
 		, &pOptionInstrTradeCostField_HedgeFlag
 		, &pOptionInstrTradeCostField_FixedMargin
 		, &pOptionInstrTradeCostField_MiniMargin
@@ -6126,10 +6384,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradeCostField *pOptionInstrTra
 		, &pOptionInstrTradeCostField_ExchMiniMargin
 		, &pOptionInstrTradeCostField_ExchangeID
 		, &pOptionInstrTradeCostField_InvestUnitID
+		, &pOptionInstrTradeCostField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pOptionInstrTradeCostField_BrokerID != nullptr){ strcpy_s(pOptionInstrTradeCostField->BrokerID, pOptionInstrTradeCostField_BrokerID); pOptionInstrTradeCostField_BrokerID = nullptr; }
 		if(pOptionInstrTradeCostField_InvestorID != nullptr){ strcpy_s(pOptionInstrTradeCostField->InvestorID, pOptionInstrTradeCostField_InvestorID); pOptionInstrTradeCostField_InvestorID = nullptr; }
-		if(pOptionInstrTradeCostField_InstrumentID != nullptr){ strcpy_s(pOptionInstrTradeCostField->InstrumentID, pOptionInstrTradeCostField_InstrumentID); pOptionInstrTradeCostField_InstrumentID = nullptr; }
+		if(pOptionInstrTradeCostField_reserve1 != nullptr){ strcpy_s(pOptionInstrTradeCostField->reserve1, pOptionInstrTradeCostField_reserve1); pOptionInstrTradeCostField_reserve1 = nullptr; }
 		pOptionInstrTradeCostField->HedgeFlag = pOptionInstrTradeCostField_HedgeFlag;
 		pOptionInstrTradeCostField->FixedMargin = pOptionInstrTradeCostField_FixedMargin;
 		pOptionInstrTradeCostField->MiniMargin = pOptionInstrTradeCostField_MiniMargin;
@@ -6138,15 +6397,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradeCostField *pOptionInstrTra
 		pOptionInstrTradeCostField->ExchMiniMargin = pOptionInstrTradeCostField_ExchMiniMargin;
 		if(pOptionInstrTradeCostField_ExchangeID != nullptr){ strcpy_s(pOptionInstrTradeCostField->ExchangeID, pOptionInstrTradeCostField_ExchangeID); pOptionInstrTradeCostField_ExchangeID = nullptr; }
 		if(pOptionInstrTradeCostField_InvestUnitID != nullptr){ strcpy_s(pOptionInstrTradeCostField->InvestUnitID, pOptionInstrTradeCostField_InvestUnitID); pOptionInstrTradeCostField_InvestUnitID = nullptr; }
+		if(pOptionInstrTradeCostField_InstrumentID != nullptr){ strcpy_s(pOptionInstrTradeCostField->InstrumentID, pOptionInstrTradeCostField_InstrumentID); pOptionInstrTradeCostField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCostField)
 {
 	if(pOptionInstrTradeCostField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:d,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:d,s:y,s:y,s:y}"
 		, "BrokerID", pOptionInstrTradeCostField->BrokerID
 		, "InvestorID", pOptionInstrTradeCostField->InvestorID
-		, "InstrumentID", pOptionInstrTradeCostField->InstrumentID
+		, "reserve1", pOptionInstrTradeCostField->reserve1
 		, "HedgeFlag", pOptionInstrTradeCostField->HedgeFlag
 		, "FixedMargin", pOptionInstrTradeCostField->FixedMargin
 		, "MiniMargin", pOptionInstrTradeCostField->MiniMargin
@@ -6155,121 +6415,134 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrTradeCostField *pOptionIn
 		, "ExchMiniMargin", pOptionInstrTradeCostField->ExchMiniMargin
 		, "ExchangeID", pOptionInstrTradeCostField->ExchangeID
 		, "InvestUnitID", pOptionInstrTradeCostField->InvestUnitID
+		, "InstrumentID", pOptionInstrTradeCostField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradeCostField *pQryOptionInstrTradeCostField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "HedgeFlag", "InputPrice", "UnderlyingPrice", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "HedgeFlag", "InputPrice", "UnderlyingPrice", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryOptionInstrTradeCostField_BrokerID = nullptr;
 	char *pQryOptionInstrTradeCostField_InvestorID = nullptr;
-	char *pQryOptionInstrTradeCostField_InstrumentID = nullptr;
+	char *pQryOptionInstrTradeCostField_reserve1 = nullptr;
 	char pQryOptionInstrTradeCostField_HedgeFlag = 0;
 	double pQryOptionInstrTradeCostField_InputPrice = 0.0;
 	double pQryOptionInstrTradeCostField_UnderlyingPrice = 0.0;
 	char *pQryOptionInstrTradeCostField_ExchangeID = nullptr;
 	char *pQryOptionInstrTradeCostField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionInstrTradeCostField, "|yyycddyy")
+	char *pQryOptionInstrTradeCostField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionInstrTradeCostField, "|yyycddyyy")
 		, &pQryOptionInstrTradeCostField_BrokerID
 		, &pQryOptionInstrTradeCostField_InvestorID
-		, &pQryOptionInstrTradeCostField_InstrumentID
+		, &pQryOptionInstrTradeCostField_reserve1
 		, &pQryOptionInstrTradeCostField_HedgeFlag
 		, &pQryOptionInstrTradeCostField_InputPrice
 		, &pQryOptionInstrTradeCostField_UnderlyingPrice
 		, &pQryOptionInstrTradeCostField_ExchangeID
 		, &pQryOptionInstrTradeCostField_InvestUnitID
+		, &pQryOptionInstrTradeCostField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryOptionInstrTradeCostField_BrokerID != nullptr){ strcpy_s(pQryOptionInstrTradeCostField->BrokerID, pQryOptionInstrTradeCostField_BrokerID); pQryOptionInstrTradeCostField_BrokerID = nullptr; }
 		if(pQryOptionInstrTradeCostField_InvestorID != nullptr){ strcpy_s(pQryOptionInstrTradeCostField->InvestorID, pQryOptionInstrTradeCostField_InvestorID); pQryOptionInstrTradeCostField_InvestorID = nullptr; }
-		if(pQryOptionInstrTradeCostField_InstrumentID != nullptr){ strcpy_s(pQryOptionInstrTradeCostField->InstrumentID, pQryOptionInstrTradeCostField_InstrumentID); pQryOptionInstrTradeCostField_InstrumentID = nullptr; }
+		if(pQryOptionInstrTradeCostField_reserve1 != nullptr){ strcpy_s(pQryOptionInstrTradeCostField->reserve1, pQryOptionInstrTradeCostField_reserve1); pQryOptionInstrTradeCostField_reserve1 = nullptr; }
 		pQryOptionInstrTradeCostField->HedgeFlag = pQryOptionInstrTradeCostField_HedgeFlag;
 		pQryOptionInstrTradeCostField->InputPrice = pQryOptionInstrTradeCostField_InputPrice;
 		pQryOptionInstrTradeCostField->UnderlyingPrice = pQryOptionInstrTradeCostField_UnderlyingPrice;
 		if(pQryOptionInstrTradeCostField_ExchangeID != nullptr){ strcpy_s(pQryOptionInstrTradeCostField->ExchangeID, pQryOptionInstrTradeCostField_ExchangeID); pQryOptionInstrTradeCostField_ExchangeID = nullptr; }
 		if(pQryOptionInstrTradeCostField_InvestUnitID != nullptr){ strcpy_s(pQryOptionInstrTradeCostField->InvestUnitID, pQryOptionInstrTradeCostField_InvestUnitID); pQryOptionInstrTradeCostField_InvestUnitID = nullptr; }
+		if(pQryOptionInstrTradeCostField_InstrumentID != nullptr){ strcpy_s(pQryOptionInstrTradeCostField->InstrumentID, pQryOptionInstrTradeCostField_InstrumentID); pQryOptionInstrTradeCostField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionInstrTradeCostField *pQryOptionInstrTradeCostField)
 {
 	if(pQryOptionInstrTradeCostField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:d,s:d,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:d,s:d,s:y,s:y,s:y}"
 		, "BrokerID", pQryOptionInstrTradeCostField->BrokerID
 		, "InvestorID", pQryOptionInstrTradeCostField->InvestorID
-		, "InstrumentID", pQryOptionInstrTradeCostField->InstrumentID
+		, "reserve1", pQryOptionInstrTradeCostField->reserve1
 		, "HedgeFlag", pQryOptionInstrTradeCostField->HedgeFlag
 		, "InputPrice", pQryOptionInstrTradeCostField->InputPrice
 		, "UnderlyingPrice", pQryOptionInstrTradeCostField->UnderlyingPrice
 		, "ExchangeID", pQryOptionInstrTradeCostField->ExchangeID
 		, "InvestUnitID", pQryOptionInstrTradeCostField->InvestUnitID
+		, "InstrumentID", pQryOptionInstrTradeCostField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrCommRateField *pQryOptionInstrCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryOptionInstrCommRateField_BrokerID = nullptr;
 	char *pQryOptionInstrCommRateField_InvestorID = nullptr;
-	char *pQryOptionInstrCommRateField_InstrumentID = nullptr;
+	char *pQryOptionInstrCommRateField_reserve1 = nullptr;
 	char *pQryOptionInstrCommRateField_ExchangeID = nullptr;
 	char *pQryOptionInstrCommRateField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionInstrCommRateField, "|yyyyy")
+	char *pQryOptionInstrCommRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionInstrCommRateField, "|yyyyyy")
 		, &pQryOptionInstrCommRateField_BrokerID
 		, &pQryOptionInstrCommRateField_InvestorID
-		, &pQryOptionInstrCommRateField_InstrumentID
+		, &pQryOptionInstrCommRateField_reserve1
 		, &pQryOptionInstrCommRateField_ExchangeID
 		, &pQryOptionInstrCommRateField_InvestUnitID
+		, &pQryOptionInstrCommRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryOptionInstrCommRateField_BrokerID != nullptr){ strcpy_s(pQryOptionInstrCommRateField->BrokerID, pQryOptionInstrCommRateField_BrokerID); pQryOptionInstrCommRateField_BrokerID = nullptr; }
 		if(pQryOptionInstrCommRateField_InvestorID != nullptr){ strcpy_s(pQryOptionInstrCommRateField->InvestorID, pQryOptionInstrCommRateField_InvestorID); pQryOptionInstrCommRateField_InvestorID = nullptr; }
-		if(pQryOptionInstrCommRateField_InstrumentID != nullptr){ strcpy_s(pQryOptionInstrCommRateField->InstrumentID, pQryOptionInstrCommRateField_InstrumentID); pQryOptionInstrCommRateField_InstrumentID = nullptr; }
+		if(pQryOptionInstrCommRateField_reserve1 != nullptr){ strcpy_s(pQryOptionInstrCommRateField->reserve1, pQryOptionInstrCommRateField_reserve1); pQryOptionInstrCommRateField_reserve1 = nullptr; }
 		if(pQryOptionInstrCommRateField_ExchangeID != nullptr){ strcpy_s(pQryOptionInstrCommRateField->ExchangeID, pQryOptionInstrCommRateField_ExchangeID); pQryOptionInstrCommRateField_ExchangeID = nullptr; }
 		if(pQryOptionInstrCommRateField_InvestUnitID != nullptr){ strcpy_s(pQryOptionInstrCommRateField->InvestUnitID, pQryOptionInstrCommRateField_InvestUnitID); pQryOptionInstrCommRateField_InvestUnitID = nullptr; }
+		if(pQryOptionInstrCommRateField_InstrumentID != nullptr){ strcpy_s(pQryOptionInstrCommRateField->InstrumentID, pQryOptionInstrCommRateField_InstrumentID); pQryOptionInstrCommRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionInstrCommRateField *pQryOptionInstrCommRateField)
 {
 	if(pQryOptionInstrCommRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryOptionInstrCommRateField->BrokerID
 		, "InvestorID", pQryOptionInstrCommRateField->InvestorID
-		, "InstrumentID", pQryOptionInstrCommRateField->InstrumentID
+		, "reserve1", pQryOptionInstrCommRateField->reserve1
 		, "ExchangeID", pQryOptionInstrCommRateField->ExchangeID
 		, "InvestUnitID", pQryOptionInstrCommRateField->InvestUnitID
+		, "InstrumentID", pQryOptionInstrCommRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcIndexPriceField *pIndexPriceField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "ClosePrice", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "ClosePrice", "InstrumentID", nullptr};
 	char *pIndexPriceField_BrokerID = nullptr;
-	char *pIndexPriceField_InstrumentID = nullptr;
+	char *pIndexPriceField_reserve1 = nullptr;
 	double pIndexPriceField_ClosePrice = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pIndexPriceField, "|yyd")
+	char *pIndexPriceField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pIndexPriceField, "|yydy")
 		, &pIndexPriceField_BrokerID
-		, &pIndexPriceField_InstrumentID
+		, &pIndexPriceField_reserve1
 		, &pIndexPriceField_ClosePrice
+		, &pIndexPriceField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pIndexPriceField_BrokerID != nullptr){ strcpy_s(pIndexPriceField->BrokerID, pIndexPriceField_BrokerID); pIndexPriceField_BrokerID = nullptr; }
-		if(pIndexPriceField_InstrumentID != nullptr){ strcpy_s(pIndexPriceField->InstrumentID, pIndexPriceField_InstrumentID); pIndexPriceField_InstrumentID = nullptr; }
+		if(pIndexPriceField_reserve1 != nullptr){ strcpy_s(pIndexPriceField->reserve1, pIndexPriceField_reserve1); pIndexPriceField_reserve1 = nullptr; }
 		pIndexPriceField->ClosePrice = pIndexPriceField_ClosePrice;
+		if(pIndexPriceField_InstrumentID != nullptr){ strcpy_s(pIndexPriceField->InstrumentID, pIndexPriceField_InstrumentID); pIndexPriceField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcIndexPriceField *pIndexPriceField)
 {
 	if(pIndexPriceField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:d}"
+	return Py_BuildValue("{s:y,s:y,s:d,s:y}"
 		, "BrokerID", pIndexPriceField->BrokerID
-		, "InstrumentID", pIndexPriceField->InstrumentID
+		, "reserve1", pIndexPriceField->reserve1
 		, "ClosePrice", pIndexPriceField->ClosePrice
+		, "InstrumentID", pIndexPriceField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderField *pInputExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExecOrderRef", "UserID", "Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExecOrderRef", "UserID", "Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputExecOrderField_BrokerID = nullptr;
 	char *pInputExecOrderField_InvestorID = nullptr;
-	char *pInputExecOrderField_InstrumentID = nullptr;
+	char *pInputExecOrderField_reserve1 = nullptr;
 	char *pInputExecOrderField_ExecOrderRef = nullptr;
 	char *pInputExecOrderField_UserID = nullptr;
 	int pInputExecOrderField_Volume = 0;
@@ -6286,12 +6559,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderField *pInputExecOrderField,
 	char *pInputExecOrderField_AccountID = nullptr;
 	char *pInputExecOrderField_CurrencyID = nullptr;
 	char *pInputExecOrderField_ClientID = nullptr;
-	char *pInputExecOrderField_IPAddress = nullptr;
+	char *pInputExecOrderField_reserve2 = nullptr;
 	char *pInputExecOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputExecOrderField, "|yyyyyiiyccccccyyyyyyy")
+	char *pInputExecOrderField_InstrumentID = nullptr;
+	char *pInputExecOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputExecOrderField, "|yyyyyiiyccccccyyyyyyyyy")
 		, &pInputExecOrderField_BrokerID
 		, &pInputExecOrderField_InvestorID
-		, &pInputExecOrderField_InstrumentID
+		, &pInputExecOrderField_reserve1
 		, &pInputExecOrderField_ExecOrderRef
 		, &pInputExecOrderField_UserID
 		, &pInputExecOrderField_Volume
@@ -6308,12 +6583,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderField *pInputExecOrderField,
 		, &pInputExecOrderField_AccountID
 		, &pInputExecOrderField_CurrencyID
 		, &pInputExecOrderField_ClientID
-		, &pInputExecOrderField_IPAddress
+		, &pInputExecOrderField_reserve2
 		, &pInputExecOrderField_MacAddress
+		, &pInputExecOrderField_InstrumentID
+		, &pInputExecOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputExecOrderField_BrokerID != nullptr){ strcpy_s(pInputExecOrderField->BrokerID, pInputExecOrderField_BrokerID); pInputExecOrderField_BrokerID = nullptr; }
 		if(pInputExecOrderField_InvestorID != nullptr){ strcpy_s(pInputExecOrderField->InvestorID, pInputExecOrderField_InvestorID); pInputExecOrderField_InvestorID = nullptr; }
-		if(pInputExecOrderField_InstrumentID != nullptr){ strcpy_s(pInputExecOrderField->InstrumentID, pInputExecOrderField_InstrumentID); pInputExecOrderField_InstrumentID = nullptr; }
+		if(pInputExecOrderField_reserve1 != nullptr){ strcpy_s(pInputExecOrderField->reserve1, pInputExecOrderField_reserve1); pInputExecOrderField_reserve1 = nullptr; }
 		if(pInputExecOrderField_ExecOrderRef != nullptr){ strcpy_s(pInputExecOrderField->ExecOrderRef, pInputExecOrderField_ExecOrderRef); pInputExecOrderField_ExecOrderRef = nullptr; }
 		if(pInputExecOrderField_UserID != nullptr){ strcpy_s(pInputExecOrderField->UserID, pInputExecOrderField_UserID); pInputExecOrderField_UserID = nullptr; }
 		pInputExecOrderField->Volume = pInputExecOrderField_Volume;
@@ -6330,17 +6607,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderField *pInputExecOrderField,
 		if(pInputExecOrderField_AccountID != nullptr){ strcpy_s(pInputExecOrderField->AccountID, pInputExecOrderField_AccountID); pInputExecOrderField_AccountID = nullptr; }
 		if(pInputExecOrderField_CurrencyID != nullptr){ strcpy_s(pInputExecOrderField->CurrencyID, pInputExecOrderField_CurrencyID); pInputExecOrderField_CurrencyID = nullptr; }
 		if(pInputExecOrderField_ClientID != nullptr){ strcpy_s(pInputExecOrderField->ClientID, pInputExecOrderField_ClientID); pInputExecOrderField_ClientID = nullptr; }
-		if(pInputExecOrderField_IPAddress != nullptr){ strcpy_s(pInputExecOrderField->IPAddress, pInputExecOrderField_IPAddress); pInputExecOrderField_IPAddress = nullptr; }
+		if(pInputExecOrderField_reserve2 != nullptr){ strcpy_s(pInputExecOrderField->reserve2, pInputExecOrderField_reserve2); pInputExecOrderField_reserve2 = nullptr; }
 		if(pInputExecOrderField_MacAddress != nullptr){ strcpy_s(pInputExecOrderField->MacAddress, pInputExecOrderField_MacAddress); pInputExecOrderField_MacAddress = nullptr; }
+		if(pInputExecOrderField_InstrumentID != nullptr){ strcpy_s(pInputExecOrderField->InstrumentID, pInputExecOrderField_InstrumentID); pInputExecOrderField_InstrumentID = nullptr; }
+		if(pInputExecOrderField_IPAddress != nullptr){ strcpy_s(pInputExecOrderField->IPAddress, pInputExecOrderField_IPAddress); pInputExecOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputExecOrderField *pInputExecOrderField)
 {
 	if(pInputExecOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputExecOrderField->BrokerID
 		, "InvestorID", pInputExecOrderField->InvestorID
-		, "InstrumentID", pInputExecOrderField->InstrumentID
+		, "reserve1", pInputExecOrderField->reserve1
 		, "ExecOrderRef", pInputExecOrderField->ExecOrderRef
 		, "UserID", pInputExecOrderField->UserID
 		, "Volume", pInputExecOrderField->Volume
@@ -6357,14 +6636,16 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputExecOrderField *pInputExecOrder
 		, "AccountID", pInputExecOrderField->AccountID
 		, "CurrencyID", pInputExecOrderField->CurrencyID
 		, "ClientID", pInputExecOrderField->ClientID
-		, "IPAddress", pInputExecOrderField->IPAddress
+		, "reserve2", pInputExecOrderField->reserve2
 		, "MacAddress", pInputExecOrderField->MacAddress
+		, "InstrumentID", pInputExecOrderField->InstrumentID
+		, "IPAddress", pInputExecOrderField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderActionField *pInputExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ExecOrderActionRef", "ExecOrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ExecOrderSysID", "ActionFlag", "UserID", "InstrumentID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "ExecOrderActionRef", "ExecOrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ExecOrderSysID", "ActionFlag", "UserID", "reserve1", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputExecOrderActionField_BrokerID = nullptr;
 	char *pInputExecOrderActionField_InvestorID = nullptr;
 	int pInputExecOrderActionField_ExecOrderActionRef = 0;
@@ -6376,11 +6657,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderActionField *pInputExecOrder
 	char *pInputExecOrderActionField_ExecOrderSysID = nullptr;
 	char pInputExecOrderActionField_ActionFlag = 0;
 	char *pInputExecOrderActionField_UserID = nullptr;
-	char *pInputExecOrderActionField_InstrumentID = nullptr;
+	char *pInputExecOrderActionField_reserve1 = nullptr;
 	char *pInputExecOrderActionField_InvestUnitID = nullptr;
-	char *pInputExecOrderActionField_IPAddress = nullptr;
+	char *pInputExecOrderActionField_reserve2 = nullptr;
 	char *pInputExecOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputExecOrderActionField, "|yyiyiiiyycyyyyy")
+	char *pInputExecOrderActionField_InstrumentID = nullptr;
+	char *pInputExecOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputExecOrderActionField, "|yyiyiiiyycyyyyyyy")
 		, &pInputExecOrderActionField_BrokerID
 		, &pInputExecOrderActionField_InvestorID
 		, &pInputExecOrderActionField_ExecOrderActionRef
@@ -6392,10 +6675,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderActionField *pInputExecOrder
 		, &pInputExecOrderActionField_ExecOrderSysID
 		, &pInputExecOrderActionField_ActionFlag
 		, &pInputExecOrderActionField_UserID
-		, &pInputExecOrderActionField_InstrumentID
+		, &pInputExecOrderActionField_reserve1
 		, &pInputExecOrderActionField_InvestUnitID
-		, &pInputExecOrderActionField_IPAddress
+		, &pInputExecOrderActionField_reserve2
 		, &pInputExecOrderActionField_MacAddress
+		, &pInputExecOrderActionField_InstrumentID
+		, &pInputExecOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputExecOrderActionField_BrokerID != nullptr){ strcpy_s(pInputExecOrderActionField->BrokerID, pInputExecOrderActionField_BrokerID); pInputExecOrderActionField_BrokerID = nullptr; }
 		if(pInputExecOrderActionField_InvestorID != nullptr){ strcpy_s(pInputExecOrderActionField->InvestorID, pInputExecOrderActionField_InvestorID); pInputExecOrderActionField_InvestorID = nullptr; }
@@ -6408,16 +6693,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderActionField *pInputExecOrder
 		if(pInputExecOrderActionField_ExecOrderSysID != nullptr){ strcpy_s(pInputExecOrderActionField->ExecOrderSysID, pInputExecOrderActionField_ExecOrderSysID); pInputExecOrderActionField_ExecOrderSysID = nullptr; }
 		pInputExecOrderActionField->ActionFlag = pInputExecOrderActionField_ActionFlag;
 		if(pInputExecOrderActionField_UserID != nullptr){ strcpy_s(pInputExecOrderActionField->UserID, pInputExecOrderActionField_UserID); pInputExecOrderActionField_UserID = nullptr; }
-		if(pInputExecOrderActionField_InstrumentID != nullptr){ strcpy_s(pInputExecOrderActionField->InstrumentID, pInputExecOrderActionField_InstrumentID); pInputExecOrderActionField_InstrumentID = nullptr; }
+		if(pInputExecOrderActionField_reserve1 != nullptr){ strcpy_s(pInputExecOrderActionField->reserve1, pInputExecOrderActionField_reserve1); pInputExecOrderActionField_reserve1 = nullptr; }
 		if(pInputExecOrderActionField_InvestUnitID != nullptr){ strcpy_s(pInputExecOrderActionField->InvestUnitID, pInputExecOrderActionField_InvestUnitID); pInputExecOrderActionField_InvestUnitID = nullptr; }
-		if(pInputExecOrderActionField_IPAddress != nullptr){ strcpy_s(pInputExecOrderActionField->IPAddress, pInputExecOrderActionField_IPAddress); pInputExecOrderActionField_IPAddress = nullptr; }
+		if(pInputExecOrderActionField_reserve2 != nullptr){ strcpy_s(pInputExecOrderActionField->reserve2, pInputExecOrderActionField_reserve2); pInputExecOrderActionField_reserve2 = nullptr; }
 		if(pInputExecOrderActionField_MacAddress != nullptr){ strcpy_s(pInputExecOrderActionField->MacAddress, pInputExecOrderActionField_MacAddress); pInputExecOrderActionField_MacAddress = nullptr; }
+		if(pInputExecOrderActionField_InstrumentID != nullptr){ strcpy_s(pInputExecOrderActionField->InstrumentID, pInputExecOrderActionField_InstrumentID); pInputExecOrderActionField_InstrumentID = nullptr; }
+		if(pInputExecOrderActionField_IPAddress != nullptr){ strcpy_s(pInputExecOrderActionField->IPAddress, pInputExecOrderActionField_IPAddress); pInputExecOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputExecOrderActionField *pInputExecOrderActionField)
 {
 	if(pInputExecOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputExecOrderActionField->BrokerID
 		, "InvestorID", pInputExecOrderActionField->InvestorID
 		, "ExecOrderActionRef", pInputExecOrderActionField->ExecOrderActionRef
@@ -6429,19 +6716,21 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputExecOrderActionField *pInputExe
 		, "ExecOrderSysID", pInputExecOrderActionField->ExecOrderSysID
 		, "ActionFlag", pInputExecOrderActionField->ActionFlag
 		, "UserID", pInputExecOrderActionField->UserID
-		, "InstrumentID", pInputExecOrderActionField->InstrumentID
+		, "reserve1", pInputExecOrderActionField->reserve1
 		, "InvestUnitID", pInputExecOrderActionField->InvestUnitID
-		, "IPAddress", pInputExecOrderActionField->IPAddress
+		, "reserve2", pInputExecOrderActionField->reserve2
 		, "MacAddress", pInputExecOrderActionField->MacAddress
+		, "InstrumentID", pInputExecOrderActionField->InstrumentID
+		, "IPAddress", pInputExecOrderActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExecOrderRef", "UserID", "Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExecOrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "ExecOrderSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerExecOrderSeq", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExecOrderRef", "UserID", "Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExecOrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "ExecOrderSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerExecOrderSeq", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
 	char *pExecOrderField_BrokerID = nullptr;
 	char *pExecOrderField_InvestorID = nullptr;
-	char *pExecOrderField_InstrumentID = nullptr;
+	char *pExecOrderField_reserve1 = nullptr;
 	char *pExecOrderField_ExecOrderRef = nullptr;
 	char *pExecOrderField_UserID = nullptr;
 	int pExecOrderField_Volume = 0;
@@ -6457,7 +6746,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject 
 	char *pExecOrderField_ExchangeID = nullptr;
 	char *pExecOrderField_ParticipantID = nullptr;
 	char *pExecOrderField_ClientID = nullptr;
-	char *pExecOrderField_ExchangeInstID = nullptr;
+	char *pExecOrderField_reserve2 = nullptr;
 	char *pExecOrderField_TraderID = nullptr;
 	int pExecOrderField_InstallID = 0;
 	char pExecOrderField_OrderSubmitStatus = 0;
@@ -6481,12 +6770,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject 
 	char *pExecOrderField_InvestUnitID = nullptr;
 	char *pExecOrderField_AccountID = nullptr;
 	char *pExecOrderField_CurrencyID = nullptr;
-	char *pExecOrderField_IPAddress = nullptr;
+	char *pExecOrderField_reserve3 = nullptr;
 	char *pExecOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExecOrderField, "|yyyyyiiyccccccyyyyyyiciyiyyyycyiiiyyyiyyyyyy")
+	char *pExecOrderField_InstrumentID = nullptr;
+	char *pExecOrderField_ExchangeInstID = nullptr;
+	char *pExecOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExecOrderField, "|yyyyyiiyccccccyyyyyyiciyiyyyycyiiiyyyiyyyyyyyyy")
 		, &pExecOrderField_BrokerID
 		, &pExecOrderField_InvestorID
-		, &pExecOrderField_InstrumentID
+		, &pExecOrderField_reserve1
 		, &pExecOrderField_ExecOrderRef
 		, &pExecOrderField_UserID
 		, &pExecOrderField_Volume
@@ -6502,7 +6794,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject 
 		, &pExecOrderField_ExchangeID
 		, &pExecOrderField_ParticipantID
 		, &pExecOrderField_ClientID
-		, &pExecOrderField_ExchangeInstID
+		, &pExecOrderField_reserve2
 		, &pExecOrderField_TraderID
 		, &pExecOrderField_InstallID
 		, &pExecOrderField_OrderSubmitStatus
@@ -6526,12 +6818,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject 
 		, &pExecOrderField_InvestUnitID
 		, &pExecOrderField_AccountID
 		, &pExecOrderField_CurrencyID
-		, &pExecOrderField_IPAddress
+		, &pExecOrderField_reserve3
 		, &pExecOrderField_MacAddress
+		, &pExecOrderField_InstrumentID
+		, &pExecOrderField_ExchangeInstID
+		, &pExecOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pExecOrderField_BrokerID != nullptr){ strcpy_s(pExecOrderField->BrokerID, pExecOrderField_BrokerID); pExecOrderField_BrokerID = nullptr; }
 		if(pExecOrderField_InvestorID != nullptr){ strcpy_s(pExecOrderField->InvestorID, pExecOrderField_InvestorID); pExecOrderField_InvestorID = nullptr; }
-		if(pExecOrderField_InstrumentID != nullptr){ strcpy_s(pExecOrderField->InstrumentID, pExecOrderField_InstrumentID); pExecOrderField_InstrumentID = nullptr; }
+		if(pExecOrderField_reserve1 != nullptr){ strcpy_s(pExecOrderField->reserve1, pExecOrderField_reserve1); pExecOrderField_reserve1 = nullptr; }
 		if(pExecOrderField_ExecOrderRef != nullptr){ strcpy_s(pExecOrderField->ExecOrderRef, pExecOrderField_ExecOrderRef); pExecOrderField_ExecOrderRef = nullptr; }
 		if(pExecOrderField_UserID != nullptr){ strcpy_s(pExecOrderField->UserID, pExecOrderField_UserID); pExecOrderField_UserID = nullptr; }
 		pExecOrderField->Volume = pExecOrderField_Volume;
@@ -6547,7 +6842,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject 
 		if(pExecOrderField_ExchangeID != nullptr){ strcpy_s(pExecOrderField->ExchangeID, pExecOrderField_ExchangeID); pExecOrderField_ExchangeID = nullptr; }
 		if(pExecOrderField_ParticipantID != nullptr){ strcpy_s(pExecOrderField->ParticipantID, pExecOrderField_ParticipantID); pExecOrderField_ParticipantID = nullptr; }
 		if(pExecOrderField_ClientID != nullptr){ strcpy_s(pExecOrderField->ClientID, pExecOrderField_ClientID); pExecOrderField_ClientID = nullptr; }
-		if(pExecOrderField_ExchangeInstID != nullptr){ strcpy_s(pExecOrderField->ExchangeInstID, pExecOrderField_ExchangeInstID); pExecOrderField_ExchangeInstID = nullptr; }
+		if(pExecOrderField_reserve2 != nullptr){ strcpy_s(pExecOrderField->reserve2, pExecOrderField_reserve2); pExecOrderField_reserve2 = nullptr; }
 		if(pExecOrderField_TraderID != nullptr){ strcpy_s(pExecOrderField->TraderID, pExecOrderField_TraderID); pExecOrderField_TraderID = nullptr; }
 		pExecOrderField->InstallID = pExecOrderField_InstallID;
 		pExecOrderField->OrderSubmitStatus = pExecOrderField_OrderSubmitStatus;
@@ -6571,17 +6866,20 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject 
 		if(pExecOrderField_InvestUnitID != nullptr){ strcpy_s(pExecOrderField->InvestUnitID, pExecOrderField_InvestUnitID); pExecOrderField_InvestUnitID = nullptr; }
 		if(pExecOrderField_AccountID != nullptr){ strcpy_s(pExecOrderField->AccountID, pExecOrderField_AccountID); pExecOrderField_AccountID = nullptr; }
 		if(pExecOrderField_CurrencyID != nullptr){ strcpy_s(pExecOrderField->CurrencyID, pExecOrderField_CurrencyID); pExecOrderField_CurrencyID = nullptr; }
-		if(pExecOrderField_IPAddress != nullptr){ strcpy_s(pExecOrderField->IPAddress, pExecOrderField_IPAddress); pExecOrderField_IPAddress = nullptr; }
+		if(pExecOrderField_reserve3 != nullptr){ strcpy_s(pExecOrderField->reserve3, pExecOrderField_reserve3); pExecOrderField_reserve3 = nullptr; }
 		if(pExecOrderField_MacAddress != nullptr){ strcpy_s(pExecOrderField->MacAddress, pExecOrderField_MacAddress); pExecOrderField_MacAddress = nullptr; }
+		if(pExecOrderField_InstrumentID != nullptr){ strcpy_s(pExecOrderField->InstrumentID, pExecOrderField_InstrumentID); pExecOrderField_InstrumentID = nullptr; }
+		if(pExecOrderField_ExchangeInstID != nullptr){ strcpy_s(pExecOrderField->ExchangeInstID, pExecOrderField_ExchangeInstID); pExecOrderField_ExchangeInstID = nullptr; }
+		if(pExecOrderField_IPAddress != nullptr){ strcpy_s(pExecOrderField->IPAddress, pExecOrderField_IPAddress); pExecOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExecOrderField *pExecOrderField)
 {
 	if(pExecOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pExecOrderField->BrokerID
 		, "InvestorID", pExecOrderField->InvestorID
-		, "InstrumentID", pExecOrderField->InstrumentID
+		, "reserve1", pExecOrderField->reserve1
 		, "ExecOrderRef", pExecOrderField->ExecOrderRef
 		, "UserID", pExecOrderField->UserID
 		, "Volume", pExecOrderField->Volume
@@ -6597,7 +6895,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExecOrderField *pExecOrderField)
 		, "ExchangeID", pExecOrderField->ExchangeID
 		, "ParticipantID", pExecOrderField->ParticipantID
 		, "ClientID", pExecOrderField->ClientID
-		, "ExchangeInstID", pExecOrderField->ExchangeInstID
+		, "reserve2", pExecOrderField->reserve2
 		, "TraderID", pExecOrderField->TraderID
 		, "InstallID", pExecOrderField->InstallID
 		, "OrderSubmitStatus", pExecOrderField->OrderSubmitStatus
@@ -6621,14 +6919,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExecOrderField *pExecOrderField)
 		, "InvestUnitID", pExecOrderField->InvestUnitID
 		, "AccountID", pExecOrderField->AccountID
 		, "CurrencyID", pExecOrderField->CurrencyID
-		, "IPAddress", pExecOrderField->IPAddress
+		, "reserve3", pExecOrderField->reserve3
 		, "MacAddress", pExecOrderField->MacAddress
+		, "InstrumentID", pExecOrderField->InstrumentID
+		, "ExchangeInstID", pExecOrderField->ExchangeInstID
+		, "IPAddress", pExecOrderField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderActionField *pExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ExecOrderActionRef", "ExecOrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ExecOrderSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "ExecOrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "ActionType", "StatusMsg", "InstrumentID", "BranchID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "ExecOrderActionRef", "ExecOrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ExecOrderSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "ExecOrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "ActionType", "StatusMsg", "reserve1", "BranchID", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pExecOrderActionField_BrokerID = nullptr;
 	char *pExecOrderActionField_InvestorID = nullptr;
 	int pExecOrderActionField_ExecOrderActionRef = 0;
@@ -6652,12 +6953,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderActionField *pExecOrderActionFiel
 	char *pExecOrderActionField_UserID = nullptr;
 	char pExecOrderActionField_ActionType = 0;
 	char *pExecOrderActionField_StatusMsg = nullptr;
-	char *pExecOrderActionField_InstrumentID = nullptr;
+	char *pExecOrderActionField_reserve1 = nullptr;
 	char *pExecOrderActionField_BranchID = nullptr;
 	char *pExecOrderActionField_InvestUnitID = nullptr;
-	char *pExecOrderActionField_IPAddress = nullptr;
+	char *pExecOrderActionField_reserve2 = nullptr;
 	char *pExecOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExecOrderActionField, "|yyiyiiiyycyyyiyyyyycycyyyyyy")
+	char *pExecOrderActionField_InstrumentID = nullptr;
+	char *pExecOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExecOrderActionField, "|yyiyiiiyycyyyiyyyyycycyyyyyyyy")
 		, &pExecOrderActionField_BrokerID
 		, &pExecOrderActionField_InvestorID
 		, &pExecOrderActionField_ExecOrderActionRef
@@ -6681,11 +6984,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderActionField *pExecOrderActionFiel
 		, &pExecOrderActionField_UserID
 		, &pExecOrderActionField_ActionType
 		, &pExecOrderActionField_StatusMsg
-		, &pExecOrderActionField_InstrumentID
+		, &pExecOrderActionField_reserve1
 		, &pExecOrderActionField_BranchID
 		, &pExecOrderActionField_InvestUnitID
-		, &pExecOrderActionField_IPAddress
+		, &pExecOrderActionField_reserve2
 		, &pExecOrderActionField_MacAddress
+		, &pExecOrderActionField_InstrumentID
+		, &pExecOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pExecOrderActionField_BrokerID != nullptr){ strcpy_s(pExecOrderActionField->BrokerID, pExecOrderActionField_BrokerID); pExecOrderActionField_BrokerID = nullptr; }
 		if(pExecOrderActionField_InvestorID != nullptr){ strcpy_s(pExecOrderActionField->InvestorID, pExecOrderActionField_InvestorID); pExecOrderActionField_InvestorID = nullptr; }
@@ -6710,17 +7015,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderActionField *pExecOrderActionFiel
 		if(pExecOrderActionField_UserID != nullptr){ strcpy_s(pExecOrderActionField->UserID, pExecOrderActionField_UserID); pExecOrderActionField_UserID = nullptr; }
 		pExecOrderActionField->ActionType = pExecOrderActionField_ActionType;
 		if(pExecOrderActionField_StatusMsg != nullptr){ strcpy_s(pExecOrderActionField->StatusMsg, pExecOrderActionField_StatusMsg); pExecOrderActionField_StatusMsg = nullptr; }
-		if(pExecOrderActionField_InstrumentID != nullptr){ strcpy_s(pExecOrderActionField->InstrumentID, pExecOrderActionField_InstrumentID); pExecOrderActionField_InstrumentID = nullptr; }
+		if(pExecOrderActionField_reserve1 != nullptr){ strcpy_s(pExecOrderActionField->reserve1, pExecOrderActionField_reserve1); pExecOrderActionField_reserve1 = nullptr; }
 		if(pExecOrderActionField_BranchID != nullptr){ strcpy_s(pExecOrderActionField->BranchID, pExecOrderActionField_BranchID); pExecOrderActionField_BranchID = nullptr; }
 		if(pExecOrderActionField_InvestUnitID != nullptr){ strcpy_s(pExecOrderActionField->InvestUnitID, pExecOrderActionField_InvestUnitID); pExecOrderActionField_InvestUnitID = nullptr; }
-		if(pExecOrderActionField_IPAddress != nullptr){ strcpy_s(pExecOrderActionField->IPAddress, pExecOrderActionField_IPAddress); pExecOrderActionField_IPAddress = nullptr; }
+		if(pExecOrderActionField_reserve2 != nullptr){ strcpy_s(pExecOrderActionField->reserve2, pExecOrderActionField_reserve2); pExecOrderActionField_reserve2 = nullptr; }
 		if(pExecOrderActionField_MacAddress != nullptr){ strcpy_s(pExecOrderActionField->MacAddress, pExecOrderActionField_MacAddress); pExecOrderActionField_MacAddress = nullptr; }
+		if(pExecOrderActionField_InstrumentID != nullptr){ strcpy_s(pExecOrderActionField->InstrumentID, pExecOrderActionField_InstrumentID); pExecOrderActionField_InstrumentID = nullptr; }
+		if(pExecOrderActionField_IPAddress != nullptr){ strcpy_s(pExecOrderActionField->IPAddress, pExecOrderActionField_IPAddress); pExecOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExecOrderActionField *pExecOrderActionField)
 {
 	if(pExecOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pExecOrderActionField->BrokerID
 		, "InvestorID", pExecOrderActionField->InvestorID
 		, "ExecOrderActionRef", pExecOrderActionField->ExecOrderActionRef
@@ -6744,59 +7051,65 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExecOrderActionField *pExecOrderActi
 		, "UserID", pExecOrderActionField->UserID
 		, "ActionType", pExecOrderActionField->ActionType
 		, "StatusMsg", pExecOrderActionField->StatusMsg
-		, "InstrumentID", pExecOrderActionField->InstrumentID
+		, "reserve1", pExecOrderActionField->reserve1
 		, "BranchID", pExecOrderActionField->BranchID
 		, "InvestUnitID", pExecOrderActionField->InvestUnitID
-		, "IPAddress", pExecOrderActionField->IPAddress
+		, "reserve2", pExecOrderActionField->reserve2
 		, "MacAddress", pExecOrderActionField->MacAddress
+		, "InstrumentID", pExecOrderActionField->InstrumentID
+		, "IPAddress", pExecOrderActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExecOrderField *pQryExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "ExecOrderSysID", "InsertTimeStart", "InsertTimeEnd", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "ExecOrderSysID", "InsertTimeStart", "InsertTimeEnd", "InstrumentID", nullptr};
 	char *pQryExecOrderField_BrokerID = nullptr;
 	char *pQryExecOrderField_InvestorID = nullptr;
-	char *pQryExecOrderField_InstrumentID = nullptr;
+	char *pQryExecOrderField_reserve1 = nullptr;
 	char *pQryExecOrderField_ExchangeID = nullptr;
 	char *pQryExecOrderField_ExecOrderSysID = nullptr;
 	char *pQryExecOrderField_InsertTimeStart = nullptr;
 	char *pQryExecOrderField_InsertTimeEnd = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExecOrderField, "|yyyyyyy")
+	char *pQryExecOrderField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExecOrderField, "|yyyyyyyy")
 		, &pQryExecOrderField_BrokerID
 		, &pQryExecOrderField_InvestorID
-		, &pQryExecOrderField_InstrumentID
+		, &pQryExecOrderField_reserve1
 		, &pQryExecOrderField_ExchangeID
 		, &pQryExecOrderField_ExecOrderSysID
 		, &pQryExecOrderField_InsertTimeStart
 		, &pQryExecOrderField_InsertTimeEnd
+		, &pQryExecOrderField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExecOrderField_BrokerID != nullptr){ strcpy_s(pQryExecOrderField->BrokerID, pQryExecOrderField_BrokerID); pQryExecOrderField_BrokerID = nullptr; }
 		if(pQryExecOrderField_InvestorID != nullptr){ strcpy_s(pQryExecOrderField->InvestorID, pQryExecOrderField_InvestorID); pQryExecOrderField_InvestorID = nullptr; }
-		if(pQryExecOrderField_InstrumentID != nullptr){ strcpy_s(pQryExecOrderField->InstrumentID, pQryExecOrderField_InstrumentID); pQryExecOrderField_InstrumentID = nullptr; }
+		if(pQryExecOrderField_reserve1 != nullptr){ strcpy_s(pQryExecOrderField->reserve1, pQryExecOrderField_reserve1); pQryExecOrderField_reserve1 = nullptr; }
 		if(pQryExecOrderField_ExchangeID != nullptr){ strcpy_s(pQryExecOrderField->ExchangeID, pQryExecOrderField_ExchangeID); pQryExecOrderField_ExchangeID = nullptr; }
 		if(pQryExecOrderField_ExecOrderSysID != nullptr){ strcpy_s(pQryExecOrderField->ExecOrderSysID, pQryExecOrderField_ExecOrderSysID); pQryExecOrderField_ExecOrderSysID = nullptr; }
 		if(pQryExecOrderField_InsertTimeStart != nullptr){ strcpy_s(pQryExecOrderField->InsertTimeStart, pQryExecOrderField_InsertTimeStart); pQryExecOrderField_InsertTimeStart = nullptr; }
 		if(pQryExecOrderField_InsertTimeEnd != nullptr){ strcpy_s(pQryExecOrderField->InsertTimeEnd, pQryExecOrderField_InsertTimeEnd); pQryExecOrderField_InsertTimeEnd = nullptr; }
+		if(pQryExecOrderField_InstrumentID != nullptr){ strcpy_s(pQryExecOrderField->InstrumentID, pQryExecOrderField_InstrumentID); pQryExecOrderField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExecOrderField *pQryExecOrderField)
 {
 	if(pQryExecOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryExecOrderField->BrokerID
 		, "InvestorID", pQryExecOrderField->InvestorID
-		, "InstrumentID", pQryExecOrderField->InstrumentID
+		, "reserve1", pQryExecOrderField->reserve1
 		, "ExchangeID", pQryExecOrderField->ExchangeID
 		, "ExecOrderSysID", pQryExecOrderField->ExecOrderSysID
 		, "InsertTimeStart", pQryExecOrderField->InsertTimeStart
 		, "InsertTimeEnd", pQryExecOrderField->InsertTimeEnd
+		, "InstrumentID", pQryExecOrderField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExecOrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "ExecOrderSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "BranchID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExecOrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve1", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "ExecOrderSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "BranchID", "reserve2", "MacAddress", "ExchangeInstID", "IPAddress", nullptr};
 	int pExchangeExecOrderField_Volume = 0;
 	int pExchangeExecOrderField_RequestID = 0;
 	char *pExchangeExecOrderField_BusinessUnit = nullptr;
@@ -6810,7 +7123,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrder
 	char *pExchangeExecOrderField_ExchangeID = nullptr;
 	char *pExchangeExecOrderField_ParticipantID = nullptr;
 	char *pExchangeExecOrderField_ClientID = nullptr;
-	char *pExchangeExecOrderField_ExchangeInstID = nullptr;
+	char *pExchangeExecOrderField_reserve1 = nullptr;
 	char *pExchangeExecOrderField_TraderID = nullptr;
 	int pExchangeExecOrderField_InstallID = 0;
 	char pExchangeExecOrderField_OrderSubmitStatus = 0;
@@ -6825,9 +7138,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrder
 	char *pExchangeExecOrderField_ClearingPartID = nullptr;
 	int pExchangeExecOrderField_SequenceNo = 0;
 	char *pExchangeExecOrderField_BranchID = nullptr;
-	char *pExchangeExecOrderField_IPAddress = nullptr;
+	char *pExchangeExecOrderField_reserve2 = nullptr;
 	char *pExchangeExecOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeExecOrderField, "|iiyccccccyyyyyyiciyiyyyycyiyyy")
+	char *pExchangeExecOrderField_ExchangeInstID = nullptr;
+	char *pExchangeExecOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeExecOrderField, "|iiyccccccyyyyyyiciyiyyyycyiyyyyy")
 		, &pExchangeExecOrderField_Volume
 		, &pExchangeExecOrderField_RequestID
 		, &pExchangeExecOrderField_BusinessUnit
@@ -6841,7 +7156,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrder
 		, &pExchangeExecOrderField_ExchangeID
 		, &pExchangeExecOrderField_ParticipantID
 		, &pExchangeExecOrderField_ClientID
-		, &pExchangeExecOrderField_ExchangeInstID
+		, &pExchangeExecOrderField_reserve1
 		, &pExchangeExecOrderField_TraderID
 		, &pExchangeExecOrderField_InstallID
 		, &pExchangeExecOrderField_OrderSubmitStatus
@@ -6856,8 +7171,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrder
 		, &pExchangeExecOrderField_ClearingPartID
 		, &pExchangeExecOrderField_SequenceNo
 		, &pExchangeExecOrderField_BranchID
-		, &pExchangeExecOrderField_IPAddress
+		, &pExchangeExecOrderField_reserve2
 		, &pExchangeExecOrderField_MacAddress
+		, &pExchangeExecOrderField_ExchangeInstID
+		, &pExchangeExecOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		pExchangeExecOrderField->Volume = pExchangeExecOrderField_Volume;
 		pExchangeExecOrderField->RequestID = pExchangeExecOrderField_RequestID;
@@ -6872,7 +7189,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrder
 		if(pExchangeExecOrderField_ExchangeID != nullptr){ strcpy_s(pExchangeExecOrderField->ExchangeID, pExchangeExecOrderField_ExchangeID); pExchangeExecOrderField_ExchangeID = nullptr; }
 		if(pExchangeExecOrderField_ParticipantID != nullptr){ strcpy_s(pExchangeExecOrderField->ParticipantID, pExchangeExecOrderField_ParticipantID); pExchangeExecOrderField_ParticipantID = nullptr; }
 		if(pExchangeExecOrderField_ClientID != nullptr){ strcpy_s(pExchangeExecOrderField->ClientID, pExchangeExecOrderField_ClientID); pExchangeExecOrderField_ClientID = nullptr; }
-		if(pExchangeExecOrderField_ExchangeInstID != nullptr){ strcpy_s(pExchangeExecOrderField->ExchangeInstID, pExchangeExecOrderField_ExchangeInstID); pExchangeExecOrderField_ExchangeInstID = nullptr; }
+		if(pExchangeExecOrderField_reserve1 != nullptr){ strcpy_s(pExchangeExecOrderField->reserve1, pExchangeExecOrderField_reserve1); pExchangeExecOrderField_reserve1 = nullptr; }
 		if(pExchangeExecOrderField_TraderID != nullptr){ strcpy_s(pExchangeExecOrderField->TraderID, pExchangeExecOrderField_TraderID); pExchangeExecOrderField_TraderID = nullptr; }
 		pExchangeExecOrderField->InstallID = pExchangeExecOrderField_InstallID;
 		pExchangeExecOrderField->OrderSubmitStatus = pExchangeExecOrderField_OrderSubmitStatus;
@@ -6887,14 +7204,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrder
 		if(pExchangeExecOrderField_ClearingPartID != nullptr){ strcpy_s(pExchangeExecOrderField->ClearingPartID, pExchangeExecOrderField_ClearingPartID); pExchangeExecOrderField_ClearingPartID = nullptr; }
 		pExchangeExecOrderField->SequenceNo = pExchangeExecOrderField_SequenceNo;
 		if(pExchangeExecOrderField_BranchID != nullptr){ strcpy_s(pExchangeExecOrderField->BranchID, pExchangeExecOrderField_BranchID); pExchangeExecOrderField_BranchID = nullptr; }
-		if(pExchangeExecOrderField_IPAddress != nullptr){ strcpy_s(pExchangeExecOrderField->IPAddress, pExchangeExecOrderField_IPAddress); pExchangeExecOrderField_IPAddress = nullptr; }
+		if(pExchangeExecOrderField_reserve2 != nullptr){ strcpy_s(pExchangeExecOrderField->reserve2, pExchangeExecOrderField_reserve2); pExchangeExecOrderField_reserve2 = nullptr; }
 		if(pExchangeExecOrderField_MacAddress != nullptr){ strcpy_s(pExchangeExecOrderField->MacAddress, pExchangeExecOrderField_MacAddress); pExchangeExecOrderField_MacAddress = nullptr; }
+		if(pExchangeExecOrderField_ExchangeInstID != nullptr){ strcpy_s(pExchangeExecOrderField->ExchangeInstID, pExchangeExecOrderField_ExchangeInstID); pExchangeExecOrderField_ExchangeInstID = nullptr; }
+		if(pExchangeExecOrderField_IPAddress != nullptr){ strcpy_s(pExchangeExecOrderField->IPAddress, pExchangeExecOrderField_IPAddress); pExchangeExecOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeExecOrderField *pExchangeExecOrderField)
 {
 	if(pExchangeExecOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y}"
 		, "Volume", pExchangeExecOrderField->Volume
 		, "RequestID", pExchangeExecOrderField->RequestID
 		, "BusinessUnit", pExchangeExecOrderField->BusinessUnit
@@ -6908,7 +7227,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeExecOrderField *pExchangeExe
 		, "ExchangeID", pExchangeExecOrderField->ExchangeID
 		, "ParticipantID", pExchangeExecOrderField->ParticipantID
 		, "ClientID", pExchangeExecOrderField->ClientID
-		, "ExchangeInstID", pExchangeExecOrderField->ExchangeInstID
+		, "reserve1", pExchangeExecOrderField->reserve1
 		, "TraderID", pExchangeExecOrderField->TraderID
 		, "InstallID", pExchangeExecOrderField->InstallID
 		, "OrderSubmitStatus", pExchangeExecOrderField->OrderSubmitStatus
@@ -6923,42 +7242,48 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeExecOrderField *pExchangeExe
 		, "ClearingPartID", pExchangeExecOrderField->ClearingPartID
 		, "SequenceNo", pExchangeExecOrderField->SequenceNo
 		, "BranchID", pExchangeExecOrderField->BranchID
-		, "IPAddress", pExchangeExecOrderField->IPAddress
+		, "reserve2", pExchangeExecOrderField->reserve2
 		, "MacAddress", pExchangeExecOrderField->MacAddress
+		, "ExchangeInstID", pExchangeExecOrderField->ExchangeInstID
+		, "IPAddress", pExchangeExecOrderField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeExecOrderField *pQryExchangeExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ParticipantID", "ClientID", "ExchangeInstID", "ExchangeID", "TraderID", nullptr};
+	static char *kwlist[] = {"ParticipantID", "ClientID", "reserve1", "ExchangeID", "TraderID", "ExchangeInstID", nullptr};
 	char *pQryExchangeExecOrderField_ParticipantID = nullptr;
 	char *pQryExchangeExecOrderField_ClientID = nullptr;
-	char *pQryExchangeExecOrderField_ExchangeInstID = nullptr;
+	char *pQryExchangeExecOrderField_reserve1 = nullptr;
 	char *pQryExchangeExecOrderField_ExchangeID = nullptr;
 	char *pQryExchangeExecOrderField_TraderID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeExecOrderField, "|yyyyy")
+	char *pQryExchangeExecOrderField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeExecOrderField, "|yyyyyy")
 		, &pQryExchangeExecOrderField_ParticipantID
 		, &pQryExchangeExecOrderField_ClientID
-		, &pQryExchangeExecOrderField_ExchangeInstID
+		, &pQryExchangeExecOrderField_reserve1
 		, &pQryExchangeExecOrderField_ExchangeID
 		, &pQryExchangeExecOrderField_TraderID
+		, &pQryExchangeExecOrderField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExchangeExecOrderField_ParticipantID != nullptr){ strcpy_s(pQryExchangeExecOrderField->ParticipantID, pQryExchangeExecOrderField_ParticipantID); pQryExchangeExecOrderField_ParticipantID = nullptr; }
 		if(pQryExchangeExecOrderField_ClientID != nullptr){ strcpy_s(pQryExchangeExecOrderField->ClientID, pQryExchangeExecOrderField_ClientID); pQryExchangeExecOrderField_ClientID = nullptr; }
-		if(pQryExchangeExecOrderField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeExecOrderField->ExchangeInstID, pQryExchangeExecOrderField_ExchangeInstID); pQryExchangeExecOrderField_ExchangeInstID = nullptr; }
+		if(pQryExchangeExecOrderField_reserve1 != nullptr){ strcpy_s(pQryExchangeExecOrderField->reserve1, pQryExchangeExecOrderField_reserve1); pQryExchangeExecOrderField_reserve1 = nullptr; }
 		if(pQryExchangeExecOrderField_ExchangeID != nullptr){ strcpy_s(pQryExchangeExecOrderField->ExchangeID, pQryExchangeExecOrderField_ExchangeID); pQryExchangeExecOrderField_ExchangeID = nullptr; }
 		if(pQryExchangeExecOrderField_TraderID != nullptr){ strcpy_s(pQryExchangeExecOrderField->TraderID, pQryExchangeExecOrderField_TraderID); pQryExchangeExecOrderField_TraderID = nullptr; }
+		if(pQryExchangeExecOrderField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeExecOrderField->ExchangeInstID, pQryExchangeExecOrderField_ExchangeInstID); pQryExchangeExecOrderField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeExecOrderField *pQryExchangeExecOrderField)
 {
 	if(pQryExchangeExecOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "ParticipantID", pQryExchangeExecOrderField->ParticipantID
 		, "ClientID", pQryExchangeExecOrderField->ClientID
-		, "ExchangeInstID", pQryExchangeExecOrderField->ExchangeInstID
+		, "reserve1", pQryExchangeExecOrderField->reserve1
 		, "ExchangeID", pQryExchangeExecOrderField->ExchangeID
 		, "TraderID", pQryExchangeExecOrderField->TraderID
+		, "ExchangeInstID", pQryExchangeExecOrderField->ExchangeInstID
 		);
 }
 
@@ -6990,7 +7315,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExecOrderActionField *pQryExecOrd
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderActionField *pExchangeExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ExecOrderSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "ExecOrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "ActionType", "BranchID", "IPAddress", "MacAddress", "ExchangeInstID", "Volume", nullptr};
+	static char *kwlist[] = {"ExchangeID", "ExecOrderSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "ExecOrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "ActionType", "BranchID", "reserve1", "MacAddress", "reserve2", "Volume", "IPAddress", "ExchangeInstID", nullptr};
 	char *pExchangeExecOrderActionField_ExchangeID = nullptr;
 	char *pExchangeExecOrderActionField_ExecOrderSysID = nullptr;
 	char pExchangeExecOrderActionField_ActionFlag = 0;
@@ -7007,11 +7332,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderActionField *pExchangeExe
 	char *pExchangeExecOrderActionField_UserID = nullptr;
 	char pExchangeExecOrderActionField_ActionType = 0;
 	char *pExchangeExecOrderActionField_BranchID = nullptr;
-	char *pExchangeExecOrderActionField_IPAddress = nullptr;
+	char *pExchangeExecOrderActionField_reserve1 = nullptr;
 	char *pExchangeExecOrderActionField_MacAddress = nullptr;
-	char *pExchangeExecOrderActionField_ExchangeInstID = nullptr;
+	char *pExchangeExecOrderActionField_reserve2 = nullptr;
 	int pExchangeExecOrderActionField_Volume = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeExecOrderActionField, "|yycyyyiyyyyycycyyyyi")
+	char *pExchangeExecOrderActionField_IPAddress = nullptr;
+	char *pExchangeExecOrderActionField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeExecOrderActionField, "|yycyyyiyyyyycycyyyyiyy")
 		, &pExchangeExecOrderActionField_ExchangeID
 		, &pExchangeExecOrderActionField_ExecOrderSysID
 		, &pExchangeExecOrderActionField_ActionFlag
@@ -7028,10 +7355,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderActionField *pExchangeExe
 		, &pExchangeExecOrderActionField_UserID
 		, &pExchangeExecOrderActionField_ActionType
 		, &pExchangeExecOrderActionField_BranchID
-		, &pExchangeExecOrderActionField_IPAddress
+		, &pExchangeExecOrderActionField_reserve1
 		, &pExchangeExecOrderActionField_MacAddress
-		, &pExchangeExecOrderActionField_ExchangeInstID
+		, &pExchangeExecOrderActionField_reserve2
 		, &pExchangeExecOrderActionField_Volume
+		, &pExchangeExecOrderActionField_IPAddress
+		, &pExchangeExecOrderActionField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeExecOrderActionField_ExchangeID != nullptr){ strcpy_s(pExchangeExecOrderActionField->ExchangeID, pExchangeExecOrderActionField_ExchangeID); pExchangeExecOrderActionField_ExchangeID = nullptr; }
 		if(pExchangeExecOrderActionField_ExecOrderSysID != nullptr){ strcpy_s(pExchangeExecOrderActionField->ExecOrderSysID, pExchangeExecOrderActionField_ExecOrderSysID); pExchangeExecOrderActionField_ExecOrderSysID = nullptr; }
@@ -7049,16 +7378,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderActionField *pExchangeExe
 		if(pExchangeExecOrderActionField_UserID != nullptr){ strcpy_s(pExchangeExecOrderActionField->UserID, pExchangeExecOrderActionField_UserID); pExchangeExecOrderActionField_UserID = nullptr; }
 		pExchangeExecOrderActionField->ActionType = pExchangeExecOrderActionField_ActionType;
 		if(pExchangeExecOrderActionField_BranchID != nullptr){ strcpy_s(pExchangeExecOrderActionField->BranchID, pExchangeExecOrderActionField_BranchID); pExchangeExecOrderActionField_BranchID = nullptr; }
-		if(pExchangeExecOrderActionField_IPAddress != nullptr){ strcpy_s(pExchangeExecOrderActionField->IPAddress, pExchangeExecOrderActionField_IPAddress); pExchangeExecOrderActionField_IPAddress = nullptr; }
+		if(pExchangeExecOrderActionField_reserve1 != nullptr){ strcpy_s(pExchangeExecOrderActionField->reserve1, pExchangeExecOrderActionField_reserve1); pExchangeExecOrderActionField_reserve1 = nullptr; }
 		if(pExchangeExecOrderActionField_MacAddress != nullptr){ strcpy_s(pExchangeExecOrderActionField->MacAddress, pExchangeExecOrderActionField_MacAddress); pExchangeExecOrderActionField_MacAddress = nullptr; }
-		if(pExchangeExecOrderActionField_ExchangeInstID != nullptr){ strcpy_s(pExchangeExecOrderActionField->ExchangeInstID, pExchangeExecOrderActionField_ExchangeInstID); pExchangeExecOrderActionField_ExchangeInstID = nullptr; }
+		if(pExchangeExecOrderActionField_reserve2 != nullptr){ strcpy_s(pExchangeExecOrderActionField->reserve2, pExchangeExecOrderActionField_reserve2); pExchangeExecOrderActionField_reserve2 = nullptr; }
 		pExchangeExecOrderActionField->Volume = pExchangeExecOrderActionField_Volume;
+		if(pExchangeExecOrderActionField_IPAddress != nullptr){ strcpy_s(pExchangeExecOrderActionField->IPAddress, pExchangeExecOrderActionField_IPAddress); pExchangeExecOrderActionField_IPAddress = nullptr; }
+		if(pExchangeExecOrderActionField_ExchangeInstID != nullptr){ strcpy_s(pExchangeExecOrderActionField->ExchangeInstID, pExchangeExecOrderActionField_ExchangeInstID); pExchangeExecOrderActionField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeExecOrderActionField *pExchangeExecOrderActionField)
 {
 	if(pExchangeExecOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:c,s:y,s:y,s:y,s:y,s:i}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:c,s:y,s:y,s:y,s:y,s:i,s:y,s:y}"
 		, "ExchangeID", pExchangeExecOrderActionField->ExchangeID
 		, "ExecOrderSysID", pExchangeExecOrderActionField->ExecOrderSysID
 		, "ActionFlag", pExchangeExecOrderActionField->ActionFlag
@@ -7075,10 +7406,12 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeExecOrderActionField *pExcha
 		, "UserID", pExchangeExecOrderActionField->UserID
 		, "ActionType", pExchangeExecOrderActionField->ActionType
 		, "BranchID", pExchangeExecOrderActionField->BranchID
-		, "IPAddress", pExchangeExecOrderActionField->IPAddress
+		, "reserve1", pExchangeExecOrderActionField->reserve1
 		, "MacAddress", pExchangeExecOrderActionField->MacAddress
-		, "ExchangeInstID", pExchangeExecOrderActionField->ExchangeInstID
+		, "reserve2", pExchangeExecOrderActionField->reserve2
 		, "Volume", pExchangeExecOrderActionField->Volume
+		, "IPAddress", pExchangeExecOrderActionField->IPAddress
+		, "ExchangeInstID", pExchangeExecOrderActionField->ExchangeInstID
 		);
 }
 
@@ -7114,10 +7447,10 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeExecOrderActionField *pQr
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderField *pErrExecOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExecOrderRef", "UserID", "Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "IPAddress", "MacAddress", "ErrorID", "ErrorMsg", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExecOrderRef", "UserID", "Volume", "RequestID", "BusinessUnit", "OffsetFlag", "HedgeFlag", "ActionType", "PosiDirection", "ReservePositionFlag", "CloseFlag", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "reserve2", "MacAddress", "ErrorID", "ErrorMsg", "InstrumentID", "IPAddress", nullptr};
 	char *pErrExecOrderField_BrokerID = nullptr;
 	char *pErrExecOrderField_InvestorID = nullptr;
-	char *pErrExecOrderField_InstrumentID = nullptr;
+	char *pErrExecOrderField_reserve1 = nullptr;
 	char *pErrExecOrderField_ExecOrderRef = nullptr;
 	char *pErrExecOrderField_UserID = nullptr;
 	int pErrExecOrderField_Volume = 0;
@@ -7134,14 +7467,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderField *pErrExecOrderField, PyO
 	char *pErrExecOrderField_AccountID = nullptr;
 	char *pErrExecOrderField_CurrencyID = nullptr;
 	char *pErrExecOrderField_ClientID = nullptr;
-	char *pErrExecOrderField_IPAddress = nullptr;
+	char *pErrExecOrderField_reserve2 = nullptr;
 	char *pErrExecOrderField_MacAddress = nullptr;
 	int pErrExecOrderField_ErrorID = 0;
 	char *pErrExecOrderField_ErrorMsg = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pErrExecOrderField, "|yyyyyiiyccccccyyyyyyyiy")
+	char *pErrExecOrderField_InstrumentID = nullptr;
+	char *pErrExecOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pErrExecOrderField, "|yyyyyiiyccccccyyyyyyyiyyy")
 		, &pErrExecOrderField_BrokerID
 		, &pErrExecOrderField_InvestorID
-		, &pErrExecOrderField_InstrumentID
+		, &pErrExecOrderField_reserve1
 		, &pErrExecOrderField_ExecOrderRef
 		, &pErrExecOrderField_UserID
 		, &pErrExecOrderField_Volume
@@ -7158,14 +7493,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderField *pErrExecOrderField, PyO
 		, &pErrExecOrderField_AccountID
 		, &pErrExecOrderField_CurrencyID
 		, &pErrExecOrderField_ClientID
-		, &pErrExecOrderField_IPAddress
+		, &pErrExecOrderField_reserve2
 		, &pErrExecOrderField_MacAddress
 		, &pErrExecOrderField_ErrorID
 		, &pErrExecOrderField_ErrorMsg
+		, &pErrExecOrderField_InstrumentID
+		, &pErrExecOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pErrExecOrderField_BrokerID != nullptr){ strcpy_s(pErrExecOrderField->BrokerID, pErrExecOrderField_BrokerID); pErrExecOrderField_BrokerID = nullptr; }
 		if(pErrExecOrderField_InvestorID != nullptr){ strcpy_s(pErrExecOrderField->InvestorID, pErrExecOrderField_InvestorID); pErrExecOrderField_InvestorID = nullptr; }
-		if(pErrExecOrderField_InstrumentID != nullptr){ strcpy_s(pErrExecOrderField->InstrumentID, pErrExecOrderField_InstrumentID); pErrExecOrderField_InstrumentID = nullptr; }
+		if(pErrExecOrderField_reserve1 != nullptr){ strcpy_s(pErrExecOrderField->reserve1, pErrExecOrderField_reserve1); pErrExecOrderField_reserve1 = nullptr; }
 		if(pErrExecOrderField_ExecOrderRef != nullptr){ strcpy_s(pErrExecOrderField->ExecOrderRef, pErrExecOrderField_ExecOrderRef); pErrExecOrderField_ExecOrderRef = nullptr; }
 		if(pErrExecOrderField_UserID != nullptr){ strcpy_s(pErrExecOrderField->UserID, pErrExecOrderField_UserID); pErrExecOrderField_UserID = nullptr; }
 		pErrExecOrderField->Volume = pErrExecOrderField_Volume;
@@ -7182,19 +7519,21 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderField *pErrExecOrderField, PyO
 		if(pErrExecOrderField_AccountID != nullptr){ strcpy_s(pErrExecOrderField->AccountID, pErrExecOrderField_AccountID); pErrExecOrderField_AccountID = nullptr; }
 		if(pErrExecOrderField_CurrencyID != nullptr){ strcpy_s(pErrExecOrderField->CurrencyID, pErrExecOrderField_CurrencyID); pErrExecOrderField_CurrencyID = nullptr; }
 		if(pErrExecOrderField_ClientID != nullptr){ strcpy_s(pErrExecOrderField->ClientID, pErrExecOrderField_ClientID); pErrExecOrderField_ClientID = nullptr; }
-		if(pErrExecOrderField_IPAddress != nullptr){ strcpy_s(pErrExecOrderField->IPAddress, pErrExecOrderField_IPAddress); pErrExecOrderField_IPAddress = nullptr; }
+		if(pErrExecOrderField_reserve2 != nullptr){ strcpy_s(pErrExecOrderField->reserve2, pErrExecOrderField_reserve2); pErrExecOrderField_reserve2 = nullptr; }
 		if(pErrExecOrderField_MacAddress != nullptr){ strcpy_s(pErrExecOrderField->MacAddress, pErrExecOrderField_MacAddress); pErrExecOrderField_MacAddress = nullptr; }
 		pErrExecOrderField->ErrorID = pErrExecOrderField_ErrorID;
 		if(pErrExecOrderField_ErrorMsg != nullptr){ strcpy_s(pErrExecOrderField->ErrorMsg, pErrExecOrderField_ErrorMsg); pErrExecOrderField_ErrorMsg = nullptr; }
+		if(pErrExecOrderField_InstrumentID != nullptr){ strcpy_s(pErrExecOrderField->InstrumentID, pErrExecOrderField_InstrumentID); pErrExecOrderField_InstrumentID = nullptr; }
+		if(pErrExecOrderField_IPAddress != nullptr){ strcpy_s(pErrExecOrderField->IPAddress, pErrExecOrderField_IPAddress); pErrExecOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrExecOrderField *pErrExecOrderField)
 {
 	if(pErrExecOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y}"
 		, "BrokerID", pErrExecOrderField->BrokerID
 		, "InvestorID", pErrExecOrderField->InvestorID
-		, "InstrumentID", pErrExecOrderField->InstrumentID
+		, "reserve1", pErrExecOrderField->reserve1
 		, "ExecOrderRef", pErrExecOrderField->ExecOrderRef
 		, "UserID", pErrExecOrderField->UserID
 		, "Volume", pErrExecOrderField->Volume
@@ -7211,10 +7550,12 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrExecOrderField *pErrExecOrderFiel
 		, "AccountID", pErrExecOrderField->AccountID
 		, "CurrencyID", pErrExecOrderField->CurrencyID
 		, "ClientID", pErrExecOrderField->ClientID
-		, "IPAddress", pErrExecOrderField->IPAddress
+		, "reserve2", pErrExecOrderField->reserve2
 		, "MacAddress", pErrExecOrderField->MacAddress
 		, "ErrorID", pErrExecOrderField->ErrorID
 		, "ErrorMsg", pErrExecOrderField->ErrorMsg
+		, "InstrumentID", pErrExecOrderField->InstrumentID
+		, "IPAddress", pErrExecOrderField->IPAddress
 		);
 }
 
@@ -7242,7 +7583,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrExecOrderField *pQryErrExecOrd
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderActionField *pErrExecOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ExecOrderActionRef", "ExecOrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ExecOrderSysID", "ActionFlag", "UserID", "InstrumentID", "InvestUnitID", "IPAddress", "MacAddress", "ErrorID", "ErrorMsg", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "ExecOrderActionRef", "ExecOrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ExecOrderSysID", "ActionFlag", "UserID", "reserve1", "InvestUnitID", "reserve2", "MacAddress", "ErrorID", "ErrorMsg", "InstrumentID", "IPAddress", nullptr};
 	char *pErrExecOrderActionField_BrokerID = nullptr;
 	char *pErrExecOrderActionField_InvestorID = nullptr;
 	int pErrExecOrderActionField_ExecOrderActionRef = 0;
@@ -7254,13 +7595,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderActionField *pErrExecOrderActi
 	char *pErrExecOrderActionField_ExecOrderSysID = nullptr;
 	char pErrExecOrderActionField_ActionFlag = 0;
 	char *pErrExecOrderActionField_UserID = nullptr;
-	char *pErrExecOrderActionField_InstrumentID = nullptr;
+	char *pErrExecOrderActionField_reserve1 = nullptr;
 	char *pErrExecOrderActionField_InvestUnitID = nullptr;
-	char *pErrExecOrderActionField_IPAddress = nullptr;
+	char *pErrExecOrderActionField_reserve2 = nullptr;
 	char *pErrExecOrderActionField_MacAddress = nullptr;
 	int pErrExecOrderActionField_ErrorID = 0;
 	char *pErrExecOrderActionField_ErrorMsg = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pErrExecOrderActionField, "|yyiyiiiyycyyyyyiy")
+	char *pErrExecOrderActionField_InstrumentID = nullptr;
+	char *pErrExecOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pErrExecOrderActionField, "|yyiyiiiyycyyyyyiyyy")
 		, &pErrExecOrderActionField_BrokerID
 		, &pErrExecOrderActionField_InvestorID
 		, &pErrExecOrderActionField_ExecOrderActionRef
@@ -7272,12 +7615,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderActionField *pErrExecOrderActi
 		, &pErrExecOrderActionField_ExecOrderSysID
 		, &pErrExecOrderActionField_ActionFlag
 		, &pErrExecOrderActionField_UserID
-		, &pErrExecOrderActionField_InstrumentID
+		, &pErrExecOrderActionField_reserve1
 		, &pErrExecOrderActionField_InvestUnitID
-		, &pErrExecOrderActionField_IPAddress
+		, &pErrExecOrderActionField_reserve2
 		, &pErrExecOrderActionField_MacAddress
 		, &pErrExecOrderActionField_ErrorID
 		, &pErrExecOrderActionField_ErrorMsg
+		, &pErrExecOrderActionField_InstrumentID
+		, &pErrExecOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pErrExecOrderActionField_BrokerID != nullptr){ strcpy_s(pErrExecOrderActionField->BrokerID, pErrExecOrderActionField_BrokerID); pErrExecOrderActionField_BrokerID = nullptr; }
 		if(pErrExecOrderActionField_InvestorID != nullptr){ strcpy_s(pErrExecOrderActionField->InvestorID, pErrExecOrderActionField_InvestorID); pErrExecOrderActionField_InvestorID = nullptr; }
@@ -7290,18 +7635,20 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderActionField *pErrExecOrderActi
 		if(pErrExecOrderActionField_ExecOrderSysID != nullptr){ strcpy_s(pErrExecOrderActionField->ExecOrderSysID, pErrExecOrderActionField_ExecOrderSysID); pErrExecOrderActionField_ExecOrderSysID = nullptr; }
 		pErrExecOrderActionField->ActionFlag = pErrExecOrderActionField_ActionFlag;
 		if(pErrExecOrderActionField_UserID != nullptr){ strcpy_s(pErrExecOrderActionField->UserID, pErrExecOrderActionField_UserID); pErrExecOrderActionField_UserID = nullptr; }
-		if(pErrExecOrderActionField_InstrumentID != nullptr){ strcpy_s(pErrExecOrderActionField->InstrumentID, pErrExecOrderActionField_InstrumentID); pErrExecOrderActionField_InstrumentID = nullptr; }
+		if(pErrExecOrderActionField_reserve1 != nullptr){ strcpy_s(pErrExecOrderActionField->reserve1, pErrExecOrderActionField_reserve1); pErrExecOrderActionField_reserve1 = nullptr; }
 		if(pErrExecOrderActionField_InvestUnitID != nullptr){ strcpy_s(pErrExecOrderActionField->InvestUnitID, pErrExecOrderActionField_InvestUnitID); pErrExecOrderActionField_InvestUnitID = nullptr; }
-		if(pErrExecOrderActionField_IPAddress != nullptr){ strcpy_s(pErrExecOrderActionField->IPAddress, pErrExecOrderActionField_IPAddress); pErrExecOrderActionField_IPAddress = nullptr; }
+		if(pErrExecOrderActionField_reserve2 != nullptr){ strcpy_s(pErrExecOrderActionField->reserve2, pErrExecOrderActionField_reserve2); pErrExecOrderActionField_reserve2 = nullptr; }
 		if(pErrExecOrderActionField_MacAddress != nullptr){ strcpy_s(pErrExecOrderActionField->MacAddress, pErrExecOrderActionField_MacAddress); pErrExecOrderActionField_MacAddress = nullptr; }
 		pErrExecOrderActionField->ErrorID = pErrExecOrderActionField_ErrorID;
 		if(pErrExecOrderActionField_ErrorMsg != nullptr){ strcpy_s(pErrExecOrderActionField->ErrorMsg, pErrExecOrderActionField_ErrorMsg); pErrExecOrderActionField_ErrorMsg = nullptr; }
+		if(pErrExecOrderActionField_InstrumentID != nullptr){ strcpy_s(pErrExecOrderActionField->InstrumentID, pErrExecOrderActionField_InstrumentID); pErrExecOrderActionField_InstrumentID = nullptr; }
+		if(pErrExecOrderActionField_IPAddress != nullptr){ strcpy_s(pErrExecOrderActionField->IPAddress, pErrExecOrderActionField_IPAddress); pErrExecOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrExecOrderActionField *pErrExecOrderActionField)
 {
 	if(pErrExecOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y}"
 		, "BrokerID", pErrExecOrderActionField->BrokerID
 		, "InvestorID", pErrExecOrderActionField->InvestorID
 		, "ExecOrderActionRef", pErrExecOrderActionField->ExecOrderActionRef
@@ -7313,12 +7660,14 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrExecOrderActionField *pErrExecOrd
 		, "ExecOrderSysID", pErrExecOrderActionField->ExecOrderSysID
 		, "ActionFlag", pErrExecOrderActionField->ActionFlag
 		, "UserID", pErrExecOrderActionField->UserID
-		, "InstrumentID", pErrExecOrderActionField->InstrumentID
+		, "reserve1", pErrExecOrderActionField->reserve1
 		, "InvestUnitID", pErrExecOrderActionField->InvestUnitID
-		, "IPAddress", pErrExecOrderActionField->IPAddress
+		, "reserve2", pErrExecOrderActionField->reserve2
 		, "MacAddress", pErrExecOrderActionField->MacAddress
 		, "ErrorID", pErrExecOrderActionField->ErrorID
 		, "ErrorMsg", pErrExecOrderActionField->ErrorMsg
+		, "InstrumentID", pErrExecOrderActionField->InstrumentID
+		, "IPAddress", pErrExecOrderActionField->IPAddress
 		);
 }
 
@@ -7346,135 +7695,151 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrExecOrderActionField *pQryErrE
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradingRightField *pOptionInstrTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "Direction", "TradingRight", nullptr};
-	char *pOptionInstrTradingRightField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "Direction", "TradingRight", "InstrumentID", nullptr};
+	char *pOptionInstrTradingRightField_reserve1 = nullptr;
 	char pOptionInstrTradingRightField_InvestorRange = 0;
 	char *pOptionInstrTradingRightField_BrokerID = nullptr;
 	char *pOptionInstrTradingRightField_InvestorID = nullptr;
 	char pOptionInstrTradingRightField_Direction = 0;
 	char pOptionInstrTradingRightField_TradingRight = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrTradingRightField, "|ycyycc")
-		, &pOptionInstrTradingRightField_InstrumentID
+	char *pOptionInstrTradingRightField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrTradingRightField, "|ycyyccy")
+		, &pOptionInstrTradingRightField_reserve1
 		, &pOptionInstrTradingRightField_InvestorRange
 		, &pOptionInstrTradingRightField_BrokerID
 		, &pOptionInstrTradingRightField_InvestorID
 		, &pOptionInstrTradingRightField_Direction
 		, &pOptionInstrTradingRightField_TradingRight
+		, &pOptionInstrTradingRightField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pOptionInstrTradingRightField_InstrumentID != nullptr){ strcpy_s(pOptionInstrTradingRightField->InstrumentID, pOptionInstrTradingRightField_InstrumentID); pOptionInstrTradingRightField_InstrumentID = nullptr; }
+		if(pOptionInstrTradingRightField_reserve1 != nullptr){ strcpy_s(pOptionInstrTradingRightField->reserve1, pOptionInstrTradingRightField_reserve1); pOptionInstrTradingRightField_reserve1 = nullptr; }
 		pOptionInstrTradingRightField->InvestorRange = pOptionInstrTradingRightField_InvestorRange;
 		if(pOptionInstrTradingRightField_BrokerID != nullptr){ strcpy_s(pOptionInstrTradingRightField->BrokerID, pOptionInstrTradingRightField_BrokerID); pOptionInstrTradingRightField_BrokerID = nullptr; }
 		if(pOptionInstrTradingRightField_InvestorID != nullptr){ strcpy_s(pOptionInstrTradingRightField->InvestorID, pOptionInstrTradingRightField_InvestorID); pOptionInstrTradingRightField_InvestorID = nullptr; }
 		pOptionInstrTradingRightField->Direction = pOptionInstrTradingRightField_Direction;
 		pOptionInstrTradingRightField->TradingRight = pOptionInstrTradingRightField_TradingRight;
+		if(pOptionInstrTradingRightField_InstrumentID != nullptr){ strcpy_s(pOptionInstrTradingRightField->InstrumentID, pOptionInstrTradingRightField_InstrumentID); pOptionInstrTradingRightField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrTradingRightField *pOptionInstrTradingRightField)
 {
 	if(pOptionInstrTradingRightField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:c}"
-		, "InstrumentID", pOptionInstrTradingRightField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:c,s:y}"
+		, "reserve1", pOptionInstrTradingRightField->reserve1
 		, "InvestorRange", pOptionInstrTradingRightField->InvestorRange
 		, "BrokerID", pOptionInstrTradingRightField->BrokerID
 		, "InvestorID", pOptionInstrTradingRightField->InvestorID
 		, "Direction", pOptionInstrTradingRightField->Direction
 		, "TradingRight", pOptionInstrTradingRightField->TradingRight
+		, "InstrumentID", pOptionInstrTradingRightField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradingRightField *pQryOptionInstrTradingRightField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "Direction", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "Direction", "InstrumentID", nullptr};
 	char *pQryOptionInstrTradingRightField_BrokerID = nullptr;
 	char *pQryOptionInstrTradingRightField_InvestorID = nullptr;
-	char *pQryOptionInstrTradingRightField_InstrumentID = nullptr;
+	char *pQryOptionInstrTradingRightField_reserve1 = nullptr;
 	char pQryOptionInstrTradingRightField_Direction = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionInstrTradingRightField, "|yyyc")
+	char *pQryOptionInstrTradingRightField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionInstrTradingRightField, "|yyycy")
 		, &pQryOptionInstrTradingRightField_BrokerID
 		, &pQryOptionInstrTradingRightField_InvestorID
-		, &pQryOptionInstrTradingRightField_InstrumentID
+		, &pQryOptionInstrTradingRightField_reserve1
 		, &pQryOptionInstrTradingRightField_Direction
+		, &pQryOptionInstrTradingRightField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryOptionInstrTradingRightField_BrokerID != nullptr){ strcpy_s(pQryOptionInstrTradingRightField->BrokerID, pQryOptionInstrTradingRightField_BrokerID); pQryOptionInstrTradingRightField_BrokerID = nullptr; }
 		if(pQryOptionInstrTradingRightField_InvestorID != nullptr){ strcpy_s(pQryOptionInstrTradingRightField->InvestorID, pQryOptionInstrTradingRightField_InvestorID); pQryOptionInstrTradingRightField_InvestorID = nullptr; }
-		if(pQryOptionInstrTradingRightField_InstrumentID != nullptr){ strcpy_s(pQryOptionInstrTradingRightField->InstrumentID, pQryOptionInstrTradingRightField_InstrumentID); pQryOptionInstrTradingRightField_InstrumentID = nullptr; }
+		if(pQryOptionInstrTradingRightField_reserve1 != nullptr){ strcpy_s(pQryOptionInstrTradingRightField->reserve1, pQryOptionInstrTradingRightField_reserve1); pQryOptionInstrTradingRightField_reserve1 = nullptr; }
 		pQryOptionInstrTradingRightField->Direction = pQryOptionInstrTradingRightField_Direction;
+		if(pQryOptionInstrTradingRightField_InstrumentID != nullptr){ strcpy_s(pQryOptionInstrTradingRightField->InstrumentID, pQryOptionInstrTradingRightField_InstrumentID); pQryOptionInstrTradingRightField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionInstrTradingRightField *pQryOptionInstrTradingRightField)
 {
 	if(pQryOptionInstrTradingRightField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:y}"
 		, "BrokerID", pQryOptionInstrTradingRightField->BrokerID
 		, "InvestorID", pQryOptionInstrTradingRightField->InvestorID
-		, "InstrumentID", pQryOptionInstrTradingRightField->InstrumentID
+		, "reserve1", pQryOptionInstrTradingRightField->reserve1
 		, "Direction", pQryOptionInstrTradingRightField->Direction
+		, "InstrumentID", pQryOptionInstrTradingRightField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputForQuoteField *pInputForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ForQuoteRef", "UserID", "ExchangeID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ForQuoteRef", "UserID", "ExchangeID", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputForQuoteField_BrokerID = nullptr;
 	char *pInputForQuoteField_InvestorID = nullptr;
-	char *pInputForQuoteField_InstrumentID = nullptr;
+	char *pInputForQuoteField_reserve1 = nullptr;
 	char *pInputForQuoteField_ForQuoteRef = nullptr;
 	char *pInputForQuoteField_UserID = nullptr;
 	char *pInputForQuoteField_ExchangeID = nullptr;
 	char *pInputForQuoteField_InvestUnitID = nullptr;
-	char *pInputForQuoteField_IPAddress = nullptr;
+	char *pInputForQuoteField_reserve2 = nullptr;
 	char *pInputForQuoteField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputForQuoteField, "|yyyyyyyyy")
+	char *pInputForQuoteField_InstrumentID = nullptr;
+	char *pInputForQuoteField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputForQuoteField, "|yyyyyyyyyyy")
 		, &pInputForQuoteField_BrokerID
 		, &pInputForQuoteField_InvestorID
-		, &pInputForQuoteField_InstrumentID
+		, &pInputForQuoteField_reserve1
 		, &pInputForQuoteField_ForQuoteRef
 		, &pInputForQuoteField_UserID
 		, &pInputForQuoteField_ExchangeID
 		, &pInputForQuoteField_InvestUnitID
-		, &pInputForQuoteField_IPAddress
+		, &pInputForQuoteField_reserve2
 		, &pInputForQuoteField_MacAddress
+		, &pInputForQuoteField_InstrumentID
+		, &pInputForQuoteField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputForQuoteField_BrokerID != nullptr){ strcpy_s(pInputForQuoteField->BrokerID, pInputForQuoteField_BrokerID); pInputForQuoteField_BrokerID = nullptr; }
 		if(pInputForQuoteField_InvestorID != nullptr){ strcpy_s(pInputForQuoteField->InvestorID, pInputForQuoteField_InvestorID); pInputForQuoteField_InvestorID = nullptr; }
-		if(pInputForQuoteField_InstrumentID != nullptr){ strcpy_s(pInputForQuoteField->InstrumentID, pInputForQuoteField_InstrumentID); pInputForQuoteField_InstrumentID = nullptr; }
+		if(pInputForQuoteField_reserve1 != nullptr){ strcpy_s(pInputForQuoteField->reserve1, pInputForQuoteField_reserve1); pInputForQuoteField_reserve1 = nullptr; }
 		if(pInputForQuoteField_ForQuoteRef != nullptr){ strcpy_s(pInputForQuoteField->ForQuoteRef, pInputForQuoteField_ForQuoteRef); pInputForQuoteField_ForQuoteRef = nullptr; }
 		if(pInputForQuoteField_UserID != nullptr){ strcpy_s(pInputForQuoteField->UserID, pInputForQuoteField_UserID); pInputForQuoteField_UserID = nullptr; }
 		if(pInputForQuoteField_ExchangeID != nullptr){ strcpy_s(pInputForQuoteField->ExchangeID, pInputForQuoteField_ExchangeID); pInputForQuoteField_ExchangeID = nullptr; }
 		if(pInputForQuoteField_InvestUnitID != nullptr){ strcpy_s(pInputForQuoteField->InvestUnitID, pInputForQuoteField_InvestUnitID); pInputForQuoteField_InvestUnitID = nullptr; }
-		if(pInputForQuoteField_IPAddress != nullptr){ strcpy_s(pInputForQuoteField->IPAddress, pInputForQuoteField_IPAddress); pInputForQuoteField_IPAddress = nullptr; }
+		if(pInputForQuoteField_reserve2 != nullptr){ strcpy_s(pInputForQuoteField->reserve2, pInputForQuoteField_reserve2); pInputForQuoteField_reserve2 = nullptr; }
 		if(pInputForQuoteField_MacAddress != nullptr){ strcpy_s(pInputForQuoteField->MacAddress, pInputForQuoteField_MacAddress); pInputForQuoteField_MacAddress = nullptr; }
+		if(pInputForQuoteField_InstrumentID != nullptr){ strcpy_s(pInputForQuoteField->InstrumentID, pInputForQuoteField_InstrumentID); pInputForQuoteField_InstrumentID = nullptr; }
+		if(pInputForQuoteField_IPAddress != nullptr){ strcpy_s(pInputForQuoteField->IPAddress, pInputForQuoteField_IPAddress); pInputForQuoteField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputForQuoteField *pInputForQuoteField)
 {
 	if(pInputForQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputForQuoteField->BrokerID
 		, "InvestorID", pInputForQuoteField->InvestorID
-		, "InstrumentID", pInputForQuoteField->InstrumentID
+		, "reserve1", pInputForQuoteField->reserve1
 		, "ForQuoteRef", pInputForQuoteField->ForQuoteRef
 		, "UserID", pInputForQuoteField->UserID
 		, "ExchangeID", pInputForQuoteField->ExchangeID
 		, "InvestUnitID", pInputForQuoteField->InvestUnitID
-		, "IPAddress", pInputForQuoteField->IPAddress
+		, "reserve2", pInputForQuoteField->reserve2
 		, "MacAddress", pInputForQuoteField->MacAddress
+		, "InstrumentID", pInputForQuoteField->InstrumentID
+		, "IPAddress", pInputForQuoteField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteField *pForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ForQuoteRef", "UserID", "ForQuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "InsertDate", "InsertTime", "ForQuoteStatus", "FrontID", "SessionID", "StatusMsg", "ActiveUserID", "BrokerForQutoSeq", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ForQuoteRef", "UserID", "ForQuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "InsertDate", "InsertTime", "ForQuoteStatus", "FrontID", "SessionID", "StatusMsg", "ActiveUserID", "BrokerForQutoSeq", "InvestUnitID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
 	char *pForQuoteField_BrokerID = nullptr;
 	char *pForQuoteField_InvestorID = nullptr;
-	char *pForQuoteField_InstrumentID = nullptr;
+	char *pForQuoteField_reserve1 = nullptr;
 	char *pForQuoteField_ForQuoteRef = nullptr;
 	char *pForQuoteField_UserID = nullptr;
 	char *pForQuoteField_ForQuoteLocalID = nullptr;
 	char *pForQuoteField_ExchangeID = nullptr;
 	char *pForQuoteField_ParticipantID = nullptr;
 	char *pForQuoteField_ClientID = nullptr;
-	char *pForQuoteField_ExchangeInstID = nullptr;
+	char *pForQuoteField_reserve2 = nullptr;
 	char *pForQuoteField_TraderID = nullptr;
 	int pForQuoteField_InstallID = 0;
 	char *pForQuoteField_InsertDate = nullptr;
@@ -7486,19 +7851,22 @@ int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteField *pForQuoteField, PyObject *d
 	char *pForQuoteField_ActiveUserID = nullptr;
 	int pForQuoteField_BrokerForQutoSeq = 0;
 	char *pForQuoteField_InvestUnitID = nullptr;
-	char *pForQuoteField_IPAddress = nullptr;
+	char *pForQuoteField_reserve3 = nullptr;
 	char *pForQuoteField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pForQuoteField, "|yyyyyyyyyyyiyyciiyyiyyy")
+	char *pForQuoteField_InstrumentID = nullptr;
+	char *pForQuoteField_ExchangeInstID = nullptr;
+	char *pForQuoteField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pForQuoteField, "|yyyyyyyyyyyiyyciiyyiyyyyyy")
 		, &pForQuoteField_BrokerID
 		, &pForQuoteField_InvestorID
-		, &pForQuoteField_InstrumentID
+		, &pForQuoteField_reserve1
 		, &pForQuoteField_ForQuoteRef
 		, &pForQuoteField_UserID
 		, &pForQuoteField_ForQuoteLocalID
 		, &pForQuoteField_ExchangeID
 		, &pForQuoteField_ParticipantID
 		, &pForQuoteField_ClientID
-		, &pForQuoteField_ExchangeInstID
+		, &pForQuoteField_reserve2
 		, &pForQuoteField_TraderID
 		, &pForQuoteField_InstallID
 		, &pForQuoteField_InsertDate
@@ -7510,19 +7878,22 @@ int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteField *pForQuoteField, PyObject *d
 		, &pForQuoteField_ActiveUserID
 		, &pForQuoteField_BrokerForQutoSeq
 		, &pForQuoteField_InvestUnitID
-		, &pForQuoteField_IPAddress
+		, &pForQuoteField_reserve3
 		, &pForQuoteField_MacAddress
+		, &pForQuoteField_InstrumentID
+		, &pForQuoteField_ExchangeInstID
+		, &pForQuoteField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pForQuoteField_BrokerID != nullptr){ strcpy_s(pForQuoteField->BrokerID, pForQuoteField_BrokerID); pForQuoteField_BrokerID = nullptr; }
 		if(pForQuoteField_InvestorID != nullptr){ strcpy_s(pForQuoteField->InvestorID, pForQuoteField_InvestorID); pForQuoteField_InvestorID = nullptr; }
-		if(pForQuoteField_InstrumentID != nullptr){ strcpy_s(pForQuoteField->InstrumentID, pForQuoteField_InstrumentID); pForQuoteField_InstrumentID = nullptr; }
+		if(pForQuoteField_reserve1 != nullptr){ strcpy_s(pForQuoteField->reserve1, pForQuoteField_reserve1); pForQuoteField_reserve1 = nullptr; }
 		if(pForQuoteField_ForQuoteRef != nullptr){ strcpy_s(pForQuoteField->ForQuoteRef, pForQuoteField_ForQuoteRef); pForQuoteField_ForQuoteRef = nullptr; }
 		if(pForQuoteField_UserID != nullptr){ strcpy_s(pForQuoteField->UserID, pForQuoteField_UserID); pForQuoteField_UserID = nullptr; }
 		if(pForQuoteField_ForQuoteLocalID != nullptr){ strcpy_s(pForQuoteField->ForQuoteLocalID, pForQuoteField_ForQuoteLocalID); pForQuoteField_ForQuoteLocalID = nullptr; }
 		if(pForQuoteField_ExchangeID != nullptr){ strcpy_s(pForQuoteField->ExchangeID, pForQuoteField_ExchangeID); pForQuoteField_ExchangeID = nullptr; }
 		if(pForQuoteField_ParticipantID != nullptr){ strcpy_s(pForQuoteField->ParticipantID, pForQuoteField_ParticipantID); pForQuoteField_ParticipantID = nullptr; }
 		if(pForQuoteField_ClientID != nullptr){ strcpy_s(pForQuoteField->ClientID, pForQuoteField_ClientID); pForQuoteField_ClientID = nullptr; }
-		if(pForQuoteField_ExchangeInstID != nullptr){ strcpy_s(pForQuoteField->ExchangeInstID, pForQuoteField_ExchangeInstID); pForQuoteField_ExchangeInstID = nullptr; }
+		if(pForQuoteField_reserve2 != nullptr){ strcpy_s(pForQuoteField->reserve2, pForQuoteField_reserve2); pForQuoteField_reserve2 = nullptr; }
 		if(pForQuoteField_TraderID != nullptr){ strcpy_s(pForQuoteField->TraderID, pForQuoteField_TraderID); pForQuoteField_TraderID = nullptr; }
 		pForQuoteField->InstallID = pForQuoteField_InstallID;
 		if(pForQuoteField_InsertDate != nullptr){ strcpy_s(pForQuoteField->InsertDate, pForQuoteField_InsertDate); pForQuoteField_InsertDate = nullptr; }
@@ -7534,24 +7905,27 @@ int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteField *pForQuoteField, PyObject *d
 		if(pForQuoteField_ActiveUserID != nullptr){ strcpy_s(pForQuoteField->ActiveUserID, pForQuoteField_ActiveUserID); pForQuoteField_ActiveUserID = nullptr; }
 		pForQuoteField->BrokerForQutoSeq = pForQuoteField_BrokerForQutoSeq;
 		if(pForQuoteField_InvestUnitID != nullptr){ strcpy_s(pForQuoteField->InvestUnitID, pForQuoteField_InvestUnitID); pForQuoteField_InvestUnitID = nullptr; }
-		if(pForQuoteField_IPAddress != nullptr){ strcpy_s(pForQuoteField->IPAddress, pForQuoteField_IPAddress); pForQuoteField_IPAddress = nullptr; }
+		if(pForQuoteField_reserve3 != nullptr){ strcpy_s(pForQuoteField->reserve3, pForQuoteField_reserve3); pForQuoteField_reserve3 = nullptr; }
 		if(pForQuoteField_MacAddress != nullptr){ strcpy_s(pForQuoteField->MacAddress, pForQuoteField_MacAddress); pForQuoteField_MacAddress = nullptr; }
+		if(pForQuoteField_InstrumentID != nullptr){ strcpy_s(pForQuoteField->InstrumentID, pForQuoteField_InstrumentID); pForQuoteField_InstrumentID = nullptr; }
+		if(pForQuoteField_ExchangeInstID != nullptr){ strcpy_s(pForQuoteField->ExchangeInstID, pForQuoteField_ExchangeInstID); pForQuoteField_ExchangeInstID = nullptr; }
+		if(pForQuoteField_IPAddress != nullptr){ strcpy_s(pForQuoteField->IPAddress, pForQuoteField_IPAddress); pForQuoteField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForQuoteField *pForQuoteField)
 {
 	if(pForQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:c,s:i,s:i,s:y,s:y,s:i,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:c,s:i,s:i,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pForQuoteField->BrokerID
 		, "InvestorID", pForQuoteField->InvestorID
-		, "InstrumentID", pForQuoteField->InstrumentID
+		, "reserve1", pForQuoteField->reserve1
 		, "ForQuoteRef", pForQuoteField->ForQuoteRef
 		, "UserID", pForQuoteField->UserID
 		, "ForQuoteLocalID", pForQuoteField->ForQuoteLocalID
 		, "ExchangeID", pForQuoteField->ExchangeID
 		, "ParticipantID", pForQuoteField->ParticipantID
 		, "ClientID", pForQuoteField->ClientID
-		, "ExchangeInstID", pForQuoteField->ExchangeInstID
+		, "reserve2", pForQuoteField->reserve2
 		, "TraderID", pForQuoteField->TraderID
 		, "InstallID", pForQuoteField->InstallID
 		, "InsertDate", pForQuoteField->InsertDate
@@ -7563,155 +7937,174 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForQuoteField *pForQuoteField)
 		, "ActiveUserID", pForQuoteField->ActiveUserID
 		, "BrokerForQutoSeq", pForQuoteField->BrokerForQutoSeq
 		, "InvestUnitID", pForQuoteField->InvestUnitID
-		, "IPAddress", pForQuoteField->IPAddress
+		, "reserve3", pForQuoteField->reserve3
 		, "MacAddress", pForQuoteField->MacAddress
+		, "InstrumentID", pForQuoteField->InstrumentID
+		, "ExchangeInstID", pForQuoteField->ExchangeInstID
+		, "IPAddress", pForQuoteField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteField *pQryForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InsertTimeStart", "InsertTimeEnd", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InsertTimeStart", "InsertTimeEnd", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryForQuoteField_BrokerID = nullptr;
 	char *pQryForQuoteField_InvestorID = nullptr;
-	char *pQryForQuoteField_InstrumentID = nullptr;
+	char *pQryForQuoteField_reserve1 = nullptr;
 	char *pQryForQuoteField_ExchangeID = nullptr;
 	char *pQryForQuoteField_InsertTimeStart = nullptr;
 	char *pQryForQuoteField_InsertTimeEnd = nullptr;
 	char *pQryForQuoteField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryForQuoteField, "|yyyyyyy")
+	char *pQryForQuoteField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryForQuoteField, "|yyyyyyyy")
 		, &pQryForQuoteField_BrokerID
 		, &pQryForQuoteField_InvestorID
-		, &pQryForQuoteField_InstrumentID
+		, &pQryForQuoteField_reserve1
 		, &pQryForQuoteField_ExchangeID
 		, &pQryForQuoteField_InsertTimeStart
 		, &pQryForQuoteField_InsertTimeEnd
 		, &pQryForQuoteField_InvestUnitID
+		, &pQryForQuoteField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryForQuoteField_BrokerID != nullptr){ strcpy_s(pQryForQuoteField->BrokerID, pQryForQuoteField_BrokerID); pQryForQuoteField_BrokerID = nullptr; }
 		if(pQryForQuoteField_InvestorID != nullptr){ strcpy_s(pQryForQuoteField->InvestorID, pQryForQuoteField_InvestorID); pQryForQuoteField_InvestorID = nullptr; }
-		if(pQryForQuoteField_InstrumentID != nullptr){ strcpy_s(pQryForQuoteField->InstrumentID, pQryForQuoteField_InstrumentID); pQryForQuoteField_InstrumentID = nullptr; }
+		if(pQryForQuoteField_reserve1 != nullptr){ strcpy_s(pQryForQuoteField->reserve1, pQryForQuoteField_reserve1); pQryForQuoteField_reserve1 = nullptr; }
 		if(pQryForQuoteField_ExchangeID != nullptr){ strcpy_s(pQryForQuoteField->ExchangeID, pQryForQuoteField_ExchangeID); pQryForQuoteField_ExchangeID = nullptr; }
 		if(pQryForQuoteField_InsertTimeStart != nullptr){ strcpy_s(pQryForQuoteField->InsertTimeStart, pQryForQuoteField_InsertTimeStart); pQryForQuoteField_InsertTimeStart = nullptr; }
 		if(pQryForQuoteField_InsertTimeEnd != nullptr){ strcpy_s(pQryForQuoteField->InsertTimeEnd, pQryForQuoteField_InsertTimeEnd); pQryForQuoteField_InsertTimeEnd = nullptr; }
 		if(pQryForQuoteField_InvestUnitID != nullptr){ strcpy_s(pQryForQuoteField->InvestUnitID, pQryForQuoteField_InvestUnitID); pQryForQuoteField_InvestUnitID = nullptr; }
+		if(pQryForQuoteField_InstrumentID != nullptr){ strcpy_s(pQryForQuoteField->InstrumentID, pQryForQuoteField_InstrumentID); pQryForQuoteField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryForQuoteField *pQryForQuoteField)
 {
 	if(pQryForQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryForQuoteField->BrokerID
 		, "InvestorID", pQryForQuoteField->InvestorID
-		, "InstrumentID", pQryForQuoteField->InstrumentID
+		, "reserve1", pQryForQuoteField->reserve1
 		, "ExchangeID", pQryForQuoteField->ExchangeID
 		, "InsertTimeStart", pQryForQuoteField->InsertTimeStart
 		, "InsertTimeEnd", pQryForQuoteField->InsertTimeEnd
 		, "InvestUnitID", pQryForQuoteField->InvestUnitID
+		, "InstrumentID", pQryForQuoteField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeForQuoteField *pExchangeForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ForQuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "InsertDate", "InsertTime", "ForQuoteStatus", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"ForQuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve1", "TraderID", "InstallID", "InsertDate", "InsertTime", "ForQuoteStatus", "reserve2", "MacAddress", "ExchangeInstID", "IPAddress", nullptr};
 	char *pExchangeForQuoteField_ForQuoteLocalID = nullptr;
 	char *pExchangeForQuoteField_ExchangeID = nullptr;
 	char *pExchangeForQuoteField_ParticipantID = nullptr;
 	char *pExchangeForQuoteField_ClientID = nullptr;
-	char *pExchangeForQuoteField_ExchangeInstID = nullptr;
+	char *pExchangeForQuoteField_reserve1 = nullptr;
 	char *pExchangeForQuoteField_TraderID = nullptr;
 	int pExchangeForQuoteField_InstallID = 0;
 	char *pExchangeForQuoteField_InsertDate = nullptr;
 	char *pExchangeForQuoteField_InsertTime = nullptr;
 	char pExchangeForQuoteField_ForQuoteStatus = 0;
-	char *pExchangeForQuoteField_IPAddress = nullptr;
+	char *pExchangeForQuoteField_reserve2 = nullptr;
 	char *pExchangeForQuoteField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeForQuoteField, "|yyyyyyiyycyy")
+	char *pExchangeForQuoteField_ExchangeInstID = nullptr;
+	char *pExchangeForQuoteField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeForQuoteField, "|yyyyyyiyycyyyy")
 		, &pExchangeForQuoteField_ForQuoteLocalID
 		, &pExchangeForQuoteField_ExchangeID
 		, &pExchangeForQuoteField_ParticipantID
 		, &pExchangeForQuoteField_ClientID
-		, &pExchangeForQuoteField_ExchangeInstID
+		, &pExchangeForQuoteField_reserve1
 		, &pExchangeForQuoteField_TraderID
 		, &pExchangeForQuoteField_InstallID
 		, &pExchangeForQuoteField_InsertDate
 		, &pExchangeForQuoteField_InsertTime
 		, &pExchangeForQuoteField_ForQuoteStatus
-		, &pExchangeForQuoteField_IPAddress
+		, &pExchangeForQuoteField_reserve2
 		, &pExchangeForQuoteField_MacAddress
+		, &pExchangeForQuoteField_ExchangeInstID
+		, &pExchangeForQuoteField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeForQuoteField_ForQuoteLocalID != nullptr){ strcpy_s(pExchangeForQuoteField->ForQuoteLocalID, pExchangeForQuoteField_ForQuoteLocalID); pExchangeForQuoteField_ForQuoteLocalID = nullptr; }
 		if(pExchangeForQuoteField_ExchangeID != nullptr){ strcpy_s(pExchangeForQuoteField->ExchangeID, pExchangeForQuoteField_ExchangeID); pExchangeForQuoteField_ExchangeID = nullptr; }
 		if(pExchangeForQuoteField_ParticipantID != nullptr){ strcpy_s(pExchangeForQuoteField->ParticipantID, pExchangeForQuoteField_ParticipantID); pExchangeForQuoteField_ParticipantID = nullptr; }
 		if(pExchangeForQuoteField_ClientID != nullptr){ strcpy_s(pExchangeForQuoteField->ClientID, pExchangeForQuoteField_ClientID); pExchangeForQuoteField_ClientID = nullptr; }
-		if(pExchangeForQuoteField_ExchangeInstID != nullptr){ strcpy_s(pExchangeForQuoteField->ExchangeInstID, pExchangeForQuoteField_ExchangeInstID); pExchangeForQuoteField_ExchangeInstID = nullptr; }
+		if(pExchangeForQuoteField_reserve1 != nullptr){ strcpy_s(pExchangeForQuoteField->reserve1, pExchangeForQuoteField_reserve1); pExchangeForQuoteField_reserve1 = nullptr; }
 		if(pExchangeForQuoteField_TraderID != nullptr){ strcpy_s(pExchangeForQuoteField->TraderID, pExchangeForQuoteField_TraderID); pExchangeForQuoteField_TraderID = nullptr; }
 		pExchangeForQuoteField->InstallID = pExchangeForQuoteField_InstallID;
 		if(pExchangeForQuoteField_InsertDate != nullptr){ strcpy_s(pExchangeForQuoteField->InsertDate, pExchangeForQuoteField_InsertDate); pExchangeForQuoteField_InsertDate = nullptr; }
 		if(pExchangeForQuoteField_InsertTime != nullptr){ strcpy_s(pExchangeForQuoteField->InsertTime, pExchangeForQuoteField_InsertTime); pExchangeForQuoteField_InsertTime = nullptr; }
 		pExchangeForQuoteField->ForQuoteStatus = pExchangeForQuoteField_ForQuoteStatus;
-		if(pExchangeForQuoteField_IPAddress != nullptr){ strcpy_s(pExchangeForQuoteField->IPAddress, pExchangeForQuoteField_IPAddress); pExchangeForQuoteField_IPAddress = nullptr; }
+		if(pExchangeForQuoteField_reserve2 != nullptr){ strcpy_s(pExchangeForQuoteField->reserve2, pExchangeForQuoteField_reserve2); pExchangeForQuoteField_reserve2 = nullptr; }
 		if(pExchangeForQuoteField_MacAddress != nullptr){ strcpy_s(pExchangeForQuoteField->MacAddress, pExchangeForQuoteField_MacAddress); pExchangeForQuoteField_MacAddress = nullptr; }
+		if(pExchangeForQuoteField_ExchangeInstID != nullptr){ strcpy_s(pExchangeForQuoteField->ExchangeInstID, pExchangeForQuoteField_ExchangeInstID); pExchangeForQuoteField_ExchangeInstID = nullptr; }
+		if(pExchangeForQuoteField_IPAddress != nullptr){ strcpy_s(pExchangeForQuoteField->IPAddress, pExchangeForQuoteField_IPAddress); pExchangeForQuoteField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeForQuoteField *pExchangeForQuoteField)
 {
 	if(pExchangeForQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:c,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y}"
 		, "ForQuoteLocalID", pExchangeForQuoteField->ForQuoteLocalID
 		, "ExchangeID", pExchangeForQuoteField->ExchangeID
 		, "ParticipantID", pExchangeForQuoteField->ParticipantID
 		, "ClientID", pExchangeForQuoteField->ClientID
-		, "ExchangeInstID", pExchangeForQuoteField->ExchangeInstID
+		, "reserve1", pExchangeForQuoteField->reserve1
 		, "TraderID", pExchangeForQuoteField->TraderID
 		, "InstallID", pExchangeForQuoteField->InstallID
 		, "InsertDate", pExchangeForQuoteField->InsertDate
 		, "InsertTime", pExchangeForQuoteField->InsertTime
 		, "ForQuoteStatus", pExchangeForQuoteField->ForQuoteStatus
-		, "IPAddress", pExchangeForQuoteField->IPAddress
+		, "reserve2", pExchangeForQuoteField->reserve2
 		, "MacAddress", pExchangeForQuoteField->MacAddress
+		, "ExchangeInstID", pExchangeForQuoteField->ExchangeInstID
+		, "IPAddress", pExchangeForQuoteField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeForQuoteField *pQryExchangeForQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ParticipantID", "ClientID", "ExchangeInstID", "ExchangeID", "TraderID", nullptr};
+	static char *kwlist[] = {"ParticipantID", "ClientID", "reserve1", "ExchangeID", "TraderID", "ExchangeInstID", nullptr};
 	char *pQryExchangeForQuoteField_ParticipantID = nullptr;
 	char *pQryExchangeForQuoteField_ClientID = nullptr;
-	char *pQryExchangeForQuoteField_ExchangeInstID = nullptr;
+	char *pQryExchangeForQuoteField_reserve1 = nullptr;
 	char *pQryExchangeForQuoteField_ExchangeID = nullptr;
 	char *pQryExchangeForQuoteField_TraderID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeForQuoteField, "|yyyyy")
+	char *pQryExchangeForQuoteField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeForQuoteField, "|yyyyyy")
 		, &pQryExchangeForQuoteField_ParticipantID
 		, &pQryExchangeForQuoteField_ClientID
-		, &pQryExchangeForQuoteField_ExchangeInstID
+		, &pQryExchangeForQuoteField_reserve1
 		, &pQryExchangeForQuoteField_ExchangeID
 		, &pQryExchangeForQuoteField_TraderID
+		, &pQryExchangeForQuoteField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExchangeForQuoteField_ParticipantID != nullptr){ strcpy_s(pQryExchangeForQuoteField->ParticipantID, pQryExchangeForQuoteField_ParticipantID); pQryExchangeForQuoteField_ParticipantID = nullptr; }
 		if(pQryExchangeForQuoteField_ClientID != nullptr){ strcpy_s(pQryExchangeForQuoteField->ClientID, pQryExchangeForQuoteField_ClientID); pQryExchangeForQuoteField_ClientID = nullptr; }
-		if(pQryExchangeForQuoteField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeForQuoteField->ExchangeInstID, pQryExchangeForQuoteField_ExchangeInstID); pQryExchangeForQuoteField_ExchangeInstID = nullptr; }
+		if(pQryExchangeForQuoteField_reserve1 != nullptr){ strcpy_s(pQryExchangeForQuoteField->reserve1, pQryExchangeForQuoteField_reserve1); pQryExchangeForQuoteField_reserve1 = nullptr; }
 		if(pQryExchangeForQuoteField_ExchangeID != nullptr){ strcpy_s(pQryExchangeForQuoteField->ExchangeID, pQryExchangeForQuoteField_ExchangeID); pQryExchangeForQuoteField_ExchangeID = nullptr; }
 		if(pQryExchangeForQuoteField_TraderID != nullptr){ strcpy_s(pQryExchangeForQuoteField->TraderID, pQryExchangeForQuoteField_TraderID); pQryExchangeForQuoteField_TraderID = nullptr; }
+		if(pQryExchangeForQuoteField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeForQuoteField->ExchangeInstID, pQryExchangeForQuoteField_ExchangeInstID); pQryExchangeForQuoteField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeForQuoteField *pQryExchangeForQuoteField)
 {
 	if(pQryExchangeForQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "ParticipantID", pQryExchangeForQuoteField->ParticipantID
 		, "ClientID", pQryExchangeForQuoteField->ClientID
-		, "ExchangeInstID", pQryExchangeForQuoteField->ExchangeInstID
+		, "reserve1", pQryExchangeForQuoteField->reserve1
 		, "ExchangeID", pQryExchangeForQuoteField->ExchangeID
 		, "TraderID", pQryExchangeForQuoteField->TraderID
+		, "ExchangeInstID", pQryExchangeForQuoteField->ExchangeInstID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "ExchangeID", "InvestUnitID", "ClientID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "ExchangeID", "InvestUnitID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputQuoteField_BrokerID = nullptr;
 	char *pInputQuoteField_InvestorID = nullptr;
-	char *pInputQuoteField_InstrumentID = nullptr;
+	char *pInputQuoteField_reserve1 = nullptr;
 	char *pInputQuoteField_QuoteRef = nullptr;
 	char *pInputQuoteField_UserID = nullptr;
 	double pInputQuoteField_AskPrice = 0.0;
@@ -7730,12 +8123,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObjec
 	char *pInputQuoteField_ExchangeID = nullptr;
 	char *pInputQuoteField_InvestUnitID = nullptr;
 	char *pInputQuoteField_ClientID = nullptr;
-	char *pInputQuoteField_IPAddress = nullptr;
+	char *pInputQuoteField_reserve2 = nullptr;
 	char *pInputQuoteField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputQuoteField, "|yyyyyddiiiyccccyyyyyyyy")
+	char *pInputQuoteField_InstrumentID = nullptr;
+	char *pInputQuoteField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputQuoteField, "|yyyyyddiiiyccccyyyyyyyyyy")
 		, &pInputQuoteField_BrokerID
 		, &pInputQuoteField_InvestorID
-		, &pInputQuoteField_InstrumentID
+		, &pInputQuoteField_reserve1
 		, &pInputQuoteField_QuoteRef
 		, &pInputQuoteField_UserID
 		, &pInputQuoteField_AskPrice
@@ -7754,12 +8149,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObjec
 		, &pInputQuoteField_ExchangeID
 		, &pInputQuoteField_InvestUnitID
 		, &pInputQuoteField_ClientID
-		, &pInputQuoteField_IPAddress
+		, &pInputQuoteField_reserve2
 		, &pInputQuoteField_MacAddress
+		, &pInputQuoteField_InstrumentID
+		, &pInputQuoteField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputQuoteField_BrokerID != nullptr){ strcpy_s(pInputQuoteField->BrokerID, pInputQuoteField_BrokerID); pInputQuoteField_BrokerID = nullptr; }
 		if(pInputQuoteField_InvestorID != nullptr){ strcpy_s(pInputQuoteField->InvestorID, pInputQuoteField_InvestorID); pInputQuoteField_InvestorID = nullptr; }
-		if(pInputQuoteField_InstrumentID != nullptr){ strcpy_s(pInputQuoteField->InstrumentID, pInputQuoteField_InstrumentID); pInputQuoteField_InstrumentID = nullptr; }
+		if(pInputQuoteField_reserve1 != nullptr){ strcpy_s(pInputQuoteField->reserve1, pInputQuoteField_reserve1); pInputQuoteField_reserve1 = nullptr; }
 		if(pInputQuoteField_QuoteRef != nullptr){ strcpy_s(pInputQuoteField->QuoteRef, pInputQuoteField_QuoteRef); pInputQuoteField_QuoteRef = nullptr; }
 		if(pInputQuoteField_UserID != nullptr){ strcpy_s(pInputQuoteField->UserID, pInputQuoteField_UserID); pInputQuoteField_UserID = nullptr; }
 		pInputQuoteField->AskPrice = pInputQuoteField_AskPrice;
@@ -7778,17 +8175,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObjec
 		if(pInputQuoteField_ExchangeID != nullptr){ strcpy_s(pInputQuoteField->ExchangeID, pInputQuoteField_ExchangeID); pInputQuoteField_ExchangeID = nullptr; }
 		if(pInputQuoteField_InvestUnitID != nullptr){ strcpy_s(pInputQuoteField->InvestUnitID, pInputQuoteField_InvestUnitID); pInputQuoteField_InvestUnitID = nullptr; }
 		if(pInputQuoteField_ClientID != nullptr){ strcpy_s(pInputQuoteField->ClientID, pInputQuoteField_ClientID); pInputQuoteField_ClientID = nullptr; }
-		if(pInputQuoteField_IPAddress != nullptr){ strcpy_s(pInputQuoteField->IPAddress, pInputQuoteField_IPAddress); pInputQuoteField_IPAddress = nullptr; }
+		if(pInputQuoteField_reserve2 != nullptr){ strcpy_s(pInputQuoteField->reserve2, pInputQuoteField_reserve2); pInputQuoteField_reserve2 = nullptr; }
 		if(pInputQuoteField_MacAddress != nullptr){ strcpy_s(pInputQuoteField->MacAddress, pInputQuoteField_MacAddress); pInputQuoteField_MacAddress = nullptr; }
+		if(pInputQuoteField_InstrumentID != nullptr){ strcpy_s(pInputQuoteField->InstrumentID, pInputQuoteField_InstrumentID); pInputQuoteField_InstrumentID = nullptr; }
+		if(pInputQuoteField_IPAddress != nullptr){ strcpy_s(pInputQuoteField->IPAddress, pInputQuoteField_IPAddress); pInputQuoteField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteField *pInputQuoteField)
 {
 	if(pInputQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputQuoteField->BrokerID
 		, "InvestorID", pInputQuoteField->InvestorID
-		, "InstrumentID", pInputQuoteField->InstrumentID
+		, "reserve1", pInputQuoteField->reserve1
 		, "QuoteRef", pInputQuoteField->QuoteRef
 		, "UserID", pInputQuoteField->UserID
 		, "AskPrice", pInputQuoteField->AskPrice
@@ -7807,14 +8206,16 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteField *pInputQuoteField)
 		, "ExchangeID", pInputQuoteField->ExchangeID
 		, "InvestUnitID", pInputQuoteField->InvestUnitID
 		, "ClientID", pInputQuoteField->ClientID
-		, "IPAddress", pInputQuoteField->IPAddress
+		, "reserve2", pInputQuoteField->reserve2
 		, "MacAddress", pInputQuoteField->MacAddress
+		, "InstrumentID", pInputQuoteField->InstrumentID
+		, "IPAddress", pInputQuoteField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteActionField *pInputQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "QuoteActionRef", "QuoteRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "QuoteSysID", "ActionFlag", "UserID", "InstrumentID", "InvestUnitID", "ClientID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "QuoteActionRef", "QuoteRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "QuoteSysID", "ActionFlag", "UserID", "reserve1", "InvestUnitID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputQuoteActionField_BrokerID = nullptr;
 	char *pInputQuoteActionField_InvestorID = nullptr;
 	int pInputQuoteActionField_QuoteActionRef = 0;
@@ -7826,12 +8227,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteActionField *pInputQuoteActionFi
 	char *pInputQuoteActionField_QuoteSysID = nullptr;
 	char pInputQuoteActionField_ActionFlag = 0;
 	char *pInputQuoteActionField_UserID = nullptr;
-	char *pInputQuoteActionField_InstrumentID = nullptr;
+	char *pInputQuoteActionField_reserve1 = nullptr;
 	char *pInputQuoteActionField_InvestUnitID = nullptr;
 	char *pInputQuoteActionField_ClientID = nullptr;
-	char *pInputQuoteActionField_IPAddress = nullptr;
+	char *pInputQuoteActionField_reserve2 = nullptr;
 	char *pInputQuoteActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputQuoteActionField, "|yyiyiiiyycyyyyyy")
+	char *pInputQuoteActionField_InstrumentID = nullptr;
+	char *pInputQuoteActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputQuoteActionField, "|yyiyiiiyycyyyyyyyy")
 		, &pInputQuoteActionField_BrokerID
 		, &pInputQuoteActionField_InvestorID
 		, &pInputQuoteActionField_QuoteActionRef
@@ -7843,11 +8246,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteActionField *pInputQuoteActionFi
 		, &pInputQuoteActionField_QuoteSysID
 		, &pInputQuoteActionField_ActionFlag
 		, &pInputQuoteActionField_UserID
-		, &pInputQuoteActionField_InstrumentID
+		, &pInputQuoteActionField_reserve1
 		, &pInputQuoteActionField_InvestUnitID
 		, &pInputQuoteActionField_ClientID
-		, &pInputQuoteActionField_IPAddress
+		, &pInputQuoteActionField_reserve2
 		, &pInputQuoteActionField_MacAddress
+		, &pInputQuoteActionField_InstrumentID
+		, &pInputQuoteActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputQuoteActionField_BrokerID != nullptr){ strcpy_s(pInputQuoteActionField->BrokerID, pInputQuoteActionField_BrokerID); pInputQuoteActionField_BrokerID = nullptr; }
 		if(pInputQuoteActionField_InvestorID != nullptr){ strcpy_s(pInputQuoteActionField->InvestorID, pInputQuoteActionField_InvestorID); pInputQuoteActionField_InvestorID = nullptr; }
@@ -7860,17 +8265,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteActionField *pInputQuoteActionFi
 		if(pInputQuoteActionField_QuoteSysID != nullptr){ strcpy_s(pInputQuoteActionField->QuoteSysID, pInputQuoteActionField_QuoteSysID); pInputQuoteActionField_QuoteSysID = nullptr; }
 		pInputQuoteActionField->ActionFlag = pInputQuoteActionField_ActionFlag;
 		if(pInputQuoteActionField_UserID != nullptr){ strcpy_s(pInputQuoteActionField->UserID, pInputQuoteActionField_UserID); pInputQuoteActionField_UserID = nullptr; }
-		if(pInputQuoteActionField_InstrumentID != nullptr){ strcpy_s(pInputQuoteActionField->InstrumentID, pInputQuoteActionField_InstrumentID); pInputQuoteActionField_InstrumentID = nullptr; }
+		if(pInputQuoteActionField_reserve1 != nullptr){ strcpy_s(pInputQuoteActionField->reserve1, pInputQuoteActionField_reserve1); pInputQuoteActionField_reserve1 = nullptr; }
 		if(pInputQuoteActionField_InvestUnitID != nullptr){ strcpy_s(pInputQuoteActionField->InvestUnitID, pInputQuoteActionField_InvestUnitID); pInputQuoteActionField_InvestUnitID = nullptr; }
 		if(pInputQuoteActionField_ClientID != nullptr){ strcpy_s(pInputQuoteActionField->ClientID, pInputQuoteActionField_ClientID); pInputQuoteActionField_ClientID = nullptr; }
-		if(pInputQuoteActionField_IPAddress != nullptr){ strcpy_s(pInputQuoteActionField->IPAddress, pInputQuoteActionField_IPAddress); pInputQuoteActionField_IPAddress = nullptr; }
+		if(pInputQuoteActionField_reserve2 != nullptr){ strcpy_s(pInputQuoteActionField->reserve2, pInputQuoteActionField_reserve2); pInputQuoteActionField_reserve2 = nullptr; }
 		if(pInputQuoteActionField_MacAddress != nullptr){ strcpy_s(pInputQuoteActionField->MacAddress, pInputQuoteActionField_MacAddress); pInputQuoteActionField_MacAddress = nullptr; }
+		if(pInputQuoteActionField_InstrumentID != nullptr){ strcpy_s(pInputQuoteActionField->InstrumentID, pInputQuoteActionField_InstrumentID); pInputQuoteActionField_InstrumentID = nullptr; }
+		if(pInputQuoteActionField_IPAddress != nullptr){ strcpy_s(pInputQuoteActionField->IPAddress, pInputQuoteActionField_IPAddress); pInputQuoteActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteActionField *pInputQuoteActionField)
 {
 	if(pInputQuoteActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputQuoteActionField->BrokerID
 		, "InvestorID", pInputQuoteActionField->InvestorID
 		, "QuoteActionRef", pInputQuoteActionField->QuoteActionRef
@@ -7882,20 +8289,22 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteActionField *pInputQuoteAc
 		, "QuoteSysID", pInputQuoteActionField->QuoteSysID
 		, "ActionFlag", pInputQuoteActionField->ActionFlag
 		, "UserID", pInputQuoteActionField->UserID
-		, "InstrumentID", pInputQuoteActionField->InstrumentID
+		, "reserve1", pInputQuoteActionField->reserve1
 		, "InvestUnitID", pInputQuoteActionField->InvestUnitID
 		, "ClientID", pInputQuoteActionField->ClientID
-		, "IPAddress", pInputQuoteActionField->IPAddress
+		, "reserve2", pInputQuoteActionField->reserve2
 		, "MacAddress", pInputQuoteActionField->MacAddress
+		, "InstrumentID", pInputQuoteActionField->InstrumentID
+		, "IPAddress", pInputQuoteActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "QuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "NotifySequence", "OrderSubmitStatus", "TradingDay", "SettlementID", "QuoteSysID", "InsertDate", "InsertTime", "CancelTime", "QuoteStatus", "ClearingPartID", "SequenceNo", "AskOrderSysID", "BidOrderSysID", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerQuoteSeq", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "QuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "NotifySequence", "OrderSubmitStatus", "TradingDay", "SettlementID", "QuoteSysID", "InsertDate", "InsertTime", "CancelTime", "QuoteStatus", "ClearingPartID", "SequenceNo", "AskOrderSysID", "BidOrderSysID", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerQuoteSeq", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
 	char *pQuoteField_BrokerID = nullptr;
 	char *pQuoteField_InvestorID = nullptr;
-	char *pQuoteField_InstrumentID = nullptr;
+	char *pQuoteField_reserve1 = nullptr;
 	char *pQuoteField_QuoteRef = nullptr;
 	char *pQuoteField_UserID = nullptr;
 	double pQuoteField_AskPrice = 0.0;
@@ -7912,7 +8321,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 	char *pQuoteField_ExchangeID = nullptr;
 	char *pQuoteField_ParticipantID = nullptr;
 	char *pQuoteField_ClientID = nullptr;
-	char *pQuoteField_ExchangeInstID = nullptr;
+	char *pQuoteField_reserve2 = nullptr;
 	char *pQuoteField_TraderID = nullptr;
 	int pQuoteField_InstallID = 0;
 	int pQuoteField_NotifySequence = 0;
@@ -7941,12 +8350,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 	char *pQuoteField_InvestUnitID = nullptr;
 	char *pQuoteField_AccountID = nullptr;
 	char *pQuoteField_CurrencyID = nullptr;
-	char *pQuoteField_IPAddress = nullptr;
+	char *pQuoteField_reserve3 = nullptr;
 	char *pQuoteField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQuoteField, "|yyyyyddiiiyccccyyyyyyiicyiyyyycyiyyiiyyyiyyyyyyyyy")
+	char *pQuoteField_InstrumentID = nullptr;
+	char *pQuoteField_ExchangeInstID = nullptr;
+	char *pQuoteField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQuoteField, "|yyyyyddiiiyccccyyyyyyiicyiyyyycyiyyiiyyyiyyyyyyyyyyyy")
 		, &pQuoteField_BrokerID
 		, &pQuoteField_InvestorID
-		, &pQuoteField_InstrumentID
+		, &pQuoteField_reserve1
 		, &pQuoteField_QuoteRef
 		, &pQuoteField_UserID
 		, &pQuoteField_AskPrice
@@ -7963,7 +8375,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 		, &pQuoteField_ExchangeID
 		, &pQuoteField_ParticipantID
 		, &pQuoteField_ClientID
-		, &pQuoteField_ExchangeInstID
+		, &pQuoteField_reserve2
 		, &pQuoteField_TraderID
 		, &pQuoteField_InstallID
 		, &pQuoteField_NotifySequence
@@ -7992,12 +8404,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 		, &pQuoteField_InvestUnitID
 		, &pQuoteField_AccountID
 		, &pQuoteField_CurrencyID
-		, &pQuoteField_IPAddress
+		, &pQuoteField_reserve3
 		, &pQuoteField_MacAddress
+		, &pQuoteField_InstrumentID
+		, &pQuoteField_ExchangeInstID
+		, &pQuoteField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pQuoteField_BrokerID != nullptr){ strcpy_s(pQuoteField->BrokerID, pQuoteField_BrokerID); pQuoteField_BrokerID = nullptr; }
 		if(pQuoteField_InvestorID != nullptr){ strcpy_s(pQuoteField->InvestorID, pQuoteField_InvestorID); pQuoteField_InvestorID = nullptr; }
-		if(pQuoteField_InstrumentID != nullptr){ strcpy_s(pQuoteField->InstrumentID, pQuoteField_InstrumentID); pQuoteField_InstrumentID = nullptr; }
+		if(pQuoteField_reserve1 != nullptr){ strcpy_s(pQuoteField->reserve1, pQuoteField_reserve1); pQuoteField_reserve1 = nullptr; }
 		if(pQuoteField_QuoteRef != nullptr){ strcpy_s(pQuoteField->QuoteRef, pQuoteField_QuoteRef); pQuoteField_QuoteRef = nullptr; }
 		if(pQuoteField_UserID != nullptr){ strcpy_s(pQuoteField->UserID, pQuoteField_UserID); pQuoteField_UserID = nullptr; }
 		pQuoteField->AskPrice = pQuoteField_AskPrice;
@@ -8014,7 +8429,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 		if(pQuoteField_ExchangeID != nullptr){ strcpy_s(pQuoteField->ExchangeID, pQuoteField_ExchangeID); pQuoteField_ExchangeID = nullptr; }
 		if(pQuoteField_ParticipantID != nullptr){ strcpy_s(pQuoteField->ParticipantID, pQuoteField_ParticipantID); pQuoteField_ParticipantID = nullptr; }
 		if(pQuoteField_ClientID != nullptr){ strcpy_s(pQuoteField->ClientID, pQuoteField_ClientID); pQuoteField_ClientID = nullptr; }
-		if(pQuoteField_ExchangeInstID != nullptr){ strcpy_s(pQuoteField->ExchangeInstID, pQuoteField_ExchangeInstID); pQuoteField_ExchangeInstID = nullptr; }
+		if(pQuoteField_reserve2 != nullptr){ strcpy_s(pQuoteField->reserve2, pQuoteField_reserve2); pQuoteField_reserve2 = nullptr; }
 		if(pQuoteField_TraderID != nullptr){ strcpy_s(pQuoteField->TraderID, pQuoteField_TraderID); pQuoteField_TraderID = nullptr; }
 		pQuoteField->InstallID = pQuoteField_InstallID;
 		pQuoteField->NotifySequence = pQuoteField_NotifySequence;
@@ -8043,17 +8458,20 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 		if(pQuoteField_InvestUnitID != nullptr){ strcpy_s(pQuoteField->InvestUnitID, pQuoteField_InvestUnitID); pQuoteField_InvestUnitID = nullptr; }
 		if(pQuoteField_AccountID != nullptr){ strcpy_s(pQuoteField->AccountID, pQuoteField_AccountID); pQuoteField_AccountID = nullptr; }
 		if(pQuoteField_CurrencyID != nullptr){ strcpy_s(pQuoteField->CurrencyID, pQuoteField_CurrencyID); pQuoteField_CurrencyID = nullptr; }
-		if(pQuoteField_IPAddress != nullptr){ strcpy_s(pQuoteField->IPAddress, pQuoteField_IPAddress); pQuoteField_IPAddress = nullptr; }
+		if(pQuoteField_reserve3 != nullptr){ strcpy_s(pQuoteField->reserve3, pQuoteField_reserve3); pQuoteField_reserve3 = nullptr; }
 		if(pQuoteField_MacAddress != nullptr){ strcpy_s(pQuoteField->MacAddress, pQuoteField_MacAddress); pQuoteField_MacAddress = nullptr; }
+		if(pQuoteField_InstrumentID != nullptr){ strcpy_s(pQuoteField->InstrumentID, pQuoteField_InstrumentID); pQuoteField_InstrumentID = nullptr; }
+		if(pQuoteField_ExchangeInstID != nullptr){ strcpy_s(pQuoteField->ExchangeInstID, pQuoteField_ExchangeInstID); pQuoteField_ExchangeInstID = nullptr; }
+		if(pQuoteField_IPAddress != nullptr){ strcpy_s(pQuoteField->IPAddress, pQuoteField_IPAddress); pQuoteField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteField *pQuoteField)
 {
 	if(pQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQuoteField->BrokerID
 		, "InvestorID", pQuoteField->InvestorID
-		, "InstrumentID", pQuoteField->InstrumentID
+		, "reserve1", pQuoteField->reserve1
 		, "QuoteRef", pQuoteField->QuoteRef
 		, "UserID", pQuoteField->UserID
 		, "AskPrice", pQuoteField->AskPrice
@@ -8070,7 +8488,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteField *pQuoteField)
 		, "ExchangeID", pQuoteField->ExchangeID
 		, "ParticipantID", pQuoteField->ParticipantID
 		, "ClientID", pQuoteField->ClientID
-		, "ExchangeInstID", pQuoteField->ExchangeInstID
+		, "reserve2", pQuoteField->reserve2
 		, "TraderID", pQuoteField->TraderID
 		, "InstallID", pQuoteField->InstallID
 		, "NotifySequence", pQuoteField->NotifySequence
@@ -8099,14 +8517,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteField *pQuoteField)
 		, "InvestUnitID", pQuoteField->InvestUnitID
 		, "AccountID", pQuoteField->AccountID
 		, "CurrencyID", pQuoteField->CurrencyID
-		, "IPAddress", pQuoteField->IPAddress
+		, "reserve3", pQuoteField->reserve3
 		, "MacAddress", pQuoteField->MacAddress
+		, "InstrumentID", pQuoteField->InstrumentID
+		, "ExchangeInstID", pQuoteField->ExchangeInstID
+		, "IPAddress", pQuoteField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQuoteActionField *pQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "QuoteActionRef", "QuoteRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "QuoteSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "QuoteLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "InstrumentID", "BranchID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "QuoteActionRef", "QuoteRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "QuoteSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "QuoteLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "reserve1", "BranchID", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pQuoteActionField_BrokerID = nullptr;
 	char *pQuoteActionField_InvestorID = nullptr;
 	int pQuoteActionField_QuoteActionRef = 0;
@@ -8129,12 +8550,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteActionField *pQuoteActionField, PyObj
 	char pQuoteActionField_OrderActionStatus = 0;
 	char *pQuoteActionField_UserID = nullptr;
 	char *pQuoteActionField_StatusMsg = nullptr;
-	char *pQuoteActionField_InstrumentID = nullptr;
+	char *pQuoteActionField_reserve1 = nullptr;
 	char *pQuoteActionField_BranchID = nullptr;
 	char *pQuoteActionField_InvestUnitID = nullptr;
-	char *pQuoteActionField_IPAddress = nullptr;
+	char *pQuoteActionField_reserve2 = nullptr;
 	char *pQuoteActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQuoteActionField, "|yyiyiiiyycyyyiyyyyycyyyyyyy")
+	char *pQuoteActionField_InstrumentID = nullptr;
+	char *pQuoteActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQuoteActionField, "|yyiyiiiyycyyyiyyyyycyyyyyyyyy")
 		, &pQuoteActionField_BrokerID
 		, &pQuoteActionField_InvestorID
 		, &pQuoteActionField_QuoteActionRef
@@ -8157,11 +8580,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteActionField *pQuoteActionField, PyObj
 		, &pQuoteActionField_OrderActionStatus
 		, &pQuoteActionField_UserID
 		, &pQuoteActionField_StatusMsg
-		, &pQuoteActionField_InstrumentID
+		, &pQuoteActionField_reserve1
 		, &pQuoteActionField_BranchID
 		, &pQuoteActionField_InvestUnitID
-		, &pQuoteActionField_IPAddress
+		, &pQuoteActionField_reserve2
 		, &pQuoteActionField_MacAddress
+		, &pQuoteActionField_InstrumentID
+		, &pQuoteActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pQuoteActionField_BrokerID != nullptr){ strcpy_s(pQuoteActionField->BrokerID, pQuoteActionField_BrokerID); pQuoteActionField_BrokerID = nullptr; }
 		if(pQuoteActionField_InvestorID != nullptr){ strcpy_s(pQuoteActionField->InvestorID, pQuoteActionField_InvestorID); pQuoteActionField_InvestorID = nullptr; }
@@ -8185,17 +8610,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteActionField *pQuoteActionField, PyObj
 		pQuoteActionField->OrderActionStatus = pQuoteActionField_OrderActionStatus;
 		if(pQuoteActionField_UserID != nullptr){ strcpy_s(pQuoteActionField->UserID, pQuoteActionField_UserID); pQuoteActionField_UserID = nullptr; }
 		if(pQuoteActionField_StatusMsg != nullptr){ strcpy_s(pQuoteActionField->StatusMsg, pQuoteActionField_StatusMsg); pQuoteActionField_StatusMsg = nullptr; }
-		if(pQuoteActionField_InstrumentID != nullptr){ strcpy_s(pQuoteActionField->InstrumentID, pQuoteActionField_InstrumentID); pQuoteActionField_InstrumentID = nullptr; }
+		if(pQuoteActionField_reserve1 != nullptr){ strcpy_s(pQuoteActionField->reserve1, pQuoteActionField_reserve1); pQuoteActionField_reserve1 = nullptr; }
 		if(pQuoteActionField_BranchID != nullptr){ strcpy_s(pQuoteActionField->BranchID, pQuoteActionField_BranchID); pQuoteActionField_BranchID = nullptr; }
 		if(pQuoteActionField_InvestUnitID != nullptr){ strcpy_s(pQuoteActionField->InvestUnitID, pQuoteActionField_InvestUnitID); pQuoteActionField_InvestUnitID = nullptr; }
-		if(pQuoteActionField_IPAddress != nullptr){ strcpy_s(pQuoteActionField->IPAddress, pQuoteActionField_IPAddress); pQuoteActionField_IPAddress = nullptr; }
+		if(pQuoteActionField_reserve2 != nullptr){ strcpy_s(pQuoteActionField->reserve2, pQuoteActionField_reserve2); pQuoteActionField_reserve2 = nullptr; }
 		if(pQuoteActionField_MacAddress != nullptr){ strcpy_s(pQuoteActionField->MacAddress, pQuoteActionField_MacAddress); pQuoteActionField_MacAddress = nullptr; }
+		if(pQuoteActionField_InstrumentID != nullptr){ strcpy_s(pQuoteActionField->InstrumentID, pQuoteActionField_InstrumentID); pQuoteActionField_InstrumentID = nullptr; }
+		if(pQuoteActionField_IPAddress != nullptr){ strcpy_s(pQuoteActionField->IPAddress, pQuoteActionField_IPAddress); pQuoteActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteActionField *pQuoteActionField)
 {
 	if(pQuoteActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQuoteActionField->BrokerID
 		, "InvestorID", pQuoteActionField->InvestorID
 		, "QuoteActionRef", pQuoteActionField->QuoteActionRef
@@ -8218,63 +8645,69 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteActionField *pQuoteActionField)
 		, "OrderActionStatus", pQuoteActionField->OrderActionStatus
 		, "UserID", pQuoteActionField->UserID
 		, "StatusMsg", pQuoteActionField->StatusMsg
-		, "InstrumentID", pQuoteActionField->InstrumentID
+		, "reserve1", pQuoteActionField->reserve1
 		, "BranchID", pQuoteActionField->BranchID
 		, "InvestUnitID", pQuoteActionField->InvestUnitID
-		, "IPAddress", pQuoteActionField->IPAddress
+		, "reserve2", pQuoteActionField->reserve2
 		, "MacAddress", pQuoteActionField->MacAddress
+		, "InstrumentID", pQuoteActionField->InstrumentID
+		, "IPAddress", pQuoteActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryQuoteField *pQryQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "QuoteSysID", "InsertTimeStart", "InsertTimeEnd", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "QuoteSysID", "InsertTimeStart", "InsertTimeEnd", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryQuoteField_BrokerID = nullptr;
 	char *pQryQuoteField_InvestorID = nullptr;
-	char *pQryQuoteField_InstrumentID = nullptr;
+	char *pQryQuoteField_reserve1 = nullptr;
 	char *pQryQuoteField_ExchangeID = nullptr;
 	char *pQryQuoteField_QuoteSysID = nullptr;
 	char *pQryQuoteField_InsertTimeStart = nullptr;
 	char *pQryQuoteField_InsertTimeEnd = nullptr;
 	char *pQryQuoteField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryQuoteField, "|yyyyyyyy")
+	char *pQryQuoteField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryQuoteField, "|yyyyyyyyy")
 		, &pQryQuoteField_BrokerID
 		, &pQryQuoteField_InvestorID
-		, &pQryQuoteField_InstrumentID
+		, &pQryQuoteField_reserve1
 		, &pQryQuoteField_ExchangeID
 		, &pQryQuoteField_QuoteSysID
 		, &pQryQuoteField_InsertTimeStart
 		, &pQryQuoteField_InsertTimeEnd
 		, &pQryQuoteField_InvestUnitID
+		, &pQryQuoteField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryQuoteField_BrokerID != nullptr){ strcpy_s(pQryQuoteField->BrokerID, pQryQuoteField_BrokerID); pQryQuoteField_BrokerID = nullptr; }
 		if(pQryQuoteField_InvestorID != nullptr){ strcpy_s(pQryQuoteField->InvestorID, pQryQuoteField_InvestorID); pQryQuoteField_InvestorID = nullptr; }
-		if(pQryQuoteField_InstrumentID != nullptr){ strcpy_s(pQryQuoteField->InstrumentID, pQryQuoteField_InstrumentID); pQryQuoteField_InstrumentID = nullptr; }
+		if(pQryQuoteField_reserve1 != nullptr){ strcpy_s(pQryQuoteField->reserve1, pQryQuoteField_reserve1); pQryQuoteField_reserve1 = nullptr; }
 		if(pQryQuoteField_ExchangeID != nullptr){ strcpy_s(pQryQuoteField->ExchangeID, pQryQuoteField_ExchangeID); pQryQuoteField_ExchangeID = nullptr; }
 		if(pQryQuoteField_QuoteSysID != nullptr){ strcpy_s(pQryQuoteField->QuoteSysID, pQryQuoteField_QuoteSysID); pQryQuoteField_QuoteSysID = nullptr; }
 		if(pQryQuoteField_InsertTimeStart != nullptr){ strcpy_s(pQryQuoteField->InsertTimeStart, pQryQuoteField_InsertTimeStart); pQryQuoteField_InsertTimeStart = nullptr; }
 		if(pQryQuoteField_InsertTimeEnd != nullptr){ strcpy_s(pQryQuoteField->InsertTimeEnd, pQryQuoteField_InsertTimeEnd); pQryQuoteField_InsertTimeEnd = nullptr; }
 		if(pQryQuoteField_InvestUnitID != nullptr){ strcpy_s(pQryQuoteField->InvestUnitID, pQryQuoteField_InvestUnitID); pQryQuoteField_InvestUnitID = nullptr; }
+		if(pQryQuoteField_InstrumentID != nullptr){ strcpy_s(pQryQuoteField->InstrumentID, pQryQuoteField_InstrumentID); pQryQuoteField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryQuoteField *pQryQuoteField)
 {
 	if(pQryQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryQuoteField->BrokerID
 		, "InvestorID", pQryQuoteField->InvestorID
-		, "InstrumentID", pQryQuoteField->InstrumentID
+		, "reserve1", pQryQuoteField->reserve1
 		, "ExchangeID", pQryQuoteField->ExchangeID
 		, "QuoteSysID", pQryQuoteField->QuoteSysID
 		, "InsertTimeStart", pQryQuoteField->InsertTimeStart
 		, "InsertTimeEnd", pQryQuoteField->InsertTimeEnd
 		, "InvestUnitID", pQryQuoteField->InvestUnitID
+		, "InstrumentID", pQryQuoteField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "QuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "NotifySequence", "OrderSubmitStatus", "TradingDay", "SettlementID", "QuoteSysID", "InsertDate", "InsertTime", "CancelTime", "QuoteStatus", "ClearingPartID", "SequenceNo", "AskOrderSysID", "BidOrderSysID", "ForQuoteSysID", "BranchID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "QuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve1", "TraderID", "InstallID", "NotifySequence", "OrderSubmitStatus", "TradingDay", "SettlementID", "QuoteSysID", "InsertDate", "InsertTime", "CancelTime", "QuoteStatus", "ClearingPartID", "SequenceNo", "AskOrderSysID", "BidOrderSysID", "ForQuoteSysID", "BranchID", "reserve2", "MacAddress", "ExchangeInstID", "IPAddress", nullptr};
 	double pExchangeQuoteField_AskPrice = 0.0;
 	double pExchangeQuoteField_BidPrice = 0.0;
 	int pExchangeQuoteField_AskVolume = 0;
@@ -8289,7 +8722,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, P
 	char *pExchangeQuoteField_ExchangeID = nullptr;
 	char *pExchangeQuoteField_ParticipantID = nullptr;
 	char *pExchangeQuoteField_ClientID = nullptr;
-	char *pExchangeQuoteField_ExchangeInstID = nullptr;
+	char *pExchangeQuoteField_reserve1 = nullptr;
 	char *pExchangeQuoteField_TraderID = nullptr;
 	int pExchangeQuoteField_InstallID = 0;
 	int pExchangeQuoteField_NotifySequence = 0;
@@ -8307,9 +8740,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, P
 	char *pExchangeQuoteField_BidOrderSysID = nullptr;
 	char *pExchangeQuoteField_ForQuoteSysID = nullptr;
 	char *pExchangeQuoteField_BranchID = nullptr;
-	char *pExchangeQuoteField_IPAddress = nullptr;
+	char *pExchangeQuoteField_reserve2 = nullptr;
 	char *pExchangeQuoteField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeQuoteField, "|ddiiiyccccyyyyyyiicyiyyyycyiyyyyyy")
+	char *pExchangeQuoteField_ExchangeInstID = nullptr;
+	char *pExchangeQuoteField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeQuoteField, "|ddiiiyccccyyyyyyiicyiyyyycyiyyyyyyyy")
 		, &pExchangeQuoteField_AskPrice
 		, &pExchangeQuoteField_BidPrice
 		, &pExchangeQuoteField_AskVolume
@@ -8324,7 +8759,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, P
 		, &pExchangeQuoteField_ExchangeID
 		, &pExchangeQuoteField_ParticipantID
 		, &pExchangeQuoteField_ClientID
-		, &pExchangeQuoteField_ExchangeInstID
+		, &pExchangeQuoteField_reserve1
 		, &pExchangeQuoteField_TraderID
 		, &pExchangeQuoteField_InstallID
 		, &pExchangeQuoteField_NotifySequence
@@ -8342,8 +8777,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, P
 		, &pExchangeQuoteField_BidOrderSysID
 		, &pExchangeQuoteField_ForQuoteSysID
 		, &pExchangeQuoteField_BranchID
-		, &pExchangeQuoteField_IPAddress
+		, &pExchangeQuoteField_reserve2
 		, &pExchangeQuoteField_MacAddress
+		, &pExchangeQuoteField_ExchangeInstID
+		, &pExchangeQuoteField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		pExchangeQuoteField->AskPrice = pExchangeQuoteField_AskPrice;
 		pExchangeQuoteField->BidPrice = pExchangeQuoteField_BidPrice;
@@ -8359,7 +8796,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, P
 		if(pExchangeQuoteField_ExchangeID != nullptr){ strcpy_s(pExchangeQuoteField->ExchangeID, pExchangeQuoteField_ExchangeID); pExchangeQuoteField_ExchangeID = nullptr; }
 		if(pExchangeQuoteField_ParticipantID != nullptr){ strcpy_s(pExchangeQuoteField->ParticipantID, pExchangeQuoteField_ParticipantID); pExchangeQuoteField_ParticipantID = nullptr; }
 		if(pExchangeQuoteField_ClientID != nullptr){ strcpy_s(pExchangeQuoteField->ClientID, pExchangeQuoteField_ClientID); pExchangeQuoteField_ClientID = nullptr; }
-		if(pExchangeQuoteField_ExchangeInstID != nullptr){ strcpy_s(pExchangeQuoteField->ExchangeInstID, pExchangeQuoteField_ExchangeInstID); pExchangeQuoteField_ExchangeInstID = nullptr; }
+		if(pExchangeQuoteField_reserve1 != nullptr){ strcpy_s(pExchangeQuoteField->reserve1, pExchangeQuoteField_reserve1); pExchangeQuoteField_reserve1 = nullptr; }
 		if(pExchangeQuoteField_TraderID != nullptr){ strcpy_s(pExchangeQuoteField->TraderID, pExchangeQuoteField_TraderID); pExchangeQuoteField_TraderID = nullptr; }
 		pExchangeQuoteField->InstallID = pExchangeQuoteField_InstallID;
 		pExchangeQuoteField->NotifySequence = pExchangeQuoteField_NotifySequence;
@@ -8377,14 +8814,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, P
 		if(pExchangeQuoteField_BidOrderSysID != nullptr){ strcpy_s(pExchangeQuoteField->BidOrderSysID, pExchangeQuoteField_BidOrderSysID); pExchangeQuoteField_BidOrderSysID = nullptr; }
 		if(pExchangeQuoteField_ForQuoteSysID != nullptr){ strcpy_s(pExchangeQuoteField->ForQuoteSysID, pExchangeQuoteField_ForQuoteSysID); pExchangeQuoteField_ForQuoteSysID = nullptr; }
 		if(pExchangeQuoteField_BranchID != nullptr){ strcpy_s(pExchangeQuoteField->BranchID, pExchangeQuoteField_BranchID); pExchangeQuoteField_BranchID = nullptr; }
-		if(pExchangeQuoteField_IPAddress != nullptr){ strcpy_s(pExchangeQuoteField->IPAddress, pExchangeQuoteField_IPAddress); pExchangeQuoteField_IPAddress = nullptr; }
+		if(pExchangeQuoteField_reserve2 != nullptr){ strcpy_s(pExchangeQuoteField->reserve2, pExchangeQuoteField_reserve2); pExchangeQuoteField_reserve2 = nullptr; }
 		if(pExchangeQuoteField_MacAddress != nullptr){ strcpy_s(pExchangeQuoteField->MacAddress, pExchangeQuoteField_MacAddress); pExchangeQuoteField_MacAddress = nullptr; }
+		if(pExchangeQuoteField_ExchangeInstID != nullptr){ strcpy_s(pExchangeQuoteField->ExchangeInstID, pExchangeQuoteField_ExchangeInstID); pExchangeQuoteField_ExchangeInstID = nullptr; }
+		if(pExchangeQuoteField_IPAddress != nullptr){ strcpy_s(pExchangeQuoteField->IPAddress, pExchangeQuoteField_IPAddress); pExchangeQuoteField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeQuoteField *pExchangeQuoteField)
 {
 	if(pExchangeQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "AskPrice", pExchangeQuoteField->AskPrice
 		, "BidPrice", pExchangeQuoteField->BidPrice
 		, "AskVolume", pExchangeQuoteField->AskVolume
@@ -8399,7 +8838,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeQuoteField *pExchangeQuoteFi
 		, "ExchangeID", pExchangeQuoteField->ExchangeID
 		, "ParticipantID", pExchangeQuoteField->ParticipantID
 		, "ClientID", pExchangeQuoteField->ClientID
-		, "ExchangeInstID", pExchangeQuoteField->ExchangeInstID
+		, "reserve1", pExchangeQuoteField->reserve1
 		, "TraderID", pExchangeQuoteField->TraderID
 		, "InstallID", pExchangeQuoteField->InstallID
 		, "NotifySequence", pExchangeQuoteField->NotifySequence
@@ -8417,42 +8856,48 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeQuoteField *pExchangeQuoteFi
 		, "BidOrderSysID", pExchangeQuoteField->BidOrderSysID
 		, "ForQuoteSysID", pExchangeQuoteField->ForQuoteSysID
 		, "BranchID", pExchangeQuoteField->BranchID
-		, "IPAddress", pExchangeQuoteField->IPAddress
+		, "reserve2", pExchangeQuoteField->reserve2
 		, "MacAddress", pExchangeQuoteField->MacAddress
+		, "ExchangeInstID", pExchangeQuoteField->ExchangeInstID
+		, "IPAddress", pExchangeQuoteField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeQuoteField *pQryExchangeQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"ParticipantID", "ClientID", "ExchangeInstID", "ExchangeID", "TraderID", nullptr};
+	static char *kwlist[] = {"ParticipantID", "ClientID", "reserve1", "ExchangeID", "TraderID", "ExchangeInstID", nullptr};
 	char *pQryExchangeQuoteField_ParticipantID = nullptr;
 	char *pQryExchangeQuoteField_ClientID = nullptr;
-	char *pQryExchangeQuoteField_ExchangeInstID = nullptr;
+	char *pQryExchangeQuoteField_reserve1 = nullptr;
 	char *pQryExchangeQuoteField_ExchangeID = nullptr;
 	char *pQryExchangeQuoteField_TraderID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeQuoteField, "|yyyyy")
+	char *pQryExchangeQuoteField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeQuoteField, "|yyyyyy")
 		, &pQryExchangeQuoteField_ParticipantID
 		, &pQryExchangeQuoteField_ClientID
-		, &pQryExchangeQuoteField_ExchangeInstID
+		, &pQryExchangeQuoteField_reserve1
 		, &pQryExchangeQuoteField_ExchangeID
 		, &pQryExchangeQuoteField_TraderID
+		, &pQryExchangeQuoteField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExchangeQuoteField_ParticipantID != nullptr){ strcpy_s(pQryExchangeQuoteField->ParticipantID, pQryExchangeQuoteField_ParticipantID); pQryExchangeQuoteField_ParticipantID = nullptr; }
 		if(pQryExchangeQuoteField_ClientID != nullptr){ strcpy_s(pQryExchangeQuoteField->ClientID, pQryExchangeQuoteField_ClientID); pQryExchangeQuoteField_ClientID = nullptr; }
-		if(pQryExchangeQuoteField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeQuoteField->ExchangeInstID, pQryExchangeQuoteField_ExchangeInstID); pQryExchangeQuoteField_ExchangeInstID = nullptr; }
+		if(pQryExchangeQuoteField_reserve1 != nullptr){ strcpy_s(pQryExchangeQuoteField->reserve1, pQryExchangeQuoteField_reserve1); pQryExchangeQuoteField_reserve1 = nullptr; }
 		if(pQryExchangeQuoteField_ExchangeID != nullptr){ strcpy_s(pQryExchangeQuoteField->ExchangeID, pQryExchangeQuoteField_ExchangeID); pQryExchangeQuoteField_ExchangeID = nullptr; }
 		if(pQryExchangeQuoteField_TraderID != nullptr){ strcpy_s(pQryExchangeQuoteField->TraderID, pQryExchangeQuoteField_TraderID); pQryExchangeQuoteField_TraderID = nullptr; }
+		if(pQryExchangeQuoteField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeQuoteField->ExchangeInstID, pQryExchangeQuoteField_ExchangeInstID); pQryExchangeQuoteField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeQuoteField *pQryExchangeQuoteField)
 {
 	if(pQryExchangeQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "ParticipantID", pQryExchangeQuoteField->ParticipantID
 		, "ClientID", pQryExchangeQuoteField->ClientID
-		, "ExchangeInstID", pQryExchangeQuoteField->ExchangeInstID
+		, "reserve1", pQryExchangeQuoteField->reserve1
 		, "ExchangeID", pQryExchangeQuoteField->ExchangeID
 		, "TraderID", pQryExchangeQuoteField->TraderID
+		, "ExchangeInstID", pQryExchangeQuoteField->ExchangeInstID
 		);
 }
 
@@ -8484,7 +8929,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryQuoteActionField *pQryQuoteAction
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteActionField *pExchangeQuoteActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "QuoteSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "QuoteLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"ExchangeID", "QuoteSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "QuoteLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "reserve1", "MacAddress", "IPAddress", nullptr};
 	char *pExchangeQuoteActionField_ExchangeID = nullptr;
 	char *pExchangeQuoteActionField_QuoteSysID = nullptr;
 	char pExchangeQuoteActionField_ActionFlag = 0;
@@ -8499,9 +8944,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteActionField *pExchangeQuoteAc
 	char *pExchangeQuoteActionField_BusinessUnit = nullptr;
 	char pExchangeQuoteActionField_OrderActionStatus = 0;
 	char *pExchangeQuoteActionField_UserID = nullptr;
-	char *pExchangeQuoteActionField_IPAddress = nullptr;
+	char *pExchangeQuoteActionField_reserve1 = nullptr;
 	char *pExchangeQuoteActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeQuoteActionField, "|yycyyyiyyyyycyyy")
+	char *pExchangeQuoteActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeQuoteActionField, "|yycyyyiyyyyycyyyy")
 		, &pExchangeQuoteActionField_ExchangeID
 		, &pExchangeQuoteActionField_QuoteSysID
 		, &pExchangeQuoteActionField_ActionFlag
@@ -8516,8 +8962,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteActionField *pExchangeQuoteAc
 		, &pExchangeQuoteActionField_BusinessUnit
 		, &pExchangeQuoteActionField_OrderActionStatus
 		, &pExchangeQuoteActionField_UserID
-		, &pExchangeQuoteActionField_IPAddress
+		, &pExchangeQuoteActionField_reserve1
 		, &pExchangeQuoteActionField_MacAddress
+		, &pExchangeQuoteActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeQuoteActionField_ExchangeID != nullptr){ strcpy_s(pExchangeQuoteActionField->ExchangeID, pExchangeQuoteActionField_ExchangeID); pExchangeQuoteActionField_ExchangeID = nullptr; }
 		if(pExchangeQuoteActionField_QuoteSysID != nullptr){ strcpy_s(pExchangeQuoteActionField->QuoteSysID, pExchangeQuoteActionField_QuoteSysID); pExchangeQuoteActionField_QuoteSysID = nullptr; }
@@ -8533,14 +8980,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteActionField *pExchangeQuoteAc
 		if(pExchangeQuoteActionField_BusinessUnit != nullptr){ strcpy_s(pExchangeQuoteActionField->BusinessUnit, pExchangeQuoteActionField_BusinessUnit); pExchangeQuoteActionField_BusinessUnit = nullptr; }
 		pExchangeQuoteActionField->OrderActionStatus = pExchangeQuoteActionField_OrderActionStatus;
 		if(pExchangeQuoteActionField_UserID != nullptr){ strcpy_s(pExchangeQuoteActionField->UserID, pExchangeQuoteActionField_UserID); pExchangeQuoteActionField_UserID = nullptr; }
-		if(pExchangeQuoteActionField_IPAddress != nullptr){ strcpy_s(pExchangeQuoteActionField->IPAddress, pExchangeQuoteActionField_IPAddress); pExchangeQuoteActionField_IPAddress = nullptr; }
+		if(pExchangeQuoteActionField_reserve1 != nullptr){ strcpy_s(pExchangeQuoteActionField->reserve1, pExchangeQuoteActionField_reserve1); pExchangeQuoteActionField_reserve1 = nullptr; }
 		if(pExchangeQuoteActionField_MacAddress != nullptr){ strcpy_s(pExchangeQuoteActionField->MacAddress, pExchangeQuoteActionField_MacAddress); pExchangeQuoteActionField_MacAddress = nullptr; }
+		if(pExchangeQuoteActionField_IPAddress != nullptr){ strcpy_s(pExchangeQuoteActionField->IPAddress, pExchangeQuoteActionField_IPAddress); pExchangeQuoteActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeQuoteActionField *pExchangeQuoteActionField)
 {
 	if(pExchangeQuoteActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y}"
 		, "ExchangeID", pExchangeQuoteActionField->ExchangeID
 		, "QuoteSysID", pExchangeQuoteActionField->QuoteSysID
 		, "ActionFlag", pExchangeQuoteActionField->ActionFlag
@@ -8555,8 +9003,9 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeQuoteActionField *pExchangeQ
 		, "BusinessUnit", pExchangeQuoteActionField->BusinessUnit
 		, "OrderActionStatus", pExchangeQuoteActionField->OrderActionStatus
 		, "UserID", pExchangeQuoteActionField->UserID
-		, "IPAddress", pExchangeQuoteActionField->IPAddress
+		, "reserve1", pExchangeQuoteActionField->reserve1
 		, "MacAddress", pExchangeQuoteActionField->MacAddress
+		, "IPAddress", pExchangeQuoteActionField->IPAddress
 		);
 }
 
@@ -8592,143 +9041,159 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeQuoteActionField *pQryExc
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrDeltaField *pOptionInstrDeltaField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "Delta", nullptr};
-	char *pOptionInstrDeltaField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "Delta", "InstrumentID", nullptr};
+	char *pOptionInstrDeltaField_reserve1 = nullptr;
 	char pOptionInstrDeltaField_InvestorRange = 0;
 	char *pOptionInstrDeltaField_BrokerID = nullptr;
 	char *pOptionInstrDeltaField_InvestorID = nullptr;
 	double pOptionInstrDeltaField_Delta = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrDeltaField, "|ycyyd")
-		, &pOptionInstrDeltaField_InstrumentID
+	char *pOptionInstrDeltaField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionInstrDeltaField, "|ycyydy")
+		, &pOptionInstrDeltaField_reserve1
 		, &pOptionInstrDeltaField_InvestorRange
 		, &pOptionInstrDeltaField_BrokerID
 		, &pOptionInstrDeltaField_InvestorID
 		, &pOptionInstrDeltaField_Delta
+		, &pOptionInstrDeltaField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pOptionInstrDeltaField_InstrumentID != nullptr){ strcpy_s(pOptionInstrDeltaField->InstrumentID, pOptionInstrDeltaField_InstrumentID); pOptionInstrDeltaField_InstrumentID = nullptr; }
+		if(pOptionInstrDeltaField_reserve1 != nullptr){ strcpy_s(pOptionInstrDeltaField->reserve1, pOptionInstrDeltaField_reserve1); pOptionInstrDeltaField_reserve1 = nullptr; }
 		pOptionInstrDeltaField->InvestorRange = pOptionInstrDeltaField_InvestorRange;
 		if(pOptionInstrDeltaField_BrokerID != nullptr){ strcpy_s(pOptionInstrDeltaField->BrokerID, pOptionInstrDeltaField_BrokerID); pOptionInstrDeltaField_BrokerID = nullptr; }
 		if(pOptionInstrDeltaField_InvestorID != nullptr){ strcpy_s(pOptionInstrDeltaField->InvestorID, pOptionInstrDeltaField_InvestorID); pOptionInstrDeltaField_InvestorID = nullptr; }
 		pOptionInstrDeltaField->Delta = pOptionInstrDeltaField_Delta;
+		if(pOptionInstrDeltaField_InstrumentID != nullptr){ strcpy_s(pOptionInstrDeltaField->InstrumentID, pOptionInstrDeltaField_InstrumentID); pOptionInstrDeltaField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrDeltaField *pOptionInstrDeltaField)
 {
 	if(pOptionInstrDeltaField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d}"
-		, "InstrumentID", pOptionInstrDeltaField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:y}"
+		, "reserve1", pOptionInstrDeltaField->reserve1
 		, "InvestorRange", pOptionInstrDeltaField->InvestorRange
 		, "BrokerID", pOptionInstrDeltaField->BrokerID
 		, "InvestorID", pOptionInstrDeltaField->InvestorID
 		, "Delta", pOptionInstrDeltaField->Delta
+		, "InstrumentID", pOptionInstrDeltaField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteRspField *pForQuoteRspField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "InstrumentID", "ForQuoteSysID", "ForQuoteTime", "ActionDay", "ExchangeID", nullptr};
+	static char *kwlist[] = {"TradingDay", "reserve1", "ForQuoteSysID", "ForQuoteTime", "ActionDay", "ExchangeID", "InstrumentID", nullptr};
 	char *pForQuoteRspField_TradingDay = nullptr;
-	char *pForQuoteRspField_InstrumentID = nullptr;
+	char *pForQuoteRspField_reserve1 = nullptr;
 	char *pForQuoteRspField_ForQuoteSysID = nullptr;
 	char *pForQuoteRspField_ForQuoteTime = nullptr;
 	char *pForQuoteRspField_ActionDay = nullptr;
 	char *pForQuoteRspField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pForQuoteRspField, "|yyyyyy")
+	char *pForQuoteRspField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pForQuoteRspField, "|yyyyyyy")
 		, &pForQuoteRspField_TradingDay
-		, &pForQuoteRspField_InstrumentID
+		, &pForQuoteRspField_reserve1
 		, &pForQuoteRspField_ForQuoteSysID
 		, &pForQuoteRspField_ForQuoteTime
 		, &pForQuoteRspField_ActionDay
 		, &pForQuoteRspField_ExchangeID
+		, &pForQuoteRspField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pForQuoteRspField_TradingDay != nullptr){ strcpy_s(pForQuoteRspField->TradingDay, pForQuoteRspField_TradingDay); pForQuoteRspField_TradingDay = nullptr; }
-		if(pForQuoteRspField_InstrumentID != nullptr){ strcpy_s(pForQuoteRspField->InstrumentID, pForQuoteRspField_InstrumentID); pForQuoteRspField_InstrumentID = nullptr; }
+		if(pForQuoteRspField_reserve1 != nullptr){ strcpy_s(pForQuoteRspField->reserve1, pForQuoteRspField_reserve1); pForQuoteRspField_reserve1 = nullptr; }
 		if(pForQuoteRspField_ForQuoteSysID != nullptr){ strcpy_s(pForQuoteRspField->ForQuoteSysID, pForQuoteRspField_ForQuoteSysID); pForQuoteRspField_ForQuoteSysID = nullptr; }
 		if(pForQuoteRspField_ForQuoteTime != nullptr){ strcpy_s(pForQuoteRspField->ForQuoteTime, pForQuoteRspField_ForQuoteTime); pForQuoteRspField_ForQuoteTime = nullptr; }
 		if(pForQuoteRspField_ActionDay != nullptr){ strcpy_s(pForQuoteRspField->ActionDay, pForQuoteRspField_ActionDay); pForQuoteRspField_ActionDay = nullptr; }
 		if(pForQuoteRspField_ExchangeID != nullptr){ strcpy_s(pForQuoteRspField->ExchangeID, pForQuoteRspField_ExchangeID); pForQuoteRspField_ExchangeID = nullptr; }
+		if(pForQuoteRspField_InstrumentID != nullptr){ strcpy_s(pForQuoteRspField->InstrumentID, pForQuoteRspField_InstrumentID); pForQuoteRspField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForQuoteRspField *pForQuoteRspField)
 {
 	if(pForQuoteRspField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "TradingDay", pForQuoteRspField->TradingDay
-		, "InstrumentID", pForQuoteRspField->InstrumentID
+		, "reserve1", pForQuoteRspField->reserve1
 		, "ForQuoteSysID", pForQuoteRspField->ForQuoteSysID
 		, "ForQuoteTime", pForQuoteRspField->ForQuoteTime
 		, "ActionDay", pForQuoteRspField->ActionDay
 		, "ExchangeID", pForQuoteRspField->ExchangeID
+		, "InstrumentID", pForQuoteRspField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcStrikeOffsetField *pStrikeOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "Offset", "OffsetType", nullptr};
-	char *pStrikeOffsetField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "Offset", "OffsetType", "InstrumentID", nullptr};
+	char *pStrikeOffsetField_reserve1 = nullptr;
 	char pStrikeOffsetField_InvestorRange = 0;
 	char *pStrikeOffsetField_BrokerID = nullptr;
 	char *pStrikeOffsetField_InvestorID = nullptr;
 	double pStrikeOffsetField_Offset = 0.0;
 	char pStrikeOffsetField_OffsetType = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pStrikeOffsetField, "|ycyydc")
-		, &pStrikeOffsetField_InstrumentID
+	char *pStrikeOffsetField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pStrikeOffsetField, "|ycyydcy")
+		, &pStrikeOffsetField_reserve1
 		, &pStrikeOffsetField_InvestorRange
 		, &pStrikeOffsetField_BrokerID
 		, &pStrikeOffsetField_InvestorID
 		, &pStrikeOffsetField_Offset
 		, &pStrikeOffsetField_OffsetType
+		, &pStrikeOffsetField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pStrikeOffsetField_InstrumentID != nullptr){ strcpy_s(pStrikeOffsetField->InstrumentID, pStrikeOffsetField_InstrumentID); pStrikeOffsetField_InstrumentID = nullptr; }
+		if(pStrikeOffsetField_reserve1 != nullptr){ strcpy_s(pStrikeOffsetField->reserve1, pStrikeOffsetField_reserve1); pStrikeOffsetField_reserve1 = nullptr; }
 		pStrikeOffsetField->InvestorRange = pStrikeOffsetField_InvestorRange;
 		if(pStrikeOffsetField_BrokerID != nullptr){ strcpy_s(pStrikeOffsetField->BrokerID, pStrikeOffsetField_BrokerID); pStrikeOffsetField_BrokerID = nullptr; }
 		if(pStrikeOffsetField_InvestorID != nullptr){ strcpy_s(pStrikeOffsetField->InvestorID, pStrikeOffsetField_InvestorID); pStrikeOffsetField_InvestorID = nullptr; }
 		pStrikeOffsetField->Offset = pStrikeOffsetField_Offset;
 		pStrikeOffsetField->OffsetType = pStrikeOffsetField_OffsetType;
+		if(pStrikeOffsetField_InstrumentID != nullptr){ strcpy_s(pStrikeOffsetField->InstrumentID, pStrikeOffsetField_InstrumentID); pStrikeOffsetField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcStrikeOffsetField *pStrikeOffsetField)
 {
 	if(pStrikeOffsetField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:c}"
-		, "InstrumentID", pStrikeOffsetField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:c,s:y}"
+		, "reserve1", pStrikeOffsetField->reserve1
 		, "InvestorRange", pStrikeOffsetField->InvestorRange
 		, "BrokerID", pStrikeOffsetField->BrokerID
 		, "InvestorID", pStrikeOffsetField->InvestorID
 		, "Offset", pStrikeOffsetField->Offset
 		, "OffsetType", pStrikeOffsetField->OffsetType
+		, "InstrumentID", pStrikeOffsetField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryStrikeOffsetField *pQryStrikeOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "InstrumentID", nullptr};
 	char *pQryStrikeOffsetField_BrokerID = nullptr;
 	char *pQryStrikeOffsetField_InvestorID = nullptr;
+	char *pQryStrikeOffsetField_reserve1 = nullptr;
 	char *pQryStrikeOffsetField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryStrikeOffsetField, "|yyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryStrikeOffsetField, "|yyyy")
 		, &pQryStrikeOffsetField_BrokerID
 		, &pQryStrikeOffsetField_InvestorID
+		, &pQryStrikeOffsetField_reserve1
 		, &pQryStrikeOffsetField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryStrikeOffsetField_BrokerID != nullptr){ strcpy_s(pQryStrikeOffsetField->BrokerID, pQryStrikeOffsetField_BrokerID); pQryStrikeOffsetField_BrokerID = nullptr; }
 		if(pQryStrikeOffsetField_InvestorID != nullptr){ strcpy_s(pQryStrikeOffsetField->InvestorID, pQryStrikeOffsetField_InvestorID); pQryStrikeOffsetField_InvestorID = nullptr; }
+		if(pQryStrikeOffsetField_reserve1 != nullptr){ strcpy_s(pQryStrikeOffsetField->reserve1, pQryStrikeOffsetField_reserve1); pQryStrikeOffsetField_reserve1 = nullptr; }
 		if(pQryStrikeOffsetField_InstrumentID != nullptr){ strcpy_s(pQryStrikeOffsetField->InstrumentID, pQryStrikeOffsetField_InstrumentID); pQryStrikeOffsetField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryStrikeOffsetField *pQryStrikeOffsetField)
 {
 	if(pQryStrikeOffsetField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryStrikeOffsetField->BrokerID
 		, "InvestorID", pQryStrikeOffsetField->InvestorID
+		, "reserve1", pQryStrikeOffsetField->reserve1
 		, "InstrumentID", pQryStrikeOffsetField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputBatchOrderActionField *pInputBatchOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "UserID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "UserID", "InvestUnitID", "reserve1", "MacAddress", "IPAddress", nullptr};
 	char *pInputBatchOrderActionField_BrokerID = nullptr;
 	char *pInputBatchOrderActionField_InvestorID = nullptr;
 	int pInputBatchOrderActionField_OrderActionRef = 0;
@@ -8738,9 +9203,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputBatchOrderActionField *pInputBatchOrd
 	char *pInputBatchOrderActionField_ExchangeID = nullptr;
 	char *pInputBatchOrderActionField_UserID = nullptr;
 	char *pInputBatchOrderActionField_InvestUnitID = nullptr;
-	char *pInputBatchOrderActionField_IPAddress = nullptr;
+	char *pInputBatchOrderActionField_reserve1 = nullptr;
 	char *pInputBatchOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputBatchOrderActionField, "|yyiiiiyyyyy")
+	char *pInputBatchOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputBatchOrderActionField, "|yyiiiiyyyyyy")
 		, &pInputBatchOrderActionField_BrokerID
 		, &pInputBatchOrderActionField_InvestorID
 		, &pInputBatchOrderActionField_OrderActionRef
@@ -8750,8 +9216,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputBatchOrderActionField *pInputBatchOrd
 		, &pInputBatchOrderActionField_ExchangeID
 		, &pInputBatchOrderActionField_UserID
 		, &pInputBatchOrderActionField_InvestUnitID
-		, &pInputBatchOrderActionField_IPAddress
+		, &pInputBatchOrderActionField_reserve1
 		, &pInputBatchOrderActionField_MacAddress
+		, &pInputBatchOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputBatchOrderActionField_BrokerID != nullptr){ strcpy_s(pInputBatchOrderActionField->BrokerID, pInputBatchOrderActionField_BrokerID); pInputBatchOrderActionField_BrokerID = nullptr; }
 		if(pInputBatchOrderActionField_InvestorID != nullptr){ strcpy_s(pInputBatchOrderActionField->InvestorID, pInputBatchOrderActionField_InvestorID); pInputBatchOrderActionField_InvestorID = nullptr; }
@@ -8762,14 +9229,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputBatchOrderActionField *pInputBatchOrd
 		if(pInputBatchOrderActionField_ExchangeID != nullptr){ strcpy_s(pInputBatchOrderActionField->ExchangeID, pInputBatchOrderActionField_ExchangeID); pInputBatchOrderActionField_ExchangeID = nullptr; }
 		if(pInputBatchOrderActionField_UserID != nullptr){ strcpy_s(pInputBatchOrderActionField->UserID, pInputBatchOrderActionField_UserID); pInputBatchOrderActionField_UserID = nullptr; }
 		if(pInputBatchOrderActionField_InvestUnitID != nullptr){ strcpy_s(pInputBatchOrderActionField->InvestUnitID, pInputBatchOrderActionField_InvestUnitID); pInputBatchOrderActionField_InvestUnitID = nullptr; }
-		if(pInputBatchOrderActionField_IPAddress != nullptr){ strcpy_s(pInputBatchOrderActionField->IPAddress, pInputBatchOrderActionField_IPAddress); pInputBatchOrderActionField_IPAddress = nullptr; }
+		if(pInputBatchOrderActionField_reserve1 != nullptr){ strcpy_s(pInputBatchOrderActionField->reserve1, pInputBatchOrderActionField_reserve1); pInputBatchOrderActionField_reserve1 = nullptr; }
 		if(pInputBatchOrderActionField_MacAddress != nullptr){ strcpy_s(pInputBatchOrderActionField->MacAddress, pInputBatchOrderActionField_MacAddress); pInputBatchOrderActionField_MacAddress = nullptr; }
+		if(pInputBatchOrderActionField_IPAddress != nullptr){ strcpy_s(pInputBatchOrderActionField->IPAddress, pInputBatchOrderActionField_IPAddress); pInputBatchOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputBatchOrderActionField *pInputBatchOrderActionField)
 {
 	if(pInputBatchOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputBatchOrderActionField->BrokerID
 		, "InvestorID", pInputBatchOrderActionField->InvestorID
 		, "OrderActionRef", pInputBatchOrderActionField->OrderActionRef
@@ -8779,14 +9247,15 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputBatchOrderActionField *pInputBa
 		, "ExchangeID", pInputBatchOrderActionField->ExchangeID
 		, "UserID", pInputBatchOrderActionField->UserID
 		, "InvestUnitID", pInputBatchOrderActionField->InvestUnitID
-		, "IPAddress", pInputBatchOrderActionField->IPAddress
+		, "reserve1", pInputBatchOrderActionField->reserve1
 		, "MacAddress", pInputBatchOrderActionField->MacAddress
+		, "IPAddress", pInputBatchOrderActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBatchOrderActionField *pBatchOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ActionDate", "ActionTime", "TraderID", "InstallID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "ActionDate", "ActionTime", "TraderID", "InstallID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "InvestUnitID", "reserve1", "MacAddress", "IPAddress", nullptr};
 	char *pBatchOrderActionField_BrokerID = nullptr;
 	char *pBatchOrderActionField_InvestorID = nullptr;
 	int pBatchOrderActionField_OrderActionRef = 0;
@@ -8806,9 +9275,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBatchOrderActionField *pBatchOrderActionFi
 	char *pBatchOrderActionField_UserID = nullptr;
 	char *pBatchOrderActionField_StatusMsg = nullptr;
 	char *pBatchOrderActionField_InvestUnitID = nullptr;
-	char *pBatchOrderActionField_IPAddress = nullptr;
+	char *pBatchOrderActionField_reserve1 = nullptr;
 	char *pBatchOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pBatchOrderActionField, "|yyiiiiyyyyiyyyycyyyyy")
+	char *pBatchOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pBatchOrderActionField, "|yyiiiiyyyyiyyyycyyyyyy")
 		, &pBatchOrderActionField_BrokerID
 		, &pBatchOrderActionField_InvestorID
 		, &pBatchOrderActionField_OrderActionRef
@@ -8828,8 +9298,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBatchOrderActionField *pBatchOrderActionFi
 		, &pBatchOrderActionField_UserID
 		, &pBatchOrderActionField_StatusMsg
 		, &pBatchOrderActionField_InvestUnitID
-		, &pBatchOrderActionField_IPAddress
+		, &pBatchOrderActionField_reserve1
 		, &pBatchOrderActionField_MacAddress
+		, &pBatchOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pBatchOrderActionField_BrokerID != nullptr){ strcpy_s(pBatchOrderActionField->BrokerID, pBatchOrderActionField_BrokerID); pBatchOrderActionField_BrokerID = nullptr; }
 		if(pBatchOrderActionField_InvestorID != nullptr){ strcpy_s(pBatchOrderActionField->InvestorID, pBatchOrderActionField_InvestorID); pBatchOrderActionField_InvestorID = nullptr; }
@@ -8850,14 +9321,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBatchOrderActionField *pBatchOrderActionFi
 		if(pBatchOrderActionField_UserID != nullptr){ strcpy_s(pBatchOrderActionField->UserID, pBatchOrderActionField_UserID); pBatchOrderActionField_UserID = nullptr; }
 		if(pBatchOrderActionField_StatusMsg != nullptr){ strcpy_s(pBatchOrderActionField->StatusMsg, pBatchOrderActionField_StatusMsg); pBatchOrderActionField_StatusMsg = nullptr; }
 		if(pBatchOrderActionField_InvestUnitID != nullptr){ strcpy_s(pBatchOrderActionField->InvestUnitID, pBatchOrderActionField_InvestUnitID); pBatchOrderActionField_InvestUnitID = nullptr; }
-		if(pBatchOrderActionField_IPAddress != nullptr){ strcpy_s(pBatchOrderActionField->IPAddress, pBatchOrderActionField_IPAddress); pBatchOrderActionField_IPAddress = nullptr; }
+		if(pBatchOrderActionField_reserve1 != nullptr){ strcpy_s(pBatchOrderActionField->reserve1, pBatchOrderActionField_reserve1); pBatchOrderActionField_reserve1 = nullptr; }
 		if(pBatchOrderActionField_MacAddress != nullptr){ strcpy_s(pBatchOrderActionField->MacAddress, pBatchOrderActionField_MacAddress); pBatchOrderActionField_MacAddress = nullptr; }
+		if(pBatchOrderActionField_IPAddress != nullptr){ strcpy_s(pBatchOrderActionField->IPAddress, pBatchOrderActionField_IPAddress); pBatchOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBatchOrderActionField *pBatchOrderActionField)
 {
 	if(pBatchOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pBatchOrderActionField->BrokerID
 		, "InvestorID", pBatchOrderActionField->InvestorID
 		, "OrderActionRef", pBatchOrderActionField->OrderActionRef
@@ -8877,14 +9349,15 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBatchOrderActionField *pBatchOrderAc
 		, "UserID", pBatchOrderActionField->UserID
 		, "StatusMsg", pBatchOrderActionField->StatusMsg
 		, "InvestUnitID", pBatchOrderActionField->InvestUnitID
-		, "IPAddress", pBatchOrderActionField->IPAddress
+		, "reserve1", pBatchOrderActionField->reserve1
 		, "MacAddress", pBatchOrderActionField->MacAddress
+		, "IPAddress", pBatchOrderActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeBatchOrderActionField *pExchangeBatchOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ActionDate", "ActionTime", "TraderID", "InstallID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"ExchangeID", "ActionDate", "ActionTime", "TraderID", "InstallID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "reserve1", "MacAddress", "IPAddress", nullptr};
 	char *pExchangeBatchOrderActionField_ExchangeID = nullptr;
 	char *pExchangeBatchOrderActionField_ActionDate = nullptr;
 	char *pExchangeBatchOrderActionField_ActionTime = nullptr;
@@ -8896,9 +9369,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeBatchOrderActionField *pExchangeBa
 	char *pExchangeBatchOrderActionField_BusinessUnit = nullptr;
 	char pExchangeBatchOrderActionField_OrderActionStatus = 0;
 	char *pExchangeBatchOrderActionField_UserID = nullptr;
-	char *pExchangeBatchOrderActionField_IPAddress = nullptr;
+	char *pExchangeBatchOrderActionField_reserve1 = nullptr;
 	char *pExchangeBatchOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeBatchOrderActionField, "|yyyyiyyyycyyy")
+	char *pExchangeBatchOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeBatchOrderActionField, "|yyyyiyyyycyyyy")
 		, &pExchangeBatchOrderActionField_ExchangeID
 		, &pExchangeBatchOrderActionField_ActionDate
 		, &pExchangeBatchOrderActionField_ActionTime
@@ -8910,8 +9384,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeBatchOrderActionField *pExchangeBa
 		, &pExchangeBatchOrderActionField_BusinessUnit
 		, &pExchangeBatchOrderActionField_OrderActionStatus
 		, &pExchangeBatchOrderActionField_UserID
-		, &pExchangeBatchOrderActionField_IPAddress
+		, &pExchangeBatchOrderActionField_reserve1
 		, &pExchangeBatchOrderActionField_MacAddress
+		, &pExchangeBatchOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeBatchOrderActionField_ExchangeID != nullptr){ strcpy_s(pExchangeBatchOrderActionField->ExchangeID, pExchangeBatchOrderActionField_ExchangeID); pExchangeBatchOrderActionField_ExchangeID = nullptr; }
 		if(pExchangeBatchOrderActionField_ActionDate != nullptr){ strcpy_s(pExchangeBatchOrderActionField->ActionDate, pExchangeBatchOrderActionField_ActionDate); pExchangeBatchOrderActionField_ActionDate = nullptr; }
@@ -8924,14 +9399,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeBatchOrderActionField *pExchangeBa
 		if(pExchangeBatchOrderActionField_BusinessUnit != nullptr){ strcpy_s(pExchangeBatchOrderActionField->BusinessUnit, pExchangeBatchOrderActionField_BusinessUnit); pExchangeBatchOrderActionField_BusinessUnit = nullptr; }
 		pExchangeBatchOrderActionField->OrderActionStatus = pExchangeBatchOrderActionField_OrderActionStatus;
 		if(pExchangeBatchOrderActionField_UserID != nullptr){ strcpy_s(pExchangeBatchOrderActionField->UserID, pExchangeBatchOrderActionField_UserID); pExchangeBatchOrderActionField_UserID = nullptr; }
-		if(pExchangeBatchOrderActionField_IPAddress != nullptr){ strcpy_s(pExchangeBatchOrderActionField->IPAddress, pExchangeBatchOrderActionField_IPAddress); pExchangeBatchOrderActionField_IPAddress = nullptr; }
+		if(pExchangeBatchOrderActionField_reserve1 != nullptr){ strcpy_s(pExchangeBatchOrderActionField->reserve1, pExchangeBatchOrderActionField_reserve1); pExchangeBatchOrderActionField_reserve1 = nullptr; }
 		if(pExchangeBatchOrderActionField_MacAddress != nullptr){ strcpy_s(pExchangeBatchOrderActionField->MacAddress, pExchangeBatchOrderActionField_MacAddress); pExchangeBatchOrderActionField_MacAddress = nullptr; }
+		if(pExchangeBatchOrderActionField_IPAddress != nullptr){ strcpy_s(pExchangeBatchOrderActionField->IPAddress, pExchangeBatchOrderActionField_IPAddress); pExchangeBatchOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeBatchOrderActionField *pExchangeBatchOrderActionField)
 {
 	if(pExchangeBatchOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y}"
 		, "ExchangeID", pExchangeBatchOrderActionField->ExchangeID
 		, "ActionDate", pExchangeBatchOrderActionField->ActionDate
 		, "ActionTime", pExchangeBatchOrderActionField->ActionTime
@@ -8943,8 +9419,9 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeBatchOrderActionField *pExch
 		, "BusinessUnit", pExchangeBatchOrderActionField->BusinessUnit
 		, "OrderActionStatus", pExchangeBatchOrderActionField->OrderActionStatus
 		, "UserID", pExchangeBatchOrderActionField->UserID
-		, "IPAddress", pExchangeBatchOrderActionField->IPAddress
+		, "reserve1", pExchangeBatchOrderActionField->reserve1
 		, "MacAddress", pExchangeBatchOrderActionField->MacAddress
+		, "IPAddress", pExchangeBatchOrderActionField->IPAddress
 		);
 }
 
@@ -8976,66 +9453,74 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBatchOrderActionField *pQryBatchO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCombInstrumentGuardField *pCombInstrumentGuardField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "GuarantRatio", "ExchangeID", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "GuarantRatio", "ExchangeID", "InstrumentID", nullptr};
 	char *pCombInstrumentGuardField_BrokerID = nullptr;
-	char *pCombInstrumentGuardField_InstrumentID = nullptr;
+	char *pCombInstrumentGuardField_reserve1 = nullptr;
 	double pCombInstrumentGuardField_GuarantRatio = 0.0;
 	char *pCombInstrumentGuardField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pCombInstrumentGuardField, "|yydy")
+	char *pCombInstrumentGuardField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pCombInstrumentGuardField, "|yydyy")
 		, &pCombInstrumentGuardField_BrokerID
-		, &pCombInstrumentGuardField_InstrumentID
+		, &pCombInstrumentGuardField_reserve1
 		, &pCombInstrumentGuardField_GuarantRatio
 		, &pCombInstrumentGuardField_ExchangeID
+		, &pCombInstrumentGuardField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pCombInstrumentGuardField_BrokerID != nullptr){ strcpy_s(pCombInstrumentGuardField->BrokerID, pCombInstrumentGuardField_BrokerID); pCombInstrumentGuardField_BrokerID = nullptr; }
-		if(pCombInstrumentGuardField_InstrumentID != nullptr){ strcpy_s(pCombInstrumentGuardField->InstrumentID, pCombInstrumentGuardField_InstrumentID); pCombInstrumentGuardField_InstrumentID = nullptr; }
+		if(pCombInstrumentGuardField_reserve1 != nullptr){ strcpy_s(pCombInstrumentGuardField->reserve1, pCombInstrumentGuardField_reserve1); pCombInstrumentGuardField_reserve1 = nullptr; }
 		pCombInstrumentGuardField->GuarantRatio = pCombInstrumentGuardField_GuarantRatio;
 		if(pCombInstrumentGuardField_ExchangeID != nullptr){ strcpy_s(pCombInstrumentGuardField->ExchangeID, pCombInstrumentGuardField_ExchangeID); pCombInstrumentGuardField_ExchangeID = nullptr; }
+		if(pCombInstrumentGuardField_InstrumentID != nullptr){ strcpy_s(pCombInstrumentGuardField->InstrumentID, pCombInstrumentGuardField_InstrumentID); pCombInstrumentGuardField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombInstrumentGuardField *pCombInstrumentGuardField)
 {
 	if(pCombInstrumentGuardField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:d,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:d,s:y,s:y}"
 		, "BrokerID", pCombInstrumentGuardField->BrokerID
-		, "InstrumentID", pCombInstrumentGuardField->InstrumentID
+		, "reserve1", pCombInstrumentGuardField->reserve1
 		, "GuarantRatio", pCombInstrumentGuardField->GuarantRatio
 		, "ExchangeID", pCombInstrumentGuardField->ExchangeID
+		, "InstrumentID", pCombInstrumentGuardField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCombInstrumentGuardField *pQryCombInstrumentGuardField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "ExchangeID", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "ExchangeID", "InstrumentID", nullptr};
 	char *pQryCombInstrumentGuardField_BrokerID = nullptr;
-	char *pQryCombInstrumentGuardField_InstrumentID = nullptr;
+	char *pQryCombInstrumentGuardField_reserve1 = nullptr;
 	char *pQryCombInstrumentGuardField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryCombInstrumentGuardField, "|yyy")
+	char *pQryCombInstrumentGuardField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryCombInstrumentGuardField, "|yyyy")
 		, &pQryCombInstrumentGuardField_BrokerID
-		, &pQryCombInstrumentGuardField_InstrumentID
+		, &pQryCombInstrumentGuardField_reserve1
 		, &pQryCombInstrumentGuardField_ExchangeID
+		, &pQryCombInstrumentGuardField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryCombInstrumentGuardField_BrokerID != nullptr){ strcpy_s(pQryCombInstrumentGuardField->BrokerID, pQryCombInstrumentGuardField_BrokerID); pQryCombInstrumentGuardField_BrokerID = nullptr; }
-		if(pQryCombInstrumentGuardField_InstrumentID != nullptr){ strcpy_s(pQryCombInstrumentGuardField->InstrumentID, pQryCombInstrumentGuardField_InstrumentID); pQryCombInstrumentGuardField_InstrumentID = nullptr; }
+		if(pQryCombInstrumentGuardField_reserve1 != nullptr){ strcpy_s(pQryCombInstrumentGuardField->reserve1, pQryCombInstrumentGuardField_reserve1); pQryCombInstrumentGuardField_reserve1 = nullptr; }
 		if(pQryCombInstrumentGuardField_ExchangeID != nullptr){ strcpy_s(pQryCombInstrumentGuardField->ExchangeID, pQryCombInstrumentGuardField_ExchangeID); pQryCombInstrumentGuardField_ExchangeID = nullptr; }
+		if(pQryCombInstrumentGuardField_InstrumentID != nullptr){ strcpy_s(pQryCombInstrumentGuardField->InstrumentID, pQryCombInstrumentGuardField_InstrumentID); pQryCombInstrumentGuardField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombInstrumentGuardField *pQryCombInstrumentGuardField)
 {
 	if(pQryCombInstrumentGuardField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryCombInstrumentGuardField->BrokerID
-		, "InstrumentID", pQryCombInstrumentGuardField->InstrumentID
+		, "reserve1", pQryCombInstrumentGuardField->reserve1
 		, "ExchangeID", pQryCombInstrumentGuardField->ExchangeID
+		, "InstrumentID", pQryCombInstrumentGuardField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputCombActionField *pInputCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "CombActionRef", "UserID", "Direction", "Volume", "CombDirection", "HedgeFlag", "ExchangeID", "IPAddress", "MacAddress", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "CombActionRef", "UserID", "Direction", "Volume", "CombDirection", "HedgeFlag", "ExchangeID", "reserve2", "MacAddress", "InvestUnitID", "FrontID", "SessionID", "InstrumentID", "IPAddress", nullptr};
 	char *pInputCombActionField_BrokerID = nullptr;
 	char *pInputCombActionField_InvestorID = nullptr;
-	char *pInputCombActionField_InstrumentID = nullptr;
+	char *pInputCombActionField_reserve1 = nullptr;
 	char *pInputCombActionField_CombActionRef = nullptr;
 	char *pInputCombActionField_UserID = nullptr;
 	char pInputCombActionField_Direction = 0;
@@ -9043,13 +9528,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputCombActionField *pInputCombActionFiel
 	char pInputCombActionField_CombDirection = 0;
 	char pInputCombActionField_HedgeFlag = 0;
 	char *pInputCombActionField_ExchangeID = nullptr;
-	char *pInputCombActionField_IPAddress = nullptr;
+	char *pInputCombActionField_reserve2 = nullptr;
 	char *pInputCombActionField_MacAddress = nullptr;
 	char *pInputCombActionField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputCombActionField, "|yyyyyciccyyyy")
+	int pInputCombActionField_FrontID = 0;
+	int pInputCombActionField_SessionID = 0;
+	char *pInputCombActionField_InstrumentID = nullptr;
+	char *pInputCombActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputCombActionField, "|yyyyyciccyyyyiiyy")
 		, &pInputCombActionField_BrokerID
 		, &pInputCombActionField_InvestorID
-		, &pInputCombActionField_InstrumentID
+		, &pInputCombActionField_reserve1
 		, &pInputCombActionField_CombActionRef
 		, &pInputCombActionField_UserID
 		, &pInputCombActionField_Direction
@@ -9057,13 +9546,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputCombActionField *pInputCombActionFiel
 		, &pInputCombActionField_CombDirection
 		, &pInputCombActionField_HedgeFlag
 		, &pInputCombActionField_ExchangeID
-		, &pInputCombActionField_IPAddress
+		, &pInputCombActionField_reserve2
 		, &pInputCombActionField_MacAddress
 		, &pInputCombActionField_InvestUnitID
+		, &pInputCombActionField_FrontID
+		, &pInputCombActionField_SessionID
+		, &pInputCombActionField_InstrumentID
+		, &pInputCombActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputCombActionField_BrokerID != nullptr){ strcpy_s(pInputCombActionField->BrokerID, pInputCombActionField_BrokerID); pInputCombActionField_BrokerID = nullptr; }
 		if(pInputCombActionField_InvestorID != nullptr){ strcpy_s(pInputCombActionField->InvestorID, pInputCombActionField_InvestorID); pInputCombActionField_InvestorID = nullptr; }
-		if(pInputCombActionField_InstrumentID != nullptr){ strcpy_s(pInputCombActionField->InstrumentID, pInputCombActionField_InstrumentID); pInputCombActionField_InstrumentID = nullptr; }
+		if(pInputCombActionField_reserve1 != nullptr){ strcpy_s(pInputCombActionField->reserve1, pInputCombActionField_reserve1); pInputCombActionField_reserve1 = nullptr; }
 		if(pInputCombActionField_CombActionRef != nullptr){ strcpy_s(pInputCombActionField->CombActionRef, pInputCombActionField_CombActionRef); pInputCombActionField_CombActionRef = nullptr; }
 		if(pInputCombActionField_UserID != nullptr){ strcpy_s(pInputCombActionField->UserID, pInputCombActionField_UserID); pInputCombActionField_UserID = nullptr; }
 		pInputCombActionField->Direction = pInputCombActionField_Direction;
@@ -9071,18 +9564,22 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputCombActionField *pInputCombActionFiel
 		pInputCombActionField->CombDirection = pInputCombActionField_CombDirection;
 		pInputCombActionField->HedgeFlag = pInputCombActionField_HedgeFlag;
 		if(pInputCombActionField_ExchangeID != nullptr){ strcpy_s(pInputCombActionField->ExchangeID, pInputCombActionField_ExchangeID); pInputCombActionField_ExchangeID = nullptr; }
-		if(pInputCombActionField_IPAddress != nullptr){ strcpy_s(pInputCombActionField->IPAddress, pInputCombActionField_IPAddress); pInputCombActionField_IPAddress = nullptr; }
+		if(pInputCombActionField_reserve2 != nullptr){ strcpy_s(pInputCombActionField->reserve2, pInputCombActionField_reserve2); pInputCombActionField_reserve2 = nullptr; }
 		if(pInputCombActionField_MacAddress != nullptr){ strcpy_s(pInputCombActionField->MacAddress, pInputCombActionField_MacAddress); pInputCombActionField_MacAddress = nullptr; }
 		if(pInputCombActionField_InvestUnitID != nullptr){ strcpy_s(pInputCombActionField->InvestUnitID, pInputCombActionField_InvestUnitID); pInputCombActionField_InvestUnitID = nullptr; }
+		pInputCombActionField->FrontID = pInputCombActionField_FrontID;
+		pInputCombActionField->SessionID = pInputCombActionField_SessionID;
+		if(pInputCombActionField_InstrumentID != nullptr){ strcpy_s(pInputCombActionField->InstrumentID, pInputCombActionField_InstrumentID); pInputCombActionField_InstrumentID = nullptr; }
+		if(pInputCombActionField_IPAddress != nullptr){ strcpy_s(pInputCombActionField->IPAddress, pInputCombActionField_IPAddress); pInputCombActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputCombActionField *pInputCombActionField)
 {
 	if(pInputCombActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:c,s:c,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:c,s:c,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:y}"
 		, "BrokerID", pInputCombActionField->BrokerID
 		, "InvestorID", pInputCombActionField->InvestorID
-		, "InstrumentID", pInputCombActionField->InstrumentID
+		, "reserve1", pInputCombActionField->reserve1
 		, "CombActionRef", pInputCombActionField->CombActionRef
 		, "UserID", pInputCombActionField->UserID
 		, "Direction", pInputCombActionField->Direction
@@ -9090,18 +9587,22 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputCombActionField *pInputCombActi
 		, "CombDirection", pInputCombActionField->CombDirection
 		, "HedgeFlag", pInputCombActionField->HedgeFlag
 		, "ExchangeID", pInputCombActionField->ExchangeID
-		, "IPAddress", pInputCombActionField->IPAddress
+		, "reserve2", pInputCombActionField->reserve2
 		, "MacAddress", pInputCombActionField->MacAddress
 		, "InvestUnitID", pInputCombActionField->InvestUnitID
+		, "FrontID", pInputCombActionField->FrontID
+		, "SessionID", pInputCombActionField->SessionID
+		, "InstrumentID", pInputCombActionField->InstrumentID
+		, "IPAddress", pInputCombActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "CombActionRef", "UserID", "Direction", "Volume", "CombDirection", "HedgeFlag", "ActionLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "ActionStatus", "NotifySequence", "TradingDay", "SettlementID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "IPAddress", "MacAddress", "ComTradeID", "BranchID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "CombActionRef", "UserID", "Direction", "Volume", "CombDirection", "HedgeFlag", "ActionLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "ActionStatus", "NotifySequence", "TradingDay", "SettlementID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "reserve3", "MacAddress", "ComTradeID", "BranchID", "InvestUnitID", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
 	char *pCombActionField_BrokerID = nullptr;
 	char *pCombActionField_InvestorID = nullptr;
-	char *pCombActionField_InstrumentID = nullptr;
+	char *pCombActionField_reserve1 = nullptr;
 	char *pCombActionField_CombActionRef = nullptr;
 	char *pCombActionField_UserID = nullptr;
 	char pCombActionField_Direction = 0;
@@ -9112,7 +9613,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObjec
 	char *pCombActionField_ExchangeID = nullptr;
 	char *pCombActionField_ParticipantID = nullptr;
 	char *pCombActionField_ClientID = nullptr;
-	char *pCombActionField_ExchangeInstID = nullptr;
+	char *pCombActionField_reserve2 = nullptr;
 	char *pCombActionField_TraderID = nullptr;
 	int pCombActionField_InstallID = 0;
 	char pCombActionField_ActionStatus = 0;
@@ -9124,15 +9625,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObjec
 	int pCombActionField_SessionID = 0;
 	char *pCombActionField_UserProductInfo = nullptr;
 	char *pCombActionField_StatusMsg = nullptr;
-	char *pCombActionField_IPAddress = nullptr;
+	char *pCombActionField_reserve3 = nullptr;
 	char *pCombActionField_MacAddress = nullptr;
 	char *pCombActionField_ComTradeID = nullptr;
 	char *pCombActionField_BranchID = nullptr;
 	char *pCombActionField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pCombActionField, "|yyyyyciccyyyyyyiciyiiiiyyyyyyy")
+	char *pCombActionField_InstrumentID = nullptr;
+	char *pCombActionField_ExchangeInstID = nullptr;
+	char *pCombActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pCombActionField, "|yyyyyciccyyyyyyiciyiiiiyyyyyyyyyy")
 		, &pCombActionField_BrokerID
 		, &pCombActionField_InvestorID
-		, &pCombActionField_InstrumentID
+		, &pCombActionField_reserve1
 		, &pCombActionField_CombActionRef
 		, &pCombActionField_UserID
 		, &pCombActionField_Direction
@@ -9143,7 +9647,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObjec
 		, &pCombActionField_ExchangeID
 		, &pCombActionField_ParticipantID
 		, &pCombActionField_ClientID
-		, &pCombActionField_ExchangeInstID
+		, &pCombActionField_reserve2
 		, &pCombActionField_TraderID
 		, &pCombActionField_InstallID
 		, &pCombActionField_ActionStatus
@@ -9155,15 +9659,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObjec
 		, &pCombActionField_SessionID
 		, &pCombActionField_UserProductInfo
 		, &pCombActionField_StatusMsg
-		, &pCombActionField_IPAddress
+		, &pCombActionField_reserve3
 		, &pCombActionField_MacAddress
 		, &pCombActionField_ComTradeID
 		, &pCombActionField_BranchID
 		, &pCombActionField_InvestUnitID
+		, &pCombActionField_InstrumentID
+		, &pCombActionField_ExchangeInstID
+		, &pCombActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pCombActionField_BrokerID != nullptr){ strcpy_s(pCombActionField->BrokerID, pCombActionField_BrokerID); pCombActionField_BrokerID = nullptr; }
 		if(pCombActionField_InvestorID != nullptr){ strcpy_s(pCombActionField->InvestorID, pCombActionField_InvestorID); pCombActionField_InvestorID = nullptr; }
-		if(pCombActionField_InstrumentID != nullptr){ strcpy_s(pCombActionField->InstrumentID, pCombActionField_InstrumentID); pCombActionField_InstrumentID = nullptr; }
+		if(pCombActionField_reserve1 != nullptr){ strcpy_s(pCombActionField->reserve1, pCombActionField_reserve1); pCombActionField_reserve1 = nullptr; }
 		if(pCombActionField_CombActionRef != nullptr){ strcpy_s(pCombActionField->CombActionRef, pCombActionField_CombActionRef); pCombActionField_CombActionRef = nullptr; }
 		if(pCombActionField_UserID != nullptr){ strcpy_s(pCombActionField->UserID, pCombActionField_UserID); pCombActionField_UserID = nullptr; }
 		pCombActionField->Direction = pCombActionField_Direction;
@@ -9174,7 +9681,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObjec
 		if(pCombActionField_ExchangeID != nullptr){ strcpy_s(pCombActionField->ExchangeID, pCombActionField_ExchangeID); pCombActionField_ExchangeID = nullptr; }
 		if(pCombActionField_ParticipantID != nullptr){ strcpy_s(pCombActionField->ParticipantID, pCombActionField_ParticipantID); pCombActionField_ParticipantID = nullptr; }
 		if(pCombActionField_ClientID != nullptr){ strcpy_s(pCombActionField->ClientID, pCombActionField_ClientID); pCombActionField_ClientID = nullptr; }
-		if(pCombActionField_ExchangeInstID != nullptr){ strcpy_s(pCombActionField->ExchangeInstID, pCombActionField_ExchangeInstID); pCombActionField_ExchangeInstID = nullptr; }
+		if(pCombActionField_reserve2 != nullptr){ strcpy_s(pCombActionField->reserve2, pCombActionField_reserve2); pCombActionField_reserve2 = nullptr; }
 		if(pCombActionField_TraderID != nullptr){ strcpy_s(pCombActionField->TraderID, pCombActionField_TraderID); pCombActionField_TraderID = nullptr; }
 		pCombActionField->InstallID = pCombActionField_InstallID;
 		pCombActionField->ActionStatus = pCombActionField_ActionStatus;
@@ -9186,20 +9693,23 @@ int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObjec
 		pCombActionField->SessionID = pCombActionField_SessionID;
 		if(pCombActionField_UserProductInfo != nullptr){ strcpy_s(pCombActionField->UserProductInfo, pCombActionField_UserProductInfo); pCombActionField_UserProductInfo = nullptr; }
 		if(pCombActionField_StatusMsg != nullptr){ strcpy_s(pCombActionField->StatusMsg, pCombActionField_StatusMsg); pCombActionField_StatusMsg = nullptr; }
-		if(pCombActionField_IPAddress != nullptr){ strcpy_s(pCombActionField->IPAddress, pCombActionField_IPAddress); pCombActionField_IPAddress = nullptr; }
+		if(pCombActionField_reserve3 != nullptr){ strcpy_s(pCombActionField->reserve3, pCombActionField_reserve3); pCombActionField_reserve3 = nullptr; }
 		if(pCombActionField_MacAddress != nullptr){ strcpy_s(pCombActionField->MacAddress, pCombActionField_MacAddress); pCombActionField_MacAddress = nullptr; }
 		if(pCombActionField_ComTradeID != nullptr){ strcpy_s(pCombActionField->ComTradeID, pCombActionField_ComTradeID); pCombActionField_ComTradeID = nullptr; }
 		if(pCombActionField_BranchID != nullptr){ strcpy_s(pCombActionField->BranchID, pCombActionField_BranchID); pCombActionField_BranchID = nullptr; }
 		if(pCombActionField_InvestUnitID != nullptr){ strcpy_s(pCombActionField->InvestUnitID, pCombActionField_InvestUnitID); pCombActionField_InvestUnitID = nullptr; }
+		if(pCombActionField_InstrumentID != nullptr){ strcpy_s(pCombActionField->InstrumentID, pCombActionField_InstrumentID); pCombActionField_InstrumentID = nullptr; }
+		if(pCombActionField_ExchangeInstID != nullptr){ strcpy_s(pCombActionField->ExchangeInstID, pCombActionField_ExchangeInstID); pCombActionField_ExchangeInstID = nullptr; }
+		if(pCombActionField_IPAddress != nullptr){ strcpy_s(pCombActionField->IPAddress, pCombActionField_IPAddress); pCombActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombActionField *pCombActionField)
 {
 	if(pCombActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:i,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:i,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pCombActionField->BrokerID
 		, "InvestorID", pCombActionField->InvestorID
-		, "InstrumentID", pCombActionField->InstrumentID
+		, "reserve1", pCombActionField->reserve1
 		, "CombActionRef", pCombActionField->CombActionRef
 		, "UserID", pCombActionField->UserID
 		, "Direction", pCombActionField->Direction
@@ -9210,7 +9720,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombActionField *pCombActionField)
 		, "ExchangeID", pCombActionField->ExchangeID
 		, "ParticipantID", pCombActionField->ParticipantID
 		, "ClientID", pCombActionField->ClientID
-		, "ExchangeInstID", pCombActionField->ExchangeInstID
+		, "reserve2", pCombActionField->reserve2
 		, "TraderID", pCombActionField->TraderID
 		, "InstallID", pCombActionField->InstallID
 		, "ActionStatus", pCombActionField->ActionStatus
@@ -9222,51 +9732,58 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombActionField *pCombActionField)
 		, "SessionID", pCombActionField->SessionID
 		, "UserProductInfo", pCombActionField->UserProductInfo
 		, "StatusMsg", pCombActionField->StatusMsg
-		, "IPAddress", pCombActionField->IPAddress
+		, "reserve3", pCombActionField->reserve3
 		, "MacAddress", pCombActionField->MacAddress
 		, "ComTradeID", pCombActionField->ComTradeID
 		, "BranchID", pCombActionField->BranchID
 		, "InvestUnitID", pCombActionField->InvestUnitID
+		, "InstrumentID", pCombActionField->InstrumentID
+		, "ExchangeInstID", pCombActionField->ExchangeInstID
+		, "IPAddress", pCombActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCombActionField *pQryCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryCombActionField_BrokerID = nullptr;
 	char *pQryCombActionField_InvestorID = nullptr;
-	char *pQryCombActionField_InstrumentID = nullptr;
+	char *pQryCombActionField_reserve1 = nullptr;
 	char *pQryCombActionField_ExchangeID = nullptr;
 	char *pQryCombActionField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryCombActionField, "|yyyyy")
+	char *pQryCombActionField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryCombActionField, "|yyyyyy")
 		, &pQryCombActionField_BrokerID
 		, &pQryCombActionField_InvestorID
-		, &pQryCombActionField_InstrumentID
+		, &pQryCombActionField_reserve1
 		, &pQryCombActionField_ExchangeID
 		, &pQryCombActionField_InvestUnitID
+		, &pQryCombActionField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryCombActionField_BrokerID != nullptr){ strcpy_s(pQryCombActionField->BrokerID, pQryCombActionField_BrokerID); pQryCombActionField_BrokerID = nullptr; }
 		if(pQryCombActionField_InvestorID != nullptr){ strcpy_s(pQryCombActionField->InvestorID, pQryCombActionField_InvestorID); pQryCombActionField_InvestorID = nullptr; }
-		if(pQryCombActionField_InstrumentID != nullptr){ strcpy_s(pQryCombActionField->InstrumentID, pQryCombActionField_InstrumentID); pQryCombActionField_InstrumentID = nullptr; }
+		if(pQryCombActionField_reserve1 != nullptr){ strcpy_s(pQryCombActionField->reserve1, pQryCombActionField_reserve1); pQryCombActionField_reserve1 = nullptr; }
 		if(pQryCombActionField_ExchangeID != nullptr){ strcpy_s(pQryCombActionField->ExchangeID, pQryCombActionField_ExchangeID); pQryCombActionField_ExchangeID = nullptr; }
 		if(pQryCombActionField_InvestUnitID != nullptr){ strcpy_s(pQryCombActionField->InvestUnitID, pQryCombActionField_InvestUnitID); pQryCombActionField_InvestUnitID = nullptr; }
+		if(pQryCombActionField_InstrumentID != nullptr){ strcpy_s(pQryCombActionField->InstrumentID, pQryCombActionField_InstrumentID); pQryCombActionField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombActionField *pQryCombActionField)
 {
 	if(pQryCombActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryCombActionField->BrokerID
 		, "InvestorID", pQryCombActionField->InvestorID
-		, "InstrumentID", pQryCombActionField->InstrumentID
+		, "reserve1", pQryCombActionField->reserve1
 		, "ExchangeID", pQryCombActionField->ExchangeID
 		, "InvestUnitID", pQryCombActionField->InvestUnitID
+		, "InstrumentID", pQryCombActionField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"Direction", "Volume", "CombDirection", "HedgeFlag", "ActionLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "ActionStatus", "NotifySequence", "TradingDay", "SettlementID", "SequenceNo", "IPAddress", "MacAddress", "ComTradeID", "BranchID", nullptr};
+	static char *kwlist[] = {"Direction", "Volume", "CombDirection", "HedgeFlag", "ActionLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve1", "TraderID", "InstallID", "ActionStatus", "NotifySequence", "TradingDay", "SettlementID", "SequenceNo", "reserve2", "MacAddress", "ComTradeID", "BranchID", "ExchangeInstID", "IPAddress", nullptr};
 	char pExchangeCombActionField_Direction = 0;
 	int pExchangeCombActionField_Volume = 0;
 	char pExchangeCombActionField_CombDirection = 0;
@@ -9275,7 +9792,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActi
 	char *pExchangeCombActionField_ExchangeID = nullptr;
 	char *pExchangeCombActionField_ParticipantID = nullptr;
 	char *pExchangeCombActionField_ClientID = nullptr;
-	char *pExchangeCombActionField_ExchangeInstID = nullptr;
+	char *pExchangeCombActionField_reserve1 = nullptr;
 	char *pExchangeCombActionField_TraderID = nullptr;
 	int pExchangeCombActionField_InstallID = 0;
 	char pExchangeCombActionField_ActionStatus = 0;
@@ -9283,11 +9800,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActi
 	char *pExchangeCombActionField_TradingDay = nullptr;
 	int pExchangeCombActionField_SettlementID = 0;
 	int pExchangeCombActionField_SequenceNo = 0;
-	char *pExchangeCombActionField_IPAddress = nullptr;
+	char *pExchangeCombActionField_reserve2 = nullptr;
 	char *pExchangeCombActionField_MacAddress = nullptr;
 	char *pExchangeCombActionField_ComTradeID = nullptr;
 	char *pExchangeCombActionField_BranchID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeCombActionField, "|ciccyyyyyyiciyiiyyyy")
+	char *pExchangeCombActionField_ExchangeInstID = nullptr;
+	char *pExchangeCombActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeCombActionField, "|ciccyyyyyyiciyiiyyyyyy")
 		, &pExchangeCombActionField_Direction
 		, &pExchangeCombActionField_Volume
 		, &pExchangeCombActionField_CombDirection
@@ -9296,7 +9815,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActi
 		, &pExchangeCombActionField_ExchangeID
 		, &pExchangeCombActionField_ParticipantID
 		, &pExchangeCombActionField_ClientID
-		, &pExchangeCombActionField_ExchangeInstID
+		, &pExchangeCombActionField_reserve1
 		, &pExchangeCombActionField_TraderID
 		, &pExchangeCombActionField_InstallID
 		, &pExchangeCombActionField_ActionStatus
@@ -9304,10 +9823,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActi
 		, &pExchangeCombActionField_TradingDay
 		, &pExchangeCombActionField_SettlementID
 		, &pExchangeCombActionField_SequenceNo
-		, &pExchangeCombActionField_IPAddress
+		, &pExchangeCombActionField_reserve2
 		, &pExchangeCombActionField_MacAddress
 		, &pExchangeCombActionField_ComTradeID
 		, &pExchangeCombActionField_BranchID
+		, &pExchangeCombActionField_ExchangeInstID
+		, &pExchangeCombActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		pExchangeCombActionField->Direction = pExchangeCombActionField_Direction;
 		pExchangeCombActionField->Volume = pExchangeCombActionField_Volume;
@@ -9317,7 +9838,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActi
 		if(pExchangeCombActionField_ExchangeID != nullptr){ strcpy_s(pExchangeCombActionField->ExchangeID, pExchangeCombActionField_ExchangeID); pExchangeCombActionField_ExchangeID = nullptr; }
 		if(pExchangeCombActionField_ParticipantID != nullptr){ strcpy_s(pExchangeCombActionField->ParticipantID, pExchangeCombActionField_ParticipantID); pExchangeCombActionField_ParticipantID = nullptr; }
 		if(pExchangeCombActionField_ClientID != nullptr){ strcpy_s(pExchangeCombActionField->ClientID, pExchangeCombActionField_ClientID); pExchangeCombActionField_ClientID = nullptr; }
-		if(pExchangeCombActionField_ExchangeInstID != nullptr){ strcpy_s(pExchangeCombActionField->ExchangeInstID, pExchangeCombActionField_ExchangeInstID); pExchangeCombActionField_ExchangeInstID = nullptr; }
+		if(pExchangeCombActionField_reserve1 != nullptr){ strcpy_s(pExchangeCombActionField->reserve1, pExchangeCombActionField_reserve1); pExchangeCombActionField_reserve1 = nullptr; }
 		if(pExchangeCombActionField_TraderID != nullptr){ strcpy_s(pExchangeCombActionField->TraderID, pExchangeCombActionField_TraderID); pExchangeCombActionField_TraderID = nullptr; }
 		pExchangeCombActionField->InstallID = pExchangeCombActionField_InstallID;
 		pExchangeCombActionField->ActionStatus = pExchangeCombActionField_ActionStatus;
@@ -9325,16 +9846,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActi
 		if(pExchangeCombActionField_TradingDay != nullptr){ strcpy_s(pExchangeCombActionField->TradingDay, pExchangeCombActionField_TradingDay); pExchangeCombActionField_TradingDay = nullptr; }
 		pExchangeCombActionField->SettlementID = pExchangeCombActionField_SettlementID;
 		pExchangeCombActionField->SequenceNo = pExchangeCombActionField_SequenceNo;
-		if(pExchangeCombActionField_IPAddress != nullptr){ strcpy_s(pExchangeCombActionField->IPAddress, pExchangeCombActionField_IPAddress); pExchangeCombActionField_IPAddress = nullptr; }
+		if(pExchangeCombActionField_reserve2 != nullptr){ strcpy_s(pExchangeCombActionField->reserve2, pExchangeCombActionField_reserve2); pExchangeCombActionField_reserve2 = nullptr; }
 		if(pExchangeCombActionField_MacAddress != nullptr){ strcpy_s(pExchangeCombActionField->MacAddress, pExchangeCombActionField_MacAddress); pExchangeCombActionField_MacAddress = nullptr; }
 		if(pExchangeCombActionField_ComTradeID != nullptr){ strcpy_s(pExchangeCombActionField->ComTradeID, pExchangeCombActionField_ComTradeID); pExchangeCombActionField_ComTradeID = nullptr; }
 		if(pExchangeCombActionField_BranchID != nullptr){ strcpy_s(pExchangeCombActionField->BranchID, pExchangeCombActionField_BranchID); pExchangeCombActionField_BranchID = nullptr; }
+		if(pExchangeCombActionField_ExchangeInstID != nullptr){ strcpy_s(pExchangeCombActionField->ExchangeInstID, pExchangeCombActionField_ExchangeInstID); pExchangeCombActionField_ExchangeInstID = nullptr; }
+		if(pExchangeCombActionField_IPAddress != nullptr){ strcpy_s(pExchangeCombActionField->IPAddress, pExchangeCombActionField_IPAddress); pExchangeCombActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeCombActionField *pExchangeCombActionField)
 {
 	if(pExchangeCombActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:c,s:i,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:i,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:c,s:i,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "Direction", pExchangeCombActionField->Direction
 		, "Volume", pExchangeCombActionField->Volume
 		, "CombDirection", pExchangeCombActionField->CombDirection
@@ -9343,7 +9866,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeCombActionField *pExchangeCo
 		, "ExchangeID", pExchangeCombActionField->ExchangeID
 		, "ParticipantID", pExchangeCombActionField->ParticipantID
 		, "ClientID", pExchangeCombActionField->ClientID
-		, "ExchangeInstID", pExchangeCombActionField->ExchangeInstID
+		, "reserve1", pExchangeCombActionField->reserve1
 		, "TraderID", pExchangeCombActionField->TraderID
 		, "InstallID", pExchangeCombActionField->InstallID
 		, "ActionStatus", pExchangeCombActionField->ActionStatus
@@ -9351,163 +9874,185 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeCombActionField *pExchangeCo
 		, "TradingDay", pExchangeCombActionField->TradingDay
 		, "SettlementID", pExchangeCombActionField->SettlementID
 		, "SequenceNo", pExchangeCombActionField->SequenceNo
-		, "IPAddress", pExchangeCombActionField->IPAddress
+		, "reserve2", pExchangeCombActionField->reserve2
 		, "MacAddress", pExchangeCombActionField->MacAddress
 		, "ComTradeID", pExchangeCombActionField->ComTradeID
 		, "BranchID", pExchangeCombActionField->BranchID
+		, "ExchangeInstID", pExchangeCombActionField->ExchangeInstID
+		, "IPAddress", pExchangeCombActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeCombActionField *pQryExchangeCombActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ParticipantID", "ClientID", "ExchangeInstID", "ExchangeID", "TraderID", nullptr};
+	static char *kwlist[] = {"ParticipantID", "ClientID", "reserve1", "ExchangeID", "TraderID", "ExchangeInstID", nullptr};
 	char *pQryExchangeCombActionField_ParticipantID = nullptr;
 	char *pQryExchangeCombActionField_ClientID = nullptr;
-	char *pQryExchangeCombActionField_ExchangeInstID = nullptr;
+	char *pQryExchangeCombActionField_reserve1 = nullptr;
 	char *pQryExchangeCombActionField_ExchangeID = nullptr;
 	char *pQryExchangeCombActionField_TraderID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeCombActionField, "|yyyyy")
+	char *pQryExchangeCombActionField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryExchangeCombActionField, "|yyyyyy")
 		, &pQryExchangeCombActionField_ParticipantID
 		, &pQryExchangeCombActionField_ClientID
-		, &pQryExchangeCombActionField_ExchangeInstID
+		, &pQryExchangeCombActionField_reserve1
 		, &pQryExchangeCombActionField_ExchangeID
 		, &pQryExchangeCombActionField_TraderID
+		, &pQryExchangeCombActionField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryExchangeCombActionField_ParticipantID != nullptr){ strcpy_s(pQryExchangeCombActionField->ParticipantID, pQryExchangeCombActionField_ParticipantID); pQryExchangeCombActionField_ParticipantID = nullptr; }
 		if(pQryExchangeCombActionField_ClientID != nullptr){ strcpy_s(pQryExchangeCombActionField->ClientID, pQryExchangeCombActionField_ClientID); pQryExchangeCombActionField_ClientID = nullptr; }
-		if(pQryExchangeCombActionField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeCombActionField->ExchangeInstID, pQryExchangeCombActionField_ExchangeInstID); pQryExchangeCombActionField_ExchangeInstID = nullptr; }
+		if(pQryExchangeCombActionField_reserve1 != nullptr){ strcpy_s(pQryExchangeCombActionField->reserve1, pQryExchangeCombActionField_reserve1); pQryExchangeCombActionField_reserve1 = nullptr; }
 		if(pQryExchangeCombActionField_ExchangeID != nullptr){ strcpy_s(pQryExchangeCombActionField->ExchangeID, pQryExchangeCombActionField_ExchangeID); pQryExchangeCombActionField_ExchangeID = nullptr; }
 		if(pQryExchangeCombActionField_TraderID != nullptr){ strcpy_s(pQryExchangeCombActionField->TraderID, pQryExchangeCombActionField_TraderID); pQryExchangeCombActionField_TraderID = nullptr; }
+		if(pQryExchangeCombActionField_ExchangeInstID != nullptr){ strcpy_s(pQryExchangeCombActionField->ExchangeInstID, pQryExchangeCombActionField_ExchangeInstID); pQryExchangeCombActionField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeCombActionField *pQryExchangeCombActionField)
 {
 	if(pQryExchangeCombActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "ParticipantID", pQryExchangeCombActionField->ParticipantID
 		, "ClientID", pQryExchangeCombActionField->ClientID
-		, "ExchangeInstID", pQryExchangeCombActionField->ExchangeInstID
+		, "reserve1", pQryExchangeCombActionField->reserve1
 		, "ExchangeID", pQryExchangeCombActionField->ExchangeID
 		, "TraderID", pQryExchangeCombActionField->TraderID
+		, "ExchangeInstID", pQryExchangeCombActionField->ExchangeInstID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcProductExchRateField *pProductExchRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "QuoteCurrencyID", "ExchangeRate", "ExchangeID", nullptr};
-	char *pProductExchRateField_ProductID = nullptr;
+	static char *kwlist[] = {"reserve1", "QuoteCurrencyID", "ExchangeRate", "ExchangeID", "ProductID", nullptr};
+	char *pProductExchRateField_reserve1 = nullptr;
 	char *pProductExchRateField_QuoteCurrencyID = nullptr;
 	double pProductExchRateField_ExchangeRate = 0.0;
 	char *pProductExchRateField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pProductExchRateField, "|yydy")
-		, &pProductExchRateField_ProductID
+	char *pProductExchRateField_ProductID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pProductExchRateField, "|yydyy")
+		, &pProductExchRateField_reserve1
 		, &pProductExchRateField_QuoteCurrencyID
 		, &pProductExchRateField_ExchangeRate
 		, &pProductExchRateField_ExchangeID
+		, &pProductExchRateField_ProductID
 	PyCTP_PyDict_FromStruct_END
-		if(pProductExchRateField_ProductID != nullptr){ strcpy_s(pProductExchRateField->ProductID, pProductExchRateField_ProductID); pProductExchRateField_ProductID = nullptr; }
+		if(pProductExchRateField_reserve1 != nullptr){ strcpy_s(pProductExchRateField->reserve1, pProductExchRateField_reserve1); pProductExchRateField_reserve1 = nullptr; }
 		if(pProductExchRateField_QuoteCurrencyID != nullptr){ strcpy_s(pProductExchRateField->QuoteCurrencyID, pProductExchRateField_QuoteCurrencyID); pProductExchRateField_QuoteCurrencyID = nullptr; }
 		pProductExchRateField->ExchangeRate = pProductExchRateField_ExchangeRate;
 		if(pProductExchRateField_ExchangeID != nullptr){ strcpy_s(pProductExchRateField->ExchangeID, pProductExchRateField_ExchangeID); pProductExchRateField_ExchangeID = nullptr; }
+		if(pProductExchRateField_ProductID != nullptr){ strcpy_s(pProductExchRateField->ProductID, pProductExchRateField_ProductID); pProductExchRateField_ProductID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductExchRateField *pProductExchRateField)
 {
 	if(pProductExchRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:d,s:y}"
-		, "ProductID", pProductExchRateField->ProductID
+	return Py_BuildValue("{s:y,s:y,s:d,s:y,s:y}"
+		, "reserve1", pProductExchRateField->reserve1
 		, "QuoteCurrencyID", pProductExchRateField->QuoteCurrencyID
 		, "ExchangeRate", pProductExchRateField->ExchangeRate
 		, "ExchangeID", pProductExchRateField->ExchangeID
+		, "ProductID", pProductExchRateField->ProductID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryProductExchRateField *pQryProductExchRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "ExchangeID", nullptr};
-	char *pQryProductExchRateField_ProductID = nullptr;
+	static char *kwlist[] = {"reserve1", "ExchangeID", "ProductID", nullptr};
+	char *pQryProductExchRateField_reserve1 = nullptr;
 	char *pQryProductExchRateField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryProductExchRateField, "|yy")
-		, &pQryProductExchRateField_ProductID
+	char *pQryProductExchRateField_ProductID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryProductExchRateField, "|yyy")
+		, &pQryProductExchRateField_reserve1
 		, &pQryProductExchRateField_ExchangeID
+		, &pQryProductExchRateField_ProductID
 	PyCTP_PyDict_FromStruct_END
-		if(pQryProductExchRateField_ProductID != nullptr){ strcpy_s(pQryProductExchRateField->ProductID, pQryProductExchRateField_ProductID); pQryProductExchRateField_ProductID = nullptr; }
+		if(pQryProductExchRateField_reserve1 != nullptr){ strcpy_s(pQryProductExchRateField->reserve1, pQryProductExchRateField_reserve1); pQryProductExchRateField_reserve1 = nullptr; }
 		if(pQryProductExchRateField_ExchangeID != nullptr){ strcpy_s(pQryProductExchRateField->ExchangeID, pQryProductExchRateField_ExchangeID); pQryProductExchRateField_ExchangeID = nullptr; }
+		if(pQryProductExchRateField_ProductID != nullptr){ strcpy_s(pQryProductExchRateField->ProductID, pQryProductExchRateField_ProductID); pQryProductExchRateField_ProductID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryProductExchRateField *pQryProductExchRateField)
 {
 	if(pQryProductExchRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y}"
-		, "ProductID", pQryProductExchRateField->ProductID
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "reserve1", pQryProductExchRateField->reserve1
 		, "ExchangeID", pQryProductExchRateField->ExchangeID
+		, "ProductID", pQryProductExchRateField->ProductID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteParamField *pQryForQuoteParamField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "ExchangeID", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "ExchangeID", "InstrumentID", nullptr};
 	char *pQryForQuoteParamField_BrokerID = nullptr;
-	char *pQryForQuoteParamField_InstrumentID = nullptr;
+	char *pQryForQuoteParamField_reserve1 = nullptr;
 	char *pQryForQuoteParamField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryForQuoteParamField, "|yyy")
+	char *pQryForQuoteParamField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryForQuoteParamField, "|yyyy")
 		, &pQryForQuoteParamField_BrokerID
-		, &pQryForQuoteParamField_InstrumentID
+		, &pQryForQuoteParamField_reserve1
 		, &pQryForQuoteParamField_ExchangeID
+		, &pQryForQuoteParamField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryForQuoteParamField_BrokerID != nullptr){ strcpy_s(pQryForQuoteParamField->BrokerID, pQryForQuoteParamField_BrokerID); pQryForQuoteParamField_BrokerID = nullptr; }
-		if(pQryForQuoteParamField_InstrumentID != nullptr){ strcpy_s(pQryForQuoteParamField->InstrumentID, pQryForQuoteParamField_InstrumentID); pQryForQuoteParamField_InstrumentID = nullptr; }
+		if(pQryForQuoteParamField_reserve1 != nullptr){ strcpy_s(pQryForQuoteParamField->reserve1, pQryForQuoteParamField_reserve1); pQryForQuoteParamField_reserve1 = nullptr; }
 		if(pQryForQuoteParamField_ExchangeID != nullptr){ strcpy_s(pQryForQuoteParamField->ExchangeID, pQryForQuoteParamField_ExchangeID); pQryForQuoteParamField_ExchangeID = nullptr; }
+		if(pQryForQuoteParamField_InstrumentID != nullptr){ strcpy_s(pQryForQuoteParamField->InstrumentID, pQryForQuoteParamField_InstrumentID); pQryForQuoteParamField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryForQuoteParamField *pQryForQuoteParamField)
 {
 	if(pQryForQuoteParamField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryForQuoteParamField->BrokerID
-		, "InstrumentID", pQryForQuoteParamField->InstrumentID
+		, "reserve1", pQryForQuoteParamField->reserve1
 		, "ExchangeID", pQryForQuoteParamField->ExchangeID
+		, "InstrumentID", pQryForQuoteParamField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteParamField *pForQuoteParamField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InstrumentID", "ExchangeID", "LastPrice", "PriceInterval", nullptr};
+	static char *kwlist[] = {"BrokerID", "reserve1", "ExchangeID", "LastPrice", "PriceInterval", "InstrumentID", nullptr};
 	char *pForQuoteParamField_BrokerID = nullptr;
-	char *pForQuoteParamField_InstrumentID = nullptr;
+	char *pForQuoteParamField_reserve1 = nullptr;
 	char *pForQuoteParamField_ExchangeID = nullptr;
 	double pForQuoteParamField_LastPrice = 0.0;
 	double pForQuoteParamField_PriceInterval = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pForQuoteParamField, "|yyydd")
+	char *pForQuoteParamField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pForQuoteParamField, "|yyyddy")
 		, &pForQuoteParamField_BrokerID
-		, &pForQuoteParamField_InstrumentID
+		, &pForQuoteParamField_reserve1
 		, &pForQuoteParamField_ExchangeID
 		, &pForQuoteParamField_LastPrice
 		, &pForQuoteParamField_PriceInterval
+		, &pForQuoteParamField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pForQuoteParamField_BrokerID != nullptr){ strcpy_s(pForQuoteParamField->BrokerID, pForQuoteParamField_BrokerID); pForQuoteParamField_BrokerID = nullptr; }
-		if(pForQuoteParamField_InstrumentID != nullptr){ strcpy_s(pForQuoteParamField->InstrumentID, pForQuoteParamField_InstrumentID); pForQuoteParamField_InstrumentID = nullptr; }
+		if(pForQuoteParamField_reserve1 != nullptr){ strcpy_s(pForQuoteParamField->reserve1, pForQuoteParamField_reserve1); pForQuoteParamField_reserve1 = nullptr; }
 		if(pForQuoteParamField_ExchangeID != nullptr){ strcpy_s(pForQuoteParamField->ExchangeID, pForQuoteParamField_ExchangeID); pForQuoteParamField_ExchangeID = nullptr; }
 		pForQuoteParamField->LastPrice = pForQuoteParamField_LastPrice;
 		pForQuoteParamField->PriceInterval = pForQuoteParamField_PriceInterval;
+		if(pForQuoteParamField_InstrumentID != nullptr){ strcpy_s(pForQuoteParamField->InstrumentID, pForQuoteParamField_InstrumentID); pForQuoteParamField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForQuoteParamField *pForQuoteParamField)
 {
 	if(pForQuoteParamField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:d,s:d}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:d,s:d,s:y}"
 		, "BrokerID", pForQuoteParamField->BrokerID
-		, "InstrumentID", pForQuoteParamField->InstrumentID
+		, "reserve1", pForQuoteParamField->reserve1
 		, "ExchangeID", pForQuoteParamField->ExchangeID
 		, "LastPrice", pForQuoteParamField->LastPrice
 		, "PriceInterval", pForQuoteParamField->PriceInterval
+		, "InstrumentID", pForQuoteParamField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstrCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "StrikeRatioByMoney", "StrikeRatioByVolume", nullptr};
-	char *pMMOptionInstrCommRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "StrikeRatioByMoney", "StrikeRatioByVolume", "InstrumentID", nullptr};
+	char *pMMOptionInstrCommRateField_reserve1 = nullptr;
 	char pMMOptionInstrCommRateField_InvestorRange = 0;
 	char *pMMOptionInstrCommRateField_BrokerID = nullptr;
 	char *pMMOptionInstrCommRateField_InvestorID = nullptr;
@@ -9519,8 +10064,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstr
 	double pMMOptionInstrCommRateField_CloseTodayRatioByVolume = 0.0;
 	double pMMOptionInstrCommRateField_StrikeRatioByMoney = 0.0;
 	double pMMOptionInstrCommRateField_StrikeRatioByVolume = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pMMOptionInstrCommRateField, "|ycyydddddddd")
-		, &pMMOptionInstrCommRateField_InstrumentID
+	char *pMMOptionInstrCommRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pMMOptionInstrCommRateField, "|ycyyddddddddy")
+		, &pMMOptionInstrCommRateField_reserve1
 		, &pMMOptionInstrCommRateField_InvestorRange
 		, &pMMOptionInstrCommRateField_BrokerID
 		, &pMMOptionInstrCommRateField_InvestorID
@@ -9532,8 +10078,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstr
 		, &pMMOptionInstrCommRateField_CloseTodayRatioByVolume
 		, &pMMOptionInstrCommRateField_StrikeRatioByMoney
 		, &pMMOptionInstrCommRateField_StrikeRatioByVolume
+		, &pMMOptionInstrCommRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pMMOptionInstrCommRateField_InstrumentID != nullptr){ strcpy_s(pMMOptionInstrCommRateField->InstrumentID, pMMOptionInstrCommRateField_InstrumentID); pMMOptionInstrCommRateField_InstrumentID = nullptr; }
+		if(pMMOptionInstrCommRateField_reserve1 != nullptr){ strcpy_s(pMMOptionInstrCommRateField->reserve1, pMMOptionInstrCommRateField_reserve1); pMMOptionInstrCommRateField_reserve1 = nullptr; }
 		pMMOptionInstrCommRateField->InvestorRange = pMMOptionInstrCommRateField_InvestorRange;
 		if(pMMOptionInstrCommRateField_BrokerID != nullptr){ strcpy_s(pMMOptionInstrCommRateField->BrokerID, pMMOptionInstrCommRateField_BrokerID); pMMOptionInstrCommRateField_BrokerID = nullptr; }
 		if(pMMOptionInstrCommRateField_InvestorID != nullptr){ strcpy_s(pMMOptionInstrCommRateField->InvestorID, pMMOptionInstrCommRateField_InvestorID); pMMOptionInstrCommRateField_InvestorID = nullptr; }
@@ -9545,13 +10092,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstr
 		pMMOptionInstrCommRateField->CloseTodayRatioByVolume = pMMOptionInstrCommRateField_CloseTodayRatioByVolume;
 		pMMOptionInstrCommRateField->StrikeRatioByMoney = pMMOptionInstrCommRateField_StrikeRatioByMoney;
 		pMMOptionInstrCommRateField->StrikeRatioByVolume = pMMOptionInstrCommRateField_StrikeRatioByVolume;
+		if(pMMOptionInstrCommRateField_InstrumentID != nullptr){ strcpy_s(pMMOptionInstrCommRateField->InstrumentID, pMMOptionInstrCommRateField_InstrumentID); pMMOptionInstrCommRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstrCommRateField)
 {
 	if(pMMOptionInstrCommRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d}"
-		, "InstrumentID", pMMOptionInstrCommRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y}"
+		, "reserve1", pMMOptionInstrCommRateField->reserve1
 		, "InvestorRange", pMMOptionInstrCommRateField->InvestorRange
 		, "BrokerID", pMMOptionInstrCommRateField->BrokerID
 		, "InvestorID", pMMOptionInstrCommRateField->InvestorID
@@ -9563,39 +10111,44 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMMOptionInstrCommRateField *pMMOptio
 		, "CloseTodayRatioByVolume", pMMOptionInstrCommRateField->CloseTodayRatioByVolume
 		, "StrikeRatioByMoney", pMMOptionInstrCommRateField->StrikeRatioByMoney
 		, "StrikeRatioByVolume", pMMOptionInstrCommRateField->StrikeRatioByVolume
+		, "InstrumentID", pMMOptionInstrCommRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryMMOptionInstrCommRateField *pQryMMOptionInstrCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "InstrumentID", nullptr};
 	char *pQryMMOptionInstrCommRateField_BrokerID = nullptr;
 	char *pQryMMOptionInstrCommRateField_InvestorID = nullptr;
+	char *pQryMMOptionInstrCommRateField_reserve1 = nullptr;
 	char *pQryMMOptionInstrCommRateField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryMMOptionInstrCommRateField, "|yyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryMMOptionInstrCommRateField, "|yyyy")
 		, &pQryMMOptionInstrCommRateField_BrokerID
 		, &pQryMMOptionInstrCommRateField_InvestorID
+		, &pQryMMOptionInstrCommRateField_reserve1
 		, &pQryMMOptionInstrCommRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryMMOptionInstrCommRateField_BrokerID != nullptr){ strcpy_s(pQryMMOptionInstrCommRateField->BrokerID, pQryMMOptionInstrCommRateField_BrokerID); pQryMMOptionInstrCommRateField_BrokerID = nullptr; }
 		if(pQryMMOptionInstrCommRateField_InvestorID != nullptr){ strcpy_s(pQryMMOptionInstrCommRateField->InvestorID, pQryMMOptionInstrCommRateField_InvestorID); pQryMMOptionInstrCommRateField_InvestorID = nullptr; }
+		if(pQryMMOptionInstrCommRateField_reserve1 != nullptr){ strcpy_s(pQryMMOptionInstrCommRateField->reserve1, pQryMMOptionInstrCommRateField_reserve1); pQryMMOptionInstrCommRateField_reserve1 = nullptr; }
 		if(pQryMMOptionInstrCommRateField_InstrumentID != nullptr){ strcpy_s(pQryMMOptionInstrCommRateField->InstrumentID, pQryMMOptionInstrCommRateField_InstrumentID); pQryMMOptionInstrCommRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMMOptionInstrCommRateField *pQryMMOptionInstrCommRateField)
 {
 	if(pQryMMOptionInstrCommRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryMMOptionInstrCommRateField->BrokerID
 		, "InvestorID", pQryMMOptionInstrCommRateField->InvestorID
+		, "reserve1", pQryMMOptionInstrCommRateField->reserve1
 		, "InstrumentID", pQryMMOptionInstrCommRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMMInstrumentCommissionRateField *pMMInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", nullptr};
-	char *pMMInstrumentCommissionRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "InstrumentID", nullptr};
+	char *pMMInstrumentCommissionRateField_reserve1 = nullptr;
 	char pMMInstrumentCommissionRateField_InvestorRange = 0;
 	char *pMMInstrumentCommissionRateField_BrokerID = nullptr;
 	char *pMMInstrumentCommissionRateField_InvestorID = nullptr;
@@ -9605,8 +10158,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMMInstrumentCommissionRateField *pMMInstru
 	double pMMInstrumentCommissionRateField_CloseRatioByVolume = 0.0;
 	double pMMInstrumentCommissionRateField_CloseTodayRatioByMoney = 0.0;
 	double pMMInstrumentCommissionRateField_CloseTodayRatioByVolume = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pMMInstrumentCommissionRateField, "|ycyydddddd")
-		, &pMMInstrumentCommissionRateField_InstrumentID
+	char *pMMInstrumentCommissionRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pMMInstrumentCommissionRateField, "|ycyyddddddy")
+		, &pMMInstrumentCommissionRateField_reserve1
 		, &pMMInstrumentCommissionRateField_InvestorRange
 		, &pMMInstrumentCommissionRateField_BrokerID
 		, &pMMInstrumentCommissionRateField_InvestorID
@@ -9616,8 +10170,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMMInstrumentCommissionRateField *pMMInstru
 		, &pMMInstrumentCommissionRateField_CloseRatioByVolume
 		, &pMMInstrumentCommissionRateField_CloseTodayRatioByMoney
 		, &pMMInstrumentCommissionRateField_CloseTodayRatioByVolume
+		, &pMMInstrumentCommissionRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pMMInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pMMInstrumentCommissionRateField->InstrumentID, pMMInstrumentCommissionRateField_InstrumentID); pMMInstrumentCommissionRateField_InstrumentID = nullptr; }
+		if(pMMInstrumentCommissionRateField_reserve1 != nullptr){ strcpy_s(pMMInstrumentCommissionRateField->reserve1, pMMInstrumentCommissionRateField_reserve1); pMMInstrumentCommissionRateField_reserve1 = nullptr; }
 		pMMInstrumentCommissionRateField->InvestorRange = pMMInstrumentCommissionRateField_InvestorRange;
 		if(pMMInstrumentCommissionRateField_BrokerID != nullptr){ strcpy_s(pMMInstrumentCommissionRateField->BrokerID, pMMInstrumentCommissionRateField_BrokerID); pMMInstrumentCommissionRateField_BrokerID = nullptr; }
 		if(pMMInstrumentCommissionRateField_InvestorID != nullptr){ strcpy_s(pMMInstrumentCommissionRateField->InvestorID, pMMInstrumentCommissionRateField_InvestorID); pMMInstrumentCommissionRateField_InvestorID = nullptr; }
@@ -9627,13 +10182,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMMInstrumentCommissionRateField *pMMInstru
 		pMMInstrumentCommissionRateField->CloseRatioByVolume = pMMInstrumentCommissionRateField_CloseRatioByVolume;
 		pMMInstrumentCommissionRateField->CloseTodayRatioByMoney = pMMInstrumentCommissionRateField_CloseTodayRatioByMoney;
 		pMMInstrumentCommissionRateField->CloseTodayRatioByVolume = pMMInstrumentCommissionRateField_CloseTodayRatioByVolume;
+		if(pMMInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pMMInstrumentCommissionRateField->InstrumentID, pMMInstrumentCommissionRateField_InstrumentID); pMMInstrumentCommissionRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMMInstrumentCommissionRateField *pMMInstrumentCommissionRateField)
 {
 	if(pMMInstrumentCommissionRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d}"
-		, "InstrumentID", pMMInstrumentCommissionRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:y}"
+		, "reserve1", pMMInstrumentCommissionRateField->reserve1
 		, "InvestorRange", pMMInstrumentCommissionRateField->InvestorRange
 		, "BrokerID", pMMInstrumentCommissionRateField->BrokerID
 		, "InvestorID", pMMInstrumentCommissionRateField->InvestorID
@@ -9643,39 +10199,44 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMMInstrumentCommissionRateField *pMM
 		, "CloseRatioByVolume", pMMInstrumentCommissionRateField->CloseRatioByVolume
 		, "CloseTodayRatioByMoney", pMMInstrumentCommissionRateField->CloseTodayRatioByMoney
 		, "CloseTodayRatioByVolume", pMMInstrumentCommissionRateField->CloseTodayRatioByVolume
+		, "InstrumentID", pMMInstrumentCommissionRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryMMInstrumentCommissionRateField *pQryMMInstrumentCommissionRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "InstrumentID", nullptr};
 	char *pQryMMInstrumentCommissionRateField_BrokerID = nullptr;
 	char *pQryMMInstrumentCommissionRateField_InvestorID = nullptr;
+	char *pQryMMInstrumentCommissionRateField_reserve1 = nullptr;
 	char *pQryMMInstrumentCommissionRateField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryMMInstrumentCommissionRateField, "|yyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryMMInstrumentCommissionRateField, "|yyyy")
 		, &pQryMMInstrumentCommissionRateField_BrokerID
 		, &pQryMMInstrumentCommissionRateField_InvestorID
+		, &pQryMMInstrumentCommissionRateField_reserve1
 		, &pQryMMInstrumentCommissionRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryMMInstrumentCommissionRateField_BrokerID != nullptr){ strcpy_s(pQryMMInstrumentCommissionRateField->BrokerID, pQryMMInstrumentCommissionRateField_BrokerID); pQryMMInstrumentCommissionRateField_BrokerID = nullptr; }
 		if(pQryMMInstrumentCommissionRateField_InvestorID != nullptr){ strcpy_s(pQryMMInstrumentCommissionRateField->InvestorID, pQryMMInstrumentCommissionRateField_InvestorID); pQryMMInstrumentCommissionRateField_InvestorID = nullptr; }
+		if(pQryMMInstrumentCommissionRateField_reserve1 != nullptr){ strcpy_s(pQryMMInstrumentCommissionRateField->reserve1, pQryMMInstrumentCommissionRateField_reserve1); pQryMMInstrumentCommissionRateField_reserve1 = nullptr; }
 		if(pQryMMInstrumentCommissionRateField_InstrumentID != nullptr){ strcpy_s(pQryMMInstrumentCommissionRateField->InstrumentID, pQryMMInstrumentCommissionRateField_InstrumentID); pQryMMInstrumentCommissionRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMMInstrumentCommissionRateField *pQryMMInstrumentCommissionRateField)
 {
 	if(pQryMMInstrumentCommissionRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryMMInstrumentCommissionRateField->BrokerID
 		, "InvestorID", pQryMMInstrumentCommissionRateField->InvestorID
+		, "reserve1", pQryMMInstrumentCommissionRateField->reserve1
 		, "InstrumentID", pQryMMInstrumentCommissionRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "OrderCommByVolume", "OrderActionCommByVolume", "ExchangeID", "InvestUnitID", nullptr};
-	char *pInstrumentOrderCommRateField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "OrderCommByVolume", "OrderActionCommByVolume", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
+	char *pInstrumentOrderCommRateField_reserve1 = nullptr;
 	char pInstrumentOrderCommRateField_InvestorRange = 0;
 	char *pInstrumentOrderCommRateField_BrokerID = nullptr;
 	char *pInstrumentOrderCommRateField_InvestorID = nullptr;
@@ -9684,8 +10245,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentO
 	double pInstrumentOrderCommRateField_OrderActionCommByVolume = 0.0;
 	char *pInstrumentOrderCommRateField_ExchangeID = nullptr;
 	char *pInstrumentOrderCommRateField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentOrderCommRateField, "|ycyycddyy")
-		, &pInstrumentOrderCommRateField_InstrumentID
+	char *pInstrumentOrderCommRateField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentOrderCommRateField, "|ycyycddyyy")
+		, &pInstrumentOrderCommRateField_reserve1
 		, &pInstrumentOrderCommRateField_InvestorRange
 		, &pInstrumentOrderCommRateField_BrokerID
 		, &pInstrumentOrderCommRateField_InvestorID
@@ -9694,8 +10256,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentO
 		, &pInstrumentOrderCommRateField_OrderActionCommByVolume
 		, &pInstrumentOrderCommRateField_ExchangeID
 		, &pInstrumentOrderCommRateField_InvestUnitID
+		, &pInstrumentOrderCommRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInstrumentOrderCommRateField_InstrumentID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->InstrumentID, pInstrumentOrderCommRateField_InstrumentID); pInstrumentOrderCommRateField_InstrumentID = nullptr; }
+		if(pInstrumentOrderCommRateField_reserve1 != nullptr){ strcpy_s(pInstrumentOrderCommRateField->reserve1, pInstrumentOrderCommRateField_reserve1); pInstrumentOrderCommRateField_reserve1 = nullptr; }
 		pInstrumentOrderCommRateField->InvestorRange = pInstrumentOrderCommRateField_InvestorRange;
 		if(pInstrumentOrderCommRateField_BrokerID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->BrokerID, pInstrumentOrderCommRateField_BrokerID); pInstrumentOrderCommRateField_BrokerID = nullptr; }
 		if(pInstrumentOrderCommRateField_InvestorID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->InvestorID, pInstrumentOrderCommRateField_InvestorID); pInstrumentOrderCommRateField_InvestorID = nullptr; }
@@ -9704,13 +10267,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentO
 		pInstrumentOrderCommRateField->OrderActionCommByVolume = pInstrumentOrderCommRateField_OrderActionCommByVolume;
 		if(pInstrumentOrderCommRateField_ExchangeID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->ExchangeID, pInstrumentOrderCommRateField_ExchangeID); pInstrumentOrderCommRateField_ExchangeID = nullptr; }
 		if(pInstrumentOrderCommRateField_InvestUnitID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->InvestUnitID, pInstrumentOrderCommRateField_InvestUnitID); pInstrumentOrderCommRateField_InvestUnitID = nullptr; }
+		if(pInstrumentOrderCommRateField_InstrumentID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->InstrumentID, pInstrumentOrderCommRateField_InstrumentID); pInstrumentOrderCommRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRateField)
 {
 	if(pInstrumentOrderCommRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:y,s:y}"
-		, "InstrumentID", pInstrumentOrderCommRateField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:y,s:y,s:y}"
+		, "reserve1", pInstrumentOrderCommRateField->reserve1
 		, "InvestorRange", pInstrumentOrderCommRateField->InvestorRange
 		, "BrokerID", pInstrumentOrderCommRateField->BrokerID
 		, "InvestorID", pInstrumentOrderCommRateField->InvestorID
@@ -9719,31 +10283,36 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentOrderCommRateField *pInstr
 		, "OrderActionCommByVolume", pInstrumentOrderCommRateField->OrderActionCommByVolume
 		, "ExchangeID", pInstrumentOrderCommRateField->ExchangeID
 		, "InvestUnitID", pInstrumentOrderCommRateField->InvestUnitID
+		, "InstrumentID", pInstrumentOrderCommRateField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentOrderCommRateField *pQryInstrumentOrderCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "InstrumentID", nullptr};
 	char *pQryInstrumentOrderCommRateField_BrokerID = nullptr;
 	char *pQryInstrumentOrderCommRateField_InvestorID = nullptr;
+	char *pQryInstrumentOrderCommRateField_reserve1 = nullptr;
 	char *pQryInstrumentOrderCommRateField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentOrderCommRateField, "|yyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentOrderCommRateField, "|yyyy")
 		, &pQryInstrumentOrderCommRateField_BrokerID
 		, &pQryInstrumentOrderCommRateField_InvestorID
+		, &pQryInstrumentOrderCommRateField_reserve1
 		, &pQryInstrumentOrderCommRateField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInstrumentOrderCommRateField_BrokerID != nullptr){ strcpy_s(pQryInstrumentOrderCommRateField->BrokerID, pQryInstrumentOrderCommRateField_BrokerID); pQryInstrumentOrderCommRateField_BrokerID = nullptr; }
 		if(pQryInstrumentOrderCommRateField_InvestorID != nullptr){ strcpy_s(pQryInstrumentOrderCommRateField->InvestorID, pQryInstrumentOrderCommRateField_InvestorID); pQryInstrumentOrderCommRateField_InvestorID = nullptr; }
+		if(pQryInstrumentOrderCommRateField_reserve1 != nullptr){ strcpy_s(pQryInstrumentOrderCommRateField->reserve1, pQryInstrumentOrderCommRateField_reserve1); pQryInstrumentOrderCommRateField_reserve1 = nullptr; }
 		if(pQryInstrumentOrderCommRateField_InstrumentID != nullptr){ strcpy_s(pQryInstrumentOrderCommRateField->InstrumentID, pQryInstrumentOrderCommRateField_InstrumentID); pQryInstrumentOrderCommRateField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentOrderCommRateField *pQryInstrumentOrderCommRateField)
 {
 	if(pQryInstrumentOrderCommRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryInstrumentOrderCommRateField->BrokerID
 		, "InvestorID", pQryInstrumentOrderCommRateField->InvestorID
+		, "reserve1", pQryInstrumentOrderCommRateField->reserve1
 		, "InstrumentID", pQryInstrumentOrderCommRateField->InstrumentID
 		);
 }
@@ -9780,8 +10349,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradeParamField *pTradeParamField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateULField *pInstrumentMarginRateULField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", nullptr};
-	char *pInstrumentMarginRateULField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "InstrumentID", nullptr};
+	char *pInstrumentMarginRateULField_reserve1 = nullptr;
 	char pInstrumentMarginRateULField_InvestorRange = 0;
 	char *pInstrumentMarginRateULField_BrokerID = nullptr;
 	char *pInstrumentMarginRateULField_InvestorID = nullptr;
@@ -9790,8 +10359,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateULField *pInstrumentMa
 	double pInstrumentMarginRateULField_LongMarginRatioByVolume = 0.0;
 	double pInstrumentMarginRateULField_ShortMarginRatioByMoney = 0.0;
 	double pInstrumentMarginRateULField_ShortMarginRatioByVolume = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentMarginRateULField, "|ycyycdddd")
-		, &pInstrumentMarginRateULField_InstrumentID
+	char *pInstrumentMarginRateULField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentMarginRateULField, "|ycyycddddy")
+		, &pInstrumentMarginRateULField_reserve1
 		, &pInstrumentMarginRateULField_InvestorRange
 		, &pInstrumentMarginRateULField_BrokerID
 		, &pInstrumentMarginRateULField_InvestorID
@@ -9800,8 +10370,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateULField *pInstrumentMa
 		, &pInstrumentMarginRateULField_LongMarginRatioByVolume
 		, &pInstrumentMarginRateULField_ShortMarginRatioByMoney
 		, &pInstrumentMarginRateULField_ShortMarginRatioByVolume
+		, &pInstrumentMarginRateULField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInstrumentMarginRateULField_InstrumentID != nullptr){ strcpy_s(pInstrumentMarginRateULField->InstrumentID, pInstrumentMarginRateULField_InstrumentID); pInstrumentMarginRateULField_InstrumentID = nullptr; }
+		if(pInstrumentMarginRateULField_reserve1 != nullptr){ strcpy_s(pInstrumentMarginRateULField->reserve1, pInstrumentMarginRateULField_reserve1); pInstrumentMarginRateULField_reserve1 = nullptr; }
 		pInstrumentMarginRateULField->InvestorRange = pInstrumentMarginRateULField_InvestorRange;
 		if(pInstrumentMarginRateULField_BrokerID != nullptr){ strcpy_s(pInstrumentMarginRateULField->BrokerID, pInstrumentMarginRateULField_BrokerID); pInstrumentMarginRateULField_BrokerID = nullptr; }
 		if(pInstrumentMarginRateULField_InvestorID != nullptr){ strcpy_s(pInstrumentMarginRateULField->InvestorID, pInstrumentMarginRateULField_InvestorID); pInstrumentMarginRateULField_InvestorID = nullptr; }
@@ -9810,13 +10381,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateULField *pInstrumentMa
 		pInstrumentMarginRateULField->LongMarginRatioByVolume = pInstrumentMarginRateULField_LongMarginRatioByVolume;
 		pInstrumentMarginRateULField->ShortMarginRatioByMoney = pInstrumentMarginRateULField_ShortMarginRatioByMoney;
 		pInstrumentMarginRateULField->ShortMarginRatioByVolume = pInstrumentMarginRateULField_ShortMarginRatioByVolume;
+		if(pInstrumentMarginRateULField_InstrumentID != nullptr){ strcpy_s(pInstrumentMarginRateULField->InstrumentID, pInstrumentMarginRateULField_InstrumentID); pInstrumentMarginRateULField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateULField *pInstrumentMarginRateULField)
 {
 	if(pInstrumentMarginRateULField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d}"
-		, "InstrumentID", pInstrumentMarginRateULField->InstrumentID
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:y}"
+		, "reserve1", pInstrumentMarginRateULField->reserve1
 		, "InvestorRange", pInstrumentMarginRateULField->InvestorRange
 		, "BrokerID", pInstrumentMarginRateULField->BrokerID
 		, "InvestorID", pInstrumentMarginRateULField->InvestorID
@@ -9825,97 +10397,110 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateULField *pInstru
 		, "LongMarginRatioByVolume", pInstrumentMarginRateULField->LongMarginRatioByVolume
 		, "ShortMarginRatioByMoney", pInstrumentMarginRateULField->ShortMarginRatioByMoney
 		, "ShortMarginRatioByVolume", pInstrumentMarginRateULField->ShortMarginRatioByVolume
+		, "InstrumentID", pInstrumentMarginRateULField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcFutureLimitPosiParamField *pFutureLimitPosiParamField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorRange", "BrokerID", "InvestorID", "ProductID", "SpecOpenVolume", "ArbiOpenVolume", "OpenVolume", nullptr};
+	static char *kwlist[] = {"InvestorRange", "BrokerID", "InvestorID", "reserve1", "SpecOpenVolume", "ArbiOpenVolume", "OpenVolume", "ProductID", nullptr};
 	char pFutureLimitPosiParamField_InvestorRange = 0;
 	char *pFutureLimitPosiParamField_BrokerID = nullptr;
 	char *pFutureLimitPosiParamField_InvestorID = nullptr;
-	char *pFutureLimitPosiParamField_ProductID = nullptr;
+	char *pFutureLimitPosiParamField_reserve1 = nullptr;
 	int pFutureLimitPosiParamField_SpecOpenVolume = 0;
 	int pFutureLimitPosiParamField_ArbiOpenVolume = 0;
 	int pFutureLimitPosiParamField_OpenVolume = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pFutureLimitPosiParamField, "|cyyyiii")
+	char *pFutureLimitPosiParamField_ProductID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pFutureLimitPosiParamField, "|cyyyiiiy")
 		, &pFutureLimitPosiParamField_InvestorRange
 		, &pFutureLimitPosiParamField_BrokerID
 		, &pFutureLimitPosiParamField_InvestorID
-		, &pFutureLimitPosiParamField_ProductID
+		, &pFutureLimitPosiParamField_reserve1
 		, &pFutureLimitPosiParamField_SpecOpenVolume
 		, &pFutureLimitPosiParamField_ArbiOpenVolume
 		, &pFutureLimitPosiParamField_OpenVolume
+		, &pFutureLimitPosiParamField_ProductID
 	PyCTP_PyDict_FromStruct_END
 		pFutureLimitPosiParamField->InvestorRange = pFutureLimitPosiParamField_InvestorRange;
 		if(pFutureLimitPosiParamField_BrokerID != nullptr){ strcpy_s(pFutureLimitPosiParamField->BrokerID, pFutureLimitPosiParamField_BrokerID); pFutureLimitPosiParamField_BrokerID = nullptr; }
 		if(pFutureLimitPosiParamField_InvestorID != nullptr){ strcpy_s(pFutureLimitPosiParamField->InvestorID, pFutureLimitPosiParamField_InvestorID); pFutureLimitPosiParamField_InvestorID = nullptr; }
-		if(pFutureLimitPosiParamField_ProductID != nullptr){ strcpy_s(pFutureLimitPosiParamField->ProductID, pFutureLimitPosiParamField_ProductID); pFutureLimitPosiParamField_ProductID = nullptr; }
+		if(pFutureLimitPosiParamField_reserve1 != nullptr){ strcpy_s(pFutureLimitPosiParamField->reserve1, pFutureLimitPosiParamField_reserve1); pFutureLimitPosiParamField_reserve1 = nullptr; }
 		pFutureLimitPosiParamField->SpecOpenVolume = pFutureLimitPosiParamField_SpecOpenVolume;
 		pFutureLimitPosiParamField->ArbiOpenVolume = pFutureLimitPosiParamField_ArbiOpenVolume;
 		pFutureLimitPosiParamField->OpenVolume = pFutureLimitPosiParamField_OpenVolume;
+		if(pFutureLimitPosiParamField_ProductID != nullptr){ strcpy_s(pFutureLimitPosiParamField->ProductID, pFutureLimitPosiParamField_ProductID); pFutureLimitPosiParamField_ProductID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcFutureLimitPosiParamField *pFutureLimitPosiParamField)
 {
 	if(pFutureLimitPosiParamField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:c,s:y,s:y,s:y,s:i,s:i,s:i}"
+	return Py_BuildValue("{s:c,s:y,s:y,s:y,s:i,s:i,s:i,s:y}"
 		, "InvestorRange", pFutureLimitPosiParamField->InvestorRange
 		, "BrokerID", pFutureLimitPosiParamField->BrokerID
 		, "InvestorID", pFutureLimitPosiParamField->InvestorID
-		, "ProductID", pFutureLimitPosiParamField->ProductID
+		, "reserve1", pFutureLimitPosiParamField->reserve1
 		, "SpecOpenVolume", pFutureLimitPosiParamField->SpecOpenVolume
 		, "ArbiOpenVolume", pFutureLimitPosiParamField->ArbiOpenVolume
 		, "OpenVolume", pFutureLimitPosiParamField->OpenVolume
+		, "ProductID", pFutureLimitPosiParamField->ProductID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLoginForbiddenIPField *pLoginForbiddenIPField, PyObject *dict)
 {
-	static char *kwlist[] = {"IPAddress", nullptr};
+	static char *kwlist[] = {"reserve1", "IPAddress", nullptr};
+	char *pLoginForbiddenIPField_reserve1 = nullptr;
 	char *pLoginForbiddenIPField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pLoginForbiddenIPField, "|y")
+	PyCTP_PyDict_FromStruct_BEGIN(pLoginForbiddenIPField, "|yy")
+		, &pLoginForbiddenIPField_reserve1
 		, &pLoginForbiddenIPField_IPAddress
 	PyCTP_PyDict_FromStruct_END
+		if(pLoginForbiddenIPField_reserve1 != nullptr){ strcpy_s(pLoginForbiddenIPField->reserve1, pLoginForbiddenIPField_reserve1); pLoginForbiddenIPField_reserve1 = nullptr; }
 		if(pLoginForbiddenIPField_IPAddress != nullptr){ strcpy_s(pLoginForbiddenIPField->IPAddress, pLoginForbiddenIPField_IPAddress); pLoginForbiddenIPField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginForbiddenIPField *pLoginForbiddenIPField)
 {
 	if(pLoginForbiddenIPField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y}"
+	return Py_BuildValue("{s:y,s:y}"
+		, "reserve1", pLoginForbiddenIPField->reserve1
 		, "IPAddress", pLoginForbiddenIPField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcIPListField *pIPListField, PyObject *dict)
 {
-	static char *kwlist[] = {"IPAddress", "IsWhite", nullptr};
-	char *pIPListField_IPAddress = nullptr;
+	static char *kwlist[] = {"reserve1", "IsWhite", "IPAddress", nullptr};
+	char *pIPListField_reserve1 = nullptr;
 	int pIPListField_IsWhite = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pIPListField, "|yi")
-		, &pIPListField_IPAddress
+	char *pIPListField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pIPListField, "|yiy")
+		, &pIPListField_reserve1
 		, &pIPListField_IsWhite
+		, &pIPListField_IPAddress
 	PyCTP_PyDict_FromStruct_END
-		if(pIPListField_IPAddress != nullptr){ strcpy_s(pIPListField->IPAddress, pIPListField_IPAddress); pIPListField_IPAddress = nullptr; }
+		if(pIPListField_reserve1 != nullptr){ strcpy_s(pIPListField->reserve1, pIPListField_reserve1); pIPListField_reserve1 = nullptr; }
 		pIPListField->IsWhite = pIPListField_IsWhite;
+		if(pIPListField_IPAddress != nullptr){ strcpy_s(pIPListField->IPAddress, pIPListField_IPAddress); pIPListField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcIPListField *pIPListField)
 {
 	if(pIPListField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:i}"
-		, "IPAddress", pIPListField->IPAddress
+	return Py_BuildValue("{s:y,s:i,s:y}"
+		, "reserve1", pIPListField->reserve1
 		, "IsWhite", pIPListField->IsWhite
+		, "IPAddress", pIPListField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfCloseField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OptionSelfCloseRef", "UserID", "Volume", "RequestID", "BusinessUnit", "HedgeFlag", "OptSelfCloseFlag", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OptionSelfCloseRef", "UserID", "Volume", "RequestID", "BusinessUnit", "HedgeFlag", "OptSelfCloseFlag", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputOptionSelfCloseField_BrokerID = nullptr;
 	char *pInputOptionSelfCloseField_InvestorID = nullptr;
-	char *pInputOptionSelfCloseField_InstrumentID = nullptr;
+	char *pInputOptionSelfCloseField_reserve1 = nullptr;
 	char *pInputOptionSelfCloseField_OptionSelfCloseRef = nullptr;
 	char *pInputOptionSelfCloseField_UserID = nullptr;
 	int pInputOptionSelfCloseField_Volume = 0;
@@ -9928,12 +10513,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseField *pInputOptionSel
 	char *pInputOptionSelfCloseField_AccountID = nullptr;
 	char *pInputOptionSelfCloseField_CurrencyID = nullptr;
 	char *pInputOptionSelfCloseField_ClientID = nullptr;
-	char *pInputOptionSelfCloseField_IPAddress = nullptr;
+	char *pInputOptionSelfCloseField_reserve2 = nullptr;
 	char *pInputOptionSelfCloseField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputOptionSelfCloseField, "|yyyyyiiyccyyyyyyy")
+	char *pInputOptionSelfCloseField_InstrumentID = nullptr;
+	char *pInputOptionSelfCloseField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputOptionSelfCloseField, "|yyyyyiiyccyyyyyyyyy")
 		, &pInputOptionSelfCloseField_BrokerID
 		, &pInputOptionSelfCloseField_InvestorID
-		, &pInputOptionSelfCloseField_InstrumentID
+		, &pInputOptionSelfCloseField_reserve1
 		, &pInputOptionSelfCloseField_OptionSelfCloseRef
 		, &pInputOptionSelfCloseField_UserID
 		, &pInputOptionSelfCloseField_Volume
@@ -9946,12 +10533,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseField *pInputOptionSel
 		, &pInputOptionSelfCloseField_AccountID
 		, &pInputOptionSelfCloseField_CurrencyID
 		, &pInputOptionSelfCloseField_ClientID
-		, &pInputOptionSelfCloseField_IPAddress
+		, &pInputOptionSelfCloseField_reserve2
 		, &pInputOptionSelfCloseField_MacAddress
+		, &pInputOptionSelfCloseField_InstrumentID
+		, &pInputOptionSelfCloseField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputOptionSelfCloseField_BrokerID != nullptr){ strcpy_s(pInputOptionSelfCloseField->BrokerID, pInputOptionSelfCloseField_BrokerID); pInputOptionSelfCloseField_BrokerID = nullptr; }
 		if(pInputOptionSelfCloseField_InvestorID != nullptr){ strcpy_s(pInputOptionSelfCloseField->InvestorID, pInputOptionSelfCloseField_InvestorID); pInputOptionSelfCloseField_InvestorID = nullptr; }
-		if(pInputOptionSelfCloseField_InstrumentID != nullptr){ strcpy_s(pInputOptionSelfCloseField->InstrumentID, pInputOptionSelfCloseField_InstrumentID); pInputOptionSelfCloseField_InstrumentID = nullptr; }
+		if(pInputOptionSelfCloseField_reserve1 != nullptr){ strcpy_s(pInputOptionSelfCloseField->reserve1, pInputOptionSelfCloseField_reserve1); pInputOptionSelfCloseField_reserve1 = nullptr; }
 		if(pInputOptionSelfCloseField_OptionSelfCloseRef != nullptr){ strcpy_s(pInputOptionSelfCloseField->OptionSelfCloseRef, pInputOptionSelfCloseField_OptionSelfCloseRef); pInputOptionSelfCloseField_OptionSelfCloseRef = nullptr; }
 		if(pInputOptionSelfCloseField_UserID != nullptr){ strcpy_s(pInputOptionSelfCloseField->UserID, pInputOptionSelfCloseField_UserID); pInputOptionSelfCloseField_UserID = nullptr; }
 		pInputOptionSelfCloseField->Volume = pInputOptionSelfCloseField_Volume;
@@ -9964,17 +10553,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseField *pInputOptionSel
 		if(pInputOptionSelfCloseField_AccountID != nullptr){ strcpy_s(pInputOptionSelfCloseField->AccountID, pInputOptionSelfCloseField_AccountID); pInputOptionSelfCloseField_AccountID = nullptr; }
 		if(pInputOptionSelfCloseField_CurrencyID != nullptr){ strcpy_s(pInputOptionSelfCloseField->CurrencyID, pInputOptionSelfCloseField_CurrencyID); pInputOptionSelfCloseField_CurrencyID = nullptr; }
 		if(pInputOptionSelfCloseField_ClientID != nullptr){ strcpy_s(pInputOptionSelfCloseField->ClientID, pInputOptionSelfCloseField_ClientID); pInputOptionSelfCloseField_ClientID = nullptr; }
-		if(pInputOptionSelfCloseField_IPAddress != nullptr){ strcpy_s(pInputOptionSelfCloseField->IPAddress, pInputOptionSelfCloseField_IPAddress); pInputOptionSelfCloseField_IPAddress = nullptr; }
+		if(pInputOptionSelfCloseField_reserve2 != nullptr){ strcpy_s(pInputOptionSelfCloseField->reserve2, pInputOptionSelfCloseField_reserve2); pInputOptionSelfCloseField_reserve2 = nullptr; }
 		if(pInputOptionSelfCloseField_MacAddress != nullptr){ strcpy_s(pInputOptionSelfCloseField->MacAddress, pInputOptionSelfCloseField_MacAddress); pInputOptionSelfCloseField_MacAddress = nullptr; }
+		if(pInputOptionSelfCloseField_InstrumentID != nullptr){ strcpy_s(pInputOptionSelfCloseField->InstrumentID, pInputOptionSelfCloseField_InstrumentID); pInputOptionSelfCloseField_InstrumentID = nullptr; }
+		if(pInputOptionSelfCloseField_IPAddress != nullptr){ strcpy_s(pInputOptionSelfCloseField->IPAddress, pInputOptionSelfCloseField_IPAddress); pInputOptionSelfCloseField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfCloseField)
 {
 	if(pInputOptionSelfCloseField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputOptionSelfCloseField->BrokerID
 		, "InvestorID", pInputOptionSelfCloseField->InvestorID
-		, "InstrumentID", pInputOptionSelfCloseField->InstrumentID
+		, "reserve1", pInputOptionSelfCloseField->reserve1
 		, "OptionSelfCloseRef", pInputOptionSelfCloseField->OptionSelfCloseRef
 		, "UserID", pInputOptionSelfCloseField->UserID
 		, "Volume", pInputOptionSelfCloseField->Volume
@@ -9987,14 +10578,16 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOptionSelfCloseField *pInputOpt
 		, "AccountID", pInputOptionSelfCloseField->AccountID
 		, "CurrencyID", pInputOptionSelfCloseField->CurrencyID
 		, "ClientID", pInputOptionSelfCloseField->ClientID
-		, "IPAddress", pInputOptionSelfCloseField->IPAddress
+		, "reserve2", pInputOptionSelfCloseField->reserve2
 		, "MacAddress", pInputOptionSelfCloseField->MacAddress
+		, "InstrumentID", pInputOptionSelfCloseField->InstrumentID
+		, "IPAddress", pInputOptionSelfCloseField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OptionSelfCloseActionRef", "OptionSelfCloseRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OptionSelfCloseSysID", "ActionFlag", "UserID", "InstrumentID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OptionSelfCloseActionRef", "OptionSelfCloseRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OptionSelfCloseSysID", "ActionFlag", "UserID", "reserve1", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pInputOptionSelfCloseActionField_BrokerID = nullptr;
 	char *pInputOptionSelfCloseActionField_InvestorID = nullptr;
 	int pInputOptionSelfCloseActionField_OptionSelfCloseActionRef = 0;
@@ -10006,11 +10599,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseActionField *pInputOpt
 	char *pInputOptionSelfCloseActionField_OptionSelfCloseSysID = nullptr;
 	char pInputOptionSelfCloseActionField_ActionFlag = 0;
 	char *pInputOptionSelfCloseActionField_UserID = nullptr;
-	char *pInputOptionSelfCloseActionField_InstrumentID = nullptr;
+	char *pInputOptionSelfCloseActionField_reserve1 = nullptr;
 	char *pInputOptionSelfCloseActionField_InvestUnitID = nullptr;
-	char *pInputOptionSelfCloseActionField_IPAddress = nullptr;
+	char *pInputOptionSelfCloseActionField_reserve2 = nullptr;
 	char *pInputOptionSelfCloseActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputOptionSelfCloseActionField, "|yyiyiiiyycyyyyy")
+	char *pInputOptionSelfCloseActionField_InstrumentID = nullptr;
+	char *pInputOptionSelfCloseActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputOptionSelfCloseActionField, "|yyiyiiiyycyyyyyyy")
 		, &pInputOptionSelfCloseActionField_BrokerID
 		, &pInputOptionSelfCloseActionField_InvestorID
 		, &pInputOptionSelfCloseActionField_OptionSelfCloseActionRef
@@ -10022,10 +10617,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseActionField *pInputOpt
 		, &pInputOptionSelfCloseActionField_OptionSelfCloseSysID
 		, &pInputOptionSelfCloseActionField_ActionFlag
 		, &pInputOptionSelfCloseActionField_UserID
-		, &pInputOptionSelfCloseActionField_InstrumentID
+		, &pInputOptionSelfCloseActionField_reserve1
 		, &pInputOptionSelfCloseActionField_InvestUnitID
-		, &pInputOptionSelfCloseActionField_IPAddress
+		, &pInputOptionSelfCloseActionField_reserve2
 		, &pInputOptionSelfCloseActionField_MacAddress
+		, &pInputOptionSelfCloseActionField_InstrumentID
+		, &pInputOptionSelfCloseActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pInputOptionSelfCloseActionField_BrokerID != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->BrokerID, pInputOptionSelfCloseActionField_BrokerID); pInputOptionSelfCloseActionField_BrokerID = nullptr; }
 		if(pInputOptionSelfCloseActionField_InvestorID != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->InvestorID, pInputOptionSelfCloseActionField_InvestorID); pInputOptionSelfCloseActionField_InvestorID = nullptr; }
@@ -10038,16 +10635,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseActionField *pInputOpt
 		if(pInputOptionSelfCloseActionField_OptionSelfCloseSysID != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->OptionSelfCloseSysID, pInputOptionSelfCloseActionField_OptionSelfCloseSysID); pInputOptionSelfCloseActionField_OptionSelfCloseSysID = nullptr; }
 		pInputOptionSelfCloseActionField->ActionFlag = pInputOptionSelfCloseActionField_ActionFlag;
 		if(pInputOptionSelfCloseActionField_UserID != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->UserID, pInputOptionSelfCloseActionField_UserID); pInputOptionSelfCloseActionField_UserID = nullptr; }
-		if(pInputOptionSelfCloseActionField_InstrumentID != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->InstrumentID, pInputOptionSelfCloseActionField_InstrumentID); pInputOptionSelfCloseActionField_InstrumentID = nullptr; }
+		if(pInputOptionSelfCloseActionField_reserve1 != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->reserve1, pInputOptionSelfCloseActionField_reserve1); pInputOptionSelfCloseActionField_reserve1 = nullptr; }
 		if(pInputOptionSelfCloseActionField_InvestUnitID != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->InvestUnitID, pInputOptionSelfCloseActionField_InvestUnitID); pInputOptionSelfCloseActionField_InvestUnitID = nullptr; }
-		if(pInputOptionSelfCloseActionField_IPAddress != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->IPAddress, pInputOptionSelfCloseActionField_IPAddress); pInputOptionSelfCloseActionField_IPAddress = nullptr; }
+		if(pInputOptionSelfCloseActionField_reserve2 != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->reserve2, pInputOptionSelfCloseActionField_reserve2); pInputOptionSelfCloseActionField_reserve2 = nullptr; }
 		if(pInputOptionSelfCloseActionField_MacAddress != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->MacAddress, pInputOptionSelfCloseActionField_MacAddress); pInputOptionSelfCloseActionField_MacAddress = nullptr; }
+		if(pInputOptionSelfCloseActionField_InstrumentID != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->InstrumentID, pInputOptionSelfCloseActionField_InstrumentID); pInputOptionSelfCloseActionField_InstrumentID = nullptr; }
+		if(pInputOptionSelfCloseActionField_IPAddress != nullptr){ strcpy_s(pInputOptionSelfCloseActionField->IPAddress, pInputOptionSelfCloseActionField_IPAddress); pInputOptionSelfCloseActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseActionField)
 {
 	if(pInputOptionSelfCloseActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputOptionSelfCloseActionField->BrokerID
 		, "InvestorID", pInputOptionSelfCloseActionField->InvestorID
 		, "OptionSelfCloseActionRef", pInputOptionSelfCloseActionField->OptionSelfCloseActionRef
@@ -10059,19 +10658,21 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOptionSelfCloseActionField *pIn
 		, "OptionSelfCloseSysID", pInputOptionSelfCloseActionField->OptionSelfCloseSysID
 		, "ActionFlag", pInputOptionSelfCloseActionField->ActionFlag
 		, "UserID", pInputOptionSelfCloseActionField->UserID
-		, "InstrumentID", pInputOptionSelfCloseActionField->InstrumentID
+		, "reserve1", pInputOptionSelfCloseActionField->reserve1
 		, "InvestUnitID", pInputOptionSelfCloseActionField->InvestUnitID
-		, "IPAddress", pInputOptionSelfCloseActionField->IPAddress
+		, "reserve2", pInputOptionSelfCloseActionField->reserve2
 		, "MacAddress", pInputOptionSelfCloseActionField->MacAddress
+		, "InstrumentID", pInputOptionSelfCloseActionField->InstrumentID
+		, "IPAddress", pInputOptionSelfCloseActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OptionSelfCloseRef", "UserID", "Volume", "RequestID", "BusinessUnit", "HedgeFlag", "OptSelfCloseFlag", "OptionSelfCloseLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OptionSelfCloseSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerOptionSelfCloseSeq", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OptionSelfCloseRef", "UserID", "Volume", "RequestID", "BusinessUnit", "HedgeFlag", "OptSelfCloseFlag", "OptionSelfCloseLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OptionSelfCloseSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerOptionSelfCloseSeq", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
 	char *pOptionSelfCloseField_BrokerID = nullptr;
 	char *pOptionSelfCloseField_InvestorID = nullptr;
-	char *pOptionSelfCloseField_InstrumentID = nullptr;
+	char *pOptionSelfCloseField_reserve1 = nullptr;
 	char *pOptionSelfCloseField_OptionSelfCloseRef = nullptr;
 	char *pOptionSelfCloseField_UserID = nullptr;
 	int pOptionSelfCloseField_Volume = 0;
@@ -10083,7 +10684,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseFiel
 	char *pOptionSelfCloseField_ExchangeID = nullptr;
 	char *pOptionSelfCloseField_ParticipantID = nullptr;
 	char *pOptionSelfCloseField_ClientID = nullptr;
-	char *pOptionSelfCloseField_ExchangeInstID = nullptr;
+	char *pOptionSelfCloseField_reserve2 = nullptr;
 	char *pOptionSelfCloseField_TraderID = nullptr;
 	int pOptionSelfCloseField_InstallID = 0;
 	char pOptionSelfCloseField_OrderSubmitStatus = 0;
@@ -10107,12 +10708,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseFiel
 	char *pOptionSelfCloseField_InvestUnitID = nullptr;
 	char *pOptionSelfCloseField_AccountID = nullptr;
 	char *pOptionSelfCloseField_CurrencyID = nullptr;
-	char *pOptionSelfCloseField_IPAddress = nullptr;
+	char *pOptionSelfCloseField_reserve3 = nullptr;
 	char *pOptionSelfCloseField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionSelfCloseField, "|yyyyyiiyccyyyyyyiciyiyyyycyiiiyyyiyyyyyy")
+	char *pOptionSelfCloseField_InstrumentID = nullptr;
+	char *pOptionSelfCloseField_ExchangeInstID = nullptr;
+	char *pOptionSelfCloseField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionSelfCloseField, "|yyyyyiiyccyyyyyyiciyiyyyycyiiiyyyiyyyyyyyyy")
 		, &pOptionSelfCloseField_BrokerID
 		, &pOptionSelfCloseField_InvestorID
-		, &pOptionSelfCloseField_InstrumentID
+		, &pOptionSelfCloseField_reserve1
 		, &pOptionSelfCloseField_OptionSelfCloseRef
 		, &pOptionSelfCloseField_UserID
 		, &pOptionSelfCloseField_Volume
@@ -10124,7 +10728,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseFiel
 		, &pOptionSelfCloseField_ExchangeID
 		, &pOptionSelfCloseField_ParticipantID
 		, &pOptionSelfCloseField_ClientID
-		, &pOptionSelfCloseField_ExchangeInstID
+		, &pOptionSelfCloseField_reserve2
 		, &pOptionSelfCloseField_TraderID
 		, &pOptionSelfCloseField_InstallID
 		, &pOptionSelfCloseField_OrderSubmitStatus
@@ -10148,12 +10752,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseFiel
 		, &pOptionSelfCloseField_InvestUnitID
 		, &pOptionSelfCloseField_AccountID
 		, &pOptionSelfCloseField_CurrencyID
-		, &pOptionSelfCloseField_IPAddress
+		, &pOptionSelfCloseField_reserve3
 		, &pOptionSelfCloseField_MacAddress
+		, &pOptionSelfCloseField_InstrumentID
+		, &pOptionSelfCloseField_ExchangeInstID
+		, &pOptionSelfCloseField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pOptionSelfCloseField_BrokerID != nullptr){ strcpy_s(pOptionSelfCloseField->BrokerID, pOptionSelfCloseField_BrokerID); pOptionSelfCloseField_BrokerID = nullptr; }
 		if(pOptionSelfCloseField_InvestorID != nullptr){ strcpy_s(pOptionSelfCloseField->InvestorID, pOptionSelfCloseField_InvestorID); pOptionSelfCloseField_InvestorID = nullptr; }
-		if(pOptionSelfCloseField_InstrumentID != nullptr){ strcpy_s(pOptionSelfCloseField->InstrumentID, pOptionSelfCloseField_InstrumentID); pOptionSelfCloseField_InstrumentID = nullptr; }
+		if(pOptionSelfCloseField_reserve1 != nullptr){ strcpy_s(pOptionSelfCloseField->reserve1, pOptionSelfCloseField_reserve1); pOptionSelfCloseField_reserve1 = nullptr; }
 		if(pOptionSelfCloseField_OptionSelfCloseRef != nullptr){ strcpy_s(pOptionSelfCloseField->OptionSelfCloseRef, pOptionSelfCloseField_OptionSelfCloseRef); pOptionSelfCloseField_OptionSelfCloseRef = nullptr; }
 		if(pOptionSelfCloseField_UserID != nullptr){ strcpy_s(pOptionSelfCloseField->UserID, pOptionSelfCloseField_UserID); pOptionSelfCloseField_UserID = nullptr; }
 		pOptionSelfCloseField->Volume = pOptionSelfCloseField_Volume;
@@ -10165,7 +10772,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseFiel
 		if(pOptionSelfCloseField_ExchangeID != nullptr){ strcpy_s(pOptionSelfCloseField->ExchangeID, pOptionSelfCloseField_ExchangeID); pOptionSelfCloseField_ExchangeID = nullptr; }
 		if(pOptionSelfCloseField_ParticipantID != nullptr){ strcpy_s(pOptionSelfCloseField->ParticipantID, pOptionSelfCloseField_ParticipantID); pOptionSelfCloseField_ParticipantID = nullptr; }
 		if(pOptionSelfCloseField_ClientID != nullptr){ strcpy_s(pOptionSelfCloseField->ClientID, pOptionSelfCloseField_ClientID); pOptionSelfCloseField_ClientID = nullptr; }
-		if(pOptionSelfCloseField_ExchangeInstID != nullptr){ strcpy_s(pOptionSelfCloseField->ExchangeInstID, pOptionSelfCloseField_ExchangeInstID); pOptionSelfCloseField_ExchangeInstID = nullptr; }
+		if(pOptionSelfCloseField_reserve2 != nullptr){ strcpy_s(pOptionSelfCloseField->reserve2, pOptionSelfCloseField_reserve2); pOptionSelfCloseField_reserve2 = nullptr; }
 		if(pOptionSelfCloseField_TraderID != nullptr){ strcpy_s(pOptionSelfCloseField->TraderID, pOptionSelfCloseField_TraderID); pOptionSelfCloseField_TraderID = nullptr; }
 		pOptionSelfCloseField->InstallID = pOptionSelfCloseField_InstallID;
 		pOptionSelfCloseField->OrderSubmitStatus = pOptionSelfCloseField_OrderSubmitStatus;
@@ -10189,17 +10796,20 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseFiel
 		if(pOptionSelfCloseField_InvestUnitID != nullptr){ strcpy_s(pOptionSelfCloseField->InvestUnitID, pOptionSelfCloseField_InvestUnitID); pOptionSelfCloseField_InvestUnitID = nullptr; }
 		if(pOptionSelfCloseField_AccountID != nullptr){ strcpy_s(pOptionSelfCloseField->AccountID, pOptionSelfCloseField_AccountID); pOptionSelfCloseField_AccountID = nullptr; }
 		if(pOptionSelfCloseField_CurrencyID != nullptr){ strcpy_s(pOptionSelfCloseField->CurrencyID, pOptionSelfCloseField_CurrencyID); pOptionSelfCloseField_CurrencyID = nullptr; }
-		if(pOptionSelfCloseField_IPAddress != nullptr){ strcpy_s(pOptionSelfCloseField->IPAddress, pOptionSelfCloseField_IPAddress); pOptionSelfCloseField_IPAddress = nullptr; }
+		if(pOptionSelfCloseField_reserve3 != nullptr){ strcpy_s(pOptionSelfCloseField->reserve3, pOptionSelfCloseField_reserve3); pOptionSelfCloseField_reserve3 = nullptr; }
 		if(pOptionSelfCloseField_MacAddress != nullptr){ strcpy_s(pOptionSelfCloseField->MacAddress, pOptionSelfCloseField_MacAddress); pOptionSelfCloseField_MacAddress = nullptr; }
+		if(pOptionSelfCloseField_InstrumentID != nullptr){ strcpy_s(pOptionSelfCloseField->InstrumentID, pOptionSelfCloseField_InstrumentID); pOptionSelfCloseField_InstrumentID = nullptr; }
+		if(pOptionSelfCloseField_ExchangeInstID != nullptr){ strcpy_s(pOptionSelfCloseField->ExchangeInstID, pOptionSelfCloseField_ExchangeInstID); pOptionSelfCloseField_ExchangeInstID = nullptr; }
+		if(pOptionSelfCloseField_IPAddress != nullptr){ strcpy_s(pOptionSelfCloseField->IPAddress, pOptionSelfCloseField_IPAddress); pOptionSelfCloseField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionSelfCloseField *pOptionSelfCloseField)
 {
 	if(pOptionSelfCloseField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pOptionSelfCloseField->BrokerID
 		, "InvestorID", pOptionSelfCloseField->InvestorID
-		, "InstrumentID", pOptionSelfCloseField->InstrumentID
+		, "reserve1", pOptionSelfCloseField->reserve1
 		, "OptionSelfCloseRef", pOptionSelfCloseField->OptionSelfCloseRef
 		, "UserID", pOptionSelfCloseField->UserID
 		, "Volume", pOptionSelfCloseField->Volume
@@ -10211,7 +10821,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionSelfCloseField *pOptionSelfClo
 		, "ExchangeID", pOptionSelfCloseField->ExchangeID
 		, "ParticipantID", pOptionSelfCloseField->ParticipantID
 		, "ClientID", pOptionSelfCloseField->ClientID
-		, "ExchangeInstID", pOptionSelfCloseField->ExchangeInstID
+		, "reserve2", pOptionSelfCloseField->reserve2
 		, "TraderID", pOptionSelfCloseField->TraderID
 		, "InstallID", pOptionSelfCloseField->InstallID
 		, "OrderSubmitStatus", pOptionSelfCloseField->OrderSubmitStatus
@@ -10235,14 +10845,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionSelfCloseField *pOptionSelfClo
 		, "InvestUnitID", pOptionSelfCloseField->InvestUnitID
 		, "AccountID", pOptionSelfCloseField->AccountID
 		, "CurrencyID", pOptionSelfCloseField->CurrencyID
-		, "IPAddress", pOptionSelfCloseField->IPAddress
+		, "reserve3", pOptionSelfCloseField->reserve3
 		, "MacAddress", pOptionSelfCloseField->MacAddress
+		, "InstrumentID", pOptionSelfCloseField->InstrumentID
+		, "ExchangeInstID", pOptionSelfCloseField->ExchangeInstID
+		, "IPAddress", pOptionSelfCloseField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OptionSelfCloseActionRef", "OptionSelfCloseRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OptionSelfCloseSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "OptionSelfCloseLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "InstrumentID", "BranchID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OptionSelfCloseActionRef", "OptionSelfCloseRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OptionSelfCloseSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "OptionSelfCloseLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "reserve1", "BranchID", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pOptionSelfCloseActionField_BrokerID = nullptr;
 	char *pOptionSelfCloseActionField_InvestorID = nullptr;
 	int pOptionSelfCloseActionField_OptionSelfCloseActionRef = 0;
@@ -10265,12 +10878,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseActionField *pOptionSelfClo
 	char pOptionSelfCloseActionField_OrderActionStatus = 0;
 	char *pOptionSelfCloseActionField_UserID = nullptr;
 	char *pOptionSelfCloseActionField_StatusMsg = nullptr;
-	char *pOptionSelfCloseActionField_InstrumentID = nullptr;
+	char *pOptionSelfCloseActionField_reserve1 = nullptr;
 	char *pOptionSelfCloseActionField_BranchID = nullptr;
 	char *pOptionSelfCloseActionField_InvestUnitID = nullptr;
-	char *pOptionSelfCloseActionField_IPAddress = nullptr;
+	char *pOptionSelfCloseActionField_reserve2 = nullptr;
 	char *pOptionSelfCloseActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pOptionSelfCloseActionField, "|yyiyiiiyycyyyiyyyyycyyyyyyy")
+	char *pOptionSelfCloseActionField_InstrumentID = nullptr;
+	char *pOptionSelfCloseActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pOptionSelfCloseActionField, "|yyiyiiiyycyyyiyyyyycyyyyyyyyy")
 		, &pOptionSelfCloseActionField_BrokerID
 		, &pOptionSelfCloseActionField_InvestorID
 		, &pOptionSelfCloseActionField_OptionSelfCloseActionRef
@@ -10293,11 +10908,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseActionField *pOptionSelfClo
 		, &pOptionSelfCloseActionField_OrderActionStatus
 		, &pOptionSelfCloseActionField_UserID
 		, &pOptionSelfCloseActionField_StatusMsg
-		, &pOptionSelfCloseActionField_InstrumentID
+		, &pOptionSelfCloseActionField_reserve1
 		, &pOptionSelfCloseActionField_BranchID
 		, &pOptionSelfCloseActionField_InvestUnitID
-		, &pOptionSelfCloseActionField_IPAddress
+		, &pOptionSelfCloseActionField_reserve2
 		, &pOptionSelfCloseActionField_MacAddress
+		, &pOptionSelfCloseActionField_InstrumentID
+		, &pOptionSelfCloseActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pOptionSelfCloseActionField_BrokerID != nullptr){ strcpy_s(pOptionSelfCloseActionField->BrokerID, pOptionSelfCloseActionField_BrokerID); pOptionSelfCloseActionField_BrokerID = nullptr; }
 		if(pOptionSelfCloseActionField_InvestorID != nullptr){ strcpy_s(pOptionSelfCloseActionField->InvestorID, pOptionSelfCloseActionField_InvestorID); pOptionSelfCloseActionField_InvestorID = nullptr; }
@@ -10321,17 +10938,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseActionField *pOptionSelfClo
 		pOptionSelfCloseActionField->OrderActionStatus = pOptionSelfCloseActionField_OrderActionStatus;
 		if(pOptionSelfCloseActionField_UserID != nullptr){ strcpy_s(pOptionSelfCloseActionField->UserID, pOptionSelfCloseActionField_UserID); pOptionSelfCloseActionField_UserID = nullptr; }
 		if(pOptionSelfCloseActionField_StatusMsg != nullptr){ strcpy_s(pOptionSelfCloseActionField->StatusMsg, pOptionSelfCloseActionField_StatusMsg); pOptionSelfCloseActionField_StatusMsg = nullptr; }
-		if(pOptionSelfCloseActionField_InstrumentID != nullptr){ strcpy_s(pOptionSelfCloseActionField->InstrumentID, pOptionSelfCloseActionField_InstrumentID); pOptionSelfCloseActionField_InstrumentID = nullptr; }
+		if(pOptionSelfCloseActionField_reserve1 != nullptr){ strcpy_s(pOptionSelfCloseActionField->reserve1, pOptionSelfCloseActionField_reserve1); pOptionSelfCloseActionField_reserve1 = nullptr; }
 		if(pOptionSelfCloseActionField_BranchID != nullptr){ strcpy_s(pOptionSelfCloseActionField->BranchID, pOptionSelfCloseActionField_BranchID); pOptionSelfCloseActionField_BranchID = nullptr; }
 		if(pOptionSelfCloseActionField_InvestUnitID != nullptr){ strcpy_s(pOptionSelfCloseActionField->InvestUnitID, pOptionSelfCloseActionField_InvestUnitID); pOptionSelfCloseActionField_InvestUnitID = nullptr; }
-		if(pOptionSelfCloseActionField_IPAddress != nullptr){ strcpy_s(pOptionSelfCloseActionField->IPAddress, pOptionSelfCloseActionField_IPAddress); pOptionSelfCloseActionField_IPAddress = nullptr; }
+		if(pOptionSelfCloseActionField_reserve2 != nullptr){ strcpy_s(pOptionSelfCloseActionField->reserve2, pOptionSelfCloseActionField_reserve2); pOptionSelfCloseActionField_reserve2 = nullptr; }
 		if(pOptionSelfCloseActionField_MacAddress != nullptr){ strcpy_s(pOptionSelfCloseActionField->MacAddress, pOptionSelfCloseActionField_MacAddress); pOptionSelfCloseActionField_MacAddress = nullptr; }
+		if(pOptionSelfCloseActionField_InstrumentID != nullptr){ strcpy_s(pOptionSelfCloseActionField->InstrumentID, pOptionSelfCloseActionField_InstrumentID); pOptionSelfCloseActionField_InstrumentID = nullptr; }
+		if(pOptionSelfCloseActionField_IPAddress != nullptr){ strcpy_s(pOptionSelfCloseActionField->IPAddress, pOptionSelfCloseActionField_IPAddress); pOptionSelfCloseActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseActionField)
 {
 	if(pOptionSelfCloseActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pOptionSelfCloseActionField->BrokerID
 		, "InvestorID", pOptionSelfCloseActionField->InvestorID
 		, "OptionSelfCloseActionRef", pOptionSelfCloseActionField->OptionSelfCloseActionRef
@@ -10354,59 +10973,65 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionSelfCloseActionField *pOptionS
 		, "OrderActionStatus", pOptionSelfCloseActionField->OrderActionStatus
 		, "UserID", pOptionSelfCloseActionField->UserID
 		, "StatusMsg", pOptionSelfCloseActionField->StatusMsg
-		, "InstrumentID", pOptionSelfCloseActionField->InstrumentID
+		, "reserve1", pOptionSelfCloseActionField->reserve1
 		, "BranchID", pOptionSelfCloseActionField->BranchID
 		, "InvestUnitID", pOptionSelfCloseActionField->InvestUnitID
-		, "IPAddress", pOptionSelfCloseActionField->IPAddress
+		, "reserve2", pOptionSelfCloseActionField->reserve2
 		, "MacAddress", pOptionSelfCloseActionField->MacAddress
+		, "InstrumentID", pOptionSelfCloseActionField->InstrumentID
+		, "IPAddress", pOptionSelfCloseActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionSelfCloseField *pQryOptionSelfCloseField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "OptionSelfCloseSysID", "InsertTimeStart", "InsertTimeEnd", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "OptionSelfCloseSysID", "InsertTimeStart", "InsertTimeEnd", "InstrumentID", nullptr};
 	char *pQryOptionSelfCloseField_BrokerID = nullptr;
 	char *pQryOptionSelfCloseField_InvestorID = nullptr;
-	char *pQryOptionSelfCloseField_InstrumentID = nullptr;
+	char *pQryOptionSelfCloseField_reserve1 = nullptr;
 	char *pQryOptionSelfCloseField_ExchangeID = nullptr;
 	char *pQryOptionSelfCloseField_OptionSelfCloseSysID = nullptr;
 	char *pQryOptionSelfCloseField_InsertTimeStart = nullptr;
 	char *pQryOptionSelfCloseField_InsertTimeEnd = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionSelfCloseField, "|yyyyyyy")
+	char *pQryOptionSelfCloseField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryOptionSelfCloseField, "|yyyyyyyy")
 		, &pQryOptionSelfCloseField_BrokerID
 		, &pQryOptionSelfCloseField_InvestorID
-		, &pQryOptionSelfCloseField_InstrumentID
+		, &pQryOptionSelfCloseField_reserve1
 		, &pQryOptionSelfCloseField_ExchangeID
 		, &pQryOptionSelfCloseField_OptionSelfCloseSysID
 		, &pQryOptionSelfCloseField_InsertTimeStart
 		, &pQryOptionSelfCloseField_InsertTimeEnd
+		, &pQryOptionSelfCloseField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryOptionSelfCloseField_BrokerID != nullptr){ strcpy_s(pQryOptionSelfCloseField->BrokerID, pQryOptionSelfCloseField_BrokerID); pQryOptionSelfCloseField_BrokerID = nullptr; }
 		if(pQryOptionSelfCloseField_InvestorID != nullptr){ strcpy_s(pQryOptionSelfCloseField->InvestorID, pQryOptionSelfCloseField_InvestorID); pQryOptionSelfCloseField_InvestorID = nullptr; }
-		if(pQryOptionSelfCloseField_InstrumentID != nullptr){ strcpy_s(pQryOptionSelfCloseField->InstrumentID, pQryOptionSelfCloseField_InstrumentID); pQryOptionSelfCloseField_InstrumentID = nullptr; }
+		if(pQryOptionSelfCloseField_reserve1 != nullptr){ strcpy_s(pQryOptionSelfCloseField->reserve1, pQryOptionSelfCloseField_reserve1); pQryOptionSelfCloseField_reserve1 = nullptr; }
 		if(pQryOptionSelfCloseField_ExchangeID != nullptr){ strcpy_s(pQryOptionSelfCloseField->ExchangeID, pQryOptionSelfCloseField_ExchangeID); pQryOptionSelfCloseField_ExchangeID = nullptr; }
 		if(pQryOptionSelfCloseField_OptionSelfCloseSysID != nullptr){ strcpy_s(pQryOptionSelfCloseField->OptionSelfCloseSysID, pQryOptionSelfCloseField_OptionSelfCloseSysID); pQryOptionSelfCloseField_OptionSelfCloseSysID = nullptr; }
 		if(pQryOptionSelfCloseField_InsertTimeStart != nullptr){ strcpy_s(pQryOptionSelfCloseField->InsertTimeStart, pQryOptionSelfCloseField_InsertTimeStart); pQryOptionSelfCloseField_InsertTimeStart = nullptr; }
 		if(pQryOptionSelfCloseField_InsertTimeEnd != nullptr){ strcpy_s(pQryOptionSelfCloseField->InsertTimeEnd, pQryOptionSelfCloseField_InsertTimeEnd); pQryOptionSelfCloseField_InsertTimeEnd = nullptr; }
+		if(pQryOptionSelfCloseField_InstrumentID != nullptr){ strcpy_s(pQryOptionSelfCloseField->InstrumentID, pQryOptionSelfCloseField_InstrumentID); pQryOptionSelfCloseField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionSelfCloseField *pQryOptionSelfCloseField)
 {
 	if(pQryOptionSelfCloseField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryOptionSelfCloseField->BrokerID
 		, "InvestorID", pQryOptionSelfCloseField->InvestorID
-		, "InstrumentID", pQryOptionSelfCloseField->InstrumentID
+		, "reserve1", pQryOptionSelfCloseField->reserve1
 		, "ExchangeID", pQryOptionSelfCloseField->ExchangeID
 		, "OptionSelfCloseSysID", pQryOptionSelfCloseField->OptionSelfCloseSysID
 		, "InsertTimeStart", pQryOptionSelfCloseField->InsertTimeStart
 		, "InsertTimeEnd", pQryOptionSelfCloseField->InsertTimeEnd
+		, "InstrumentID", pQryOptionSelfCloseField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOptionSelfCloseField, PyObject *dict)
 {
-	static char *kwlist[] = {"Volume", "RequestID", "BusinessUnit", "HedgeFlag", "OptSelfCloseFlag", "OptionSelfCloseLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OptionSelfCloseSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "BranchID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"Volume", "RequestID", "BusinessUnit", "HedgeFlag", "OptSelfCloseFlag", "OptionSelfCloseLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve1", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OptionSelfCloseSysID", "InsertDate", "InsertTime", "CancelTime", "ExecResult", "ClearingPartID", "SequenceNo", "BranchID", "reserve2", "MacAddress", "ExchangeInstID", "IPAddress", nullptr};
 	int pExchangeOptionSelfCloseField_Volume = 0;
 	int pExchangeOptionSelfCloseField_RequestID = 0;
 	char *pExchangeOptionSelfCloseField_BusinessUnit = nullptr;
@@ -10416,7 +11041,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOpt
 	char *pExchangeOptionSelfCloseField_ExchangeID = nullptr;
 	char *pExchangeOptionSelfCloseField_ParticipantID = nullptr;
 	char *pExchangeOptionSelfCloseField_ClientID = nullptr;
-	char *pExchangeOptionSelfCloseField_ExchangeInstID = nullptr;
+	char *pExchangeOptionSelfCloseField_reserve1 = nullptr;
 	char *pExchangeOptionSelfCloseField_TraderID = nullptr;
 	int pExchangeOptionSelfCloseField_InstallID = 0;
 	char pExchangeOptionSelfCloseField_OrderSubmitStatus = 0;
@@ -10431,9 +11056,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOpt
 	char *pExchangeOptionSelfCloseField_ClearingPartID = nullptr;
 	int pExchangeOptionSelfCloseField_SequenceNo = 0;
 	char *pExchangeOptionSelfCloseField_BranchID = nullptr;
-	char *pExchangeOptionSelfCloseField_IPAddress = nullptr;
+	char *pExchangeOptionSelfCloseField_reserve2 = nullptr;
 	char *pExchangeOptionSelfCloseField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOptionSelfCloseField, "|iiyccyyyyyyiciyiyyyycyiyyy")
+	char *pExchangeOptionSelfCloseField_ExchangeInstID = nullptr;
+	char *pExchangeOptionSelfCloseField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOptionSelfCloseField, "|iiyccyyyyyyiciyiyyyycyiyyyyy")
 		, &pExchangeOptionSelfCloseField_Volume
 		, &pExchangeOptionSelfCloseField_RequestID
 		, &pExchangeOptionSelfCloseField_BusinessUnit
@@ -10443,7 +11070,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOpt
 		, &pExchangeOptionSelfCloseField_ExchangeID
 		, &pExchangeOptionSelfCloseField_ParticipantID
 		, &pExchangeOptionSelfCloseField_ClientID
-		, &pExchangeOptionSelfCloseField_ExchangeInstID
+		, &pExchangeOptionSelfCloseField_reserve1
 		, &pExchangeOptionSelfCloseField_TraderID
 		, &pExchangeOptionSelfCloseField_InstallID
 		, &pExchangeOptionSelfCloseField_OrderSubmitStatus
@@ -10458,8 +11085,10 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOpt
 		, &pExchangeOptionSelfCloseField_ClearingPartID
 		, &pExchangeOptionSelfCloseField_SequenceNo
 		, &pExchangeOptionSelfCloseField_BranchID
-		, &pExchangeOptionSelfCloseField_IPAddress
+		, &pExchangeOptionSelfCloseField_reserve2
 		, &pExchangeOptionSelfCloseField_MacAddress
+		, &pExchangeOptionSelfCloseField_ExchangeInstID
+		, &pExchangeOptionSelfCloseField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		pExchangeOptionSelfCloseField->Volume = pExchangeOptionSelfCloseField_Volume;
 		pExchangeOptionSelfCloseField->RequestID = pExchangeOptionSelfCloseField_RequestID;
@@ -10470,7 +11099,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOpt
 		if(pExchangeOptionSelfCloseField_ExchangeID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->ExchangeID, pExchangeOptionSelfCloseField_ExchangeID); pExchangeOptionSelfCloseField_ExchangeID = nullptr; }
 		if(pExchangeOptionSelfCloseField_ParticipantID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->ParticipantID, pExchangeOptionSelfCloseField_ParticipantID); pExchangeOptionSelfCloseField_ParticipantID = nullptr; }
 		if(pExchangeOptionSelfCloseField_ClientID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->ClientID, pExchangeOptionSelfCloseField_ClientID); pExchangeOptionSelfCloseField_ClientID = nullptr; }
-		if(pExchangeOptionSelfCloseField_ExchangeInstID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->ExchangeInstID, pExchangeOptionSelfCloseField_ExchangeInstID); pExchangeOptionSelfCloseField_ExchangeInstID = nullptr; }
+		if(pExchangeOptionSelfCloseField_reserve1 != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->reserve1, pExchangeOptionSelfCloseField_reserve1); pExchangeOptionSelfCloseField_reserve1 = nullptr; }
 		if(pExchangeOptionSelfCloseField_TraderID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->TraderID, pExchangeOptionSelfCloseField_TraderID); pExchangeOptionSelfCloseField_TraderID = nullptr; }
 		pExchangeOptionSelfCloseField->InstallID = pExchangeOptionSelfCloseField_InstallID;
 		pExchangeOptionSelfCloseField->OrderSubmitStatus = pExchangeOptionSelfCloseField_OrderSubmitStatus;
@@ -10485,14 +11114,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOpt
 		if(pExchangeOptionSelfCloseField_ClearingPartID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->ClearingPartID, pExchangeOptionSelfCloseField_ClearingPartID); pExchangeOptionSelfCloseField_ClearingPartID = nullptr; }
 		pExchangeOptionSelfCloseField->SequenceNo = pExchangeOptionSelfCloseField_SequenceNo;
 		if(pExchangeOptionSelfCloseField_BranchID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->BranchID, pExchangeOptionSelfCloseField_BranchID); pExchangeOptionSelfCloseField_BranchID = nullptr; }
-		if(pExchangeOptionSelfCloseField_IPAddress != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->IPAddress, pExchangeOptionSelfCloseField_IPAddress); pExchangeOptionSelfCloseField_IPAddress = nullptr; }
+		if(pExchangeOptionSelfCloseField_reserve2 != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->reserve2, pExchangeOptionSelfCloseField_reserve2); pExchangeOptionSelfCloseField_reserve2 = nullptr; }
 		if(pExchangeOptionSelfCloseField_MacAddress != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->MacAddress, pExchangeOptionSelfCloseField_MacAddress); pExchangeOptionSelfCloseField_MacAddress = nullptr; }
+		if(pExchangeOptionSelfCloseField_ExchangeInstID != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->ExchangeInstID, pExchangeOptionSelfCloseField_ExchangeInstID); pExchangeOptionSelfCloseField_ExchangeInstID = nullptr; }
+		if(pExchangeOptionSelfCloseField_IPAddress != nullptr){ strcpy_s(pExchangeOptionSelfCloseField->IPAddress, pExchangeOptionSelfCloseField_IPAddress); pExchangeOptionSelfCloseField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOptionSelfCloseField *pExchangeOptionSelfCloseField)
 {
 	if(pExchangeOptionSelfCloseField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:i,s:i,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:i,s:i,s:y,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y}"
 		, "Volume", pExchangeOptionSelfCloseField->Volume
 		, "RequestID", pExchangeOptionSelfCloseField->RequestID
 		, "BusinessUnit", pExchangeOptionSelfCloseField->BusinessUnit
@@ -10502,7 +11133,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOptionSelfCloseField *pExcha
 		, "ExchangeID", pExchangeOptionSelfCloseField->ExchangeID
 		, "ParticipantID", pExchangeOptionSelfCloseField->ParticipantID
 		, "ClientID", pExchangeOptionSelfCloseField->ClientID
-		, "ExchangeInstID", pExchangeOptionSelfCloseField->ExchangeInstID
+		, "reserve1", pExchangeOptionSelfCloseField->reserve1
 		, "TraderID", pExchangeOptionSelfCloseField->TraderID
 		, "InstallID", pExchangeOptionSelfCloseField->InstallID
 		, "OrderSubmitStatus", pExchangeOptionSelfCloseField->OrderSubmitStatus
@@ -10517,8 +11148,10 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOptionSelfCloseField *pExcha
 		, "ClearingPartID", pExchangeOptionSelfCloseField->ClearingPartID
 		, "SequenceNo", pExchangeOptionSelfCloseField->SequenceNo
 		, "BranchID", pExchangeOptionSelfCloseField->BranchID
-		, "IPAddress", pExchangeOptionSelfCloseField->IPAddress
+		, "reserve2", pExchangeOptionSelfCloseField->reserve2
 		, "MacAddress", pExchangeOptionSelfCloseField->MacAddress
+		, "ExchangeInstID", pExchangeOptionSelfCloseField->ExchangeInstID
+		, "IPAddress", pExchangeOptionSelfCloseField->IPAddress
 		);
 }
 
@@ -10550,7 +11183,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionSelfCloseActionField *pQryO
 
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseActionField *pExchangeOptionSelfCloseActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "OptionSelfCloseSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "OptionSelfCloseLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "BranchID", "IPAddress", "MacAddress", "ExchangeInstID", "OptSelfCloseFlag", nullptr};
+	static char *kwlist[] = {"ExchangeID", "OptionSelfCloseSysID", "ActionFlag", "ActionDate", "ActionTime", "TraderID", "InstallID", "OptionSelfCloseLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "BranchID", "reserve1", "MacAddress", "reserve2", "OptSelfCloseFlag", "IPAddress", "ExchangeInstID", nullptr};
 	char *pExchangeOptionSelfCloseActionField_ExchangeID = nullptr;
 	char *pExchangeOptionSelfCloseActionField_OptionSelfCloseSysID = nullptr;
 	char pExchangeOptionSelfCloseActionField_ActionFlag = 0;
@@ -10566,11 +11199,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseActionField *pExcha
 	char pExchangeOptionSelfCloseActionField_OrderActionStatus = 0;
 	char *pExchangeOptionSelfCloseActionField_UserID = nullptr;
 	char *pExchangeOptionSelfCloseActionField_BranchID = nullptr;
-	char *pExchangeOptionSelfCloseActionField_IPAddress = nullptr;
+	char *pExchangeOptionSelfCloseActionField_reserve1 = nullptr;
 	char *pExchangeOptionSelfCloseActionField_MacAddress = nullptr;
-	char *pExchangeOptionSelfCloseActionField_ExchangeInstID = nullptr;
+	char *pExchangeOptionSelfCloseActionField_reserve2 = nullptr;
 	char pExchangeOptionSelfCloseActionField_OptSelfCloseFlag = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOptionSelfCloseActionField, "|yycyyyiyyyyycyyyyyc")
+	char *pExchangeOptionSelfCloseActionField_IPAddress = nullptr;
+	char *pExchangeOptionSelfCloseActionField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pExchangeOptionSelfCloseActionField, "|yycyyyiyyyyycyyyyycyy")
 		, &pExchangeOptionSelfCloseActionField_ExchangeID
 		, &pExchangeOptionSelfCloseActionField_OptionSelfCloseSysID
 		, &pExchangeOptionSelfCloseActionField_ActionFlag
@@ -10586,10 +11221,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseActionField *pExcha
 		, &pExchangeOptionSelfCloseActionField_OrderActionStatus
 		, &pExchangeOptionSelfCloseActionField_UserID
 		, &pExchangeOptionSelfCloseActionField_BranchID
-		, &pExchangeOptionSelfCloseActionField_IPAddress
+		, &pExchangeOptionSelfCloseActionField_reserve1
 		, &pExchangeOptionSelfCloseActionField_MacAddress
-		, &pExchangeOptionSelfCloseActionField_ExchangeInstID
+		, &pExchangeOptionSelfCloseActionField_reserve2
 		, &pExchangeOptionSelfCloseActionField_OptSelfCloseFlag
+		, &pExchangeOptionSelfCloseActionField_IPAddress
+		, &pExchangeOptionSelfCloseActionField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pExchangeOptionSelfCloseActionField_ExchangeID != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->ExchangeID, pExchangeOptionSelfCloseActionField_ExchangeID); pExchangeOptionSelfCloseActionField_ExchangeID = nullptr; }
 		if(pExchangeOptionSelfCloseActionField_OptionSelfCloseSysID != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->OptionSelfCloseSysID, pExchangeOptionSelfCloseActionField_OptionSelfCloseSysID); pExchangeOptionSelfCloseActionField_OptionSelfCloseSysID = nullptr; }
@@ -10606,16 +11243,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseActionField *pExcha
 		pExchangeOptionSelfCloseActionField->OrderActionStatus = pExchangeOptionSelfCloseActionField_OrderActionStatus;
 		if(pExchangeOptionSelfCloseActionField_UserID != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->UserID, pExchangeOptionSelfCloseActionField_UserID); pExchangeOptionSelfCloseActionField_UserID = nullptr; }
 		if(pExchangeOptionSelfCloseActionField_BranchID != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->BranchID, pExchangeOptionSelfCloseActionField_BranchID); pExchangeOptionSelfCloseActionField_BranchID = nullptr; }
-		if(pExchangeOptionSelfCloseActionField_IPAddress != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->IPAddress, pExchangeOptionSelfCloseActionField_IPAddress); pExchangeOptionSelfCloseActionField_IPAddress = nullptr; }
+		if(pExchangeOptionSelfCloseActionField_reserve1 != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->reserve1, pExchangeOptionSelfCloseActionField_reserve1); pExchangeOptionSelfCloseActionField_reserve1 = nullptr; }
 		if(pExchangeOptionSelfCloseActionField_MacAddress != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->MacAddress, pExchangeOptionSelfCloseActionField_MacAddress); pExchangeOptionSelfCloseActionField_MacAddress = nullptr; }
-		if(pExchangeOptionSelfCloseActionField_ExchangeInstID != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->ExchangeInstID, pExchangeOptionSelfCloseActionField_ExchangeInstID); pExchangeOptionSelfCloseActionField_ExchangeInstID = nullptr; }
+		if(pExchangeOptionSelfCloseActionField_reserve2 != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->reserve2, pExchangeOptionSelfCloseActionField_reserve2); pExchangeOptionSelfCloseActionField_reserve2 = nullptr; }
 		pExchangeOptionSelfCloseActionField->OptSelfCloseFlag = pExchangeOptionSelfCloseActionField_OptSelfCloseFlag;
+		if(pExchangeOptionSelfCloseActionField_IPAddress != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->IPAddress, pExchangeOptionSelfCloseActionField_IPAddress); pExchangeOptionSelfCloseActionField_IPAddress = nullptr; }
+		if(pExchangeOptionSelfCloseActionField_ExchangeInstID != nullptr){ strcpy_s(pExchangeOptionSelfCloseActionField->ExchangeInstID, pExchangeOptionSelfCloseActionField_ExchangeInstID); pExchangeOptionSelfCloseActionField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOptionSelfCloseActionField *pExchangeOptionSelfCloseActionField)
 {
 	if(pExchangeOptionSelfCloseActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:c}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y}"
 		, "ExchangeID", pExchangeOptionSelfCloseActionField->ExchangeID
 		, "OptionSelfCloseSysID", pExchangeOptionSelfCloseActionField->OptionSelfCloseSysID
 		, "ActionFlag", pExchangeOptionSelfCloseActionField->ActionFlag
@@ -10631,16 +11270,18 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOptionSelfCloseActionField *
 		, "OrderActionStatus", pExchangeOptionSelfCloseActionField->OrderActionStatus
 		, "UserID", pExchangeOptionSelfCloseActionField->UserID
 		, "BranchID", pExchangeOptionSelfCloseActionField->BranchID
-		, "IPAddress", pExchangeOptionSelfCloseActionField->IPAddress
+		, "reserve1", pExchangeOptionSelfCloseActionField->reserve1
 		, "MacAddress", pExchangeOptionSelfCloseActionField->MacAddress
-		, "ExchangeInstID", pExchangeOptionSelfCloseActionField->ExchangeInstID
+		, "reserve2", pExchangeOptionSelfCloseActionField->reserve2
 		, "OptSelfCloseFlag", pExchangeOptionSelfCloseActionField->OptSelfCloseFlag
+		, "IPAddress", pExchangeOptionSelfCloseActionField->IPAddress
+		, "ExchangeInstID", pExchangeOptionSelfCloseActionField->ExchangeInstID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapField *pSyncDelaySwapField, PyObject *dict)
 {
-	static char *kwlist[] = {"DelaySwapSeqNo", "BrokerID", "InvestorID", "FromCurrencyID", "FromAmount", "FromFrozenSwap", "FromRemainSwap", "ToCurrencyID", "ToAmount", nullptr};
+	static char *kwlist[] = {"DelaySwapSeqNo", "BrokerID", "InvestorID", "FromCurrencyID", "FromAmount", "FromFrozenSwap", "FromRemainSwap", "ToCurrencyID", "ToAmount", "IsManualSwap", "IsAllRemainSetZero", nullptr};
 	char *pSyncDelaySwapField_DelaySwapSeqNo = nullptr;
 	char *pSyncDelaySwapField_BrokerID = nullptr;
 	char *pSyncDelaySwapField_InvestorID = nullptr;
@@ -10650,7 +11291,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapField *pSyncDelaySwapField, P
 	double pSyncDelaySwapField_FromRemainSwap = 0.0;
 	char *pSyncDelaySwapField_ToCurrencyID = nullptr;
 	double pSyncDelaySwapField_ToAmount = 0.0;
-	PyCTP_PyDict_FromStruct_BEGIN(pSyncDelaySwapField, "|yyyydddyd")
+	int pSyncDelaySwapField_IsManualSwap = 0;
+	int pSyncDelaySwapField_IsAllRemainSetZero = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDelaySwapField, "|yyyydddydii")
 		, &pSyncDelaySwapField_DelaySwapSeqNo
 		, &pSyncDelaySwapField_BrokerID
 		, &pSyncDelaySwapField_InvestorID
@@ -10660,6 +11303,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapField *pSyncDelaySwapField, P
 		, &pSyncDelaySwapField_FromRemainSwap
 		, &pSyncDelaySwapField_ToCurrencyID
 		, &pSyncDelaySwapField_ToAmount
+		, &pSyncDelaySwapField_IsManualSwap
+		, &pSyncDelaySwapField_IsAllRemainSetZero
 	PyCTP_PyDict_FromStruct_END
 		if(pSyncDelaySwapField_DelaySwapSeqNo != nullptr){ strcpy_s(pSyncDelaySwapField->DelaySwapSeqNo, pSyncDelaySwapField_DelaySwapSeqNo); pSyncDelaySwapField_DelaySwapSeqNo = nullptr; }
 		if(pSyncDelaySwapField_BrokerID != nullptr){ strcpy_s(pSyncDelaySwapField->BrokerID, pSyncDelaySwapField_BrokerID); pSyncDelaySwapField_BrokerID = nullptr; }
@@ -10670,12 +11315,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapField *pSyncDelaySwapField, P
 		pSyncDelaySwapField->FromRemainSwap = pSyncDelaySwapField_FromRemainSwap;
 		if(pSyncDelaySwapField_ToCurrencyID != nullptr){ strcpy_s(pSyncDelaySwapField->ToCurrencyID, pSyncDelaySwapField_ToCurrencyID); pSyncDelaySwapField_ToCurrencyID = nullptr; }
 		pSyncDelaySwapField->ToAmount = pSyncDelaySwapField_ToAmount;
+		pSyncDelaySwapField->IsManualSwap = pSyncDelaySwapField_IsManualSwap;
+		pSyncDelaySwapField->IsAllRemainSetZero = pSyncDelaySwapField_IsAllRemainSetZero;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDelaySwapField *pSyncDelaySwapField)
 {
 	if(pSyncDelaySwapField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:y,s:d}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:y,s:d,s:i,s:i}"
 		, "DelaySwapSeqNo", pSyncDelaySwapField->DelaySwapSeqNo
 		, "BrokerID", pSyncDelaySwapField->BrokerID
 		, "InvestorID", pSyncDelaySwapField->InvestorID
@@ -10685,6 +11332,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDelaySwapField *pSyncDelaySwapFi
 		, "FromRemainSwap", pSyncDelaySwapField->FromRemainSwap
 		, "ToCurrencyID", pSyncDelaySwapField->ToCurrencyID
 		, "ToAmount", pSyncDelaySwapField->ToAmount
+		, "IsManualSwap", pSyncDelaySwapField->IsManualSwap
+		, "IsAllRemainSetZero", pSyncDelaySwapField->IsAllRemainSetZero
 		);
 }
 
@@ -10852,11 +11501,11 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSecAgentTradeInfoField *pSecAgentTra
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataField *pMarketDataField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "InstrumentID", "ExchangeID", "ExchangeInstID", "LastPrice", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "OpenPrice", "HighestPrice", "LowestPrice", "Volume", "Turnover", "OpenInterest", "ClosePrice", "SettlementPrice", "UpperLimitPrice", "LowerLimitPrice", "PreDelta", "CurrDelta", "UpdateTime", "UpdateMillisec", "ActionDay", nullptr};
+	static char *kwlist[] = {"TradingDay", "reserve1", "ExchangeID", "reserve2", "LastPrice", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "OpenPrice", "HighestPrice", "LowestPrice", "Volume", "Turnover", "OpenInterest", "ClosePrice", "SettlementPrice", "UpperLimitPrice", "LowerLimitPrice", "PreDelta", "CurrDelta", "UpdateTime", "UpdateMillisec", "ActionDay", "InstrumentID", "ExchangeInstID", nullptr};
 	char *pMarketDataField_TradingDay = nullptr;
-	char *pMarketDataField_InstrumentID = nullptr;
+	char *pMarketDataField_reserve1 = nullptr;
 	char *pMarketDataField_ExchangeID = nullptr;
-	char *pMarketDataField_ExchangeInstID = nullptr;
+	char *pMarketDataField_reserve2 = nullptr;
 	double pMarketDataField_LastPrice = 0.0;
 	double pMarketDataField_PreSettlementPrice = 0.0;
 	double pMarketDataField_PreClosePrice = 0.0;
@@ -10876,11 +11525,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataField *pMarketDataField, PyObjec
 	char *pMarketDataField_UpdateTime = nullptr;
 	int pMarketDataField_UpdateMillisec = 0;
 	char *pMarketDataField_ActionDay = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pMarketDataField, "|yyyydddddddiddddddddyiy")
+	char *pMarketDataField_InstrumentID = nullptr;
+	char *pMarketDataField_ExchangeInstID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pMarketDataField, "|yyyydddddddiddddddddyiyyy")
 		, &pMarketDataField_TradingDay
-		, &pMarketDataField_InstrumentID
+		, &pMarketDataField_reserve1
 		, &pMarketDataField_ExchangeID
-		, &pMarketDataField_ExchangeInstID
+		, &pMarketDataField_reserve2
 		, &pMarketDataField_LastPrice
 		, &pMarketDataField_PreSettlementPrice
 		, &pMarketDataField_PreClosePrice
@@ -10900,11 +11551,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataField *pMarketDataField, PyObjec
 		, &pMarketDataField_UpdateTime
 		, &pMarketDataField_UpdateMillisec
 		, &pMarketDataField_ActionDay
+		, &pMarketDataField_InstrumentID
+		, &pMarketDataField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pMarketDataField_TradingDay != nullptr){ strcpy_s(pMarketDataField->TradingDay, pMarketDataField_TradingDay); pMarketDataField_TradingDay = nullptr; }
-		if(pMarketDataField_InstrumentID != nullptr){ strcpy_s(pMarketDataField->InstrumentID, pMarketDataField_InstrumentID); pMarketDataField_InstrumentID = nullptr; }
+		if(pMarketDataField_reserve1 != nullptr){ strcpy_s(pMarketDataField->reserve1, pMarketDataField_reserve1); pMarketDataField_reserve1 = nullptr; }
 		if(pMarketDataField_ExchangeID != nullptr){ strcpy_s(pMarketDataField->ExchangeID, pMarketDataField_ExchangeID); pMarketDataField_ExchangeID = nullptr; }
-		if(pMarketDataField_ExchangeInstID != nullptr){ strcpy_s(pMarketDataField->ExchangeInstID, pMarketDataField_ExchangeInstID); pMarketDataField_ExchangeInstID = nullptr; }
+		if(pMarketDataField_reserve2 != nullptr){ strcpy_s(pMarketDataField->reserve2, pMarketDataField_reserve2); pMarketDataField_reserve2 = nullptr; }
 		pMarketDataField->LastPrice = pMarketDataField_LastPrice;
 		pMarketDataField->PreSettlementPrice = pMarketDataField_PreSettlementPrice;
 		pMarketDataField->PreClosePrice = pMarketDataField_PreClosePrice;
@@ -10924,16 +11577,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataField *pMarketDataField, PyObjec
 		if(pMarketDataField_UpdateTime != nullptr){ strcpy_s(pMarketDataField->UpdateTime, pMarketDataField_UpdateTime); pMarketDataField_UpdateTime = nullptr; }
 		pMarketDataField->UpdateMillisec = pMarketDataField_UpdateMillisec;
 		if(pMarketDataField_ActionDay != nullptr){ strcpy_s(pMarketDataField->ActionDay, pMarketDataField_ActionDay); pMarketDataField_ActionDay = nullptr; }
+		if(pMarketDataField_InstrumentID != nullptr){ strcpy_s(pMarketDataField->InstrumentID, pMarketDataField_InstrumentID); pMarketDataField_InstrumentID = nullptr; }
+		if(pMarketDataField_ExchangeInstID != nullptr){ strcpy_s(pMarketDataField->ExchangeInstID, pMarketDataField_ExchangeInstID); pMarketDataField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataField *pMarketDataField)
 {
 	if(pMarketDataField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:y,s:y,s:y}"
 		, "TradingDay", pMarketDataField->TradingDay
-		, "InstrumentID", pMarketDataField->InstrumentID
+		, "reserve1", pMarketDataField->reserve1
 		, "ExchangeID", pMarketDataField->ExchangeID
-		, "ExchangeInstID", pMarketDataField->ExchangeInstID
+		, "reserve2", pMarketDataField->reserve2
 		, "LastPrice", pMarketDataField->LastPrice
 		, "PreSettlementPrice", pMarketDataField->PreSettlementPrice
 		, "PreClosePrice", pMarketDataField->PreClosePrice
@@ -10953,6 +11608,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataField *pMarketDataField)
 		, "UpdateTime", pMarketDataField->UpdateTime
 		, "UpdateMillisec", pMarketDataField->UpdateMillisec
 		, "ActionDay", pMarketDataField->ActionDay
+		, "InstrumentID", pMarketDataField->InstrumentID
+		, "ExchangeInstID", pMarketDataField->ExchangeInstID
 		);
 }
 
@@ -11218,31 +11875,35 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataAsk45Field *pMarketDataAsk
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataUpdateTimeField *pMarketDataUpdateTimeField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "UpdateTime", "UpdateMillisec", "ActionDay", nullptr};
-	char *pMarketDataUpdateTimeField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "UpdateTime", "UpdateMillisec", "ActionDay", "InstrumentID", nullptr};
+	char *pMarketDataUpdateTimeField_reserve1 = nullptr;
 	char *pMarketDataUpdateTimeField_UpdateTime = nullptr;
 	int pMarketDataUpdateTimeField_UpdateMillisec = 0;
 	char *pMarketDataUpdateTimeField_ActionDay = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pMarketDataUpdateTimeField, "|yyiy")
-		, &pMarketDataUpdateTimeField_InstrumentID
+	char *pMarketDataUpdateTimeField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pMarketDataUpdateTimeField, "|yyiyy")
+		, &pMarketDataUpdateTimeField_reserve1
 		, &pMarketDataUpdateTimeField_UpdateTime
 		, &pMarketDataUpdateTimeField_UpdateMillisec
 		, &pMarketDataUpdateTimeField_ActionDay
+		, &pMarketDataUpdateTimeField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pMarketDataUpdateTimeField_InstrumentID != nullptr){ strcpy_s(pMarketDataUpdateTimeField->InstrumentID, pMarketDataUpdateTimeField_InstrumentID); pMarketDataUpdateTimeField_InstrumentID = nullptr; }
+		if(pMarketDataUpdateTimeField_reserve1 != nullptr){ strcpy_s(pMarketDataUpdateTimeField->reserve1, pMarketDataUpdateTimeField_reserve1); pMarketDataUpdateTimeField_reserve1 = nullptr; }
 		if(pMarketDataUpdateTimeField_UpdateTime != nullptr){ strcpy_s(pMarketDataUpdateTimeField->UpdateTime, pMarketDataUpdateTimeField_UpdateTime); pMarketDataUpdateTimeField_UpdateTime = nullptr; }
 		pMarketDataUpdateTimeField->UpdateMillisec = pMarketDataUpdateTimeField_UpdateMillisec;
 		if(pMarketDataUpdateTimeField_ActionDay != nullptr){ strcpy_s(pMarketDataUpdateTimeField->ActionDay, pMarketDataUpdateTimeField_ActionDay); pMarketDataUpdateTimeField_ActionDay = nullptr; }
+		if(pMarketDataUpdateTimeField_InstrumentID != nullptr){ strcpy_s(pMarketDataUpdateTimeField->InstrumentID, pMarketDataUpdateTimeField_InstrumentID); pMarketDataUpdateTimeField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataUpdateTimeField *pMarketDataUpdateTimeField)
 {
 	if(pMarketDataUpdateTimeField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y}"
-		, "InstrumentID", pMarketDataUpdateTimeField->InstrumentID
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:y}"
+		, "reserve1", pMarketDataUpdateTimeField->reserve1
 		, "UpdateTime", pMarketDataUpdateTimeField->UpdateTime
 		, "UpdateMillisec", pMarketDataUpdateTimeField->UpdateMillisec
 		, "ActionDay", pMarketDataUpdateTimeField->ActionDay
+		, "InstrumentID", pMarketDataUpdateTimeField->InstrumentID
 		);
 }
 
@@ -11266,86 +11927,102 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataExchangeField *pMarketData
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSpecificInstrumentField *pSpecificInstrumentField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", nullptr};
+	static char *kwlist[] = {"reserve1", "InstrumentID", nullptr};
+	char *pSpecificInstrumentField_reserve1 = nullptr;
 	char *pSpecificInstrumentField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pSpecificInstrumentField, "|y")
+	PyCTP_PyDict_FromStruct_BEGIN(pSpecificInstrumentField, "|yy")
+		, &pSpecificInstrumentField_reserve1
 		, &pSpecificInstrumentField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
+		if(pSpecificInstrumentField_reserve1 != nullptr){ strcpy_s(pSpecificInstrumentField->reserve1, pSpecificInstrumentField_reserve1); pSpecificInstrumentField_reserve1 = nullptr; }
 		if(pSpecificInstrumentField_InstrumentID != nullptr){ strcpy_s(pSpecificInstrumentField->InstrumentID, pSpecificInstrumentField_InstrumentID); pSpecificInstrumentField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSpecificInstrumentField *pSpecificInstrumentField)
 {
 	if(pSpecificInstrumentField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y}"
+	return Py_BuildValue("{s:y,s:y}"
+		, "reserve1", pSpecificInstrumentField->reserve1
 		, "InstrumentID", pSpecificInstrumentField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentStatusField *pInstrumentStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ExchangeInstID", "SettlementGroupID", "InstrumentID", "InstrumentStatus", "TradingSegmentSN", "EnterTime", "EnterReason", nullptr};
+	static char *kwlist[] = {"ExchangeID", "reserve1", "SettlementGroupID", "reserve2", "InstrumentStatus", "TradingSegmentSN", "EnterTime", "EnterReason", "ExchangeInstID", "InstrumentID", nullptr};
 	char *pInstrumentStatusField_ExchangeID = nullptr;
-	char *pInstrumentStatusField_ExchangeInstID = nullptr;
+	char *pInstrumentStatusField_reserve1 = nullptr;
 	char *pInstrumentStatusField_SettlementGroupID = nullptr;
-	char *pInstrumentStatusField_InstrumentID = nullptr;
+	char *pInstrumentStatusField_reserve2 = nullptr;
 	char pInstrumentStatusField_InstrumentStatus = 0;
 	int pInstrumentStatusField_TradingSegmentSN = 0;
 	char *pInstrumentStatusField_EnterTime = nullptr;
 	char pInstrumentStatusField_EnterReason = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentStatusField, "|yyyyciyc")
+	char *pInstrumentStatusField_ExchangeInstID = nullptr;
+	char *pInstrumentStatusField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentStatusField, "|yyyyciycyy")
 		, &pInstrumentStatusField_ExchangeID
-		, &pInstrumentStatusField_ExchangeInstID
+		, &pInstrumentStatusField_reserve1
 		, &pInstrumentStatusField_SettlementGroupID
-		, &pInstrumentStatusField_InstrumentID
+		, &pInstrumentStatusField_reserve2
 		, &pInstrumentStatusField_InstrumentStatus
 		, &pInstrumentStatusField_TradingSegmentSN
 		, &pInstrumentStatusField_EnterTime
 		, &pInstrumentStatusField_EnterReason
+		, &pInstrumentStatusField_ExchangeInstID
+		, &pInstrumentStatusField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pInstrumentStatusField_ExchangeID != nullptr){ strcpy_s(pInstrumentStatusField->ExchangeID, pInstrumentStatusField_ExchangeID); pInstrumentStatusField_ExchangeID = nullptr; }
-		if(pInstrumentStatusField_ExchangeInstID != nullptr){ strcpy_s(pInstrumentStatusField->ExchangeInstID, pInstrumentStatusField_ExchangeInstID); pInstrumentStatusField_ExchangeInstID = nullptr; }
+		if(pInstrumentStatusField_reserve1 != nullptr){ strcpy_s(pInstrumentStatusField->reserve1, pInstrumentStatusField_reserve1); pInstrumentStatusField_reserve1 = nullptr; }
 		if(pInstrumentStatusField_SettlementGroupID != nullptr){ strcpy_s(pInstrumentStatusField->SettlementGroupID, pInstrumentStatusField_SettlementGroupID); pInstrumentStatusField_SettlementGroupID = nullptr; }
-		if(pInstrumentStatusField_InstrumentID != nullptr){ strcpy_s(pInstrumentStatusField->InstrumentID, pInstrumentStatusField_InstrumentID); pInstrumentStatusField_InstrumentID = nullptr; }
+		if(pInstrumentStatusField_reserve2 != nullptr){ strcpy_s(pInstrumentStatusField->reserve2, pInstrumentStatusField_reserve2); pInstrumentStatusField_reserve2 = nullptr; }
 		pInstrumentStatusField->InstrumentStatus = pInstrumentStatusField_InstrumentStatus;
 		pInstrumentStatusField->TradingSegmentSN = pInstrumentStatusField_TradingSegmentSN;
 		if(pInstrumentStatusField_EnterTime != nullptr){ strcpy_s(pInstrumentStatusField->EnterTime, pInstrumentStatusField_EnterTime); pInstrumentStatusField_EnterTime = nullptr; }
 		pInstrumentStatusField->EnterReason = pInstrumentStatusField_EnterReason;
+		if(pInstrumentStatusField_ExchangeInstID != nullptr){ strcpy_s(pInstrumentStatusField->ExchangeInstID, pInstrumentStatusField_ExchangeInstID); pInstrumentStatusField_ExchangeInstID = nullptr; }
+		if(pInstrumentStatusField_InstrumentID != nullptr){ strcpy_s(pInstrumentStatusField->InstrumentID, pInstrumentStatusField_InstrumentID); pInstrumentStatusField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentStatusField *pInstrumentStatusField)
 {
 	if(pInstrumentStatusField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:c,s:i,s:y,s:c}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:c,s:i,s:y,s:c,s:y,s:y}"
 		, "ExchangeID", pInstrumentStatusField->ExchangeID
-		, "ExchangeInstID", pInstrumentStatusField->ExchangeInstID
+		, "reserve1", pInstrumentStatusField->reserve1
 		, "SettlementGroupID", pInstrumentStatusField->SettlementGroupID
-		, "InstrumentID", pInstrumentStatusField->InstrumentID
+		, "reserve2", pInstrumentStatusField->reserve2
 		, "InstrumentStatus", pInstrumentStatusField->InstrumentStatus
 		, "TradingSegmentSN", pInstrumentStatusField->TradingSegmentSN
 		, "EnterTime", pInstrumentStatusField->EnterTime
 		, "EnterReason", pInstrumentStatusField->EnterReason
+		, "ExchangeInstID", pInstrumentStatusField->ExchangeInstID
+		, "InstrumentID", pInstrumentStatusField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentStatusField *pQryInstrumentStatusField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "ExchangeInstID", nullptr};
+	static char *kwlist[] = {"ExchangeID", "reserve1", "ExchangeInstID", nullptr};
 	char *pQryInstrumentStatusField_ExchangeID = nullptr;
+	char *pQryInstrumentStatusField_reserve1 = nullptr;
 	char *pQryInstrumentStatusField_ExchangeInstID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentStatusField, "|yy")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInstrumentStatusField, "|yyy")
 		, &pQryInstrumentStatusField_ExchangeID
+		, &pQryInstrumentStatusField_reserve1
 		, &pQryInstrumentStatusField_ExchangeInstID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInstrumentStatusField_ExchangeID != nullptr){ strcpy_s(pQryInstrumentStatusField->ExchangeID, pQryInstrumentStatusField_ExchangeID); pQryInstrumentStatusField_ExchangeID = nullptr; }
+		if(pQryInstrumentStatusField_reserve1 != nullptr){ strcpy_s(pQryInstrumentStatusField->reserve1, pQryInstrumentStatusField_reserve1); pQryInstrumentStatusField_reserve1 = nullptr; }
 		if(pQryInstrumentStatusField_ExchangeInstID != nullptr){ strcpy_s(pQryInstrumentStatusField->ExchangeInstID, pQryInstrumentStatusField_ExchangeInstID); pQryInstrumentStatusField_ExchangeInstID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentStatusField *pQryInstrumentStatusField)
 {
 	if(pQryInstrumentStatusField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y}"
 		, "ExchangeID", pQryInstrumentStatusField->ExchangeID
+		, "reserve1", pQryInstrumentStatusField->reserve1
 		, "ExchangeInstID", pQryInstrumentStatusField->ExchangeInstID
 		);
 }
@@ -11498,42 +12175,46 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferBankField *pTransferBankFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionDetailField *pQryInvestorPositionDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryInvestorPositionDetailField_BrokerID = nullptr;
 	char *pQryInvestorPositionDetailField_InvestorID = nullptr;
-	char *pQryInvestorPositionDetailField_InstrumentID = nullptr;
+	char *pQryInvestorPositionDetailField_reserve1 = nullptr;
 	char *pQryInvestorPositionDetailField_ExchangeID = nullptr;
 	char *pQryInvestorPositionDetailField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorPositionDetailField, "|yyyyy")
+	char *pQryInvestorPositionDetailField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorPositionDetailField, "|yyyyyy")
 		, &pQryInvestorPositionDetailField_BrokerID
 		, &pQryInvestorPositionDetailField_InvestorID
-		, &pQryInvestorPositionDetailField_InstrumentID
+		, &pQryInvestorPositionDetailField_reserve1
 		, &pQryInvestorPositionDetailField_ExchangeID
 		, &pQryInvestorPositionDetailField_InvestUnitID
+		, &pQryInvestorPositionDetailField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInvestorPositionDetailField_BrokerID != nullptr){ strcpy_s(pQryInvestorPositionDetailField->BrokerID, pQryInvestorPositionDetailField_BrokerID); pQryInvestorPositionDetailField_BrokerID = nullptr; }
 		if(pQryInvestorPositionDetailField_InvestorID != nullptr){ strcpy_s(pQryInvestorPositionDetailField->InvestorID, pQryInvestorPositionDetailField_InvestorID); pQryInvestorPositionDetailField_InvestorID = nullptr; }
-		if(pQryInvestorPositionDetailField_InstrumentID != nullptr){ strcpy_s(pQryInvestorPositionDetailField->InstrumentID, pQryInvestorPositionDetailField_InstrumentID); pQryInvestorPositionDetailField_InstrumentID = nullptr; }
+		if(pQryInvestorPositionDetailField_reserve1 != nullptr){ strcpy_s(pQryInvestorPositionDetailField->reserve1, pQryInvestorPositionDetailField_reserve1); pQryInvestorPositionDetailField_reserve1 = nullptr; }
 		if(pQryInvestorPositionDetailField_ExchangeID != nullptr){ strcpy_s(pQryInvestorPositionDetailField->ExchangeID, pQryInvestorPositionDetailField_ExchangeID); pQryInvestorPositionDetailField_ExchangeID = nullptr; }
 		if(pQryInvestorPositionDetailField_InvestUnitID != nullptr){ strcpy_s(pQryInvestorPositionDetailField->InvestUnitID, pQryInvestorPositionDetailField_InvestUnitID); pQryInvestorPositionDetailField_InvestUnitID = nullptr; }
+		if(pQryInvestorPositionDetailField_InstrumentID != nullptr){ strcpy_s(pQryInvestorPositionDetailField->InstrumentID, pQryInvestorPositionDetailField_InstrumentID); pQryInvestorPositionDetailField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPositionDetailField *pQryInvestorPositionDetailField)
 {
 	if(pQryInvestorPositionDetailField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryInvestorPositionDetailField->BrokerID
 		, "InvestorID", pQryInvestorPositionDetailField->InvestorID
-		, "InstrumentID", pQryInvestorPositionDetailField->InstrumentID
+		, "reserve1", pQryInvestorPositionDetailField->reserve1
 		, "ExchangeID", pQryInvestorPositionDetailField->ExchangeID
 		, "InvestUnitID", pQryInvestorPositionDetailField->InvestUnitID
+		, "InstrumentID", pQryInvestorPositionDetailField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"InstrumentID", "BrokerID", "InvestorID", "HedgeFlag", "Direction", "OpenDate", "TradeID", "Volume", "OpenPrice", "TradingDay", "SettlementID", "TradeType", "CombInstrumentID", "ExchangeID", "CloseProfitByDate", "CloseProfitByTrade", "PositionProfitByDate", "PositionProfitByTrade", "Margin", "ExchMargin", "MarginRateByMoney", "MarginRateByVolume", "LastSettlementPrice", "SettlementPrice", "CloseVolume", "CloseAmount", "InvestUnitID", nullptr};
-	char *pInvestorPositionDetailField_InstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "BrokerID", "InvestorID", "HedgeFlag", "Direction", "OpenDate", "TradeID", "Volume", "OpenPrice", "TradingDay", "SettlementID", "TradeType", "reserve2", "ExchangeID", "CloseProfitByDate", "CloseProfitByTrade", "PositionProfitByDate", "PositionProfitByTrade", "Margin", "ExchMargin", "MarginRateByMoney", "MarginRateByVolume", "LastSettlementPrice", "SettlementPrice", "CloseVolume", "CloseAmount", "TimeFirstVolume", "InvestUnitID", "SpecPosiType", "InstrumentID", "CombInstrumentID", nullptr};
+	char *pInvestorPositionDetailField_reserve1 = nullptr;
 	char *pInvestorPositionDetailField_BrokerID = nullptr;
 	char *pInvestorPositionDetailField_InvestorID = nullptr;
 	char pInvestorPositionDetailField_HedgeFlag = 0;
@@ -11545,7 +12226,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPosi
 	char *pInvestorPositionDetailField_TradingDay = nullptr;
 	int pInvestorPositionDetailField_SettlementID = 0;
 	char pInvestorPositionDetailField_TradeType = 0;
-	char *pInvestorPositionDetailField_CombInstrumentID = nullptr;
+	char *pInvestorPositionDetailField_reserve2 = nullptr;
 	char *pInvestorPositionDetailField_ExchangeID = nullptr;
 	double pInvestorPositionDetailField_CloseProfitByDate = 0.0;
 	double pInvestorPositionDetailField_CloseProfitByTrade = 0.0;
@@ -11559,9 +12240,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPosi
 	double pInvestorPositionDetailField_SettlementPrice = 0.0;
 	int pInvestorPositionDetailField_CloseVolume = 0;
 	double pInvestorPositionDetailField_CloseAmount = 0.0;
+	int pInvestorPositionDetailField_TimeFirstVolume = 0;
 	char *pInvestorPositionDetailField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInvestorPositionDetailField, "|yyyccyyidyicyyddddddddddidy")
-		, &pInvestorPositionDetailField_InstrumentID
+	char pInvestorPositionDetailField_SpecPosiType = 0;
+	char *pInvestorPositionDetailField_InstrumentID = nullptr;
+	char *pInvestorPositionDetailField_CombInstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInvestorPositionDetailField, "|yyyccyyidyicyyddddddddddidiycyy")
+		, &pInvestorPositionDetailField_reserve1
 		, &pInvestorPositionDetailField_BrokerID
 		, &pInvestorPositionDetailField_InvestorID
 		, &pInvestorPositionDetailField_HedgeFlag
@@ -11573,7 +12258,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPosi
 		, &pInvestorPositionDetailField_TradingDay
 		, &pInvestorPositionDetailField_SettlementID
 		, &pInvestorPositionDetailField_TradeType
-		, &pInvestorPositionDetailField_CombInstrumentID
+		, &pInvestorPositionDetailField_reserve2
 		, &pInvestorPositionDetailField_ExchangeID
 		, &pInvestorPositionDetailField_CloseProfitByDate
 		, &pInvestorPositionDetailField_CloseProfitByTrade
@@ -11587,9 +12272,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPosi
 		, &pInvestorPositionDetailField_SettlementPrice
 		, &pInvestorPositionDetailField_CloseVolume
 		, &pInvestorPositionDetailField_CloseAmount
+		, &pInvestorPositionDetailField_TimeFirstVolume
 		, &pInvestorPositionDetailField_InvestUnitID
+		, &pInvestorPositionDetailField_SpecPosiType
+		, &pInvestorPositionDetailField_InstrumentID
+		, &pInvestorPositionDetailField_CombInstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pInvestorPositionDetailField_InstrumentID != nullptr){ strcpy_s(pInvestorPositionDetailField->InstrumentID, pInvestorPositionDetailField_InstrumentID); pInvestorPositionDetailField_InstrumentID = nullptr; }
+		if(pInvestorPositionDetailField_reserve1 != nullptr){ strcpy_s(pInvestorPositionDetailField->reserve1, pInvestorPositionDetailField_reserve1); pInvestorPositionDetailField_reserve1 = nullptr; }
 		if(pInvestorPositionDetailField_BrokerID != nullptr){ strcpy_s(pInvestorPositionDetailField->BrokerID, pInvestorPositionDetailField_BrokerID); pInvestorPositionDetailField_BrokerID = nullptr; }
 		if(pInvestorPositionDetailField_InvestorID != nullptr){ strcpy_s(pInvestorPositionDetailField->InvestorID, pInvestorPositionDetailField_InvestorID); pInvestorPositionDetailField_InvestorID = nullptr; }
 		pInvestorPositionDetailField->HedgeFlag = pInvestorPositionDetailField_HedgeFlag;
@@ -11601,7 +12290,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPosi
 		if(pInvestorPositionDetailField_TradingDay != nullptr){ strcpy_s(pInvestorPositionDetailField->TradingDay, pInvestorPositionDetailField_TradingDay); pInvestorPositionDetailField_TradingDay = nullptr; }
 		pInvestorPositionDetailField->SettlementID = pInvestorPositionDetailField_SettlementID;
 		pInvestorPositionDetailField->TradeType = pInvestorPositionDetailField_TradeType;
-		if(pInvestorPositionDetailField_CombInstrumentID != nullptr){ strcpy_s(pInvestorPositionDetailField->CombInstrumentID, pInvestorPositionDetailField_CombInstrumentID); pInvestorPositionDetailField_CombInstrumentID = nullptr; }
+		if(pInvestorPositionDetailField_reserve2 != nullptr){ strcpy_s(pInvestorPositionDetailField->reserve2, pInvestorPositionDetailField_reserve2); pInvestorPositionDetailField_reserve2 = nullptr; }
 		if(pInvestorPositionDetailField_ExchangeID != nullptr){ strcpy_s(pInvestorPositionDetailField->ExchangeID, pInvestorPositionDetailField_ExchangeID); pInvestorPositionDetailField_ExchangeID = nullptr; }
 		pInvestorPositionDetailField->CloseProfitByDate = pInvestorPositionDetailField_CloseProfitByDate;
 		pInvestorPositionDetailField->CloseProfitByTrade = pInvestorPositionDetailField_CloseProfitByTrade;
@@ -11615,14 +12304,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPosi
 		pInvestorPositionDetailField->SettlementPrice = pInvestorPositionDetailField_SettlementPrice;
 		pInvestorPositionDetailField->CloseVolume = pInvestorPositionDetailField_CloseVolume;
 		pInvestorPositionDetailField->CloseAmount = pInvestorPositionDetailField_CloseAmount;
+		pInvestorPositionDetailField->TimeFirstVolume = pInvestorPositionDetailField_TimeFirstVolume;
 		if(pInvestorPositionDetailField_InvestUnitID != nullptr){ strcpy_s(pInvestorPositionDetailField->InvestUnitID, pInvestorPositionDetailField_InvestUnitID); pInvestorPositionDetailField_InvestUnitID = nullptr; }
+		pInvestorPositionDetailField->SpecPosiType = pInvestorPositionDetailField_SpecPosiType;
+		if(pInvestorPositionDetailField_InstrumentID != nullptr){ strcpy_s(pInvestorPositionDetailField->InstrumentID, pInvestorPositionDetailField_InstrumentID); pInvestorPositionDetailField_InstrumentID = nullptr; }
+		if(pInvestorPositionDetailField_CombInstrumentID != nullptr){ strcpy_s(pInvestorPositionDetailField->CombInstrumentID, pInvestorPositionDetailField_CombInstrumentID); pInvestorPositionDetailField_CombInstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetailField)
 {
 	if(pInvestorPositionDetailField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:i,s:d,s:y,s:i,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:y}"
-		, "InstrumentID", pInvestorPositionDetailField->InstrumentID
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:i,s:d,s:y,s:i,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:i,s:y,s:c,s:y,s:y}"
+		, "reserve1", pInvestorPositionDetailField->reserve1
 		, "BrokerID", pInvestorPositionDetailField->BrokerID
 		, "InvestorID", pInvestorPositionDetailField->InvestorID
 		, "HedgeFlag", pInvestorPositionDetailField->HedgeFlag
@@ -11634,7 +12327,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionDetailField *pInvest
 		, "TradingDay", pInvestorPositionDetailField->TradingDay
 		, "SettlementID", pInvestorPositionDetailField->SettlementID
 		, "TradeType", pInvestorPositionDetailField->TradeType
-		, "CombInstrumentID", pInvestorPositionDetailField->CombInstrumentID
+		, "reserve2", pInvestorPositionDetailField->reserve2
 		, "ExchangeID", pInvestorPositionDetailField->ExchangeID
 		, "CloseProfitByDate", pInvestorPositionDetailField->CloseProfitByDate
 		, "CloseProfitByTrade", pInvestorPositionDetailField->CloseProfitByTrade
@@ -11648,7 +12341,11 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionDetailField *pInvest
 		, "SettlementPrice", pInvestorPositionDetailField->SettlementPrice
 		, "CloseVolume", pInvestorPositionDetailField->CloseVolume
 		, "CloseAmount", pInvestorPositionDetailField->CloseAmount
+		, "TimeFirstVolume", pInvestorPositionDetailField->TimeFirstVolume
 		, "InvestUnitID", pInvestorPositionDetailField->InvestUnitID
+		, "SpecPosiType", pInvestorPositionDetailField->SpecPosiType
+		, "InstrumentID", pInvestorPositionDetailField->InstrumentID
+		, "CombInstrumentID", pInvestorPositionDetailField->CombInstrumentID
 		);
 }
 
@@ -12040,26 +12737,34 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountPasswordUpdateField *p
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryCombinationLegField *pQryCombinationLegField, PyObject *dict)
 {
-	static char *kwlist[] = {"CombInstrumentID", "LegID", "LegInstrumentID", nullptr};
-	char *pQryCombinationLegField_CombInstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "LegID", "reserve2", "CombInstrumentID", "LegInstrumentID", nullptr};
+	char *pQryCombinationLegField_reserve1 = nullptr;
 	int pQryCombinationLegField_LegID = 0;
+	char *pQryCombinationLegField_reserve2 = nullptr;
+	char *pQryCombinationLegField_CombInstrumentID = nullptr;
 	char *pQryCombinationLegField_LegInstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryCombinationLegField, "|yiy")
-		, &pQryCombinationLegField_CombInstrumentID
+	PyCTP_PyDict_FromStruct_BEGIN(pQryCombinationLegField, "|yiyyy")
+		, &pQryCombinationLegField_reserve1
 		, &pQryCombinationLegField_LegID
+		, &pQryCombinationLegField_reserve2
+		, &pQryCombinationLegField_CombInstrumentID
 		, &pQryCombinationLegField_LegInstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pQryCombinationLegField_CombInstrumentID != nullptr){ strcpy_s(pQryCombinationLegField->CombInstrumentID, pQryCombinationLegField_CombInstrumentID); pQryCombinationLegField_CombInstrumentID = nullptr; }
+		if(pQryCombinationLegField_reserve1 != nullptr){ strcpy_s(pQryCombinationLegField->reserve1, pQryCombinationLegField_reserve1); pQryCombinationLegField_reserve1 = nullptr; }
 		pQryCombinationLegField->LegID = pQryCombinationLegField_LegID;
+		if(pQryCombinationLegField_reserve2 != nullptr){ strcpy_s(pQryCombinationLegField->reserve2, pQryCombinationLegField_reserve2); pQryCombinationLegField_reserve2 = nullptr; }
+		if(pQryCombinationLegField_CombInstrumentID != nullptr){ strcpy_s(pQryCombinationLegField->CombInstrumentID, pQryCombinationLegField_CombInstrumentID); pQryCombinationLegField_CombInstrumentID = nullptr; }
 		if(pQryCombinationLegField_LegInstrumentID != nullptr){ strcpy_s(pQryCombinationLegField->LegInstrumentID, pQryCombinationLegField_LegInstrumentID); pQryCombinationLegField_LegInstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombinationLegField *pQryCombinationLegField)
 {
 	if(pQryCombinationLegField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:i,s:y}"
-		, "CombInstrumentID", pQryCombinationLegField->CombInstrumentID
+	return Py_BuildValue("{s:y,s:i,s:y,s:y,s:y}"
+		, "reserve1", pQryCombinationLegField->reserve1
 		, "LegID", pQryCombinationLegField->LegID
+		, "reserve2", pQryCombinationLegField->reserve2
+		, "CombInstrumentID", pQryCombinationLegField->CombInstrumentID
 		, "LegInstrumentID", pQryCombinationLegField->LegInstrumentID
 		);
 }
@@ -12084,39 +12789,47 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySyncStatusField *pQrySyncStatusFi
 
 int PyCTP_Struct_FromPyDict(CThostFtdcCombinationLegField *pCombinationLegField, PyObject *dict)
 {
-	static char *kwlist[] = {"CombInstrumentID", "LegID", "LegInstrumentID", "Direction", "LegMultiple", "ImplyLevel", nullptr};
-	char *pCombinationLegField_CombInstrumentID = nullptr;
+	static char *kwlist[] = {"reserve1", "LegID", "reserve2", "Direction", "LegMultiple", "ImplyLevel", "CombInstrumentID", "LegInstrumentID", nullptr};
+	char *pCombinationLegField_reserve1 = nullptr;
 	int pCombinationLegField_LegID = 0;
-	char *pCombinationLegField_LegInstrumentID = nullptr;
+	char *pCombinationLegField_reserve2 = nullptr;
 	char pCombinationLegField_Direction = 0;
 	int pCombinationLegField_LegMultiple = 0;
 	int pCombinationLegField_ImplyLevel = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pCombinationLegField, "|yiycii")
-		, &pCombinationLegField_CombInstrumentID
+	char *pCombinationLegField_CombInstrumentID = nullptr;
+	char *pCombinationLegField_LegInstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pCombinationLegField, "|yiyciiyy")
+		, &pCombinationLegField_reserve1
 		, &pCombinationLegField_LegID
-		, &pCombinationLegField_LegInstrumentID
+		, &pCombinationLegField_reserve2
 		, &pCombinationLegField_Direction
 		, &pCombinationLegField_LegMultiple
 		, &pCombinationLegField_ImplyLevel
+		, &pCombinationLegField_CombInstrumentID
+		, &pCombinationLegField_LegInstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pCombinationLegField_CombInstrumentID != nullptr){ strcpy_s(pCombinationLegField->CombInstrumentID, pCombinationLegField_CombInstrumentID); pCombinationLegField_CombInstrumentID = nullptr; }
+		if(pCombinationLegField_reserve1 != nullptr){ strcpy_s(pCombinationLegField->reserve1, pCombinationLegField_reserve1); pCombinationLegField_reserve1 = nullptr; }
 		pCombinationLegField->LegID = pCombinationLegField_LegID;
-		if(pCombinationLegField_LegInstrumentID != nullptr){ strcpy_s(pCombinationLegField->LegInstrumentID, pCombinationLegField_LegInstrumentID); pCombinationLegField_LegInstrumentID = nullptr; }
+		if(pCombinationLegField_reserve2 != nullptr){ strcpy_s(pCombinationLegField->reserve2, pCombinationLegField_reserve2); pCombinationLegField_reserve2 = nullptr; }
 		pCombinationLegField->Direction = pCombinationLegField_Direction;
 		pCombinationLegField->LegMultiple = pCombinationLegField_LegMultiple;
 		pCombinationLegField->ImplyLevel = pCombinationLegField_ImplyLevel;
+		if(pCombinationLegField_CombInstrumentID != nullptr){ strcpy_s(pCombinationLegField->CombInstrumentID, pCombinationLegField_CombInstrumentID); pCombinationLegField_CombInstrumentID = nullptr; }
+		if(pCombinationLegField_LegInstrumentID != nullptr){ strcpy_s(pCombinationLegField->LegInstrumentID, pCombinationLegField_LegInstrumentID); pCombinationLegField_LegInstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombinationLegField *pCombinationLegField)
 {
 	if(pCombinationLegField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:i,s:y,s:c,s:i,s:i}"
-		, "CombInstrumentID", pCombinationLegField->CombInstrumentID
+	return Py_BuildValue("{s:y,s:i,s:y,s:c,s:i,s:i,s:y,s:y}"
+		, "reserve1", pCombinationLegField->reserve1
 		, "LegID", pCombinationLegField->LegID
-		, "LegInstrumentID", pCombinationLegField->LegInstrumentID
+		, "reserve2", pCombinationLegField->reserve2
 		, "Direction", pCombinationLegField->Direction
 		, "LegMultiple", pCombinationLegField->LegMultiple
 		, "ImplyLevel", pCombinationLegField->ImplyLevel
+		, "CombInstrumentID", pCombinationLegField->CombInstrumentID
+		, "LegInstrumentID", pCombinationLegField->LegInstrumentID
 		);
 }
 
@@ -12254,7 +12967,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerUserEventField *pQryBrokerU
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserEventField *pBrokerUserEventField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", "UserEventType", "EventSequenceNo", "EventDate", "EventTime", "UserEventInfo", "InvestorID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"BrokerID", "UserID", "UserEventType", "EventSequenceNo", "EventDate", "EventTime", "UserEventInfo", "InvestorID", "reserve1", "InstrumentID", nullptr};
 	char *pBrokerUserEventField_BrokerID = nullptr;
 	char *pBrokerUserEventField_UserID = nullptr;
 	char pBrokerUserEventField_UserEventType = 0;
@@ -12263,8 +12976,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserEventField *pBrokerUserEventFiel
 	char *pBrokerUserEventField_EventTime = nullptr;
 	char *pBrokerUserEventField_UserEventInfo = nullptr;
 	char *pBrokerUserEventField_InvestorID = nullptr;
+	char *pBrokerUserEventField_reserve1 = nullptr;
 	char *pBrokerUserEventField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pBrokerUserEventField, "|yyciyyyyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pBrokerUserEventField, "|yyciyyyyyy")
 		, &pBrokerUserEventField_BrokerID
 		, &pBrokerUserEventField_UserID
 		, &pBrokerUserEventField_UserEventType
@@ -12273,6 +12987,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserEventField *pBrokerUserEventFiel
 		, &pBrokerUserEventField_EventTime
 		, &pBrokerUserEventField_UserEventInfo
 		, &pBrokerUserEventField_InvestorID
+		, &pBrokerUserEventField_reserve1
 		, &pBrokerUserEventField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pBrokerUserEventField_BrokerID != nullptr){ strcpy_s(pBrokerUserEventField->BrokerID, pBrokerUserEventField_BrokerID); pBrokerUserEventField_BrokerID = nullptr; }
@@ -12283,13 +12998,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserEventField *pBrokerUserEventFiel
 		if(pBrokerUserEventField_EventTime != nullptr){ strcpy_s(pBrokerUserEventField->EventTime, pBrokerUserEventField_EventTime); pBrokerUserEventField_EventTime = nullptr; }
 		if(pBrokerUserEventField_UserEventInfo != nullptr){ strcpy_s(pBrokerUserEventField->UserEventInfo, pBrokerUserEventField_UserEventInfo); pBrokerUserEventField_UserEventInfo = nullptr; }
 		if(pBrokerUserEventField_InvestorID != nullptr){ strcpy_s(pBrokerUserEventField->InvestorID, pBrokerUserEventField_InvestorID); pBrokerUserEventField_InvestorID = nullptr; }
+		if(pBrokerUserEventField_reserve1 != nullptr){ strcpy_s(pBrokerUserEventField->reserve1, pBrokerUserEventField_reserve1); pBrokerUserEventField_reserve1 = nullptr; }
 		if(pBrokerUserEventField_InstrumentID != nullptr){ strcpy_s(pBrokerUserEventField->InstrumentID, pBrokerUserEventField_InstrumentID); pBrokerUserEventField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserEventField *pBrokerUserEventField)
 {
 	if(pBrokerUserEventField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:c,s:i,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:c,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pBrokerUserEventField->BrokerID
 		, "UserID", pBrokerUserEventField->UserID
 		, "UserEventType", pBrokerUserEventField->UserEventType
@@ -12298,6 +13014,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserEventField *pBrokerUserEve
 		, "EventTime", pBrokerUserEventField->EventTime
 		, "UserEventInfo", pBrokerUserEventField->UserEventInfo
 		, "InvestorID", pBrokerUserEventField->InvestorID
+		, "reserve1", pBrokerUserEventField->reserve1
 		, "InstrumentID", pBrokerUserEventField->InstrumentID
 		);
 }
@@ -12360,7 +13077,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcContractBankField *pContractBankFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "OpenDate", "ExchangeID", "SettlementID", "BrokerID", "InvestorID", "ComTradeID", "TradeID", "InstrumentID", "HedgeFlag", "Direction", "TotalAmt", "Margin", "ExchMargin", "MarginRateByMoney", "MarginRateByVolume", "LegID", "LegMultiple", "CombInstrumentID", "TradeGroupID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"TradingDay", "OpenDate", "ExchangeID", "SettlementID", "BrokerID", "InvestorID", "ComTradeID", "TradeID", "reserve1", "HedgeFlag", "Direction", "TotalAmt", "Margin", "ExchMargin", "MarginRateByMoney", "MarginRateByVolume", "LegID", "LegMultiple", "reserve2", "TradeGroupID", "InvestUnitID", "InstrumentID", "CombInstrumentID", nullptr};
 	char *pInvestorPositionCombineDetailField_TradingDay = nullptr;
 	char *pInvestorPositionCombineDetailField_OpenDate = nullptr;
 	char *pInvestorPositionCombineDetailField_ExchangeID = nullptr;
@@ -12369,7 +13086,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInves
 	char *pInvestorPositionCombineDetailField_InvestorID = nullptr;
 	char *pInvestorPositionCombineDetailField_ComTradeID = nullptr;
 	char *pInvestorPositionCombineDetailField_TradeID = nullptr;
-	char *pInvestorPositionCombineDetailField_InstrumentID = nullptr;
+	char *pInvestorPositionCombineDetailField_reserve1 = nullptr;
 	char pInvestorPositionCombineDetailField_HedgeFlag = 0;
 	char pInvestorPositionCombineDetailField_Direction = 0;
 	int pInvestorPositionCombineDetailField_TotalAmt = 0;
@@ -12379,10 +13096,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInves
 	double pInvestorPositionCombineDetailField_MarginRateByVolume = 0.0;
 	int pInvestorPositionCombineDetailField_LegID = 0;
 	int pInvestorPositionCombineDetailField_LegMultiple = 0;
-	char *pInvestorPositionCombineDetailField_CombInstrumentID = nullptr;
+	char *pInvestorPositionCombineDetailField_reserve2 = nullptr;
 	int pInvestorPositionCombineDetailField_TradeGroupID = 0;
 	char *pInvestorPositionCombineDetailField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInvestorPositionCombineDetailField, "|yyyiyyyyycciddddiiyiy")
+	char *pInvestorPositionCombineDetailField_InstrumentID = nullptr;
+	char *pInvestorPositionCombineDetailField_CombInstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInvestorPositionCombineDetailField, "|yyyiyyyyycciddddiiyiyyy")
 		, &pInvestorPositionCombineDetailField_TradingDay
 		, &pInvestorPositionCombineDetailField_OpenDate
 		, &pInvestorPositionCombineDetailField_ExchangeID
@@ -12391,7 +13110,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInves
 		, &pInvestorPositionCombineDetailField_InvestorID
 		, &pInvestorPositionCombineDetailField_ComTradeID
 		, &pInvestorPositionCombineDetailField_TradeID
-		, &pInvestorPositionCombineDetailField_InstrumentID
+		, &pInvestorPositionCombineDetailField_reserve1
 		, &pInvestorPositionCombineDetailField_HedgeFlag
 		, &pInvestorPositionCombineDetailField_Direction
 		, &pInvestorPositionCombineDetailField_TotalAmt
@@ -12401,9 +13120,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInves
 		, &pInvestorPositionCombineDetailField_MarginRateByVolume
 		, &pInvestorPositionCombineDetailField_LegID
 		, &pInvestorPositionCombineDetailField_LegMultiple
-		, &pInvestorPositionCombineDetailField_CombInstrumentID
+		, &pInvestorPositionCombineDetailField_reserve2
 		, &pInvestorPositionCombineDetailField_TradeGroupID
 		, &pInvestorPositionCombineDetailField_InvestUnitID
+		, &pInvestorPositionCombineDetailField_InstrumentID
+		, &pInvestorPositionCombineDetailField_CombInstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pInvestorPositionCombineDetailField_TradingDay != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->TradingDay, pInvestorPositionCombineDetailField_TradingDay); pInvestorPositionCombineDetailField_TradingDay = nullptr; }
 		if(pInvestorPositionCombineDetailField_OpenDate != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->OpenDate, pInvestorPositionCombineDetailField_OpenDate); pInvestorPositionCombineDetailField_OpenDate = nullptr; }
@@ -12413,7 +13134,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInves
 		if(pInvestorPositionCombineDetailField_InvestorID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->InvestorID, pInvestorPositionCombineDetailField_InvestorID); pInvestorPositionCombineDetailField_InvestorID = nullptr; }
 		if(pInvestorPositionCombineDetailField_ComTradeID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->ComTradeID, pInvestorPositionCombineDetailField_ComTradeID); pInvestorPositionCombineDetailField_ComTradeID = nullptr; }
 		if(pInvestorPositionCombineDetailField_TradeID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->TradeID, pInvestorPositionCombineDetailField_TradeID); pInvestorPositionCombineDetailField_TradeID = nullptr; }
-		if(pInvestorPositionCombineDetailField_InstrumentID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->InstrumentID, pInvestorPositionCombineDetailField_InstrumentID); pInvestorPositionCombineDetailField_InstrumentID = nullptr; }
+		if(pInvestorPositionCombineDetailField_reserve1 != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->reserve1, pInvestorPositionCombineDetailField_reserve1); pInvestorPositionCombineDetailField_reserve1 = nullptr; }
 		pInvestorPositionCombineDetailField->HedgeFlag = pInvestorPositionCombineDetailField_HedgeFlag;
 		pInvestorPositionCombineDetailField->Direction = pInvestorPositionCombineDetailField_Direction;
 		pInvestorPositionCombineDetailField->TotalAmt = pInvestorPositionCombineDetailField_TotalAmt;
@@ -12423,15 +13144,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInves
 		pInvestorPositionCombineDetailField->MarginRateByVolume = pInvestorPositionCombineDetailField_MarginRateByVolume;
 		pInvestorPositionCombineDetailField->LegID = pInvestorPositionCombineDetailField_LegID;
 		pInvestorPositionCombineDetailField->LegMultiple = pInvestorPositionCombineDetailField_LegMultiple;
-		if(pInvestorPositionCombineDetailField_CombInstrumentID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->CombInstrumentID, pInvestorPositionCombineDetailField_CombInstrumentID); pInvestorPositionCombineDetailField_CombInstrumentID = nullptr; }
+		if(pInvestorPositionCombineDetailField_reserve2 != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->reserve2, pInvestorPositionCombineDetailField_reserve2); pInvestorPositionCombineDetailField_reserve2 = nullptr; }
 		pInvestorPositionCombineDetailField->TradeGroupID = pInvestorPositionCombineDetailField_TradeGroupID;
 		if(pInvestorPositionCombineDetailField_InvestUnitID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->InvestUnitID, pInvestorPositionCombineDetailField_InvestUnitID); pInvestorPositionCombineDetailField_InvestUnitID = nullptr; }
+		if(pInvestorPositionCombineDetailField_InstrumentID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->InstrumentID, pInvestorPositionCombineDetailField_InstrumentID); pInvestorPositionCombineDetailField_InstrumentID = nullptr; }
+		if(pInvestorPositionCombineDetailField_CombInstrumentID != nullptr){ strcpy_s(pInvestorPositionCombineDetailField->CombInstrumentID, pInvestorPositionCombineDetailField_CombInstrumentID); pInvestorPositionCombineDetailField_CombInstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetailField)
 {
 	if(pInvestorPositionCombineDetailField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:i,s:d,s:d,s:d,s:d,s:i,s:i,s:y,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:i,s:d,s:d,s:d,s:d,s:i,s:i,s:y,s:i,s:y,s:y,s:y}"
 		, "TradingDay", pInvestorPositionCombineDetailField->TradingDay
 		, "OpenDate", pInvestorPositionCombineDetailField->OpenDate
 		, "ExchangeID", pInvestorPositionCombineDetailField->ExchangeID
@@ -12440,7 +13163,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionCombineDetailField *
 		, "InvestorID", pInvestorPositionCombineDetailField->InvestorID
 		, "ComTradeID", pInvestorPositionCombineDetailField->ComTradeID
 		, "TradeID", pInvestorPositionCombineDetailField->TradeID
-		, "InstrumentID", pInvestorPositionCombineDetailField->InstrumentID
+		, "reserve1", pInvestorPositionCombineDetailField->reserve1
 		, "HedgeFlag", pInvestorPositionCombineDetailField->HedgeFlag
 		, "Direction", pInvestorPositionCombineDetailField->Direction
 		, "TotalAmt", pInvestorPositionCombineDetailField->TotalAmt
@@ -12450,18 +13173,20 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionCombineDetailField *
 		, "MarginRateByVolume", pInvestorPositionCombineDetailField->MarginRateByVolume
 		, "LegID", pInvestorPositionCombineDetailField->LegID
 		, "LegMultiple", pInvestorPositionCombineDetailField->LegMultiple
-		, "CombInstrumentID", pInvestorPositionCombineDetailField->CombInstrumentID
+		, "reserve2", pInvestorPositionCombineDetailField->reserve2
 		, "TradeGroupID", pInvestorPositionCombineDetailField->TradeGroupID
 		, "InvestUnitID", pInvestorPositionCombineDetailField->InvestUnitID
+		, "InstrumentID", pInvestorPositionCombineDetailField->InstrumentID
+		, "CombInstrumentID", pInvestorPositionCombineDetailField->CombInstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderField *pParkedOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "UserForceClose", "ExchangeID", "ParkedOrderID", "UserType", "Status", "ErrorID", "ErrorMsg", "IsSwapOrder", "AccountID", "CurrencyID", "ClientID", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "UserForceClose", "ExchangeID", "ParkedOrderID", "UserType", "Status", "ErrorID", "ErrorMsg", "IsSwapOrder", "AccountID", "CurrencyID", "ClientID", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pParkedOrderField_BrokerID = nullptr;
 	char *pParkedOrderField_InvestorID = nullptr;
-	char *pParkedOrderField_InstrumentID = nullptr;
+	char *pParkedOrderField_reserve1 = nullptr;
 	char *pParkedOrderField_OrderRef = nullptr;
 	char *pParkedOrderField_UserID = nullptr;
 	char pParkedOrderField_OrderPriceType = 0;
@@ -12492,12 +13217,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderField *pParkedOrderField, PyObj
 	char *pParkedOrderField_CurrencyID = nullptr;
 	char *pParkedOrderField_ClientID = nullptr;
 	char *pParkedOrderField_InvestUnitID = nullptr;
-	char *pParkedOrderField_IPAddress = nullptr;
+	char *pParkedOrderField_reserve2 = nullptr;
 	char *pParkedOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pParkedOrderField, "|yyyyyccyydicycicdciyiiyycciyiyyyyyy")
+	char *pParkedOrderField_InstrumentID = nullptr;
+	char *pParkedOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pParkedOrderField, "|yyyyyccyydicycicdciyiiyycciyiyyyyyyyy")
 		, &pParkedOrderField_BrokerID
 		, &pParkedOrderField_InvestorID
-		, &pParkedOrderField_InstrumentID
+		, &pParkedOrderField_reserve1
 		, &pParkedOrderField_OrderRef
 		, &pParkedOrderField_UserID
 		, &pParkedOrderField_OrderPriceType
@@ -12528,12 +13255,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderField *pParkedOrderField, PyObj
 		, &pParkedOrderField_CurrencyID
 		, &pParkedOrderField_ClientID
 		, &pParkedOrderField_InvestUnitID
-		, &pParkedOrderField_IPAddress
+		, &pParkedOrderField_reserve2
 		, &pParkedOrderField_MacAddress
+		, &pParkedOrderField_InstrumentID
+		, &pParkedOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pParkedOrderField_BrokerID != nullptr){ strcpy_s(pParkedOrderField->BrokerID, pParkedOrderField_BrokerID); pParkedOrderField_BrokerID = nullptr; }
 		if(pParkedOrderField_InvestorID != nullptr){ strcpy_s(pParkedOrderField->InvestorID, pParkedOrderField_InvestorID); pParkedOrderField_InvestorID = nullptr; }
-		if(pParkedOrderField_InstrumentID != nullptr){ strcpy_s(pParkedOrderField->InstrumentID, pParkedOrderField_InstrumentID); pParkedOrderField_InstrumentID = nullptr; }
+		if(pParkedOrderField_reserve1 != nullptr){ strcpy_s(pParkedOrderField->reserve1, pParkedOrderField_reserve1); pParkedOrderField_reserve1 = nullptr; }
 		if(pParkedOrderField_OrderRef != nullptr){ strcpy_s(pParkedOrderField->OrderRef, pParkedOrderField_OrderRef); pParkedOrderField_OrderRef = nullptr; }
 		if(pParkedOrderField_UserID != nullptr){ strcpy_s(pParkedOrderField->UserID, pParkedOrderField_UserID); pParkedOrderField_UserID = nullptr; }
 		pParkedOrderField->OrderPriceType = pParkedOrderField_OrderPriceType;
@@ -12564,17 +13293,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderField *pParkedOrderField, PyObj
 		if(pParkedOrderField_CurrencyID != nullptr){ strcpy_s(pParkedOrderField->CurrencyID, pParkedOrderField_CurrencyID); pParkedOrderField_CurrencyID = nullptr; }
 		if(pParkedOrderField_ClientID != nullptr){ strcpy_s(pParkedOrderField->ClientID, pParkedOrderField_ClientID); pParkedOrderField_ClientID = nullptr; }
 		if(pParkedOrderField_InvestUnitID != nullptr){ strcpy_s(pParkedOrderField->InvestUnitID, pParkedOrderField_InvestUnitID); pParkedOrderField_InvestUnitID = nullptr; }
-		if(pParkedOrderField_IPAddress != nullptr){ strcpy_s(pParkedOrderField->IPAddress, pParkedOrderField_IPAddress); pParkedOrderField_IPAddress = nullptr; }
+		if(pParkedOrderField_reserve2 != nullptr){ strcpy_s(pParkedOrderField->reserve2, pParkedOrderField_reserve2); pParkedOrderField_reserve2 = nullptr; }
 		if(pParkedOrderField_MacAddress != nullptr){ strcpy_s(pParkedOrderField->MacAddress, pParkedOrderField_MacAddress); pParkedOrderField_MacAddress = nullptr; }
+		if(pParkedOrderField_InstrumentID != nullptr){ strcpy_s(pParkedOrderField->InstrumentID, pParkedOrderField_InstrumentID); pParkedOrderField_InstrumentID = nullptr; }
+		if(pParkedOrderField_IPAddress != nullptr){ strcpy_s(pParkedOrderField->IPAddress, pParkedOrderField_IPAddress); pParkedOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcParkedOrderField *pParkedOrderField)
 {
 	if(pParkedOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:i,s:y,s:y,s:c,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:i,s:y,s:y,s:c,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pParkedOrderField->BrokerID
 		, "InvestorID", pParkedOrderField->InvestorID
-		, "InstrumentID", pParkedOrderField->InstrumentID
+		, "reserve1", pParkedOrderField->reserve1
 		, "OrderRef", pParkedOrderField->OrderRef
 		, "UserID", pParkedOrderField->UserID
 		, "OrderPriceType", pParkedOrderField->OrderPriceType
@@ -12605,14 +13336,16 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcParkedOrderField *pParkedOrderField)
 		, "CurrencyID", pParkedOrderField->CurrencyID
 		, "ClientID", pParkedOrderField->ClientID
 		, "InvestUnitID", pParkedOrderField->InvestUnitID
-		, "IPAddress", pParkedOrderField->IPAddress
+		, "reserve2", pParkedOrderField->reserve2
 		, "MacAddress", pParkedOrderField->MacAddress
+		, "InstrumentID", pParkedOrderField->InstrumentID
+		, "IPAddress", pParkedOrderField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderActionField *pParkedOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "UserID", "InstrumentID", "ParkedOrderActionID", "UserType", "Status", "ErrorID", "ErrorMsg", "InvestUnitID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "UserID", "reserve1", "ParkedOrderActionID", "UserType", "Status", "ErrorID", "ErrorMsg", "InvestUnitID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pParkedOrderActionField_BrokerID = nullptr;
 	char *pParkedOrderActionField_InvestorID = nullptr;
 	int pParkedOrderActionField_OrderActionRef = 0;
@@ -12626,16 +13359,18 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderActionField *pParkedOrderAction
 	double pParkedOrderActionField_LimitPrice = 0.0;
 	int pParkedOrderActionField_VolumeChange = 0;
 	char *pParkedOrderActionField_UserID = nullptr;
-	char *pParkedOrderActionField_InstrumentID = nullptr;
+	char *pParkedOrderActionField_reserve1 = nullptr;
 	char *pParkedOrderActionField_ParkedOrderActionID = nullptr;
 	char pParkedOrderActionField_UserType = 0;
 	char pParkedOrderActionField_Status = 0;
 	int pParkedOrderActionField_ErrorID = 0;
 	char *pParkedOrderActionField_ErrorMsg = nullptr;
 	char *pParkedOrderActionField_InvestUnitID = nullptr;
-	char *pParkedOrderActionField_IPAddress = nullptr;
+	char *pParkedOrderActionField_reserve2 = nullptr;
 	char *pParkedOrderActionField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pParkedOrderActionField, "|yyiyiiiyycdiyyycciyyyy")
+	char *pParkedOrderActionField_InstrumentID = nullptr;
+	char *pParkedOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pParkedOrderActionField, "|yyiyiiiyycdiyyycciyyyyyy")
 		, &pParkedOrderActionField_BrokerID
 		, &pParkedOrderActionField_InvestorID
 		, &pParkedOrderActionField_OrderActionRef
@@ -12649,15 +13384,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderActionField *pParkedOrderAction
 		, &pParkedOrderActionField_LimitPrice
 		, &pParkedOrderActionField_VolumeChange
 		, &pParkedOrderActionField_UserID
-		, &pParkedOrderActionField_InstrumentID
+		, &pParkedOrderActionField_reserve1
 		, &pParkedOrderActionField_ParkedOrderActionID
 		, &pParkedOrderActionField_UserType
 		, &pParkedOrderActionField_Status
 		, &pParkedOrderActionField_ErrorID
 		, &pParkedOrderActionField_ErrorMsg
 		, &pParkedOrderActionField_InvestUnitID
-		, &pParkedOrderActionField_IPAddress
+		, &pParkedOrderActionField_reserve2
 		, &pParkedOrderActionField_MacAddress
+		, &pParkedOrderActionField_InstrumentID
+		, &pParkedOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pParkedOrderActionField_BrokerID != nullptr){ strcpy_s(pParkedOrderActionField->BrokerID, pParkedOrderActionField_BrokerID); pParkedOrderActionField_BrokerID = nullptr; }
 		if(pParkedOrderActionField_InvestorID != nullptr){ strcpy_s(pParkedOrderActionField->InvestorID, pParkedOrderActionField_InvestorID); pParkedOrderActionField_InvestorID = nullptr; }
@@ -12672,21 +13409,23 @@ int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderActionField *pParkedOrderAction
 		pParkedOrderActionField->LimitPrice = pParkedOrderActionField_LimitPrice;
 		pParkedOrderActionField->VolumeChange = pParkedOrderActionField_VolumeChange;
 		if(pParkedOrderActionField_UserID != nullptr){ strcpy_s(pParkedOrderActionField->UserID, pParkedOrderActionField_UserID); pParkedOrderActionField_UserID = nullptr; }
-		if(pParkedOrderActionField_InstrumentID != nullptr){ strcpy_s(pParkedOrderActionField->InstrumentID, pParkedOrderActionField_InstrumentID); pParkedOrderActionField_InstrumentID = nullptr; }
+		if(pParkedOrderActionField_reserve1 != nullptr){ strcpy_s(pParkedOrderActionField->reserve1, pParkedOrderActionField_reserve1); pParkedOrderActionField_reserve1 = nullptr; }
 		if(pParkedOrderActionField_ParkedOrderActionID != nullptr){ strcpy_s(pParkedOrderActionField->ParkedOrderActionID, pParkedOrderActionField_ParkedOrderActionID); pParkedOrderActionField_ParkedOrderActionID = nullptr; }
 		pParkedOrderActionField->UserType = pParkedOrderActionField_UserType;
 		pParkedOrderActionField->Status = pParkedOrderActionField_Status;
 		pParkedOrderActionField->ErrorID = pParkedOrderActionField_ErrorID;
 		if(pParkedOrderActionField_ErrorMsg != nullptr){ strcpy_s(pParkedOrderActionField->ErrorMsg, pParkedOrderActionField_ErrorMsg); pParkedOrderActionField_ErrorMsg = nullptr; }
 		if(pParkedOrderActionField_InvestUnitID != nullptr){ strcpy_s(pParkedOrderActionField->InvestUnitID, pParkedOrderActionField_InvestUnitID); pParkedOrderActionField_InvestUnitID = nullptr; }
-		if(pParkedOrderActionField_IPAddress != nullptr){ strcpy_s(pParkedOrderActionField->IPAddress, pParkedOrderActionField_IPAddress); pParkedOrderActionField_IPAddress = nullptr; }
+		if(pParkedOrderActionField_reserve2 != nullptr){ strcpy_s(pParkedOrderActionField->reserve2, pParkedOrderActionField_reserve2); pParkedOrderActionField_reserve2 = nullptr; }
 		if(pParkedOrderActionField_MacAddress != nullptr){ strcpy_s(pParkedOrderActionField->MacAddress, pParkedOrderActionField_MacAddress); pParkedOrderActionField_MacAddress = nullptr; }
+		if(pParkedOrderActionField_InstrumentID != nullptr){ strcpy_s(pParkedOrderActionField->InstrumentID, pParkedOrderActionField_InstrumentID); pParkedOrderActionField_InstrumentID = nullptr; }
+		if(pParkedOrderActionField_IPAddress != nullptr){ strcpy_s(pParkedOrderActionField->IPAddress, pParkedOrderActionField_IPAddress); pParkedOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcParkedOrderActionField *pParkedOrderActionField)
 {
 	if(pParkedOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:c,s:c,s:i,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:c,s:c,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pParkedOrderActionField->BrokerID
 		, "InvestorID", pParkedOrderActionField->InvestorID
 		, "OrderActionRef", pParkedOrderActionField->OrderActionRef
@@ -12700,83 +13439,93 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcParkedOrderActionField *pParkedOrder
 		, "LimitPrice", pParkedOrderActionField->LimitPrice
 		, "VolumeChange", pParkedOrderActionField->VolumeChange
 		, "UserID", pParkedOrderActionField->UserID
-		, "InstrumentID", pParkedOrderActionField->InstrumentID
+		, "reserve1", pParkedOrderActionField->reserve1
 		, "ParkedOrderActionID", pParkedOrderActionField->ParkedOrderActionID
 		, "UserType", pParkedOrderActionField->UserType
 		, "Status", pParkedOrderActionField->Status
 		, "ErrorID", pParkedOrderActionField->ErrorID
 		, "ErrorMsg", pParkedOrderActionField->ErrorMsg
 		, "InvestUnitID", pParkedOrderActionField->InvestUnitID
-		, "IPAddress", pParkedOrderActionField->IPAddress
+		, "reserve2", pParkedOrderActionField->reserve2
 		, "MacAddress", pParkedOrderActionField->MacAddress
+		, "InstrumentID", pParkedOrderActionField->InstrumentID
+		, "IPAddress", pParkedOrderActionField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderField *pQryParkedOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryParkedOrderField_BrokerID = nullptr;
 	char *pQryParkedOrderField_InvestorID = nullptr;
-	char *pQryParkedOrderField_InstrumentID = nullptr;
+	char *pQryParkedOrderField_reserve1 = nullptr;
 	char *pQryParkedOrderField_ExchangeID = nullptr;
 	char *pQryParkedOrderField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryParkedOrderField, "|yyyyy")
+	char *pQryParkedOrderField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryParkedOrderField, "|yyyyyy")
 		, &pQryParkedOrderField_BrokerID
 		, &pQryParkedOrderField_InvestorID
-		, &pQryParkedOrderField_InstrumentID
+		, &pQryParkedOrderField_reserve1
 		, &pQryParkedOrderField_ExchangeID
 		, &pQryParkedOrderField_InvestUnitID
+		, &pQryParkedOrderField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryParkedOrderField_BrokerID != nullptr){ strcpy_s(pQryParkedOrderField->BrokerID, pQryParkedOrderField_BrokerID); pQryParkedOrderField_BrokerID = nullptr; }
 		if(pQryParkedOrderField_InvestorID != nullptr){ strcpy_s(pQryParkedOrderField->InvestorID, pQryParkedOrderField_InvestorID); pQryParkedOrderField_InvestorID = nullptr; }
-		if(pQryParkedOrderField_InstrumentID != nullptr){ strcpy_s(pQryParkedOrderField->InstrumentID, pQryParkedOrderField_InstrumentID); pQryParkedOrderField_InstrumentID = nullptr; }
+		if(pQryParkedOrderField_reserve1 != nullptr){ strcpy_s(pQryParkedOrderField->reserve1, pQryParkedOrderField_reserve1); pQryParkedOrderField_reserve1 = nullptr; }
 		if(pQryParkedOrderField_ExchangeID != nullptr){ strcpy_s(pQryParkedOrderField->ExchangeID, pQryParkedOrderField_ExchangeID); pQryParkedOrderField_ExchangeID = nullptr; }
 		if(pQryParkedOrderField_InvestUnitID != nullptr){ strcpy_s(pQryParkedOrderField->InvestUnitID, pQryParkedOrderField_InvestUnitID); pQryParkedOrderField_InvestUnitID = nullptr; }
+		if(pQryParkedOrderField_InstrumentID != nullptr){ strcpy_s(pQryParkedOrderField->InstrumentID, pQryParkedOrderField_InstrumentID); pQryParkedOrderField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryParkedOrderField *pQryParkedOrderField)
 {
 	if(pQryParkedOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryParkedOrderField->BrokerID
 		, "InvestorID", pQryParkedOrderField->InvestorID
-		, "InstrumentID", pQryParkedOrderField->InstrumentID
+		, "reserve1", pQryParkedOrderField->reserve1
 		, "ExchangeID", pQryParkedOrderField->ExchangeID
 		, "InvestUnitID", pQryParkedOrderField->InvestUnitID
+		, "InstrumentID", pQryParkedOrderField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderActionField *pQryParkedOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryParkedOrderActionField_BrokerID = nullptr;
 	char *pQryParkedOrderActionField_InvestorID = nullptr;
-	char *pQryParkedOrderActionField_InstrumentID = nullptr;
+	char *pQryParkedOrderActionField_reserve1 = nullptr;
 	char *pQryParkedOrderActionField_ExchangeID = nullptr;
 	char *pQryParkedOrderActionField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryParkedOrderActionField, "|yyyyy")
+	char *pQryParkedOrderActionField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryParkedOrderActionField, "|yyyyyy")
 		, &pQryParkedOrderActionField_BrokerID
 		, &pQryParkedOrderActionField_InvestorID
-		, &pQryParkedOrderActionField_InstrumentID
+		, &pQryParkedOrderActionField_reserve1
 		, &pQryParkedOrderActionField_ExchangeID
 		, &pQryParkedOrderActionField_InvestUnitID
+		, &pQryParkedOrderActionField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryParkedOrderActionField_BrokerID != nullptr){ strcpy_s(pQryParkedOrderActionField->BrokerID, pQryParkedOrderActionField_BrokerID); pQryParkedOrderActionField_BrokerID = nullptr; }
 		if(pQryParkedOrderActionField_InvestorID != nullptr){ strcpy_s(pQryParkedOrderActionField->InvestorID, pQryParkedOrderActionField_InvestorID); pQryParkedOrderActionField_InvestorID = nullptr; }
-		if(pQryParkedOrderActionField_InstrumentID != nullptr){ strcpy_s(pQryParkedOrderActionField->InstrumentID, pQryParkedOrderActionField_InstrumentID); pQryParkedOrderActionField_InstrumentID = nullptr; }
+		if(pQryParkedOrderActionField_reserve1 != nullptr){ strcpy_s(pQryParkedOrderActionField->reserve1, pQryParkedOrderActionField_reserve1); pQryParkedOrderActionField_reserve1 = nullptr; }
 		if(pQryParkedOrderActionField_ExchangeID != nullptr){ strcpy_s(pQryParkedOrderActionField->ExchangeID, pQryParkedOrderActionField_ExchangeID); pQryParkedOrderActionField_ExchangeID = nullptr; }
 		if(pQryParkedOrderActionField_InvestUnitID != nullptr){ strcpy_s(pQryParkedOrderActionField->InvestUnitID, pQryParkedOrderActionField_InvestUnitID); pQryParkedOrderActionField_InvestUnitID = nullptr; }
+		if(pQryParkedOrderActionField_InstrumentID != nullptr){ strcpy_s(pQryParkedOrderActionField->InstrumentID, pQryParkedOrderActionField_InstrumentID); pQryParkedOrderActionField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryParkedOrderActionField *pQryParkedOrderActionField)
 {
 	if(pQryParkedOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryParkedOrderActionField->BrokerID
 		, "InvestorID", pQryParkedOrderActionField->InvestorID
-		, "InstrumentID", pQryParkedOrderActionField->InstrumentID
+		, "reserve1", pQryParkedOrderActionField->reserve1
 		, "ExchangeID", pQryParkedOrderActionField->ExchangeID
 		, "InvestUnitID", pQryParkedOrderActionField->InvestUnitID
+		, "InstrumentID", pQryParkedOrderActionField->InstrumentID
 		);
 }
 
@@ -12880,35 +13629,39 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorWithdrawAlgorithmField *pInv
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionCombineDetailField *pQryInvestorPositionCombineDetailField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "CombInstrumentID", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "ExchangeID", "InvestUnitID", "CombInstrumentID", nullptr};
 	char *pQryInvestorPositionCombineDetailField_BrokerID = nullptr;
 	char *pQryInvestorPositionCombineDetailField_InvestorID = nullptr;
-	char *pQryInvestorPositionCombineDetailField_CombInstrumentID = nullptr;
+	char *pQryInvestorPositionCombineDetailField_reserve1 = nullptr;
 	char *pQryInvestorPositionCombineDetailField_ExchangeID = nullptr;
 	char *pQryInvestorPositionCombineDetailField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorPositionCombineDetailField, "|yyyyy")
+	char *pQryInvestorPositionCombineDetailField_CombInstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorPositionCombineDetailField, "|yyyyyy")
 		, &pQryInvestorPositionCombineDetailField_BrokerID
 		, &pQryInvestorPositionCombineDetailField_InvestorID
-		, &pQryInvestorPositionCombineDetailField_CombInstrumentID
+		, &pQryInvestorPositionCombineDetailField_reserve1
 		, &pQryInvestorPositionCombineDetailField_ExchangeID
 		, &pQryInvestorPositionCombineDetailField_InvestUnitID
+		, &pQryInvestorPositionCombineDetailField_CombInstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInvestorPositionCombineDetailField_BrokerID != nullptr){ strcpy_s(pQryInvestorPositionCombineDetailField->BrokerID, pQryInvestorPositionCombineDetailField_BrokerID); pQryInvestorPositionCombineDetailField_BrokerID = nullptr; }
 		if(pQryInvestorPositionCombineDetailField_InvestorID != nullptr){ strcpy_s(pQryInvestorPositionCombineDetailField->InvestorID, pQryInvestorPositionCombineDetailField_InvestorID); pQryInvestorPositionCombineDetailField_InvestorID = nullptr; }
-		if(pQryInvestorPositionCombineDetailField_CombInstrumentID != nullptr){ strcpy_s(pQryInvestorPositionCombineDetailField->CombInstrumentID, pQryInvestorPositionCombineDetailField_CombInstrumentID); pQryInvestorPositionCombineDetailField_CombInstrumentID = nullptr; }
+		if(pQryInvestorPositionCombineDetailField_reserve1 != nullptr){ strcpy_s(pQryInvestorPositionCombineDetailField->reserve1, pQryInvestorPositionCombineDetailField_reserve1); pQryInvestorPositionCombineDetailField_reserve1 = nullptr; }
 		if(pQryInvestorPositionCombineDetailField_ExchangeID != nullptr){ strcpy_s(pQryInvestorPositionCombineDetailField->ExchangeID, pQryInvestorPositionCombineDetailField_ExchangeID); pQryInvestorPositionCombineDetailField_ExchangeID = nullptr; }
 		if(pQryInvestorPositionCombineDetailField_InvestUnitID != nullptr){ strcpy_s(pQryInvestorPositionCombineDetailField->InvestUnitID, pQryInvestorPositionCombineDetailField_InvestUnitID); pQryInvestorPositionCombineDetailField_InvestUnitID = nullptr; }
+		if(pQryInvestorPositionCombineDetailField_CombInstrumentID != nullptr){ strcpy_s(pQryInvestorPositionCombineDetailField->CombInstrumentID, pQryInvestorPositionCombineDetailField_CombInstrumentID); pQryInvestorPositionCombineDetailField_CombInstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPositionCombineDetailField *pQryInvestorPositionCombineDetailField)
 {
 	if(pQryInvestorPositionCombineDetailField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryInvestorPositionCombineDetailField->BrokerID
 		, "InvestorID", pQryInvestorPositionCombineDetailField->InvestorID
-		, "CombInstrumentID", pQryInvestorPositionCombineDetailField->CombInstrumentID
+		, "reserve1", pQryInvestorPositionCombineDetailField->reserve1
 		, "ExchangeID", pQryInvestorPositionCombineDetailField->ExchangeID
 		, "InvestUnitID", pQryInvestorPositionCombineDetailField->InvestUnitID
+		, "CombInstrumentID", pQryInvestorPositionCombineDetailField->CombInstrumentID
 		);
 }
 
@@ -12958,35 +13711,43 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcVerifyInvestorPasswordField *pVerify
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserIPField *pUserIPField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", "IPAddress", "IPMask", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "UserID", "reserve1", "reserve2", "MacAddress", "IPAddress", "IPMask", nullptr};
 	char *pUserIPField_BrokerID = nullptr;
 	char *pUserIPField_UserID = nullptr;
+	char *pUserIPField_reserve1 = nullptr;
+	char *pUserIPField_reserve2 = nullptr;
+	char *pUserIPField_MacAddress = nullptr;
 	char *pUserIPField_IPAddress = nullptr;
 	char *pUserIPField_IPMask = nullptr;
-	char *pUserIPField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pUserIPField, "|yyyyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pUserIPField, "|yyyyyyy")
 		, &pUserIPField_BrokerID
 		, &pUserIPField_UserID
+		, &pUserIPField_reserve1
+		, &pUserIPField_reserve2
+		, &pUserIPField_MacAddress
 		, &pUserIPField_IPAddress
 		, &pUserIPField_IPMask
-		, &pUserIPField_MacAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pUserIPField_BrokerID != nullptr){ strcpy_s(pUserIPField->BrokerID, pUserIPField_BrokerID); pUserIPField_BrokerID = nullptr; }
 		if(pUserIPField_UserID != nullptr){ strcpy_s(pUserIPField->UserID, pUserIPField_UserID); pUserIPField_UserID = nullptr; }
+		if(pUserIPField_reserve1 != nullptr){ strcpy_s(pUserIPField->reserve1, pUserIPField_reserve1); pUserIPField_reserve1 = nullptr; }
+		if(pUserIPField_reserve2 != nullptr){ strcpy_s(pUserIPField->reserve2, pUserIPField_reserve2); pUserIPField_reserve2 = nullptr; }
+		if(pUserIPField_MacAddress != nullptr){ strcpy_s(pUserIPField->MacAddress, pUserIPField_MacAddress); pUserIPField_MacAddress = nullptr; }
 		if(pUserIPField_IPAddress != nullptr){ strcpy_s(pUserIPField->IPAddress, pUserIPField_IPAddress); pUserIPField_IPAddress = nullptr; }
 		if(pUserIPField_IPMask != nullptr){ strcpy_s(pUserIPField->IPMask, pUserIPField_IPMask); pUserIPField_IPMask = nullptr; }
-		if(pUserIPField_MacAddress != nullptr){ strcpy_s(pUserIPField->MacAddress, pUserIPField_MacAddress); pUserIPField_MacAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserIPField *pUserIPField)
 {
 	if(pUserIPField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pUserIPField->BrokerID
 		, "UserID", pUserIPField->UserID
+		, "reserve1", pUserIPField->reserve1
+		, "reserve2", pUserIPField->reserve2
+		, "MacAddress", pUserIPField->MacAddress
 		, "IPAddress", pUserIPField->IPAddress
 		, "IPMask", pUserIPField->IPMask
-		, "MacAddress", pUserIPField->MacAddress
 		);
 }
 
@@ -13132,10 +13893,10 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrOrderField *pQryErrOrderField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderField *pErrOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "UserForceClose", "ErrorID", "ErrorMsg", "IsSwapOrder", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "UserForceClose", "ErrorID", "ErrorMsg", "IsSwapOrder", "ExchangeID", "InvestUnitID", "AccountID", "CurrencyID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
 	char *pErrOrderField_BrokerID = nullptr;
 	char *pErrOrderField_InvestorID = nullptr;
-	char *pErrOrderField_InstrumentID = nullptr;
+	char *pErrOrderField_reserve1 = nullptr;
 	char *pErrOrderField_OrderRef = nullptr;
 	char *pErrOrderField_UserID = nullptr;
 	char pErrOrderField_OrderPriceType = 0;
@@ -13163,12 +13924,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderField *pErrOrderField, PyObject *d
 	char *pErrOrderField_AccountID = nullptr;
 	char *pErrOrderField_CurrencyID = nullptr;
 	char *pErrOrderField_ClientID = nullptr;
-	char *pErrOrderField_IPAddress = nullptr;
+	char *pErrOrderField_reserve2 = nullptr;
 	char *pErrOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pErrOrderField, "|yyyyyccyydicycicdciyiiiyiyyyyyyy")
+	char *pErrOrderField_InstrumentID = nullptr;
+	char *pErrOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pErrOrderField, "|yyyyyccyydicycicdciyiiiyiyyyyyyyyy")
 		, &pErrOrderField_BrokerID
 		, &pErrOrderField_InvestorID
-		, &pErrOrderField_InstrumentID
+		, &pErrOrderField_reserve1
 		, &pErrOrderField_OrderRef
 		, &pErrOrderField_UserID
 		, &pErrOrderField_OrderPriceType
@@ -13196,12 +13959,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderField *pErrOrderField, PyObject *d
 		, &pErrOrderField_AccountID
 		, &pErrOrderField_CurrencyID
 		, &pErrOrderField_ClientID
-		, &pErrOrderField_IPAddress
+		, &pErrOrderField_reserve2
 		, &pErrOrderField_MacAddress
+		, &pErrOrderField_InstrumentID
+		, &pErrOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pErrOrderField_BrokerID != nullptr){ strcpy_s(pErrOrderField->BrokerID, pErrOrderField_BrokerID); pErrOrderField_BrokerID = nullptr; }
 		if(pErrOrderField_InvestorID != nullptr){ strcpy_s(pErrOrderField->InvestorID, pErrOrderField_InvestorID); pErrOrderField_InvestorID = nullptr; }
-		if(pErrOrderField_InstrumentID != nullptr){ strcpy_s(pErrOrderField->InstrumentID, pErrOrderField_InstrumentID); pErrOrderField_InstrumentID = nullptr; }
+		if(pErrOrderField_reserve1 != nullptr){ strcpy_s(pErrOrderField->reserve1, pErrOrderField_reserve1); pErrOrderField_reserve1 = nullptr; }
 		if(pErrOrderField_OrderRef != nullptr){ strcpy_s(pErrOrderField->OrderRef, pErrOrderField_OrderRef); pErrOrderField_OrderRef = nullptr; }
 		if(pErrOrderField_UserID != nullptr){ strcpy_s(pErrOrderField->UserID, pErrOrderField_UserID); pErrOrderField_UserID = nullptr; }
 		pErrOrderField->OrderPriceType = pErrOrderField_OrderPriceType;
@@ -13229,17 +13994,19 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderField *pErrOrderField, PyObject *d
 		if(pErrOrderField_AccountID != nullptr){ strcpy_s(pErrOrderField->AccountID, pErrOrderField_AccountID); pErrOrderField_AccountID = nullptr; }
 		if(pErrOrderField_CurrencyID != nullptr){ strcpy_s(pErrOrderField->CurrencyID, pErrOrderField_CurrencyID); pErrOrderField_CurrencyID = nullptr; }
 		if(pErrOrderField_ClientID != nullptr){ strcpy_s(pErrOrderField->ClientID, pErrOrderField_ClientID); pErrOrderField_ClientID = nullptr; }
-		if(pErrOrderField_IPAddress != nullptr){ strcpy_s(pErrOrderField->IPAddress, pErrOrderField_IPAddress); pErrOrderField_IPAddress = nullptr; }
+		if(pErrOrderField_reserve2 != nullptr){ strcpy_s(pErrOrderField->reserve2, pErrOrderField_reserve2); pErrOrderField_reserve2 = nullptr; }
 		if(pErrOrderField_MacAddress != nullptr){ strcpy_s(pErrOrderField->MacAddress, pErrOrderField_MacAddress); pErrOrderField_MacAddress = nullptr; }
+		if(pErrOrderField_InstrumentID != nullptr){ strcpy_s(pErrOrderField->InstrumentID, pErrOrderField_InstrumentID); pErrOrderField_InstrumentID = nullptr; }
+		if(pErrOrderField_IPAddress != nullptr){ strcpy_s(pErrOrderField->IPAddress, pErrOrderField_IPAddress); pErrOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrOrderField *pErrOrderField)
 {
 	if(pErrOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:i,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:i,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pErrOrderField->BrokerID
 		, "InvestorID", pErrOrderField->InvestorID
-		, "InstrumentID", pErrOrderField->InstrumentID
+		, "reserve1", pErrOrderField->reserve1
 		, "OrderRef", pErrOrderField->OrderRef
 		, "UserID", pErrOrderField->UserID
 		, "OrderPriceType", pErrOrderField->OrderPriceType
@@ -13267,17 +14034,19 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrOrderField *pErrOrderField)
 		, "AccountID", pErrOrderField->AccountID
 		, "CurrencyID", pErrOrderField->CurrencyID
 		, "ClientID", pErrOrderField->ClientID
-		, "IPAddress", pErrOrderField->IPAddress
+		, "reserve2", pErrOrderField->reserve2
 		, "MacAddress", pErrOrderField->MacAddress
+		, "InstrumentID", pErrOrderField->InstrumentID
+		, "IPAddress", pErrOrderField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrderField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "OrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "ExchangeInstID", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OrderSysID", "OrderSource", "OrderStatus", "OrderType", "VolumeTraded", "VolumeTotal", "InsertDate", "InsertTime", "ActiveTime", "SuspendTime", "UpdateTime", "CancelTime", "ActiveTraderID", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "UserForceClose", "ActiveUserID", "BrokerOrderSeq", "RelativeOrderSysID", "ZCETotalTradedVolume", "ErrorID", "ErrorMsg", "IsSwapOrder", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "IPAddress", "MacAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "OrderRef", "UserID", "OrderPriceType", "Direction", "CombOffsetFlag", "CombHedgeFlag", "LimitPrice", "VolumeTotalOriginal", "TimeCondition", "GTDDate", "VolumeCondition", "MinVolume", "ContingentCondition", "StopPrice", "ForceCloseReason", "IsAutoSuspend", "BusinessUnit", "RequestID", "OrderLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "OrderSubmitStatus", "NotifySequence", "TradingDay", "SettlementID", "OrderSysID", "OrderSource", "OrderStatus", "OrderType", "VolumeTraded", "VolumeTotal", "InsertDate", "InsertTime", "ActiveTime", "SuspendTime", "UpdateTime", "CancelTime", "ActiveTraderID", "ClearingPartID", "SequenceNo", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "UserForceClose", "ActiveUserID", "BrokerOrderSeq", "RelativeOrderSysID", "ZCETotalTradedVolume", "ErrorID", "ErrorMsg", "IsSwapOrder", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
 	char *pErrorConditionalOrderField_BrokerID = nullptr;
 	char *pErrorConditionalOrderField_InvestorID = nullptr;
-	char *pErrorConditionalOrderField_InstrumentID = nullptr;
+	char *pErrorConditionalOrderField_reserve1 = nullptr;
 	char *pErrorConditionalOrderField_OrderRef = nullptr;
 	char *pErrorConditionalOrderField_UserID = nullptr;
 	char pErrorConditionalOrderField_OrderPriceType = 0;
@@ -13300,7 +14069,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditio
 	char *pErrorConditionalOrderField_ExchangeID = nullptr;
 	char *pErrorConditionalOrderField_ParticipantID = nullptr;
 	char *pErrorConditionalOrderField_ClientID = nullptr;
-	char *pErrorConditionalOrderField_ExchangeInstID = nullptr;
+	char *pErrorConditionalOrderField_reserve2 = nullptr;
 	char *pErrorConditionalOrderField_TraderID = nullptr;
 	int pErrorConditionalOrderField_InstallID = 0;
 	char pErrorConditionalOrderField_OrderSubmitStatus = 0;
@@ -13338,12 +14107,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditio
 	char *pErrorConditionalOrderField_InvestUnitID = nullptr;
 	char *pErrorConditionalOrderField_AccountID = nullptr;
 	char *pErrorConditionalOrderField_CurrencyID = nullptr;
-	char *pErrorConditionalOrderField_IPAddress = nullptr;
+	char *pErrorConditionalOrderField_reserve3 = nullptr;
 	char *pErrorConditionalOrderField_MacAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pErrorConditionalOrderField, "|yyyyyccyydicycicdciyiyyyyyyiciyiyccciiyyyyyyyyiiiyyiyiyiiyiyyyyyy")
+	char *pErrorConditionalOrderField_InstrumentID = nullptr;
+	char *pErrorConditionalOrderField_ExchangeInstID = nullptr;
+	char *pErrorConditionalOrderField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pErrorConditionalOrderField, "|yyyyyccyydicycicdciyiyyyyyyiciyiyccciiyyyyyyyyiiiyyiyiyiiyiyyyyyyyyy")
 		, &pErrorConditionalOrderField_BrokerID
 		, &pErrorConditionalOrderField_InvestorID
-		, &pErrorConditionalOrderField_InstrumentID
+		, &pErrorConditionalOrderField_reserve1
 		, &pErrorConditionalOrderField_OrderRef
 		, &pErrorConditionalOrderField_UserID
 		, &pErrorConditionalOrderField_OrderPriceType
@@ -13366,7 +14138,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditio
 		, &pErrorConditionalOrderField_ExchangeID
 		, &pErrorConditionalOrderField_ParticipantID
 		, &pErrorConditionalOrderField_ClientID
-		, &pErrorConditionalOrderField_ExchangeInstID
+		, &pErrorConditionalOrderField_reserve2
 		, &pErrorConditionalOrderField_TraderID
 		, &pErrorConditionalOrderField_InstallID
 		, &pErrorConditionalOrderField_OrderSubmitStatus
@@ -13404,12 +14176,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditio
 		, &pErrorConditionalOrderField_InvestUnitID
 		, &pErrorConditionalOrderField_AccountID
 		, &pErrorConditionalOrderField_CurrencyID
-		, &pErrorConditionalOrderField_IPAddress
+		, &pErrorConditionalOrderField_reserve3
 		, &pErrorConditionalOrderField_MacAddress
+		, &pErrorConditionalOrderField_InstrumentID
+		, &pErrorConditionalOrderField_ExchangeInstID
+		, &pErrorConditionalOrderField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pErrorConditionalOrderField_BrokerID != nullptr){ strcpy_s(pErrorConditionalOrderField->BrokerID, pErrorConditionalOrderField_BrokerID); pErrorConditionalOrderField_BrokerID = nullptr; }
 		if(pErrorConditionalOrderField_InvestorID != nullptr){ strcpy_s(pErrorConditionalOrderField->InvestorID, pErrorConditionalOrderField_InvestorID); pErrorConditionalOrderField_InvestorID = nullptr; }
-		if(pErrorConditionalOrderField_InstrumentID != nullptr){ strcpy_s(pErrorConditionalOrderField->InstrumentID, pErrorConditionalOrderField_InstrumentID); pErrorConditionalOrderField_InstrumentID = nullptr; }
+		if(pErrorConditionalOrderField_reserve1 != nullptr){ strcpy_s(pErrorConditionalOrderField->reserve1, pErrorConditionalOrderField_reserve1); pErrorConditionalOrderField_reserve1 = nullptr; }
 		if(pErrorConditionalOrderField_OrderRef != nullptr){ strcpy_s(pErrorConditionalOrderField->OrderRef, pErrorConditionalOrderField_OrderRef); pErrorConditionalOrderField_OrderRef = nullptr; }
 		if(pErrorConditionalOrderField_UserID != nullptr){ strcpy_s(pErrorConditionalOrderField->UserID, pErrorConditionalOrderField_UserID); pErrorConditionalOrderField_UserID = nullptr; }
 		pErrorConditionalOrderField->OrderPriceType = pErrorConditionalOrderField_OrderPriceType;
@@ -13432,7 +14207,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditio
 		if(pErrorConditionalOrderField_ExchangeID != nullptr){ strcpy_s(pErrorConditionalOrderField->ExchangeID, pErrorConditionalOrderField_ExchangeID); pErrorConditionalOrderField_ExchangeID = nullptr; }
 		if(pErrorConditionalOrderField_ParticipantID != nullptr){ strcpy_s(pErrorConditionalOrderField->ParticipantID, pErrorConditionalOrderField_ParticipantID); pErrorConditionalOrderField_ParticipantID = nullptr; }
 		if(pErrorConditionalOrderField_ClientID != nullptr){ strcpy_s(pErrorConditionalOrderField->ClientID, pErrorConditionalOrderField_ClientID); pErrorConditionalOrderField_ClientID = nullptr; }
-		if(pErrorConditionalOrderField_ExchangeInstID != nullptr){ strcpy_s(pErrorConditionalOrderField->ExchangeInstID, pErrorConditionalOrderField_ExchangeInstID); pErrorConditionalOrderField_ExchangeInstID = nullptr; }
+		if(pErrorConditionalOrderField_reserve2 != nullptr){ strcpy_s(pErrorConditionalOrderField->reserve2, pErrorConditionalOrderField_reserve2); pErrorConditionalOrderField_reserve2 = nullptr; }
 		if(pErrorConditionalOrderField_TraderID != nullptr){ strcpy_s(pErrorConditionalOrderField->TraderID, pErrorConditionalOrderField_TraderID); pErrorConditionalOrderField_TraderID = nullptr; }
 		pErrorConditionalOrderField->InstallID = pErrorConditionalOrderField_InstallID;
 		pErrorConditionalOrderField->OrderSubmitStatus = pErrorConditionalOrderField_OrderSubmitStatus;
@@ -13470,17 +14245,20 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditio
 		if(pErrorConditionalOrderField_InvestUnitID != nullptr){ strcpy_s(pErrorConditionalOrderField->InvestUnitID, pErrorConditionalOrderField_InvestUnitID); pErrorConditionalOrderField_InvestUnitID = nullptr; }
 		if(pErrorConditionalOrderField_AccountID != nullptr){ strcpy_s(pErrorConditionalOrderField->AccountID, pErrorConditionalOrderField_AccountID); pErrorConditionalOrderField_AccountID = nullptr; }
 		if(pErrorConditionalOrderField_CurrencyID != nullptr){ strcpy_s(pErrorConditionalOrderField->CurrencyID, pErrorConditionalOrderField_CurrencyID); pErrorConditionalOrderField_CurrencyID = nullptr; }
-		if(pErrorConditionalOrderField_IPAddress != nullptr){ strcpy_s(pErrorConditionalOrderField->IPAddress, pErrorConditionalOrderField_IPAddress); pErrorConditionalOrderField_IPAddress = nullptr; }
+		if(pErrorConditionalOrderField_reserve3 != nullptr){ strcpy_s(pErrorConditionalOrderField->reserve3, pErrorConditionalOrderField_reserve3); pErrorConditionalOrderField_reserve3 = nullptr; }
 		if(pErrorConditionalOrderField_MacAddress != nullptr){ strcpy_s(pErrorConditionalOrderField->MacAddress, pErrorConditionalOrderField_MacAddress); pErrorConditionalOrderField_MacAddress = nullptr; }
+		if(pErrorConditionalOrderField_InstrumentID != nullptr){ strcpy_s(pErrorConditionalOrderField->InstrumentID, pErrorConditionalOrderField_InstrumentID); pErrorConditionalOrderField_InstrumentID = nullptr; }
+		if(pErrorConditionalOrderField_ExchangeInstID != nullptr){ strcpy_s(pErrorConditionalOrderField->ExchangeInstID, pErrorConditionalOrderField_ExchangeInstID); pErrorConditionalOrderField_ExchangeInstID = nullptr; }
+		if(pErrorConditionalOrderField_IPAddress != nullptr){ strcpy_s(pErrorConditionalOrderField->IPAddress, pErrorConditionalOrderField_IPAddress); pErrorConditionalOrderField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrderField)
 {
 	if(pErrorConditionalOrderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:c,s:c,s:c,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:i,s:y,s:y,s:i,s:y,s:i,s:y,s:i,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:d,s:i,s:c,s:y,s:c,s:i,s:c,s:d,s:c,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:c,s:i,s:y,s:i,s:y,s:c,s:c,s:c,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:i,s:y,s:y,s:i,s:y,s:i,s:y,s:i,s:i,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pErrorConditionalOrderField->BrokerID
 		, "InvestorID", pErrorConditionalOrderField->InvestorID
-		, "InstrumentID", pErrorConditionalOrderField->InstrumentID
+		, "reserve1", pErrorConditionalOrderField->reserve1
 		, "OrderRef", pErrorConditionalOrderField->OrderRef
 		, "UserID", pErrorConditionalOrderField->UserID
 		, "OrderPriceType", pErrorConditionalOrderField->OrderPriceType
@@ -13503,7 +14281,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrorConditionalOrderField *pErrorCo
 		, "ExchangeID", pErrorConditionalOrderField->ExchangeID
 		, "ParticipantID", pErrorConditionalOrderField->ParticipantID
 		, "ClientID", pErrorConditionalOrderField->ClientID
-		, "ExchangeInstID", pErrorConditionalOrderField->ExchangeInstID
+		, "reserve2", pErrorConditionalOrderField->reserve2
 		, "TraderID", pErrorConditionalOrderField->TraderID
 		, "InstallID", pErrorConditionalOrderField->InstallID
 		, "OrderSubmitStatus", pErrorConditionalOrderField->OrderSubmitStatus
@@ -13541,8 +14319,11 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrorConditionalOrderField *pErrorCo
 		, "InvestUnitID", pErrorConditionalOrderField->InvestUnitID
 		, "AccountID", pErrorConditionalOrderField->AccountID
 		, "CurrencyID", pErrorConditionalOrderField->CurrencyID
-		, "IPAddress", pErrorConditionalOrderField->IPAddress
+		, "reserve3", pErrorConditionalOrderField->reserve3
 		, "MacAddress", pErrorConditionalOrderField->MacAddress
+		, "InstrumentID", pErrorConditionalOrderField->InstrumentID
+		, "ExchangeInstID", pErrorConditionalOrderField->ExchangeInstID
+		, "IPAddress", pErrorConditionalOrderField->IPAddress
 		);
 }
 
@@ -13570,7 +14351,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrOrderActionField *pQryErrOrder
 
 int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderActionField *pErrOrderActionField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "ActionDate", "ActionTime", "TraderID", "InstallID", "OrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "InstrumentID", "BranchID", "InvestUnitID", "IPAddress", "MacAddress", "ErrorID", "ErrorMsg", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "OrderActionRef", "OrderRef", "RequestID", "FrontID", "SessionID", "ExchangeID", "OrderSysID", "ActionFlag", "LimitPrice", "VolumeChange", "ActionDate", "ActionTime", "TraderID", "InstallID", "OrderLocalID", "ActionLocalID", "ParticipantID", "ClientID", "BusinessUnit", "OrderActionStatus", "UserID", "StatusMsg", "reserve1", "BranchID", "InvestUnitID", "reserve2", "MacAddress", "ErrorID", "ErrorMsg", "InstrumentID", "IPAddress", nullptr};
 	char *pErrOrderActionField_BrokerID = nullptr;
 	char *pErrOrderActionField_InvestorID = nullptr;
 	int pErrOrderActionField_OrderActionRef = 0;
@@ -13595,14 +14376,16 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderActionField *pErrOrderActionField,
 	char pErrOrderActionField_OrderActionStatus = 0;
 	char *pErrOrderActionField_UserID = nullptr;
 	char *pErrOrderActionField_StatusMsg = nullptr;
-	char *pErrOrderActionField_InstrumentID = nullptr;
+	char *pErrOrderActionField_reserve1 = nullptr;
 	char *pErrOrderActionField_BranchID = nullptr;
 	char *pErrOrderActionField_InvestUnitID = nullptr;
-	char *pErrOrderActionField_IPAddress = nullptr;
+	char *pErrOrderActionField_reserve2 = nullptr;
 	char *pErrOrderActionField_MacAddress = nullptr;
 	int pErrOrderActionField_ErrorID = 0;
 	char *pErrOrderActionField_ErrorMsg = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pErrOrderActionField, "|yyiyiiiyycdiyyyiyyyyycyyyyyyyiy")
+	char *pErrOrderActionField_InstrumentID = nullptr;
+	char *pErrOrderActionField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pErrOrderActionField, "|yyiyiiiyycdiyyyiyyyyycyyyyyyyiyyy")
 		, &pErrOrderActionField_BrokerID
 		, &pErrOrderActionField_InvestorID
 		, &pErrOrderActionField_OrderActionRef
@@ -13627,13 +14410,15 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderActionField *pErrOrderActionField,
 		, &pErrOrderActionField_OrderActionStatus
 		, &pErrOrderActionField_UserID
 		, &pErrOrderActionField_StatusMsg
-		, &pErrOrderActionField_InstrumentID
+		, &pErrOrderActionField_reserve1
 		, &pErrOrderActionField_BranchID
 		, &pErrOrderActionField_InvestUnitID
-		, &pErrOrderActionField_IPAddress
+		, &pErrOrderActionField_reserve2
 		, &pErrOrderActionField_MacAddress
 		, &pErrOrderActionField_ErrorID
 		, &pErrOrderActionField_ErrorMsg
+		, &pErrOrderActionField_InstrumentID
+		, &pErrOrderActionField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pErrOrderActionField_BrokerID != nullptr){ strcpy_s(pErrOrderActionField->BrokerID, pErrOrderActionField_BrokerID); pErrOrderActionField_BrokerID = nullptr; }
 		if(pErrOrderActionField_InvestorID != nullptr){ strcpy_s(pErrOrderActionField->InvestorID, pErrOrderActionField_InvestorID); pErrOrderActionField_InvestorID = nullptr; }
@@ -13659,19 +14444,21 @@ int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderActionField *pErrOrderActionField,
 		pErrOrderActionField->OrderActionStatus = pErrOrderActionField_OrderActionStatus;
 		if(pErrOrderActionField_UserID != nullptr){ strcpy_s(pErrOrderActionField->UserID, pErrOrderActionField_UserID); pErrOrderActionField_UserID = nullptr; }
 		if(pErrOrderActionField_StatusMsg != nullptr){ strcpy_s(pErrOrderActionField->StatusMsg, pErrOrderActionField_StatusMsg); pErrOrderActionField_StatusMsg = nullptr; }
-		if(pErrOrderActionField_InstrumentID != nullptr){ strcpy_s(pErrOrderActionField->InstrumentID, pErrOrderActionField_InstrumentID); pErrOrderActionField_InstrumentID = nullptr; }
+		if(pErrOrderActionField_reserve1 != nullptr){ strcpy_s(pErrOrderActionField->reserve1, pErrOrderActionField_reserve1); pErrOrderActionField_reserve1 = nullptr; }
 		if(pErrOrderActionField_BranchID != nullptr){ strcpy_s(pErrOrderActionField->BranchID, pErrOrderActionField_BranchID); pErrOrderActionField_BranchID = nullptr; }
 		if(pErrOrderActionField_InvestUnitID != nullptr){ strcpy_s(pErrOrderActionField->InvestUnitID, pErrOrderActionField_InvestUnitID); pErrOrderActionField_InvestUnitID = nullptr; }
-		if(pErrOrderActionField_IPAddress != nullptr){ strcpy_s(pErrOrderActionField->IPAddress, pErrOrderActionField_IPAddress); pErrOrderActionField_IPAddress = nullptr; }
+		if(pErrOrderActionField_reserve2 != nullptr){ strcpy_s(pErrOrderActionField->reserve2, pErrOrderActionField_reserve2); pErrOrderActionField_reserve2 = nullptr; }
 		if(pErrOrderActionField_MacAddress != nullptr){ strcpy_s(pErrOrderActionField->MacAddress, pErrOrderActionField_MacAddress); pErrOrderActionField_MacAddress = nullptr; }
 		pErrOrderActionField->ErrorID = pErrOrderActionField_ErrorID;
 		if(pErrOrderActionField_ErrorMsg != nullptr){ strcpy_s(pErrOrderActionField->ErrorMsg, pErrOrderActionField_ErrorMsg); pErrOrderActionField_ErrorMsg = nullptr; }
+		if(pErrOrderActionField_InstrumentID != nullptr){ strcpy_s(pErrOrderActionField->InstrumentID, pErrOrderActionField_InstrumentID); pErrOrderActionField_InstrumentID = nullptr; }
+		if(pErrOrderActionField_IPAddress != nullptr){ strcpy_s(pErrOrderActionField->IPAddress, pErrOrderActionField_IPAddress); pErrOrderActionField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrOrderActionField *pErrOrderActionField)
 {
 	if(pErrOrderActionField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:i,s:i,s:i,s:y,s:y,s:c,s:d,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y,s:y}"
 		, "BrokerID", pErrOrderActionField->BrokerID
 		, "InvestorID", pErrOrderActionField->InvestorID
 		, "OrderActionRef", pErrOrderActionField->OrderActionRef
@@ -13696,13 +14483,15 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrOrderActionField *pErrOrderAction
 		, "OrderActionStatus", pErrOrderActionField->OrderActionStatus
 		, "UserID", pErrOrderActionField->UserID
 		, "StatusMsg", pErrOrderActionField->StatusMsg
-		, "InstrumentID", pErrOrderActionField->InstrumentID
+		, "reserve1", pErrOrderActionField->reserve1
 		, "BranchID", pErrOrderActionField->BranchID
 		, "InvestUnitID", pErrOrderActionField->InvestUnitID
-		, "IPAddress", pErrOrderActionField->IPAddress
+		, "reserve2", pErrOrderActionField->reserve2
 		, "MacAddress", pErrOrderActionField->MacAddress
 		, "ErrorID", pErrOrderActionField->ErrorID
 		, "ErrorMsg", pErrOrderActionField->ErrorMsg
+		, "InstrumentID", pErrOrderActionField->InstrumentID
+		, "IPAddress", pErrOrderActionField->IPAddress
 		);
 }
 
@@ -13750,57 +14539,61 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeSequenceField *pExchangeSequ
 		);
 }
 
-int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeWithPriceField *pQueryMaxOrderVolumeWithPriceField, PyObject *dict)
+int PyCTP_Struct_FromPyDict(CThostFtdcQryMaxOrderVolumeWithPriceField *pQryMaxOrderVolumeWithPriceField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", "Direction", "OffsetFlag", "HedgeFlag", "MaxVolume", "Price", "ExchangeID", "InvestUnitID", nullptr};
-	char *pQueryMaxOrderVolumeWithPriceField_BrokerID = nullptr;
-	char *pQueryMaxOrderVolumeWithPriceField_InvestorID = nullptr;
-	char *pQueryMaxOrderVolumeWithPriceField_InstrumentID = nullptr;
-	char pQueryMaxOrderVolumeWithPriceField_Direction = 0;
-	char pQueryMaxOrderVolumeWithPriceField_OffsetFlag = 0;
-	char pQueryMaxOrderVolumeWithPriceField_HedgeFlag = 0;
-	int pQueryMaxOrderVolumeWithPriceField_MaxVolume = 0;
-	double pQueryMaxOrderVolumeWithPriceField_Price = 0.0;
-	char *pQueryMaxOrderVolumeWithPriceField_ExchangeID = nullptr;
-	char *pQueryMaxOrderVolumeWithPriceField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQueryMaxOrderVolumeWithPriceField, "|yyycccidyy")
-		, &pQueryMaxOrderVolumeWithPriceField_BrokerID
-		, &pQueryMaxOrderVolumeWithPriceField_InvestorID
-		, &pQueryMaxOrderVolumeWithPriceField_InstrumentID
-		, &pQueryMaxOrderVolumeWithPriceField_Direction
-		, &pQueryMaxOrderVolumeWithPriceField_OffsetFlag
-		, &pQueryMaxOrderVolumeWithPriceField_HedgeFlag
-		, &pQueryMaxOrderVolumeWithPriceField_MaxVolume
-		, &pQueryMaxOrderVolumeWithPriceField_Price
-		, &pQueryMaxOrderVolumeWithPriceField_ExchangeID
-		, &pQueryMaxOrderVolumeWithPriceField_InvestUnitID
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "Direction", "OffsetFlag", "HedgeFlag", "MaxVolume", "Price", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
+	char *pQryMaxOrderVolumeWithPriceField_BrokerID = nullptr;
+	char *pQryMaxOrderVolumeWithPriceField_InvestorID = nullptr;
+	char *pQryMaxOrderVolumeWithPriceField_reserve1 = nullptr;
+	char pQryMaxOrderVolumeWithPriceField_Direction = 0;
+	char pQryMaxOrderVolumeWithPriceField_OffsetFlag = 0;
+	char pQryMaxOrderVolumeWithPriceField_HedgeFlag = 0;
+	int pQryMaxOrderVolumeWithPriceField_MaxVolume = 0;
+	double pQryMaxOrderVolumeWithPriceField_Price = 0.0;
+	char *pQryMaxOrderVolumeWithPriceField_ExchangeID = nullptr;
+	char *pQryMaxOrderVolumeWithPriceField_InvestUnitID = nullptr;
+	char *pQryMaxOrderVolumeWithPriceField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryMaxOrderVolumeWithPriceField, "|yyycccidyyy")
+		, &pQryMaxOrderVolumeWithPriceField_BrokerID
+		, &pQryMaxOrderVolumeWithPriceField_InvestorID
+		, &pQryMaxOrderVolumeWithPriceField_reserve1
+		, &pQryMaxOrderVolumeWithPriceField_Direction
+		, &pQryMaxOrderVolumeWithPriceField_OffsetFlag
+		, &pQryMaxOrderVolumeWithPriceField_HedgeFlag
+		, &pQryMaxOrderVolumeWithPriceField_MaxVolume
+		, &pQryMaxOrderVolumeWithPriceField_Price
+		, &pQryMaxOrderVolumeWithPriceField_ExchangeID
+		, &pQryMaxOrderVolumeWithPriceField_InvestUnitID
+		, &pQryMaxOrderVolumeWithPriceField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
-		if(pQueryMaxOrderVolumeWithPriceField_BrokerID != nullptr){ strcpy_s(pQueryMaxOrderVolumeWithPriceField->BrokerID, pQueryMaxOrderVolumeWithPriceField_BrokerID); pQueryMaxOrderVolumeWithPriceField_BrokerID = nullptr; }
-		if(pQueryMaxOrderVolumeWithPriceField_InvestorID != nullptr){ strcpy_s(pQueryMaxOrderVolumeWithPriceField->InvestorID, pQueryMaxOrderVolumeWithPriceField_InvestorID); pQueryMaxOrderVolumeWithPriceField_InvestorID = nullptr; }
-		if(pQueryMaxOrderVolumeWithPriceField_InstrumentID != nullptr){ strcpy_s(pQueryMaxOrderVolumeWithPriceField->InstrumentID, pQueryMaxOrderVolumeWithPriceField_InstrumentID); pQueryMaxOrderVolumeWithPriceField_InstrumentID = nullptr; }
-		pQueryMaxOrderVolumeWithPriceField->Direction = pQueryMaxOrderVolumeWithPriceField_Direction;
-		pQueryMaxOrderVolumeWithPriceField->OffsetFlag = pQueryMaxOrderVolumeWithPriceField_OffsetFlag;
-		pQueryMaxOrderVolumeWithPriceField->HedgeFlag = pQueryMaxOrderVolumeWithPriceField_HedgeFlag;
-		pQueryMaxOrderVolumeWithPriceField->MaxVolume = pQueryMaxOrderVolumeWithPriceField_MaxVolume;
-		pQueryMaxOrderVolumeWithPriceField->Price = pQueryMaxOrderVolumeWithPriceField_Price;
-		if(pQueryMaxOrderVolumeWithPriceField_ExchangeID != nullptr){ strcpy_s(pQueryMaxOrderVolumeWithPriceField->ExchangeID, pQueryMaxOrderVolumeWithPriceField_ExchangeID); pQueryMaxOrderVolumeWithPriceField_ExchangeID = nullptr; }
-		if(pQueryMaxOrderVolumeWithPriceField_InvestUnitID != nullptr){ strcpy_s(pQueryMaxOrderVolumeWithPriceField->InvestUnitID, pQueryMaxOrderVolumeWithPriceField_InvestUnitID); pQueryMaxOrderVolumeWithPriceField_InvestUnitID = nullptr; }
+		if(pQryMaxOrderVolumeWithPriceField_BrokerID != nullptr){ strcpy_s(pQryMaxOrderVolumeWithPriceField->BrokerID, pQryMaxOrderVolumeWithPriceField_BrokerID); pQryMaxOrderVolumeWithPriceField_BrokerID = nullptr; }
+		if(pQryMaxOrderVolumeWithPriceField_InvestorID != nullptr){ strcpy_s(pQryMaxOrderVolumeWithPriceField->InvestorID, pQryMaxOrderVolumeWithPriceField_InvestorID); pQryMaxOrderVolumeWithPriceField_InvestorID = nullptr; }
+		if(pQryMaxOrderVolumeWithPriceField_reserve1 != nullptr){ strcpy_s(pQryMaxOrderVolumeWithPriceField->reserve1, pQryMaxOrderVolumeWithPriceField_reserve1); pQryMaxOrderVolumeWithPriceField_reserve1 = nullptr; }
+		pQryMaxOrderVolumeWithPriceField->Direction = pQryMaxOrderVolumeWithPriceField_Direction;
+		pQryMaxOrderVolumeWithPriceField->OffsetFlag = pQryMaxOrderVolumeWithPriceField_OffsetFlag;
+		pQryMaxOrderVolumeWithPriceField->HedgeFlag = pQryMaxOrderVolumeWithPriceField_HedgeFlag;
+		pQryMaxOrderVolumeWithPriceField->MaxVolume = pQryMaxOrderVolumeWithPriceField_MaxVolume;
+		pQryMaxOrderVolumeWithPriceField->Price = pQryMaxOrderVolumeWithPriceField_Price;
+		if(pQryMaxOrderVolumeWithPriceField_ExchangeID != nullptr){ strcpy_s(pQryMaxOrderVolumeWithPriceField->ExchangeID, pQryMaxOrderVolumeWithPriceField_ExchangeID); pQryMaxOrderVolumeWithPriceField_ExchangeID = nullptr; }
+		if(pQryMaxOrderVolumeWithPriceField_InvestUnitID != nullptr){ strcpy_s(pQryMaxOrderVolumeWithPriceField->InvestUnitID, pQryMaxOrderVolumeWithPriceField_InvestUnitID); pQryMaxOrderVolumeWithPriceField_InvestUnitID = nullptr; }
+		if(pQryMaxOrderVolumeWithPriceField_InstrumentID != nullptr){ strcpy_s(pQryMaxOrderVolumeWithPriceField->InstrumentID, pQryMaxOrderVolumeWithPriceField_InstrumentID); pQryMaxOrderVolumeWithPriceField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryMaxOrderVolumeWithPriceField *pQueryMaxOrderVolumeWithPriceField)
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMaxOrderVolumeWithPriceField *pQryMaxOrderVolumeWithPriceField)
 {
-	if(pQueryMaxOrderVolumeWithPriceField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:d,s:y,s:y}"
-		, "BrokerID", pQueryMaxOrderVolumeWithPriceField->BrokerID
-		, "InvestorID", pQueryMaxOrderVolumeWithPriceField->InvestorID
-		, "InstrumentID", pQueryMaxOrderVolumeWithPriceField->InstrumentID
-		, "Direction", pQueryMaxOrderVolumeWithPriceField->Direction
-		, "OffsetFlag", pQueryMaxOrderVolumeWithPriceField->OffsetFlag
-		, "HedgeFlag", pQueryMaxOrderVolumeWithPriceField->HedgeFlag
-		, "MaxVolume", pQueryMaxOrderVolumeWithPriceField->MaxVolume
-		, "Price", pQueryMaxOrderVolumeWithPriceField->Price
-		, "ExchangeID", pQueryMaxOrderVolumeWithPriceField->ExchangeID
-		, "InvestUnitID", pQueryMaxOrderVolumeWithPriceField->InvestUnitID
+	if(pQryMaxOrderVolumeWithPriceField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:d,s:y,s:y,s:y}"
+		, "BrokerID", pQryMaxOrderVolumeWithPriceField->BrokerID
+		, "InvestorID", pQryMaxOrderVolumeWithPriceField->InvestorID
+		, "reserve1", pQryMaxOrderVolumeWithPriceField->reserve1
+		, "Direction", pQryMaxOrderVolumeWithPriceField->Direction
+		, "OffsetFlag", pQryMaxOrderVolumeWithPriceField->OffsetFlag
+		, "HedgeFlag", pQryMaxOrderVolumeWithPriceField->HedgeFlag
+		, "MaxVolume", pQryMaxOrderVolumeWithPriceField->MaxVolume
+		, "Price", pQryMaxOrderVolumeWithPriceField->Price
+		, "ExchangeID", pQryMaxOrderVolumeWithPriceField->ExchangeID
+		, "InvestUnitID", pQryMaxOrderVolumeWithPriceField->InvestUnitID
+		, "InstrumentID", pQryMaxOrderVolumeWithPriceField->InstrumentID
 		);
 }
 
@@ -13882,65 +14675,73 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerTradingParamsField *pBrokerTra
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingAlgosField *pQryBrokerTradingAlgosField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"BrokerID", "ExchangeID", "reserve1", "InstrumentID", nullptr};
 	char *pQryBrokerTradingAlgosField_BrokerID = nullptr;
 	char *pQryBrokerTradingAlgosField_ExchangeID = nullptr;
+	char *pQryBrokerTradingAlgosField_reserve1 = nullptr;
 	char *pQryBrokerTradingAlgosField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryBrokerTradingAlgosField, "|yyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryBrokerTradingAlgosField, "|yyyy")
 		, &pQryBrokerTradingAlgosField_BrokerID
 		, &pQryBrokerTradingAlgosField_ExchangeID
+		, &pQryBrokerTradingAlgosField_reserve1
 		, &pQryBrokerTradingAlgosField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryBrokerTradingAlgosField_BrokerID != nullptr){ strcpy_s(pQryBrokerTradingAlgosField->BrokerID, pQryBrokerTradingAlgosField_BrokerID); pQryBrokerTradingAlgosField_BrokerID = nullptr; }
 		if(pQryBrokerTradingAlgosField_ExchangeID != nullptr){ strcpy_s(pQryBrokerTradingAlgosField->ExchangeID, pQryBrokerTradingAlgosField_ExchangeID); pQryBrokerTradingAlgosField_ExchangeID = nullptr; }
+		if(pQryBrokerTradingAlgosField_reserve1 != nullptr){ strcpy_s(pQryBrokerTradingAlgosField->reserve1, pQryBrokerTradingAlgosField_reserve1); pQryBrokerTradingAlgosField_reserve1 = nullptr; }
 		if(pQryBrokerTradingAlgosField_InstrumentID != nullptr){ strcpy_s(pQryBrokerTradingAlgosField->InstrumentID, pQryBrokerTradingAlgosField_InstrumentID); pQryBrokerTradingAlgosField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerTradingAlgosField *pQryBrokerTradingAlgosField)
 {
 	if(pQryBrokerTradingAlgosField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryBrokerTradingAlgosField->BrokerID
 		, "ExchangeID", pQryBrokerTradingAlgosField->ExchangeID
+		, "reserve1", pQryBrokerTradingAlgosField->reserve1
 		, "InstrumentID", pQryBrokerTradingAlgosField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgosField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "ExchangeID", "InstrumentID", "HandlePositionAlgoID", "FindMarginRateAlgoID", "HandleTradingAccountAlgoID", nullptr};
+	static char *kwlist[] = {"BrokerID", "ExchangeID", "reserve1", "HandlePositionAlgoID", "FindMarginRateAlgoID", "HandleTradingAccountAlgoID", "InstrumentID", nullptr};
 	char *pBrokerTradingAlgosField_BrokerID = nullptr;
 	char *pBrokerTradingAlgosField_ExchangeID = nullptr;
-	char *pBrokerTradingAlgosField_InstrumentID = nullptr;
+	char *pBrokerTradingAlgosField_reserve1 = nullptr;
 	char pBrokerTradingAlgosField_HandlePositionAlgoID = 0;
 	char pBrokerTradingAlgosField_FindMarginRateAlgoID = 0;
 	char pBrokerTradingAlgosField_HandleTradingAccountAlgoID = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pBrokerTradingAlgosField, "|yyyccc")
+	char *pBrokerTradingAlgosField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pBrokerTradingAlgosField, "|yyycccy")
 		, &pBrokerTradingAlgosField_BrokerID
 		, &pBrokerTradingAlgosField_ExchangeID
-		, &pBrokerTradingAlgosField_InstrumentID
+		, &pBrokerTradingAlgosField_reserve1
 		, &pBrokerTradingAlgosField_HandlePositionAlgoID
 		, &pBrokerTradingAlgosField_FindMarginRateAlgoID
 		, &pBrokerTradingAlgosField_HandleTradingAccountAlgoID
+		, &pBrokerTradingAlgosField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pBrokerTradingAlgosField_BrokerID != nullptr){ strcpy_s(pBrokerTradingAlgosField->BrokerID, pBrokerTradingAlgosField_BrokerID); pBrokerTradingAlgosField_BrokerID = nullptr; }
 		if(pBrokerTradingAlgosField_ExchangeID != nullptr){ strcpy_s(pBrokerTradingAlgosField->ExchangeID, pBrokerTradingAlgosField_ExchangeID); pBrokerTradingAlgosField_ExchangeID = nullptr; }
-		if(pBrokerTradingAlgosField_InstrumentID != nullptr){ strcpy_s(pBrokerTradingAlgosField->InstrumentID, pBrokerTradingAlgosField_InstrumentID); pBrokerTradingAlgosField_InstrumentID = nullptr; }
+		if(pBrokerTradingAlgosField_reserve1 != nullptr){ strcpy_s(pBrokerTradingAlgosField->reserve1, pBrokerTradingAlgosField_reserve1); pBrokerTradingAlgosField_reserve1 = nullptr; }
 		pBrokerTradingAlgosField->HandlePositionAlgoID = pBrokerTradingAlgosField_HandlePositionAlgoID;
 		pBrokerTradingAlgosField->FindMarginRateAlgoID = pBrokerTradingAlgosField_FindMarginRateAlgoID;
 		pBrokerTradingAlgosField->HandleTradingAccountAlgoID = pBrokerTradingAlgosField_HandleTradingAccountAlgoID;
+		if(pBrokerTradingAlgosField_InstrumentID != nullptr){ strcpy_s(pBrokerTradingAlgosField->InstrumentID, pBrokerTradingAlgosField_InstrumentID); pBrokerTradingAlgosField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgosField)
 {
 	if(pBrokerTradingAlgosField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:y}"
 		, "BrokerID", pBrokerTradingAlgosField->BrokerID
 		, "ExchangeID", pBrokerTradingAlgosField->ExchangeID
-		, "InstrumentID", pBrokerTradingAlgosField->InstrumentID
+		, "reserve1", pBrokerTradingAlgosField->reserve1
 		, "HandlePositionAlgoID", pBrokerTradingAlgosField->HandlePositionAlgoID
 		, "FindMarginRateAlgoID", pBrokerTradingAlgosField->FindMarginRateAlgoID
 		, "HandleTradingAccountAlgoID", pBrokerTradingAlgosField->HandleTradingAccountAlgoID
+		, "InstrumentID", pBrokerTradingAlgosField->InstrumentID
 		);
 }
 
@@ -14326,130 +15127,142 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMarginModelField *pQryMarginModel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcEWarrantOffsetField *pEWarrantOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "BrokerID", "InvestorID", "ExchangeID", "InstrumentID", "Direction", "HedgeFlag", "Volume", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"TradingDay", "BrokerID", "InvestorID", "ExchangeID", "reserve1", "Direction", "HedgeFlag", "Volume", "InvestUnitID", "InstrumentID", nullptr};
 	char *pEWarrantOffsetField_TradingDay = nullptr;
 	char *pEWarrantOffsetField_BrokerID = nullptr;
 	char *pEWarrantOffsetField_InvestorID = nullptr;
 	char *pEWarrantOffsetField_ExchangeID = nullptr;
-	char *pEWarrantOffsetField_InstrumentID = nullptr;
+	char *pEWarrantOffsetField_reserve1 = nullptr;
 	char pEWarrantOffsetField_Direction = 0;
 	char pEWarrantOffsetField_HedgeFlag = 0;
 	int pEWarrantOffsetField_Volume = 0;
 	char *pEWarrantOffsetField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pEWarrantOffsetField, "|yyyyycciy")
+	char *pEWarrantOffsetField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pEWarrantOffsetField, "|yyyyycciyy")
 		, &pEWarrantOffsetField_TradingDay
 		, &pEWarrantOffsetField_BrokerID
 		, &pEWarrantOffsetField_InvestorID
 		, &pEWarrantOffsetField_ExchangeID
-		, &pEWarrantOffsetField_InstrumentID
+		, &pEWarrantOffsetField_reserve1
 		, &pEWarrantOffsetField_Direction
 		, &pEWarrantOffsetField_HedgeFlag
 		, &pEWarrantOffsetField_Volume
 		, &pEWarrantOffsetField_InvestUnitID
+		, &pEWarrantOffsetField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pEWarrantOffsetField_TradingDay != nullptr){ strcpy_s(pEWarrantOffsetField->TradingDay, pEWarrantOffsetField_TradingDay); pEWarrantOffsetField_TradingDay = nullptr; }
 		if(pEWarrantOffsetField_BrokerID != nullptr){ strcpy_s(pEWarrantOffsetField->BrokerID, pEWarrantOffsetField_BrokerID); pEWarrantOffsetField_BrokerID = nullptr; }
 		if(pEWarrantOffsetField_InvestorID != nullptr){ strcpy_s(pEWarrantOffsetField->InvestorID, pEWarrantOffsetField_InvestorID); pEWarrantOffsetField_InvestorID = nullptr; }
 		if(pEWarrantOffsetField_ExchangeID != nullptr){ strcpy_s(pEWarrantOffsetField->ExchangeID, pEWarrantOffsetField_ExchangeID); pEWarrantOffsetField_ExchangeID = nullptr; }
-		if(pEWarrantOffsetField_InstrumentID != nullptr){ strcpy_s(pEWarrantOffsetField->InstrumentID, pEWarrantOffsetField_InstrumentID); pEWarrantOffsetField_InstrumentID = nullptr; }
+		if(pEWarrantOffsetField_reserve1 != nullptr){ strcpy_s(pEWarrantOffsetField->reserve1, pEWarrantOffsetField_reserve1); pEWarrantOffsetField_reserve1 = nullptr; }
 		pEWarrantOffsetField->Direction = pEWarrantOffsetField_Direction;
 		pEWarrantOffsetField->HedgeFlag = pEWarrantOffsetField_HedgeFlag;
 		pEWarrantOffsetField->Volume = pEWarrantOffsetField_Volume;
 		if(pEWarrantOffsetField_InvestUnitID != nullptr){ strcpy_s(pEWarrantOffsetField->InvestUnitID, pEWarrantOffsetField_InvestUnitID); pEWarrantOffsetField_InvestUnitID = nullptr; }
+		if(pEWarrantOffsetField_InstrumentID != nullptr){ strcpy_s(pEWarrantOffsetField->InstrumentID, pEWarrantOffsetField_InstrumentID); pEWarrantOffsetField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcEWarrantOffsetField *pEWarrantOffsetField)
 {
 	if(pEWarrantOffsetField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:i,s:y,s:y}"
 		, "TradingDay", pEWarrantOffsetField->TradingDay
 		, "BrokerID", pEWarrantOffsetField->BrokerID
 		, "InvestorID", pEWarrantOffsetField->InvestorID
 		, "ExchangeID", pEWarrantOffsetField->ExchangeID
-		, "InstrumentID", pEWarrantOffsetField->InstrumentID
+		, "reserve1", pEWarrantOffsetField->reserve1
 		, "Direction", pEWarrantOffsetField->Direction
 		, "HedgeFlag", pEWarrantOffsetField->HedgeFlag
 		, "Volume", pEWarrantOffsetField->Volume
 		, "InvestUnitID", pEWarrantOffsetField->InvestUnitID
+		, "InstrumentID", pEWarrantOffsetField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryEWarrantOffsetField *pQryEWarrantOffsetField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ExchangeID", "InstrumentID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "ExchangeID", "reserve1", "InvestUnitID", "InstrumentID", nullptr};
 	char *pQryEWarrantOffsetField_BrokerID = nullptr;
 	char *pQryEWarrantOffsetField_InvestorID = nullptr;
 	char *pQryEWarrantOffsetField_ExchangeID = nullptr;
-	char *pQryEWarrantOffsetField_InstrumentID = nullptr;
+	char *pQryEWarrantOffsetField_reserve1 = nullptr;
 	char *pQryEWarrantOffsetField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryEWarrantOffsetField, "|yyyyy")
+	char *pQryEWarrantOffsetField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryEWarrantOffsetField, "|yyyyyy")
 		, &pQryEWarrantOffsetField_BrokerID
 		, &pQryEWarrantOffsetField_InvestorID
 		, &pQryEWarrantOffsetField_ExchangeID
-		, &pQryEWarrantOffsetField_InstrumentID
+		, &pQryEWarrantOffsetField_reserve1
 		, &pQryEWarrantOffsetField_InvestUnitID
+		, &pQryEWarrantOffsetField_InstrumentID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryEWarrantOffsetField_BrokerID != nullptr){ strcpy_s(pQryEWarrantOffsetField->BrokerID, pQryEWarrantOffsetField_BrokerID); pQryEWarrantOffsetField_BrokerID = nullptr; }
 		if(pQryEWarrantOffsetField_InvestorID != nullptr){ strcpy_s(pQryEWarrantOffsetField->InvestorID, pQryEWarrantOffsetField_InvestorID); pQryEWarrantOffsetField_InvestorID = nullptr; }
 		if(pQryEWarrantOffsetField_ExchangeID != nullptr){ strcpy_s(pQryEWarrantOffsetField->ExchangeID, pQryEWarrantOffsetField_ExchangeID); pQryEWarrantOffsetField_ExchangeID = nullptr; }
-		if(pQryEWarrantOffsetField_InstrumentID != nullptr){ strcpy_s(pQryEWarrantOffsetField->InstrumentID, pQryEWarrantOffsetField_InstrumentID); pQryEWarrantOffsetField_InstrumentID = nullptr; }
+		if(pQryEWarrantOffsetField_reserve1 != nullptr){ strcpy_s(pQryEWarrantOffsetField->reserve1, pQryEWarrantOffsetField_reserve1); pQryEWarrantOffsetField_reserve1 = nullptr; }
 		if(pQryEWarrantOffsetField_InvestUnitID != nullptr){ strcpy_s(pQryEWarrantOffsetField->InvestUnitID, pQryEWarrantOffsetField_InvestUnitID); pQryEWarrantOffsetField_InvestUnitID = nullptr; }
+		if(pQryEWarrantOffsetField_InstrumentID != nullptr){ strcpy_s(pQryEWarrantOffsetField->InstrumentID, pQryEWarrantOffsetField_InstrumentID); pQryEWarrantOffsetField_InstrumentID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryEWarrantOffsetField *pQryEWarrantOffsetField)
 {
 	if(pQryEWarrantOffsetField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQryEWarrantOffsetField->BrokerID
 		, "InvestorID", pQryEWarrantOffsetField->InvestorID
 		, "ExchangeID", pQryEWarrantOffsetField->ExchangeID
-		, "InstrumentID", pQryEWarrantOffsetField->InstrumentID
+		, "reserve1", pQryEWarrantOffsetField->reserve1
 		, "InvestUnitID", pQryEWarrantOffsetField->InvestUnitID
+		, "InstrumentID", pQryEWarrantOffsetField->InstrumentID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorProductGroupMarginField *pQryInvestorProductGroupMarginField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "ProductGroupID", "HedgeFlag", "ExchangeID", "InvestUnitID", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "HedgeFlag", "ExchangeID", "InvestUnitID", "ProductGroupID", nullptr};
 	char *pQryInvestorProductGroupMarginField_BrokerID = nullptr;
 	char *pQryInvestorProductGroupMarginField_InvestorID = nullptr;
-	char *pQryInvestorProductGroupMarginField_ProductGroupID = nullptr;
+	char *pQryInvestorProductGroupMarginField_reserve1 = nullptr;
 	char pQryInvestorProductGroupMarginField_HedgeFlag = 0;
 	char *pQryInvestorProductGroupMarginField_ExchangeID = nullptr;
 	char *pQryInvestorProductGroupMarginField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorProductGroupMarginField, "|yyycyy")
+	char *pQryInvestorProductGroupMarginField_ProductGroupID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorProductGroupMarginField, "|yyycyyy")
 		, &pQryInvestorProductGroupMarginField_BrokerID
 		, &pQryInvestorProductGroupMarginField_InvestorID
-		, &pQryInvestorProductGroupMarginField_ProductGroupID
+		, &pQryInvestorProductGroupMarginField_reserve1
 		, &pQryInvestorProductGroupMarginField_HedgeFlag
 		, &pQryInvestorProductGroupMarginField_ExchangeID
 		, &pQryInvestorProductGroupMarginField_InvestUnitID
+		, &pQryInvestorProductGroupMarginField_ProductGroupID
 	PyCTP_PyDict_FromStruct_END
 		if(pQryInvestorProductGroupMarginField_BrokerID != nullptr){ strcpy_s(pQryInvestorProductGroupMarginField->BrokerID, pQryInvestorProductGroupMarginField_BrokerID); pQryInvestorProductGroupMarginField_BrokerID = nullptr; }
 		if(pQryInvestorProductGroupMarginField_InvestorID != nullptr){ strcpy_s(pQryInvestorProductGroupMarginField->InvestorID, pQryInvestorProductGroupMarginField_InvestorID); pQryInvestorProductGroupMarginField_InvestorID = nullptr; }
-		if(pQryInvestorProductGroupMarginField_ProductGroupID != nullptr){ strcpy_s(pQryInvestorProductGroupMarginField->ProductGroupID, pQryInvestorProductGroupMarginField_ProductGroupID); pQryInvestorProductGroupMarginField_ProductGroupID = nullptr; }
+		if(pQryInvestorProductGroupMarginField_reserve1 != nullptr){ strcpy_s(pQryInvestorProductGroupMarginField->reserve1, pQryInvestorProductGroupMarginField_reserve1); pQryInvestorProductGroupMarginField_reserve1 = nullptr; }
 		pQryInvestorProductGroupMarginField->HedgeFlag = pQryInvestorProductGroupMarginField_HedgeFlag;
 		if(pQryInvestorProductGroupMarginField_ExchangeID != nullptr){ strcpy_s(pQryInvestorProductGroupMarginField->ExchangeID, pQryInvestorProductGroupMarginField_ExchangeID); pQryInvestorProductGroupMarginField_ExchangeID = nullptr; }
 		if(pQryInvestorProductGroupMarginField_InvestUnitID != nullptr){ strcpy_s(pQryInvestorProductGroupMarginField->InvestUnitID, pQryInvestorProductGroupMarginField_InvestUnitID); pQryInvestorProductGroupMarginField_InvestUnitID = nullptr; }
+		if(pQryInvestorProductGroupMarginField_ProductGroupID != nullptr){ strcpy_s(pQryInvestorProductGroupMarginField->ProductGroupID, pQryInvestorProductGroupMarginField_ProductGroupID); pQryInvestorProductGroupMarginField_ProductGroupID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorProductGroupMarginField *pQryInvestorProductGroupMarginField)
 {
 	if(pQryInvestorProductGroupMarginField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:y,s:y,s:y}"
 		, "BrokerID", pQryInvestorProductGroupMarginField->BrokerID
 		, "InvestorID", pQryInvestorProductGroupMarginField->InvestorID
-		, "ProductGroupID", pQryInvestorProductGroupMarginField->ProductGroupID
+		, "reserve1", pQryInvestorProductGroupMarginField->reserve1
 		, "HedgeFlag", pQryInvestorProductGroupMarginField->HedgeFlag
 		, "ExchangeID", pQryInvestorProductGroupMarginField->ExchangeID
 		, "InvestUnitID", pQryInvestorProductGroupMarginField->InvestUnitID
+		, "ProductGroupID", pQryInvestorProductGroupMarginField->ProductGroupID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMarginField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductGroupID", "BrokerID", "InvestorID", "TradingDay", "SettlementID", "FrozenMargin", "LongFrozenMargin", "ShortFrozenMargin", "UseMargin", "LongUseMargin", "ShortUseMargin", "ExchMargin", "LongExchMargin", "ShortExchMargin", "CloseProfit", "FrozenCommission", "Commission", "FrozenCash", "CashIn", "PositionProfit", "OffsetAmount", "LongOffsetAmount", "ShortOffsetAmount", "ExchOffsetAmount", "LongExchOffsetAmount", "ShortExchOffsetAmount", "HedgeFlag", "ExchangeID", "InvestUnitID", nullptr};
-	char *pInvestorProductGroupMarginField_ProductGroupID = nullptr;
+	static char *kwlist[] = {"reserve1", "BrokerID", "InvestorID", "TradingDay", "SettlementID", "FrozenMargin", "LongFrozenMargin", "ShortFrozenMargin", "UseMargin", "LongUseMargin", "ShortUseMargin", "ExchMargin", "LongExchMargin", "ShortExchMargin", "CloseProfit", "FrozenCommission", "Commission", "FrozenCash", "CashIn", "PositionProfit", "OffsetAmount", "LongOffsetAmount", "ShortOffsetAmount", "ExchOffsetAmount", "LongExchOffsetAmount", "ShortExchOffsetAmount", "HedgeFlag", "ExchangeID", "InvestUnitID", "ProductGroupID", nullptr};
+	char *pInvestorProductGroupMarginField_reserve1 = nullptr;
 	char *pInvestorProductGroupMarginField_BrokerID = nullptr;
 	char *pInvestorProductGroupMarginField_InvestorID = nullptr;
 	char *pInvestorProductGroupMarginField_TradingDay = nullptr;
@@ -14478,8 +15291,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProductGroupMarginField *pInvestor
 	char pInvestorProductGroupMarginField_HedgeFlag = 0;
 	char *pInvestorProductGroupMarginField_ExchangeID = nullptr;
 	char *pInvestorProductGroupMarginField_InvestUnitID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInvestorProductGroupMarginField, "|yyyyidddddddddddddddddddddcyy")
-		, &pInvestorProductGroupMarginField_ProductGroupID
+	char *pInvestorProductGroupMarginField_ProductGroupID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInvestorProductGroupMarginField, "|yyyyidddddddddddddddddddddcyyy")
+		, &pInvestorProductGroupMarginField_reserve1
 		, &pInvestorProductGroupMarginField_BrokerID
 		, &pInvestorProductGroupMarginField_InvestorID
 		, &pInvestorProductGroupMarginField_TradingDay
@@ -14508,8 +15322,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProductGroupMarginField *pInvestor
 		, &pInvestorProductGroupMarginField_HedgeFlag
 		, &pInvestorProductGroupMarginField_ExchangeID
 		, &pInvestorProductGroupMarginField_InvestUnitID
+		, &pInvestorProductGroupMarginField_ProductGroupID
 	PyCTP_PyDict_FromStruct_END
-		if(pInvestorProductGroupMarginField_ProductGroupID != nullptr){ strcpy_s(pInvestorProductGroupMarginField->ProductGroupID, pInvestorProductGroupMarginField_ProductGroupID); pInvestorProductGroupMarginField_ProductGroupID = nullptr; }
+		if(pInvestorProductGroupMarginField_reserve1 != nullptr){ strcpy_s(pInvestorProductGroupMarginField->reserve1, pInvestorProductGroupMarginField_reserve1); pInvestorProductGroupMarginField_reserve1 = nullptr; }
 		if(pInvestorProductGroupMarginField_BrokerID != nullptr){ strcpy_s(pInvestorProductGroupMarginField->BrokerID, pInvestorProductGroupMarginField_BrokerID); pInvestorProductGroupMarginField_BrokerID = nullptr; }
 		if(pInvestorProductGroupMarginField_InvestorID != nullptr){ strcpy_s(pInvestorProductGroupMarginField->InvestorID, pInvestorProductGroupMarginField_InvestorID); pInvestorProductGroupMarginField_InvestorID = nullptr; }
 		if(pInvestorProductGroupMarginField_TradingDay != nullptr){ strcpy_s(pInvestorProductGroupMarginField->TradingDay, pInvestorProductGroupMarginField_TradingDay); pInvestorProductGroupMarginField_TradingDay = nullptr; }
@@ -14538,13 +15353,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProductGroupMarginField *pInvestor
 		pInvestorProductGroupMarginField->HedgeFlag = pInvestorProductGroupMarginField_HedgeFlag;
 		if(pInvestorProductGroupMarginField_ExchangeID != nullptr){ strcpy_s(pInvestorProductGroupMarginField->ExchangeID, pInvestorProductGroupMarginField_ExchangeID); pInvestorProductGroupMarginField_ExchangeID = nullptr; }
 		if(pInvestorProductGroupMarginField_InvestUnitID != nullptr){ strcpy_s(pInvestorProductGroupMarginField->InvestUnitID, pInvestorProductGroupMarginField_InvestUnitID); pInvestorProductGroupMarginField_InvestUnitID = nullptr; }
+		if(pInvestorProductGroupMarginField_ProductGroupID != nullptr){ strcpy_s(pInvestorProductGroupMarginField->ProductGroupID, pInvestorProductGroupMarginField_ProductGroupID); pInvestorProductGroupMarginField_ProductGroupID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMarginField)
 {
 	if(pInvestorProductGroupMarginField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:c,s:y,s:y}"
-		, "ProductGroupID", pInvestorProductGroupMarginField->ProductGroupID
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:c,s:y,s:y,s:y}"
+		, "reserve1", pInvestorProductGroupMarginField->reserve1
 		, "BrokerID", pInvestorProductGroupMarginField->BrokerID
 		, "InvestorID", pInvestorProductGroupMarginField->InvestorID
 		, "TradingDay", pInvestorProductGroupMarginField->TradingDay
@@ -14573,6 +15389,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorProductGroupMarginField *pIn
 		, "HedgeFlag", pInvestorProductGroupMarginField->HedgeFlag
 		, "ExchangeID", pInvestorProductGroupMarginField->ExchangeID
 		, "InvestUnitID", pInvestorProductGroupMarginField->InvestUnitID
+		, "ProductGroupID", pInvestorProductGroupMarginField->ProductGroupID
 		);
 }
 
@@ -14638,48 +15455,60 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCFMMCTradingAccountTokenField *pCFMM
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryProductGroupField *pQryProductGroupField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "ExchangeID", nullptr};
-	char *pQryProductGroupField_ProductID = nullptr;
+	static char *kwlist[] = {"reserve1", "ExchangeID", "ProductID", nullptr};
+	char *pQryProductGroupField_reserve1 = nullptr;
 	char *pQryProductGroupField_ExchangeID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryProductGroupField, "|yy")
-		, &pQryProductGroupField_ProductID
+	char *pQryProductGroupField_ProductID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryProductGroupField, "|yyy")
+		, &pQryProductGroupField_reserve1
 		, &pQryProductGroupField_ExchangeID
+		, &pQryProductGroupField_ProductID
 	PyCTP_PyDict_FromStruct_END
-		if(pQryProductGroupField_ProductID != nullptr){ strcpy_s(pQryProductGroupField->ProductID, pQryProductGroupField_ProductID); pQryProductGroupField_ProductID = nullptr; }
+		if(pQryProductGroupField_reserve1 != nullptr){ strcpy_s(pQryProductGroupField->reserve1, pQryProductGroupField_reserve1); pQryProductGroupField_reserve1 = nullptr; }
 		if(pQryProductGroupField_ExchangeID != nullptr){ strcpy_s(pQryProductGroupField->ExchangeID, pQryProductGroupField_ExchangeID); pQryProductGroupField_ExchangeID = nullptr; }
+		if(pQryProductGroupField_ProductID != nullptr){ strcpy_s(pQryProductGroupField->ProductID, pQryProductGroupField_ProductID); pQryProductGroupField_ProductID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryProductGroupField *pQryProductGroupField)
 {
 	if(pQryProductGroupField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y}"
-		, "ProductID", pQryProductGroupField->ProductID
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "reserve1", pQryProductGroupField->reserve1
 		, "ExchangeID", pQryProductGroupField->ExchangeID
+		, "ProductID", pQryProductGroupField->ProductID
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcProductGroupField *pProductGroupField, PyObject *dict)
 {
-	static char *kwlist[] = {"ProductID", "ExchangeID", "ProductGroupID", nullptr};
-	char *pProductGroupField_ProductID = nullptr;
+	static char *kwlist[] = {"reserve1", "ExchangeID", "reserve2", "ProductID", "ProductGroupID", nullptr};
+	char *pProductGroupField_reserve1 = nullptr;
 	char *pProductGroupField_ExchangeID = nullptr;
+	char *pProductGroupField_reserve2 = nullptr;
+	char *pProductGroupField_ProductID = nullptr;
 	char *pProductGroupField_ProductGroupID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pProductGroupField, "|yyy")
-		, &pProductGroupField_ProductID
+	PyCTP_PyDict_FromStruct_BEGIN(pProductGroupField, "|yyyyy")
+		, &pProductGroupField_reserve1
 		, &pProductGroupField_ExchangeID
+		, &pProductGroupField_reserve2
+		, &pProductGroupField_ProductID
 		, &pProductGroupField_ProductGroupID
 	PyCTP_PyDict_FromStruct_END
-		if(pProductGroupField_ProductID != nullptr){ strcpy_s(pProductGroupField->ProductID, pProductGroupField_ProductID); pProductGroupField_ProductID = nullptr; }
+		if(pProductGroupField_reserve1 != nullptr){ strcpy_s(pProductGroupField->reserve1, pProductGroupField_reserve1); pProductGroupField_reserve1 = nullptr; }
 		if(pProductGroupField_ExchangeID != nullptr){ strcpy_s(pProductGroupField->ExchangeID, pProductGroupField_ExchangeID); pProductGroupField_ExchangeID = nullptr; }
+		if(pProductGroupField_reserve2 != nullptr){ strcpy_s(pProductGroupField->reserve2, pProductGroupField_reserve2); pProductGroupField_reserve2 = nullptr; }
+		if(pProductGroupField_ProductID != nullptr){ strcpy_s(pProductGroupField->ProductID, pProductGroupField_ProductID); pProductGroupField_ProductID = nullptr; }
 		if(pProductGroupField_ProductGroupID != nullptr){ strcpy_s(pProductGroupField->ProductGroupID, pProductGroupField_ProductGroupID); pProductGroupField_ProductGroupID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductGroupField *pProductGroupField)
 {
 	if(pProductGroupField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
-		, "ProductID", pProductGroupField->ProductID
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y}"
+		, "reserve1", pProductGroupField->reserve1
 		, "ExchangeID", pProductGroupField->ExchangeID
+		, "reserve2", pProductGroupField->reserve2
+		, "ProductID", pProductGroupField->ProductID
 		, "ProductGroupID", pProductGroupField->ProductGroupID
 		);
 }
@@ -14777,6 +15606,100 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBulletinField *pQryBulletinField)
 		, "SequenceNo", pQryBulletinField->SequenceNo
 		, "NewsType", pQryBulletinField->NewsType
 		, "NewsUrgency", pQryBulletinField->NewsUrgency
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcMulticastInstrumentField *pMulticastInstrumentField, PyObject *dict)
+{
+	static char *kwlist[] = {"TopicID", "reserve1", "InstrumentNo", "CodePrice", "VolumeMultiple", "PriceTick", "InstrumentID", nullptr};
+	int pMulticastInstrumentField_TopicID = 0;
+	char *pMulticastInstrumentField_reserve1 = nullptr;
+	int pMulticastInstrumentField_InstrumentNo = 0;
+	double pMulticastInstrumentField_CodePrice = 0.0;
+	int pMulticastInstrumentField_VolumeMultiple = 0;
+	double pMulticastInstrumentField_PriceTick = 0.0;
+	char *pMulticastInstrumentField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pMulticastInstrumentField, "|iyididy")
+		, &pMulticastInstrumentField_TopicID
+		, &pMulticastInstrumentField_reserve1
+		, &pMulticastInstrumentField_InstrumentNo
+		, &pMulticastInstrumentField_CodePrice
+		, &pMulticastInstrumentField_VolumeMultiple
+		, &pMulticastInstrumentField_PriceTick
+		, &pMulticastInstrumentField_InstrumentID
+	PyCTP_PyDict_FromStruct_END
+		pMulticastInstrumentField->TopicID = pMulticastInstrumentField_TopicID;
+		if(pMulticastInstrumentField_reserve1 != nullptr){ strcpy_s(pMulticastInstrumentField->reserve1, pMulticastInstrumentField_reserve1); pMulticastInstrumentField_reserve1 = nullptr; }
+		pMulticastInstrumentField->InstrumentNo = pMulticastInstrumentField_InstrumentNo;
+		pMulticastInstrumentField->CodePrice = pMulticastInstrumentField_CodePrice;
+		pMulticastInstrumentField->VolumeMultiple = pMulticastInstrumentField_VolumeMultiple;
+		pMulticastInstrumentField->PriceTick = pMulticastInstrumentField_PriceTick;
+		if(pMulticastInstrumentField_InstrumentID != nullptr){ strcpy_s(pMulticastInstrumentField->InstrumentID, pMulticastInstrumentField_InstrumentID); pMulticastInstrumentField_InstrumentID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMulticastInstrumentField *pMulticastInstrumentField)
+{
+	if(pMulticastInstrumentField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:i,s:y,s:i,s:d,s:i,s:d,s:y}"
+		, "TopicID", pMulticastInstrumentField->TopicID
+		, "reserve1", pMulticastInstrumentField->reserve1
+		, "InstrumentNo", pMulticastInstrumentField->InstrumentNo
+		, "CodePrice", pMulticastInstrumentField->CodePrice
+		, "VolumeMultiple", pMulticastInstrumentField->VolumeMultiple
+		, "PriceTick", pMulticastInstrumentField->PriceTick
+		, "InstrumentID", pMulticastInstrumentField->InstrumentID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryMulticastInstrumentField *pQryMulticastInstrumentField, PyObject *dict)
+{
+	static char *kwlist[] = {"TopicID", "reserve1", "InstrumentID", nullptr};
+	int pQryMulticastInstrumentField_TopicID = 0;
+	char *pQryMulticastInstrumentField_reserve1 = nullptr;
+	char *pQryMulticastInstrumentField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryMulticastInstrumentField, "|iyy")
+		, &pQryMulticastInstrumentField_TopicID
+		, &pQryMulticastInstrumentField_reserve1
+		, &pQryMulticastInstrumentField_InstrumentID
+	PyCTP_PyDict_FromStruct_END
+		pQryMulticastInstrumentField->TopicID = pQryMulticastInstrumentField_TopicID;
+		if(pQryMulticastInstrumentField_reserve1 != nullptr){ strcpy_s(pQryMulticastInstrumentField->reserve1, pQryMulticastInstrumentField_reserve1); pQryMulticastInstrumentField_reserve1 = nullptr; }
+		if(pQryMulticastInstrumentField_InstrumentID != nullptr){ strcpy_s(pQryMulticastInstrumentField->InstrumentID, pQryMulticastInstrumentField_InstrumentID); pQryMulticastInstrumentField_InstrumentID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMulticastInstrumentField *pQryMulticastInstrumentField)
+{
+	if(pQryMulticastInstrumentField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:i,s:y,s:y}"
+		, "TopicID", pQryMulticastInstrumentField->TopicID
+		, "reserve1", pQryMulticastInstrumentField->reserve1
+		, "InstrumentID", pQryMulticastInstrumentField->InstrumentID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcAppIDAuthAssignField *pAppIDAuthAssignField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "AppID", "DRIdentityID", nullptr};
+	char *pAppIDAuthAssignField_BrokerID = nullptr;
+	char *pAppIDAuthAssignField_AppID = nullptr;
+	int pAppIDAuthAssignField_DRIdentityID = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pAppIDAuthAssignField, "|yyi")
+		, &pAppIDAuthAssignField_BrokerID
+		, &pAppIDAuthAssignField_AppID
+		, &pAppIDAuthAssignField_DRIdentityID
+	PyCTP_PyDict_FromStruct_END
+		if(pAppIDAuthAssignField_BrokerID != nullptr){ strcpy_s(pAppIDAuthAssignField->BrokerID, pAppIDAuthAssignField_BrokerID); pAppIDAuthAssignField_BrokerID = nullptr; }
+		if(pAppIDAuthAssignField_AppID != nullptr){ strcpy_s(pAppIDAuthAssignField->AppID, pAppIDAuthAssignField_AppID); pAppIDAuthAssignField_AppID = nullptr; }
+		pAppIDAuthAssignField->DRIdentityID = pAppIDAuthAssignField_DRIdentityID;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAppIDAuthAssignField *pAppIDAuthAssignField)
+{
+	if(pAppIDAuthAssignField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:i}"
+		, "BrokerID", pAppIDAuthAssignField->BrokerID
+		, "AppID", pAppIDAuthAssignField->AppID
+		, "DRIdentityID", pAppIDAuthAssignField->DRIdentityID
 		);
 }
 
@@ -19224,26 +20147,30 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCurrTransferIdentityField *pCurrTran
 
 int PyCTP_Struct_FromPyDict(CThostFtdcLoginForbiddenUserField *pLoginForbiddenUserField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", "IPAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "UserID", "reserve1", "IPAddress", nullptr};
 	char *pLoginForbiddenUserField_BrokerID = nullptr;
 	char *pLoginForbiddenUserField_UserID = nullptr;
+	char *pLoginForbiddenUserField_reserve1 = nullptr;
 	char *pLoginForbiddenUserField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pLoginForbiddenUserField, "|yyy")
+	PyCTP_PyDict_FromStruct_BEGIN(pLoginForbiddenUserField, "|yyyy")
 		, &pLoginForbiddenUserField_BrokerID
 		, &pLoginForbiddenUserField_UserID
+		, &pLoginForbiddenUserField_reserve1
 		, &pLoginForbiddenUserField_IPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pLoginForbiddenUserField_BrokerID != nullptr){ strcpy_s(pLoginForbiddenUserField->BrokerID, pLoginForbiddenUserField_BrokerID); pLoginForbiddenUserField_BrokerID = nullptr; }
 		if(pLoginForbiddenUserField_UserID != nullptr){ strcpy_s(pLoginForbiddenUserField->UserID, pLoginForbiddenUserField_UserID); pLoginForbiddenUserField_UserID = nullptr; }
+		if(pLoginForbiddenUserField_reserve1 != nullptr){ strcpy_s(pLoginForbiddenUserField->reserve1, pLoginForbiddenUserField_reserve1); pLoginForbiddenUserField_reserve1 = nullptr; }
 		if(pLoginForbiddenUserField_IPAddress != nullptr){ strcpy_s(pLoginForbiddenUserField->IPAddress, pLoginForbiddenUserField_IPAddress); pLoginForbiddenUserField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginForbiddenUserField *pLoginForbiddenUserField)
 {
 	if(pLoginForbiddenUserField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
 		, "BrokerID", pLoginForbiddenUserField->BrokerID
 		, "UserID", pLoginForbiddenUserField->UserID
+		, "reserve1", pLoginForbiddenUserField->reserve1
 		, "IPAddress", pLoginForbiddenUserField->IPAddress
 		);
 }
@@ -19267,32 +20194,6 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryLoginForbiddenUserField *pQryLogi
 	return Py_BuildValue("{s:y,s:y}"
 		, "BrokerID", pQryLoginForbiddenUserField->BrokerID
 		, "UserID", pQryLoginForbiddenUserField->UserID
-		);
-}
-
-int PyCTP_Struct_FromPyDict(CThostFtdcMulticastGroupInfoField *pMulticastGroupInfoField, PyObject *dict)
-{
-	static char *kwlist[] = {"GroupIP", "GroupPort", "SourceIP", nullptr};
-	char *pMulticastGroupInfoField_GroupIP = nullptr;
-	int pMulticastGroupInfoField_GroupPort = 0;
-	char *pMulticastGroupInfoField_SourceIP = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pMulticastGroupInfoField, "|yiy")
-		, &pMulticastGroupInfoField_GroupIP
-		, &pMulticastGroupInfoField_GroupPort
-		, &pMulticastGroupInfoField_SourceIP
-	PyCTP_PyDict_FromStruct_END
-		if(pMulticastGroupInfoField_GroupIP != nullptr){ strcpy_s(pMulticastGroupInfoField->GroupIP, pMulticastGroupInfoField_GroupIP); pMulticastGroupInfoField_GroupIP = nullptr; }
-		pMulticastGroupInfoField->GroupPort = pMulticastGroupInfoField_GroupPort;
-		if(pMulticastGroupInfoField_SourceIP != nullptr){ strcpy_s(pMulticastGroupInfoField->SourceIP, pMulticastGroupInfoField_SourceIP); pMulticastGroupInfoField_SourceIP = nullptr; }
-	PyCTP_PyDict_FromStruct_RETURN
-}
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMulticastGroupInfoField *pMulticastGroupInfoField)
-{
-	if(pMulticastGroupInfoField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:i,s:y}"
-		, "GroupIP", pMulticastGroupInfoField->GroupIP
-		, "GroupPort", pMulticastGroupInfoField->GroupPort
-		, "SourceIP", pMulticastGroupInfoField->SourceIP
 		);
 }
 
@@ -19328,36 +20229,44 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountReserveField *pTrading
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryLoginForbiddenIPField *pQryLoginForbiddenIPField, PyObject *dict)
 {
-	static char *kwlist[] = {"IPAddress", nullptr};
+	static char *kwlist[] = {"reserve1", "IPAddress", nullptr};
+	char *pQryLoginForbiddenIPField_reserve1 = nullptr;
 	char *pQryLoginForbiddenIPField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryLoginForbiddenIPField, "|y")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryLoginForbiddenIPField, "|yy")
+		, &pQryLoginForbiddenIPField_reserve1
 		, &pQryLoginForbiddenIPField_IPAddress
 	PyCTP_PyDict_FromStruct_END
+		if(pQryLoginForbiddenIPField_reserve1 != nullptr){ strcpy_s(pQryLoginForbiddenIPField->reserve1, pQryLoginForbiddenIPField_reserve1); pQryLoginForbiddenIPField_reserve1 = nullptr; }
 		if(pQryLoginForbiddenIPField_IPAddress != nullptr){ strcpy_s(pQryLoginForbiddenIPField->IPAddress, pQryLoginForbiddenIPField_IPAddress); pQryLoginForbiddenIPField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryLoginForbiddenIPField *pQryLoginForbiddenIPField)
 {
 	if(pQryLoginForbiddenIPField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y}"
+	return Py_BuildValue("{s:y,s:y}"
+		, "reserve1", pQryLoginForbiddenIPField->reserve1
 		, "IPAddress", pQryLoginForbiddenIPField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryIPListField *pQryIPListField, PyObject *dict)
 {
-	static char *kwlist[] = {"IPAddress", nullptr};
+	static char *kwlist[] = {"reserve1", "IPAddress", nullptr};
+	char *pQryIPListField_reserve1 = nullptr;
 	char *pQryIPListField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryIPListField, "|y")
+	PyCTP_PyDict_FromStruct_BEGIN(pQryIPListField, "|yy")
+		, &pQryIPListField_reserve1
 		, &pQryIPListField_IPAddress
 	PyCTP_PyDict_FromStruct_END
+		if(pQryIPListField_reserve1 != nullptr){ strcpy_s(pQryIPListField->reserve1, pQryIPListField_reserve1); pQryIPListField_reserve1 = nullptr; }
 		if(pQryIPListField_IPAddress != nullptr){ strcpy_s(pQryIPListField->IPAddress, pQryIPListField_IPAddress); pQryIPListField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryIPListField *pQryIPListField)
 {
 	if(pQryIPListField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y}"
+	return Py_BuildValue("{s:y,s:y}"
+		, "reserve1", pQryIPListField->reserve1
 		, "IPAddress", pQryIPListField->IPAddress
 		);
 }
@@ -19874,52 +20783,6 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySecAgentTradeInfoField *pQrySecAg
 		);
 }
 
-int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField, PyObject *dict)
-{
-	static char *kwlist[] = {"BrokerID", "UserID", "ClientSystemInfoLen", "ClientSystemInfo", "ClientPublicIP", "ClientIPPort", "ClientLoginTime", "ClientAppID", nullptr};
-	char *pUserSystemInfoField_BrokerID = nullptr;
-	char *pUserSystemInfoField_UserID = nullptr;
-	int pUserSystemInfoField_ClientSystemInfoLen = 0;
-	char *pUserSystemInfoField_ClientSystemInfo = nullptr;
-	char *pUserSystemInfoField_ClientPublicIP = nullptr;
-	int pUserSystemInfoField_ClientIPPort = 0;
-	char *pUserSystemInfoField_ClientLoginTime = nullptr;
-	char *pUserSystemInfoField_ClientAppID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pUserSystemInfoField, "|yyiyyiyy")
-		, &pUserSystemInfoField_BrokerID
-		, &pUserSystemInfoField_UserID
-		, &pUserSystemInfoField_ClientSystemInfoLen
-		, &pUserSystemInfoField_ClientSystemInfo
-		, &pUserSystemInfoField_ClientPublicIP
-		, &pUserSystemInfoField_ClientIPPort
-		, &pUserSystemInfoField_ClientLoginTime
-		, &pUserSystemInfoField_ClientAppID
-	PyCTP_PyDict_FromStruct_END
-		if(pUserSystemInfoField_BrokerID != nullptr){ strcpy_s(pUserSystemInfoField->BrokerID, pUserSystemInfoField_BrokerID); pUserSystemInfoField_BrokerID = nullptr; }
-		if(pUserSystemInfoField_UserID != nullptr){ strcpy_s(pUserSystemInfoField->UserID, pUserSystemInfoField_UserID); pUserSystemInfoField_UserID = nullptr; }
-		pUserSystemInfoField->ClientSystemInfoLen = pUserSystemInfoField_ClientSystemInfoLen;
-		if(pUserSystemInfoField_ClientSystemInfo != nullptr){ strcpy_s(pUserSystemInfoField->ClientSystemInfo, pUserSystemInfoField_ClientSystemInfo); pUserSystemInfoField_ClientSystemInfo = nullptr; }
-		if(pUserSystemInfoField_ClientPublicIP != nullptr){ strcpy_s(pUserSystemInfoField->ClientPublicIP, pUserSystemInfoField_ClientPublicIP); pUserSystemInfoField_ClientPublicIP = nullptr; }
-		pUserSystemInfoField->ClientIPPort = pUserSystemInfoField_ClientIPPort;
-		if(pUserSystemInfoField_ClientLoginTime != nullptr){ strcpy_s(pUserSystemInfoField->ClientLoginTime, pUserSystemInfoField_ClientLoginTime); pUserSystemInfoField_ClientLoginTime = nullptr; }
-		if(pUserSystemInfoField_ClientAppID != nullptr){ strcpy_s(pUserSystemInfoField->ClientAppID, pUserSystemInfoField_ClientAppID); pUserSystemInfoField_ClientAppID = nullptr; }
-	PyCTP_PyDict_FromStruct_RETURN
-}
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSystemInfoField *pUserSystemInfoField)
-{
-	if(pUserSystemInfoField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:y,s:i,s:y,s:y}"
-		, "BrokerID", pUserSystemInfoField->BrokerID
-		, "UserID", pUserSystemInfoField->UserID
-		, "ClientSystemInfoLen", pUserSystemInfoField->ClientSystemInfoLen
-		, "ClientSystemInfo", pUserSystemInfoField->ClientSystemInfo
-		, "ClientPublicIP", pUserSystemInfoField->ClientPublicIP
-		, "ClientIPPort", pUserSystemInfoField->ClientIPPort
-		, "ClientLoginTime", pUserSystemInfoField->ClientLoginTime
-		, "ClientAppID", pUserSystemInfoField->ClientAppID
-		);
-}
-
 int PyCTP_Struct_FromPyDict(CThostFtdcReqUserAuthMethodField *pReqUserAuthMethodField, PyObject *dict)
 {
 	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", nullptr};
@@ -20066,7 +20929,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspGenUserTextField *pRspGenUserText
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithCaptchaField *pReqUserLoginWithCaptchaField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "ClientIPAddress", "LoginRemark", "Captcha", "ClientIPPort", nullptr};
+	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "reserve1", "LoginRemark", "Captcha", "ClientIPPort", "ClientIPAddress", nullptr};
 	char *pReqUserLoginWithCaptchaField_TradingDay = nullptr;
 	char *pReqUserLoginWithCaptchaField_BrokerID = nullptr;
 	char *pReqUserLoginWithCaptchaField_UserID = nullptr;
@@ -20075,11 +20938,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithCaptchaField *pReqUserLogi
 	char *pReqUserLoginWithCaptchaField_InterfaceProductInfo = nullptr;
 	char *pReqUserLoginWithCaptchaField_ProtocolInfo = nullptr;
 	char *pReqUserLoginWithCaptchaField_MacAddress = nullptr;
-	char *pReqUserLoginWithCaptchaField_ClientIPAddress = nullptr;
+	char *pReqUserLoginWithCaptchaField_reserve1 = nullptr;
 	char *pReqUserLoginWithCaptchaField_LoginRemark = nullptr;
 	char *pReqUserLoginWithCaptchaField_Captcha = nullptr;
 	int pReqUserLoginWithCaptchaField_ClientIPPort = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginWithCaptchaField, "|yyyyyyyyyyyi")
+	char *pReqUserLoginWithCaptchaField_ClientIPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginWithCaptchaField, "|yyyyyyyyyyyiy")
 		, &pReqUserLoginWithCaptchaField_TradingDay
 		, &pReqUserLoginWithCaptchaField_BrokerID
 		, &pReqUserLoginWithCaptchaField_UserID
@@ -20088,10 +20952,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithCaptchaField *pReqUserLogi
 		, &pReqUserLoginWithCaptchaField_InterfaceProductInfo
 		, &pReqUserLoginWithCaptchaField_ProtocolInfo
 		, &pReqUserLoginWithCaptchaField_MacAddress
-		, &pReqUserLoginWithCaptchaField_ClientIPAddress
+		, &pReqUserLoginWithCaptchaField_reserve1
 		, &pReqUserLoginWithCaptchaField_LoginRemark
 		, &pReqUserLoginWithCaptchaField_Captcha
 		, &pReqUserLoginWithCaptchaField_ClientIPPort
+		, &pReqUserLoginWithCaptchaField_ClientIPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pReqUserLoginWithCaptchaField_TradingDay != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->TradingDay, pReqUserLoginWithCaptchaField_TradingDay); pReqUserLoginWithCaptchaField_TradingDay = nullptr; }
 		if(pReqUserLoginWithCaptchaField_BrokerID != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->BrokerID, pReqUserLoginWithCaptchaField_BrokerID); pReqUserLoginWithCaptchaField_BrokerID = nullptr; }
@@ -20101,16 +20966,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithCaptchaField *pReqUserLogi
 		if(pReqUserLoginWithCaptchaField_InterfaceProductInfo != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->InterfaceProductInfo, pReqUserLoginWithCaptchaField_InterfaceProductInfo); pReqUserLoginWithCaptchaField_InterfaceProductInfo = nullptr; }
 		if(pReqUserLoginWithCaptchaField_ProtocolInfo != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->ProtocolInfo, pReqUserLoginWithCaptchaField_ProtocolInfo); pReqUserLoginWithCaptchaField_ProtocolInfo = nullptr; }
 		if(pReqUserLoginWithCaptchaField_MacAddress != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->MacAddress, pReqUserLoginWithCaptchaField_MacAddress); pReqUserLoginWithCaptchaField_MacAddress = nullptr; }
-		if(pReqUserLoginWithCaptchaField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->ClientIPAddress, pReqUserLoginWithCaptchaField_ClientIPAddress); pReqUserLoginWithCaptchaField_ClientIPAddress = nullptr; }
+		if(pReqUserLoginWithCaptchaField_reserve1 != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->reserve1, pReqUserLoginWithCaptchaField_reserve1); pReqUserLoginWithCaptchaField_reserve1 = nullptr; }
 		if(pReqUserLoginWithCaptchaField_LoginRemark != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->LoginRemark, pReqUserLoginWithCaptchaField_LoginRemark); pReqUserLoginWithCaptchaField_LoginRemark = nullptr; }
 		if(pReqUserLoginWithCaptchaField_Captcha != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->Captcha, pReqUserLoginWithCaptchaField_Captcha); pReqUserLoginWithCaptchaField_Captcha = nullptr; }
 		pReqUserLoginWithCaptchaField->ClientIPPort = pReqUserLoginWithCaptchaField_ClientIPPort;
+		if(pReqUserLoginWithCaptchaField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginWithCaptchaField->ClientIPAddress, pReqUserLoginWithCaptchaField_ClientIPAddress); pReqUserLoginWithCaptchaField_ClientIPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithCaptchaField *pReqUserLoginWithCaptchaField)
 {
 	if(pReqUserLoginWithCaptchaField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
 		, "TradingDay", pReqUserLoginWithCaptchaField->TradingDay
 		, "BrokerID", pReqUserLoginWithCaptchaField->BrokerID
 		, "UserID", pReqUserLoginWithCaptchaField->UserID
@@ -20119,16 +20985,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithCaptchaField *pReqUs
 		, "InterfaceProductInfo", pReqUserLoginWithCaptchaField->InterfaceProductInfo
 		, "ProtocolInfo", pReqUserLoginWithCaptchaField->ProtocolInfo
 		, "MacAddress", pReqUserLoginWithCaptchaField->MacAddress
-		, "ClientIPAddress", pReqUserLoginWithCaptchaField->ClientIPAddress
+		, "reserve1", pReqUserLoginWithCaptchaField->reserve1
 		, "LoginRemark", pReqUserLoginWithCaptchaField->LoginRemark
 		, "Captcha", pReqUserLoginWithCaptchaField->Captcha
 		, "ClientIPPort", pReqUserLoginWithCaptchaField->ClientIPPort
+		, "ClientIPAddress", pReqUserLoginWithCaptchaField->ClientIPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithTextField *pReqUserLoginWithTextField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "ClientIPAddress", "LoginRemark", "Text", "ClientIPPort", nullptr};
+	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "reserve1", "LoginRemark", "Text", "ClientIPPort", "ClientIPAddress", nullptr};
 	char *pReqUserLoginWithTextField_TradingDay = nullptr;
 	char *pReqUserLoginWithTextField_BrokerID = nullptr;
 	char *pReqUserLoginWithTextField_UserID = nullptr;
@@ -20137,11 +21004,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithTextField *pReqUserLoginWi
 	char *pReqUserLoginWithTextField_InterfaceProductInfo = nullptr;
 	char *pReqUserLoginWithTextField_ProtocolInfo = nullptr;
 	char *pReqUserLoginWithTextField_MacAddress = nullptr;
-	char *pReqUserLoginWithTextField_ClientIPAddress = nullptr;
+	char *pReqUserLoginWithTextField_reserve1 = nullptr;
 	char *pReqUserLoginWithTextField_LoginRemark = nullptr;
 	char *pReqUserLoginWithTextField_Text = nullptr;
 	int pReqUserLoginWithTextField_ClientIPPort = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginWithTextField, "|yyyyyyyyyyyi")
+	char *pReqUserLoginWithTextField_ClientIPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginWithTextField, "|yyyyyyyyyyyiy")
 		, &pReqUserLoginWithTextField_TradingDay
 		, &pReqUserLoginWithTextField_BrokerID
 		, &pReqUserLoginWithTextField_UserID
@@ -20150,10 +21018,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithTextField *pReqUserLoginWi
 		, &pReqUserLoginWithTextField_InterfaceProductInfo
 		, &pReqUserLoginWithTextField_ProtocolInfo
 		, &pReqUserLoginWithTextField_MacAddress
-		, &pReqUserLoginWithTextField_ClientIPAddress
+		, &pReqUserLoginWithTextField_reserve1
 		, &pReqUserLoginWithTextField_LoginRemark
 		, &pReqUserLoginWithTextField_Text
 		, &pReqUserLoginWithTextField_ClientIPPort
+		, &pReqUserLoginWithTextField_ClientIPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pReqUserLoginWithTextField_TradingDay != nullptr){ strcpy_s(pReqUserLoginWithTextField->TradingDay, pReqUserLoginWithTextField_TradingDay); pReqUserLoginWithTextField_TradingDay = nullptr; }
 		if(pReqUserLoginWithTextField_BrokerID != nullptr){ strcpy_s(pReqUserLoginWithTextField->BrokerID, pReqUserLoginWithTextField_BrokerID); pReqUserLoginWithTextField_BrokerID = nullptr; }
@@ -20163,16 +21032,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithTextField *pReqUserLoginWi
 		if(pReqUserLoginWithTextField_InterfaceProductInfo != nullptr){ strcpy_s(pReqUserLoginWithTextField->InterfaceProductInfo, pReqUserLoginWithTextField_InterfaceProductInfo); pReqUserLoginWithTextField_InterfaceProductInfo = nullptr; }
 		if(pReqUserLoginWithTextField_ProtocolInfo != nullptr){ strcpy_s(pReqUserLoginWithTextField->ProtocolInfo, pReqUserLoginWithTextField_ProtocolInfo); pReqUserLoginWithTextField_ProtocolInfo = nullptr; }
 		if(pReqUserLoginWithTextField_MacAddress != nullptr){ strcpy_s(pReqUserLoginWithTextField->MacAddress, pReqUserLoginWithTextField_MacAddress); pReqUserLoginWithTextField_MacAddress = nullptr; }
-		if(pReqUserLoginWithTextField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginWithTextField->ClientIPAddress, pReqUserLoginWithTextField_ClientIPAddress); pReqUserLoginWithTextField_ClientIPAddress = nullptr; }
+		if(pReqUserLoginWithTextField_reserve1 != nullptr){ strcpy_s(pReqUserLoginWithTextField->reserve1, pReqUserLoginWithTextField_reserve1); pReqUserLoginWithTextField_reserve1 = nullptr; }
 		if(pReqUserLoginWithTextField_LoginRemark != nullptr){ strcpy_s(pReqUserLoginWithTextField->LoginRemark, pReqUserLoginWithTextField_LoginRemark); pReqUserLoginWithTextField_LoginRemark = nullptr; }
 		if(pReqUserLoginWithTextField_Text != nullptr){ strcpy_s(pReqUserLoginWithTextField->Text, pReqUserLoginWithTextField_Text); pReqUserLoginWithTextField_Text = nullptr; }
 		pReqUserLoginWithTextField->ClientIPPort = pReqUserLoginWithTextField_ClientIPPort;
+		if(pReqUserLoginWithTextField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginWithTextField->ClientIPAddress, pReqUserLoginWithTextField_ClientIPAddress); pReqUserLoginWithTextField_ClientIPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithTextField *pReqUserLoginWithTextField)
 {
 	if(pReqUserLoginWithTextField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
 		, "TradingDay", pReqUserLoginWithTextField->TradingDay
 		, "BrokerID", pReqUserLoginWithTextField->BrokerID
 		, "UserID", pReqUserLoginWithTextField->UserID
@@ -20181,16 +21051,17 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithTextField *pReqUserL
 		, "InterfaceProductInfo", pReqUserLoginWithTextField->InterfaceProductInfo
 		, "ProtocolInfo", pReqUserLoginWithTextField->ProtocolInfo
 		, "MacAddress", pReqUserLoginWithTextField->MacAddress
-		, "ClientIPAddress", pReqUserLoginWithTextField->ClientIPAddress
+		, "reserve1", pReqUserLoginWithTextField->reserve1
 		, "LoginRemark", pReqUserLoginWithTextField->LoginRemark
 		, "Text", pReqUserLoginWithTextField->Text
 		, "ClientIPPort", pReqUserLoginWithTextField->ClientIPPort
+		, "ClientIPAddress", pReqUserLoginWithTextField->ClientIPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithOTPField *pReqUserLoginWithOTPField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "ClientIPAddress", "LoginRemark", "OTPPassword", "ClientIPPort", nullptr};
+	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "reserve1", "LoginRemark", "OTPPassword", "ClientIPPort", "ClientIPAddress", nullptr};
 	char *pReqUserLoginWithOTPField_TradingDay = nullptr;
 	char *pReqUserLoginWithOTPField_BrokerID = nullptr;
 	char *pReqUserLoginWithOTPField_UserID = nullptr;
@@ -20199,11 +21070,12 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithOTPField *pReqUserLoginWit
 	char *pReqUserLoginWithOTPField_InterfaceProductInfo = nullptr;
 	char *pReqUserLoginWithOTPField_ProtocolInfo = nullptr;
 	char *pReqUserLoginWithOTPField_MacAddress = nullptr;
-	char *pReqUserLoginWithOTPField_ClientIPAddress = nullptr;
+	char *pReqUserLoginWithOTPField_reserve1 = nullptr;
 	char *pReqUserLoginWithOTPField_LoginRemark = nullptr;
 	char *pReqUserLoginWithOTPField_OTPPassword = nullptr;
 	int pReqUserLoginWithOTPField_ClientIPPort = 0;
-	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginWithOTPField, "|yyyyyyyyyyyi")
+	char *pReqUserLoginWithOTPField_ClientIPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginWithOTPField, "|yyyyyyyyyyyiy")
 		, &pReqUserLoginWithOTPField_TradingDay
 		, &pReqUserLoginWithOTPField_BrokerID
 		, &pReqUserLoginWithOTPField_UserID
@@ -20212,10 +21084,11 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithOTPField *pReqUserLoginWit
 		, &pReqUserLoginWithOTPField_InterfaceProductInfo
 		, &pReqUserLoginWithOTPField_ProtocolInfo
 		, &pReqUserLoginWithOTPField_MacAddress
-		, &pReqUserLoginWithOTPField_ClientIPAddress
+		, &pReqUserLoginWithOTPField_reserve1
 		, &pReqUserLoginWithOTPField_LoginRemark
 		, &pReqUserLoginWithOTPField_OTPPassword
 		, &pReqUserLoginWithOTPField_ClientIPPort
+		, &pReqUserLoginWithOTPField_ClientIPAddress
 	PyCTP_PyDict_FromStruct_END
 		if(pReqUserLoginWithOTPField_TradingDay != nullptr){ strcpy_s(pReqUserLoginWithOTPField->TradingDay, pReqUserLoginWithOTPField_TradingDay); pReqUserLoginWithOTPField_TradingDay = nullptr; }
 		if(pReqUserLoginWithOTPField_BrokerID != nullptr){ strcpy_s(pReqUserLoginWithOTPField->BrokerID, pReqUserLoginWithOTPField_BrokerID); pReqUserLoginWithOTPField_BrokerID = nullptr; }
@@ -20225,16 +21098,17 @@ int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithOTPField *pReqUserLoginWit
 		if(pReqUserLoginWithOTPField_InterfaceProductInfo != nullptr){ strcpy_s(pReqUserLoginWithOTPField->InterfaceProductInfo, pReqUserLoginWithOTPField_InterfaceProductInfo); pReqUserLoginWithOTPField_InterfaceProductInfo = nullptr; }
 		if(pReqUserLoginWithOTPField_ProtocolInfo != nullptr){ strcpy_s(pReqUserLoginWithOTPField->ProtocolInfo, pReqUserLoginWithOTPField_ProtocolInfo); pReqUserLoginWithOTPField_ProtocolInfo = nullptr; }
 		if(pReqUserLoginWithOTPField_MacAddress != nullptr){ strcpy_s(pReqUserLoginWithOTPField->MacAddress, pReqUserLoginWithOTPField_MacAddress); pReqUserLoginWithOTPField_MacAddress = nullptr; }
-		if(pReqUserLoginWithOTPField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginWithOTPField->ClientIPAddress, pReqUserLoginWithOTPField_ClientIPAddress); pReqUserLoginWithOTPField_ClientIPAddress = nullptr; }
+		if(pReqUserLoginWithOTPField_reserve1 != nullptr){ strcpy_s(pReqUserLoginWithOTPField->reserve1, pReqUserLoginWithOTPField_reserve1); pReqUserLoginWithOTPField_reserve1 = nullptr; }
 		if(pReqUserLoginWithOTPField_LoginRemark != nullptr){ strcpy_s(pReqUserLoginWithOTPField->LoginRemark, pReqUserLoginWithOTPField_LoginRemark); pReqUserLoginWithOTPField_LoginRemark = nullptr; }
 		if(pReqUserLoginWithOTPField_OTPPassword != nullptr){ strcpy_s(pReqUserLoginWithOTPField->OTPPassword, pReqUserLoginWithOTPField_OTPPassword); pReqUserLoginWithOTPField_OTPPassword = nullptr; }
 		pReqUserLoginWithOTPField->ClientIPPort = pReqUserLoginWithOTPField_ClientIPPort;
+		if(pReqUserLoginWithOTPField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginWithOTPField->ClientIPAddress, pReqUserLoginWithOTPField_ClientIPAddress); pReqUserLoginWithOTPField_ClientIPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithOTPField *pReqUserLoginWithOTPField)
 {
 	if(pReqUserLoginWithOTPField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y}"
 		, "TradingDay", pReqUserLoginWithOTPField->TradingDay
 		, "BrokerID", pReqUserLoginWithOTPField->BrokerID
 		, "UserID", pReqUserLoginWithOTPField->UserID
@@ -20243,10 +21117,11 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithOTPField *pReqUserLo
 		, "InterfaceProductInfo", pReqUserLoginWithOTPField->InterfaceProductInfo
 		, "ProtocolInfo", pReqUserLoginWithOTPField->ProtocolInfo
 		, "MacAddress", pReqUserLoginWithOTPField->MacAddress
-		, "ClientIPAddress", pReqUserLoginWithOTPField->ClientIPAddress
+		, "reserve1", pReqUserLoginWithOTPField->reserve1
 		, "LoginRemark", pReqUserLoginWithOTPField->LoginRemark
 		, "OTPPassword", pReqUserLoginWithOTPField->OTPPassword
 		, "ClientIPPort", pReqUserLoginWithOTPField->ClientIPPort
+		, "ClientIPAddress", pReqUserLoginWithOTPField->ClientIPAddress
 		);
 }
 
@@ -20363,3 +21238,282 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryFreqField *pQueryFreqField)
 		, "QueryFreq", pQueryFreqField->QueryFreq
 		);
 }
+
+int PyCTP_Struct_FromPyDict(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField, PyObject *dict)
+{
+	static char *kwlist[] = {"reserve1", "IPAddress", nullptr};
+	char *pAuthForbiddenIPField_reserve1 = nullptr;
+	char *pAuthForbiddenIPField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pAuthForbiddenIPField, "|yy")
+		, &pAuthForbiddenIPField_reserve1
+		, &pAuthForbiddenIPField_IPAddress
+	PyCTP_PyDict_FromStruct_END
+		if(pAuthForbiddenIPField_reserve1 != nullptr){ strcpy_s(pAuthForbiddenIPField->reserve1, pAuthForbiddenIPField_reserve1); pAuthForbiddenIPField_reserve1 = nullptr; }
+		if(pAuthForbiddenIPField_IPAddress != nullptr){ strcpy_s(pAuthForbiddenIPField->IPAddress, pAuthForbiddenIPField_IPAddress); pAuthForbiddenIPField_IPAddress = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField)
+{
+	if(pAuthForbiddenIPField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y}"
+		, "reserve1", pAuthForbiddenIPField->reserve1
+		, "IPAddress", pAuthForbiddenIPField->IPAddress
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField, PyObject *dict)
+{
+	static char *kwlist[] = {"reserve1", "IPAddress", nullptr};
+	char *pQryAuthForbiddenIPField_reserve1 = nullptr;
+	char *pQryAuthForbiddenIPField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryAuthForbiddenIPField, "|yy")
+		, &pQryAuthForbiddenIPField_reserve1
+		, &pQryAuthForbiddenIPField_IPAddress
+	PyCTP_PyDict_FromStruct_END
+		if(pQryAuthForbiddenIPField_reserve1 != nullptr){ strcpy_s(pQryAuthForbiddenIPField->reserve1, pQryAuthForbiddenIPField_reserve1); pQryAuthForbiddenIPField_reserve1 = nullptr; }
+		if(pQryAuthForbiddenIPField_IPAddress != nullptr){ strcpy_s(pQryAuthForbiddenIPField->IPAddress, pQryAuthForbiddenIPField_IPAddress); pQryAuthForbiddenIPField_IPAddress = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField)
+{
+	if(pQryAuthForbiddenIPField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y}"
+		, "reserve1", pQryAuthForbiddenIPField->reserve1
+		, "IPAddress", pQryAuthForbiddenIPField->IPAddress
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapFrozenField *pSyncDelaySwapFrozenField, PyObject *dict)
+{
+	static char *kwlist[] = {"DelaySwapSeqNo", "BrokerID", "InvestorID", "FromCurrencyID", "FromRemainSwap", "IsManualSwap", nullptr};
+	char *pSyncDelaySwapFrozenField_DelaySwapSeqNo = nullptr;
+	char *pSyncDelaySwapFrozenField_BrokerID = nullptr;
+	char *pSyncDelaySwapFrozenField_InvestorID = nullptr;
+	char *pSyncDelaySwapFrozenField_FromCurrencyID = nullptr;
+	double pSyncDelaySwapFrozenField_FromRemainSwap = 0.0;
+	int pSyncDelaySwapFrozenField_IsManualSwap = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDelaySwapFrozenField, "|yyyydi")
+		, &pSyncDelaySwapFrozenField_DelaySwapSeqNo
+		, &pSyncDelaySwapFrozenField_BrokerID
+		, &pSyncDelaySwapFrozenField_InvestorID
+		, &pSyncDelaySwapFrozenField_FromCurrencyID
+		, &pSyncDelaySwapFrozenField_FromRemainSwap
+		, &pSyncDelaySwapFrozenField_IsManualSwap
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDelaySwapFrozenField_DelaySwapSeqNo != nullptr){ strcpy_s(pSyncDelaySwapFrozenField->DelaySwapSeqNo, pSyncDelaySwapFrozenField_DelaySwapSeqNo); pSyncDelaySwapFrozenField_DelaySwapSeqNo = nullptr; }
+		if(pSyncDelaySwapFrozenField_BrokerID != nullptr){ strcpy_s(pSyncDelaySwapFrozenField->BrokerID, pSyncDelaySwapFrozenField_BrokerID); pSyncDelaySwapFrozenField_BrokerID = nullptr; }
+		if(pSyncDelaySwapFrozenField_InvestorID != nullptr){ strcpy_s(pSyncDelaySwapFrozenField->InvestorID, pSyncDelaySwapFrozenField_InvestorID); pSyncDelaySwapFrozenField_InvestorID = nullptr; }
+		if(pSyncDelaySwapFrozenField_FromCurrencyID != nullptr){ strcpy_s(pSyncDelaySwapFrozenField->FromCurrencyID, pSyncDelaySwapFrozenField_FromCurrencyID); pSyncDelaySwapFrozenField_FromCurrencyID = nullptr; }
+		pSyncDelaySwapFrozenField->FromRemainSwap = pSyncDelaySwapFrozenField_FromRemainSwap;
+		pSyncDelaySwapFrozenField->IsManualSwap = pSyncDelaySwapFrozenField_IsManualSwap;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDelaySwapFrozenField *pSyncDelaySwapFrozenField)
+{
+	if(pSyncDelaySwapFrozenField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:i}"
+		, "DelaySwapSeqNo", pSyncDelaySwapFrozenField->DelaySwapSeqNo
+		, "BrokerID", pSyncDelaySwapFrozenField->BrokerID
+		, "InvestorID", pSyncDelaySwapFrozenField->InvestorID
+		, "FromCurrencyID", pSyncDelaySwapFrozenField->FromCurrencyID
+		, "FromRemainSwap", pSyncDelaySwapFrozenField->FromRemainSwap
+		, "IsManualSwap", pSyncDelaySwapFrozenField->IsManualSwap
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "UserID", "ClientSystemInfoLen", "ClientSystemInfo", "reserve1", "ClientIPPort", "ClientLoginTime", "ClientAppID", "ClientPublicIP", nullptr};
+	char *pUserSystemInfoField_BrokerID = nullptr;
+	char *pUserSystemInfoField_UserID = nullptr;
+	int pUserSystemInfoField_ClientSystemInfoLen = 0;
+	char *pUserSystemInfoField_ClientSystemInfo = nullptr;
+	char *pUserSystemInfoField_reserve1 = nullptr;
+	int pUserSystemInfoField_ClientIPPort = 0;
+	char *pUserSystemInfoField_ClientLoginTime = nullptr;
+	char *pUserSystemInfoField_ClientAppID = nullptr;
+	char *pUserSystemInfoField_ClientPublicIP = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pUserSystemInfoField, "|yyiyyiyyy")
+		, &pUserSystemInfoField_BrokerID
+		, &pUserSystemInfoField_UserID
+		, &pUserSystemInfoField_ClientSystemInfoLen
+		, &pUserSystemInfoField_ClientSystemInfo
+		, &pUserSystemInfoField_reserve1
+		, &pUserSystemInfoField_ClientIPPort
+		, &pUserSystemInfoField_ClientLoginTime
+		, &pUserSystemInfoField_ClientAppID
+		, &pUserSystemInfoField_ClientPublicIP
+	PyCTP_PyDict_FromStruct_END
+		if(pUserSystemInfoField_BrokerID != nullptr){ strcpy_s(pUserSystemInfoField->BrokerID, pUserSystemInfoField_BrokerID); pUserSystemInfoField_BrokerID = nullptr; }
+		if(pUserSystemInfoField_UserID != nullptr){ strcpy_s(pUserSystemInfoField->UserID, pUserSystemInfoField_UserID); pUserSystemInfoField_UserID = nullptr; }
+		pUserSystemInfoField->ClientSystemInfoLen = pUserSystemInfoField_ClientSystemInfoLen;
+		if(pUserSystemInfoField_ClientSystemInfo != nullptr){ strcpy_s(pUserSystemInfoField->ClientSystemInfo, pUserSystemInfoField_ClientSystemInfo); pUserSystemInfoField_ClientSystemInfo = nullptr; }
+		if(pUserSystemInfoField_reserve1 != nullptr){ strcpy_s(pUserSystemInfoField->reserve1, pUserSystemInfoField_reserve1); pUserSystemInfoField_reserve1 = nullptr; }
+		pUserSystemInfoField->ClientIPPort = pUserSystemInfoField_ClientIPPort;
+		if(pUserSystemInfoField_ClientLoginTime != nullptr){ strcpy_s(pUserSystemInfoField->ClientLoginTime, pUserSystemInfoField_ClientLoginTime); pUserSystemInfoField_ClientLoginTime = nullptr; }
+		if(pUserSystemInfoField_ClientAppID != nullptr){ strcpy_s(pUserSystemInfoField->ClientAppID, pUserSystemInfoField_ClientAppID); pUserSystemInfoField_ClientAppID = nullptr; }
+		if(pUserSystemInfoField_ClientPublicIP != nullptr){ strcpy_s(pUserSystemInfoField->ClientPublicIP, pUserSystemInfoField_ClientPublicIP); pUserSystemInfoField_ClientPublicIP = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSystemInfoField *pUserSystemInfoField)
+{
+	if(pUserSystemInfoField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:y,s:i,s:y,s:y,s:y}"
+		, "BrokerID", pUserSystemInfoField->BrokerID
+		, "UserID", pUserSystemInfoField->UserID
+		, "ClientSystemInfoLen", pUserSystemInfoField->ClientSystemInfoLen
+		, "ClientSystemInfo", pUserSystemInfoField->ClientSystemInfo
+		, "reserve1", pUserSystemInfoField->reserve1
+		, "ClientIPPort", pUserSystemInfoField->ClientIPPort
+		, "ClientLoginTime", pUserSystemInfoField->ClientLoginTime
+		, "ClientAppID", pUserSystemInfoField->ClientAppID
+		, "ClientPublicIP", pUserSystemInfoField->ClientPublicIP
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcAuthUserIDField *pAuthUserIDField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "AppID", "UserID", "AuthType", nullptr};
+	char *pAuthUserIDField_BrokerID = nullptr;
+	char *pAuthUserIDField_AppID = nullptr;
+	char *pAuthUserIDField_UserID = nullptr;
+	char pAuthUserIDField_AuthType = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pAuthUserIDField, "|yyyc")
+		, &pAuthUserIDField_BrokerID
+		, &pAuthUserIDField_AppID
+		, &pAuthUserIDField_UserID
+		, &pAuthUserIDField_AuthType
+	PyCTP_PyDict_FromStruct_END
+		if(pAuthUserIDField_BrokerID != nullptr){ strcpy_s(pAuthUserIDField->BrokerID, pAuthUserIDField_BrokerID); pAuthUserIDField_BrokerID = nullptr; }
+		if(pAuthUserIDField_AppID != nullptr){ strcpy_s(pAuthUserIDField->AppID, pAuthUserIDField_AppID); pAuthUserIDField_AppID = nullptr; }
+		if(pAuthUserIDField_UserID != nullptr){ strcpy_s(pAuthUserIDField->UserID, pAuthUserIDField_UserID); pAuthUserIDField_UserID = nullptr; }
+		pAuthUserIDField->AuthType = pAuthUserIDField_AuthType;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthUserIDField *pAuthUserIDField)
+{
+	if(pAuthUserIDField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:c}"
+		, "BrokerID", pAuthUserIDField->BrokerID
+		, "AppID", pAuthUserIDField->AppID
+		, "UserID", pAuthUserIDField->UserID
+		, "AuthType", pAuthUserIDField->AuthType
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcAuthIPField *pAuthIPField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "AppID", "IPAddress", nullptr};
+	char *pAuthIPField_BrokerID = nullptr;
+	char *pAuthIPField_AppID = nullptr;
+	char *pAuthIPField_IPAddress = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pAuthIPField, "|yyy")
+		, &pAuthIPField_BrokerID
+		, &pAuthIPField_AppID
+		, &pAuthIPField_IPAddress
+	PyCTP_PyDict_FromStruct_END
+		if(pAuthIPField_BrokerID != nullptr){ strcpy_s(pAuthIPField->BrokerID, pAuthIPField_BrokerID); pAuthIPField_BrokerID = nullptr; }
+		if(pAuthIPField_AppID != nullptr){ strcpy_s(pAuthIPField->AppID, pAuthIPField_AppID); pAuthIPField_AppID = nullptr; }
+		if(pAuthIPField_IPAddress != nullptr){ strcpy_s(pAuthIPField->IPAddress, pAuthIPField_IPAddress); pAuthIPField_IPAddress = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthIPField *pAuthIPField)
+{
+	if(pAuthIPField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "BrokerID", pAuthIPField->BrokerID
+		, "AppID", pAuthIPField->AppID
+		, "IPAddress", pAuthIPField->IPAddress
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryClassifiedInstrumentField *pQryClassifiedInstrumentField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "ExchangeID", "ExchangeInstID", "ProductID", "TradingType", "ClassType", nullptr};
+	char *pQryClassifiedInstrumentField_InstrumentID = nullptr;
+	char *pQryClassifiedInstrumentField_ExchangeID = nullptr;
+	char *pQryClassifiedInstrumentField_ExchangeInstID = nullptr;
+	char *pQryClassifiedInstrumentField_ProductID = nullptr;
+	char pQryClassifiedInstrumentField_TradingType = 0;
+	char pQryClassifiedInstrumentField_ClassType = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryClassifiedInstrumentField, "|yyyycc")
+		, &pQryClassifiedInstrumentField_InstrumentID
+		, &pQryClassifiedInstrumentField_ExchangeID
+		, &pQryClassifiedInstrumentField_ExchangeInstID
+		, &pQryClassifiedInstrumentField_ProductID
+		, &pQryClassifiedInstrumentField_TradingType
+		, &pQryClassifiedInstrumentField_ClassType
+	PyCTP_PyDict_FromStruct_END
+		if(pQryClassifiedInstrumentField_InstrumentID != nullptr){ strcpy_s(pQryClassifiedInstrumentField->InstrumentID, pQryClassifiedInstrumentField_InstrumentID); pQryClassifiedInstrumentField_InstrumentID = nullptr; }
+		if(pQryClassifiedInstrumentField_ExchangeID != nullptr){ strcpy_s(pQryClassifiedInstrumentField->ExchangeID, pQryClassifiedInstrumentField_ExchangeID); pQryClassifiedInstrumentField_ExchangeID = nullptr; }
+		if(pQryClassifiedInstrumentField_ExchangeInstID != nullptr){ strcpy_s(pQryClassifiedInstrumentField->ExchangeInstID, pQryClassifiedInstrumentField_ExchangeInstID); pQryClassifiedInstrumentField_ExchangeInstID = nullptr; }
+		if(pQryClassifiedInstrumentField_ProductID != nullptr){ strcpy_s(pQryClassifiedInstrumentField->ProductID, pQryClassifiedInstrumentField_ProductID); pQryClassifiedInstrumentField_ProductID = nullptr; }
+		pQryClassifiedInstrumentField->TradingType = pQryClassifiedInstrumentField_TradingType;
+		pQryClassifiedInstrumentField->ClassType = pQryClassifiedInstrumentField_ClassType;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryClassifiedInstrumentField *pQryClassifiedInstrumentField)
+{
+	if(pQryClassifiedInstrumentField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:c,s:c}"
+		, "InstrumentID", pQryClassifiedInstrumentField->InstrumentID
+		, "ExchangeID", pQryClassifiedInstrumentField->ExchangeID
+		, "ExchangeInstID", pQryClassifiedInstrumentField->ExchangeInstID
+		, "ProductID", pQryClassifiedInstrumentField->ProductID
+		, "TradingType", pQryClassifiedInstrumentField->TradingType
+		, "ClassType", pQryClassifiedInstrumentField->ClassType
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryCombPromotionParamField *pQryCombPromotionParamField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "InstrumentID", nullptr};
+	char *pQryCombPromotionParamField_ExchangeID = nullptr;
+	char *pQryCombPromotionParamField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryCombPromotionParamField, "|yy")
+		, &pQryCombPromotionParamField_ExchangeID
+		, &pQryCombPromotionParamField_InstrumentID
+	PyCTP_PyDict_FromStruct_END
+		if(pQryCombPromotionParamField_ExchangeID != nullptr){ strcpy_s(pQryCombPromotionParamField->ExchangeID, pQryCombPromotionParamField_ExchangeID); pQryCombPromotionParamField_ExchangeID = nullptr; }
+		if(pQryCombPromotionParamField_InstrumentID != nullptr){ strcpy_s(pQryCombPromotionParamField->InstrumentID, pQryCombPromotionParamField_InstrumentID); pQryCombPromotionParamField_InstrumentID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombPromotionParamField *pQryCombPromotionParamField)
+{
+	if(pQryCombPromotionParamField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y}"
+		, "ExchangeID", pQryCombPromotionParamField->ExchangeID
+		, "InstrumentID", pQryCombPromotionParamField->InstrumentID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcCombPromotionParamField *pCombPromotionParamField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "InstrumentID", "CombHedgeFlag", "Xparameter", nullptr};
+	char *pCombPromotionParamField_ExchangeID = nullptr;
+	char *pCombPromotionParamField_InstrumentID = nullptr;
+	char *pCombPromotionParamField_CombHedgeFlag = nullptr;
+	double pCombPromotionParamField_Xparameter = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pCombPromotionParamField, "|yyyd")
+		, &pCombPromotionParamField_ExchangeID
+		, &pCombPromotionParamField_InstrumentID
+		, &pCombPromotionParamField_CombHedgeFlag
+		, &pCombPromotionParamField_Xparameter
+	PyCTP_PyDict_FromStruct_END
+		if(pCombPromotionParamField_ExchangeID != nullptr){ strcpy_s(pCombPromotionParamField->ExchangeID, pCombPromotionParamField_ExchangeID); pCombPromotionParamField_ExchangeID = nullptr; }
+		if(pCombPromotionParamField_InstrumentID != nullptr){ strcpy_s(pCombPromotionParamField->InstrumentID, pCombPromotionParamField_InstrumentID); pCombPromotionParamField_InstrumentID = nullptr; }
+		if(pCombPromotionParamField_CombHedgeFlag != nullptr){ strcpy_s(pCombPromotionParamField->CombHedgeFlag, pCombPromotionParamField_CombHedgeFlag); pCombPromotionParamField_CombHedgeFlag = nullptr; }
+		pCombPromotionParamField->Xparameter = pCombPromotionParamField_Xparameter;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombPromotionParamField *pCombPromotionParamField)
+{
+	if(pCombPromotionParamField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:d}"
+		, "ExchangeID", pCombPromotionParamField->ExchangeID
+		, "InstrumentID", pCombPromotionParamField->InstrumentID
+		, "CombHedgeFlag", pCombPromotionParamField->CombHedgeFlag
+		, "Xparameter", pCombPromotionParamField->Xparameter
+		);
+}
+

@@ -9,37 +9,86 @@ PyMemberDef CTP_THOST_FTDC_MD_API_members[] = {
 
 PyMethodDef CTP_THOST_FTDC_MD_API_methods[] = {
 	///创建MdApi
+	///@param pszFlowPath 存贮订阅信息文件的目录，默认为当前目录
+	///@return 创建出的UserApi
+	///modify for udp marketdata
 	{"CreateFtdcMdApi", (PyCFunction) CTP_THOST_FTDC_MD_API_CreateFtdcMdApi, METH_VARARGS | METH_CLASS, nullptr},
+	
 	///获取API的版本信息
+	///@retrun 获取到的版本号
 	{"GetApiVersion", CTP_THOST_FTDC_MD_API_GetApiVersion, METH_NOARGS | METH_STATIC, nullptr},
+	
 	///删除接口对象本身
+	///@remark 不再使用本接口对象时,调用该函数删除接口对象
 	{"Release", CTP_THOST_FTDC_MD_API_Release, METH_NOARGS, nullptr},
+	
 	///初始化
+	///@remark 初始化运行环境,只有调用后,接口才开始工作
 	{"Init", CTP_THOST_FTDC_MD_API_Init, METH_NOARGS, nullptr},
+	
 	///等待接口线程结束运行
+	///@return 线程退出代码
 	{"Join", CTP_THOST_FTDC_MD_API_Join, METH_NOARGS, nullptr},
+	
 	///获取当前交易日
+	///@retrun 获取到的交易日
+	///@remark 只有登录成功后,才能得到正确的交易日
 	{"GetTradingDay", CTP_THOST_FTDC_MD_API_GetTradingDay, METH_NOARGS, nullptr},
+	
 	///注册前置机网络地址
+	///@param pszFrontAddress：前置机网络地址。
+	///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。 
+	///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
 	{"RegisterFront", CTP_THOST_FTDC_MD_API_RegisterFront, METH_VARARGS, nullptr},
+	
 	///注册名字服务器网络地址
+	///@param pszNsAddress：名字服务器网络地址。
+	///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。 
+	///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
+	///@remark RegisterNameServer优先于RegisterFront
 	{"RegisterNameServer", CTP_THOST_FTDC_MD_API_RegisterNameServer, METH_VARARGS, nullptr},
+	
 	///注册名字服务器用户信息
+	///@param pFensUserInfo：用户信息。
 	{"RegisterFensUserInfo", CTP_THOST_FTDC_MD_API_RegisterFensUserInfo, METH_VARARGS, nullptr},
+	
 	///注册回调接口
+	///@param pSpi 派生自回调接口类的实例
 	{"RegisterSpi", CTP_THOST_FTDC_MD_API_RegisterSpi, METH_VARARGS, nullptr},
+	
 	///订阅行情。
+	///@param ppInstrumentID 合约ID  
+	///@param nCount 要订阅/退订行情的合约个数
+	///@remark 
 	{"SubscribeMarketData", CTP_THOST_FTDC_MD_API_SubscribeMarketData, METH_VARARGS, nullptr},
+
 	///退订行情。
+	///@param ppInstrumentID 合约ID  
+	///@param nCount 要订阅/退订行情的合约个数
+	///@remark 
 	{"UnSubscribeMarketData", CTP_THOST_FTDC_MD_API_UnSubscribeMarketData, METH_VARARGS, nullptr},
+	
 	///订阅询价。
+	///@param ppInstrumentID 合约ID  
+	///@param nCount 要订阅/退订行情的合约个数
+	///@remark 
 	{"SubscribeForQuoteRsp", CTP_THOST_FTDC_MD_API_SubscribeForQuoteRsp, METH_VARARGS, nullptr},
+
 	///退订询价。
+	///@param ppInstrumentID 合约ID  
+	///@param nCount 要订阅/退订行情的合约个数
+	///@remark 
 	{"UnSubscribeForQuoteRsp", CTP_THOST_FTDC_MD_API_UnSubscribeForQuoteRsp, METH_VARARGS, nullptr},
+
 	///用户登录请求
 	{"ReqUserLogin", CTP_THOST_FTDC_MD_API_ReqUserLogin, METH_VARARGS, nullptr},
+	
+
 	///登出请求
 	{"ReqUserLogout", CTP_THOST_FTDC_MD_API_ReqUserLogout, METH_VARARGS, nullptr},
+
+	///请求查询组播合约
+	{"ReqQryMulticastInstrument", CTP_THOST_FTDC_MD_API_ReqQryMulticastInstrument, METH_VARARGS, nullptr},
 	{nullptr}  /* Sentinel */
 };
 
@@ -90,9 +139,9 @@ PyTypeObject CTP_THOST_FTDC_MD_API_TYPE = {
 
 #define PyCTP_MD_FUNCTION_MAGIC_VOID_STRING(_in_fun) PyCTP_FUNCTION_MAGIC_VOID_STRING(CTP_THOST_FTDC_MD_API, _in_fun)
 
-#define PyCTP_MD_FUNCTION_MAGIC_INT_STRUCTI_VOID_STRUCT(_in_fun, _in_type) PyCTP_FUNCTION_MAGIC_VOID_STRUCT(CTP_THOST_FTDC_MD_API, _in_fun, _in_type)
+#define PyCTP_MD_FUNCTION_MAGIC_VOID_STRUCT(_in_fun, _in_type) PyCTP_FUNCTION_MAGIC_VOID_STRUCT(CTP_THOST_FTDC_MD_API, _in_fun, _in_type)
 
-#define PyCTP_MD_FUNCTION_MAGIC_INT_STRUCT_INT(_in_fun, _in_type) PyCTP_FUNCTION_MAGIC_INT_STRUCTI_INT(CTP_THOST_FTDC_MD_API, _in_fun, _in_type)
+#define PyCTP_MD_FUNCTION_MAGIC_INT_STRUCT_INT(_in_fun, _in_type) PyCTP_FUNCTION_MAGIC_INT_STRUCT_INT(CTP_THOST_FTDC_MD_API, _in_fun, _in_type)
 
 PyObject *CTP_THOST_FTDC_MD_API_CreateFtdcMdApi(PyTypeObject *type, PyObject *args)
 {
@@ -150,7 +199,7 @@ PyCTP_MD_FUNCTION_MAGIC_VOID_STRING(RegisterFront);
 
 PyCTP_MD_FUNCTION_MAGIC_VOID_STRING(RegisterNameServer);
 
-PyCTP_MD_FUNCTION_MAGIC_INT_STRUCTI_VOID_STRUCT(RegisterFensUserInfo, CThostFtdcFensUserInfoField);
+PyCTP_MD_FUNCTION_MAGIC_VOID_STRUCT(RegisterFensUserInfo, CThostFtdcFensUserInfoField);
 
 PyObject *CTP_THOST_FTDC_MD_API_RegisterSpi(PyObject *self, PyObject *args)
 {
@@ -179,6 +228,8 @@ PyCTP_FUNCTION_MAGIC_INT_SUBSCRIBE(CTP_THOST_FTDC_MD_API, UnSubscribeForQuoteRsp
 PyCTP_MD_FUNCTION_MAGIC_INT_STRUCT_INT(ReqUserLogin, CThostFtdcReqUserLoginField)
 
 PyCTP_MD_FUNCTION_MAGIC_INT_STRUCT_INT(ReqUserLogout, CThostFtdcUserLogoutField)
+
+PyCTP_MD_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQryMulticastInstrument, CThostFtdcQryMulticastInstrumentField)
 
 void CTP_THOST_FTDC_MD_API_dealloc(PyObject *self)
 {
@@ -256,6 +307,17 @@ void CTP_THOST_FTDC_MD_SPI::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogo
 	PyGILState_Release(gstate);
 }
 
+void CTP_THOST_FTDC_MD_SPI::OnRspQryMulticastInstrument(CThostFtdcMulticastInstrumentField *pMulticastInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pMulticastInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQryMulticastInstrument"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pMulticastInstrument), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);	
+}
+	
 void CTP_THOST_FTDC_MD_SPI::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	PyGILState_STATE gstate = PyGILState_Ensure();

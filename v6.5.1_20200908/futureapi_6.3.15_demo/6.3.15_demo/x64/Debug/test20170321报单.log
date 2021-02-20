@@ -1,0 +1,22 @@
+﻿  main.cpp
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(11): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(160): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(205): warning C4477: “fprintf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“TThostFtdcLargeVolumeType”
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(205): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“TThostFtdcLargeVolumeType”
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1382): warning C4806: “|”: 不安全操作: 从类型“bool”提升到类型“int”的值不能等于给定的常量
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1382): warning C4554: “|”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1385): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1316): note: 参见“itoa”的声明
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1861): warning C4806: “&”: 不安全操作: 从类型“bool”提升到类型“int”的值不能等于给定的常量
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1861): warning C4554: “&”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1879): warning C4806: “|”: 不安全操作: 从类型“bool”提升到类型“int”的值不能等于给定的常量
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1879): warning C4554: “|”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1882): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1316): note: 参见“itoa”的声明
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1954): warning C4806: “|”: 不安全操作: 从类型“bool”提升到类型“int”的值不能等于给定的常量
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1954): warning C4554: “|”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+d:\公司\api\demo\demo期货api-6.3.13\test20170321报单\main.h(1957): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1316): note: 参见“itoa”的声明
+  LINK : 没有找到 D:\公司\api\demo\demo期货api-6.3.13\x64\Debug\测试程序.exe 或上一个增量链接没有生成它；正在执行完全链接
+  test20170321报单.vcxproj -> D:\公司\api\demo\demo期货api-6.3.13\x64\Debug\测试程序.exe
+  test20170321报单.vcxproj -> D:\公司\api\demo\demo期货api-6.3.13\x64\Debug\测试程序.pdb (Full PDB)

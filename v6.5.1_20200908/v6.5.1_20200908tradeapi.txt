@@ -1,0 +1,217 @@
+版本号：v6.5.1_20200908_tradeapi
+后台版本：V6.5.1
+注意：V6.5.1API连接CTP后台需为V6.5.0及以上版本（如果用V6.5.1API接入V6.5.0后台，V6.5.1新加接口不支持使用，其他接口正常使用）；
+           CTPV6.5.1后台系统兼容线上旧版本API接入（V6.5.1以下版本）；因为需要支持IPv6，Windows版本需要工作在vista及以上的64位版本操作系统
+
+变更说明：（请各终端厂商根据自身情况进行开发）
+
+1、为了支持大商所的超长组合合约，原先的合约字段30个字节已经不够长，所以需要对合约字段进行扩长。
+
+新增合约代码类型为80字节，原来的合约代码类型改为TThostFtdcOldInstrumentIDType，并且原来的合约代码类型对应的字段改成保留字段且不用填写（填写系统会忽略）；
+
+///TFtdcInstrumentIDType是一个合约代码类型
+/////////////////////////////////////////////////////////////////////////
+typedef char TThostFtdcInstrumentIDType[81];
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcOldInstrumentIDType是一个合约代码类型
+/////////////////////////////////////////////////////////////////////////
+typedef char TThostFtdcOldInstrumentIDType[31];
+
+TThostFtdcOldInstrumentIDType	reserve1；
+TThostFtdcOldExchangeInstIDType	reserve2;
+TThostFtdcOldInstrumentIDType	reserve3；
+
+
+2、为了支持以后IPv6的ip地址长度，对ip地址进行扩长。
+
+新增IP地址类型为32字节，原来的ip地址类型改为TThostFtdcOldIPAddressType，并且原来的ip地址类型对应的字段改成保留字段且不用填写（填写系统会忽略）；
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcOldIPAddressType是一个IP地址类型
+/////////////////////////////////////////////////////////////////////////
+typedef char TThostFtdcOldIPAddressType[16];
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcIPAddressType是一个IP地址类型
+/////////////////////////////////////////////////////////////////////////
+typedef char TThostFtdcIPAddressType[33];
+
+TThostFtdcOldIPAddressType	reserve2
+
+
+3、新增查询大商所组合优惠参数接口
+大商所的期权对锁组合（OPL），买入期权垂直价差组合（BLS），卖出期权垂直价差组合（BES），日历价差组合（CAS）和买入期权期货组合（BFO）的保证金计算公式中需要乘以保证金优惠比例
+该比例参数由交易所给出，终端如果需要计算如上组合的保证金，可以通过本接口查询组合合约的组合优惠参数X值，由于优惠参数目前不区分投机套保，因此查询返回域投保标志【CombHedgeFlag】字段为投机类型。
+保证金计算公式如下：
+
+1）期权对锁（OPL），保证金收取为X*卖期权保证金
+2）买入期权垂直价差组合（BLS），保证金收取为X*卖期权保证金
+3）卖出期权垂直价差组合（BES），保证金收取为min(执行价格之差*交易单位，空头期权保证金)
+4）日历价差组合（CAS），保证金收取为X*卖出期权保证金
+5）买入期权期货组合（BFO），保证金收取为X*期货保证金
+ 
+新增查询大商所组合优惠参数接口如下，合约代码需要填组合合约代码：
+///请求组合优惠比例
+virtual int ReqQryCombPromotionParam(CThostFtdcQryCombPromotionParamField *pQryCombPromotionParam, int nRequestID);
+
+///查询组合优惠比例
+struct CThostFtdcQryCombPromotionParamField
+{
+ ///交易所代码
+TThostFtdcExchangeIDType ExchangeID;
+ ///合约代码
+TThostFtdcInstrumentIDType InstrumentID;
+};
+
+///请求组合优惠比例响应
+virtual void OnRspQryCombPromotionParam(CThostFtdcCombPromotionParamField *pCombPromotionParam, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+
+///组合优惠比例
+struct CThostFtdcCombPromotionParamField
+{
+ ///交易所代码
+TThostFtdcExchangeIDType ExchangeID;
+ ///合约代码
+TThostFtdcInstrumentIDType InstrumentID;
+ ///投机套保标志
+TThostFtdcCombHedgeFlagType CombHedgeFlag;
+ ///期权组合保证金比例
+TThostFtdcDiscountRatioType Xparameter;
+};
+
+
+4、新增大商所买入期权垂直价差组合和卖出期权垂直价差组合枚举值
+
+///TFtdcCombinationTypeType是一个组合类型类型
+/////////////////////////////////////////////////////////////////////////
+///期货组合
+#define THOST_FTDC_COMBT_Future '0'
+///垂直价差BUL
+#define THOST_FTDC_COMBT_BUL '1'
+///垂直价差BER
+#define THOST_FTDC_COMBT_BER '2'
+///跨式组合
+#define THOST_FTDC_COMBT_STD '3'
+///宽跨式组合
+#define THOST_FTDC_COMBT_STG '4'
+///备兑组合
+#define THOST_FTDC_COMBT_PRT '5'
+///时间价差组合
+#define THOST_FTDC_COMBT_CAS '6'
+///期权对锁组合
+#define THOST_FTDC_COMBT_OPL '7'
+///买备兑组合
+#define THOST_FTDC_COMBT_BFO '8'
+///买入期权垂直价差组合
+#define THOST_FTDC_COMBT_BLS '9'
+///卖出期权垂直价差组合
+#define THOST_FTDC_COMBT_BES 'a'
+
+对大商所组合进行申请和拆分时，合约填写规则如下：
+期权跨式组合合约申请和拆分（STD m1905-c-2700&m1905-p-2700）
+期权宽跨式组合合约申请和拆分（STG m1905-p-2400&m1905-c-2700）
+备兑组合合约申请和拆分（PRT m1905-c-2400&m1905）
+期货跨期组合合约申请和拆分（SP a1903&a1905）
+期货跨品种组合合约申请和拆分（SPC c1903&cs1909）
+期货对锁组合合约申请和拆分（SP a1903& a1903）
+期权对锁组合合约申请和拆分（OPL m1809-P-3150&m1809-P-3150）
+期权买入垂直价差组合申请和拆分（BLS m1809-P-3150&m1809-P-3100）
+期权卖出垂直价差组合申请和拆分（BES m1809-P-3350&m1809-P-3150）
+期权日历价差组合申请和拆分（CAS m1807-P-3150&m1809-P-3150）
+买入期权期货组合申请和拆分（BFO m1809-P-3150&m1809）
+
+
+5、新增公有流可订阅和取消的功能
+
+增加取消订阅公共流的枚举【THOST_TERT_NONE】，不调用SubscribePublicTopic时默认从本交易日开始订阅，调用SubscribePublicTopic则以传参为准，同订阅私有流，在登录之前调用。
+///订阅公共流。
+
+    ///@param nResumeType 公共流重传方式  
+
+    ///        THOST_TERT_RESTART:从本交易日开始重传
+
+    ///        THOST_TERT_RESUME:从上次收到的续传
+
+    ///        THOST_TERT_QUICK:只传送登录后公共流的内容
+
+    ///        THOST_TERT_NONE:取消订阅公共流
+
+    ///@remark 该方法要在Init方法前调用。若不调用则不会收到公共流的数据。
+
+    virtual void SubscribePublicTopic(THOST_TE_RESUME_TYPE nResumeType) = 0;
+
+6、新增查询可交易合约的接口
+
+CTP合约信息可分为可交易合约和非交易合约【大商所只可申请组合的合约为非交易合约】，非交易合约数据量占比较大。
+新增查询分类合约接口可依据查询请求域交易类型【TradingType】字段查询指定合约信息。
+
+请求查询分类合约：
+
+  virtual int ReqQryClassifiedInstrument(CThostFtdcQryClassifiedInstrumentField *pQryClassifiedInstrument, int nRequestID) = 0;
+
+请求查询分类合约响应：
+
+virtual void OnRspQryClassifiedInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+
+///查询分类合约
+struct CThostFtdcQryClassifiedInstrumentField
+{
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///合约在交易所的代码
+	TThostFtdcExchangeInstIDType	ExchangeInstID;
+	///产品代码
+	TThostFtdcInstrumentIDType	ProductID;
+	///合约交易状态
+	TThostFtdcTradingTypeType	TradingType;
+	///合约分类类型
+	TThostFtdcClassTypeType	ClassType;
+};
+
+其中合约类型TradingType为枚举。值为：
+
+///所有状态
+#define TD_ALL '0'
+///交易
+#define TD_TRADE '1'
+///非交易
+#define TD_UNTRADE '2'
+
+分类类型ClassType，包含类别：
+
+///所有合约
+#define INS_ALL '0'
+///期货、即期、期转现、Tas、金属指数合约
+#define INS_FUTURE '1'
+///期货期权、现货期权合约
+#define INS_OPTION '2'
+///组合合约
+#define INS_COMB '3' //对应产品类型字段Productclass 为组合类型
+
+
+7、查询最大报单数量的接口名称修改，该名称修改不影响旧版本（V6.5.1以下版本）API使用，旧版本API接入6.5.1后台，仍可使用原有名称；CTPV6.5.1后台系统兼容线上旧版本API接入。
+
+'查询最大报单数量请求'的接口名字由'ReqQueryMaxOrderVolume'修改为'ReqQryMaxOrderVolume'，‘OnRspQueryMaxOrderVolume’修改为‘OnRspQryMaxOrderVolume’。
+
+    ///查询最大报单数量请求
+
+virtual int ReqQueryMaxOrderVolume(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolume, int nRequestID) = 0;
+修改为：virtual int ReqQryMaxOrderVolume (CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolume, int nRequestID) = 0;
+
+///查询最大报单数量响应
+
+virtual void OnRspQueryMaxOrderVolume(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolume, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+修改为：virtual void OnRspQryMaxOrderVolume(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolume, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+
+8、请求查询报价接口，如果查询请求有指定QuoteSysID【填空则返回全部】，后台会根据QuoteSysID返回相应的报价信息，旧版本后台不支持根据QuoteSysID进行过滤返回。
+///请求查询报价
+virtual int ReqQryQuote(CThostFtdcQryQuoteField *pQryQuote, int nRequestID) = 0;
+
+
+

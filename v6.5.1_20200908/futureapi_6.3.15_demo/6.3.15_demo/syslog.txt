@@ -1,0 +1,13 @@
+v6.3.15_20190220 20:39:53<RegisterSpi>
+</RegisterSpi>
+<SubscribePrivateTopic>
+	nResumeType [2]
+</SubscribePrivateTopic>
+<SubscribePublicTopic>
+	nResumeType [2]
+</SubscribePublicTopic>
+<RegisterFront>
+	pszFrontAddress [tcp://127.0.0.1:41205]
+</RegisterFront>
+<Init>
+</Init>

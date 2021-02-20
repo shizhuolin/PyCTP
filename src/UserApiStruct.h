@@ -3,6 +3,7 @@
 
 #include <ThostFtdcUserApiStruct.h>
 
+
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDisseminationField *pDisseminationField);
 int PyCTP_Struct_FromPyDict(CThostFtdcDisseminationField *pDisseminationField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginField *pReqUserLoginField);
@@ -129,8 +130,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradeField *pTradeField);
 int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSessionField *pUserSessionField);
 int PyCTP_Struct_FromPyDict(CThostFtdcUserSessionField *pUserSessionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolumeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolumeField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolumeField);
+int PyCTP_Struct_FromPyDict(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolumeField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirmField);
 int PyCTP_Struct_FromPyDict(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirmField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDepositField *pSyncDepositField);
@@ -515,8 +516,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeSequenceField *pQryExchan
 int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeSequenceField *pQryExchangeSequenceField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeSequenceField *pExchangeSequenceField);
 int PyCTP_Struct_FromPyDict(CThostFtdcExchangeSequenceField *pExchangeSequenceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryMaxOrderVolumeWithPriceField *pQueryMaxOrderVolumeWithPriceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQueryMaxOrderVolumeWithPriceField *pQueryMaxOrderVolumeWithPriceField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMaxOrderVolumeWithPriceField *pQryMaxOrderVolumeWithPriceField);
+int PyCTP_Struct_FromPyDict(CThostFtdcQryMaxOrderVolumeWithPriceField *pQryMaxOrderVolumeWithPriceField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerTradingParamsField *pQryBrokerTradingParamsField);
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingParamsField *pQryBrokerTradingParamsField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerTradingParamsField *pBrokerTradingParamsField);
@@ -569,6 +570,12 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBulletinField *pBulletinField);
 int PyCTP_Struct_FromPyDict(CThostFtdcBulletinField *pBulletinField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBulletinField *pQryBulletinField);
 int PyCTP_Struct_FromPyDict(CThostFtdcQryBulletinField *pQryBulletinField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMulticastInstrumentField *pMulticastInstrumentField);
+int PyCTP_Struct_FromPyDict(CThostFtdcMulticastInstrumentField *pMulticastInstrumentField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMulticastInstrumentField *pQryMulticastInstrumentField);
+int PyCTP_Struct_FromPyDict(CThostFtdcQryMulticastInstrumentField *pQryMulticastInstrumentField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAppIDAuthAssignField *pAppIDAuthAssignField);
+int PyCTP_Struct_FromPyDict(CThostFtdcAppIDAuthAssignField *pAppIDAuthAssignField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqOpenAccountField *pReqOpenAccountField);
 int PyCTP_Struct_FromPyDict(CThostFtdcReqOpenAccountField *pReqOpenAccountField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqCancelAccountField *pReqCancelAccountField);
@@ -655,8 +662,6 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginForbiddenUserField *pLoginForbi
 int PyCTP_Struct_FromPyDict(CThostFtdcLoginForbiddenUserField *pLoginForbiddenUserField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryLoginForbiddenUserField *pQryLoginForbiddenUserField);
 int PyCTP_Struct_FromPyDict(CThostFtdcQryLoginForbiddenUserField *pQryLoginForbiddenUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMulticastGroupInfoField *pMulticastGroupInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMulticastGroupInfoField *pMulticastGroupInfoField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountReserveField *pTradingAccountReserveField);
 int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountReserveField *pTradingAccountReserveField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryLoginForbiddenIPField *pQryLoginForbiddenIPField);
@@ -679,8 +684,6 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySecAgentCheckModeField *pQrySecAg
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySecAgentCheckModeField *pQrySecAgentCheckModeField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySecAgentTradeInfoField *pQrySecAgentTradeInfoField);
 int PyCTP_Struct_FromPyDict(CThostFtdcQrySecAgentTradeInfoField *pQrySecAgentTradeInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSystemInfoField *pUserSystemInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserAuthMethodField *pReqUserAuthMethodField);
 int PyCTP_Struct_FromPyDict(CThostFtdcReqUserAuthMethodField *pReqUserAuthMethodField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspUserAuthMethodField *pRspUserAuthMethodField);
@@ -709,5 +712,23 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepartmentUserField *pDepartmentUser
 int PyCTP_Struct_FromPyDict(CThostFtdcDepartmentUserField *pDepartmentUserField, PyObject *dict);
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryFreqField *pQueryFreqField);
 int PyCTP_Struct_FromPyDict(CThostFtdcQueryFreqField *pQueryFreqField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField);
+int PyCTP_Struct_FromPyDict(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField);
+int PyCTP_Struct_FromPyDict(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDelaySwapFrozenField *pSyncDelaySwapFrozenField);
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapFrozenField *pSyncDelaySwapFrozenField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSystemInfoField *pUserSystemInfoField);
+int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthUserIDField *pAuthUserIDField);
+int PyCTP_Struct_FromPyDict(CThostFtdcAuthUserIDField *pAuthUserIDField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthIPField *pAuthIPField);
+int PyCTP_Struct_FromPyDict(CThostFtdcAuthIPField *pAuthIPField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryClassifiedInstrumentField *pQryClassifiedInstrumentField);
+int PyCTP_Struct_FromPyDict(CThostFtdcQryClassifiedInstrumentField *pQryClassifiedInstrumentField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombPromotionParamField *pQryCombPromotionParamField);
+int PyCTP_Struct_FromPyDict(CThostFtdcQryCombPromotionParamField *pQryCombPromotionParamField, PyObject *dict);
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombPromotionParamField *pCombPromotionParamField);
+int PyCTP_Struct_FromPyDict(CThostFtdcCombPromotionParamField *pCombPromotionParamField, PyObject *dict);
 
 #endif

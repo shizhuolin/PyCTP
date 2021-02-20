@@ -244,7 +244,71 @@ class PyCTP_Trader_API(PyCTP.CThostFtdcTraderApi):
             else:
                 return -4
         return ret
+      
+    def Authenticate(self, BrokerID, UserID, UserProductInfo, AuthCode, AppID):
+        """ 客户端认证 """
+        pReqAuthenticateField = dict(BrokerID=BrokerID,
+                                     UserID=UserID,
+                                     UserProductInfo=UserProductInfo,
+                                     AuthCode=AuthCode,
+                                     AppID=AppID)
+        self.__rsp_Authenticate = dict(event = threading.Event(),
+                                       RequestID = self.__IncRequestID(),
+                                       results   = [],
+                                       ErrorID   = 0)
+        ret = self.ReqAuthenticate(pReqAuthenticateField, self.__rsp_Authenticate['RequestID'])
+        if ret == 0:
+            self.__rsp_Authenticate['event'].clear()
+            if self.__rsp_Authenticate['event'].wait(self.TIMEOUT):
+                if self.__rsp_Authenticate['ErrorID'] != 0:
+                    return self.__rsp_Authenticate['ErrorID']
+                return self.__rsp_Authenticate['ErrorMsg'].decode('gb2312')
+            else:
+                return -4
+        return ret
+      
+    def RegUserSystemInfo(self, BrokerID, UserID, ClientAppID):
+        """
+        注册用户终端信息，用于中继服务器多连接模式
+        需要在终端认证成功后，用户登录前调用该接口
+        """
+        SystemInfo = PyCTP.CTP_GetSystemInfo()
+        if SystemInfo['ret'] != 0: return SystemInfo['ret']
+        pSystemInfo, nlen = SystemInfo['SystemInfo'], SystemInfo['nLen']
+        pUserSystemInfo = dict(BrokerID = BrokerID, 
+                               UserID = UserID,
+                               ClientSystemInfoLen = nlen,
+                               ClientSystemInfo = pSystemInfo,
+                               ClientPublicIP = b'192.168.0.1',
+                               ClientIPPort = 51305,
+                               reserve1 = b'',
+                               ClientLoginTime = b'20190121',
+                               ClientAppID = ClientAppID)
+        ret = self.RegisterUserSystemInfo(pUserSystemInfo)
+        print( "注册用户终端信息......发送成功\n" if ret == 0 else "注册用户终端信息......发送失败，错误序号=[%d]\n" % ret );
+        return ret
         
+    def SubUserSystemInfo(self, BrokerID, UserID, ClientAppID):
+        """
+      	上报用户终端信息，用于中继服务器操作员登录模式
+        操作员登录后，可以多次调用该接口上报客户信息
+        """
+        SystemInfo = PyCTP.CTP_GetSystemInfo()
+        if SystemInfo['ret'] != 0: return SystemInfo['ret']
+        pSystemInfo, nlen = SystemInfo['SystemInfo'], SystemInfo['nLen']
+        pUserSystemInfo = dict(BrokerID = BrokerID,
+                               UserID = UserID,
+                               ClientSystemInfoLen = nlen,
+                               ClientSystemInfo = pSystemInfo,
+                               ClientPublicIP = b'192.168.0.1',
+                               ClientIPPort = 51305,
+                               reserve1 = b'',
+                               ClientLoginTime = b'20190121',
+                               ClientAppID = ClientAppID)
+        ret = self.SubmitUserSystemInfo(pUserSystemInfo)
+        print( "上报用户终端信息......发送成功\n" if ret == 0 else "上报用户终端信息......发送失败，错误序号=[%d]\n" % ret );
+        return ret
+      
     def QryInstrument(self, ExchangeID=b'', InstrumentID=b''):
         """ 查询和约 """
         QryInstrument = dict(ExchangeID     = ExchangeID
@@ -459,6 +523,12 @@ class PyCTP_Trader_API(PyCTP.CThostFtdcTraderApi):
             self.__rsp_Logout.update(RspInfo)
             self.__rsp_Logout['event'].set()
             
+    def OnRspAuthenticate(self, pRspAuthenticateField, RspInfo, RequestID, IsLast):
+        """ 请求响应 """
+        if RequestID == self.__rsp_Authenticate['RequestID'] and IsLast:
+            self.__rsp_Authenticate.update(RspInfo)
+            self.__rsp_Authenticate['event'].set()
+            
     def OnRspQryInstrument(self, Instrument, RspInfo, RequestID, IsLast):
         """ 请求查询合约响应 """
         if RequestID == self.__rsp_QryInstrument['RequestID']:
@@ -590,46 +660,74 @@ class PyCTP_Market(PyCTP_Market_API):
 def __main__():
     import os
     import time
-    BrokerID = b'9999'
+    BrokerID = b''
     UserID = b''
     Password = b''
+    AuthCode = b''
+    AppID = b''
+    ProductInfo = b''
     ExchangeID = b'SHFE'
     InstrumentID = b'cu1610'
-    print('终端信息:', PyCTP.CTP_GetSystemInfo())
-    trader = PyCTP_Trader.CreateFtdcTraderApi(b'_tmp_t_')    
+    
+    trader = PyCTP_Trader.CreateFtdcTraderApi(b'_tmp_t_')  
     market = PyCTP_Market.CreateFtdcMdApi(b'_tmp_m_')    
-    print('连接前置', trader.Connect(b'tcp://180.168.146.187:10000'))
-    print('连接前置', market.Connect(b'tcp://180.168.146.187:10010'))
-    print('账号登陆', trader.Login(BrokerID, UserID, Password))
-    print('账号登陆', market.Login(BrokerID, UserID, Password))
-    print('投资者代码', trader.setInvestorID(UserID))
+    print('连接前置', trader.Connect(b'tcp://x.x.x.x:x'))
     
-    time.sleep(1.0)
-    print('查询交易所', trader.QryExchange())
-    time.sleep(1.0)
-    print('查询投资者', trader.QryInvestor())
-    time.sleep(1.0)
-    print('查询资金账户', trader.QryTradingAccount())
-    time.sleep(1.0)
-    print('查询合约', trader.QryInstrument(ExchangeID, InstrumentID))
-    time.sleep(1.0)
-    print('合约手续费率', trader.QryInstrumentCommissionRate(InstrumentID))
-    time.sleep(1.0)
-    print('合约保证金率', trader.QryInstrumentMarginRate(InstrumentID))
-    time.sleep(1.0)
-    print('投资者持仓', trader.QryInvestorPosition())
-    time.sleep(1.0)
-    print('查询行情', trader.QryDepthMarketData(InstrumentID))
-    time.sleep(1.0)
-    print('订阅行情:', market.SubMarketData([InstrumentID]))
+    print('连接前置', market.Connect(b'tcp://x.x.x.x:x'))
     
-    while True:
-        if input('enter q exit:') == 'q':
-            break
+    
+    """
+    1.直连模式
+	2.中继服务器操作员模式(一对多模式)
+	3.中继服务器非操作员模式(多对多模式)
+    """
+    mode_num  = 1
+    if mode_num == 1:
+        # 1.直连模式
+        print('客户端认证', trader.Authenticate(BrokerID, UserID, ProductInfo, AuthCode, AppID))
+        print('账号登陆', trader.Login(BrokerID, UserID, Password))
+    elif mode_num == 2:
+        # 2.中继服务器操作员模式(一对多模式)
+        print('客户端认证', trader.Authenticate(BrokerID, UserID, ProductInfo, AuthCode, AppID))
+        print('账号登陆', trader.Login(BrokerID, UserID, Password))
+        print('上报用户终端信息', trader.SubUserSystemInfo(BrokerID, UserID, AppID))
+    elif mode_num == 3:
+        # 3.中继服务器非操作员模式(多对多模式)
+        print('客户端认证', trader.Authenticate(BrokerID, UserID, ProductInfo, AuthCode, AppID))
+        print('注册用户终端信息', trader.RegUserSystemInfo(BrokerID, UserID, AppID) )
+        print('账号登陆', trader.Login(BrokerID, UserID, Password))
+    else:
+        print('选择的模式有误，请重新输入！')
+      
+    #print('账号登陆', market.Login(BrokerID, UserID, Password))
+    
+    print('投资者代码', trader.setInvestorID(UserID))    
     time.sleep(1.0)
-    print('退订行情:', market.UnSubMarketData([InstrumentID]))
-    print('账号登出', trader.Logout())
-    print('账号登出', market.Logout())
+    print('查询交易所', [(item['ExchangeID'], item['ExchangeName'].decode('gb2312'), item['ExchangeProperty']) for item in trader.QryExchange()])
+    #time.sleep(1.0)
+    #print('查询投资者', trader.QryInvestor())
+    #time.sleep(1.0)
+    #print('查询资金账户', trader.QryTradingAccount())
+    #time.sleep(1.0)
+    #print('查询合约', trader.QryInstrument(ExchangeID, InstrumentID))
+    #time.sleep(1.0)
+    #print('合约手续费率', trader.QryInstrumentCommissionRate(InstrumentID))
+    #time.sleep(1.0)
+    #print('合约保证金率', trader.QryInstrumentMarginRate(InstrumentID))
+    #time.sleep(1.0)
+    #print('投资者持仓', trader.QryInvestorPosition())
+    #time.sleep(1.0)
+    #print('查询行情', trader.QryDepthMarketData(InstrumentID))
+    #time.sleep(1.0)
+    #print('订阅行情:', market.SubMarketData([InstrumentID]))
+    
+    #while True:
+    #    if input('enter q exit:') == 'q':
+    #        break
+    #time.sleep(1.0)
+    #print('退订行情:', market.UnSubMarketData([InstrumentID]))
+    #print('账号登出', trader.Logout())
+    #print('账号登出', market.Logout())
 
 if __name__ == '__main__':
     __main__()

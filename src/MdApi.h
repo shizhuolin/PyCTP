@@ -45,13 +45,13 @@ PyObject *CTP_THOST_FTDC_MD_API_GetTradingDay(PyObject *self, PyObject *args);
 
 ///注册前置机网络地址
 ///@param pszFrontAddress：前置机网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。 
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
 PyObject *CTP_THOST_FTDC_MD_API_RegisterFront(PyObject *self, PyObject *args);
 
 ///注册名字服务器网络地址
 ///@param pszNsAddress：名字服务器网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。 
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
 ///@remark RegisterNameServer优先于RegisterFront
 PyObject *CTP_THOST_FTDC_MD_API_RegisterNameServer(PyObject *self, PyObject *args);
@@ -65,27 +65,27 @@ PyObject *CTP_THOST_FTDC_MD_API_RegisterFensUserInfo(PyObject *self, PyObject *a
 PyObject *CTP_THOST_FTDC_MD_API_RegisterSpi(PyObject *self, PyObject *args);
 
 ///订阅行情。
-///@param ppInstrumentID 合约ID
+///@param ppInstrumentID 合约ID  
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark
+///@remark 
 PyObject *CTP_THOST_FTDC_MD_API_SubscribeMarketData(PyObject *self, PyObject *args);
 
 ///退订行情。
-///@param ppInstrumentID 合约ID
+///@param ppInstrumentID 合约ID  
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark
+///@remark 
 PyObject *CTP_THOST_FTDC_MD_API_UnSubscribeMarketData(PyObject *self, PyObject *args);
 
 ///订阅询价。
-///@param ppInstrumentID 合约ID
+///@param ppInstrumentID 合约ID  
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark
+///@remark 
 PyObject *CTP_THOST_FTDC_MD_API_SubscribeForQuoteRsp(PyObject *self, PyObject *args);
 
 ///退订询价。
-///@param ppInstrumentID 合约ID
+///@param ppInstrumentID 合约ID  
 ///@param nCount 要订阅/退订行情的合约个数
-///@remark
+///@remark 
 PyObject *CTP_THOST_FTDC_MD_API_UnSubscribeForQuoteRsp(PyObject *self, PyObject *args);
 
 ///用户登录请求
@@ -93,6 +93,9 @@ PyObject *CTP_THOST_FTDC_MD_API_ReqUserLogin(PyObject *self, PyObject *args);
 
 ///登出请求
 PyObject *CTP_THOST_FTDC_MD_API_ReqUserLogout(PyObject *self, PyObject *args);
+
+///请求查询组播合约
+PyObject *CTP_THOST_FTDC_MD_API_ReqQryMulticastInstrument(PyObject *self, PyObject *args);
 
 ///回收对象资源
 void CTP_THOST_FTDC_MD_API_dealloc(PyObject *self);
@@ -116,7 +119,7 @@ public:
 
 	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 	virtual void OnFrontConnected();
-
+	
 	///当客户端与交易后台通信连接断开时，该方法被调用。当发生这个情况后，API会自动重新连接，客户端可不做处理。
 	///@param nReason 错误原因
 	///        0x1001 网络读失败
@@ -125,16 +128,19 @@ public:
 	///        0x2002 发送心跳失败
 	///        0x2003 收到错误报文
 	virtual void OnFrontDisconnected(int nReason);
-
+		
 	///心跳超时警告。当长时间未收到报文时，该方法被调用。
 	///@param nTimeLapse 距离上次接收报文的时间
 	virtual void OnHeartBeatWarning(int nTimeLapse);
-
+	
 	///登录请求响应
 	virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
 	///登出请求响应
 	virtual void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///请求查询组播合约响应
+	virtual void OnRspQryMulticastInstrument(CThostFtdcMulticastInstrumentField *pMulticastInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
 	///错误应答
 	virtual void OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);

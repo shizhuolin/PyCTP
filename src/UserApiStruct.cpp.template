@@ -1,0 +1,25 @@
+#include "stdafx.h"
+#include "UserApiStruct.h"
+
+//字符编码转换
+//数据类型转换(不包含数据结构转换)
+//char  <=> c
+//char* <=> y
+//int   <=> i
+//short <=> h
+//double<=> d
+//bool  => pybool => p => int(0/1)
+//char*中文=>PyCTP_PyCTP_PyUnicode_DecodeGB2312
+//struct <=> dict
+
+#define PyCTP_PyDict_FromStruct_BEGIN(_in_name, _in_format) \
+        PyObject *args = nullptr; PyObject *keywords = nullptr; PyObject *delptr = nullptr; \
+        if(dict == nullptr || _in_name == nullptr) return 0; \
+        if (PyDict_Check(dict)){ args = PyTuple_New(0); keywords = dict; delptr = args;} \
+        else if (PyTuple_Check(dict)){ args = dict; keywords = PyDict_New(); delptr = keywords;} \
+        else{return 0;} \
+        if (!PyArg_ParseTupleAndKeywords(args, keywords, _in_format, const_cast<char **>(kwlist)
+#define PyCTP_PyDict_FromStruct_END )){Py_DECREF(delptr); return 0;}
+#define PyCTP_PyDict_FromStruct_RETURN Py_DECREF(delptr); return 1;
+
+{{ body }}

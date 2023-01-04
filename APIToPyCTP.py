@@ -289,20 +289,20 @@ def generateMdApi(codetree):
   header_template = "./src/MdApi.h.template"
   source_template = "./src/MdApi.cpp.template"
   
-  #for method in codetree['CThostFtdcMdSpi']['methods']:
-    #print(method)
+  for method in codetree['CThostFtdcMdSpi']['methods']:
+    print(method)
 
 import os
-ctpdir = './v6.5.1_20200908/v6.5.1_20200908_api_tradeapi_se_linux64/'
+ctpdir = './v6.6.9_20220914_95719.2466/v6.6.9_20220914_api/v6.6.9_20220914_20220914_api_tradeapi_se_linux64/'
 codetree = {}
 codetree.update(structure(os.path.join(ctpdir, 'ThostFtdcUserApiDataType.h')))
 codetree.update(structure(os.path.join(ctpdir, 'ThostFtdcUserApiStruct.h')))
 codetree.update(structure(os.path.join(ctpdir, 'ThostFtdcMdApi.h')))
 codetree.update(structure(os.path.join(ctpdir, 'ThostFtdcTraderApi.h')))
 
-generatestructcppheadercode(codetree)
-generatestructcppsourcecode(codetree)
-generatemacrocode(codetree)
+#generatestructcppheadercode(codetree)
+#generatestructcppsourcecode(codetree)
+#generatemacrocode(codetree)
 
 #generateMdApi(codetree)
-#generateTraderApi(codetree)
+generateTraderApi(codetree)

@@ -8,9 +8,9 @@ import platform
 from distutils.core import setup, Extension
 from os.path import join, split, dirname
 
-linux_ctp = ['./v6.5.1_CP_20200904/v6.5.1_20200904_api_tradeapi_se_linux64', './v6.3.19_T1_20200423/v6.3.19_T1_20200423_api_clientdatacollectdll_linux64']
-win32_ctp = ['./v6.5.1_CP_20200904/20200904_tradeapi_se_windows', './v6.3.19_T1_20200423/20200423_clientdll_windows']
-win64_ctp = ['./v6.5.1_CP_20200904/20200904_tradeapi64_se_windows', './v6.3.19_T1_20200423/20200423_clientdll64_windows']
+linux_ctp = ['./v6.6.9_20220914_95719.2466/v6.6.9_20220914_api/v6.6.9_20220914_20220914_api_tradeapi_se_linux64', './v6.6.9_20220914_95719.2466/clientdll/v6.6.7_20220613_api_clientdatacollectdll_linux64']
+win32_ctp = ['./v6.6.9_20220914_95719.2466/v6.6.9_20220914_winApi/tradeapi/20220914_tradeapi_se_windows', './v6.6.9_20220914_95719.2466/clientdll/20220613_clientdll_windows']
+win64_ctp = ['./v6.6.9_20220914_95719.2466/v6.6.9_20220914_winApi/tradeapi/20220914_tradeapi64_se_windows', './v6.6.9_20220914_95719.2466/clientdll/20220613_clientdll64_windows']
 
 headers = ['stdafx.h', 'UserApiDataType.h', 'UserApiStruct.h', 'MdApi.h', 'TraderApi.h', 'test_PyCTP.py']
 sources = ['stdafx.cpp', 'PyCTP.cpp', 'UserApiDataType.cpp', 'UserApiStruct.cpp', 'MdApi.cpp', 'TraderApi.cpp']

@@ -44,13 +44,13 @@ PyMethodDef CTP_THOST_FTDC_TRADER_API_methods[] = {
 
 	///注册前置机网络地址
 	///@param pszFrontAddress：前置机网络地址。
-	///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。 
+	///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。
 	///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
 	{"RegisterFront", CTP_THOST_FTDC_TRADER_API_RegisterFront, METH_VARARGS, nullptr},
 
 	///注册名字服务器网络地址
 	///@param pszNsAddress：名字服务器网络地址。
-	///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。 
+	///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。
 	///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
 	///@remark RegisterNameServer优先于RegisterFront
 	{"RegisterNameServer", CTP_THOST_FTDC_TRADER_API_RegisterNameServer, METH_VARARGS, nullptr},
@@ -64,7 +64,7 @@ PyMethodDef CTP_THOST_FTDC_TRADER_API_methods[] = {
 	{"RegisterSpi", CTP_THOST_FTDC_TRADER_API_RegisterSpi, METH_VARARGS, nullptr},
 
 	///订阅私有流。
-	///@param nResumeType 私有流重传方式  
+	///@param nResumeType 私有流重传方式
 	///        THOST_TERT_RESTART:从本交易日开始重传
 	///        THOST_TERT_RESUME:从上次收到的续传
 	///        THOST_TERT_QUICK:只传送登录后私有流的内容
@@ -72,7 +72,7 @@ PyMethodDef CTP_THOST_FTDC_TRADER_API_methods[] = {
 	{"SubscribePrivateTopic", CTP_THOST_FTDC_TRADER_API_SubscribePrivateTopic, METH_VARARGS, nullptr},
 
 	///订阅公共流。
-	///@param nResumeType 公共流重传方式  
+	///@param nResumeType 公共流重传方式
 	///        THOST_TERT_RESTART:从本交易日开始重传
 	///        THOST_TERT_RESUME:从上次收到的续传
 	///        THOST_TERT_QUICK:只传送登录后公共流的内容
@@ -339,6 +339,37 @@ PyMethodDef CTP_THOST_FTDC_TRADER_API_methods[] = {
 
 	///请求组合优惠比例
 	{"ReqQryCombPromotionParam", CTP_THOST_FTDC_TRADER_API_ReqQryCombPromotionParam, METH_VARARGS, nullptr},
+
+    ///投资者风险结算持仓查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQryRiskSettleInvstPosition, METH_VARARGS, nullptr},
+
+    ///风险结算产品查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQryRiskSettleProductStatus, METH_VARARGS, nullptr},
+
+    ///SPBM期货合约参数查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQrySPBMFutureParameter, METH_VARARGS, nullptr},
+
+    ///SPBM期权合约参数查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQrySPBMOptionParameter, METH_VARARGS, nullptr},
+
+    ///SPBM品种内对锁仓折扣参数查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQrySPBMIntraParameter, METH_VARARGS, nullptr},
+
+    ///SPBM跨品种抵扣参数查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQrySPBMInterParameter, METH_VARARGS, nullptr},
+
+    ///SPBM组合保证金套餐查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQrySPBMPortfDefinition, METH_VARARGS, nullptr},
+
+    ///投资者SPBM套餐选择查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQrySPBMInvestorPortfDef, METH_VARARGS, nullptr},
+
+    ///投资者新型组合保证金系数查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQryInvestorPortfMarginRatio, METH_VARARGS, nullptr},
+
+    ///投资者产品SPBM明细查询
+    {"", CTP_THOST_FTDC_TRADER_API_ReqQryInvestorProdSPBMDetail, METH_VARARGS, nullptr},
+
 	{nullptr}  /* Sentinel */
 };
 
@@ -664,6 +695,26 @@ PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQueryBankAccountMoneyByFuture, CTh
 PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQryClassifiedInstrument, CThostFtdcQryClassifiedInstrumentField);
 
 PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQryCombPromotionParam, CThostFtdcQryCombPromotionParamField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQryRiskSettleInvstPosition, CThostFtdcQryRiskSettleInvstPositionField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQryRiskSettleProductStatus, CThostFtdcQryRiskSettleProductStatusField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQrySPBMFutureParameter, CThostFtdcQrySPBMFutureParameterField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQrySPBMOptionParameter, CThostFtdcQrySPBMOptionParameterField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQrySPBMIntraParameter, CThostFtdcQrySPBMIntraParameterField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQrySPBMInterParameter, CThostFtdcQrySPBMInterParameterField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQrySPBMPortfDefinition, CThostFtdcQrySPBMPortfDefinitionField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQrySPBMInvestorPortfDef, CThostFtdcQrySPBMInvestorPortfDefField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQryInvestorPortfMarginRatio, CThostFtdcQryInvestorPortfMarginRatioField);
+
+PyCTP_TRADER_FUNCTION_MAGIC_INT_STRUCT_INT(ReqQryInvestorProdSPBMDetail, CThostFtdcQryInvestorProdSPBMDetailField);
 
 void CTP_THOST_FTDC_TRADER_API_dealloc(PyObject *self)
 {
@@ -2097,6 +2148,116 @@ void CTP_THOST_FTDC_TRADER_SPI::OnRspQryCombPromotionParam(CThostFtdcCombPromoti
 	PyGILState_STATE gstate = PyGILState_Ensure();
 	//PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(strpbrk(__FUNCTION__, "::") + 2), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pCombPromotionParam), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQryCombPromotionParam"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pCombPromotionParam), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///投资者风险结算持仓查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQryRiskSettleInvstPosition(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQryRiskSettleInvstPosition"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pRiskSettleInvstPosition), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///风险结算产品查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQryRiskSettleProductStatus(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatus, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQryRiskSettleProductStatus"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pRiskSettleProductStatus), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///SPBM期货合约参数查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQrySPBMFutureParameter(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQrySPBMFutureParameter"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSPBMFutureParameter), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///SPBM期权合约参数查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQrySPBMOptionParameter(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQrySPBMOptionParameter"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSPBMOptionParameter), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///SPBM品种内对锁仓折扣参数查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQrySPBMIntraParameter(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQrySPBMIntraParameter"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSPBMIntraParameter), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///SPBM跨品种抵扣参数查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQrySPBMInterParameter(CThostFtdcSPBMInterParameterField *pSPBMInterParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQrySPBMInterParameter"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSPBMInterParameter), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///SPBM组合保证金套餐查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQrySPBMPortfDefinition(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQrySPBMPortfDefinition"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSPBMPortfDefinition), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///投资者SPBM套餐选择查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQrySPBMInvestorPortfDef(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDef, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQrySPBMInvestorPortfDef"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pSPBMInvestorPortfDef), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///投资者新型组合保证金系数查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQryInvestorPortfMarginRatio(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatio, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQryInvestorPortfMarginRatio"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pInvestorPortfMarginRatio), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
+	if(result == nullptr)
+		PyErr_Print();
+	Py_XDECREF(result);
+	PyGILState_Release(gstate);
+};
+
+///投资者产品SPBM明细查询响应
+void CTP_THOST_FTDC_TRADER_SPI::OnRspQryInvestorProdSPBMDetail(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	PyGILState_STATE gstate = PyGILState_Ensure();
+	PyObject *result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRspQryInvestorProdSPBMDetail"), const_cast<char *>("NNiN"), PyCTP_PyDict_FromStruct(pInvestorProdSPBMDetail), PyCTP_PyDict_FromStruct(pRspInfo), nRequestID, PyBool_FromLong(bIsLast));
 	if(result == nullptr)
 		PyErr_Print();
 	Py_XDECREF(result);

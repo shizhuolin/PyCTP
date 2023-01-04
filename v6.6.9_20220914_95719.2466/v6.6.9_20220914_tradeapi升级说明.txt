@@ -1,0 +1,340 @@
+版本号：v6.6.9_20220914_tradeapi
+后台版本：V6.6.9
+注意：此版本为支持郑商所SPBM组保业务而变更，新增8个交易查询接口。
+
+变更说明：（请各终端厂商根据自身情况进行开发）
+
+1、新增接口：SPBM期货合约参数查询（查询对冲参数X、Y、Z）。
+
+（1）查询请求
+    ///SPBM期货合约参数查询
+	virtual int ReqQrySPBMFutureParameter(CThostFtdcQrySPBMFutureParameterField *pQrySPBMFutureParameter, int nRequestID) = 0;
+	
+	struct CThostFtdcQrySPBMFutureParameterField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+};
+
+（2）查询响应
+    ///SPBM期货合约参数查询响应
+	virtual void OnRspQrySPBMFutureParameter(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+ 
+    struct CThostFtdcSPBMFutureParameterField
+{
+	///交易日
+	TThostFtdcDateType	TradingDay;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+	///期货合约因子
+	TThostFtdcVolumeMultipleType	Cvf;
+	///阶段标识
+	TThostFtdcTimeRangeType	TimeRange;
+	///品种保证金标准
+	TThostFtdcRatioType	MarginRate;
+	///期货合约内部对锁仓费率折扣比例
+	TThostFtdcRatioType	LockRateX;
+	///提高保证金标准
+	TThostFtdcRatioType	AddOnRate;
+	///昨结算价
+	TThostFtdcPriceType	PreSettlementPrice;
+};	
+
+
+2、新增接口：SPBM期权合约参数查询。
+
+（1）查询请求
+	///SPBM期权合约参数查询
+	virtual int ReqQrySPBMOptionParameter(CThostFtdcQrySPBMOptionParameterField *pQrySPBMOptionParameter, int nRequestID) = 0;
+	
+	struct CThostFtdcQrySPBMOptionParameterField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+};
+
+（2）查询响应
+    ///SPBM期权合约参数查询响应
+	virtual void OnRspQrySPBMOptionParameter(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+	
+	struct CThostFtdcSPBMOptionParameterField
+{
+	///交易日
+	TThostFtdcDateType	TradingDay;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+	///期权合约因子
+	TThostFtdcVolumeMultipleType	Cvf;
+	///期权冲抵价格
+	TThostFtdcPriceType	DownPrice;
+	///Delta值
+	TThostFtdcDeltaType	Delta;
+	///卖方期权风险转换最低值
+	TThostFtdcDeltaType	SlimiDelta;
+	///昨结算价
+	TThostFtdcPriceType	PreSettlementPrice;
+};
+
+
+3、新增接口：SPBM品种内对锁仓折扣参数查询。
+
+（1）查询请求
+	///SPBM品种内对锁仓折扣参数查询
+	virtual int ReqQrySPBMIntraParameter(CThostFtdcQrySPBMIntraParameterField *pQrySPBMIntraParameter, int nRequestID) = 0;
+	
+	struct CThostFtdcQrySPBMIntraParameterField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+};
+
+（2）查询响应
+	///SPBM品种内对锁仓折扣参数查询响应
+	virtual void OnRspQrySPBMIntraParameter(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+	
+	///SPBM品种内对锁仓折扣参数
+    struct CThostFtdcSPBMIntraParameterField
+{
+	///交易日
+	TThostFtdcDateType	TradingDay;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+	///品种内合约间对锁仓费率折扣比例
+	TThostFtdcRatioType	IntraRateY;
+};
+
+
+4、新增接口：SPBM跨品种抵扣参数查询。
+
+（1）查询请求
+	///SPBM跨品种抵扣参数查询
+	virtual int ReqQrySPBMInterParameter(CThostFtdcQrySPBMInterParameterField *pQrySPBMInterParameter, int nRequestID) = 0;
+	
+	struct CThostFtdcQrySPBMInterParameterField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///第一腿构成品种
+	TThostFtdcInstrumentIDType	Leg1ProdFamilyCode;
+	///第二腿构成品种
+	TThostFtdcInstrumentIDType	Leg2ProdFamilyCode;
+};
+	
+（2）查询响应
+	///SPBM跨品种抵扣参数查询响应
+	virtual void OnRspQrySPBMInterParameter(CThostFtdcSPBMInterParameterField *pSPBMInterParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+    ///SPBM跨品种抵扣参数
+    struct CThostFtdcSPBMInterParameterField
+{
+	///交易日
+	TThostFtdcDateType	TradingDay;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///优先级
+	TThostFtdcSpreadIdType	SpreadId;
+	///品种间对锁仓费率折扣比例
+	TThostFtdcRatioType	InterRateZ;
+	///第一腿构成品种
+	TThostFtdcInstrumentIDType	Leg1ProdFamilyCode;
+	///第二腿构成品种
+	TThostFtdcInstrumentIDType	Leg2ProdFamilyCode;
+};	
+	
+	
+5、新增接口：SPBM组合保证金套餐查询。
+
+（1）查询请求
+	///SPBM组合保证金套餐查询
+	virtual int ReqQrySPBMPortfDefinition(CThostFtdcQrySPBMPortfDefinitionField *pQrySPBMPortfDefinition, int nRequestID) = 0;
+	
+    struct CThostFtdcQrySPBMPortfDefinitionField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///组合保证金套餐代码
+	TThostFtdcPortfolioDefIDType	PortfolioDefID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+};
+
+（2）查询响应
+	///SPBM组合保证金套餐查询响应
+	virtual void OnRspQrySPBMPortfDefinition(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+	
+	///组合保证金套餐
+   struct CThostFtdcSPBMPortfDefinitionField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///组合保证金套餐代码
+	TThostFtdcPortfolioDefIDType	PortfolioDefID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+	///是否启用SPBM
+	TThostFtdcBoolType	IsSPBM;
+};
+
+
+6、新增接口：投资者SPBM套餐选择查询（操作员可以查所有投资者，投资者只能查自己的）。
+
+（1）查询请求
+	///投资者SPBM套餐选择查询
+	virtual int ReqQrySPBMInvestorPortfDef(CThostFtdcQrySPBMInvestorPortfDefField *pQrySPBMInvestorPortfDef, int nRequestID) = 0;
+	
+	struct CThostFtdcQrySPBMInvestorPortfDefField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+};
+
+（2）查询响应
+	///投资者SPBM套餐选择查询响应
+	virtual void OnRspQrySPBMInvestorPortfDef(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDef, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+	
+	///投资者套餐选择
+    struct CThostFtdcSPBMInvestorPortfDefField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///组合保证金套餐代码
+	TThostFtdcPortfolioDefIDType	PortfolioDefID;
+};
+
+	
+7、新增接口：投资者SPBM组合保证金系数查询。
+
+（1）查询请求
+	///投资者新型组合保证金系数查询
+	virtual int ReqQryInvestorPortfMarginRatio(CThostFtdcQryInvestorPortfMarginRatioField *pQryInvestorPortfMarginRatio, int nRequestID) = 0;
+	
+	struct CThostFtdcQryInvestorPortfMarginRatioField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+};
+
+（2）查询响应
+	///投资者新型组合保证金系数查询响应
+	virtual void OnRspQryInvestorPortfMarginRatio(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatio, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+	
+	///投资者新型组合保证金系数
+	struct CThostFtdcInvestorPortfMarginRatioField
+{
+	///投资者范围
+	TThostFtdcInvestorRangeType	InvestorRange;
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///会员对投资者收取的保证金和交易所对投资者收取的保证金的比例
+	TThostFtdcRatioType	MarginRatio;
+};
+
+
+8、新增接口：投资者产品SPBM明细查询。
+
+（1）查询请求
+	///投资者产品SPBM明细查询
+	virtual int ReqQryInvestorProdSPBMDetail(CThostFtdcQryInvestorProdSPBMDetailField *pQryInvestorProdSPBMDetail, int nRequestID) = 0;
+	
+	struct CThostFtdcQryInvestorProdSPBMDetailField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+};
+
+（2）查询响应
+	///投资者产品SPBM明细查询响应
+	virtual void OnRspQryInvestorProdSPBMDetail(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+	
+	///投资者产品SPBM明细
+	struct CThostFtdcInvestorProdSPBMDetailField
+{
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///品种代码
+	TThostFtdcInstrumentIDType	ProdFamilyCode;
+	///合约内对锁保证金
+	TThostFtdcMoneyType	IntraInstrMargin;
+	///买归集保证金
+	TThostFtdcMoneyType	BCollectingMargin;
+	///卖归集保证金
+	TThostFtdcMoneyType	SCollectingMargin;
+	///品种内合约间对锁保证金
+	TThostFtdcMoneyType	IntraProdMargin;
+	///净保证金
+	TThostFtdcMoneyType	NetMargin;
+	///产品间对锁保证金
+	TThostFtdcMoneyType	InterProdMargin;
+	///裸保证金
+	TThostFtdcMoneyType	SingleMargin;
+	///附加保证金
+	TThostFtdcMoneyType	AddOnMargin;
+	///交割月保证金
+	TThostFtdcMoneyType	DeliveryMargin;
+	///看涨期权最低风险
+	TThostFtdcMoneyType	CallOptionMinRisk;
+	///看跌期权最低风险
+	TThostFtdcMoneyType	PutOptionMinRisk;
+	///卖方期权最低风险
+	TThostFtdcMoneyType	OptionMinRisk;
+	///买方期权冲抵价值
+	TThostFtdcMoneyType	OptionValueOffset;
+	///卖方期权权利金
+	TThostFtdcMoneyType	OptionRoyalty;
+	///价值冲抵
+	TThostFtdcMoneyType	RealOptionValueOffset;
+	///保证金
+	TThostFtdcMoneyType	Margin;
+	///交易所保证金
+	TThostFtdcMoneyType	ExchMargin;
+};
+
+
+
+

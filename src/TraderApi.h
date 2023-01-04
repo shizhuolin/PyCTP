@@ -44,13 +44,13 @@ PyObject *CTP_THOST_FTDC_TRADER_API_GetTradingDay(PyObject *self, PyObject *args
 
 ///注册前置机网络地址
 ///@param pszFrontAddress：前置机网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。 
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
 PyObject *CTP_THOST_FTDC_TRADER_API_RegisterFront(PyObject *self, PyObject *args);
 
 ///注册名字服务器网络地址
 ///@param pszNsAddress：名字服务器网络地址。
-///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。 
+///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:12001”。
 ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
 ///@remark RegisterNameServer优先于RegisterFront
 PyObject *CTP_THOST_FTDC_TRADER_API_RegisterNameServer(PyObject *self, PyObject *args);
@@ -64,7 +64,7 @@ PyObject *CTP_THOST_FTDC_TRADER_API_RegisterFensUserInfo(PyObject *self, PyObjec
 PyObject *CTP_THOST_FTDC_TRADER_API_RegisterSpi(PyObject *self, PyObject *args);
 
 ///订阅私有流。
-///@param nResumeType 私有流重传方式  
+///@param nResumeType 私有流重传方式
 ///        THOST_TERT_RESTART:从本交易日开始重传
 ///        THOST_TERT_RESUME:从上次收到的续传
 ///        THOST_TERT_QUICK:只传送登录后私有流的内容
@@ -72,7 +72,7 @@ PyObject *CTP_THOST_FTDC_TRADER_API_RegisterSpi(PyObject *self, PyObject *args);
 PyObject *CTP_THOST_FTDC_TRADER_API_SubscribePrivateTopic(PyObject *self, PyObject *args);
 
 ///订阅公共流。
-///@param nResumeType 公共流重传方式  
+///@param nResumeType 公共流重传方式
 ///        THOST_TERT_RESTART:从本交易日开始重传
 ///        THOST_TERT_RESUME:从上次收到的续传
 ///        THOST_TERT_QUICK:只传送登录后公共流的内容
@@ -340,6 +340,36 @@ PyObject *CTP_THOST_FTDC_TRADER_API_ReqQryClassifiedInstrument(PyObject *self, P
 ///请求组合优惠比例
 PyObject *CTP_THOST_FTDC_TRADER_API_ReqQryCombPromotionParam(PyObject *self, PyObject *args);
 
+///投资者风险结算持仓查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQryRiskSettleInvstPosition(PyObject *self, PyObject *args);
+
+///风险结算产品查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQryRiskSettleProductStatus(PyObject *self, PyObject *args);
+
+///SPBM期货合约参数查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQrySPBMFutureParameter(PyObject *self, PyObject *args);
+
+///SPBM期权合约参数查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQrySPBMOptionParameter(PyObject *self, PyObject *args);
+
+///SPBM品种内对锁仓折扣参数查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQrySPBMIntraParameter(PyObject *self, PyObject *args);
+
+///SPBM跨品种抵扣参数查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQrySPBMInterParameter(PyObject *self, PyObject *args);
+
+///SPBM组合保证金套餐查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQrySPBMPortfDefinition(PyObject *self, PyObject *args);
+
+///投资者SPBM套餐选择查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQrySPBMInvestorPortfDef(PyObject *self, PyObject *args);
+
+///投资者新型组合保证金系数查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQryInvestorPortfMarginRatio(PyObject *self, PyObject *args);
+
+///投资者产品SPBM明细查询
+PyObject *CTP_THOST_FTDC_TRADER_API_ReqQryInvestorProdSPBMDetail(PyObject *self, PyObject *args);
+
 ///回收对象资源
 void CTP_THOST_FTDC_TRADER_API_dealloc(PyObject *self);
 
@@ -362,7 +392,7 @@ public:
 
 	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 	virtual void OnFrontConnected();
-	
+
 	///当客户端与交易后台通信连接断开时，该方法被调用。当发生这个情况后，API会自动重新连接，客户端可不做处理。
 	///@param nReason 错误原因
 	///        0x1001 网络读失败
@@ -371,14 +401,14 @@ public:
 	///        0x2002 发送心跳失败
 	///        0x2003 收到错误报文
 	virtual void OnFrontDisconnected(int nReason);
-		
+
 	///心跳超时警告。当长时间未收到报文时，该方法被调用。
 	///@param nTimeLapse 距离上次接收报文的时间
 	virtual void OnHeartBeatWarning(int nTimeLapse);
-	
+
 	///客户端认证响应
 	virtual void OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateField, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-	
+
 
 	///登录请求响应
 	virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
@@ -748,6 +778,36 @@ public:
 
 	///请求组合优惠比例响应
 	virtual void OnRspQryCombPromotionParam(CThostFtdcCombPromotionParamField *pCombPromotionParam, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///投资者风险结算持仓查询响应
+	virtual void OnRspQryRiskSettleInvstPosition(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///风险结算产品查询响应
+	virtual void OnRspQryRiskSettleProductStatus(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatus, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///SPBM期货合约参数查询响应
+	virtual void OnRspQrySPBMFutureParameter(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///SPBM期权合约参数查询响应
+	virtual void OnRspQrySPBMOptionParameter(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///SPBM品种内对锁仓折扣参数查询响应
+	virtual void OnRspQrySPBMIntraParameter(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///SPBM跨品种抵扣参数查询响应
+	virtual void OnRspQrySPBMInterParameter(CThostFtdcSPBMInterParameterField *pSPBMInterParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///SPBM组合保证金套餐查询响应
+	virtual void OnRspQrySPBMPortfDefinition(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///投资者SPBM套餐选择查询响应
+	virtual void OnRspQrySPBMInvestorPortfDef(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDef, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///投资者新型组合保证金系数查询响应
+	virtual void OnRspQryInvestorPortfMarginRatio(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatio, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+	///投资者产品SPBM明细查询响应
+	virtual void OnRspQryInvestorProdSPBMDetail(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 };
 
 #endif

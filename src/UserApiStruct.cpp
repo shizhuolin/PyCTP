@@ -113,7 +113,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginField *pReqUserLoginFiel
 
 int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLoginField *pRspUserLoginField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "LoginTime", "BrokerID", "UserID", "SystemName", "FrontID", "SessionID", "MaxOrderRef", "SHFETime", "DCETime", "CZCETime", "FFEXTime", "INETime", nullptr};
+	static char *kwlist[] = {"TradingDay", "LoginTime", "BrokerID", "UserID", "SystemName", "FrontID", "SessionID", "MaxOrderRef", "SHFETime", "DCETime", "CZCETime", "FFEXTime", "INETime", "SysVersion", "GFEXTime", nullptr};
 	char *pRspUserLoginField_TradingDay = nullptr;
 	char *pRspUserLoginField_LoginTime = nullptr;
 	char *pRspUserLoginField_BrokerID = nullptr;
@@ -127,7 +127,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLoginField *pRspUserLoginField, PyO
 	char *pRspUserLoginField_CZCETime = nullptr;
 	char *pRspUserLoginField_FFEXTime = nullptr;
 	char *pRspUserLoginField_INETime = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pRspUserLoginField, "|yyyyyiiyyyyyy")
+	char *pRspUserLoginField_SysVersion = nullptr;
+	char *pRspUserLoginField_GFEXTime = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pRspUserLoginField, "|yyyyyiiyyyyyyyy")
 		, &pRspUserLoginField_TradingDay
 		, &pRspUserLoginField_LoginTime
 		, &pRspUserLoginField_BrokerID
@@ -141,6 +143,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLoginField *pRspUserLoginField, PyO
 		, &pRspUserLoginField_CZCETime
 		, &pRspUserLoginField_FFEXTime
 		, &pRspUserLoginField_INETime
+		, &pRspUserLoginField_SysVersion
+		, &pRspUserLoginField_GFEXTime
 	PyCTP_PyDict_FromStruct_END
 		if(pRspUserLoginField_TradingDay != nullptr){ strcpy_s(pRspUserLoginField->TradingDay, pRspUserLoginField_TradingDay); pRspUserLoginField_TradingDay = nullptr; }
 		if(pRspUserLoginField_LoginTime != nullptr){ strcpy_s(pRspUserLoginField->LoginTime, pRspUserLoginField_LoginTime); pRspUserLoginField_LoginTime = nullptr; }
@@ -155,12 +159,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLoginField *pRspUserLoginField, PyO
 		if(pRspUserLoginField_CZCETime != nullptr){ strcpy_s(pRspUserLoginField->CZCETime, pRspUserLoginField_CZCETime); pRspUserLoginField_CZCETime = nullptr; }
 		if(pRspUserLoginField_FFEXTime != nullptr){ strcpy_s(pRspUserLoginField->FFEXTime, pRspUserLoginField_FFEXTime); pRspUserLoginField_FFEXTime = nullptr; }
 		if(pRspUserLoginField_INETime != nullptr){ strcpy_s(pRspUserLoginField->INETime, pRspUserLoginField_INETime); pRspUserLoginField_INETime = nullptr; }
+		if(pRspUserLoginField_SysVersion != nullptr){ strcpy_s(pRspUserLoginField->SysVersion, pRspUserLoginField_SysVersion); pRspUserLoginField_SysVersion = nullptr; }
+		if(pRspUserLoginField_GFEXTime != nullptr){ strcpy_s(pRspUserLoginField->GFEXTime, pRspUserLoginField_GFEXTime); pRspUserLoginField_GFEXTime = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspUserLoginField *pRspUserLoginField)
 {
 	if(pRspUserLoginField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "TradingDay", pRspUserLoginField->TradingDay
 		, "LoginTime", pRspUserLoginField->LoginTime
 		, "BrokerID", pRspUserLoginField->BrokerID
@@ -174,6 +180,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspUserLoginField *pRspUserLoginFiel
 		, "CZCETime", pRspUserLoginField->CZCETime
 		, "FFEXTime", pRspUserLoginField->FFEXTime
 		, "INETime", pRspUserLoginField->INETime
+		, "SysVersion", pRspUserLoginField->SysVersion
+		, "GFEXTime", pRspUserLoginField->GFEXTime
 		);
 }
 
@@ -837,7 +845,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeField *pExchangeField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dict)
 {
-	static char *kwlist[] = {"reserve1", "ProductName", "ExchangeID", "ProductClass", "VolumeMultiple", "PriceTick", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "PositionType", "PositionDateType", "CloseDealType", "TradeCurrencyID", "MortgageFundUseRange", "reserve2", "UnderlyingMultiple", "ProductID", "ExchangeProductID", nullptr};
+	static char *kwlist[] = {"reserve1", "ProductName", "ExchangeID", "ProductClass", "VolumeMultiple", "PriceTick", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "PositionType", "PositionDateType", "CloseDealType", "TradeCurrencyID", "MortgageFundUseRange", "reserve2", "UnderlyingMultiple", "ProductID", "ExchangeProductID", "OpenLimitControlLevel", "OrderFreqControlLevel", nullptr};
 	char *pProductField_reserve1 = nullptr;
 	char *pProductField_ProductName = nullptr;
 	char *pProductField_ExchangeID = nullptr;
@@ -857,7 +865,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dic
 	double pProductField_UnderlyingMultiple = 0.0;
 	char *pProductField_ProductID = nullptr;
 	char *pProductField_ExchangeProductID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pProductField, "|yyycidiiiicccycydyy")
+	char pProductField_OpenLimitControlLevel = 0;
+	char pProductField_OrderFreqControlLevel = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pProductField, "|yyycidiiiicccycydyycc")
 		, &pProductField_reserve1
 		, &pProductField_ProductName
 		, &pProductField_ExchangeID
@@ -877,6 +887,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dic
 		, &pProductField_UnderlyingMultiple
 		, &pProductField_ProductID
 		, &pProductField_ExchangeProductID
+		, &pProductField_OpenLimitControlLevel
+		, &pProductField_OrderFreqControlLevel
 	PyCTP_PyDict_FromStruct_END
 		if(pProductField_reserve1 != nullptr){ strcpy_s(pProductField->reserve1, pProductField_reserve1); pProductField_reserve1 = nullptr; }
 		if(pProductField_ProductName != nullptr){ strcpy_s(pProductField->ProductName, pProductField_ProductName); pProductField_ProductName = nullptr; }
@@ -897,12 +909,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dic
 		pProductField->UnderlyingMultiple = pProductField_UnderlyingMultiple;
 		if(pProductField_ProductID != nullptr){ strcpy_s(pProductField->ProductID, pProductField_ProductID); pProductField_ProductID = nullptr; }
 		if(pProductField_ExchangeProductID != nullptr){ strcpy_s(pProductField->ExchangeProductID, pProductField_ExchangeProductID); pProductField_ExchangeProductID = nullptr; }
+		pProductField->OpenLimitControlLevel = pProductField_OpenLimitControlLevel;
+		pProductField->OrderFreqControlLevel = pProductField_OrderFreqControlLevel;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductField *pProductField)
 {
 	if(pProductField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:i,s:d,s:i,s:i,s:i,s:i,s:c,s:c,s:c,s:y,s:c,s:y,s:d,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:i,s:d,s:i,s:i,s:i,s:i,s:c,s:c,s:c,s:y,s:c,s:y,s:d,s:y,s:y,s:c,s:c}"
 		, "reserve1", pProductField->reserve1
 		, "ProductName", pProductField->ProductName
 		, "ExchangeID", pProductField->ExchangeID
@@ -922,6 +936,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductField *pProductField)
 		, "UnderlyingMultiple", pProductField->UnderlyingMultiple
 		, "ProductID", pProductField->ProductID
 		, "ExchangeProductID", pProductField->ExchangeProductID
+		, "OpenLimitControlLevel", pProductField->OpenLimitControlLevel
+		, "OrderFreqControlLevel", pProductField->OrderFreqControlLevel
 		);
 }
 
@@ -1111,20 +1127,22 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerField *pBrokerField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTraderField *pTraderField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "Password", "InstallCount", "BrokerID", nullptr};
+	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "Password", "InstallCount", "BrokerID", "OrderCancelAlg", nullptr};
 	char *pTraderField_ExchangeID = nullptr;
 	char *pTraderField_TraderID = nullptr;
 	char *pTraderField_ParticipantID = nullptr;
 	char *pTraderField_Password = nullptr;
 	int pTraderField_InstallCount = 0;
 	char *pTraderField_BrokerID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pTraderField, "|yyyyiy")
+	char pTraderField_OrderCancelAlg = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pTraderField, "|yyyyiyc")
 		, &pTraderField_ExchangeID
 		, &pTraderField_TraderID
 		, &pTraderField_ParticipantID
 		, &pTraderField_Password
 		, &pTraderField_InstallCount
 		, &pTraderField_BrokerID
+		, &pTraderField_OrderCancelAlg
 	PyCTP_PyDict_FromStruct_END
 		if(pTraderField_ExchangeID != nullptr){ strcpy_s(pTraderField->ExchangeID, pTraderField_ExchangeID); pTraderField_ExchangeID = nullptr; }
 		if(pTraderField_TraderID != nullptr){ strcpy_s(pTraderField->TraderID, pTraderField_TraderID); pTraderField_TraderID = nullptr; }
@@ -1132,24 +1150,26 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTraderField *pTraderField, PyObject *dict)
 		if(pTraderField_Password != nullptr){ strcpy_s(pTraderField->Password, pTraderField_Password); pTraderField_Password = nullptr; }
 		pTraderField->InstallCount = pTraderField_InstallCount;
 		if(pTraderField_BrokerID != nullptr){ strcpy_s(pTraderField->BrokerID, pTraderField_BrokerID); pTraderField_BrokerID = nullptr; }
+		pTraderField->OrderCancelAlg = pTraderField_OrderCancelAlg;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTraderField *pTraderField)
 {
 	if(pTraderField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:c}"
 		, "ExchangeID", pTraderField->ExchangeID
 		, "TraderID", pTraderField->TraderID
 		, "ParticipantID", pTraderField->ParticipantID
 		, "Password", pTraderField->Password
 		, "InstallCount", pTraderField->InstallCount
 		, "BrokerID", pTraderField->BrokerID
+		, "OrderCancelAlg", pTraderField->OrderCancelAlg
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInvestorField *pInvestorField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorID", "BrokerID", "InvestorGroupID", "InvestorName", "IdentifiedCardType", "IdentifiedCardNo", "IsActive", "Telephone", "Address", "OpenDate", "Mobile", "CommModelID", "MarginModelID", nullptr};
+	static char *kwlist[] = {"InvestorID", "BrokerID", "InvestorGroupID", "InvestorName", "IdentifiedCardType", "IdentifiedCardNo", "IsActive", "Telephone", "Address", "OpenDate", "Mobile", "CommModelID", "MarginModelID", "IsOrderFreq", "IsOpenVolLimit", nullptr};
 	char *pInvestorField_InvestorID = nullptr;
 	char *pInvestorField_BrokerID = nullptr;
 	char *pInvestorField_InvestorGroupID = nullptr;
@@ -1163,7 +1183,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorField *pInvestorField, PyObject *d
 	char *pInvestorField_Mobile = nullptr;
 	char *pInvestorField_CommModelID = nullptr;
 	char *pInvestorField_MarginModelID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInvestorField, "|yyyycyiyyyyyy")
+	char pInvestorField_IsOrderFreq = 0;
+	char pInvestorField_IsOpenVolLimit = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pInvestorField, "|yyyycyiyyyyyycc")
 		, &pInvestorField_InvestorID
 		, &pInvestorField_BrokerID
 		, &pInvestorField_InvestorGroupID
@@ -1177,6 +1199,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorField *pInvestorField, PyObject *d
 		, &pInvestorField_Mobile
 		, &pInvestorField_CommModelID
 		, &pInvestorField_MarginModelID
+		, &pInvestorField_IsOrderFreq
+		, &pInvestorField_IsOpenVolLimit
 	PyCTP_PyDict_FromStruct_END
 		if(pInvestorField_InvestorID != nullptr){ strcpy_s(pInvestorField->InvestorID, pInvestorField_InvestorID); pInvestorField_InvestorID = nullptr; }
 		if(pInvestorField_BrokerID != nullptr){ strcpy_s(pInvestorField->BrokerID, pInvestorField_BrokerID); pInvestorField_BrokerID = nullptr; }
@@ -1191,12 +1215,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInvestorField *pInvestorField, PyObject *d
 		if(pInvestorField_Mobile != nullptr){ strcpy_s(pInvestorField->Mobile, pInvestorField_Mobile); pInvestorField_Mobile = nullptr; }
 		if(pInvestorField_CommModelID != nullptr){ strcpy_s(pInvestorField->CommModelID, pInvestorField_CommModelID); pInvestorField_CommModelID = nullptr; }
 		if(pInvestorField_MarginModelID != nullptr){ strcpy_s(pInvestorField->MarginModelID, pInvestorField_MarginModelID); pInvestorField_MarginModelID = nullptr; }
+		pInvestorField->IsOrderFreq = pInvestorField_IsOrderFreq;
+		pInvestorField->IsOpenVolLimit = pInvestorField_IsOpenVolLimit;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorField *pInvestorField)
 {
 	if(pInvestorField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:c,s:c}"
 		, "InvestorID", pInvestorField->InvestorID
 		, "BrokerID", pInvestorField->BrokerID
 		, "InvestorGroupID", pInvestorField->InvestorGroupID
@@ -1210,6 +1236,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorField *pInvestorField)
 		, "Mobile", pInvestorField->Mobile
 		, "CommModelID", pInvestorField->CommModelID
 		, "MarginModelID", pInvestorField->MarginModelID
+		, "IsOrderFreq", pInvestorField->IsOrderFreq
+		, "IsOpenVolLimit", pInvestorField->IsOpenVolLimit
 		);
 }
 
@@ -1933,7 +1961,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentCommissionRateField *pInst
 
 int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataField, PyObject *dict)
 {
-	static char *kwlist[] = {"TradingDay", "reserve1", "ExchangeID", "reserve2", "LastPrice", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "OpenPrice", "HighestPrice", "LowestPrice", "Volume", "Turnover", "OpenInterest", "ClosePrice", "SettlementPrice", "UpperLimitPrice", "LowerLimitPrice", "PreDelta", "CurrDelta", "UpdateTime", "UpdateMillisec", "BidPrice1", "BidVolume1", "AskPrice1", "AskVolume1", "BidPrice2", "BidVolume2", "AskPrice2", "AskVolume2", "BidPrice3", "BidVolume3", "AskPrice3", "AskVolume3", "BidPrice4", "BidVolume4", "AskPrice4", "AskVolume4", "BidPrice5", "BidVolume5", "AskPrice5", "AskVolume5", "AveragePrice", "ActionDay", "InstrumentID", "ExchangeInstID", nullptr};
+	static char *kwlist[] = {"TradingDay", "reserve1", "ExchangeID", "reserve2", "LastPrice", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "OpenPrice", "HighestPrice", "LowestPrice", "Volume", "Turnover", "OpenInterest", "ClosePrice", "SettlementPrice", "UpperLimitPrice", "LowerLimitPrice", "PreDelta", "CurrDelta", "UpdateTime", "UpdateMillisec", "BidPrice1", "BidVolume1", "AskPrice1", "AskVolume1", "BidPrice2", "BidVolume2", "AskPrice2", "AskVolume2", "BidPrice3", "BidVolume3", "AskPrice3", "AskVolume3", "BidPrice4", "BidVolume4", "AskPrice4", "AskVolume4", "BidPrice5", "BidVolume5", "AskPrice5", "AskVolume5", "AveragePrice", "ActionDay", "InstrumentID", "ExchangeInstID", "BandingUpperPrice", "BandingLowerPrice", nullptr};
 	char *pDepthMarketDataField_TradingDay = nullptr;
 	char *pDepthMarketDataField_reserve1 = nullptr;
 	char *pDepthMarketDataField_ExchangeID = nullptr;
@@ -1980,7 +2008,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataFiel
 	char *pDepthMarketDataField_ActionDay = nullptr;
 	char *pDepthMarketDataField_InstrumentID = nullptr;
 	char *pDepthMarketDataField_ExchangeInstID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pDepthMarketDataField, "|yyyydddddddiddddddddyidididididididididididyyy")
+	double pDepthMarketDataField_BandingUpperPrice = 0.0;
+	double pDepthMarketDataField_BandingLowerPrice = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pDepthMarketDataField, "|yyyydddddddiddddddddyidididididididididididyyydd")
 		, &pDepthMarketDataField_TradingDay
 		, &pDepthMarketDataField_reserve1
 		, &pDepthMarketDataField_ExchangeID
@@ -2027,6 +2057,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataFiel
 		, &pDepthMarketDataField_ActionDay
 		, &pDepthMarketDataField_InstrumentID
 		, &pDepthMarketDataField_ExchangeInstID
+		, &pDepthMarketDataField_BandingUpperPrice
+		, &pDepthMarketDataField_BandingLowerPrice
 	PyCTP_PyDict_FromStruct_END
 		if(pDepthMarketDataField_TradingDay != nullptr){ strcpy_s(pDepthMarketDataField->TradingDay, pDepthMarketDataField_TradingDay); pDepthMarketDataField_TradingDay = nullptr; }
 		if(pDepthMarketDataField_reserve1 != nullptr){ strcpy_s(pDepthMarketDataField->reserve1, pDepthMarketDataField_reserve1); pDepthMarketDataField_reserve1 = nullptr; }
@@ -2074,12 +2106,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataFiel
 		if(pDepthMarketDataField_ActionDay != nullptr){ strcpy_s(pDepthMarketDataField->ActionDay, pDepthMarketDataField_ActionDay); pDepthMarketDataField_ActionDay = nullptr; }
 		if(pDepthMarketDataField_InstrumentID != nullptr){ strcpy_s(pDepthMarketDataField->InstrumentID, pDepthMarketDataField_InstrumentID); pDepthMarketDataField_InstrumentID = nullptr; }
 		if(pDepthMarketDataField_ExchangeInstID != nullptr){ strcpy_s(pDepthMarketDataField->ExchangeInstID, pDepthMarketDataField_ExchangeInstID); pDepthMarketDataField_ExchangeInstID = nullptr; }
+		pDepthMarketDataField->BandingUpperPrice = pDepthMarketDataField_BandingUpperPrice;
+		pDepthMarketDataField->BandingLowerPrice = pDepthMarketDataField_BandingLowerPrice;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepthMarketDataField *pDepthMarketDataField)
 {
 	if(pDepthMarketDataField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:y,s:y,s:y,s:d,s:d}"
 		, "TradingDay", pDepthMarketDataField->TradingDay
 		, "reserve1", pDepthMarketDataField->reserve1
 		, "ExchangeID", pDepthMarketDataField->ExchangeID
@@ -2126,6 +2160,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepthMarketDataField *pDepthMarketDa
 		, "ActionDay", pDepthMarketDataField->ActionDay
 		, "InstrumentID", pDepthMarketDataField->InstrumentID
 		, "ExchangeInstID", pDepthMarketDataField->ExchangeInstID
+		, "BandingUpperPrice", pDepthMarketDataField->BandingUpperPrice
+		, "BandingLowerPrice", pDepthMarketDataField->BandingLowerPrice
 		);
 }
 
@@ -2279,7 +2315,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserFunctionField *pBrokerUser
 
 int PyCTP_Struct_FromPyDict(CThostFtdcTraderOfferField *pTraderOfferField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "Password", "InstallID", "OrderLocalID", "TraderConnectStatus", "ConnectRequestDate", "ConnectRequestTime", "LastReportDate", "LastReportTime", "ConnectDate", "ConnectTime", "StartDate", "StartTime", "TradingDay", "BrokerID", "MaxTradeID", "MaxOrderMessageReference", nullptr};
+	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "Password", "InstallID", "OrderLocalID", "TraderConnectStatus", "ConnectRequestDate", "ConnectRequestTime", "LastReportDate", "LastReportTime", "ConnectDate", "ConnectTime", "StartDate", "StartTime", "TradingDay", "BrokerID", "MaxTradeID", "MaxOrderMessageReference", "OrderCancelAlg", nullptr};
 	char *pTraderOfferField_ExchangeID = nullptr;
 	char *pTraderOfferField_TraderID = nullptr;
 	char *pTraderOfferField_ParticipantID = nullptr;
@@ -2299,7 +2335,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTraderOfferField *pTraderOfferField, PyObj
 	char *pTraderOfferField_BrokerID = nullptr;
 	char *pTraderOfferField_MaxTradeID = nullptr;
 	char *pTraderOfferField_MaxOrderMessageReference = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pTraderOfferField, "|yyyyiycyyyyyyyyyyyy")
+	char pTraderOfferField_OrderCancelAlg = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pTraderOfferField, "|yyyyiycyyyyyyyyyyyyc")
 		, &pTraderOfferField_ExchangeID
 		, &pTraderOfferField_TraderID
 		, &pTraderOfferField_ParticipantID
@@ -2319,6 +2356,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTraderOfferField *pTraderOfferField, PyObj
 		, &pTraderOfferField_BrokerID
 		, &pTraderOfferField_MaxTradeID
 		, &pTraderOfferField_MaxOrderMessageReference
+		, &pTraderOfferField_OrderCancelAlg
 	PyCTP_PyDict_FromStruct_END
 		if(pTraderOfferField_ExchangeID != nullptr){ strcpy_s(pTraderOfferField->ExchangeID, pTraderOfferField_ExchangeID); pTraderOfferField_ExchangeID = nullptr; }
 		if(pTraderOfferField_TraderID != nullptr){ strcpy_s(pTraderOfferField->TraderID, pTraderOfferField_TraderID); pTraderOfferField_TraderID = nullptr; }
@@ -2339,12 +2377,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcTraderOfferField *pTraderOfferField, PyObj
 		if(pTraderOfferField_BrokerID != nullptr){ strcpy_s(pTraderOfferField->BrokerID, pTraderOfferField_BrokerID); pTraderOfferField_BrokerID = nullptr; }
 		if(pTraderOfferField_MaxTradeID != nullptr){ strcpy_s(pTraderOfferField->MaxTradeID, pTraderOfferField_MaxTradeID); pTraderOfferField_MaxTradeID = nullptr; }
 		if(pTraderOfferField_MaxOrderMessageReference != nullptr){ strcpy_s(pTraderOfferField->MaxOrderMessageReference, pTraderOfferField_MaxOrderMessageReference); pTraderOfferField_MaxOrderMessageReference = nullptr; }
+		pTraderOfferField->OrderCancelAlg = pTraderOfferField_OrderCancelAlg;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTraderOfferField *pTraderOfferField)
 {
 	if(pTraderOfferField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:c}"
 		, "ExchangeID", pTraderOfferField->ExchangeID
 		, "TraderID", pTraderOfferField->TraderID
 		, "ParticipantID", pTraderOfferField->ParticipantID
@@ -2364,6 +2403,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTraderOfferField *pTraderOfferField)
 		, "BrokerID", pTraderOfferField->BrokerID
 		, "MaxTradeID", pTraderOfferField->MaxTradeID
 		, "MaxOrderMessageReference", pTraderOfferField->MaxOrderMessageReference
+		, "OrderCancelAlg", pTraderOfferField->OrderCancelAlg
 		);
 }
 
@@ -4355,20 +4395,24 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSettlementInfoConfirmField *pSettlem
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncDepositField *pSyncDepositField, PyObject *dict)
 {
-	static char *kwlist[] = {"DepositSeqNo", "BrokerID", "InvestorID", "Deposit", "IsForce", "CurrencyID", nullptr};
+	static char *kwlist[] = {"DepositSeqNo", "BrokerID", "InvestorID", "Deposit", "IsForce", "CurrencyID", "IsFromSopt", "TradingPassword", nullptr};
 	char *pSyncDepositField_DepositSeqNo = nullptr;
 	char *pSyncDepositField_BrokerID = nullptr;
 	char *pSyncDepositField_InvestorID = nullptr;
 	double pSyncDepositField_Deposit = 0.0;
 	int pSyncDepositField_IsForce = 0;
 	char *pSyncDepositField_CurrencyID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pSyncDepositField, "|yyydiy")
+	int pSyncDepositField_IsFromSopt = 0;
+	char *pSyncDepositField_TradingPassword = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDepositField, "|yyydiyiy")
 		, &pSyncDepositField_DepositSeqNo
 		, &pSyncDepositField_BrokerID
 		, &pSyncDepositField_InvestorID
 		, &pSyncDepositField_Deposit
 		, &pSyncDepositField_IsForce
 		, &pSyncDepositField_CurrencyID
+		, &pSyncDepositField_IsFromSopt
+		, &pSyncDepositField_TradingPassword
 	PyCTP_PyDict_FromStruct_END
 		if(pSyncDepositField_DepositSeqNo != nullptr){ strcpy_s(pSyncDepositField->DepositSeqNo, pSyncDepositField_DepositSeqNo); pSyncDepositField_DepositSeqNo = nullptr; }
 		if(pSyncDepositField_BrokerID != nullptr){ strcpy_s(pSyncDepositField->BrokerID, pSyncDepositField_BrokerID); pSyncDepositField_BrokerID = nullptr; }
@@ -4376,18 +4420,22 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncDepositField *pSyncDepositField, PyObj
 		pSyncDepositField->Deposit = pSyncDepositField_Deposit;
 		pSyncDepositField->IsForce = pSyncDepositField_IsForce;
 		if(pSyncDepositField_CurrencyID != nullptr){ strcpy_s(pSyncDepositField->CurrencyID, pSyncDepositField_CurrencyID); pSyncDepositField_CurrencyID = nullptr; }
+		pSyncDepositField->IsFromSopt = pSyncDepositField_IsFromSopt;
+		if(pSyncDepositField_TradingPassword != nullptr){ strcpy_s(pSyncDepositField->TradingPassword, pSyncDepositField_TradingPassword); pSyncDepositField_TradingPassword = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDepositField *pSyncDepositField)
 {
 	if(pSyncDepositField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:d,s:i,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:d,s:i,s:y,s:i,s:y}"
 		, "DepositSeqNo", pSyncDepositField->DepositSeqNo
 		, "BrokerID", pSyncDepositField->BrokerID
 		, "InvestorID", pSyncDepositField->InvestorID
 		, "Deposit", pSyncDepositField->Deposit
 		, "IsForce", pSyncDepositField->IsForce
 		, "CurrencyID", pSyncDepositField->CurrencyID
+		, "IsFromSopt", pSyncDepositField->IsFromSopt
+		, "TradingPassword", pSyncDepositField->TradingPassword
 		);
 }
 
@@ -4449,7 +4497,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerSyncField *pBrokerSyncField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorField *pSyncingInvestorField, PyObject *dict)
 {
-	static char *kwlist[] = {"InvestorID", "BrokerID", "InvestorGroupID", "InvestorName", "IdentifiedCardType", "IdentifiedCardNo", "IsActive", "Telephone", "Address", "OpenDate", "Mobile", "CommModelID", "MarginModelID", nullptr};
+	static char *kwlist[] = {"InvestorID", "BrokerID", "InvestorGroupID", "InvestorName", "IdentifiedCardType", "IdentifiedCardNo", "IsActive", "Telephone", "Address", "OpenDate", "Mobile", "CommModelID", "MarginModelID", "IsOrderFreq", "IsOpenVolLimit", nullptr};
 	char *pSyncingInvestorField_InvestorID = nullptr;
 	char *pSyncingInvestorField_BrokerID = nullptr;
 	char *pSyncingInvestorField_InvestorGroupID = nullptr;
@@ -4463,7 +4511,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorField *pSyncingInvestorFiel
 	char *pSyncingInvestorField_Mobile = nullptr;
 	char *pSyncingInvestorField_CommModelID = nullptr;
 	char *pSyncingInvestorField_MarginModelID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInvestorField, "|yyyycyiyyyyyy")
+	char pSyncingInvestorField_IsOrderFreq = 0;
+	char pSyncingInvestorField_IsOpenVolLimit = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncingInvestorField, "|yyyycyiyyyyyycc")
 		, &pSyncingInvestorField_InvestorID
 		, &pSyncingInvestorField_BrokerID
 		, &pSyncingInvestorField_InvestorGroupID
@@ -4477,6 +4527,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorField *pSyncingInvestorFiel
 		, &pSyncingInvestorField_Mobile
 		, &pSyncingInvestorField_CommModelID
 		, &pSyncingInvestorField_MarginModelID
+		, &pSyncingInvestorField_IsOrderFreq
+		, &pSyncingInvestorField_IsOpenVolLimit
 	PyCTP_PyDict_FromStruct_END
 		if(pSyncingInvestorField_InvestorID != nullptr){ strcpy_s(pSyncingInvestorField->InvestorID, pSyncingInvestorField_InvestorID); pSyncingInvestorField_InvestorID = nullptr; }
 		if(pSyncingInvestorField_BrokerID != nullptr){ strcpy_s(pSyncingInvestorField->BrokerID, pSyncingInvestorField_BrokerID); pSyncingInvestorField_BrokerID = nullptr; }
@@ -4491,12 +4543,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorField *pSyncingInvestorFiel
 		if(pSyncingInvestorField_Mobile != nullptr){ strcpy_s(pSyncingInvestorField->Mobile, pSyncingInvestorField_Mobile); pSyncingInvestorField_Mobile = nullptr; }
 		if(pSyncingInvestorField_CommModelID != nullptr){ strcpy_s(pSyncingInvestorField->CommModelID, pSyncingInvestorField_CommModelID); pSyncingInvestorField_CommModelID = nullptr; }
 		if(pSyncingInvestorField_MarginModelID != nullptr){ strcpy_s(pSyncingInvestorField->MarginModelID, pSyncingInvestorField_MarginModelID); pSyncingInvestorField_MarginModelID = nullptr; }
+		pSyncingInvestorField->IsOrderFreq = pSyncingInvestorField_IsOrderFreq;
+		pSyncingInvestorField->IsOpenVolLimit = pSyncingInvestorField_IsOpenVolLimit;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInvestorField *pSyncingInvestorField)
 {
 	if(pSyncingInvestorField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:c,s:c}"
 		, "InvestorID", pSyncingInvestorField->InvestorID
 		, "BrokerID", pSyncingInvestorField->BrokerID
 		, "InvestorGroupID", pSyncingInvestorField->InvestorGroupID
@@ -4510,6 +4564,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInvestorField *pSyncingInvest
 		, "Mobile", pSyncingInvestorField->Mobile
 		, "CommModelID", pSyncingInvestorField->CommModelID
 		, "MarginModelID", pSyncingInvestorField->MarginModelID
+		, "IsOrderFreq", pSyncingInvestorField->IsOrderFreq
+		, "IsOpenVolLimit", pSyncingInvestorField->IsOpenVolLimit
 		);
 }
 
@@ -8101,7 +8157,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeForQuoteField *pQryExchan
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "ExchangeID", "InvestUnitID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "ExchangeID", "InvestUnitID", "ClientID", "reserve2", "MacAddress", "InstrumentID", "IPAddress", "ReplaceSysID", nullptr};
 	char *pInputQuoteField_BrokerID = nullptr;
 	char *pInputQuoteField_InvestorID = nullptr;
 	char *pInputQuoteField_reserve1 = nullptr;
@@ -8127,7 +8183,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObjec
 	char *pInputQuoteField_MacAddress = nullptr;
 	char *pInputQuoteField_InstrumentID = nullptr;
 	char *pInputQuoteField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInputQuoteField, "|yyyyyddiiiyccccyyyyyyyyyy")
+	char *pInputQuoteField_ReplaceSysID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pInputQuoteField, "|yyyyyddiiiyccccyyyyyyyyyyy")
 		, &pInputQuoteField_BrokerID
 		, &pInputQuoteField_InvestorID
 		, &pInputQuoteField_reserve1
@@ -8153,6 +8210,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObjec
 		, &pInputQuoteField_MacAddress
 		, &pInputQuoteField_InstrumentID
 		, &pInputQuoteField_IPAddress
+		, &pInputQuoteField_ReplaceSysID
 	PyCTP_PyDict_FromStruct_END
 		if(pInputQuoteField_BrokerID != nullptr){ strcpy_s(pInputQuoteField->BrokerID, pInputQuoteField_BrokerID); pInputQuoteField_BrokerID = nullptr; }
 		if(pInputQuoteField_InvestorID != nullptr){ strcpy_s(pInputQuoteField->InvestorID, pInputQuoteField_InvestorID); pInputQuoteField_InvestorID = nullptr; }
@@ -8179,12 +8237,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObjec
 		if(pInputQuoteField_MacAddress != nullptr){ strcpy_s(pInputQuoteField->MacAddress, pInputQuoteField_MacAddress); pInputQuoteField_MacAddress = nullptr; }
 		if(pInputQuoteField_InstrumentID != nullptr){ strcpy_s(pInputQuoteField->InstrumentID, pInputQuoteField_InstrumentID); pInputQuoteField_InstrumentID = nullptr; }
 		if(pInputQuoteField_IPAddress != nullptr){ strcpy_s(pInputQuoteField->IPAddress, pInputQuoteField_IPAddress); pInputQuoteField_IPAddress = nullptr; }
+		if(pInputQuoteField_ReplaceSysID != nullptr){ strcpy_s(pInputQuoteField->ReplaceSysID, pInputQuoteField_ReplaceSysID); pInputQuoteField_ReplaceSysID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteField *pInputQuoteField)
 {
 	if(pInputQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pInputQuoteField->BrokerID
 		, "InvestorID", pInputQuoteField->InvestorID
 		, "reserve1", pInputQuoteField->reserve1
@@ -8210,6 +8269,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteField *pInputQuoteField)
 		, "MacAddress", pInputQuoteField->MacAddress
 		, "InstrumentID", pInputQuoteField->InstrumentID
 		, "IPAddress", pInputQuoteField->IPAddress
+		, "ReplaceSysID", pInputQuoteField->ReplaceSysID
 		);
 }
 
@@ -8301,7 +8361,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteActionField *pInputQuoteAc
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "QuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "NotifySequence", "OrderSubmitStatus", "TradingDay", "SettlementID", "QuoteSysID", "InsertDate", "InsertTime", "CancelTime", "QuoteStatus", "ClearingPartID", "SequenceNo", "AskOrderSysID", "BidOrderSysID", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerQuoteSeq", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", nullptr};
+	static char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "QuoteRef", "UserID", "AskPrice", "BidPrice", "AskVolume", "BidVolume", "RequestID", "BusinessUnit", "AskOffsetFlag", "BidOffsetFlag", "AskHedgeFlag", "BidHedgeFlag", "QuoteLocalID", "ExchangeID", "ParticipantID", "ClientID", "reserve2", "TraderID", "InstallID", "NotifySequence", "OrderSubmitStatus", "TradingDay", "SettlementID", "QuoteSysID", "InsertDate", "InsertTime", "CancelTime", "QuoteStatus", "ClearingPartID", "SequenceNo", "AskOrderSysID", "BidOrderSysID", "FrontID", "SessionID", "UserProductInfo", "StatusMsg", "ActiveUserID", "BrokerQuoteSeq", "AskOrderRef", "BidOrderRef", "ForQuoteSysID", "BranchID", "InvestUnitID", "AccountID", "CurrencyID", "reserve3", "MacAddress", "InstrumentID", "ExchangeInstID", "IPAddress", "ReplaceSysID", nullptr};
 	char *pQuoteField_BrokerID = nullptr;
 	char *pQuoteField_InvestorID = nullptr;
 	char *pQuoteField_reserve1 = nullptr;
@@ -8355,7 +8415,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 	char *pQuoteField_InstrumentID = nullptr;
 	char *pQuoteField_ExchangeInstID = nullptr;
 	char *pQuoteField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQuoteField, "|yyyyyddiiiyccccyyyyyyiicyiyyyycyiyyiiyyyiyyyyyyyyyyyy")
+	char *pQuoteField_ReplaceSysID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQuoteField, "|yyyyyddiiiyccccyyyyyyiicyiyyyycyiyyiiyyyiyyyyyyyyyyyyy")
 		, &pQuoteField_BrokerID
 		, &pQuoteField_InvestorID
 		, &pQuoteField_reserve1
@@ -8409,6 +8470,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 		, &pQuoteField_InstrumentID
 		, &pQuoteField_ExchangeInstID
 		, &pQuoteField_IPAddress
+		, &pQuoteField_ReplaceSysID
 	PyCTP_PyDict_FromStruct_END
 		if(pQuoteField_BrokerID != nullptr){ strcpy_s(pQuoteField->BrokerID, pQuoteField_BrokerID); pQuoteField_BrokerID = nullptr; }
 		if(pQuoteField_InvestorID != nullptr){ strcpy_s(pQuoteField->InvestorID, pQuoteField_InvestorID); pQuoteField_InvestorID = nullptr; }
@@ -8463,12 +8525,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict)
 		if(pQuoteField_InstrumentID != nullptr){ strcpy_s(pQuoteField->InstrumentID, pQuoteField_InstrumentID); pQuoteField_InstrumentID = nullptr; }
 		if(pQuoteField_ExchangeInstID != nullptr){ strcpy_s(pQuoteField->ExchangeInstID, pQuoteField_ExchangeInstID); pQuoteField_ExchangeInstID = nullptr; }
 		if(pQuoteField_IPAddress != nullptr){ strcpy_s(pQuoteField->IPAddress, pQuoteField_IPAddress); pQuoteField_IPAddress = nullptr; }
+		if(pQuoteField_ReplaceSysID != nullptr){ strcpy_s(pQuoteField->ReplaceSysID, pQuoteField_ReplaceSysID); pQuoteField_ReplaceSysID = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteField *pQuoteField)
 {
 	if(pQuoteField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:d,s:d,s:i,s:i,s:i,s:y,s:c,s:c,s:c,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:i,s:c,s:y,s:i,s:y,s:y,s:y,s:y,s:c,s:y,s:i,s:y,s:y,s:i,s:i,s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pQuoteField->BrokerID
 		, "InvestorID", pQuoteField->InvestorID
 		, "reserve1", pQuoteField->reserve1
@@ -8522,6 +8585,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteField *pQuoteField)
 		, "InstrumentID", pQuoteField->InstrumentID
 		, "ExchangeInstID", pQuoteField->ExchangeInstID
 		, "IPAddress", pQuoteField->IPAddress
+		, "ReplaceSysID", pQuoteField->ReplaceSysID
 		);
 }
 
@@ -10235,7 +10299,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMMInstrumentCommissionRateField *
 
 int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRateField, PyObject *dict)
 {
-	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "OrderCommByVolume", "OrderActionCommByVolume", "ExchangeID", "InvestUnitID", "InstrumentID", nullptr};
+	static char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "OrderCommByVolume", "OrderActionCommByVolume", "ExchangeID", "InvestUnitID", "InstrumentID", "OrderCommByTrade", "OrderActionCommByTrade", nullptr};
 	char *pInstrumentOrderCommRateField_reserve1 = nullptr;
 	char pInstrumentOrderCommRateField_InvestorRange = 0;
 	char *pInstrumentOrderCommRateField_BrokerID = nullptr;
@@ -10246,7 +10310,9 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentO
 	char *pInstrumentOrderCommRateField_ExchangeID = nullptr;
 	char *pInstrumentOrderCommRateField_InvestUnitID = nullptr;
 	char *pInstrumentOrderCommRateField_InstrumentID = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentOrderCommRateField, "|ycyycddyyy")
+	double pInstrumentOrderCommRateField_OrderCommByTrade = 0.0;
+	double pInstrumentOrderCommRateField_OrderActionCommByTrade = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pInstrumentOrderCommRateField, "|ycyycddyyydd")
 		, &pInstrumentOrderCommRateField_reserve1
 		, &pInstrumentOrderCommRateField_InvestorRange
 		, &pInstrumentOrderCommRateField_BrokerID
@@ -10257,6 +10323,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentO
 		, &pInstrumentOrderCommRateField_ExchangeID
 		, &pInstrumentOrderCommRateField_InvestUnitID
 		, &pInstrumentOrderCommRateField_InstrumentID
+		, &pInstrumentOrderCommRateField_OrderCommByTrade
+		, &pInstrumentOrderCommRateField_OrderActionCommByTrade
 	PyCTP_PyDict_FromStruct_END
 		if(pInstrumentOrderCommRateField_reserve1 != nullptr){ strcpy_s(pInstrumentOrderCommRateField->reserve1, pInstrumentOrderCommRateField_reserve1); pInstrumentOrderCommRateField_reserve1 = nullptr; }
 		pInstrumentOrderCommRateField->InvestorRange = pInstrumentOrderCommRateField_InvestorRange;
@@ -10268,12 +10336,14 @@ int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentO
 		if(pInstrumentOrderCommRateField_ExchangeID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->ExchangeID, pInstrumentOrderCommRateField_ExchangeID); pInstrumentOrderCommRateField_ExchangeID = nullptr; }
 		if(pInstrumentOrderCommRateField_InvestUnitID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->InvestUnitID, pInstrumentOrderCommRateField_InvestUnitID); pInstrumentOrderCommRateField_InvestUnitID = nullptr; }
 		if(pInstrumentOrderCommRateField_InstrumentID != nullptr){ strcpy_s(pInstrumentOrderCommRateField->InstrumentID, pInstrumentOrderCommRateField_InstrumentID); pInstrumentOrderCommRateField_InstrumentID = nullptr; }
+		pInstrumentOrderCommRateField->OrderCommByTrade = pInstrumentOrderCommRateField_OrderCommByTrade;
+		pInstrumentOrderCommRateField->OrderActionCommByTrade = pInstrumentOrderCommRateField_OrderActionCommByTrade;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRateField)
 {
 	if(pInstrumentOrderCommRateField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:y,s:y,s:y,s:d,s:d}"
 		, "reserve1", pInstrumentOrderCommRateField->reserve1
 		, "InvestorRange", pInstrumentOrderCommRateField->InvestorRange
 		, "BrokerID", pInstrumentOrderCommRateField->BrokerID
@@ -10284,6 +10354,8 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentOrderCommRateField *pInstr
 		, "ExchangeID", pInstrumentOrderCommRateField->ExchangeID
 		, "InvestUnitID", pInstrumentOrderCommRateField->InvestUnitID
 		, "InstrumentID", pInstrumentOrderCommRateField->InstrumentID
+		, "OrderCommByTrade", pInstrumentOrderCommRateField->OrderCommByTrade
+		, "OrderActionCommByTrade", pInstrumentOrderCommRateField->OrderActionCommByTrade
 		);
 }
 
@@ -11907,6 +11979,28 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataUpdateTimeField *pMarketDa
 		);
 }
 
+int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBandingPriceField *pMarketDataBandingPriceField, PyObject *dict)
+{
+	static char *kwlist[] = {"BandingUpperPrice", "BandingLowerPrice", nullptr};
+	double pMarketDataBandingPriceField_BandingUpperPrice = 0.0;
+	double pMarketDataBandingPriceField_BandingLowerPrice = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pMarketDataBandingPriceField, "|dd")
+		, &pMarketDataBandingPriceField_BandingUpperPrice
+		, &pMarketDataBandingPriceField_BandingLowerPrice
+	PyCTP_PyDict_FromStruct_END
+		pMarketDataBandingPriceField->BandingUpperPrice = pMarketDataBandingPriceField_BandingUpperPrice;
+		pMarketDataBandingPriceField->BandingLowerPrice = pMarketDataBandingPriceField_BandingLowerPrice;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataBandingPriceField *pMarketDataBandingPriceField)
+{
+	if(pMarketDataBandingPriceField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:d,s:d}"
+		, "BandingUpperPrice", pMarketDataBandingPriceField->BandingUpperPrice
+		, "BandingLowerPrice", pMarketDataBandingPriceField->BandingLowerPrice
+		);
+}
+
 int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataExchangeField *pMarketDataExchangeField, PyObject *dict)
 {
 	static char *kwlist[] = {"ExchangeID", nullptr};
@@ -12381,7 +12475,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountPasswordField *pTradin
 
 int PyCTP_Struct_FromPyDict(CThostFtdcMDTraderOfferField *pMDTraderOfferField, PyObject *dict)
 {
-	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "Password", "InstallID", "OrderLocalID", "TraderConnectStatus", "ConnectRequestDate", "ConnectRequestTime", "LastReportDate", "LastReportTime", "ConnectDate", "ConnectTime", "StartDate", "StartTime", "TradingDay", "BrokerID", "MaxTradeID", "MaxOrderMessageReference", nullptr};
+	static char *kwlist[] = {"ExchangeID", "TraderID", "ParticipantID", "Password", "InstallID", "OrderLocalID", "TraderConnectStatus", "ConnectRequestDate", "ConnectRequestTime", "LastReportDate", "LastReportTime", "ConnectDate", "ConnectTime", "StartDate", "StartTime", "TradingDay", "BrokerID", "MaxTradeID", "MaxOrderMessageReference", "OrderCancelAlg", nullptr};
 	char *pMDTraderOfferField_ExchangeID = nullptr;
 	char *pMDTraderOfferField_TraderID = nullptr;
 	char *pMDTraderOfferField_ParticipantID = nullptr;
@@ -12401,7 +12495,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMDTraderOfferField *pMDTraderOfferField, P
 	char *pMDTraderOfferField_BrokerID = nullptr;
 	char *pMDTraderOfferField_MaxTradeID = nullptr;
 	char *pMDTraderOfferField_MaxOrderMessageReference = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pMDTraderOfferField, "|yyyyiycyyyyyyyyyyyy")
+	char pMDTraderOfferField_OrderCancelAlg = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pMDTraderOfferField, "|yyyyiycyyyyyyyyyyyyc")
 		, &pMDTraderOfferField_ExchangeID
 		, &pMDTraderOfferField_TraderID
 		, &pMDTraderOfferField_ParticipantID
@@ -12421,6 +12516,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMDTraderOfferField *pMDTraderOfferField, P
 		, &pMDTraderOfferField_BrokerID
 		, &pMDTraderOfferField_MaxTradeID
 		, &pMDTraderOfferField_MaxOrderMessageReference
+		, &pMDTraderOfferField_OrderCancelAlg
 	PyCTP_PyDict_FromStruct_END
 		if(pMDTraderOfferField_ExchangeID != nullptr){ strcpy_s(pMDTraderOfferField->ExchangeID, pMDTraderOfferField_ExchangeID); pMDTraderOfferField_ExchangeID = nullptr; }
 		if(pMDTraderOfferField_TraderID != nullptr){ strcpy_s(pMDTraderOfferField->TraderID, pMDTraderOfferField_TraderID); pMDTraderOfferField_TraderID = nullptr; }
@@ -12441,12 +12537,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcMDTraderOfferField *pMDTraderOfferField, P
 		if(pMDTraderOfferField_BrokerID != nullptr){ strcpy_s(pMDTraderOfferField->BrokerID, pMDTraderOfferField_BrokerID); pMDTraderOfferField_BrokerID = nullptr; }
 		if(pMDTraderOfferField_MaxTradeID != nullptr){ strcpy_s(pMDTraderOfferField->MaxTradeID, pMDTraderOfferField_MaxTradeID); pMDTraderOfferField_MaxTradeID = nullptr; }
 		if(pMDTraderOfferField_MaxOrderMessageReference != nullptr){ strcpy_s(pMDTraderOfferField->MaxOrderMessageReference, pMDTraderOfferField_MaxOrderMessageReference); pMDTraderOfferField_MaxOrderMessageReference = nullptr; }
+		pMDTraderOfferField->OrderCancelAlg = pMDTraderOfferField_OrderCancelAlg;
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMDTraderOfferField *pMDTraderOfferField)
 {
 	if(pMDTraderOfferField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:y,s:c,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:c}"
 		, "ExchangeID", pMDTraderOfferField->ExchangeID
 		, "TraderID", pMDTraderOfferField->TraderID
 		, "ParticipantID", pMDTraderOfferField->ParticipantID
@@ -12466,6 +12563,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMDTraderOfferField *pMDTraderOfferFi
 		, "BrokerID", pMDTraderOfferField->BrokerID
 		, "MaxTradeID", pMDTraderOfferField->MaxTradeID
 		, "MaxOrderMessageReference", pMDTraderOfferField->MaxOrderMessageReference
+		, "OrderCancelAlg", pMDTraderOfferField->OrderCancelAlg
 		);
 }
 
@@ -21241,44 +21339,36 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryFreqField *pQueryFreqField)
 
 int PyCTP_Struct_FromPyDict(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField, PyObject *dict)
 {
-	static char *kwlist[] = {"reserve1", "IPAddress", nullptr};
-	char *pAuthForbiddenIPField_reserve1 = nullptr;
+	static char *kwlist[] = {"IPAddress", nullptr};
 	char *pAuthForbiddenIPField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pAuthForbiddenIPField, "|yy")
-		, &pAuthForbiddenIPField_reserve1
+	PyCTP_PyDict_FromStruct_BEGIN(pAuthForbiddenIPField, "|y")
 		, &pAuthForbiddenIPField_IPAddress
 	PyCTP_PyDict_FromStruct_END
-		if(pAuthForbiddenIPField_reserve1 != nullptr){ strcpy_s(pAuthForbiddenIPField->reserve1, pAuthForbiddenIPField_reserve1); pAuthForbiddenIPField_reserve1 = nullptr; }
 		if(pAuthForbiddenIPField_IPAddress != nullptr){ strcpy_s(pAuthForbiddenIPField->IPAddress, pAuthForbiddenIPField_IPAddress); pAuthForbiddenIPField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField)
 {
 	if(pAuthForbiddenIPField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y}"
-		, "reserve1", pAuthForbiddenIPField->reserve1
+	return Py_BuildValue("{s:y}"
 		, "IPAddress", pAuthForbiddenIPField->IPAddress
 		);
 }
 
 int PyCTP_Struct_FromPyDict(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField, PyObject *dict)
 {
-	static char *kwlist[] = {"reserve1", "IPAddress", nullptr};
-	char *pQryAuthForbiddenIPField_reserve1 = nullptr;
+	static char *kwlist[] = {"IPAddress", nullptr};
 	char *pQryAuthForbiddenIPField_IPAddress = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pQryAuthForbiddenIPField, "|yy")
-		, &pQryAuthForbiddenIPField_reserve1
+	PyCTP_PyDict_FromStruct_BEGIN(pQryAuthForbiddenIPField, "|y")
 		, &pQryAuthForbiddenIPField_IPAddress
 	PyCTP_PyDict_FromStruct_END
-		if(pQryAuthForbiddenIPField_reserve1 != nullptr){ strcpy_s(pQryAuthForbiddenIPField->reserve1, pQryAuthForbiddenIPField_reserve1); pQryAuthForbiddenIPField_reserve1 = nullptr; }
 		if(pQryAuthForbiddenIPField_IPAddress != nullptr){ strcpy_s(pQryAuthForbiddenIPField->IPAddress, pQryAuthForbiddenIPField_IPAddress); pQryAuthForbiddenIPField_IPAddress = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField)
 {
 	if(pQryAuthForbiddenIPField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y}"
-		, "reserve1", pQryAuthForbiddenIPField->reserve1
+	return Py_BuildValue("{s:y}"
 		, "IPAddress", pQryAuthForbiddenIPField->IPAddress
 		);
 }
@@ -21323,7 +21413,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDelaySwapFrozenField *pSyncDelay
 
 int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField, PyObject *dict)
 {
-	static char *kwlist[] = {"BrokerID", "UserID", "ClientSystemInfoLen", "ClientSystemInfo", "reserve1", "ClientIPPort", "ClientLoginTime", "ClientAppID", "ClientPublicIP", nullptr};
+	static char *kwlist[] = {"BrokerID", "UserID", "ClientSystemInfoLen", "ClientSystemInfo", "reserve1", "ClientIPPort", "ClientLoginTime", "ClientAppID", "ClientPublicIP", "ClientLoginRemark", nullptr};
 	char *pUserSystemInfoField_BrokerID = nullptr;
 	char *pUserSystemInfoField_UserID = nullptr;
 	int pUserSystemInfoField_ClientSystemInfoLen = 0;
@@ -21333,7 +21423,8 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField,
 	char *pUserSystemInfoField_ClientLoginTime = nullptr;
 	char *pUserSystemInfoField_ClientAppID = nullptr;
 	char *pUserSystemInfoField_ClientPublicIP = nullptr;
-	PyCTP_PyDict_FromStruct_BEGIN(pUserSystemInfoField, "|yyiyyiyyy")
+	char *pUserSystemInfoField_ClientLoginRemark = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pUserSystemInfoField, "|yyiyyiyyyy")
 		, &pUserSystemInfoField_BrokerID
 		, &pUserSystemInfoField_UserID
 		, &pUserSystemInfoField_ClientSystemInfoLen
@@ -21343,6 +21434,7 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField,
 		, &pUserSystemInfoField_ClientLoginTime
 		, &pUserSystemInfoField_ClientAppID
 		, &pUserSystemInfoField_ClientPublicIP
+		, &pUserSystemInfoField_ClientLoginRemark
 	PyCTP_PyDict_FromStruct_END
 		if(pUserSystemInfoField_BrokerID != nullptr){ strcpy_s(pUserSystemInfoField->BrokerID, pUserSystemInfoField_BrokerID); pUserSystemInfoField_BrokerID = nullptr; }
 		if(pUserSystemInfoField_UserID != nullptr){ strcpy_s(pUserSystemInfoField->UserID, pUserSystemInfoField_UserID); pUserSystemInfoField_UserID = nullptr; }
@@ -21353,12 +21445,13 @@ int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField,
 		if(pUserSystemInfoField_ClientLoginTime != nullptr){ strcpy_s(pUserSystemInfoField->ClientLoginTime, pUserSystemInfoField_ClientLoginTime); pUserSystemInfoField_ClientLoginTime = nullptr; }
 		if(pUserSystemInfoField_ClientAppID != nullptr){ strcpy_s(pUserSystemInfoField->ClientAppID, pUserSystemInfoField_ClientAppID); pUserSystemInfoField_ClientAppID = nullptr; }
 		if(pUserSystemInfoField_ClientPublicIP != nullptr){ strcpy_s(pUserSystemInfoField->ClientPublicIP, pUserSystemInfoField_ClientPublicIP); pUserSystemInfoField_ClientPublicIP = nullptr; }
+		if(pUserSystemInfoField_ClientLoginRemark != nullptr){ strcpy_s(pUserSystemInfoField->ClientLoginRemark, pUserSystemInfoField_ClientLoginRemark); pUserSystemInfoField_ClientLoginRemark = nullptr; }
 	PyCTP_PyDict_FromStruct_RETURN
 }
 PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSystemInfoField *pUserSystemInfoField)
 {
 	if(pUserSystemInfoField == nullptr) Py_RETURN_NONE;
-	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:y,s:i,s:y,s:y,s:y}"
+	return Py_BuildValue("{s:y,s:y,s:i,s:y,s:y,s:i,s:y,s:y,s:y,s:y}"
 		, "BrokerID", pUserSystemInfoField->BrokerID
 		, "UserID", pUserSystemInfoField->UserID
 		, "ClientSystemInfoLen", pUserSystemInfoField->ClientSystemInfoLen
@@ -21368,6 +21461,7 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSystemInfoField *pUserSystemInfo
 		, "ClientLoginTime", pUserSystemInfoField->ClientLoginTime
 		, "ClientAppID", pUserSystemInfoField->ClientAppID
 		, "ClientPublicIP", pUserSystemInfoField->ClientPublicIP
+		, "ClientLoginRemark", pUserSystemInfoField->ClientLoginRemark
 		);
 }
 
@@ -21514,6 +21608,2384 @@ PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombPromotionParamField *pCombPromot
 		, "InstrumentID", pCombPromotionParamField->InstrumentID
 		, "CombHedgeFlag", pCombPromotionParamField->CombHedgeFlag
 		, "Xparameter", pCombPromotionParamField->Xparameter
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginSCField *pReqUserLoginSCField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "BrokerID", "UserID", "Password", "UserProductInfo", "InterfaceProductInfo", "ProtocolInfo", "MacAddress", "OneTimePassword", "ClientIPAddress", "LoginRemark", "ClientIPPort", "AuthCode", "AppID", nullptr};
+	char *pReqUserLoginSCField_TradingDay = nullptr;
+	char *pReqUserLoginSCField_BrokerID = nullptr;
+	char *pReqUserLoginSCField_UserID = nullptr;
+	char *pReqUserLoginSCField_Password = nullptr;
+	char *pReqUserLoginSCField_UserProductInfo = nullptr;
+	char *pReqUserLoginSCField_InterfaceProductInfo = nullptr;
+	char *pReqUserLoginSCField_ProtocolInfo = nullptr;
+	char *pReqUserLoginSCField_MacAddress = nullptr;
+	char *pReqUserLoginSCField_OneTimePassword = nullptr;
+	char *pReqUserLoginSCField_ClientIPAddress = nullptr;
+	char *pReqUserLoginSCField_LoginRemark = nullptr;
+	int pReqUserLoginSCField_ClientIPPort = 0;
+	char *pReqUserLoginSCField_AuthCode = nullptr;
+	char *pReqUserLoginSCField_AppID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pReqUserLoginSCField, "|yyyyyyyyyyyiyy")
+		, &pReqUserLoginSCField_TradingDay
+		, &pReqUserLoginSCField_BrokerID
+		, &pReqUserLoginSCField_UserID
+		, &pReqUserLoginSCField_Password
+		, &pReqUserLoginSCField_UserProductInfo
+		, &pReqUserLoginSCField_InterfaceProductInfo
+		, &pReqUserLoginSCField_ProtocolInfo
+		, &pReqUserLoginSCField_MacAddress
+		, &pReqUserLoginSCField_OneTimePassword
+		, &pReqUserLoginSCField_ClientIPAddress
+		, &pReqUserLoginSCField_LoginRemark
+		, &pReqUserLoginSCField_ClientIPPort
+		, &pReqUserLoginSCField_AuthCode
+		, &pReqUserLoginSCField_AppID
+	PyCTP_PyDict_FromStruct_END
+		if(pReqUserLoginSCField_TradingDay != nullptr){ strcpy_s(pReqUserLoginSCField->TradingDay, pReqUserLoginSCField_TradingDay); pReqUserLoginSCField_TradingDay = nullptr; }
+		if(pReqUserLoginSCField_BrokerID != nullptr){ strcpy_s(pReqUserLoginSCField->BrokerID, pReqUserLoginSCField_BrokerID); pReqUserLoginSCField_BrokerID = nullptr; }
+		if(pReqUserLoginSCField_UserID != nullptr){ strcpy_s(pReqUserLoginSCField->UserID, pReqUserLoginSCField_UserID); pReqUserLoginSCField_UserID = nullptr; }
+		if(pReqUserLoginSCField_Password != nullptr){ strcpy_s(pReqUserLoginSCField->Password, pReqUserLoginSCField_Password); pReqUserLoginSCField_Password = nullptr; }
+		if(pReqUserLoginSCField_UserProductInfo != nullptr){ strcpy_s(pReqUserLoginSCField->UserProductInfo, pReqUserLoginSCField_UserProductInfo); pReqUserLoginSCField_UserProductInfo = nullptr; }
+		if(pReqUserLoginSCField_InterfaceProductInfo != nullptr){ strcpy_s(pReqUserLoginSCField->InterfaceProductInfo, pReqUserLoginSCField_InterfaceProductInfo); pReqUserLoginSCField_InterfaceProductInfo = nullptr; }
+		if(pReqUserLoginSCField_ProtocolInfo != nullptr){ strcpy_s(pReqUserLoginSCField->ProtocolInfo, pReqUserLoginSCField_ProtocolInfo); pReqUserLoginSCField_ProtocolInfo = nullptr; }
+		if(pReqUserLoginSCField_MacAddress != nullptr){ strcpy_s(pReqUserLoginSCField->MacAddress, pReqUserLoginSCField_MacAddress); pReqUserLoginSCField_MacAddress = nullptr; }
+		if(pReqUserLoginSCField_OneTimePassword != nullptr){ strcpy_s(pReqUserLoginSCField->OneTimePassword, pReqUserLoginSCField_OneTimePassword); pReqUserLoginSCField_OneTimePassword = nullptr; }
+		if(pReqUserLoginSCField_ClientIPAddress != nullptr){ strcpy_s(pReqUserLoginSCField->ClientIPAddress, pReqUserLoginSCField_ClientIPAddress); pReqUserLoginSCField_ClientIPAddress = nullptr; }
+		if(pReqUserLoginSCField_LoginRemark != nullptr){ strcpy_s(pReqUserLoginSCField->LoginRemark, pReqUserLoginSCField_LoginRemark); pReqUserLoginSCField_LoginRemark = nullptr; }
+		pReqUserLoginSCField->ClientIPPort = pReqUserLoginSCField_ClientIPPort;
+		if(pReqUserLoginSCField_AuthCode != nullptr){ strcpy_s(pReqUserLoginSCField->AuthCode, pReqUserLoginSCField_AuthCode); pReqUserLoginSCField_AuthCode = nullptr; }
+		if(pReqUserLoginSCField_AppID != nullptr){ strcpy_s(pReqUserLoginSCField->AppID, pReqUserLoginSCField_AppID); pReqUserLoginSCField_AppID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginSCField *pReqUserLoginSCField)
+{
+	if(pReqUserLoginSCField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:y,s:i,s:y,s:y}"
+		, "TradingDay", pReqUserLoginSCField->TradingDay
+		, "BrokerID", pReqUserLoginSCField->BrokerID
+		, "UserID", pReqUserLoginSCField->UserID
+		, "Password", pReqUserLoginSCField->Password
+		, "UserProductInfo", pReqUserLoginSCField->UserProductInfo
+		, "InterfaceProductInfo", pReqUserLoginSCField->InterfaceProductInfo
+		, "ProtocolInfo", pReqUserLoginSCField->ProtocolInfo
+		, "MacAddress", pReqUserLoginSCField->MacAddress
+		, "OneTimePassword", pReqUserLoginSCField->OneTimePassword
+		, "ClientIPAddress", pReqUserLoginSCField->ClientIPAddress
+		, "LoginRemark", pReqUserLoginSCField->LoginRemark
+		, "ClientIPPort", pReqUserLoginSCField->ClientIPPort
+		, "AuthCode", pReqUserLoginSCField->AuthCode
+		, "AppID", pReqUserLoginSCField->AppID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryRiskSettleInvstPositionField *pQryRiskSettleInvstPositionField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "InvestorID", "InstrumentID", nullptr};
+	char *pQryRiskSettleInvstPositionField_BrokerID = nullptr;
+	char *pQryRiskSettleInvstPositionField_InvestorID = nullptr;
+	char *pQryRiskSettleInvstPositionField_InstrumentID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryRiskSettleInvstPositionField, "|yyy")
+		, &pQryRiskSettleInvstPositionField_BrokerID
+		, &pQryRiskSettleInvstPositionField_InvestorID
+		, &pQryRiskSettleInvstPositionField_InstrumentID
+	PyCTP_PyDict_FromStruct_END
+		if(pQryRiskSettleInvstPositionField_BrokerID != nullptr){ strcpy_s(pQryRiskSettleInvstPositionField->BrokerID, pQryRiskSettleInvstPositionField_BrokerID); pQryRiskSettleInvstPositionField_BrokerID = nullptr; }
+		if(pQryRiskSettleInvstPositionField_InvestorID != nullptr){ strcpy_s(pQryRiskSettleInvstPositionField->InvestorID, pQryRiskSettleInvstPositionField_InvestorID); pQryRiskSettleInvstPositionField_InvestorID = nullptr; }
+		if(pQryRiskSettleInvstPositionField_InstrumentID != nullptr){ strcpy_s(pQryRiskSettleInvstPositionField->InstrumentID, pQryRiskSettleInvstPositionField_InstrumentID); pQryRiskSettleInvstPositionField_InstrumentID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryRiskSettleInvstPositionField *pQryRiskSettleInvstPositionField)
+{
+	if(pQryRiskSettleInvstPositionField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "BrokerID", pQryRiskSettleInvstPositionField->BrokerID
+		, "InvestorID", pQryRiskSettleInvstPositionField->InvestorID
+		, "InstrumentID", pQryRiskSettleInvstPositionField->InstrumentID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryRiskSettleProductStatusField *pQryRiskSettleProductStatusField, PyObject *dict)
+{
+	static char *kwlist[] = {"ProductID", nullptr};
+	char *pQryRiskSettleProductStatusField_ProductID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryRiskSettleProductStatusField, "|y")
+		, &pQryRiskSettleProductStatusField_ProductID
+	PyCTP_PyDict_FromStruct_END
+		if(pQryRiskSettleProductStatusField_ProductID != nullptr){ strcpy_s(pQryRiskSettleProductStatusField->ProductID, pQryRiskSettleProductStatusField_ProductID); pQryRiskSettleProductStatusField_ProductID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryRiskSettleProductStatusField *pQryRiskSettleProductStatusField)
+{
+	if(pQryRiskSettleProductStatusField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y}"
+		, "ProductID", pQryRiskSettleProductStatusField->ProductID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPositionField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "BrokerID", "InvestorID", "PosiDirection", "HedgeFlag", "PositionDate", "YdPosition", "Position", "LongFrozen", "ShortFrozen", "LongFrozenAmount", "ShortFrozenAmount", "OpenVolume", "CloseVolume", "OpenAmount", "CloseAmount", "PositionCost", "PreMargin", "UseMargin", "FrozenMargin", "FrozenCash", "FrozenCommission", "CashIn", "Commission", "CloseProfit", "PositionProfit", "PreSettlementPrice", "SettlementPrice", "TradingDay", "SettlementID", "OpenCost", "ExchangeMargin", "CombPosition", "CombLongFrozen", "CombShortFrozen", "CloseProfitByDate", "CloseProfitByTrade", "TodayPosition", "MarginRateByMoney", "MarginRateByVolume", "StrikeFrozen", "StrikeFrozenAmount", "AbandonFrozen", "ExchangeID", "YdStrikeFrozen", "InvestUnitID", "PositionCostOffset", "TasPosition", "TasPositionCost", nullptr};
+	char *pRiskSettleInvstPositionField_InstrumentID = nullptr;
+	char *pRiskSettleInvstPositionField_BrokerID = nullptr;
+	char *pRiskSettleInvstPositionField_InvestorID = nullptr;
+	char pRiskSettleInvstPositionField_PosiDirection = 0;
+	char pRiskSettleInvstPositionField_HedgeFlag = 0;
+	char pRiskSettleInvstPositionField_PositionDate = 0;
+	int pRiskSettleInvstPositionField_YdPosition = 0;
+	int pRiskSettleInvstPositionField_Position = 0;
+	int pRiskSettleInvstPositionField_LongFrozen = 0;
+	int pRiskSettleInvstPositionField_ShortFrozen = 0;
+	double pRiskSettleInvstPositionField_LongFrozenAmount = 0.0;
+	double pRiskSettleInvstPositionField_ShortFrozenAmount = 0.0;
+	int pRiskSettleInvstPositionField_OpenVolume = 0;
+	int pRiskSettleInvstPositionField_CloseVolume = 0;
+	double pRiskSettleInvstPositionField_OpenAmount = 0.0;
+	double pRiskSettleInvstPositionField_CloseAmount = 0.0;
+	double pRiskSettleInvstPositionField_PositionCost = 0.0;
+	double pRiskSettleInvstPositionField_PreMargin = 0.0;
+	double pRiskSettleInvstPositionField_UseMargin = 0.0;
+	double pRiskSettleInvstPositionField_FrozenMargin = 0.0;
+	double pRiskSettleInvstPositionField_FrozenCash = 0.0;
+	double pRiskSettleInvstPositionField_FrozenCommission = 0.0;
+	double pRiskSettleInvstPositionField_CashIn = 0.0;
+	double pRiskSettleInvstPositionField_Commission = 0.0;
+	double pRiskSettleInvstPositionField_CloseProfit = 0.0;
+	double pRiskSettleInvstPositionField_PositionProfit = 0.0;
+	double pRiskSettleInvstPositionField_PreSettlementPrice = 0.0;
+	double pRiskSettleInvstPositionField_SettlementPrice = 0.0;
+	char *pRiskSettleInvstPositionField_TradingDay = nullptr;
+	int pRiskSettleInvstPositionField_SettlementID = 0;
+	double pRiskSettleInvstPositionField_OpenCost = 0.0;
+	double pRiskSettleInvstPositionField_ExchangeMargin = 0.0;
+	int pRiskSettleInvstPositionField_CombPosition = 0;
+	int pRiskSettleInvstPositionField_CombLongFrozen = 0;
+	int pRiskSettleInvstPositionField_CombShortFrozen = 0;
+	double pRiskSettleInvstPositionField_CloseProfitByDate = 0.0;
+	double pRiskSettleInvstPositionField_CloseProfitByTrade = 0.0;
+	int pRiskSettleInvstPositionField_TodayPosition = 0;
+	double pRiskSettleInvstPositionField_MarginRateByMoney = 0.0;
+	double pRiskSettleInvstPositionField_MarginRateByVolume = 0.0;
+	int pRiskSettleInvstPositionField_StrikeFrozen = 0;
+	double pRiskSettleInvstPositionField_StrikeFrozenAmount = 0.0;
+	int pRiskSettleInvstPositionField_AbandonFrozen = 0;
+	char *pRiskSettleInvstPositionField_ExchangeID = nullptr;
+	int pRiskSettleInvstPositionField_YdStrikeFrozen = 0;
+	char *pRiskSettleInvstPositionField_InvestUnitID = nullptr;
+	double pRiskSettleInvstPositionField_PositionCostOffset = 0.0;
+	int pRiskSettleInvstPositionField_TasPosition = 0;
+	double pRiskSettleInvstPositionField_TasPositionCost = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pRiskSettleInvstPositionField, "|yyyccciiiiddiiddddddddddddddyiddiiiddiddidiyiydid")
+		, &pRiskSettleInvstPositionField_InstrumentID
+		, &pRiskSettleInvstPositionField_BrokerID
+		, &pRiskSettleInvstPositionField_InvestorID
+		, &pRiskSettleInvstPositionField_PosiDirection
+		, &pRiskSettleInvstPositionField_HedgeFlag
+		, &pRiskSettleInvstPositionField_PositionDate
+		, &pRiskSettleInvstPositionField_YdPosition
+		, &pRiskSettleInvstPositionField_Position
+		, &pRiskSettleInvstPositionField_LongFrozen
+		, &pRiskSettleInvstPositionField_ShortFrozen
+		, &pRiskSettleInvstPositionField_LongFrozenAmount
+		, &pRiskSettleInvstPositionField_ShortFrozenAmount
+		, &pRiskSettleInvstPositionField_OpenVolume
+		, &pRiskSettleInvstPositionField_CloseVolume
+		, &pRiskSettleInvstPositionField_OpenAmount
+		, &pRiskSettleInvstPositionField_CloseAmount
+		, &pRiskSettleInvstPositionField_PositionCost
+		, &pRiskSettleInvstPositionField_PreMargin
+		, &pRiskSettleInvstPositionField_UseMargin
+		, &pRiskSettleInvstPositionField_FrozenMargin
+		, &pRiskSettleInvstPositionField_FrozenCash
+		, &pRiskSettleInvstPositionField_FrozenCommission
+		, &pRiskSettleInvstPositionField_CashIn
+		, &pRiskSettleInvstPositionField_Commission
+		, &pRiskSettleInvstPositionField_CloseProfit
+		, &pRiskSettleInvstPositionField_PositionProfit
+		, &pRiskSettleInvstPositionField_PreSettlementPrice
+		, &pRiskSettleInvstPositionField_SettlementPrice
+		, &pRiskSettleInvstPositionField_TradingDay
+		, &pRiskSettleInvstPositionField_SettlementID
+		, &pRiskSettleInvstPositionField_OpenCost
+		, &pRiskSettleInvstPositionField_ExchangeMargin
+		, &pRiskSettleInvstPositionField_CombPosition
+		, &pRiskSettleInvstPositionField_CombLongFrozen
+		, &pRiskSettleInvstPositionField_CombShortFrozen
+		, &pRiskSettleInvstPositionField_CloseProfitByDate
+		, &pRiskSettleInvstPositionField_CloseProfitByTrade
+		, &pRiskSettleInvstPositionField_TodayPosition
+		, &pRiskSettleInvstPositionField_MarginRateByMoney
+		, &pRiskSettleInvstPositionField_MarginRateByVolume
+		, &pRiskSettleInvstPositionField_StrikeFrozen
+		, &pRiskSettleInvstPositionField_StrikeFrozenAmount
+		, &pRiskSettleInvstPositionField_AbandonFrozen
+		, &pRiskSettleInvstPositionField_ExchangeID
+		, &pRiskSettleInvstPositionField_YdStrikeFrozen
+		, &pRiskSettleInvstPositionField_InvestUnitID
+		, &pRiskSettleInvstPositionField_PositionCostOffset
+		, &pRiskSettleInvstPositionField_TasPosition
+		, &pRiskSettleInvstPositionField_TasPositionCost
+	PyCTP_PyDict_FromStruct_END
+		if(pRiskSettleInvstPositionField_InstrumentID != nullptr){ strcpy_s(pRiskSettleInvstPositionField->InstrumentID, pRiskSettleInvstPositionField_InstrumentID); pRiskSettleInvstPositionField_InstrumentID = nullptr; }
+		if(pRiskSettleInvstPositionField_BrokerID != nullptr){ strcpy_s(pRiskSettleInvstPositionField->BrokerID, pRiskSettleInvstPositionField_BrokerID); pRiskSettleInvstPositionField_BrokerID = nullptr; }
+		if(pRiskSettleInvstPositionField_InvestorID != nullptr){ strcpy_s(pRiskSettleInvstPositionField->InvestorID, pRiskSettleInvstPositionField_InvestorID); pRiskSettleInvstPositionField_InvestorID = nullptr; }
+		pRiskSettleInvstPositionField->PosiDirection = pRiskSettleInvstPositionField_PosiDirection;
+		pRiskSettleInvstPositionField->HedgeFlag = pRiskSettleInvstPositionField_HedgeFlag;
+		pRiskSettleInvstPositionField->PositionDate = pRiskSettleInvstPositionField_PositionDate;
+		pRiskSettleInvstPositionField->YdPosition = pRiskSettleInvstPositionField_YdPosition;
+		pRiskSettleInvstPositionField->Position = pRiskSettleInvstPositionField_Position;
+		pRiskSettleInvstPositionField->LongFrozen = pRiskSettleInvstPositionField_LongFrozen;
+		pRiskSettleInvstPositionField->ShortFrozen = pRiskSettleInvstPositionField_ShortFrozen;
+		pRiskSettleInvstPositionField->LongFrozenAmount = pRiskSettleInvstPositionField_LongFrozenAmount;
+		pRiskSettleInvstPositionField->ShortFrozenAmount = pRiskSettleInvstPositionField_ShortFrozenAmount;
+		pRiskSettleInvstPositionField->OpenVolume = pRiskSettleInvstPositionField_OpenVolume;
+		pRiskSettleInvstPositionField->CloseVolume = pRiskSettleInvstPositionField_CloseVolume;
+		pRiskSettleInvstPositionField->OpenAmount = pRiskSettleInvstPositionField_OpenAmount;
+		pRiskSettleInvstPositionField->CloseAmount = pRiskSettleInvstPositionField_CloseAmount;
+		pRiskSettleInvstPositionField->PositionCost = pRiskSettleInvstPositionField_PositionCost;
+		pRiskSettleInvstPositionField->PreMargin = pRiskSettleInvstPositionField_PreMargin;
+		pRiskSettleInvstPositionField->UseMargin = pRiskSettleInvstPositionField_UseMargin;
+		pRiskSettleInvstPositionField->FrozenMargin = pRiskSettleInvstPositionField_FrozenMargin;
+		pRiskSettleInvstPositionField->FrozenCash = pRiskSettleInvstPositionField_FrozenCash;
+		pRiskSettleInvstPositionField->FrozenCommission = pRiskSettleInvstPositionField_FrozenCommission;
+		pRiskSettleInvstPositionField->CashIn = pRiskSettleInvstPositionField_CashIn;
+		pRiskSettleInvstPositionField->Commission = pRiskSettleInvstPositionField_Commission;
+		pRiskSettleInvstPositionField->CloseProfit = pRiskSettleInvstPositionField_CloseProfit;
+		pRiskSettleInvstPositionField->PositionProfit = pRiskSettleInvstPositionField_PositionProfit;
+		pRiskSettleInvstPositionField->PreSettlementPrice = pRiskSettleInvstPositionField_PreSettlementPrice;
+		pRiskSettleInvstPositionField->SettlementPrice = pRiskSettleInvstPositionField_SettlementPrice;
+		if(pRiskSettleInvstPositionField_TradingDay != nullptr){ strcpy_s(pRiskSettleInvstPositionField->TradingDay, pRiskSettleInvstPositionField_TradingDay); pRiskSettleInvstPositionField_TradingDay = nullptr; }
+		pRiskSettleInvstPositionField->SettlementID = pRiskSettleInvstPositionField_SettlementID;
+		pRiskSettleInvstPositionField->OpenCost = pRiskSettleInvstPositionField_OpenCost;
+		pRiskSettleInvstPositionField->ExchangeMargin = pRiskSettleInvstPositionField_ExchangeMargin;
+		pRiskSettleInvstPositionField->CombPosition = pRiskSettleInvstPositionField_CombPosition;
+		pRiskSettleInvstPositionField->CombLongFrozen = pRiskSettleInvstPositionField_CombLongFrozen;
+		pRiskSettleInvstPositionField->CombShortFrozen = pRiskSettleInvstPositionField_CombShortFrozen;
+		pRiskSettleInvstPositionField->CloseProfitByDate = pRiskSettleInvstPositionField_CloseProfitByDate;
+		pRiskSettleInvstPositionField->CloseProfitByTrade = pRiskSettleInvstPositionField_CloseProfitByTrade;
+		pRiskSettleInvstPositionField->TodayPosition = pRiskSettleInvstPositionField_TodayPosition;
+		pRiskSettleInvstPositionField->MarginRateByMoney = pRiskSettleInvstPositionField_MarginRateByMoney;
+		pRiskSettleInvstPositionField->MarginRateByVolume = pRiskSettleInvstPositionField_MarginRateByVolume;
+		pRiskSettleInvstPositionField->StrikeFrozen = pRiskSettleInvstPositionField_StrikeFrozen;
+		pRiskSettleInvstPositionField->StrikeFrozenAmount = pRiskSettleInvstPositionField_StrikeFrozenAmount;
+		pRiskSettleInvstPositionField->AbandonFrozen = pRiskSettleInvstPositionField_AbandonFrozen;
+		if(pRiskSettleInvstPositionField_ExchangeID != nullptr){ strcpy_s(pRiskSettleInvstPositionField->ExchangeID, pRiskSettleInvstPositionField_ExchangeID); pRiskSettleInvstPositionField_ExchangeID = nullptr; }
+		pRiskSettleInvstPositionField->YdStrikeFrozen = pRiskSettleInvstPositionField_YdStrikeFrozen;
+		if(pRiskSettleInvstPositionField_InvestUnitID != nullptr){ strcpy_s(pRiskSettleInvstPositionField->InvestUnitID, pRiskSettleInvstPositionField_InvestUnitID); pRiskSettleInvstPositionField_InvestUnitID = nullptr; }
+		pRiskSettleInvstPositionField->PositionCostOffset = pRiskSettleInvstPositionField_PositionCostOffset;
+		pRiskSettleInvstPositionField->TasPosition = pRiskSettleInvstPositionField_TasPosition;
+		pRiskSettleInvstPositionField->TasPositionCost = pRiskSettleInvstPositionField_TasPositionCost;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPositionField)
+{
+	if(pRiskSettleInvstPositionField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:c,s:i,s:i,s:i,s:i,s:d,s:d,s:i,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:d,s:i,s:i,s:i,s:d,s:d,s:i,s:d,s:d,s:i,s:d,s:i,s:y,s:i,s:y,s:d,s:i,s:d}"
+		, "InstrumentID", pRiskSettleInvstPositionField->InstrumentID
+		, "BrokerID", pRiskSettleInvstPositionField->BrokerID
+		, "InvestorID", pRiskSettleInvstPositionField->InvestorID
+		, "PosiDirection", pRiskSettleInvstPositionField->PosiDirection
+		, "HedgeFlag", pRiskSettleInvstPositionField->HedgeFlag
+		, "PositionDate", pRiskSettleInvstPositionField->PositionDate
+		, "YdPosition", pRiskSettleInvstPositionField->YdPosition
+		, "Position", pRiskSettleInvstPositionField->Position
+		, "LongFrozen", pRiskSettleInvstPositionField->LongFrozen
+		, "ShortFrozen", pRiskSettleInvstPositionField->ShortFrozen
+		, "LongFrozenAmount", pRiskSettleInvstPositionField->LongFrozenAmount
+		, "ShortFrozenAmount", pRiskSettleInvstPositionField->ShortFrozenAmount
+		, "OpenVolume", pRiskSettleInvstPositionField->OpenVolume
+		, "CloseVolume", pRiskSettleInvstPositionField->CloseVolume
+		, "OpenAmount", pRiskSettleInvstPositionField->OpenAmount
+		, "CloseAmount", pRiskSettleInvstPositionField->CloseAmount
+		, "PositionCost", pRiskSettleInvstPositionField->PositionCost
+		, "PreMargin", pRiskSettleInvstPositionField->PreMargin
+		, "UseMargin", pRiskSettleInvstPositionField->UseMargin
+		, "FrozenMargin", pRiskSettleInvstPositionField->FrozenMargin
+		, "FrozenCash", pRiskSettleInvstPositionField->FrozenCash
+		, "FrozenCommission", pRiskSettleInvstPositionField->FrozenCommission
+		, "CashIn", pRiskSettleInvstPositionField->CashIn
+		, "Commission", pRiskSettleInvstPositionField->Commission
+		, "CloseProfit", pRiskSettleInvstPositionField->CloseProfit
+		, "PositionProfit", pRiskSettleInvstPositionField->PositionProfit
+		, "PreSettlementPrice", pRiskSettleInvstPositionField->PreSettlementPrice
+		, "SettlementPrice", pRiskSettleInvstPositionField->SettlementPrice
+		, "TradingDay", pRiskSettleInvstPositionField->TradingDay
+		, "SettlementID", pRiskSettleInvstPositionField->SettlementID
+		, "OpenCost", pRiskSettleInvstPositionField->OpenCost
+		, "ExchangeMargin", pRiskSettleInvstPositionField->ExchangeMargin
+		, "CombPosition", pRiskSettleInvstPositionField->CombPosition
+		, "CombLongFrozen", pRiskSettleInvstPositionField->CombLongFrozen
+		, "CombShortFrozen", pRiskSettleInvstPositionField->CombShortFrozen
+		, "CloseProfitByDate", pRiskSettleInvstPositionField->CloseProfitByDate
+		, "CloseProfitByTrade", pRiskSettleInvstPositionField->CloseProfitByTrade
+		, "TodayPosition", pRiskSettleInvstPositionField->TodayPosition
+		, "MarginRateByMoney", pRiskSettleInvstPositionField->MarginRateByMoney
+		, "MarginRateByVolume", pRiskSettleInvstPositionField->MarginRateByVolume
+		, "StrikeFrozen", pRiskSettleInvstPositionField->StrikeFrozen
+		, "StrikeFrozenAmount", pRiskSettleInvstPositionField->StrikeFrozenAmount
+		, "AbandonFrozen", pRiskSettleInvstPositionField->AbandonFrozen
+		, "ExchangeID", pRiskSettleInvstPositionField->ExchangeID
+		, "YdStrikeFrozen", pRiskSettleInvstPositionField->YdStrikeFrozen
+		, "InvestUnitID", pRiskSettleInvstPositionField->InvestUnitID
+		, "PositionCostOffset", pRiskSettleInvstPositionField->PositionCostOffset
+		, "TasPosition", pRiskSettleInvstPositionField->TasPosition
+		, "TasPositionCost", pRiskSettleInvstPositionField->TasPositionCost
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatusField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "ProductID", "ProductStatus", nullptr};
+	char *pRiskSettleProductStatusField_ExchangeID = nullptr;
+	char *pRiskSettleProductStatusField_ProductID = nullptr;
+	char pRiskSettleProductStatusField_ProductStatus = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pRiskSettleProductStatusField, "|yyc")
+		, &pRiskSettleProductStatusField_ExchangeID
+		, &pRiskSettleProductStatusField_ProductID
+		, &pRiskSettleProductStatusField_ProductStatus
+	PyCTP_PyDict_FromStruct_END
+		if(pRiskSettleProductStatusField_ExchangeID != nullptr){ strcpy_s(pRiskSettleProductStatusField->ExchangeID, pRiskSettleProductStatusField_ExchangeID); pRiskSettleProductStatusField_ExchangeID = nullptr; }
+		if(pRiskSettleProductStatusField_ProductID != nullptr){ strcpy_s(pRiskSettleProductStatusField->ProductID, pRiskSettleProductStatusField_ProductID); pRiskSettleProductStatusField_ProductID = nullptr; }
+		pRiskSettleProductStatusField->ProductStatus = pRiskSettleProductStatusField_ProductStatus;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatusField)
+{
+	if(pRiskSettleProductStatusField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:c}"
+		, "ExchangeID", pRiskSettleProductStatusField->ExchangeID
+		, "ProductID", pRiskSettleProductStatusField->ProductID
+		, "ProductStatus", pRiskSettleProductStatusField->ProductStatus
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInfoField *pSyncDeltaInfoField, PyObject *dict)
+{
+	static char *kwlist[] = {"SyncDeltaSequenceNo", "SyncDeltaStatus", "SyncDescription", "IsOnlyTrdDelta", nullptr};
+	int pSyncDeltaInfoField_SyncDeltaSequenceNo = 0;
+	char pSyncDeltaInfoField_SyncDeltaStatus = 0;
+	char *pSyncDeltaInfoField_SyncDescription = nullptr;
+	int pSyncDeltaInfoField_IsOnlyTrdDelta = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaInfoField, "|icyi")
+		, &pSyncDeltaInfoField_SyncDeltaSequenceNo
+		, &pSyncDeltaInfoField_SyncDeltaStatus
+		, &pSyncDeltaInfoField_SyncDescription
+		, &pSyncDeltaInfoField_IsOnlyTrdDelta
+	PyCTP_PyDict_FromStruct_END
+		pSyncDeltaInfoField->SyncDeltaSequenceNo = pSyncDeltaInfoField_SyncDeltaSequenceNo;
+		pSyncDeltaInfoField->SyncDeltaStatus = pSyncDeltaInfoField_SyncDeltaStatus;
+		if(pSyncDeltaInfoField_SyncDescription != nullptr){ strcpy_s(pSyncDeltaInfoField->SyncDescription, pSyncDeltaInfoField_SyncDescription); pSyncDeltaInfoField_SyncDescription = nullptr; }
+		pSyncDeltaInfoField->IsOnlyTrdDelta = pSyncDeltaInfoField_IsOnlyTrdDelta;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInfoField *pSyncDeltaInfoField)
+{
+	if(pSyncDeltaInfoField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:i,s:c,s:y,s:i}"
+		, "SyncDeltaSequenceNo", pSyncDeltaInfoField->SyncDeltaSequenceNo
+		, "SyncDeltaStatus", pSyncDeltaInfoField->SyncDeltaStatus
+		, "SyncDescription", pSyncDeltaInfoField->SyncDescription
+		, "IsOnlyTrdDelta", pSyncDeltaInfoField->IsOnlyTrdDelta
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaProductStatusField *pSyncDeltaProductStatusField, PyObject *dict)
+{
+	static char *kwlist[] = {"SyncDeltaSequenceNo", "ExchangeID", "ProductID", "ProductStatus", nullptr};
+	int pSyncDeltaProductStatusField_SyncDeltaSequenceNo = 0;
+	char *pSyncDeltaProductStatusField_ExchangeID = nullptr;
+	char *pSyncDeltaProductStatusField_ProductID = nullptr;
+	char pSyncDeltaProductStatusField_ProductStatus = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaProductStatusField, "|iyyc")
+		, &pSyncDeltaProductStatusField_SyncDeltaSequenceNo
+		, &pSyncDeltaProductStatusField_ExchangeID
+		, &pSyncDeltaProductStatusField_ProductID
+		, &pSyncDeltaProductStatusField_ProductStatus
+	PyCTP_PyDict_FromStruct_END
+		pSyncDeltaProductStatusField->SyncDeltaSequenceNo = pSyncDeltaProductStatusField_SyncDeltaSequenceNo;
+		if(pSyncDeltaProductStatusField_ExchangeID != nullptr){ strcpy_s(pSyncDeltaProductStatusField->ExchangeID, pSyncDeltaProductStatusField_ExchangeID); pSyncDeltaProductStatusField_ExchangeID = nullptr; }
+		if(pSyncDeltaProductStatusField_ProductID != nullptr){ strcpy_s(pSyncDeltaProductStatusField->ProductID, pSyncDeltaProductStatusField_ProductID); pSyncDeltaProductStatusField_ProductID = nullptr; }
+		pSyncDeltaProductStatusField->ProductStatus = pSyncDeltaProductStatusField_ProductStatus;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaProductStatusField *pSyncDeltaProductStatusField)
+{
+	if(pSyncDeltaProductStatusField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:i,s:y,s:y,s:c}"
+		, "SyncDeltaSequenceNo", pSyncDeltaProductStatusField->SyncDeltaSequenceNo
+		, "ExchangeID", pSyncDeltaProductStatusField->ExchangeID
+		, "ProductID", pSyncDeltaProductStatusField->ProductID
+		, "ProductStatus", pSyncDeltaProductStatusField->ProductStatus
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstPosDtlField *pSyncDeltaInvstPosDtlField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "BrokerID", "InvestorID", "HedgeFlag", "Direction", "OpenDate", "TradeID", "Volume", "OpenPrice", "TradingDay", "SettlementID", "TradeType", "CombInstrumentID", "ExchangeID", "CloseProfitByDate", "CloseProfitByTrade", "PositionProfitByDate", "PositionProfitByTrade", "Margin", "ExchMargin", "MarginRateByMoney", "MarginRateByVolume", "LastSettlementPrice", "SettlementPrice", "CloseVolume", "CloseAmount", "TimeFirstVolume", "SpecPosiType", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaInvstPosDtlField_InstrumentID = nullptr;
+	char *pSyncDeltaInvstPosDtlField_BrokerID = nullptr;
+	char *pSyncDeltaInvstPosDtlField_InvestorID = nullptr;
+	char pSyncDeltaInvstPosDtlField_HedgeFlag = 0;
+	char pSyncDeltaInvstPosDtlField_Direction = 0;
+	char *pSyncDeltaInvstPosDtlField_OpenDate = nullptr;
+	char *pSyncDeltaInvstPosDtlField_TradeID = nullptr;
+	int pSyncDeltaInvstPosDtlField_Volume = 0;
+	double pSyncDeltaInvstPosDtlField_OpenPrice = 0.0;
+	char *pSyncDeltaInvstPosDtlField_TradingDay = nullptr;
+	int pSyncDeltaInvstPosDtlField_SettlementID = 0;
+	char pSyncDeltaInvstPosDtlField_TradeType = 0;
+	char *pSyncDeltaInvstPosDtlField_CombInstrumentID = nullptr;
+	char *pSyncDeltaInvstPosDtlField_ExchangeID = nullptr;
+	double pSyncDeltaInvstPosDtlField_CloseProfitByDate = 0.0;
+	double pSyncDeltaInvstPosDtlField_CloseProfitByTrade = 0.0;
+	double pSyncDeltaInvstPosDtlField_PositionProfitByDate = 0.0;
+	double pSyncDeltaInvstPosDtlField_PositionProfitByTrade = 0.0;
+	double pSyncDeltaInvstPosDtlField_Margin = 0.0;
+	double pSyncDeltaInvstPosDtlField_ExchMargin = 0.0;
+	double pSyncDeltaInvstPosDtlField_MarginRateByMoney = 0.0;
+	double pSyncDeltaInvstPosDtlField_MarginRateByVolume = 0.0;
+	double pSyncDeltaInvstPosDtlField_LastSettlementPrice = 0.0;
+	double pSyncDeltaInvstPosDtlField_SettlementPrice = 0.0;
+	int pSyncDeltaInvstPosDtlField_CloseVolume = 0;
+	double pSyncDeltaInvstPosDtlField_CloseAmount = 0.0;
+	int pSyncDeltaInvstPosDtlField_TimeFirstVolume = 0;
+	char pSyncDeltaInvstPosDtlField_SpecPosiType = 0;
+	char pSyncDeltaInvstPosDtlField_ActionDirection = 0;
+	int pSyncDeltaInvstPosDtlField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaInvstPosDtlField, "|yyyccyyidyicyyddddddddddidicci")
+		, &pSyncDeltaInvstPosDtlField_InstrumentID
+		, &pSyncDeltaInvstPosDtlField_BrokerID
+		, &pSyncDeltaInvstPosDtlField_InvestorID
+		, &pSyncDeltaInvstPosDtlField_HedgeFlag
+		, &pSyncDeltaInvstPosDtlField_Direction
+		, &pSyncDeltaInvstPosDtlField_OpenDate
+		, &pSyncDeltaInvstPosDtlField_TradeID
+		, &pSyncDeltaInvstPosDtlField_Volume
+		, &pSyncDeltaInvstPosDtlField_OpenPrice
+		, &pSyncDeltaInvstPosDtlField_TradingDay
+		, &pSyncDeltaInvstPosDtlField_SettlementID
+		, &pSyncDeltaInvstPosDtlField_TradeType
+		, &pSyncDeltaInvstPosDtlField_CombInstrumentID
+		, &pSyncDeltaInvstPosDtlField_ExchangeID
+		, &pSyncDeltaInvstPosDtlField_CloseProfitByDate
+		, &pSyncDeltaInvstPosDtlField_CloseProfitByTrade
+		, &pSyncDeltaInvstPosDtlField_PositionProfitByDate
+		, &pSyncDeltaInvstPosDtlField_PositionProfitByTrade
+		, &pSyncDeltaInvstPosDtlField_Margin
+		, &pSyncDeltaInvstPosDtlField_ExchMargin
+		, &pSyncDeltaInvstPosDtlField_MarginRateByMoney
+		, &pSyncDeltaInvstPosDtlField_MarginRateByVolume
+		, &pSyncDeltaInvstPosDtlField_LastSettlementPrice
+		, &pSyncDeltaInvstPosDtlField_SettlementPrice
+		, &pSyncDeltaInvstPosDtlField_CloseVolume
+		, &pSyncDeltaInvstPosDtlField_CloseAmount
+		, &pSyncDeltaInvstPosDtlField_TimeFirstVolume
+		, &pSyncDeltaInvstPosDtlField_SpecPosiType
+		, &pSyncDeltaInvstPosDtlField_ActionDirection
+		, &pSyncDeltaInvstPosDtlField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaInvstPosDtlField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->InstrumentID, pSyncDeltaInvstPosDtlField_InstrumentID); pSyncDeltaInvstPosDtlField_InstrumentID = nullptr; }
+		if(pSyncDeltaInvstPosDtlField_BrokerID != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->BrokerID, pSyncDeltaInvstPosDtlField_BrokerID); pSyncDeltaInvstPosDtlField_BrokerID = nullptr; }
+		if(pSyncDeltaInvstPosDtlField_InvestorID != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->InvestorID, pSyncDeltaInvstPosDtlField_InvestorID); pSyncDeltaInvstPosDtlField_InvestorID = nullptr; }
+		pSyncDeltaInvstPosDtlField->HedgeFlag = pSyncDeltaInvstPosDtlField_HedgeFlag;
+		pSyncDeltaInvstPosDtlField->Direction = pSyncDeltaInvstPosDtlField_Direction;
+		if(pSyncDeltaInvstPosDtlField_OpenDate != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->OpenDate, pSyncDeltaInvstPosDtlField_OpenDate); pSyncDeltaInvstPosDtlField_OpenDate = nullptr; }
+		if(pSyncDeltaInvstPosDtlField_TradeID != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->TradeID, pSyncDeltaInvstPosDtlField_TradeID); pSyncDeltaInvstPosDtlField_TradeID = nullptr; }
+		pSyncDeltaInvstPosDtlField->Volume = pSyncDeltaInvstPosDtlField_Volume;
+		pSyncDeltaInvstPosDtlField->OpenPrice = pSyncDeltaInvstPosDtlField_OpenPrice;
+		if(pSyncDeltaInvstPosDtlField_TradingDay != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->TradingDay, pSyncDeltaInvstPosDtlField_TradingDay); pSyncDeltaInvstPosDtlField_TradingDay = nullptr; }
+		pSyncDeltaInvstPosDtlField->SettlementID = pSyncDeltaInvstPosDtlField_SettlementID;
+		pSyncDeltaInvstPosDtlField->TradeType = pSyncDeltaInvstPosDtlField_TradeType;
+		if(pSyncDeltaInvstPosDtlField_CombInstrumentID != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->CombInstrumentID, pSyncDeltaInvstPosDtlField_CombInstrumentID); pSyncDeltaInvstPosDtlField_CombInstrumentID = nullptr; }
+		if(pSyncDeltaInvstPosDtlField_ExchangeID != nullptr){ strcpy_s(pSyncDeltaInvstPosDtlField->ExchangeID, pSyncDeltaInvstPosDtlField_ExchangeID); pSyncDeltaInvstPosDtlField_ExchangeID = nullptr; }
+		pSyncDeltaInvstPosDtlField->CloseProfitByDate = pSyncDeltaInvstPosDtlField_CloseProfitByDate;
+		pSyncDeltaInvstPosDtlField->CloseProfitByTrade = pSyncDeltaInvstPosDtlField_CloseProfitByTrade;
+		pSyncDeltaInvstPosDtlField->PositionProfitByDate = pSyncDeltaInvstPosDtlField_PositionProfitByDate;
+		pSyncDeltaInvstPosDtlField->PositionProfitByTrade = pSyncDeltaInvstPosDtlField_PositionProfitByTrade;
+		pSyncDeltaInvstPosDtlField->Margin = pSyncDeltaInvstPosDtlField_Margin;
+		pSyncDeltaInvstPosDtlField->ExchMargin = pSyncDeltaInvstPosDtlField_ExchMargin;
+		pSyncDeltaInvstPosDtlField->MarginRateByMoney = pSyncDeltaInvstPosDtlField_MarginRateByMoney;
+		pSyncDeltaInvstPosDtlField->MarginRateByVolume = pSyncDeltaInvstPosDtlField_MarginRateByVolume;
+		pSyncDeltaInvstPosDtlField->LastSettlementPrice = pSyncDeltaInvstPosDtlField_LastSettlementPrice;
+		pSyncDeltaInvstPosDtlField->SettlementPrice = pSyncDeltaInvstPosDtlField_SettlementPrice;
+		pSyncDeltaInvstPosDtlField->CloseVolume = pSyncDeltaInvstPosDtlField_CloseVolume;
+		pSyncDeltaInvstPosDtlField->CloseAmount = pSyncDeltaInvstPosDtlField_CloseAmount;
+		pSyncDeltaInvstPosDtlField->TimeFirstVolume = pSyncDeltaInvstPosDtlField_TimeFirstVolume;
+		pSyncDeltaInvstPosDtlField->SpecPosiType = pSyncDeltaInvstPosDtlField_SpecPosiType;
+		pSyncDeltaInvstPosDtlField->ActionDirection = pSyncDeltaInvstPosDtlField_ActionDirection;
+		pSyncDeltaInvstPosDtlField->SyncDeltaSequenceNo = pSyncDeltaInvstPosDtlField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstPosDtlField *pSyncDeltaInvstPosDtlField)
+{
+	if(pSyncDeltaInvstPosDtlField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:c,s:y,s:y,s:i,s:d,s:y,s:i,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:i,s:c,s:c,s:i}"
+		, "InstrumentID", pSyncDeltaInvstPosDtlField->InstrumentID
+		, "BrokerID", pSyncDeltaInvstPosDtlField->BrokerID
+		, "InvestorID", pSyncDeltaInvstPosDtlField->InvestorID
+		, "HedgeFlag", pSyncDeltaInvstPosDtlField->HedgeFlag
+		, "Direction", pSyncDeltaInvstPosDtlField->Direction
+		, "OpenDate", pSyncDeltaInvstPosDtlField->OpenDate
+		, "TradeID", pSyncDeltaInvstPosDtlField->TradeID
+		, "Volume", pSyncDeltaInvstPosDtlField->Volume
+		, "OpenPrice", pSyncDeltaInvstPosDtlField->OpenPrice
+		, "TradingDay", pSyncDeltaInvstPosDtlField->TradingDay
+		, "SettlementID", pSyncDeltaInvstPosDtlField->SettlementID
+		, "TradeType", pSyncDeltaInvstPosDtlField->TradeType
+		, "CombInstrumentID", pSyncDeltaInvstPosDtlField->CombInstrumentID
+		, "ExchangeID", pSyncDeltaInvstPosDtlField->ExchangeID
+		, "CloseProfitByDate", pSyncDeltaInvstPosDtlField->CloseProfitByDate
+		, "CloseProfitByTrade", pSyncDeltaInvstPosDtlField->CloseProfitByTrade
+		, "PositionProfitByDate", pSyncDeltaInvstPosDtlField->PositionProfitByDate
+		, "PositionProfitByTrade", pSyncDeltaInvstPosDtlField->PositionProfitByTrade
+		, "Margin", pSyncDeltaInvstPosDtlField->Margin
+		, "ExchMargin", pSyncDeltaInvstPosDtlField->ExchMargin
+		, "MarginRateByMoney", pSyncDeltaInvstPosDtlField->MarginRateByMoney
+		, "MarginRateByVolume", pSyncDeltaInvstPosDtlField->MarginRateByVolume
+		, "LastSettlementPrice", pSyncDeltaInvstPosDtlField->LastSettlementPrice
+		, "SettlementPrice", pSyncDeltaInvstPosDtlField->SettlementPrice
+		, "CloseVolume", pSyncDeltaInvstPosDtlField->CloseVolume
+		, "CloseAmount", pSyncDeltaInvstPosDtlField->CloseAmount
+		, "TimeFirstVolume", pSyncDeltaInvstPosDtlField->TimeFirstVolume
+		, "SpecPosiType", pSyncDeltaInvstPosDtlField->SpecPosiType
+		, "ActionDirection", pSyncDeltaInvstPosDtlField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaInvstPosDtlField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstPosCombDtlField *pSyncDeltaInvstPosCombDtlField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "OpenDate", "ExchangeID", "SettlementID", "BrokerID", "InvestorID", "ComTradeID", "TradeID", "InstrumentID", "HedgeFlag", "Direction", "TotalAmt", "Margin", "ExchMargin", "MarginRateByMoney", "MarginRateByVolume", "LegID", "LegMultiple", "TradeGroupID", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaInvstPosCombDtlField_TradingDay = nullptr;
+	char *pSyncDeltaInvstPosCombDtlField_OpenDate = nullptr;
+	char *pSyncDeltaInvstPosCombDtlField_ExchangeID = nullptr;
+	int pSyncDeltaInvstPosCombDtlField_SettlementID = 0;
+	char *pSyncDeltaInvstPosCombDtlField_BrokerID = nullptr;
+	char *pSyncDeltaInvstPosCombDtlField_InvestorID = nullptr;
+	char *pSyncDeltaInvstPosCombDtlField_ComTradeID = nullptr;
+	char *pSyncDeltaInvstPosCombDtlField_TradeID = nullptr;
+	char *pSyncDeltaInvstPosCombDtlField_InstrumentID = nullptr;
+	char pSyncDeltaInvstPosCombDtlField_HedgeFlag = 0;
+	char pSyncDeltaInvstPosCombDtlField_Direction = 0;
+	int pSyncDeltaInvstPosCombDtlField_TotalAmt = 0;
+	double pSyncDeltaInvstPosCombDtlField_Margin = 0.0;
+	double pSyncDeltaInvstPosCombDtlField_ExchMargin = 0.0;
+	double pSyncDeltaInvstPosCombDtlField_MarginRateByMoney = 0.0;
+	double pSyncDeltaInvstPosCombDtlField_MarginRateByVolume = 0.0;
+	int pSyncDeltaInvstPosCombDtlField_LegID = 0;
+	int pSyncDeltaInvstPosCombDtlField_LegMultiple = 0;
+	int pSyncDeltaInvstPosCombDtlField_TradeGroupID = 0;
+	char pSyncDeltaInvstPosCombDtlField_ActionDirection = 0;
+	int pSyncDeltaInvstPosCombDtlField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaInvstPosCombDtlField, "|yyyiyyyyycciddddiiici")
+		, &pSyncDeltaInvstPosCombDtlField_TradingDay
+		, &pSyncDeltaInvstPosCombDtlField_OpenDate
+		, &pSyncDeltaInvstPosCombDtlField_ExchangeID
+		, &pSyncDeltaInvstPosCombDtlField_SettlementID
+		, &pSyncDeltaInvstPosCombDtlField_BrokerID
+		, &pSyncDeltaInvstPosCombDtlField_InvestorID
+		, &pSyncDeltaInvstPosCombDtlField_ComTradeID
+		, &pSyncDeltaInvstPosCombDtlField_TradeID
+		, &pSyncDeltaInvstPosCombDtlField_InstrumentID
+		, &pSyncDeltaInvstPosCombDtlField_HedgeFlag
+		, &pSyncDeltaInvstPosCombDtlField_Direction
+		, &pSyncDeltaInvstPosCombDtlField_TotalAmt
+		, &pSyncDeltaInvstPosCombDtlField_Margin
+		, &pSyncDeltaInvstPosCombDtlField_ExchMargin
+		, &pSyncDeltaInvstPosCombDtlField_MarginRateByMoney
+		, &pSyncDeltaInvstPosCombDtlField_MarginRateByVolume
+		, &pSyncDeltaInvstPosCombDtlField_LegID
+		, &pSyncDeltaInvstPosCombDtlField_LegMultiple
+		, &pSyncDeltaInvstPosCombDtlField_TradeGroupID
+		, &pSyncDeltaInvstPosCombDtlField_ActionDirection
+		, &pSyncDeltaInvstPosCombDtlField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaInvstPosCombDtlField_TradingDay != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->TradingDay, pSyncDeltaInvstPosCombDtlField_TradingDay); pSyncDeltaInvstPosCombDtlField_TradingDay = nullptr; }
+		if(pSyncDeltaInvstPosCombDtlField_OpenDate != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->OpenDate, pSyncDeltaInvstPosCombDtlField_OpenDate); pSyncDeltaInvstPosCombDtlField_OpenDate = nullptr; }
+		if(pSyncDeltaInvstPosCombDtlField_ExchangeID != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->ExchangeID, pSyncDeltaInvstPosCombDtlField_ExchangeID); pSyncDeltaInvstPosCombDtlField_ExchangeID = nullptr; }
+		pSyncDeltaInvstPosCombDtlField->SettlementID = pSyncDeltaInvstPosCombDtlField_SettlementID;
+		if(pSyncDeltaInvstPosCombDtlField_BrokerID != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->BrokerID, pSyncDeltaInvstPosCombDtlField_BrokerID); pSyncDeltaInvstPosCombDtlField_BrokerID = nullptr; }
+		if(pSyncDeltaInvstPosCombDtlField_InvestorID != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->InvestorID, pSyncDeltaInvstPosCombDtlField_InvestorID); pSyncDeltaInvstPosCombDtlField_InvestorID = nullptr; }
+		if(pSyncDeltaInvstPosCombDtlField_ComTradeID != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->ComTradeID, pSyncDeltaInvstPosCombDtlField_ComTradeID); pSyncDeltaInvstPosCombDtlField_ComTradeID = nullptr; }
+		if(pSyncDeltaInvstPosCombDtlField_TradeID != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->TradeID, pSyncDeltaInvstPosCombDtlField_TradeID); pSyncDeltaInvstPosCombDtlField_TradeID = nullptr; }
+		if(pSyncDeltaInvstPosCombDtlField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaInvstPosCombDtlField->InstrumentID, pSyncDeltaInvstPosCombDtlField_InstrumentID); pSyncDeltaInvstPosCombDtlField_InstrumentID = nullptr; }
+		pSyncDeltaInvstPosCombDtlField->HedgeFlag = pSyncDeltaInvstPosCombDtlField_HedgeFlag;
+		pSyncDeltaInvstPosCombDtlField->Direction = pSyncDeltaInvstPosCombDtlField_Direction;
+		pSyncDeltaInvstPosCombDtlField->TotalAmt = pSyncDeltaInvstPosCombDtlField_TotalAmt;
+		pSyncDeltaInvstPosCombDtlField->Margin = pSyncDeltaInvstPosCombDtlField_Margin;
+		pSyncDeltaInvstPosCombDtlField->ExchMargin = pSyncDeltaInvstPosCombDtlField_ExchMargin;
+		pSyncDeltaInvstPosCombDtlField->MarginRateByMoney = pSyncDeltaInvstPosCombDtlField_MarginRateByMoney;
+		pSyncDeltaInvstPosCombDtlField->MarginRateByVolume = pSyncDeltaInvstPosCombDtlField_MarginRateByVolume;
+		pSyncDeltaInvstPosCombDtlField->LegID = pSyncDeltaInvstPosCombDtlField_LegID;
+		pSyncDeltaInvstPosCombDtlField->LegMultiple = pSyncDeltaInvstPosCombDtlField_LegMultiple;
+		pSyncDeltaInvstPosCombDtlField->TradeGroupID = pSyncDeltaInvstPosCombDtlField_TradeGroupID;
+		pSyncDeltaInvstPosCombDtlField->ActionDirection = pSyncDeltaInvstPosCombDtlField_ActionDirection;
+		pSyncDeltaInvstPosCombDtlField->SyncDeltaSequenceNo = pSyncDeltaInvstPosCombDtlField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstPosCombDtlField *pSyncDeltaInvstPosCombDtlField)
+{
+	if(pSyncDeltaInvstPosCombDtlField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:i,s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:i,s:d,s:d,s:d,s:d,s:i,s:i,s:i,s:c,s:i}"
+		, "TradingDay", pSyncDeltaInvstPosCombDtlField->TradingDay
+		, "OpenDate", pSyncDeltaInvstPosCombDtlField->OpenDate
+		, "ExchangeID", pSyncDeltaInvstPosCombDtlField->ExchangeID
+		, "SettlementID", pSyncDeltaInvstPosCombDtlField->SettlementID
+		, "BrokerID", pSyncDeltaInvstPosCombDtlField->BrokerID
+		, "InvestorID", pSyncDeltaInvstPosCombDtlField->InvestorID
+		, "ComTradeID", pSyncDeltaInvstPosCombDtlField->ComTradeID
+		, "TradeID", pSyncDeltaInvstPosCombDtlField->TradeID
+		, "InstrumentID", pSyncDeltaInvstPosCombDtlField->InstrumentID
+		, "HedgeFlag", pSyncDeltaInvstPosCombDtlField->HedgeFlag
+		, "Direction", pSyncDeltaInvstPosCombDtlField->Direction
+		, "TotalAmt", pSyncDeltaInvstPosCombDtlField->TotalAmt
+		, "Margin", pSyncDeltaInvstPosCombDtlField->Margin
+		, "ExchMargin", pSyncDeltaInvstPosCombDtlField->ExchMargin
+		, "MarginRateByMoney", pSyncDeltaInvstPosCombDtlField->MarginRateByMoney
+		, "MarginRateByVolume", pSyncDeltaInvstPosCombDtlField->MarginRateByVolume
+		, "LegID", pSyncDeltaInvstPosCombDtlField->LegID
+		, "LegMultiple", pSyncDeltaInvstPosCombDtlField->LegMultiple
+		, "TradeGroupID", pSyncDeltaInvstPosCombDtlField->TradeGroupID
+		, "ActionDirection", pSyncDeltaInvstPosCombDtlField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaInvstPosCombDtlField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaTradingAccountField *pSyncDeltaTradingAccountField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "AccountID", "PreMortgage", "PreCredit", "PreDeposit", "PreBalance", "PreMargin", "InterestBase", "Interest", "Deposit", "Withdraw", "FrozenMargin", "FrozenCash", "FrozenCommission", "CurrMargin", "CashIn", "Commission", "CloseProfit", "PositionProfit", "Balance", "Available", "WithdrawQuota", "Reserve", "TradingDay", "SettlementID", "Credit", "Mortgage", "ExchangeMargin", "DeliveryMargin", "ExchangeDeliveryMargin", "ReserveBalance", "CurrencyID", "PreFundMortgageIn", "PreFundMortgageOut", "FundMortgageIn", "FundMortgageOut", "FundMortgageAvailable", "MortgageableFund", "SpecProductMargin", "SpecProductFrozenMargin", "SpecProductCommission", "SpecProductFrozenCommission", "SpecProductPositionProfit", "SpecProductCloseProfit", "SpecProductPositionProfitByAlg", "SpecProductExchangeMargin", "FrozenSwap", "RemainSwap", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaTradingAccountField_BrokerID = nullptr;
+	char *pSyncDeltaTradingAccountField_AccountID = nullptr;
+	double pSyncDeltaTradingAccountField_PreMortgage = 0.0;
+	double pSyncDeltaTradingAccountField_PreCredit = 0.0;
+	double pSyncDeltaTradingAccountField_PreDeposit = 0.0;
+	double pSyncDeltaTradingAccountField_PreBalance = 0.0;
+	double pSyncDeltaTradingAccountField_PreMargin = 0.0;
+	double pSyncDeltaTradingAccountField_InterestBase = 0.0;
+	double pSyncDeltaTradingAccountField_Interest = 0.0;
+	double pSyncDeltaTradingAccountField_Deposit = 0.0;
+	double pSyncDeltaTradingAccountField_Withdraw = 0.0;
+	double pSyncDeltaTradingAccountField_FrozenMargin = 0.0;
+	double pSyncDeltaTradingAccountField_FrozenCash = 0.0;
+	double pSyncDeltaTradingAccountField_FrozenCommission = 0.0;
+	double pSyncDeltaTradingAccountField_CurrMargin = 0.0;
+	double pSyncDeltaTradingAccountField_CashIn = 0.0;
+	double pSyncDeltaTradingAccountField_Commission = 0.0;
+	double pSyncDeltaTradingAccountField_CloseProfit = 0.0;
+	double pSyncDeltaTradingAccountField_PositionProfit = 0.0;
+	double pSyncDeltaTradingAccountField_Balance = 0.0;
+	double pSyncDeltaTradingAccountField_Available = 0.0;
+	double pSyncDeltaTradingAccountField_WithdrawQuota = 0.0;
+	double pSyncDeltaTradingAccountField_Reserve = 0.0;
+	char *pSyncDeltaTradingAccountField_TradingDay = nullptr;
+	int pSyncDeltaTradingAccountField_SettlementID = 0;
+	double pSyncDeltaTradingAccountField_Credit = 0.0;
+	double pSyncDeltaTradingAccountField_Mortgage = 0.0;
+	double pSyncDeltaTradingAccountField_ExchangeMargin = 0.0;
+	double pSyncDeltaTradingAccountField_DeliveryMargin = 0.0;
+	double pSyncDeltaTradingAccountField_ExchangeDeliveryMargin = 0.0;
+	double pSyncDeltaTradingAccountField_ReserveBalance = 0.0;
+	char *pSyncDeltaTradingAccountField_CurrencyID = nullptr;
+	double pSyncDeltaTradingAccountField_PreFundMortgageIn = 0.0;
+	double pSyncDeltaTradingAccountField_PreFundMortgageOut = 0.0;
+	double pSyncDeltaTradingAccountField_FundMortgageIn = 0.0;
+	double pSyncDeltaTradingAccountField_FundMortgageOut = 0.0;
+	double pSyncDeltaTradingAccountField_FundMortgageAvailable = 0.0;
+	double pSyncDeltaTradingAccountField_MortgageableFund = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductMargin = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductFrozenMargin = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductCommission = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductFrozenCommission = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductPositionProfit = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductCloseProfit = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductPositionProfitByAlg = 0.0;
+	double pSyncDeltaTradingAccountField_SpecProductExchangeMargin = 0.0;
+	double pSyncDeltaTradingAccountField_FrozenSwap = 0.0;
+	double pSyncDeltaTradingAccountField_RemainSwap = 0.0;
+	int pSyncDeltaTradingAccountField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaTradingAccountField, "|yydddddddddddddddddddddyiddddddyddddddddddddddddi")
+		, &pSyncDeltaTradingAccountField_BrokerID
+		, &pSyncDeltaTradingAccountField_AccountID
+		, &pSyncDeltaTradingAccountField_PreMortgage
+		, &pSyncDeltaTradingAccountField_PreCredit
+		, &pSyncDeltaTradingAccountField_PreDeposit
+		, &pSyncDeltaTradingAccountField_PreBalance
+		, &pSyncDeltaTradingAccountField_PreMargin
+		, &pSyncDeltaTradingAccountField_InterestBase
+		, &pSyncDeltaTradingAccountField_Interest
+		, &pSyncDeltaTradingAccountField_Deposit
+		, &pSyncDeltaTradingAccountField_Withdraw
+		, &pSyncDeltaTradingAccountField_FrozenMargin
+		, &pSyncDeltaTradingAccountField_FrozenCash
+		, &pSyncDeltaTradingAccountField_FrozenCommission
+		, &pSyncDeltaTradingAccountField_CurrMargin
+		, &pSyncDeltaTradingAccountField_CashIn
+		, &pSyncDeltaTradingAccountField_Commission
+		, &pSyncDeltaTradingAccountField_CloseProfit
+		, &pSyncDeltaTradingAccountField_PositionProfit
+		, &pSyncDeltaTradingAccountField_Balance
+		, &pSyncDeltaTradingAccountField_Available
+		, &pSyncDeltaTradingAccountField_WithdrawQuota
+		, &pSyncDeltaTradingAccountField_Reserve
+		, &pSyncDeltaTradingAccountField_TradingDay
+		, &pSyncDeltaTradingAccountField_SettlementID
+		, &pSyncDeltaTradingAccountField_Credit
+		, &pSyncDeltaTradingAccountField_Mortgage
+		, &pSyncDeltaTradingAccountField_ExchangeMargin
+		, &pSyncDeltaTradingAccountField_DeliveryMargin
+		, &pSyncDeltaTradingAccountField_ExchangeDeliveryMargin
+		, &pSyncDeltaTradingAccountField_ReserveBalance
+		, &pSyncDeltaTradingAccountField_CurrencyID
+		, &pSyncDeltaTradingAccountField_PreFundMortgageIn
+		, &pSyncDeltaTradingAccountField_PreFundMortgageOut
+		, &pSyncDeltaTradingAccountField_FundMortgageIn
+		, &pSyncDeltaTradingAccountField_FundMortgageOut
+		, &pSyncDeltaTradingAccountField_FundMortgageAvailable
+		, &pSyncDeltaTradingAccountField_MortgageableFund
+		, &pSyncDeltaTradingAccountField_SpecProductMargin
+		, &pSyncDeltaTradingAccountField_SpecProductFrozenMargin
+		, &pSyncDeltaTradingAccountField_SpecProductCommission
+		, &pSyncDeltaTradingAccountField_SpecProductFrozenCommission
+		, &pSyncDeltaTradingAccountField_SpecProductPositionProfit
+		, &pSyncDeltaTradingAccountField_SpecProductCloseProfit
+		, &pSyncDeltaTradingAccountField_SpecProductPositionProfitByAlg
+		, &pSyncDeltaTradingAccountField_SpecProductExchangeMargin
+		, &pSyncDeltaTradingAccountField_FrozenSwap
+		, &pSyncDeltaTradingAccountField_RemainSwap
+		, &pSyncDeltaTradingAccountField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaTradingAccountField_BrokerID != nullptr){ strcpy_s(pSyncDeltaTradingAccountField->BrokerID, pSyncDeltaTradingAccountField_BrokerID); pSyncDeltaTradingAccountField_BrokerID = nullptr; }
+		if(pSyncDeltaTradingAccountField_AccountID != nullptr){ strcpy_s(pSyncDeltaTradingAccountField->AccountID, pSyncDeltaTradingAccountField_AccountID); pSyncDeltaTradingAccountField_AccountID = nullptr; }
+		pSyncDeltaTradingAccountField->PreMortgage = pSyncDeltaTradingAccountField_PreMortgage;
+		pSyncDeltaTradingAccountField->PreCredit = pSyncDeltaTradingAccountField_PreCredit;
+		pSyncDeltaTradingAccountField->PreDeposit = pSyncDeltaTradingAccountField_PreDeposit;
+		pSyncDeltaTradingAccountField->PreBalance = pSyncDeltaTradingAccountField_PreBalance;
+		pSyncDeltaTradingAccountField->PreMargin = pSyncDeltaTradingAccountField_PreMargin;
+		pSyncDeltaTradingAccountField->InterestBase = pSyncDeltaTradingAccountField_InterestBase;
+		pSyncDeltaTradingAccountField->Interest = pSyncDeltaTradingAccountField_Interest;
+		pSyncDeltaTradingAccountField->Deposit = pSyncDeltaTradingAccountField_Deposit;
+		pSyncDeltaTradingAccountField->Withdraw = pSyncDeltaTradingAccountField_Withdraw;
+		pSyncDeltaTradingAccountField->FrozenMargin = pSyncDeltaTradingAccountField_FrozenMargin;
+		pSyncDeltaTradingAccountField->FrozenCash = pSyncDeltaTradingAccountField_FrozenCash;
+		pSyncDeltaTradingAccountField->FrozenCommission = pSyncDeltaTradingAccountField_FrozenCommission;
+		pSyncDeltaTradingAccountField->CurrMargin = pSyncDeltaTradingAccountField_CurrMargin;
+		pSyncDeltaTradingAccountField->CashIn = pSyncDeltaTradingAccountField_CashIn;
+		pSyncDeltaTradingAccountField->Commission = pSyncDeltaTradingAccountField_Commission;
+		pSyncDeltaTradingAccountField->CloseProfit = pSyncDeltaTradingAccountField_CloseProfit;
+		pSyncDeltaTradingAccountField->PositionProfit = pSyncDeltaTradingAccountField_PositionProfit;
+		pSyncDeltaTradingAccountField->Balance = pSyncDeltaTradingAccountField_Balance;
+		pSyncDeltaTradingAccountField->Available = pSyncDeltaTradingAccountField_Available;
+		pSyncDeltaTradingAccountField->WithdrawQuota = pSyncDeltaTradingAccountField_WithdrawQuota;
+		pSyncDeltaTradingAccountField->Reserve = pSyncDeltaTradingAccountField_Reserve;
+		if(pSyncDeltaTradingAccountField_TradingDay != nullptr){ strcpy_s(pSyncDeltaTradingAccountField->TradingDay, pSyncDeltaTradingAccountField_TradingDay); pSyncDeltaTradingAccountField_TradingDay = nullptr; }
+		pSyncDeltaTradingAccountField->SettlementID = pSyncDeltaTradingAccountField_SettlementID;
+		pSyncDeltaTradingAccountField->Credit = pSyncDeltaTradingAccountField_Credit;
+		pSyncDeltaTradingAccountField->Mortgage = pSyncDeltaTradingAccountField_Mortgage;
+		pSyncDeltaTradingAccountField->ExchangeMargin = pSyncDeltaTradingAccountField_ExchangeMargin;
+		pSyncDeltaTradingAccountField->DeliveryMargin = pSyncDeltaTradingAccountField_DeliveryMargin;
+		pSyncDeltaTradingAccountField->ExchangeDeliveryMargin = pSyncDeltaTradingAccountField_ExchangeDeliveryMargin;
+		pSyncDeltaTradingAccountField->ReserveBalance = pSyncDeltaTradingAccountField_ReserveBalance;
+		if(pSyncDeltaTradingAccountField_CurrencyID != nullptr){ strcpy_s(pSyncDeltaTradingAccountField->CurrencyID, pSyncDeltaTradingAccountField_CurrencyID); pSyncDeltaTradingAccountField_CurrencyID = nullptr; }
+		pSyncDeltaTradingAccountField->PreFundMortgageIn = pSyncDeltaTradingAccountField_PreFundMortgageIn;
+		pSyncDeltaTradingAccountField->PreFundMortgageOut = pSyncDeltaTradingAccountField_PreFundMortgageOut;
+		pSyncDeltaTradingAccountField->FundMortgageIn = pSyncDeltaTradingAccountField_FundMortgageIn;
+		pSyncDeltaTradingAccountField->FundMortgageOut = pSyncDeltaTradingAccountField_FundMortgageOut;
+		pSyncDeltaTradingAccountField->FundMortgageAvailable = pSyncDeltaTradingAccountField_FundMortgageAvailable;
+		pSyncDeltaTradingAccountField->MortgageableFund = pSyncDeltaTradingAccountField_MortgageableFund;
+		pSyncDeltaTradingAccountField->SpecProductMargin = pSyncDeltaTradingAccountField_SpecProductMargin;
+		pSyncDeltaTradingAccountField->SpecProductFrozenMargin = pSyncDeltaTradingAccountField_SpecProductFrozenMargin;
+		pSyncDeltaTradingAccountField->SpecProductCommission = pSyncDeltaTradingAccountField_SpecProductCommission;
+		pSyncDeltaTradingAccountField->SpecProductFrozenCommission = pSyncDeltaTradingAccountField_SpecProductFrozenCommission;
+		pSyncDeltaTradingAccountField->SpecProductPositionProfit = pSyncDeltaTradingAccountField_SpecProductPositionProfit;
+		pSyncDeltaTradingAccountField->SpecProductCloseProfit = pSyncDeltaTradingAccountField_SpecProductCloseProfit;
+		pSyncDeltaTradingAccountField->SpecProductPositionProfitByAlg = pSyncDeltaTradingAccountField_SpecProductPositionProfitByAlg;
+		pSyncDeltaTradingAccountField->SpecProductExchangeMargin = pSyncDeltaTradingAccountField_SpecProductExchangeMargin;
+		pSyncDeltaTradingAccountField->FrozenSwap = pSyncDeltaTradingAccountField_FrozenSwap;
+		pSyncDeltaTradingAccountField->RemainSwap = pSyncDeltaTradingAccountField_RemainSwap;
+		pSyncDeltaTradingAccountField->SyncDeltaSequenceNo = pSyncDeltaTradingAccountField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaTradingAccountField *pSyncDeltaTradingAccountField)
+{
+	if(pSyncDeltaTradingAccountField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i}"
+		, "BrokerID", pSyncDeltaTradingAccountField->BrokerID
+		, "AccountID", pSyncDeltaTradingAccountField->AccountID
+		, "PreMortgage", pSyncDeltaTradingAccountField->PreMortgage
+		, "PreCredit", pSyncDeltaTradingAccountField->PreCredit
+		, "PreDeposit", pSyncDeltaTradingAccountField->PreDeposit
+		, "PreBalance", pSyncDeltaTradingAccountField->PreBalance
+		, "PreMargin", pSyncDeltaTradingAccountField->PreMargin
+		, "InterestBase", pSyncDeltaTradingAccountField->InterestBase
+		, "Interest", pSyncDeltaTradingAccountField->Interest
+		, "Deposit", pSyncDeltaTradingAccountField->Deposit
+		, "Withdraw", pSyncDeltaTradingAccountField->Withdraw
+		, "FrozenMargin", pSyncDeltaTradingAccountField->FrozenMargin
+		, "FrozenCash", pSyncDeltaTradingAccountField->FrozenCash
+		, "FrozenCommission", pSyncDeltaTradingAccountField->FrozenCommission
+		, "CurrMargin", pSyncDeltaTradingAccountField->CurrMargin
+		, "CashIn", pSyncDeltaTradingAccountField->CashIn
+		, "Commission", pSyncDeltaTradingAccountField->Commission
+		, "CloseProfit", pSyncDeltaTradingAccountField->CloseProfit
+		, "PositionProfit", pSyncDeltaTradingAccountField->PositionProfit
+		, "Balance", pSyncDeltaTradingAccountField->Balance
+		, "Available", pSyncDeltaTradingAccountField->Available
+		, "WithdrawQuota", pSyncDeltaTradingAccountField->WithdrawQuota
+		, "Reserve", pSyncDeltaTradingAccountField->Reserve
+		, "TradingDay", pSyncDeltaTradingAccountField->TradingDay
+		, "SettlementID", pSyncDeltaTradingAccountField->SettlementID
+		, "Credit", pSyncDeltaTradingAccountField->Credit
+		, "Mortgage", pSyncDeltaTradingAccountField->Mortgage
+		, "ExchangeMargin", pSyncDeltaTradingAccountField->ExchangeMargin
+		, "DeliveryMargin", pSyncDeltaTradingAccountField->DeliveryMargin
+		, "ExchangeDeliveryMargin", pSyncDeltaTradingAccountField->ExchangeDeliveryMargin
+		, "ReserveBalance", pSyncDeltaTradingAccountField->ReserveBalance
+		, "CurrencyID", pSyncDeltaTradingAccountField->CurrencyID
+		, "PreFundMortgageIn", pSyncDeltaTradingAccountField->PreFundMortgageIn
+		, "PreFundMortgageOut", pSyncDeltaTradingAccountField->PreFundMortgageOut
+		, "FundMortgageIn", pSyncDeltaTradingAccountField->FundMortgageIn
+		, "FundMortgageOut", pSyncDeltaTradingAccountField->FundMortgageOut
+		, "FundMortgageAvailable", pSyncDeltaTradingAccountField->FundMortgageAvailable
+		, "MortgageableFund", pSyncDeltaTradingAccountField->MortgageableFund
+		, "SpecProductMargin", pSyncDeltaTradingAccountField->SpecProductMargin
+		, "SpecProductFrozenMargin", pSyncDeltaTradingAccountField->SpecProductFrozenMargin
+		, "SpecProductCommission", pSyncDeltaTradingAccountField->SpecProductCommission
+		, "SpecProductFrozenCommission", pSyncDeltaTradingAccountField->SpecProductFrozenCommission
+		, "SpecProductPositionProfit", pSyncDeltaTradingAccountField->SpecProductPositionProfit
+		, "SpecProductCloseProfit", pSyncDeltaTradingAccountField->SpecProductCloseProfit
+		, "SpecProductPositionProfitByAlg", pSyncDeltaTradingAccountField->SpecProductPositionProfitByAlg
+		, "SpecProductExchangeMargin", pSyncDeltaTradingAccountField->SpecProductExchangeMargin
+		, "FrozenSwap", pSyncDeltaTradingAccountField->FrozenSwap
+		, "RemainSwap", pSyncDeltaTradingAccountField->RemainSwap
+		, "SyncDeltaSequenceNo", pSyncDeltaTradingAccountField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInitInvstMarginField *pSyncDeltaInitInvstMarginField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "InvestorID", "LastRiskTotalInvstMargin", "LastRiskTotalExchMargin", "ThisSyncInvstMargin", "ThisSyncExchMargin", "RemainRiskInvstMargin", "RemainRiskExchMargin", "LastRiskSpecTotalInvstMargin", "LastRiskSpecTotalExchMargin", "ThisSyncSpecInvstMargin", "ThisSyncSpecExchMargin", "RemainRiskSpecInvstMargin", "RemainRiskSpecExchMargin", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaInitInvstMarginField_BrokerID = nullptr;
+	char *pSyncDeltaInitInvstMarginField_InvestorID = nullptr;
+	double pSyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_LastRiskTotalExchMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_ThisSyncInvstMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_ThisSyncExchMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_RemainRiskInvstMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_RemainRiskExchMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin = 0.0;
+	double pSyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin = 0.0;
+	int pSyncDeltaInitInvstMarginField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaInitInvstMarginField, "|yyddddddddddddi")
+		, &pSyncDeltaInitInvstMarginField_BrokerID
+		, &pSyncDeltaInitInvstMarginField_InvestorID
+		, &pSyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin
+		, &pSyncDeltaInitInvstMarginField_LastRiskTotalExchMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncInvstMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncExchMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskInvstMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskExchMargin
+		, &pSyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin
+		, &pSyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin
+		, &pSyncDeltaInitInvstMarginField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaInitInvstMarginField_BrokerID != nullptr){ strcpy_s(pSyncDeltaInitInvstMarginField->BrokerID, pSyncDeltaInitInvstMarginField_BrokerID); pSyncDeltaInitInvstMarginField_BrokerID = nullptr; }
+		if(pSyncDeltaInitInvstMarginField_InvestorID != nullptr){ strcpy_s(pSyncDeltaInitInvstMarginField->InvestorID, pSyncDeltaInitInvstMarginField_InvestorID); pSyncDeltaInitInvstMarginField_InvestorID = nullptr; }
+		pSyncDeltaInitInvstMarginField->LastRiskTotalInvstMargin = pSyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin;
+		pSyncDeltaInitInvstMarginField->LastRiskTotalExchMargin = pSyncDeltaInitInvstMarginField_LastRiskTotalExchMargin;
+		pSyncDeltaInitInvstMarginField->ThisSyncInvstMargin = pSyncDeltaInitInvstMarginField_ThisSyncInvstMargin;
+		pSyncDeltaInitInvstMarginField->ThisSyncExchMargin = pSyncDeltaInitInvstMarginField_ThisSyncExchMargin;
+		pSyncDeltaInitInvstMarginField->RemainRiskInvstMargin = pSyncDeltaInitInvstMarginField_RemainRiskInvstMargin;
+		pSyncDeltaInitInvstMarginField->RemainRiskExchMargin = pSyncDeltaInitInvstMarginField_RemainRiskExchMargin;
+		pSyncDeltaInitInvstMarginField->LastRiskSpecTotalInvstMargin = pSyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin;
+		pSyncDeltaInitInvstMarginField->LastRiskSpecTotalExchMargin = pSyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin;
+		pSyncDeltaInitInvstMarginField->ThisSyncSpecInvstMargin = pSyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin;
+		pSyncDeltaInitInvstMarginField->ThisSyncSpecExchMargin = pSyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin;
+		pSyncDeltaInitInvstMarginField->RemainRiskSpecInvstMargin = pSyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin;
+		pSyncDeltaInitInvstMarginField->RemainRiskSpecExchMargin = pSyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin;
+		pSyncDeltaInitInvstMarginField->SyncDeltaSequenceNo = pSyncDeltaInitInvstMarginField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInitInvstMarginField *pSyncDeltaInitInvstMarginField)
+{
+	if(pSyncDeltaInitInvstMarginField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i}"
+		, "BrokerID", pSyncDeltaInitInvstMarginField->BrokerID
+		, "InvestorID", pSyncDeltaInitInvstMarginField->InvestorID
+		, "LastRiskTotalInvstMargin", pSyncDeltaInitInvstMarginField->LastRiskTotalInvstMargin
+		, "LastRiskTotalExchMargin", pSyncDeltaInitInvstMarginField->LastRiskTotalExchMargin
+		, "ThisSyncInvstMargin", pSyncDeltaInitInvstMarginField->ThisSyncInvstMargin
+		, "ThisSyncExchMargin", pSyncDeltaInitInvstMarginField->ThisSyncExchMargin
+		, "RemainRiskInvstMargin", pSyncDeltaInitInvstMarginField->RemainRiskInvstMargin
+		, "RemainRiskExchMargin", pSyncDeltaInitInvstMarginField->RemainRiskExchMargin
+		, "LastRiskSpecTotalInvstMargin", pSyncDeltaInitInvstMarginField->LastRiskSpecTotalInvstMargin
+		, "LastRiskSpecTotalExchMargin", pSyncDeltaInitInvstMarginField->LastRiskSpecTotalExchMargin
+		, "ThisSyncSpecInvstMargin", pSyncDeltaInitInvstMarginField->ThisSyncSpecInvstMargin
+		, "ThisSyncSpecExchMargin", pSyncDeltaInitInvstMarginField->ThisSyncSpecExchMargin
+		, "RemainRiskSpecInvstMargin", pSyncDeltaInitInvstMarginField->RemainRiskSpecInvstMargin
+		, "RemainRiskSpecExchMargin", pSyncDeltaInitInvstMarginField->RemainRiskSpecExchMargin
+		, "SyncDeltaSequenceNo", pSyncDeltaInitInvstMarginField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaDceCombInstrumentField *pSyncDeltaDceCombInstrumentField, PyObject *dict)
+{
+	static char *kwlist[] = {"CombInstrumentID", "ExchangeID", "ExchangeInstID", "TradeGroupID", "CombHedgeFlag", "CombinationType", "Direction", "ProductID", "Xparameter", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaDceCombInstrumentField_CombInstrumentID = nullptr;
+	char *pSyncDeltaDceCombInstrumentField_ExchangeID = nullptr;
+	char *pSyncDeltaDceCombInstrumentField_ExchangeInstID = nullptr;
+	int pSyncDeltaDceCombInstrumentField_TradeGroupID = 0;
+	char pSyncDeltaDceCombInstrumentField_CombHedgeFlag = 0;
+	char pSyncDeltaDceCombInstrumentField_CombinationType = 0;
+	char pSyncDeltaDceCombInstrumentField_Direction = 0;
+	char *pSyncDeltaDceCombInstrumentField_ProductID = nullptr;
+	double pSyncDeltaDceCombInstrumentField_Xparameter = 0.0;
+	char pSyncDeltaDceCombInstrumentField_ActionDirection = 0;
+	int pSyncDeltaDceCombInstrumentField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaDceCombInstrumentField, "|yyyicccydci")
+		, &pSyncDeltaDceCombInstrumentField_CombInstrumentID
+		, &pSyncDeltaDceCombInstrumentField_ExchangeID
+		, &pSyncDeltaDceCombInstrumentField_ExchangeInstID
+		, &pSyncDeltaDceCombInstrumentField_TradeGroupID
+		, &pSyncDeltaDceCombInstrumentField_CombHedgeFlag
+		, &pSyncDeltaDceCombInstrumentField_CombinationType
+		, &pSyncDeltaDceCombInstrumentField_Direction
+		, &pSyncDeltaDceCombInstrumentField_ProductID
+		, &pSyncDeltaDceCombInstrumentField_Xparameter
+		, &pSyncDeltaDceCombInstrumentField_ActionDirection
+		, &pSyncDeltaDceCombInstrumentField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaDceCombInstrumentField_CombInstrumentID != nullptr){ strcpy_s(pSyncDeltaDceCombInstrumentField->CombInstrumentID, pSyncDeltaDceCombInstrumentField_CombInstrumentID); pSyncDeltaDceCombInstrumentField_CombInstrumentID = nullptr; }
+		if(pSyncDeltaDceCombInstrumentField_ExchangeID != nullptr){ strcpy_s(pSyncDeltaDceCombInstrumentField->ExchangeID, pSyncDeltaDceCombInstrumentField_ExchangeID); pSyncDeltaDceCombInstrumentField_ExchangeID = nullptr; }
+		if(pSyncDeltaDceCombInstrumentField_ExchangeInstID != nullptr){ strcpy_s(pSyncDeltaDceCombInstrumentField->ExchangeInstID, pSyncDeltaDceCombInstrumentField_ExchangeInstID); pSyncDeltaDceCombInstrumentField_ExchangeInstID = nullptr; }
+		pSyncDeltaDceCombInstrumentField->TradeGroupID = pSyncDeltaDceCombInstrumentField_TradeGroupID;
+		pSyncDeltaDceCombInstrumentField->CombHedgeFlag = pSyncDeltaDceCombInstrumentField_CombHedgeFlag;
+		pSyncDeltaDceCombInstrumentField->CombinationType = pSyncDeltaDceCombInstrumentField_CombinationType;
+		pSyncDeltaDceCombInstrumentField->Direction = pSyncDeltaDceCombInstrumentField_Direction;
+		if(pSyncDeltaDceCombInstrumentField_ProductID != nullptr){ strcpy_s(pSyncDeltaDceCombInstrumentField->ProductID, pSyncDeltaDceCombInstrumentField_ProductID); pSyncDeltaDceCombInstrumentField_ProductID = nullptr; }
+		pSyncDeltaDceCombInstrumentField->Xparameter = pSyncDeltaDceCombInstrumentField_Xparameter;
+		pSyncDeltaDceCombInstrumentField->ActionDirection = pSyncDeltaDceCombInstrumentField_ActionDirection;
+		pSyncDeltaDceCombInstrumentField->SyncDeltaSequenceNo = pSyncDeltaDceCombInstrumentField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaDceCombInstrumentField *pSyncDeltaDceCombInstrumentField)
+{
+	if(pSyncDeltaDceCombInstrumentField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:i,s:c,s:c,s:c,s:y,s:d,s:c,s:i}"
+		, "CombInstrumentID", pSyncDeltaDceCombInstrumentField->CombInstrumentID
+		, "ExchangeID", pSyncDeltaDceCombInstrumentField->ExchangeID
+		, "ExchangeInstID", pSyncDeltaDceCombInstrumentField->ExchangeInstID
+		, "TradeGroupID", pSyncDeltaDceCombInstrumentField->TradeGroupID
+		, "CombHedgeFlag", pSyncDeltaDceCombInstrumentField->CombHedgeFlag
+		, "CombinationType", pSyncDeltaDceCombInstrumentField->CombinationType
+		, "Direction", pSyncDeltaDceCombInstrumentField->Direction
+		, "ProductID", pSyncDeltaDceCombInstrumentField->ProductID
+		, "Xparameter", pSyncDeltaDceCombInstrumentField->Xparameter
+		, "ActionDirection", pSyncDeltaDceCombInstrumentField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaDceCombInstrumentField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstMarginRateField *pSyncDeltaInvstMarginRateField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaInvstMarginRateField_InstrumentID = nullptr;
+	char pSyncDeltaInvstMarginRateField_InvestorRange = 0;
+	char *pSyncDeltaInvstMarginRateField_BrokerID = nullptr;
+	char *pSyncDeltaInvstMarginRateField_InvestorID = nullptr;
+	char pSyncDeltaInvstMarginRateField_HedgeFlag = 0;
+	double pSyncDeltaInvstMarginRateField_LongMarginRatioByMoney = 0.0;
+	double pSyncDeltaInvstMarginRateField_LongMarginRatioByVolume = 0.0;
+	double pSyncDeltaInvstMarginRateField_ShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaInvstMarginRateField_ShortMarginRatioByVolume = 0.0;
+	int pSyncDeltaInvstMarginRateField_IsRelative = 0;
+	char pSyncDeltaInvstMarginRateField_ActionDirection = 0;
+	int pSyncDeltaInvstMarginRateField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaInvstMarginRateField, "|ycyycddddici")
+		, &pSyncDeltaInvstMarginRateField_InstrumentID
+		, &pSyncDeltaInvstMarginRateField_InvestorRange
+		, &pSyncDeltaInvstMarginRateField_BrokerID
+		, &pSyncDeltaInvstMarginRateField_InvestorID
+		, &pSyncDeltaInvstMarginRateField_HedgeFlag
+		, &pSyncDeltaInvstMarginRateField_LongMarginRatioByMoney
+		, &pSyncDeltaInvstMarginRateField_LongMarginRatioByVolume
+		, &pSyncDeltaInvstMarginRateField_ShortMarginRatioByMoney
+		, &pSyncDeltaInvstMarginRateField_ShortMarginRatioByVolume
+		, &pSyncDeltaInvstMarginRateField_IsRelative
+		, &pSyncDeltaInvstMarginRateField_ActionDirection
+		, &pSyncDeltaInvstMarginRateField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaInvstMarginRateField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaInvstMarginRateField->InstrumentID, pSyncDeltaInvstMarginRateField_InstrumentID); pSyncDeltaInvstMarginRateField_InstrumentID = nullptr; }
+		pSyncDeltaInvstMarginRateField->InvestorRange = pSyncDeltaInvstMarginRateField_InvestorRange;
+		if(pSyncDeltaInvstMarginRateField_BrokerID != nullptr){ strcpy_s(pSyncDeltaInvstMarginRateField->BrokerID, pSyncDeltaInvstMarginRateField_BrokerID); pSyncDeltaInvstMarginRateField_BrokerID = nullptr; }
+		if(pSyncDeltaInvstMarginRateField_InvestorID != nullptr){ strcpy_s(pSyncDeltaInvstMarginRateField->InvestorID, pSyncDeltaInvstMarginRateField_InvestorID); pSyncDeltaInvstMarginRateField_InvestorID = nullptr; }
+		pSyncDeltaInvstMarginRateField->HedgeFlag = pSyncDeltaInvstMarginRateField_HedgeFlag;
+		pSyncDeltaInvstMarginRateField->LongMarginRatioByMoney = pSyncDeltaInvstMarginRateField_LongMarginRatioByMoney;
+		pSyncDeltaInvstMarginRateField->LongMarginRatioByVolume = pSyncDeltaInvstMarginRateField_LongMarginRatioByVolume;
+		pSyncDeltaInvstMarginRateField->ShortMarginRatioByMoney = pSyncDeltaInvstMarginRateField_ShortMarginRatioByMoney;
+		pSyncDeltaInvstMarginRateField->ShortMarginRatioByVolume = pSyncDeltaInvstMarginRateField_ShortMarginRatioByVolume;
+		pSyncDeltaInvstMarginRateField->IsRelative = pSyncDeltaInvstMarginRateField_IsRelative;
+		pSyncDeltaInvstMarginRateField->ActionDirection = pSyncDeltaInvstMarginRateField_ActionDirection;
+		pSyncDeltaInvstMarginRateField->SyncDeltaSequenceNo = pSyncDeltaInvstMarginRateField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstMarginRateField *pSyncDeltaInvstMarginRateField)
+{
+	if(pSyncDeltaInvstMarginRateField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:i,s:c,s:i}"
+		, "InstrumentID", pSyncDeltaInvstMarginRateField->InstrumentID
+		, "InvestorRange", pSyncDeltaInvstMarginRateField->InvestorRange
+		, "BrokerID", pSyncDeltaInvstMarginRateField->BrokerID
+		, "InvestorID", pSyncDeltaInvstMarginRateField->InvestorID
+		, "HedgeFlag", pSyncDeltaInvstMarginRateField->HedgeFlag
+		, "LongMarginRatioByMoney", pSyncDeltaInvstMarginRateField->LongMarginRatioByMoney
+		, "LongMarginRatioByVolume", pSyncDeltaInvstMarginRateField->LongMarginRatioByVolume
+		, "ShortMarginRatioByMoney", pSyncDeltaInvstMarginRateField->ShortMarginRatioByMoney
+		, "ShortMarginRatioByVolume", pSyncDeltaInvstMarginRateField->ShortMarginRatioByVolume
+		, "IsRelative", pSyncDeltaInvstMarginRateField->IsRelative
+		, "ActionDirection", pSyncDeltaInvstMarginRateField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaInvstMarginRateField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaExchMarginRateField *pSyncDeltaExchMarginRateField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "InstrumentID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaExchMarginRateField_BrokerID = nullptr;
+	char *pSyncDeltaExchMarginRateField_InstrumentID = nullptr;
+	char pSyncDeltaExchMarginRateField_HedgeFlag = 0;
+	double pSyncDeltaExchMarginRateField_LongMarginRatioByMoney = 0.0;
+	double pSyncDeltaExchMarginRateField_LongMarginRatioByVolume = 0.0;
+	double pSyncDeltaExchMarginRateField_ShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaExchMarginRateField_ShortMarginRatioByVolume = 0.0;
+	char pSyncDeltaExchMarginRateField_ActionDirection = 0;
+	int pSyncDeltaExchMarginRateField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaExchMarginRateField, "|yycddddci")
+		, &pSyncDeltaExchMarginRateField_BrokerID
+		, &pSyncDeltaExchMarginRateField_InstrumentID
+		, &pSyncDeltaExchMarginRateField_HedgeFlag
+		, &pSyncDeltaExchMarginRateField_LongMarginRatioByMoney
+		, &pSyncDeltaExchMarginRateField_LongMarginRatioByVolume
+		, &pSyncDeltaExchMarginRateField_ShortMarginRatioByMoney
+		, &pSyncDeltaExchMarginRateField_ShortMarginRatioByVolume
+		, &pSyncDeltaExchMarginRateField_ActionDirection
+		, &pSyncDeltaExchMarginRateField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaExchMarginRateField_BrokerID != nullptr){ strcpy_s(pSyncDeltaExchMarginRateField->BrokerID, pSyncDeltaExchMarginRateField_BrokerID); pSyncDeltaExchMarginRateField_BrokerID = nullptr; }
+		if(pSyncDeltaExchMarginRateField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaExchMarginRateField->InstrumentID, pSyncDeltaExchMarginRateField_InstrumentID); pSyncDeltaExchMarginRateField_InstrumentID = nullptr; }
+		pSyncDeltaExchMarginRateField->HedgeFlag = pSyncDeltaExchMarginRateField_HedgeFlag;
+		pSyncDeltaExchMarginRateField->LongMarginRatioByMoney = pSyncDeltaExchMarginRateField_LongMarginRatioByMoney;
+		pSyncDeltaExchMarginRateField->LongMarginRatioByVolume = pSyncDeltaExchMarginRateField_LongMarginRatioByVolume;
+		pSyncDeltaExchMarginRateField->ShortMarginRatioByMoney = pSyncDeltaExchMarginRateField_ShortMarginRatioByMoney;
+		pSyncDeltaExchMarginRateField->ShortMarginRatioByVolume = pSyncDeltaExchMarginRateField_ShortMarginRatioByVolume;
+		pSyncDeltaExchMarginRateField->ActionDirection = pSyncDeltaExchMarginRateField_ActionDirection;
+		pSyncDeltaExchMarginRateField->SyncDeltaSequenceNo = pSyncDeltaExchMarginRateField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaExchMarginRateField *pSyncDeltaExchMarginRateField)
+{
+	if(pSyncDeltaExchMarginRateField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:c,s:i}"
+		, "BrokerID", pSyncDeltaExchMarginRateField->BrokerID
+		, "InstrumentID", pSyncDeltaExchMarginRateField->InstrumentID
+		, "HedgeFlag", pSyncDeltaExchMarginRateField->HedgeFlag
+		, "LongMarginRatioByMoney", pSyncDeltaExchMarginRateField->LongMarginRatioByMoney
+		, "LongMarginRatioByVolume", pSyncDeltaExchMarginRateField->LongMarginRatioByVolume
+		, "ShortMarginRatioByMoney", pSyncDeltaExchMarginRateField->ShortMarginRatioByMoney
+		, "ShortMarginRatioByVolume", pSyncDeltaExchMarginRateField->ShortMarginRatioByVolume
+		, "ActionDirection", pSyncDeltaExchMarginRateField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaExchMarginRateField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaOptExchMarginField *pSyncDeltaOptExchMarginField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "InstrumentID", "SShortMarginRatioByMoney", "SShortMarginRatioByVolume", "HShortMarginRatioByMoney", "HShortMarginRatioByVolume", "AShortMarginRatioByMoney", "AShortMarginRatioByVolume", "MShortMarginRatioByMoney", "MShortMarginRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaOptExchMarginField_BrokerID = nullptr;
+	char *pSyncDeltaOptExchMarginField_InstrumentID = nullptr;
+	double pSyncDeltaOptExchMarginField_SShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptExchMarginField_SShortMarginRatioByVolume = 0.0;
+	double pSyncDeltaOptExchMarginField_HShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptExchMarginField_HShortMarginRatioByVolume = 0.0;
+	double pSyncDeltaOptExchMarginField_AShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptExchMarginField_AShortMarginRatioByVolume = 0.0;
+	double pSyncDeltaOptExchMarginField_MShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptExchMarginField_MShortMarginRatioByVolume = 0.0;
+	char pSyncDeltaOptExchMarginField_ActionDirection = 0;
+	int pSyncDeltaOptExchMarginField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaOptExchMarginField, "|yyddddddddci")
+		, &pSyncDeltaOptExchMarginField_BrokerID
+		, &pSyncDeltaOptExchMarginField_InstrumentID
+		, &pSyncDeltaOptExchMarginField_SShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_SShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_HShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_HShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_AShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_AShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_MShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_MShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_ActionDirection
+		, &pSyncDeltaOptExchMarginField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaOptExchMarginField_BrokerID != nullptr){ strcpy_s(pSyncDeltaOptExchMarginField->BrokerID, pSyncDeltaOptExchMarginField_BrokerID); pSyncDeltaOptExchMarginField_BrokerID = nullptr; }
+		if(pSyncDeltaOptExchMarginField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaOptExchMarginField->InstrumentID, pSyncDeltaOptExchMarginField_InstrumentID); pSyncDeltaOptExchMarginField_InstrumentID = nullptr; }
+		pSyncDeltaOptExchMarginField->SShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_SShortMarginRatioByMoney;
+		pSyncDeltaOptExchMarginField->SShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_SShortMarginRatioByVolume;
+		pSyncDeltaOptExchMarginField->HShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_HShortMarginRatioByMoney;
+		pSyncDeltaOptExchMarginField->HShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_HShortMarginRatioByVolume;
+		pSyncDeltaOptExchMarginField->AShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_AShortMarginRatioByMoney;
+		pSyncDeltaOptExchMarginField->AShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_AShortMarginRatioByVolume;
+		pSyncDeltaOptExchMarginField->MShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_MShortMarginRatioByMoney;
+		pSyncDeltaOptExchMarginField->MShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_MShortMarginRatioByVolume;
+		pSyncDeltaOptExchMarginField->ActionDirection = pSyncDeltaOptExchMarginField_ActionDirection;
+		pSyncDeltaOptExchMarginField->SyncDeltaSequenceNo = pSyncDeltaOptExchMarginField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaOptExchMarginField *pSyncDeltaOptExchMarginField)
+{
+	if(pSyncDeltaOptExchMarginField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:c,s:i}"
+		, "BrokerID", pSyncDeltaOptExchMarginField->BrokerID
+		, "InstrumentID", pSyncDeltaOptExchMarginField->InstrumentID
+		, "SShortMarginRatioByMoney", pSyncDeltaOptExchMarginField->SShortMarginRatioByMoney
+		, "SShortMarginRatioByVolume", pSyncDeltaOptExchMarginField->SShortMarginRatioByVolume
+		, "HShortMarginRatioByMoney", pSyncDeltaOptExchMarginField->HShortMarginRatioByMoney
+		, "HShortMarginRatioByVolume", pSyncDeltaOptExchMarginField->HShortMarginRatioByVolume
+		, "AShortMarginRatioByMoney", pSyncDeltaOptExchMarginField->AShortMarginRatioByMoney
+		, "AShortMarginRatioByVolume", pSyncDeltaOptExchMarginField->AShortMarginRatioByVolume
+		, "MShortMarginRatioByMoney", pSyncDeltaOptExchMarginField->MShortMarginRatioByMoney
+		, "MShortMarginRatioByVolume", pSyncDeltaOptExchMarginField->MShortMarginRatioByVolume
+		, "ActionDirection", pSyncDeltaOptExchMarginField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaOptExchMarginField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaOptInvstMarginField *pSyncDeltaOptInvstMarginField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "SShortMarginRatioByMoney", "SShortMarginRatioByVolume", "HShortMarginRatioByMoney", "HShortMarginRatioByVolume", "AShortMarginRatioByMoney", "AShortMarginRatioByVolume", "IsRelative", "MShortMarginRatioByMoney", "MShortMarginRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaOptInvstMarginField_InstrumentID = nullptr;
+	char pSyncDeltaOptInvstMarginField_InvestorRange = 0;
+	char *pSyncDeltaOptInvstMarginField_BrokerID = nullptr;
+	char *pSyncDeltaOptInvstMarginField_InvestorID = nullptr;
+	double pSyncDeltaOptInvstMarginField_SShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstMarginField_SShortMarginRatioByVolume = 0.0;
+	double pSyncDeltaOptInvstMarginField_HShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstMarginField_HShortMarginRatioByVolume = 0.0;
+	double pSyncDeltaOptInvstMarginField_AShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstMarginField_AShortMarginRatioByVolume = 0.0;
+	int pSyncDeltaOptInvstMarginField_IsRelative = 0;
+	double pSyncDeltaOptInvstMarginField_MShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstMarginField_MShortMarginRatioByVolume = 0.0;
+	char pSyncDeltaOptInvstMarginField_ActionDirection = 0;
+	int pSyncDeltaOptInvstMarginField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaOptInvstMarginField, "|ycyyddddddiddci")
+		, &pSyncDeltaOptInvstMarginField_InstrumentID
+		, &pSyncDeltaOptInvstMarginField_InvestorRange
+		, &pSyncDeltaOptInvstMarginField_BrokerID
+		, &pSyncDeltaOptInvstMarginField_InvestorID
+		, &pSyncDeltaOptInvstMarginField_SShortMarginRatioByMoney
+		, &pSyncDeltaOptInvstMarginField_SShortMarginRatioByVolume
+		, &pSyncDeltaOptInvstMarginField_HShortMarginRatioByMoney
+		, &pSyncDeltaOptInvstMarginField_HShortMarginRatioByVolume
+		, &pSyncDeltaOptInvstMarginField_AShortMarginRatioByMoney
+		, &pSyncDeltaOptInvstMarginField_AShortMarginRatioByVolume
+		, &pSyncDeltaOptInvstMarginField_IsRelative
+		, &pSyncDeltaOptInvstMarginField_MShortMarginRatioByMoney
+		, &pSyncDeltaOptInvstMarginField_MShortMarginRatioByVolume
+		, &pSyncDeltaOptInvstMarginField_ActionDirection
+		, &pSyncDeltaOptInvstMarginField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaOptInvstMarginField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaOptInvstMarginField->InstrumentID, pSyncDeltaOptInvstMarginField_InstrumentID); pSyncDeltaOptInvstMarginField_InstrumentID = nullptr; }
+		pSyncDeltaOptInvstMarginField->InvestorRange = pSyncDeltaOptInvstMarginField_InvestorRange;
+		if(pSyncDeltaOptInvstMarginField_BrokerID != nullptr){ strcpy_s(pSyncDeltaOptInvstMarginField->BrokerID, pSyncDeltaOptInvstMarginField_BrokerID); pSyncDeltaOptInvstMarginField_BrokerID = nullptr; }
+		if(pSyncDeltaOptInvstMarginField_InvestorID != nullptr){ strcpy_s(pSyncDeltaOptInvstMarginField->InvestorID, pSyncDeltaOptInvstMarginField_InvestorID); pSyncDeltaOptInvstMarginField_InvestorID = nullptr; }
+		pSyncDeltaOptInvstMarginField->SShortMarginRatioByMoney = pSyncDeltaOptInvstMarginField_SShortMarginRatioByMoney;
+		pSyncDeltaOptInvstMarginField->SShortMarginRatioByVolume = pSyncDeltaOptInvstMarginField_SShortMarginRatioByVolume;
+		pSyncDeltaOptInvstMarginField->HShortMarginRatioByMoney = pSyncDeltaOptInvstMarginField_HShortMarginRatioByMoney;
+		pSyncDeltaOptInvstMarginField->HShortMarginRatioByVolume = pSyncDeltaOptInvstMarginField_HShortMarginRatioByVolume;
+		pSyncDeltaOptInvstMarginField->AShortMarginRatioByMoney = pSyncDeltaOptInvstMarginField_AShortMarginRatioByMoney;
+		pSyncDeltaOptInvstMarginField->AShortMarginRatioByVolume = pSyncDeltaOptInvstMarginField_AShortMarginRatioByVolume;
+		pSyncDeltaOptInvstMarginField->IsRelative = pSyncDeltaOptInvstMarginField_IsRelative;
+		pSyncDeltaOptInvstMarginField->MShortMarginRatioByMoney = pSyncDeltaOptInvstMarginField_MShortMarginRatioByMoney;
+		pSyncDeltaOptInvstMarginField->MShortMarginRatioByVolume = pSyncDeltaOptInvstMarginField_MShortMarginRatioByVolume;
+		pSyncDeltaOptInvstMarginField->ActionDirection = pSyncDeltaOptInvstMarginField_ActionDirection;
+		pSyncDeltaOptInvstMarginField->SyncDeltaSequenceNo = pSyncDeltaOptInvstMarginField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaOptInvstMarginField *pSyncDeltaOptInvstMarginField)
+{
+	if(pSyncDeltaOptInvstMarginField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:c,s:i}"
+		, "InstrumentID", pSyncDeltaOptInvstMarginField->InstrumentID
+		, "InvestorRange", pSyncDeltaOptInvstMarginField->InvestorRange
+		, "BrokerID", pSyncDeltaOptInvstMarginField->BrokerID
+		, "InvestorID", pSyncDeltaOptInvstMarginField->InvestorID
+		, "SShortMarginRatioByMoney", pSyncDeltaOptInvstMarginField->SShortMarginRatioByMoney
+		, "SShortMarginRatioByVolume", pSyncDeltaOptInvstMarginField->SShortMarginRatioByVolume
+		, "HShortMarginRatioByMoney", pSyncDeltaOptInvstMarginField->HShortMarginRatioByMoney
+		, "HShortMarginRatioByVolume", pSyncDeltaOptInvstMarginField->HShortMarginRatioByVolume
+		, "AShortMarginRatioByMoney", pSyncDeltaOptInvstMarginField->AShortMarginRatioByMoney
+		, "AShortMarginRatioByVolume", pSyncDeltaOptInvstMarginField->AShortMarginRatioByVolume
+		, "IsRelative", pSyncDeltaOptInvstMarginField->IsRelative
+		, "MShortMarginRatioByMoney", pSyncDeltaOptInvstMarginField->MShortMarginRatioByMoney
+		, "MShortMarginRatioByVolume", pSyncDeltaOptInvstMarginField->MShortMarginRatioByVolume
+		, "ActionDirection", pSyncDeltaOptInvstMarginField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaOptInvstMarginField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstMarginRateULField *pSyncDeltaInvstMarginRateULField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaInvstMarginRateULField_InstrumentID = nullptr;
+	char pSyncDeltaInvstMarginRateULField_InvestorRange = 0;
+	char *pSyncDeltaInvstMarginRateULField_BrokerID = nullptr;
+	char *pSyncDeltaInvstMarginRateULField_InvestorID = nullptr;
+	char pSyncDeltaInvstMarginRateULField_HedgeFlag = 0;
+	double pSyncDeltaInvstMarginRateULField_LongMarginRatioByMoney = 0.0;
+	double pSyncDeltaInvstMarginRateULField_LongMarginRatioByVolume = 0.0;
+	double pSyncDeltaInvstMarginRateULField_ShortMarginRatioByMoney = 0.0;
+	double pSyncDeltaInvstMarginRateULField_ShortMarginRatioByVolume = 0.0;
+	char pSyncDeltaInvstMarginRateULField_ActionDirection = 0;
+	int pSyncDeltaInvstMarginRateULField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaInvstMarginRateULField, "|ycyycddddci")
+		, &pSyncDeltaInvstMarginRateULField_InstrumentID
+		, &pSyncDeltaInvstMarginRateULField_InvestorRange
+		, &pSyncDeltaInvstMarginRateULField_BrokerID
+		, &pSyncDeltaInvstMarginRateULField_InvestorID
+		, &pSyncDeltaInvstMarginRateULField_HedgeFlag
+		, &pSyncDeltaInvstMarginRateULField_LongMarginRatioByMoney
+		, &pSyncDeltaInvstMarginRateULField_LongMarginRatioByVolume
+		, &pSyncDeltaInvstMarginRateULField_ShortMarginRatioByMoney
+		, &pSyncDeltaInvstMarginRateULField_ShortMarginRatioByVolume
+		, &pSyncDeltaInvstMarginRateULField_ActionDirection
+		, &pSyncDeltaInvstMarginRateULField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaInvstMarginRateULField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaInvstMarginRateULField->InstrumentID, pSyncDeltaInvstMarginRateULField_InstrumentID); pSyncDeltaInvstMarginRateULField_InstrumentID = nullptr; }
+		pSyncDeltaInvstMarginRateULField->InvestorRange = pSyncDeltaInvstMarginRateULField_InvestorRange;
+		if(pSyncDeltaInvstMarginRateULField_BrokerID != nullptr){ strcpy_s(pSyncDeltaInvstMarginRateULField->BrokerID, pSyncDeltaInvstMarginRateULField_BrokerID); pSyncDeltaInvstMarginRateULField_BrokerID = nullptr; }
+		if(pSyncDeltaInvstMarginRateULField_InvestorID != nullptr){ strcpy_s(pSyncDeltaInvstMarginRateULField->InvestorID, pSyncDeltaInvstMarginRateULField_InvestorID); pSyncDeltaInvstMarginRateULField_InvestorID = nullptr; }
+		pSyncDeltaInvstMarginRateULField->HedgeFlag = pSyncDeltaInvstMarginRateULField_HedgeFlag;
+		pSyncDeltaInvstMarginRateULField->LongMarginRatioByMoney = pSyncDeltaInvstMarginRateULField_LongMarginRatioByMoney;
+		pSyncDeltaInvstMarginRateULField->LongMarginRatioByVolume = pSyncDeltaInvstMarginRateULField_LongMarginRatioByVolume;
+		pSyncDeltaInvstMarginRateULField->ShortMarginRatioByMoney = pSyncDeltaInvstMarginRateULField_ShortMarginRatioByMoney;
+		pSyncDeltaInvstMarginRateULField->ShortMarginRatioByVolume = pSyncDeltaInvstMarginRateULField_ShortMarginRatioByVolume;
+		pSyncDeltaInvstMarginRateULField->ActionDirection = pSyncDeltaInvstMarginRateULField_ActionDirection;
+		pSyncDeltaInvstMarginRateULField->SyncDeltaSequenceNo = pSyncDeltaInvstMarginRateULField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstMarginRateULField *pSyncDeltaInvstMarginRateULField)
+{
+	if(pSyncDeltaInvstMarginRateULField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:c,s:d,s:d,s:d,s:d,s:c,s:i}"
+		, "InstrumentID", pSyncDeltaInvstMarginRateULField->InstrumentID
+		, "InvestorRange", pSyncDeltaInvstMarginRateULField->InvestorRange
+		, "BrokerID", pSyncDeltaInvstMarginRateULField->BrokerID
+		, "InvestorID", pSyncDeltaInvstMarginRateULField->InvestorID
+		, "HedgeFlag", pSyncDeltaInvstMarginRateULField->HedgeFlag
+		, "LongMarginRatioByMoney", pSyncDeltaInvstMarginRateULField->LongMarginRatioByMoney
+		, "LongMarginRatioByVolume", pSyncDeltaInvstMarginRateULField->LongMarginRatioByVolume
+		, "ShortMarginRatioByMoney", pSyncDeltaInvstMarginRateULField->ShortMarginRatioByMoney
+		, "ShortMarginRatioByVolume", pSyncDeltaInvstMarginRateULField->ShortMarginRatioByVolume
+		, "ActionDirection", pSyncDeltaInvstMarginRateULField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaInvstMarginRateULField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaOptInvstCommRateField *pSyncDeltaOptInvstCommRateField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "StrikeRatioByMoney", "StrikeRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaOptInvstCommRateField_InstrumentID = nullptr;
+	char pSyncDeltaOptInvstCommRateField_InvestorRange = 0;
+	char *pSyncDeltaOptInvstCommRateField_BrokerID = nullptr;
+	char *pSyncDeltaOptInvstCommRateField_InvestorID = nullptr;
+	double pSyncDeltaOptInvstCommRateField_OpenRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstCommRateField_OpenRatioByVolume = 0.0;
+	double pSyncDeltaOptInvstCommRateField_CloseRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstCommRateField_CloseRatioByVolume = 0.0;
+	double pSyncDeltaOptInvstCommRateField_CloseTodayRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstCommRateField_CloseTodayRatioByVolume = 0.0;
+	double pSyncDeltaOptInvstCommRateField_StrikeRatioByMoney = 0.0;
+	double pSyncDeltaOptInvstCommRateField_StrikeRatioByVolume = 0.0;
+	char pSyncDeltaOptInvstCommRateField_ActionDirection = 0;
+	int pSyncDeltaOptInvstCommRateField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaOptInvstCommRateField, "|ycyyddddddddci")
+		, &pSyncDeltaOptInvstCommRateField_InstrumentID
+		, &pSyncDeltaOptInvstCommRateField_InvestorRange
+		, &pSyncDeltaOptInvstCommRateField_BrokerID
+		, &pSyncDeltaOptInvstCommRateField_InvestorID
+		, &pSyncDeltaOptInvstCommRateField_OpenRatioByMoney
+		, &pSyncDeltaOptInvstCommRateField_OpenRatioByVolume
+		, &pSyncDeltaOptInvstCommRateField_CloseRatioByMoney
+		, &pSyncDeltaOptInvstCommRateField_CloseRatioByVolume
+		, &pSyncDeltaOptInvstCommRateField_CloseTodayRatioByMoney
+		, &pSyncDeltaOptInvstCommRateField_CloseTodayRatioByVolume
+		, &pSyncDeltaOptInvstCommRateField_StrikeRatioByMoney
+		, &pSyncDeltaOptInvstCommRateField_StrikeRatioByVolume
+		, &pSyncDeltaOptInvstCommRateField_ActionDirection
+		, &pSyncDeltaOptInvstCommRateField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaOptInvstCommRateField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaOptInvstCommRateField->InstrumentID, pSyncDeltaOptInvstCommRateField_InstrumentID); pSyncDeltaOptInvstCommRateField_InstrumentID = nullptr; }
+		pSyncDeltaOptInvstCommRateField->InvestorRange = pSyncDeltaOptInvstCommRateField_InvestorRange;
+		if(pSyncDeltaOptInvstCommRateField_BrokerID != nullptr){ strcpy_s(pSyncDeltaOptInvstCommRateField->BrokerID, pSyncDeltaOptInvstCommRateField_BrokerID); pSyncDeltaOptInvstCommRateField_BrokerID = nullptr; }
+		if(pSyncDeltaOptInvstCommRateField_InvestorID != nullptr){ strcpy_s(pSyncDeltaOptInvstCommRateField->InvestorID, pSyncDeltaOptInvstCommRateField_InvestorID); pSyncDeltaOptInvstCommRateField_InvestorID = nullptr; }
+		pSyncDeltaOptInvstCommRateField->OpenRatioByMoney = pSyncDeltaOptInvstCommRateField_OpenRatioByMoney;
+		pSyncDeltaOptInvstCommRateField->OpenRatioByVolume = pSyncDeltaOptInvstCommRateField_OpenRatioByVolume;
+		pSyncDeltaOptInvstCommRateField->CloseRatioByMoney = pSyncDeltaOptInvstCommRateField_CloseRatioByMoney;
+		pSyncDeltaOptInvstCommRateField->CloseRatioByVolume = pSyncDeltaOptInvstCommRateField_CloseRatioByVolume;
+		pSyncDeltaOptInvstCommRateField->CloseTodayRatioByMoney = pSyncDeltaOptInvstCommRateField_CloseTodayRatioByMoney;
+		pSyncDeltaOptInvstCommRateField->CloseTodayRatioByVolume = pSyncDeltaOptInvstCommRateField_CloseTodayRatioByVolume;
+		pSyncDeltaOptInvstCommRateField->StrikeRatioByMoney = pSyncDeltaOptInvstCommRateField_StrikeRatioByMoney;
+		pSyncDeltaOptInvstCommRateField->StrikeRatioByVolume = pSyncDeltaOptInvstCommRateField_StrikeRatioByVolume;
+		pSyncDeltaOptInvstCommRateField->ActionDirection = pSyncDeltaOptInvstCommRateField_ActionDirection;
+		pSyncDeltaOptInvstCommRateField->SyncDeltaSequenceNo = pSyncDeltaOptInvstCommRateField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaOptInvstCommRateField *pSyncDeltaOptInvstCommRateField)
+{
+	if(pSyncDeltaOptInvstCommRateField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:c,s:i}"
+		, "InstrumentID", pSyncDeltaOptInvstCommRateField->InstrumentID
+		, "InvestorRange", pSyncDeltaOptInvstCommRateField->InvestorRange
+		, "BrokerID", pSyncDeltaOptInvstCommRateField->BrokerID
+		, "InvestorID", pSyncDeltaOptInvstCommRateField->InvestorID
+		, "OpenRatioByMoney", pSyncDeltaOptInvstCommRateField->OpenRatioByMoney
+		, "OpenRatioByVolume", pSyncDeltaOptInvstCommRateField->OpenRatioByVolume
+		, "CloseRatioByMoney", pSyncDeltaOptInvstCommRateField->CloseRatioByMoney
+		, "CloseRatioByVolume", pSyncDeltaOptInvstCommRateField->CloseRatioByVolume
+		, "CloseTodayRatioByMoney", pSyncDeltaOptInvstCommRateField->CloseTodayRatioByMoney
+		, "CloseTodayRatioByVolume", pSyncDeltaOptInvstCommRateField->CloseTodayRatioByVolume
+		, "StrikeRatioByMoney", pSyncDeltaOptInvstCommRateField->StrikeRatioByMoney
+		, "StrikeRatioByVolume", pSyncDeltaOptInvstCommRateField->StrikeRatioByVolume
+		, "ActionDirection", pSyncDeltaOptInvstCommRateField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaOptInvstCommRateField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstCommRateField *pSyncDeltaInvstCommRateField, PyObject *dict)
+{
+	static char *kwlist[] = {"InstrumentID", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaInvstCommRateField_InstrumentID = nullptr;
+	char pSyncDeltaInvstCommRateField_InvestorRange = 0;
+	char *pSyncDeltaInvstCommRateField_BrokerID = nullptr;
+	char *pSyncDeltaInvstCommRateField_InvestorID = nullptr;
+	double pSyncDeltaInvstCommRateField_OpenRatioByMoney = 0.0;
+	double pSyncDeltaInvstCommRateField_OpenRatioByVolume = 0.0;
+	double pSyncDeltaInvstCommRateField_CloseRatioByMoney = 0.0;
+	double pSyncDeltaInvstCommRateField_CloseRatioByVolume = 0.0;
+	double pSyncDeltaInvstCommRateField_CloseTodayRatioByMoney = 0.0;
+	double pSyncDeltaInvstCommRateField_CloseTodayRatioByVolume = 0.0;
+	char pSyncDeltaInvstCommRateField_ActionDirection = 0;
+	int pSyncDeltaInvstCommRateField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaInvstCommRateField, "|ycyyddddddci")
+		, &pSyncDeltaInvstCommRateField_InstrumentID
+		, &pSyncDeltaInvstCommRateField_InvestorRange
+		, &pSyncDeltaInvstCommRateField_BrokerID
+		, &pSyncDeltaInvstCommRateField_InvestorID
+		, &pSyncDeltaInvstCommRateField_OpenRatioByMoney
+		, &pSyncDeltaInvstCommRateField_OpenRatioByVolume
+		, &pSyncDeltaInvstCommRateField_CloseRatioByMoney
+		, &pSyncDeltaInvstCommRateField_CloseRatioByVolume
+		, &pSyncDeltaInvstCommRateField_CloseTodayRatioByMoney
+		, &pSyncDeltaInvstCommRateField_CloseTodayRatioByVolume
+		, &pSyncDeltaInvstCommRateField_ActionDirection
+		, &pSyncDeltaInvstCommRateField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaInvstCommRateField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaInvstCommRateField->InstrumentID, pSyncDeltaInvstCommRateField_InstrumentID); pSyncDeltaInvstCommRateField_InstrumentID = nullptr; }
+		pSyncDeltaInvstCommRateField->InvestorRange = pSyncDeltaInvstCommRateField_InvestorRange;
+		if(pSyncDeltaInvstCommRateField_BrokerID != nullptr){ strcpy_s(pSyncDeltaInvstCommRateField->BrokerID, pSyncDeltaInvstCommRateField_BrokerID); pSyncDeltaInvstCommRateField_BrokerID = nullptr; }
+		if(pSyncDeltaInvstCommRateField_InvestorID != nullptr){ strcpy_s(pSyncDeltaInvstCommRateField->InvestorID, pSyncDeltaInvstCommRateField_InvestorID); pSyncDeltaInvstCommRateField_InvestorID = nullptr; }
+		pSyncDeltaInvstCommRateField->OpenRatioByMoney = pSyncDeltaInvstCommRateField_OpenRatioByMoney;
+		pSyncDeltaInvstCommRateField->OpenRatioByVolume = pSyncDeltaInvstCommRateField_OpenRatioByVolume;
+		pSyncDeltaInvstCommRateField->CloseRatioByMoney = pSyncDeltaInvstCommRateField_CloseRatioByMoney;
+		pSyncDeltaInvstCommRateField->CloseRatioByVolume = pSyncDeltaInvstCommRateField_CloseRatioByVolume;
+		pSyncDeltaInvstCommRateField->CloseTodayRatioByMoney = pSyncDeltaInvstCommRateField_CloseTodayRatioByMoney;
+		pSyncDeltaInvstCommRateField->CloseTodayRatioByVolume = pSyncDeltaInvstCommRateField_CloseTodayRatioByVolume;
+		pSyncDeltaInvstCommRateField->ActionDirection = pSyncDeltaInvstCommRateField_ActionDirection;
+		pSyncDeltaInvstCommRateField->SyncDeltaSequenceNo = pSyncDeltaInvstCommRateField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstCommRateField *pSyncDeltaInvstCommRateField)
+{
+	if(pSyncDeltaInvstCommRateField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:c,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:c,s:i}"
+		, "InstrumentID", pSyncDeltaInvstCommRateField->InstrumentID
+		, "InvestorRange", pSyncDeltaInvstCommRateField->InvestorRange
+		, "BrokerID", pSyncDeltaInvstCommRateField->BrokerID
+		, "InvestorID", pSyncDeltaInvstCommRateField->InvestorID
+		, "OpenRatioByMoney", pSyncDeltaInvstCommRateField->OpenRatioByMoney
+		, "OpenRatioByVolume", pSyncDeltaInvstCommRateField->OpenRatioByVolume
+		, "CloseRatioByMoney", pSyncDeltaInvstCommRateField->CloseRatioByMoney
+		, "CloseRatioByVolume", pSyncDeltaInvstCommRateField->CloseRatioByVolume
+		, "CloseTodayRatioByMoney", pSyncDeltaInvstCommRateField->CloseTodayRatioByMoney
+		, "CloseTodayRatioByVolume", pSyncDeltaInvstCommRateField->CloseTodayRatioByVolume
+		, "ActionDirection", pSyncDeltaInvstCommRateField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaInvstCommRateField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaProductExchRateField *pSyncDeltaProductExchRateField, PyObject *dict)
+{
+	static char *kwlist[] = {"ProductID", "QuoteCurrencyID", "ExchangeRate", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaProductExchRateField_ProductID = nullptr;
+	char *pSyncDeltaProductExchRateField_QuoteCurrencyID = nullptr;
+	double pSyncDeltaProductExchRateField_ExchangeRate = 0.0;
+	char pSyncDeltaProductExchRateField_ActionDirection = 0;
+	int pSyncDeltaProductExchRateField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaProductExchRateField, "|yydci")
+		, &pSyncDeltaProductExchRateField_ProductID
+		, &pSyncDeltaProductExchRateField_QuoteCurrencyID
+		, &pSyncDeltaProductExchRateField_ExchangeRate
+		, &pSyncDeltaProductExchRateField_ActionDirection
+		, &pSyncDeltaProductExchRateField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaProductExchRateField_ProductID != nullptr){ strcpy_s(pSyncDeltaProductExchRateField->ProductID, pSyncDeltaProductExchRateField_ProductID); pSyncDeltaProductExchRateField_ProductID = nullptr; }
+		if(pSyncDeltaProductExchRateField_QuoteCurrencyID != nullptr){ strcpy_s(pSyncDeltaProductExchRateField->QuoteCurrencyID, pSyncDeltaProductExchRateField_QuoteCurrencyID); pSyncDeltaProductExchRateField_QuoteCurrencyID = nullptr; }
+		pSyncDeltaProductExchRateField->ExchangeRate = pSyncDeltaProductExchRateField_ExchangeRate;
+		pSyncDeltaProductExchRateField->ActionDirection = pSyncDeltaProductExchRateField_ActionDirection;
+		pSyncDeltaProductExchRateField->SyncDeltaSequenceNo = pSyncDeltaProductExchRateField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaProductExchRateField *pSyncDeltaProductExchRateField)
+{
+	if(pSyncDeltaProductExchRateField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:d,s:c,s:i}"
+		, "ProductID", pSyncDeltaProductExchRateField->ProductID
+		, "QuoteCurrencyID", pSyncDeltaProductExchRateField->QuoteCurrencyID
+		, "ExchangeRate", pSyncDeltaProductExchRateField->ExchangeRate
+		, "ActionDirection", pSyncDeltaProductExchRateField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaProductExchRateField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaDepthMarketDataField *pSyncDeltaDepthMarketDataField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "InstrumentID", "ExchangeID", "ExchangeInstID", "LastPrice", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "OpenPrice", "HighestPrice", "LowestPrice", "Volume", "Turnover", "OpenInterest", "ClosePrice", "SettlementPrice", "UpperLimitPrice", "LowerLimitPrice", "PreDelta", "CurrDelta", "UpdateTime", "UpdateMillisec", "BidPrice1", "BidVolume1", "AskPrice1", "AskVolume1", "BidPrice2", "BidVolume2", "AskPrice2", "AskVolume2", "BidPrice3", "BidVolume3", "AskPrice3", "AskVolume3", "BidPrice4", "BidVolume4", "AskPrice4", "AskVolume4", "BidPrice5", "BidVolume5", "AskPrice5", "AskVolume5", "AveragePrice", "ActionDay", "BandingUpperPrice", "BandingLowerPrice", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaDepthMarketDataField_TradingDay = nullptr;
+	char *pSyncDeltaDepthMarketDataField_InstrumentID = nullptr;
+	char *pSyncDeltaDepthMarketDataField_ExchangeID = nullptr;
+	char *pSyncDeltaDepthMarketDataField_ExchangeInstID = nullptr;
+	double pSyncDeltaDepthMarketDataField_LastPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_PreSettlementPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_PreClosePrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_PreOpenInterest = 0.0;
+	double pSyncDeltaDepthMarketDataField_OpenPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_HighestPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_LowestPrice = 0.0;
+	int pSyncDeltaDepthMarketDataField_Volume = 0;
+	double pSyncDeltaDepthMarketDataField_Turnover = 0.0;
+	double pSyncDeltaDepthMarketDataField_OpenInterest = 0.0;
+	double pSyncDeltaDepthMarketDataField_ClosePrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_SettlementPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_UpperLimitPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_LowerLimitPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_PreDelta = 0.0;
+	double pSyncDeltaDepthMarketDataField_CurrDelta = 0.0;
+	char *pSyncDeltaDepthMarketDataField_UpdateTime = nullptr;
+	int pSyncDeltaDepthMarketDataField_UpdateMillisec = 0;
+	double pSyncDeltaDepthMarketDataField_BidPrice1 = 0.0;
+	int pSyncDeltaDepthMarketDataField_BidVolume1 = 0;
+	double pSyncDeltaDepthMarketDataField_AskPrice1 = 0.0;
+	int pSyncDeltaDepthMarketDataField_AskVolume1 = 0;
+	double pSyncDeltaDepthMarketDataField_BidPrice2 = 0.0;
+	int pSyncDeltaDepthMarketDataField_BidVolume2 = 0;
+	double pSyncDeltaDepthMarketDataField_AskPrice2 = 0.0;
+	int pSyncDeltaDepthMarketDataField_AskVolume2 = 0;
+	double pSyncDeltaDepthMarketDataField_BidPrice3 = 0.0;
+	int pSyncDeltaDepthMarketDataField_BidVolume3 = 0;
+	double pSyncDeltaDepthMarketDataField_AskPrice3 = 0.0;
+	int pSyncDeltaDepthMarketDataField_AskVolume3 = 0;
+	double pSyncDeltaDepthMarketDataField_BidPrice4 = 0.0;
+	int pSyncDeltaDepthMarketDataField_BidVolume4 = 0;
+	double pSyncDeltaDepthMarketDataField_AskPrice4 = 0.0;
+	int pSyncDeltaDepthMarketDataField_AskVolume4 = 0;
+	double pSyncDeltaDepthMarketDataField_BidPrice5 = 0.0;
+	int pSyncDeltaDepthMarketDataField_BidVolume5 = 0;
+	double pSyncDeltaDepthMarketDataField_AskPrice5 = 0.0;
+	int pSyncDeltaDepthMarketDataField_AskVolume5 = 0;
+	double pSyncDeltaDepthMarketDataField_AveragePrice = 0.0;
+	char *pSyncDeltaDepthMarketDataField_ActionDay = nullptr;
+	double pSyncDeltaDepthMarketDataField_BandingUpperPrice = 0.0;
+	double pSyncDeltaDepthMarketDataField_BandingLowerPrice = 0.0;
+	char pSyncDeltaDepthMarketDataField_ActionDirection = 0;
+	int pSyncDeltaDepthMarketDataField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaDepthMarketDataField, "|yyyydddddddiddddddddyidididididididididididyddci")
+		, &pSyncDeltaDepthMarketDataField_TradingDay
+		, &pSyncDeltaDepthMarketDataField_InstrumentID
+		, &pSyncDeltaDepthMarketDataField_ExchangeID
+		, &pSyncDeltaDepthMarketDataField_ExchangeInstID
+		, &pSyncDeltaDepthMarketDataField_LastPrice
+		, &pSyncDeltaDepthMarketDataField_PreSettlementPrice
+		, &pSyncDeltaDepthMarketDataField_PreClosePrice
+		, &pSyncDeltaDepthMarketDataField_PreOpenInterest
+		, &pSyncDeltaDepthMarketDataField_OpenPrice
+		, &pSyncDeltaDepthMarketDataField_HighestPrice
+		, &pSyncDeltaDepthMarketDataField_LowestPrice
+		, &pSyncDeltaDepthMarketDataField_Volume
+		, &pSyncDeltaDepthMarketDataField_Turnover
+		, &pSyncDeltaDepthMarketDataField_OpenInterest
+		, &pSyncDeltaDepthMarketDataField_ClosePrice
+		, &pSyncDeltaDepthMarketDataField_SettlementPrice
+		, &pSyncDeltaDepthMarketDataField_UpperLimitPrice
+		, &pSyncDeltaDepthMarketDataField_LowerLimitPrice
+		, &pSyncDeltaDepthMarketDataField_PreDelta
+		, &pSyncDeltaDepthMarketDataField_CurrDelta
+		, &pSyncDeltaDepthMarketDataField_UpdateTime
+		, &pSyncDeltaDepthMarketDataField_UpdateMillisec
+		, &pSyncDeltaDepthMarketDataField_BidPrice1
+		, &pSyncDeltaDepthMarketDataField_BidVolume1
+		, &pSyncDeltaDepthMarketDataField_AskPrice1
+		, &pSyncDeltaDepthMarketDataField_AskVolume1
+		, &pSyncDeltaDepthMarketDataField_BidPrice2
+		, &pSyncDeltaDepthMarketDataField_BidVolume2
+		, &pSyncDeltaDepthMarketDataField_AskPrice2
+		, &pSyncDeltaDepthMarketDataField_AskVolume2
+		, &pSyncDeltaDepthMarketDataField_BidPrice3
+		, &pSyncDeltaDepthMarketDataField_BidVolume3
+		, &pSyncDeltaDepthMarketDataField_AskPrice3
+		, &pSyncDeltaDepthMarketDataField_AskVolume3
+		, &pSyncDeltaDepthMarketDataField_BidPrice4
+		, &pSyncDeltaDepthMarketDataField_BidVolume4
+		, &pSyncDeltaDepthMarketDataField_AskPrice4
+		, &pSyncDeltaDepthMarketDataField_AskVolume4
+		, &pSyncDeltaDepthMarketDataField_BidPrice5
+		, &pSyncDeltaDepthMarketDataField_BidVolume5
+		, &pSyncDeltaDepthMarketDataField_AskPrice5
+		, &pSyncDeltaDepthMarketDataField_AskVolume5
+		, &pSyncDeltaDepthMarketDataField_AveragePrice
+		, &pSyncDeltaDepthMarketDataField_ActionDay
+		, &pSyncDeltaDepthMarketDataField_BandingUpperPrice
+		, &pSyncDeltaDepthMarketDataField_BandingLowerPrice
+		, &pSyncDeltaDepthMarketDataField_ActionDirection
+		, &pSyncDeltaDepthMarketDataField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaDepthMarketDataField_TradingDay != nullptr){ strcpy_s(pSyncDeltaDepthMarketDataField->TradingDay, pSyncDeltaDepthMarketDataField_TradingDay); pSyncDeltaDepthMarketDataField_TradingDay = nullptr; }
+		if(pSyncDeltaDepthMarketDataField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaDepthMarketDataField->InstrumentID, pSyncDeltaDepthMarketDataField_InstrumentID); pSyncDeltaDepthMarketDataField_InstrumentID = nullptr; }
+		if(pSyncDeltaDepthMarketDataField_ExchangeID != nullptr){ strcpy_s(pSyncDeltaDepthMarketDataField->ExchangeID, pSyncDeltaDepthMarketDataField_ExchangeID); pSyncDeltaDepthMarketDataField_ExchangeID = nullptr; }
+		if(pSyncDeltaDepthMarketDataField_ExchangeInstID != nullptr){ strcpy_s(pSyncDeltaDepthMarketDataField->ExchangeInstID, pSyncDeltaDepthMarketDataField_ExchangeInstID); pSyncDeltaDepthMarketDataField_ExchangeInstID = nullptr; }
+		pSyncDeltaDepthMarketDataField->LastPrice = pSyncDeltaDepthMarketDataField_LastPrice;
+		pSyncDeltaDepthMarketDataField->PreSettlementPrice = pSyncDeltaDepthMarketDataField_PreSettlementPrice;
+		pSyncDeltaDepthMarketDataField->PreClosePrice = pSyncDeltaDepthMarketDataField_PreClosePrice;
+		pSyncDeltaDepthMarketDataField->PreOpenInterest = pSyncDeltaDepthMarketDataField_PreOpenInterest;
+		pSyncDeltaDepthMarketDataField->OpenPrice = pSyncDeltaDepthMarketDataField_OpenPrice;
+		pSyncDeltaDepthMarketDataField->HighestPrice = pSyncDeltaDepthMarketDataField_HighestPrice;
+		pSyncDeltaDepthMarketDataField->LowestPrice = pSyncDeltaDepthMarketDataField_LowestPrice;
+		pSyncDeltaDepthMarketDataField->Volume = pSyncDeltaDepthMarketDataField_Volume;
+		pSyncDeltaDepthMarketDataField->Turnover = pSyncDeltaDepthMarketDataField_Turnover;
+		pSyncDeltaDepthMarketDataField->OpenInterest = pSyncDeltaDepthMarketDataField_OpenInterest;
+		pSyncDeltaDepthMarketDataField->ClosePrice = pSyncDeltaDepthMarketDataField_ClosePrice;
+		pSyncDeltaDepthMarketDataField->SettlementPrice = pSyncDeltaDepthMarketDataField_SettlementPrice;
+		pSyncDeltaDepthMarketDataField->UpperLimitPrice = pSyncDeltaDepthMarketDataField_UpperLimitPrice;
+		pSyncDeltaDepthMarketDataField->LowerLimitPrice = pSyncDeltaDepthMarketDataField_LowerLimitPrice;
+		pSyncDeltaDepthMarketDataField->PreDelta = pSyncDeltaDepthMarketDataField_PreDelta;
+		pSyncDeltaDepthMarketDataField->CurrDelta = pSyncDeltaDepthMarketDataField_CurrDelta;
+		if(pSyncDeltaDepthMarketDataField_UpdateTime != nullptr){ strcpy_s(pSyncDeltaDepthMarketDataField->UpdateTime, pSyncDeltaDepthMarketDataField_UpdateTime); pSyncDeltaDepthMarketDataField_UpdateTime = nullptr; }
+		pSyncDeltaDepthMarketDataField->UpdateMillisec = pSyncDeltaDepthMarketDataField_UpdateMillisec;
+		pSyncDeltaDepthMarketDataField->BidPrice1 = pSyncDeltaDepthMarketDataField_BidPrice1;
+		pSyncDeltaDepthMarketDataField->BidVolume1 = pSyncDeltaDepthMarketDataField_BidVolume1;
+		pSyncDeltaDepthMarketDataField->AskPrice1 = pSyncDeltaDepthMarketDataField_AskPrice1;
+		pSyncDeltaDepthMarketDataField->AskVolume1 = pSyncDeltaDepthMarketDataField_AskVolume1;
+		pSyncDeltaDepthMarketDataField->BidPrice2 = pSyncDeltaDepthMarketDataField_BidPrice2;
+		pSyncDeltaDepthMarketDataField->BidVolume2 = pSyncDeltaDepthMarketDataField_BidVolume2;
+		pSyncDeltaDepthMarketDataField->AskPrice2 = pSyncDeltaDepthMarketDataField_AskPrice2;
+		pSyncDeltaDepthMarketDataField->AskVolume2 = pSyncDeltaDepthMarketDataField_AskVolume2;
+		pSyncDeltaDepthMarketDataField->BidPrice3 = pSyncDeltaDepthMarketDataField_BidPrice3;
+		pSyncDeltaDepthMarketDataField->BidVolume3 = pSyncDeltaDepthMarketDataField_BidVolume3;
+		pSyncDeltaDepthMarketDataField->AskPrice3 = pSyncDeltaDepthMarketDataField_AskPrice3;
+		pSyncDeltaDepthMarketDataField->AskVolume3 = pSyncDeltaDepthMarketDataField_AskVolume3;
+		pSyncDeltaDepthMarketDataField->BidPrice4 = pSyncDeltaDepthMarketDataField_BidPrice4;
+		pSyncDeltaDepthMarketDataField->BidVolume4 = pSyncDeltaDepthMarketDataField_BidVolume4;
+		pSyncDeltaDepthMarketDataField->AskPrice4 = pSyncDeltaDepthMarketDataField_AskPrice4;
+		pSyncDeltaDepthMarketDataField->AskVolume4 = pSyncDeltaDepthMarketDataField_AskVolume4;
+		pSyncDeltaDepthMarketDataField->BidPrice5 = pSyncDeltaDepthMarketDataField_BidPrice5;
+		pSyncDeltaDepthMarketDataField->BidVolume5 = pSyncDeltaDepthMarketDataField_BidVolume5;
+		pSyncDeltaDepthMarketDataField->AskPrice5 = pSyncDeltaDepthMarketDataField_AskPrice5;
+		pSyncDeltaDepthMarketDataField->AskVolume5 = pSyncDeltaDepthMarketDataField_AskVolume5;
+		pSyncDeltaDepthMarketDataField->AveragePrice = pSyncDeltaDepthMarketDataField_AveragePrice;
+		if(pSyncDeltaDepthMarketDataField_ActionDay != nullptr){ strcpy_s(pSyncDeltaDepthMarketDataField->ActionDay, pSyncDeltaDepthMarketDataField_ActionDay); pSyncDeltaDepthMarketDataField_ActionDay = nullptr; }
+		pSyncDeltaDepthMarketDataField->BandingUpperPrice = pSyncDeltaDepthMarketDataField_BandingUpperPrice;
+		pSyncDeltaDepthMarketDataField->BandingLowerPrice = pSyncDeltaDepthMarketDataField_BandingLowerPrice;
+		pSyncDeltaDepthMarketDataField->ActionDirection = pSyncDeltaDepthMarketDataField_ActionDirection;
+		pSyncDeltaDepthMarketDataField->SyncDeltaSequenceNo = pSyncDeltaDepthMarketDataField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaDepthMarketDataField *pSyncDeltaDepthMarketDataField)
+{
+	if(pSyncDeltaDepthMarketDataField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:y,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:i,s:d,s:y,s:d,s:d,s:c,s:i}"
+		, "TradingDay", pSyncDeltaDepthMarketDataField->TradingDay
+		, "InstrumentID", pSyncDeltaDepthMarketDataField->InstrumentID
+		, "ExchangeID", pSyncDeltaDepthMarketDataField->ExchangeID
+		, "ExchangeInstID", pSyncDeltaDepthMarketDataField->ExchangeInstID
+		, "LastPrice", pSyncDeltaDepthMarketDataField->LastPrice
+		, "PreSettlementPrice", pSyncDeltaDepthMarketDataField->PreSettlementPrice
+		, "PreClosePrice", pSyncDeltaDepthMarketDataField->PreClosePrice
+		, "PreOpenInterest", pSyncDeltaDepthMarketDataField->PreOpenInterest
+		, "OpenPrice", pSyncDeltaDepthMarketDataField->OpenPrice
+		, "HighestPrice", pSyncDeltaDepthMarketDataField->HighestPrice
+		, "LowestPrice", pSyncDeltaDepthMarketDataField->LowestPrice
+		, "Volume", pSyncDeltaDepthMarketDataField->Volume
+		, "Turnover", pSyncDeltaDepthMarketDataField->Turnover
+		, "OpenInterest", pSyncDeltaDepthMarketDataField->OpenInterest
+		, "ClosePrice", pSyncDeltaDepthMarketDataField->ClosePrice
+		, "SettlementPrice", pSyncDeltaDepthMarketDataField->SettlementPrice
+		, "UpperLimitPrice", pSyncDeltaDepthMarketDataField->UpperLimitPrice
+		, "LowerLimitPrice", pSyncDeltaDepthMarketDataField->LowerLimitPrice
+		, "PreDelta", pSyncDeltaDepthMarketDataField->PreDelta
+		, "CurrDelta", pSyncDeltaDepthMarketDataField->CurrDelta
+		, "UpdateTime", pSyncDeltaDepthMarketDataField->UpdateTime
+		, "UpdateMillisec", pSyncDeltaDepthMarketDataField->UpdateMillisec
+		, "BidPrice1", pSyncDeltaDepthMarketDataField->BidPrice1
+		, "BidVolume1", pSyncDeltaDepthMarketDataField->BidVolume1
+		, "AskPrice1", pSyncDeltaDepthMarketDataField->AskPrice1
+		, "AskVolume1", pSyncDeltaDepthMarketDataField->AskVolume1
+		, "BidPrice2", pSyncDeltaDepthMarketDataField->BidPrice2
+		, "BidVolume2", pSyncDeltaDepthMarketDataField->BidVolume2
+		, "AskPrice2", pSyncDeltaDepthMarketDataField->AskPrice2
+		, "AskVolume2", pSyncDeltaDepthMarketDataField->AskVolume2
+		, "BidPrice3", pSyncDeltaDepthMarketDataField->BidPrice3
+		, "BidVolume3", pSyncDeltaDepthMarketDataField->BidVolume3
+		, "AskPrice3", pSyncDeltaDepthMarketDataField->AskPrice3
+		, "AskVolume3", pSyncDeltaDepthMarketDataField->AskVolume3
+		, "BidPrice4", pSyncDeltaDepthMarketDataField->BidPrice4
+		, "BidVolume4", pSyncDeltaDepthMarketDataField->BidVolume4
+		, "AskPrice4", pSyncDeltaDepthMarketDataField->AskPrice4
+		, "AskVolume4", pSyncDeltaDepthMarketDataField->AskVolume4
+		, "BidPrice5", pSyncDeltaDepthMarketDataField->BidPrice5
+		, "BidVolume5", pSyncDeltaDepthMarketDataField->BidVolume5
+		, "AskPrice5", pSyncDeltaDepthMarketDataField->AskPrice5
+		, "AskVolume5", pSyncDeltaDepthMarketDataField->AskVolume5
+		, "AveragePrice", pSyncDeltaDepthMarketDataField->AveragePrice
+		, "ActionDay", pSyncDeltaDepthMarketDataField->ActionDay
+		, "BandingUpperPrice", pSyncDeltaDepthMarketDataField->BandingUpperPrice
+		, "BandingLowerPrice", pSyncDeltaDepthMarketDataField->BandingLowerPrice
+		, "ActionDirection", pSyncDeltaDepthMarketDataField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaDepthMarketDataField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaIndexPriceField *pSyncDeltaIndexPriceField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "InstrumentID", "ClosePrice", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaIndexPriceField_BrokerID = nullptr;
+	char *pSyncDeltaIndexPriceField_InstrumentID = nullptr;
+	double pSyncDeltaIndexPriceField_ClosePrice = 0.0;
+	char pSyncDeltaIndexPriceField_ActionDirection = 0;
+	int pSyncDeltaIndexPriceField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaIndexPriceField, "|yydci")
+		, &pSyncDeltaIndexPriceField_BrokerID
+		, &pSyncDeltaIndexPriceField_InstrumentID
+		, &pSyncDeltaIndexPriceField_ClosePrice
+		, &pSyncDeltaIndexPriceField_ActionDirection
+		, &pSyncDeltaIndexPriceField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaIndexPriceField_BrokerID != nullptr){ strcpy_s(pSyncDeltaIndexPriceField->BrokerID, pSyncDeltaIndexPriceField_BrokerID); pSyncDeltaIndexPriceField_BrokerID = nullptr; }
+		if(pSyncDeltaIndexPriceField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaIndexPriceField->InstrumentID, pSyncDeltaIndexPriceField_InstrumentID); pSyncDeltaIndexPriceField_InstrumentID = nullptr; }
+		pSyncDeltaIndexPriceField->ClosePrice = pSyncDeltaIndexPriceField_ClosePrice;
+		pSyncDeltaIndexPriceField->ActionDirection = pSyncDeltaIndexPriceField_ActionDirection;
+		pSyncDeltaIndexPriceField->SyncDeltaSequenceNo = pSyncDeltaIndexPriceField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaIndexPriceField *pSyncDeltaIndexPriceField)
+{
+	if(pSyncDeltaIndexPriceField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:d,s:c,s:i}"
+		, "BrokerID", pSyncDeltaIndexPriceField->BrokerID
+		, "InstrumentID", pSyncDeltaIndexPriceField->InstrumentID
+		, "ClosePrice", pSyncDeltaIndexPriceField->ClosePrice
+		, "ActionDirection", pSyncDeltaIndexPriceField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaIndexPriceField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaEWarrantOffsetField *pSyncDeltaEWarrantOffsetField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "BrokerID", "InvestorID", "ExchangeID", "InstrumentID", "Direction", "HedgeFlag", "Volume", "ActionDirection", "SyncDeltaSequenceNo", nullptr};
+	char *pSyncDeltaEWarrantOffsetField_TradingDay = nullptr;
+	char *pSyncDeltaEWarrantOffsetField_BrokerID = nullptr;
+	char *pSyncDeltaEWarrantOffsetField_InvestorID = nullptr;
+	char *pSyncDeltaEWarrantOffsetField_ExchangeID = nullptr;
+	char *pSyncDeltaEWarrantOffsetField_InstrumentID = nullptr;
+	char pSyncDeltaEWarrantOffsetField_Direction = 0;
+	char pSyncDeltaEWarrantOffsetField_HedgeFlag = 0;
+	int pSyncDeltaEWarrantOffsetField_Volume = 0;
+	char pSyncDeltaEWarrantOffsetField_ActionDirection = 0;
+	int pSyncDeltaEWarrantOffsetField_SyncDeltaSequenceNo = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncDeltaEWarrantOffsetField, "|yyyyyccici")
+		, &pSyncDeltaEWarrantOffsetField_TradingDay
+		, &pSyncDeltaEWarrantOffsetField_BrokerID
+		, &pSyncDeltaEWarrantOffsetField_InvestorID
+		, &pSyncDeltaEWarrantOffsetField_ExchangeID
+		, &pSyncDeltaEWarrantOffsetField_InstrumentID
+		, &pSyncDeltaEWarrantOffsetField_Direction
+		, &pSyncDeltaEWarrantOffsetField_HedgeFlag
+		, &pSyncDeltaEWarrantOffsetField_Volume
+		, &pSyncDeltaEWarrantOffsetField_ActionDirection
+		, &pSyncDeltaEWarrantOffsetField_SyncDeltaSequenceNo
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncDeltaEWarrantOffsetField_TradingDay != nullptr){ strcpy_s(pSyncDeltaEWarrantOffsetField->TradingDay, pSyncDeltaEWarrantOffsetField_TradingDay); pSyncDeltaEWarrantOffsetField_TradingDay = nullptr; }
+		if(pSyncDeltaEWarrantOffsetField_BrokerID != nullptr){ strcpy_s(pSyncDeltaEWarrantOffsetField->BrokerID, pSyncDeltaEWarrantOffsetField_BrokerID); pSyncDeltaEWarrantOffsetField_BrokerID = nullptr; }
+		if(pSyncDeltaEWarrantOffsetField_InvestorID != nullptr){ strcpy_s(pSyncDeltaEWarrantOffsetField->InvestorID, pSyncDeltaEWarrantOffsetField_InvestorID); pSyncDeltaEWarrantOffsetField_InvestorID = nullptr; }
+		if(pSyncDeltaEWarrantOffsetField_ExchangeID != nullptr){ strcpy_s(pSyncDeltaEWarrantOffsetField->ExchangeID, pSyncDeltaEWarrantOffsetField_ExchangeID); pSyncDeltaEWarrantOffsetField_ExchangeID = nullptr; }
+		if(pSyncDeltaEWarrantOffsetField_InstrumentID != nullptr){ strcpy_s(pSyncDeltaEWarrantOffsetField->InstrumentID, pSyncDeltaEWarrantOffsetField_InstrumentID); pSyncDeltaEWarrantOffsetField_InstrumentID = nullptr; }
+		pSyncDeltaEWarrantOffsetField->Direction = pSyncDeltaEWarrantOffsetField_Direction;
+		pSyncDeltaEWarrantOffsetField->HedgeFlag = pSyncDeltaEWarrantOffsetField_HedgeFlag;
+		pSyncDeltaEWarrantOffsetField->Volume = pSyncDeltaEWarrantOffsetField_Volume;
+		pSyncDeltaEWarrantOffsetField->ActionDirection = pSyncDeltaEWarrantOffsetField_ActionDirection;
+		pSyncDeltaEWarrantOffsetField->SyncDeltaSequenceNo = pSyncDeltaEWarrantOffsetField_SyncDeltaSequenceNo;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaEWarrantOffsetField *pSyncDeltaEWarrantOffsetField)
+{
+	if(pSyncDeltaEWarrantOffsetField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:y,s:c,s:c,s:i,s:c,s:i}"
+		, "TradingDay", pSyncDeltaEWarrantOffsetField->TradingDay
+		, "BrokerID", pSyncDeltaEWarrantOffsetField->BrokerID
+		, "InvestorID", pSyncDeltaEWarrantOffsetField->InvestorID
+		, "ExchangeID", pSyncDeltaEWarrantOffsetField->ExchangeID
+		, "InstrumentID", pSyncDeltaEWarrantOffsetField->InstrumentID
+		, "Direction", pSyncDeltaEWarrantOffsetField->Direction
+		, "HedgeFlag", pSyncDeltaEWarrantOffsetField->HedgeFlag
+		, "Volume", pSyncDeltaEWarrantOffsetField->Volume
+		, "ActionDirection", pSyncDeltaEWarrantOffsetField->ActionDirection
+		, "SyncDeltaSequenceNo", pSyncDeltaEWarrantOffsetField->SyncDeltaSequenceNo
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "ExchangeID", "InstrumentID", "ProdFamilyCode", "Cvf", "TimeRange", "MarginRate", "LockRateX", "AddOnRate", "PreSettlementPrice", nullptr};
+	char *pSPBMFutureParameterField_TradingDay = nullptr;
+	char *pSPBMFutureParameterField_ExchangeID = nullptr;
+	char *pSPBMFutureParameterField_InstrumentID = nullptr;
+	char *pSPBMFutureParameterField_ProdFamilyCode = nullptr;
+	int pSPBMFutureParameterField_Cvf = 0;
+	char pSPBMFutureParameterField_TimeRange = 0;
+	double pSPBMFutureParameterField_MarginRate = 0.0;
+	double pSPBMFutureParameterField_LockRateX = 0.0;
+	double pSPBMFutureParameterField_AddOnRate = 0.0;
+	double pSPBMFutureParameterField_PreSettlementPrice = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSPBMFutureParameterField, "|yyyyicdddd")
+		, &pSPBMFutureParameterField_TradingDay
+		, &pSPBMFutureParameterField_ExchangeID
+		, &pSPBMFutureParameterField_InstrumentID
+		, &pSPBMFutureParameterField_ProdFamilyCode
+		, &pSPBMFutureParameterField_Cvf
+		, &pSPBMFutureParameterField_TimeRange
+		, &pSPBMFutureParameterField_MarginRate
+		, &pSPBMFutureParameterField_LockRateX
+		, &pSPBMFutureParameterField_AddOnRate
+		, &pSPBMFutureParameterField_PreSettlementPrice
+	PyCTP_PyDict_FromStruct_END
+		if(pSPBMFutureParameterField_TradingDay != nullptr){ strcpy_s(pSPBMFutureParameterField->TradingDay, pSPBMFutureParameterField_TradingDay); pSPBMFutureParameterField_TradingDay = nullptr; }
+		if(pSPBMFutureParameterField_ExchangeID != nullptr){ strcpy_s(pSPBMFutureParameterField->ExchangeID, pSPBMFutureParameterField_ExchangeID); pSPBMFutureParameterField_ExchangeID = nullptr; }
+		if(pSPBMFutureParameterField_InstrumentID != nullptr){ strcpy_s(pSPBMFutureParameterField->InstrumentID, pSPBMFutureParameterField_InstrumentID); pSPBMFutureParameterField_InstrumentID = nullptr; }
+		if(pSPBMFutureParameterField_ProdFamilyCode != nullptr){ strcpy_s(pSPBMFutureParameterField->ProdFamilyCode, pSPBMFutureParameterField_ProdFamilyCode); pSPBMFutureParameterField_ProdFamilyCode = nullptr; }
+		pSPBMFutureParameterField->Cvf = pSPBMFutureParameterField_Cvf;
+		pSPBMFutureParameterField->TimeRange = pSPBMFutureParameterField_TimeRange;
+		pSPBMFutureParameterField->MarginRate = pSPBMFutureParameterField_MarginRate;
+		pSPBMFutureParameterField->LockRateX = pSPBMFutureParameterField_LockRateX;
+		pSPBMFutureParameterField->AddOnRate = pSPBMFutureParameterField_AddOnRate;
+		pSPBMFutureParameterField->PreSettlementPrice = pSPBMFutureParameterField_PreSettlementPrice;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameterField)
+{
+	if(pSPBMFutureParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:c,s:d,s:d,s:d,s:d}"
+		, "TradingDay", pSPBMFutureParameterField->TradingDay
+		, "ExchangeID", pSPBMFutureParameterField->ExchangeID
+		, "InstrumentID", pSPBMFutureParameterField->InstrumentID
+		, "ProdFamilyCode", pSPBMFutureParameterField->ProdFamilyCode
+		, "Cvf", pSPBMFutureParameterField->Cvf
+		, "TimeRange", pSPBMFutureParameterField->TimeRange
+		, "MarginRate", pSPBMFutureParameterField->MarginRate
+		, "LockRateX", pSPBMFutureParameterField->LockRateX
+		, "AddOnRate", pSPBMFutureParameterField->AddOnRate
+		, "PreSettlementPrice", pSPBMFutureParameterField->PreSettlementPrice
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "ExchangeID", "InstrumentID", "ProdFamilyCode", "Cvf", "DownPrice", "Delta", "SlimiDelta", "PreSettlementPrice", nullptr};
+	char *pSPBMOptionParameterField_TradingDay = nullptr;
+	char *pSPBMOptionParameterField_ExchangeID = nullptr;
+	char *pSPBMOptionParameterField_InstrumentID = nullptr;
+	char *pSPBMOptionParameterField_ProdFamilyCode = nullptr;
+	int pSPBMOptionParameterField_Cvf = 0;
+	double pSPBMOptionParameterField_DownPrice = 0.0;
+	double pSPBMOptionParameterField_Delta = 0.0;
+	double pSPBMOptionParameterField_SlimiDelta = 0.0;
+	double pSPBMOptionParameterField_PreSettlementPrice = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSPBMOptionParameterField, "|yyyyidddd")
+		, &pSPBMOptionParameterField_TradingDay
+		, &pSPBMOptionParameterField_ExchangeID
+		, &pSPBMOptionParameterField_InstrumentID
+		, &pSPBMOptionParameterField_ProdFamilyCode
+		, &pSPBMOptionParameterField_Cvf
+		, &pSPBMOptionParameterField_DownPrice
+		, &pSPBMOptionParameterField_Delta
+		, &pSPBMOptionParameterField_SlimiDelta
+		, &pSPBMOptionParameterField_PreSettlementPrice
+	PyCTP_PyDict_FromStruct_END
+		if(pSPBMOptionParameterField_TradingDay != nullptr){ strcpy_s(pSPBMOptionParameterField->TradingDay, pSPBMOptionParameterField_TradingDay); pSPBMOptionParameterField_TradingDay = nullptr; }
+		if(pSPBMOptionParameterField_ExchangeID != nullptr){ strcpy_s(pSPBMOptionParameterField->ExchangeID, pSPBMOptionParameterField_ExchangeID); pSPBMOptionParameterField_ExchangeID = nullptr; }
+		if(pSPBMOptionParameterField_InstrumentID != nullptr){ strcpy_s(pSPBMOptionParameterField->InstrumentID, pSPBMOptionParameterField_InstrumentID); pSPBMOptionParameterField_InstrumentID = nullptr; }
+		if(pSPBMOptionParameterField_ProdFamilyCode != nullptr){ strcpy_s(pSPBMOptionParameterField->ProdFamilyCode, pSPBMOptionParameterField_ProdFamilyCode); pSPBMOptionParameterField_ProdFamilyCode = nullptr; }
+		pSPBMOptionParameterField->Cvf = pSPBMOptionParameterField_Cvf;
+		pSPBMOptionParameterField->DownPrice = pSPBMOptionParameterField_DownPrice;
+		pSPBMOptionParameterField->Delta = pSPBMOptionParameterField_Delta;
+		pSPBMOptionParameterField->SlimiDelta = pSPBMOptionParameterField_SlimiDelta;
+		pSPBMOptionParameterField->PreSettlementPrice = pSPBMOptionParameterField_PreSettlementPrice;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameterField)
+{
+	if(pSPBMOptionParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:i,s:d,s:d,s:d,s:d}"
+		, "TradingDay", pSPBMOptionParameterField->TradingDay
+		, "ExchangeID", pSPBMOptionParameterField->ExchangeID
+		, "InstrumentID", pSPBMOptionParameterField->InstrumentID
+		, "ProdFamilyCode", pSPBMOptionParameterField->ProdFamilyCode
+		, "Cvf", pSPBMOptionParameterField->Cvf
+		, "DownPrice", pSPBMOptionParameterField->DownPrice
+		, "Delta", pSPBMOptionParameterField->Delta
+		, "SlimiDelta", pSPBMOptionParameterField->SlimiDelta
+		, "PreSettlementPrice", pSPBMOptionParameterField->PreSettlementPrice
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "ExchangeID", "ProdFamilyCode", "IntraRateY", nullptr};
+	char *pSPBMIntraParameterField_TradingDay = nullptr;
+	char *pSPBMIntraParameterField_ExchangeID = nullptr;
+	char *pSPBMIntraParameterField_ProdFamilyCode = nullptr;
+	double pSPBMIntraParameterField_IntraRateY = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSPBMIntraParameterField, "|yyyd")
+		, &pSPBMIntraParameterField_TradingDay
+		, &pSPBMIntraParameterField_ExchangeID
+		, &pSPBMIntraParameterField_ProdFamilyCode
+		, &pSPBMIntraParameterField_IntraRateY
+	PyCTP_PyDict_FromStruct_END
+		if(pSPBMIntraParameterField_TradingDay != nullptr){ strcpy_s(pSPBMIntraParameterField->TradingDay, pSPBMIntraParameterField_TradingDay); pSPBMIntraParameterField_TradingDay = nullptr; }
+		if(pSPBMIntraParameterField_ExchangeID != nullptr){ strcpy_s(pSPBMIntraParameterField->ExchangeID, pSPBMIntraParameterField_ExchangeID); pSPBMIntraParameterField_ExchangeID = nullptr; }
+		if(pSPBMIntraParameterField_ProdFamilyCode != nullptr){ strcpy_s(pSPBMIntraParameterField->ProdFamilyCode, pSPBMIntraParameterField_ProdFamilyCode); pSPBMIntraParameterField_ProdFamilyCode = nullptr; }
+		pSPBMIntraParameterField->IntraRateY = pSPBMIntraParameterField_IntraRateY;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameterField)
+{
+	if(pSPBMIntraParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:d}"
+		, "TradingDay", pSPBMIntraParameterField->TradingDay
+		, "ExchangeID", pSPBMIntraParameterField->ExchangeID
+		, "ProdFamilyCode", pSPBMIntraParameterField->ProdFamilyCode
+		, "IntraRateY", pSPBMIntraParameterField->IntraRateY
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSPBMInterParameterField *pSPBMInterParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", "ExchangeID", "SpreadId", "InterRateZ", "Leg1ProdFamilyCode", "Leg2ProdFamilyCode", nullptr};
+	char *pSPBMInterParameterField_TradingDay = nullptr;
+	char *pSPBMInterParameterField_ExchangeID = nullptr;
+	int pSPBMInterParameterField_SpreadId = 0;
+	double pSPBMInterParameterField_InterRateZ = 0.0;
+	char *pSPBMInterParameterField_Leg1ProdFamilyCode = nullptr;
+	char *pSPBMInterParameterField_Leg2ProdFamilyCode = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pSPBMInterParameterField, "|yyidyy")
+		, &pSPBMInterParameterField_TradingDay
+		, &pSPBMInterParameterField_ExchangeID
+		, &pSPBMInterParameterField_SpreadId
+		, &pSPBMInterParameterField_InterRateZ
+		, &pSPBMInterParameterField_Leg1ProdFamilyCode
+		, &pSPBMInterParameterField_Leg2ProdFamilyCode
+	PyCTP_PyDict_FromStruct_END
+		if(pSPBMInterParameterField_TradingDay != nullptr){ strcpy_s(pSPBMInterParameterField->TradingDay, pSPBMInterParameterField_TradingDay); pSPBMInterParameterField_TradingDay = nullptr; }
+		if(pSPBMInterParameterField_ExchangeID != nullptr){ strcpy_s(pSPBMInterParameterField->ExchangeID, pSPBMInterParameterField_ExchangeID); pSPBMInterParameterField_ExchangeID = nullptr; }
+		pSPBMInterParameterField->SpreadId = pSPBMInterParameterField_SpreadId;
+		pSPBMInterParameterField->InterRateZ = pSPBMInterParameterField_InterRateZ;
+		if(pSPBMInterParameterField_Leg1ProdFamilyCode != nullptr){ strcpy_s(pSPBMInterParameterField->Leg1ProdFamilyCode, pSPBMInterParameterField_Leg1ProdFamilyCode); pSPBMInterParameterField_Leg1ProdFamilyCode = nullptr; }
+		if(pSPBMInterParameterField_Leg2ProdFamilyCode != nullptr){ strcpy_s(pSPBMInterParameterField->Leg2ProdFamilyCode, pSPBMInterParameterField_Leg2ProdFamilyCode); pSPBMInterParameterField_Leg2ProdFamilyCode = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMInterParameterField *pSPBMInterParameterField)
+{
+	if(pSPBMInterParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:i,s:d,s:y,s:y}"
+		, "TradingDay", pSPBMInterParameterField->TradingDay
+		, "ExchangeID", pSPBMInterParameterField->ExchangeID
+		, "SpreadId", pSPBMInterParameterField->SpreadId
+		, "InterRateZ", pSPBMInterParameterField->InterRateZ
+		, "Leg1ProdFamilyCode", pSPBMInterParameterField->Leg1ProdFamilyCode
+		, "Leg2ProdFamilyCode", pSPBMInterParameterField->Leg2ProdFamilyCode
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSyncSPBMParameterEndField *pSyncSPBMParameterEndField, PyObject *dict)
+{
+	static char *kwlist[] = {"TradingDay", nullptr};
+	char *pSyncSPBMParameterEndField_TradingDay = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pSyncSPBMParameterEndField, "|y")
+		, &pSyncSPBMParameterEndField_TradingDay
+	PyCTP_PyDict_FromStruct_END
+		if(pSyncSPBMParameterEndField_TradingDay != nullptr){ strcpy_s(pSyncSPBMParameterEndField->TradingDay, pSyncSPBMParameterEndField_TradingDay); pSyncSPBMParameterEndField_TradingDay = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncSPBMParameterEndField *pSyncSPBMParameterEndField)
+{
+	if(pSyncSPBMParameterEndField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y}"
+		, "TradingDay", pSyncSPBMParameterEndField->TradingDay
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMFutureParameterField *pQrySPBMFutureParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "InstrumentID", "ProdFamilyCode", nullptr};
+	char *pQrySPBMFutureParameterField_ExchangeID = nullptr;
+	char *pQrySPBMFutureParameterField_InstrumentID = nullptr;
+	char *pQrySPBMFutureParameterField_ProdFamilyCode = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQrySPBMFutureParameterField, "|yyy")
+		, &pQrySPBMFutureParameterField_ExchangeID
+		, &pQrySPBMFutureParameterField_InstrumentID
+		, &pQrySPBMFutureParameterField_ProdFamilyCode
+	PyCTP_PyDict_FromStruct_END
+		if(pQrySPBMFutureParameterField_ExchangeID != nullptr){ strcpy_s(pQrySPBMFutureParameterField->ExchangeID, pQrySPBMFutureParameterField_ExchangeID); pQrySPBMFutureParameterField_ExchangeID = nullptr; }
+		if(pQrySPBMFutureParameterField_InstrumentID != nullptr){ strcpy_s(pQrySPBMFutureParameterField->InstrumentID, pQrySPBMFutureParameterField_InstrumentID); pQrySPBMFutureParameterField_InstrumentID = nullptr; }
+		if(pQrySPBMFutureParameterField_ProdFamilyCode != nullptr){ strcpy_s(pQrySPBMFutureParameterField->ProdFamilyCode, pQrySPBMFutureParameterField_ProdFamilyCode); pQrySPBMFutureParameterField_ProdFamilyCode = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMFutureParameterField *pQrySPBMFutureParameterField)
+{
+	if(pQrySPBMFutureParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "ExchangeID", pQrySPBMFutureParameterField->ExchangeID
+		, "InstrumentID", pQrySPBMFutureParameterField->InstrumentID
+		, "ProdFamilyCode", pQrySPBMFutureParameterField->ProdFamilyCode
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMOptionParameterField *pQrySPBMOptionParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "InstrumentID", "ProdFamilyCode", nullptr};
+	char *pQrySPBMOptionParameterField_ExchangeID = nullptr;
+	char *pQrySPBMOptionParameterField_InstrumentID = nullptr;
+	char *pQrySPBMOptionParameterField_ProdFamilyCode = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQrySPBMOptionParameterField, "|yyy")
+		, &pQrySPBMOptionParameterField_ExchangeID
+		, &pQrySPBMOptionParameterField_InstrumentID
+		, &pQrySPBMOptionParameterField_ProdFamilyCode
+	PyCTP_PyDict_FromStruct_END
+		if(pQrySPBMOptionParameterField_ExchangeID != nullptr){ strcpy_s(pQrySPBMOptionParameterField->ExchangeID, pQrySPBMOptionParameterField_ExchangeID); pQrySPBMOptionParameterField_ExchangeID = nullptr; }
+		if(pQrySPBMOptionParameterField_InstrumentID != nullptr){ strcpy_s(pQrySPBMOptionParameterField->InstrumentID, pQrySPBMOptionParameterField_InstrumentID); pQrySPBMOptionParameterField_InstrumentID = nullptr; }
+		if(pQrySPBMOptionParameterField_ProdFamilyCode != nullptr){ strcpy_s(pQrySPBMOptionParameterField->ProdFamilyCode, pQrySPBMOptionParameterField_ProdFamilyCode); pQrySPBMOptionParameterField_ProdFamilyCode = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMOptionParameterField *pQrySPBMOptionParameterField)
+{
+	if(pQrySPBMOptionParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "ExchangeID", pQrySPBMOptionParameterField->ExchangeID
+		, "InstrumentID", pQrySPBMOptionParameterField->InstrumentID
+		, "ProdFamilyCode", pQrySPBMOptionParameterField->ProdFamilyCode
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMIntraParameterField *pQrySPBMIntraParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "ProdFamilyCode", nullptr};
+	char *pQrySPBMIntraParameterField_ExchangeID = nullptr;
+	char *pQrySPBMIntraParameterField_ProdFamilyCode = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQrySPBMIntraParameterField, "|yy")
+		, &pQrySPBMIntraParameterField_ExchangeID
+		, &pQrySPBMIntraParameterField_ProdFamilyCode
+	PyCTP_PyDict_FromStruct_END
+		if(pQrySPBMIntraParameterField_ExchangeID != nullptr){ strcpy_s(pQrySPBMIntraParameterField->ExchangeID, pQrySPBMIntraParameterField_ExchangeID); pQrySPBMIntraParameterField_ExchangeID = nullptr; }
+		if(pQrySPBMIntraParameterField_ProdFamilyCode != nullptr){ strcpy_s(pQrySPBMIntraParameterField->ProdFamilyCode, pQrySPBMIntraParameterField_ProdFamilyCode); pQrySPBMIntraParameterField_ProdFamilyCode = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMIntraParameterField *pQrySPBMIntraParameterField)
+{
+	if(pQrySPBMIntraParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y}"
+		, "ExchangeID", pQrySPBMIntraParameterField->ExchangeID
+		, "ProdFamilyCode", pQrySPBMIntraParameterField->ProdFamilyCode
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMInterParameterField *pQrySPBMInterParameterField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "Leg1ProdFamilyCode", "Leg2ProdFamilyCode", nullptr};
+	char *pQrySPBMInterParameterField_ExchangeID = nullptr;
+	char *pQrySPBMInterParameterField_Leg1ProdFamilyCode = nullptr;
+	char *pQrySPBMInterParameterField_Leg2ProdFamilyCode = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQrySPBMInterParameterField, "|yyy")
+		, &pQrySPBMInterParameterField_ExchangeID
+		, &pQrySPBMInterParameterField_Leg1ProdFamilyCode
+		, &pQrySPBMInterParameterField_Leg2ProdFamilyCode
+	PyCTP_PyDict_FromStruct_END
+		if(pQrySPBMInterParameterField_ExchangeID != nullptr){ strcpy_s(pQrySPBMInterParameterField->ExchangeID, pQrySPBMInterParameterField_ExchangeID); pQrySPBMInterParameterField_ExchangeID = nullptr; }
+		if(pQrySPBMInterParameterField_Leg1ProdFamilyCode != nullptr){ strcpy_s(pQrySPBMInterParameterField->Leg1ProdFamilyCode, pQrySPBMInterParameterField_Leg1ProdFamilyCode); pQrySPBMInterParameterField_Leg1ProdFamilyCode = nullptr; }
+		if(pQrySPBMInterParameterField_Leg2ProdFamilyCode != nullptr){ strcpy_s(pQrySPBMInterParameterField->Leg2ProdFamilyCode, pQrySPBMInterParameterField_Leg2ProdFamilyCode); pQrySPBMInterParameterField_Leg2ProdFamilyCode = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMInterParameterField *pQrySPBMInterParameterField)
+{
+	if(pQrySPBMInterParameterField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "ExchangeID", pQrySPBMInterParameterField->ExchangeID
+		, "Leg1ProdFamilyCode", pQrySPBMInterParameterField->Leg1ProdFamilyCode
+		, "Leg2ProdFamilyCode", pQrySPBMInterParameterField->Leg2ProdFamilyCode
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinitionField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "PortfolioDefID", "ProdFamilyCode", "IsSPBM", nullptr};
+	char *pSPBMPortfDefinitionField_ExchangeID = nullptr;
+	int pSPBMPortfDefinitionField_PortfolioDefID = 0;
+	char *pSPBMPortfDefinitionField_ProdFamilyCode = nullptr;
+	int pSPBMPortfDefinitionField_IsSPBM = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSPBMPortfDefinitionField, "|yiyi")
+		, &pSPBMPortfDefinitionField_ExchangeID
+		, &pSPBMPortfDefinitionField_PortfolioDefID
+		, &pSPBMPortfDefinitionField_ProdFamilyCode
+		, &pSPBMPortfDefinitionField_IsSPBM
+	PyCTP_PyDict_FromStruct_END
+		if(pSPBMPortfDefinitionField_ExchangeID != nullptr){ strcpy_s(pSPBMPortfDefinitionField->ExchangeID, pSPBMPortfDefinitionField_ExchangeID); pSPBMPortfDefinitionField_ExchangeID = nullptr; }
+		pSPBMPortfDefinitionField->PortfolioDefID = pSPBMPortfDefinitionField_PortfolioDefID;
+		if(pSPBMPortfDefinitionField_ProdFamilyCode != nullptr){ strcpy_s(pSPBMPortfDefinitionField->ProdFamilyCode, pSPBMPortfDefinitionField_ProdFamilyCode); pSPBMPortfDefinitionField_ProdFamilyCode = nullptr; }
+		pSPBMPortfDefinitionField->IsSPBM = pSPBMPortfDefinitionField_IsSPBM;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinitionField)
+{
+	if(pSPBMPortfDefinitionField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:i,s:y,s:i}"
+		, "ExchangeID", pSPBMPortfDefinitionField->ExchangeID
+		, "PortfolioDefID", pSPBMPortfDefinitionField->PortfolioDefID
+		, "ProdFamilyCode", pSPBMPortfDefinitionField->ProdFamilyCode
+		, "IsSPBM", pSPBMPortfDefinitionField->IsSPBM
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDefField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "BrokerID", "InvestorID", "PortfolioDefID", nullptr};
+	char *pSPBMInvestorPortfDefField_ExchangeID = nullptr;
+	char *pSPBMInvestorPortfDefField_BrokerID = nullptr;
+	char *pSPBMInvestorPortfDefField_InvestorID = nullptr;
+	int pSPBMInvestorPortfDefField_PortfolioDefID = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pSPBMInvestorPortfDefField, "|yyyi")
+		, &pSPBMInvestorPortfDefField_ExchangeID
+		, &pSPBMInvestorPortfDefField_BrokerID
+		, &pSPBMInvestorPortfDefField_InvestorID
+		, &pSPBMInvestorPortfDefField_PortfolioDefID
+	PyCTP_PyDict_FromStruct_END
+		if(pSPBMInvestorPortfDefField_ExchangeID != nullptr){ strcpy_s(pSPBMInvestorPortfDefField->ExchangeID, pSPBMInvestorPortfDefField_ExchangeID); pSPBMInvestorPortfDefField_ExchangeID = nullptr; }
+		if(pSPBMInvestorPortfDefField_BrokerID != nullptr){ strcpy_s(pSPBMInvestorPortfDefField->BrokerID, pSPBMInvestorPortfDefField_BrokerID); pSPBMInvestorPortfDefField_BrokerID = nullptr; }
+		if(pSPBMInvestorPortfDefField_InvestorID != nullptr){ strcpy_s(pSPBMInvestorPortfDefField->InvestorID, pSPBMInvestorPortfDefField_InvestorID); pSPBMInvestorPortfDefField_InvestorID = nullptr; }
+		pSPBMInvestorPortfDefField->PortfolioDefID = pSPBMInvestorPortfDefField_PortfolioDefID;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDefField)
+{
+	if(pSPBMInvestorPortfDefField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:i}"
+		, "ExchangeID", pSPBMInvestorPortfDefField->ExchangeID
+		, "BrokerID", pSPBMInvestorPortfDefField->BrokerID
+		, "InvestorID", pSPBMInvestorPortfDefField->InvestorID
+		, "PortfolioDefID", pSPBMInvestorPortfDefField->PortfolioDefID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatioField, PyObject *dict)
+{
+	static char *kwlist[] = {"InvestorRange", "BrokerID", "InvestorID", "ExchangeID", "MarginRatio", nullptr};
+	char pInvestorPortfMarginRatioField_InvestorRange = 0;
+	char *pInvestorPortfMarginRatioField_BrokerID = nullptr;
+	char *pInvestorPortfMarginRatioField_InvestorID = nullptr;
+	char *pInvestorPortfMarginRatioField_ExchangeID = nullptr;
+	double pInvestorPortfMarginRatioField_MarginRatio = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pInvestorPortfMarginRatioField, "|cyyyd")
+		, &pInvestorPortfMarginRatioField_InvestorRange
+		, &pInvestorPortfMarginRatioField_BrokerID
+		, &pInvestorPortfMarginRatioField_InvestorID
+		, &pInvestorPortfMarginRatioField_ExchangeID
+		, &pInvestorPortfMarginRatioField_MarginRatio
+	PyCTP_PyDict_FromStruct_END
+		pInvestorPortfMarginRatioField->InvestorRange = pInvestorPortfMarginRatioField_InvestorRange;
+		if(pInvestorPortfMarginRatioField_BrokerID != nullptr){ strcpy_s(pInvestorPortfMarginRatioField->BrokerID, pInvestorPortfMarginRatioField_BrokerID); pInvestorPortfMarginRatioField_BrokerID = nullptr; }
+		if(pInvestorPortfMarginRatioField_InvestorID != nullptr){ strcpy_s(pInvestorPortfMarginRatioField->InvestorID, pInvestorPortfMarginRatioField_InvestorID); pInvestorPortfMarginRatioField_InvestorID = nullptr; }
+		if(pInvestorPortfMarginRatioField_ExchangeID != nullptr){ strcpy_s(pInvestorPortfMarginRatioField->ExchangeID, pInvestorPortfMarginRatioField_ExchangeID); pInvestorPortfMarginRatioField_ExchangeID = nullptr; }
+		pInvestorPortfMarginRatioField->MarginRatio = pInvestorPortfMarginRatioField_MarginRatio;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatioField)
+{
+	if(pInvestorPortfMarginRatioField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:c,s:y,s:y,s:y,s:d}"
+		, "InvestorRange", pInvestorPortfMarginRatioField->InvestorRange
+		, "BrokerID", pInvestorPortfMarginRatioField->BrokerID
+		, "InvestorID", pInvestorPortfMarginRatioField->InvestorID
+		, "ExchangeID", pInvestorPortfMarginRatioField->ExchangeID
+		, "MarginRatio", pInvestorPortfMarginRatioField->MarginRatio
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMPortfDefinitionField *pQrySPBMPortfDefinitionField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "PortfolioDefID", "ProdFamilyCode", nullptr};
+	char *pQrySPBMPortfDefinitionField_ExchangeID = nullptr;
+	int pQrySPBMPortfDefinitionField_PortfolioDefID = 0;
+	char *pQrySPBMPortfDefinitionField_ProdFamilyCode = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQrySPBMPortfDefinitionField, "|yiy")
+		, &pQrySPBMPortfDefinitionField_ExchangeID
+		, &pQrySPBMPortfDefinitionField_PortfolioDefID
+		, &pQrySPBMPortfDefinitionField_ProdFamilyCode
+	PyCTP_PyDict_FromStruct_END
+		if(pQrySPBMPortfDefinitionField_ExchangeID != nullptr){ strcpy_s(pQrySPBMPortfDefinitionField->ExchangeID, pQrySPBMPortfDefinitionField_ExchangeID); pQrySPBMPortfDefinitionField_ExchangeID = nullptr; }
+		pQrySPBMPortfDefinitionField->PortfolioDefID = pQrySPBMPortfDefinitionField_PortfolioDefID;
+		if(pQrySPBMPortfDefinitionField_ProdFamilyCode != nullptr){ strcpy_s(pQrySPBMPortfDefinitionField->ProdFamilyCode, pQrySPBMPortfDefinitionField_ProdFamilyCode); pQrySPBMPortfDefinitionField_ProdFamilyCode = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMPortfDefinitionField *pQrySPBMPortfDefinitionField)
+{
+	if(pQrySPBMPortfDefinitionField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:i,s:y}"
+		, "ExchangeID", pQrySPBMPortfDefinitionField->ExchangeID
+		, "PortfolioDefID", pQrySPBMPortfDefinitionField->PortfolioDefID
+		, "ProdFamilyCode", pQrySPBMPortfDefinitionField->ProdFamilyCode
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMInvestorPortfDefField *pQrySPBMInvestorPortfDefField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "BrokerID", "InvestorID", nullptr};
+	char *pQrySPBMInvestorPortfDefField_ExchangeID = nullptr;
+	char *pQrySPBMInvestorPortfDefField_BrokerID = nullptr;
+	char *pQrySPBMInvestorPortfDefField_InvestorID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQrySPBMInvestorPortfDefField, "|yyy")
+		, &pQrySPBMInvestorPortfDefField_ExchangeID
+		, &pQrySPBMInvestorPortfDefField_BrokerID
+		, &pQrySPBMInvestorPortfDefField_InvestorID
+	PyCTP_PyDict_FromStruct_END
+		if(pQrySPBMInvestorPortfDefField_ExchangeID != nullptr){ strcpy_s(pQrySPBMInvestorPortfDefField->ExchangeID, pQrySPBMInvestorPortfDefField_ExchangeID); pQrySPBMInvestorPortfDefField_ExchangeID = nullptr; }
+		if(pQrySPBMInvestorPortfDefField_BrokerID != nullptr){ strcpy_s(pQrySPBMInvestorPortfDefField->BrokerID, pQrySPBMInvestorPortfDefField_BrokerID); pQrySPBMInvestorPortfDefField_BrokerID = nullptr; }
+		if(pQrySPBMInvestorPortfDefField_InvestorID != nullptr){ strcpy_s(pQrySPBMInvestorPortfDefField->InvestorID, pQrySPBMInvestorPortfDefField_InvestorID); pQrySPBMInvestorPortfDefField_InvestorID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMInvestorPortfDefField *pQrySPBMInvestorPortfDefField)
+{
+	if(pQrySPBMInvestorPortfDefField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "ExchangeID", pQrySPBMInvestorPortfDefField->ExchangeID
+		, "BrokerID", pQrySPBMInvestorPortfDefField->BrokerID
+		, "InvestorID", pQrySPBMInvestorPortfDefField->InvestorID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPortfMarginRatioField *pQryInvestorPortfMarginRatioField, PyObject *dict)
+{
+	static char *kwlist[] = {"BrokerID", "InvestorID", "ExchangeID", nullptr};
+	char *pQryInvestorPortfMarginRatioField_BrokerID = nullptr;
+	char *pQryInvestorPortfMarginRatioField_InvestorID = nullptr;
+	char *pQryInvestorPortfMarginRatioField_ExchangeID = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorPortfMarginRatioField, "|yyy")
+		, &pQryInvestorPortfMarginRatioField_BrokerID
+		, &pQryInvestorPortfMarginRatioField_InvestorID
+		, &pQryInvestorPortfMarginRatioField_ExchangeID
+	PyCTP_PyDict_FromStruct_END
+		if(pQryInvestorPortfMarginRatioField_BrokerID != nullptr){ strcpy_s(pQryInvestorPortfMarginRatioField->BrokerID, pQryInvestorPortfMarginRatioField_BrokerID); pQryInvestorPortfMarginRatioField_BrokerID = nullptr; }
+		if(pQryInvestorPortfMarginRatioField_InvestorID != nullptr){ strcpy_s(pQryInvestorPortfMarginRatioField->InvestorID, pQryInvestorPortfMarginRatioField_InvestorID); pQryInvestorPortfMarginRatioField_InvestorID = nullptr; }
+		if(pQryInvestorPortfMarginRatioField_ExchangeID != nullptr){ strcpy_s(pQryInvestorPortfMarginRatioField->ExchangeID, pQryInvestorPortfMarginRatioField_ExchangeID); pQryInvestorPortfMarginRatioField_ExchangeID = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPortfMarginRatioField *pQryInvestorPortfMarginRatioField)
+{
+	if(pQryInvestorPortfMarginRatioField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y}"
+		, "BrokerID", pQryInvestorPortfMarginRatioField->BrokerID
+		, "InvestorID", pQryInvestorPortfMarginRatioField->InvestorID
+		, "ExchangeID", pQryInvestorPortfMarginRatioField->ExchangeID
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetailField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "BrokerID", "InvestorID", "ProdFamilyCode", "IntraInstrMargin", "BCollectingMargin", "SCollectingMargin", "IntraProdMargin", "NetMargin", "InterProdMargin", "SingleMargin", "AddOnMargin", "DeliveryMargin", "CallOptionMinRisk", "PutOptionMinRisk", "OptionMinRisk", "OptionValueOffset", "OptionRoyalty", "RealOptionValueOffset", "Margin", "ExchMargin", nullptr};
+	char *pInvestorProdSPBMDetailField_ExchangeID = nullptr;
+	char *pInvestorProdSPBMDetailField_BrokerID = nullptr;
+	char *pInvestorProdSPBMDetailField_InvestorID = nullptr;
+	char *pInvestorProdSPBMDetailField_ProdFamilyCode = nullptr;
+	double pInvestorProdSPBMDetailField_IntraInstrMargin = 0.0;
+	double pInvestorProdSPBMDetailField_BCollectingMargin = 0.0;
+	double pInvestorProdSPBMDetailField_SCollectingMargin = 0.0;
+	double pInvestorProdSPBMDetailField_IntraProdMargin = 0.0;
+	double pInvestorProdSPBMDetailField_NetMargin = 0.0;
+	double pInvestorProdSPBMDetailField_InterProdMargin = 0.0;
+	double pInvestorProdSPBMDetailField_SingleMargin = 0.0;
+	double pInvestorProdSPBMDetailField_AddOnMargin = 0.0;
+	double pInvestorProdSPBMDetailField_DeliveryMargin = 0.0;
+	double pInvestorProdSPBMDetailField_CallOptionMinRisk = 0.0;
+	double pInvestorProdSPBMDetailField_PutOptionMinRisk = 0.0;
+	double pInvestorProdSPBMDetailField_OptionMinRisk = 0.0;
+	double pInvestorProdSPBMDetailField_OptionValueOffset = 0.0;
+	double pInvestorProdSPBMDetailField_OptionRoyalty = 0.0;
+	double pInvestorProdSPBMDetailField_RealOptionValueOffset = 0.0;
+	double pInvestorProdSPBMDetailField_Margin = 0.0;
+	double pInvestorProdSPBMDetailField_ExchMargin = 0.0;
+	PyCTP_PyDict_FromStruct_BEGIN(pInvestorProdSPBMDetailField, "|yyyyddddddddddddddddd")
+		, &pInvestorProdSPBMDetailField_ExchangeID
+		, &pInvestorProdSPBMDetailField_BrokerID
+		, &pInvestorProdSPBMDetailField_InvestorID
+		, &pInvestorProdSPBMDetailField_ProdFamilyCode
+		, &pInvestorProdSPBMDetailField_IntraInstrMargin
+		, &pInvestorProdSPBMDetailField_BCollectingMargin
+		, &pInvestorProdSPBMDetailField_SCollectingMargin
+		, &pInvestorProdSPBMDetailField_IntraProdMargin
+		, &pInvestorProdSPBMDetailField_NetMargin
+		, &pInvestorProdSPBMDetailField_InterProdMargin
+		, &pInvestorProdSPBMDetailField_SingleMargin
+		, &pInvestorProdSPBMDetailField_AddOnMargin
+		, &pInvestorProdSPBMDetailField_DeliveryMargin
+		, &pInvestorProdSPBMDetailField_CallOptionMinRisk
+		, &pInvestorProdSPBMDetailField_PutOptionMinRisk
+		, &pInvestorProdSPBMDetailField_OptionMinRisk
+		, &pInvestorProdSPBMDetailField_OptionValueOffset
+		, &pInvestorProdSPBMDetailField_OptionRoyalty
+		, &pInvestorProdSPBMDetailField_RealOptionValueOffset
+		, &pInvestorProdSPBMDetailField_Margin
+		, &pInvestorProdSPBMDetailField_ExchMargin
+	PyCTP_PyDict_FromStruct_END
+		if(pInvestorProdSPBMDetailField_ExchangeID != nullptr){ strcpy_s(pInvestorProdSPBMDetailField->ExchangeID, pInvestorProdSPBMDetailField_ExchangeID); pInvestorProdSPBMDetailField_ExchangeID = nullptr; }
+		if(pInvestorProdSPBMDetailField_BrokerID != nullptr){ strcpy_s(pInvestorProdSPBMDetailField->BrokerID, pInvestorProdSPBMDetailField_BrokerID); pInvestorProdSPBMDetailField_BrokerID = nullptr; }
+		if(pInvestorProdSPBMDetailField_InvestorID != nullptr){ strcpy_s(pInvestorProdSPBMDetailField->InvestorID, pInvestorProdSPBMDetailField_InvestorID); pInvestorProdSPBMDetailField_InvestorID = nullptr; }
+		if(pInvestorProdSPBMDetailField_ProdFamilyCode != nullptr){ strcpy_s(pInvestorProdSPBMDetailField->ProdFamilyCode, pInvestorProdSPBMDetailField_ProdFamilyCode); pInvestorProdSPBMDetailField_ProdFamilyCode = nullptr; }
+		pInvestorProdSPBMDetailField->IntraInstrMargin = pInvestorProdSPBMDetailField_IntraInstrMargin;
+		pInvestorProdSPBMDetailField->BCollectingMargin = pInvestorProdSPBMDetailField_BCollectingMargin;
+		pInvestorProdSPBMDetailField->SCollectingMargin = pInvestorProdSPBMDetailField_SCollectingMargin;
+		pInvestorProdSPBMDetailField->IntraProdMargin = pInvestorProdSPBMDetailField_IntraProdMargin;
+		pInvestorProdSPBMDetailField->NetMargin = pInvestorProdSPBMDetailField_NetMargin;
+		pInvestorProdSPBMDetailField->InterProdMargin = pInvestorProdSPBMDetailField_InterProdMargin;
+		pInvestorProdSPBMDetailField->SingleMargin = pInvestorProdSPBMDetailField_SingleMargin;
+		pInvestorProdSPBMDetailField->AddOnMargin = pInvestorProdSPBMDetailField_AddOnMargin;
+		pInvestorProdSPBMDetailField->DeliveryMargin = pInvestorProdSPBMDetailField_DeliveryMargin;
+		pInvestorProdSPBMDetailField->CallOptionMinRisk = pInvestorProdSPBMDetailField_CallOptionMinRisk;
+		pInvestorProdSPBMDetailField->PutOptionMinRisk = pInvestorProdSPBMDetailField_PutOptionMinRisk;
+		pInvestorProdSPBMDetailField->OptionMinRisk = pInvestorProdSPBMDetailField_OptionMinRisk;
+		pInvestorProdSPBMDetailField->OptionValueOffset = pInvestorProdSPBMDetailField_OptionValueOffset;
+		pInvestorProdSPBMDetailField->OptionRoyalty = pInvestorProdSPBMDetailField_OptionRoyalty;
+		pInvestorProdSPBMDetailField->RealOptionValueOffset = pInvestorProdSPBMDetailField_RealOptionValueOffset;
+		pInvestorProdSPBMDetailField->Margin = pInvestorProdSPBMDetailField_Margin;
+		pInvestorProdSPBMDetailField->ExchMargin = pInvestorProdSPBMDetailField_ExchMargin;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetailField)
+{
+	if(pInvestorProdSPBMDetailField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d}"
+		, "ExchangeID", pInvestorProdSPBMDetailField->ExchangeID
+		, "BrokerID", pInvestorProdSPBMDetailField->BrokerID
+		, "InvestorID", pInvestorProdSPBMDetailField->InvestorID
+		, "ProdFamilyCode", pInvestorProdSPBMDetailField->ProdFamilyCode
+		, "IntraInstrMargin", pInvestorProdSPBMDetailField->IntraInstrMargin
+		, "BCollectingMargin", pInvestorProdSPBMDetailField->BCollectingMargin
+		, "SCollectingMargin", pInvestorProdSPBMDetailField->SCollectingMargin
+		, "IntraProdMargin", pInvestorProdSPBMDetailField->IntraProdMargin
+		, "NetMargin", pInvestorProdSPBMDetailField->NetMargin
+		, "InterProdMargin", pInvestorProdSPBMDetailField->InterProdMargin
+		, "SingleMargin", pInvestorProdSPBMDetailField->SingleMargin
+		, "AddOnMargin", pInvestorProdSPBMDetailField->AddOnMargin
+		, "DeliveryMargin", pInvestorProdSPBMDetailField->DeliveryMargin
+		, "CallOptionMinRisk", pInvestorProdSPBMDetailField->CallOptionMinRisk
+		, "PutOptionMinRisk", pInvestorProdSPBMDetailField->PutOptionMinRisk
+		, "OptionMinRisk", pInvestorProdSPBMDetailField->OptionMinRisk
+		, "OptionValueOffset", pInvestorProdSPBMDetailField->OptionValueOffset
+		, "OptionRoyalty", pInvestorProdSPBMDetailField->OptionRoyalty
+		, "RealOptionValueOffset", pInvestorProdSPBMDetailField->RealOptionValueOffset
+		, "Margin", pInvestorProdSPBMDetailField->Margin
+		, "ExchMargin", pInvestorProdSPBMDetailField->ExchMargin
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorProdSPBMDetailField *pQryInvestorProdSPBMDetailField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "BrokerID", "InvestorID", "ProdFamilyCode", nullptr};
+	char *pQryInvestorProdSPBMDetailField_ExchangeID = nullptr;
+	char *pQryInvestorProdSPBMDetailField_BrokerID = nullptr;
+	char *pQryInvestorProdSPBMDetailField_InvestorID = nullptr;
+	char *pQryInvestorProdSPBMDetailField_ProdFamilyCode = nullptr;
+	PyCTP_PyDict_FromStruct_BEGIN(pQryInvestorProdSPBMDetailField, "|yyyy")
+		, &pQryInvestorProdSPBMDetailField_ExchangeID
+		, &pQryInvestorProdSPBMDetailField_BrokerID
+		, &pQryInvestorProdSPBMDetailField_InvestorID
+		, &pQryInvestorProdSPBMDetailField_ProdFamilyCode
+	PyCTP_PyDict_FromStruct_END
+		if(pQryInvestorProdSPBMDetailField_ExchangeID != nullptr){ strcpy_s(pQryInvestorProdSPBMDetailField->ExchangeID, pQryInvestorProdSPBMDetailField_ExchangeID); pQryInvestorProdSPBMDetailField_ExchangeID = nullptr; }
+		if(pQryInvestorProdSPBMDetailField_BrokerID != nullptr){ strcpy_s(pQryInvestorProdSPBMDetailField->BrokerID, pQryInvestorProdSPBMDetailField_BrokerID); pQryInvestorProdSPBMDetailField_BrokerID = nullptr; }
+		if(pQryInvestorProdSPBMDetailField_InvestorID != nullptr){ strcpy_s(pQryInvestorProdSPBMDetailField->InvestorID, pQryInvestorProdSPBMDetailField_InvestorID); pQryInvestorProdSPBMDetailField_InvestorID = nullptr; }
+		if(pQryInvestorProdSPBMDetailField_ProdFamilyCode != nullptr){ strcpy_s(pQryInvestorProdSPBMDetailField->ProdFamilyCode, pQryInvestorProdSPBMDetailField_ProdFamilyCode); pQryInvestorProdSPBMDetailField_ProdFamilyCode = nullptr; }
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorProdSPBMDetailField *pQryInvestorProdSPBMDetailField)
+{
+	if(pQryInvestorProdSPBMDetailField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:y}"
+		, "ExchangeID", pQryInvestorProdSPBMDetailField->ExchangeID
+		, "BrokerID", pQryInvestorProdSPBMDetailField->BrokerID
+		, "InvestorID", pQryInvestorProdSPBMDetailField->InvestorID
+		, "ProdFamilyCode", pQryInvestorProdSPBMDetailField->ProdFamilyCode
+		);
+}
+
+int PyCTP_Struct_FromPyDict(CThostFtdcPortfTradeParamSettingField *pPortfTradeParamSettingField, PyObject *dict)
+{
+	static char *kwlist[] = {"ExchangeID", "BrokerID", "InvestorID", "Portfolio", "IsActionVerify", "IsCloseVerify", nullptr};
+	char *pPortfTradeParamSettingField_ExchangeID = nullptr;
+	char *pPortfTradeParamSettingField_BrokerID = nullptr;
+	char *pPortfTradeParamSettingField_InvestorID = nullptr;
+	char pPortfTradeParamSettingField_Portfolio = 0;
+	int pPortfTradeParamSettingField_IsActionVerify = 0;
+	int pPortfTradeParamSettingField_IsCloseVerify = 0;
+	PyCTP_PyDict_FromStruct_BEGIN(pPortfTradeParamSettingField, "|yyycii")
+		, &pPortfTradeParamSettingField_ExchangeID
+		, &pPortfTradeParamSettingField_BrokerID
+		, &pPortfTradeParamSettingField_InvestorID
+		, &pPortfTradeParamSettingField_Portfolio
+		, &pPortfTradeParamSettingField_IsActionVerify
+		, &pPortfTradeParamSettingField_IsCloseVerify
+	PyCTP_PyDict_FromStruct_END
+		if(pPortfTradeParamSettingField_ExchangeID != nullptr){ strcpy_s(pPortfTradeParamSettingField->ExchangeID, pPortfTradeParamSettingField_ExchangeID); pPortfTradeParamSettingField_ExchangeID = nullptr; }
+		if(pPortfTradeParamSettingField_BrokerID != nullptr){ strcpy_s(pPortfTradeParamSettingField->BrokerID, pPortfTradeParamSettingField_BrokerID); pPortfTradeParamSettingField_BrokerID = nullptr; }
+		if(pPortfTradeParamSettingField_InvestorID != nullptr){ strcpy_s(pPortfTradeParamSettingField->InvestorID, pPortfTradeParamSettingField_InvestorID); pPortfTradeParamSettingField_InvestorID = nullptr; }
+		pPortfTradeParamSettingField->Portfolio = pPortfTradeParamSettingField_Portfolio;
+		pPortfTradeParamSettingField->IsActionVerify = pPortfTradeParamSettingField_IsActionVerify;
+		pPortfTradeParamSettingField->IsCloseVerify = pPortfTradeParamSettingField_IsCloseVerify;
+	PyCTP_PyDict_FromStruct_RETURN
+}
+PyObject *PyCTP_PyDict_FromStruct(CThostFtdcPortfTradeParamSettingField *pPortfTradeParamSettingField)
+{
+	if(pPortfTradeParamSettingField == nullptr) Py_RETURN_NONE;
+	return Py_BuildValue("{s:y,s:y,s:y,s:c,s:i,s:i}"
+		, "ExchangeID", pPortfTradeParamSettingField->ExchangeID
+		, "BrokerID", pPortfTradeParamSettingField->BrokerID
+		, "InvestorID", pPortfTradeParamSettingField->InvestorID
+		, "Portfolio", pPortfTradeParamSettingField->Portfolio
+		, "IsActionVerify", pPortfTradeParamSettingField->IsActionVerify
+		, "IsCloseVerify", pPortfTradeParamSettingField->IsCloseVerify
 		);
 }
 

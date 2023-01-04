@@ -30,8 +30,16 @@ PyObject *METHOD_CTP_GetSystemInfo(PyObject *self, PyObject *args)
 		"Return", ret);
 }
 
+///版本号格式
+///Sfit + 生产还是测试秘钥(pro/tst) + 秘钥版本 + 编译时间 + 版本(内部)
+PyObject *METHOD_CTP_GetDataCollectApiVersion(PyObject *self, PyObject *args)
+{
+    return PyBytes_FromString(CTP_GetDataCollectApiVersion());
+}
+
 static PyMethodDef PyCTPMethods[] = {
 	{"CTP_GetSystemInfo",  METHOD_CTP_GetSystemInfo, METH_NOARGS, "获取AES加密和RSA加密的终端信息"},
+	{"CTP_GetDataCollectApiVersion",  METHOD_CTP_GetDataCollectApiVersion, METH_NOARGS, "版本号格式 Sfit + 生产还是测试秘钥(pro/tst) + 秘钥版本 + 编译时间 + 版本(内部)"},
 	{nullptr} /* Sentinel */
 };
 
@@ -51,7 +59,7 @@ PyMODINIT_FUNC
 	/* 此扩展多线程 */
 	PyEval_InitThreads();
 
-#if PY_MAJOR_VERSION >= 3 
+#if PY_MAJOR_VERSION >= 3
 	PyObject *m = PyModule_Create(&PyCTP_Module);
 #else
 	static PyMethodDef PyCTPMethods[] = {{NULL, NULL, 0, NULL}};
@@ -60,7 +68,7 @@ PyMODINIT_FUNC
 	if( m == nullptr )
 	{
 		PyErr_SetString(PyExc_RuntimeError, "failed to create module.");
-#if PY_MAJOR_VERSION >= 3 
+#if PY_MAJOR_VERSION >= 3
 		return nullptr;
 #else
 		return;
@@ -70,7 +78,7 @@ PyMODINIT_FUNC
 	/* 准备好对象使用 CThostFtdcMdApi  */
 	if (PyType_Ready(&CTP_THOST_FTDC_MD_API_TYPE) < 0){
 		PyErr_SetString(PyExc_RuntimeError, "can't initialize PyCTP.CThostFtdcMdApi");
-#if PY_MAJOR_VERSION >= 3 
+#if PY_MAJOR_VERSION >= 3
 		return nullptr;
 #else
 		return;
@@ -83,7 +91,7 @@ PyMODINIT_FUNC
 	/* 准备好对象使用 CThostFtdcTraderApi  */
 	if (PyType_Ready(&CTP_THOST_FTDC_TRADER_API_TYPE) < 0){
 		PyErr_SetString(PyExc_RuntimeError, "can't initialize PyCTP.CThostFtdcTraderApi");
-#if PY_MAJOR_VERSION >= 3 
+#if PY_MAJOR_VERSION >= 3
 		return nullptr;
 #else
 		return;
@@ -96,7 +104,7 @@ PyMODINIT_FUNC
 	//批量增加CTP预定义常量
 	PyModule_AddCTPConstant(m);
 
-#if PY_MAJOR_VERSION >= 3 
+#if PY_MAJOR_VERSION >= 3
 	return m;
 #endif
 };

@@ -1,12 +1,14 @@
+.vs/
 build/
 bin/
 obj/
+x32/
+x86/
+x64/
+test/test_PyCTP.sh
 PyCTP.depend
 PyCTP.layout
 PyCTP.cpb
 PyCTP.sln
 PyCTP.vcxproj
 PyCTP.vcxproj.user
-x32/
-x86/
-x64/

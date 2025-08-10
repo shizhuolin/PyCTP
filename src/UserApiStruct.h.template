@@ -1,8 +1,18 @@
-#ifndef PYCTP_USERAPISTRUCT_H
-#define PYCTP_USERAPISTRUCT_H
+#ifndef PYCTP_USERAPISTRUCT_PY${STRUCT_NAME}_H
+#define PYCTP_USERAPISTRUCT_PY${STRUCT_NAME}_H
 
+#include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-{{ body }}
+${comment}
+
+typedef struct Py${struct_name} {
+    PyObject_HEAD
+    ${struct_name} data;
+} Py${struct_name};
+
+extern PyTypeObject Py${struct_name}Type;
+
+extern int Py${struct_name}Type_init(PyObject *module);
 
 #endif

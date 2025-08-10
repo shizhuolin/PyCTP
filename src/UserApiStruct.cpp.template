@@ -1,25 +1,127 @@
-#include "stdafx.h"
-#include "UserApiStruct.h"
 
-//字符编码转换
-//数据类型转换(不包含数据结构转换)
-//char  <=> c
-//char* <=> y
-//int   <=> i
-//short <=> h
-//double<=> d
-//bool  => pybool => p => int(0/1)
-//char*中文=>PyCTP_PyCTP_PyUnicode_DecodeGB2312
-//struct <=> dict
+#include "Py${struct_name}.h"
 
-#define PyCTP_PyDict_FromStruct_BEGIN(_in_name, _in_format) \
-        PyObject *args = nullptr; PyObject *keywords = nullptr; PyObject *delptr = nullptr; \
-        if(dict == nullptr || _in_name == nullptr) return 0; \
-        if (PyDict_Check(dict)){ args = PyTuple_New(0); keywords = dict; delptr = args;} \
-        else if (PyTuple_Check(dict)){ args = dict; keywords = PyDict_New(); delptr = keywords;} \
-        else{return 0;} \
-        if (!PyArg_ParseTupleAndKeywords(args, keywords, _in_format, const_cast<char **>(kwlist)
-#define PyCTP_PyDict_FromStruct_END )){Py_DECREF(delptr); return 0;}
-#define PyCTP_PyDict_FromStruct_RETURN Py_DECREF(delptr); return 1;
+${struct_comment}
 
-{{ body }}
+static PyObject *Py${struct_name}_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
+    Py${struct_name} *self = (Py${struct_name} *)type->tp_alloc(type, 0);
+    if(!self) {
+        PyErr_NoMemory();
+        return NULL;
+    }
+	self->data = { 0 };
+    return (PyObject *)self;
+}
+
+static int Py${struct_name}_init(Py${struct_name} *self, PyObject *args, PyObject *kwds) {
+
+    static const char *kwlist[] = {${cpp_code_keywordslist} NULL};
+
+${cpp_code_declaration}
+
+#if PY_MAJOR_VERSION >= 3
+    if (!PyArg_ParseTupleAndKeywords(args, kwds, "|${cpp_code_keywordss}", (char **)kwlist
+#else
+    if (!PyArg_ParseTupleAndKeywords(args, kwds, "|${cpp_code_keywordss_py2}", (char **)kwlist
+#endif
+
+${cpp_code_refcode}
+
+    )) {
+        return -1;
+    }
+
+${cpp_code_setcode}
+
+    return 0;
+}
+
+static void Py${struct_name}_dealloc(Py${struct_name} *self) {
+    Py_TYPE(self)->tp_free((PyObject *)self);
+}
+
+static PyObject *Py${struct_name}_repr(Py${struct_name} *self) {
+
+#if PY_MAJOR_VERSION >= 3
+	PyObject *obj = Py_BuildValue("{${cpp_code_outformat}}"
+#else
+    PyObject *obj = Py_BuildValue("{${cpp_code_outformat_py2}}"
+#endif
+
+${cpp_code_outvarlist}
+
+		);
+
+    if (!obj) {
+        PyErr_SetString(PyExc_RuntimeError, "Failed to build ${struct_name} representation");
+        return NULL;
+    }
+
+    return PyObject_Repr(obj);
+}
+
+${cpp_code_methodbody}
+
+static PyGetSetDef Py${struct_name}_getset[] = {
+${cpp_code_getsetlist}
+    {NULL}
+};
+
+PyTypeObject Py${struct_name}Type = {
+	PyVarObject_HEAD_INIT(NULL, 0)  /* ob_base */
+	"${struct_name}",	/* tp_name */
+	sizeof(Py${struct_name}),/* tp_basicsize */
+	0,                          /* tp_itemsize */
+	(destructor)Py${struct_name}_dealloc,/* tp_dealloc */
+	0,                          /* tp_print */
+	0,                          /* tp_getattr */
+	0,                          /* tp_setattr */
+	0,                          /* tp_reserved */
+	(reprfunc)Py${struct_name}_repr,   /* tp_repr */
+	0,                          /* tp_as_number */
+	0,                          /* tp_as_sequence */
+	0,                          /* tp_as_mapping */
+	0,                          /* tp_hash  */
+	0,                          /* tp_call */
+	0,                          /* tp_str */
+	0,                          /* tp_getattro */
+	0,                          /* tp_setattro */
+	0,                          /* tp_as_buffer */
+	Py_TPFLAGS_DEFAULT,         /* tp_flags */
+	"${struct_name}",           /* tp_doc */
+	0,                          /* tp_traverse */
+	0,                          /* tp_clear */
+	0,                          /* tp_richcompare */
+	0,                          /* tp_weaklistoffset */
+	0,                          /* tp_iter */
+	0,                          /* tp_iternext */
+	0,                          /* tp_methods */
+	0,                          /* tp_members */
+	Py${struct_name}_getset,   /* tp_getset */
+	0,                          /* tp_base */
+	0,                          /* tp_dict */
+	0,                          /* tp_descr_get */
+	0,                          /* tp_descr_set */
+	0,                          /* tp_dictoffset */
+	(initproc)Py${struct_name}_init, /* tp_init */
+	0,                          /* tp_alloc */
+	Py${struct_name}_new,       /* tp_new */
+};
+
+int Py${struct_name}Type_init(PyObject *module) {
+
+	/* 准备好对象使用 ${struct_name}  */
+	if (PyType_Ready(&Py${struct_name}Type) < 0) {
+		PyErr_SetString(PyExc_RuntimeError, "can't initialize PyCTP.${struct_name}");
+		return -1;
+	}
+
+    Py_INCREF(&Py${struct_name}Type);
+    if( PyModule_AddObject(module, "${struct_name}", (PyObject *)&Py${struct_name}Type) < 0 ) {
+        PyErr_SetString(PyExc_RuntimeError, "Failed to add ${struct_name} to module");
+        Py_DECREF(&Py${struct_name}Type);
+		return -1;
+    }
+
+    return 0;
+}

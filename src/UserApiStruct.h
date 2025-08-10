@@ -1,818 +1,505 @@
-#ifndef PYCTP_USERAPISTRUCT_H
-#define PYCTP_USERAPISTRUCT_H
+#ifndef PYCTP_USERAPISTRUCT_HPP
+#define PYCTP_USERAPISTRUCT_HPP
 
-#include <ThostFtdcUserApiStruct.h>
+#include "UserApiStruct/PyCThostFtdcDisseminationField.h"
+#include "UserApiStruct/PyCThostFtdcReqUserLoginField.h"
+#include "UserApiStruct/PyCThostFtdcRspUserLoginField.h"
+#include "UserApiStruct/PyCThostFtdcUserLogoutField.h"
+#include "UserApiStruct/PyCThostFtdcForceUserLogoutField.h"
+#include "UserApiStruct/PyCThostFtdcReqAuthenticateField.h"
+#include "UserApiStruct/PyCThostFtdcRspAuthenticateField.h"
+#include "UserApiStruct/PyCThostFtdcAuthenticationInfoField.h"
+#include "UserApiStruct/PyCThostFtdcRspUserLogin2Field.h"
+#include "UserApiStruct/PyCThostFtdcTransferHeaderField.h"
+#include "UserApiStruct/PyCThostFtdcTransferBankToFutureReqField.h"
+#include "UserApiStruct/PyCThostFtdcTransferBankToFutureRspField.h"
+#include "UserApiStruct/PyCThostFtdcTransferFutureToBankReqField.h"
+#include "UserApiStruct/PyCThostFtdcTransferFutureToBankRspField.h"
+#include "UserApiStruct/PyCThostFtdcTransferQryBankReqField.h"
+#include "UserApiStruct/PyCThostFtdcTransferQryBankRspField.h"
+#include "UserApiStruct/PyCThostFtdcTransferQryDetailReqField.h"
+#include "UserApiStruct/PyCThostFtdcTransferQryDetailRspField.h"
+#include "UserApiStruct/PyCThostFtdcRspInfoField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeField.h"
+#include "UserApiStruct/PyCThostFtdcProductField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerField.h"
+#include "UserApiStruct/PyCThostFtdcTraderField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorField.h"
+#include "UserApiStruct/PyCThostFtdcTradingCodeField.h"
+#include "UserApiStruct/PyCThostFtdcPartBrokerField.h"
+#include "UserApiStruct/PyCThostFtdcSuperUserField.h"
+#include "UserApiStruct/PyCThostFtdcSuperUserFunctionField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorGroupField.h"
+#include "UserApiStruct/PyCThostFtdcTradingAccountField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorPositionField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentMarginRateField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentCommissionRateField.h"
+#include "UserApiStruct/PyCThostFtdcDepthMarketDataField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentTradingRightField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerUserField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerUserPasswordField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerUserFunctionField.h"
+#include "UserApiStruct/PyCThostFtdcTraderOfferField.h"
+#include "UserApiStruct/PyCThostFtdcSettlementInfoField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentMarginRateAdjustField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeMarginRateField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeMarginRateAdjustField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeRateField.h"
+#include "UserApiStruct/PyCThostFtdcSettlementRefField.h"
+#include "UserApiStruct/PyCThostFtdcCurrentTimeField.h"
+#include "UserApiStruct/PyCThostFtdcCommPhaseField.h"
+#include "UserApiStruct/PyCThostFtdcLoginInfoField.h"
+#include "UserApiStruct/PyCThostFtdcLogoutAllField.h"
+#include "UserApiStruct/PyCThostFtdcFrontStatusField.h"
+#include "UserApiStruct/PyCThostFtdcUserPasswordUpdateField.h"
+#include "UserApiStruct/PyCThostFtdcInputOrderField.h"
+#include "UserApiStruct/PyCThostFtdcOrderField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeOrderField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeOrderInsertErrorField.h"
+#include "UserApiStruct/PyCThostFtdcInputOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeOrderActionErrorField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeTradeField.h"
+#include "UserApiStruct/PyCThostFtdcTradeField.h"
+#include "UserApiStruct/PyCThostFtdcUserSessionField.h"
+#include "UserApiStruct/PyCThostFtdcQryMaxOrderVolumeField.h"
+#include "UserApiStruct/PyCThostFtdcSettlementInfoConfirmField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDepositField.h"
+#include "UserApiStruct/PyCThostFtdcSyncFundMortgageField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerSyncField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingInvestorField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingTradingCodeField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingInvestorGroupField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingTradingAccountField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingInvestorPositionField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingInstrumentMarginRateField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingInstrumentCommissionRateField.h"
+#include "UserApiStruct/PyCThostFtdcSyncingInstrumentTradingRightField.h"
+#include "UserApiStruct/PyCThostFtdcQryOrderField.h"
+#include "UserApiStruct/PyCThostFtdcQryTradeField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorPositionField.h"
+#include "UserApiStruct/PyCThostFtdcQryTradingAccountField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorField.h"
+#include "UserApiStruct/PyCThostFtdcQryTradingCodeField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorGroupField.h"
+#include "UserApiStruct/PyCThostFtdcQryInstrumentMarginRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryInstrumentCommissionRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryInstrumentTradingRightField.h"
+#include "UserApiStruct/PyCThostFtdcQryBrokerField.h"
+#include "UserApiStruct/PyCThostFtdcQryTraderField.h"
+#include "UserApiStruct/PyCThostFtdcQrySuperUserFunctionField.h"
+#include "UserApiStruct/PyCThostFtdcQryUserSessionField.h"
+#include "UserApiStruct/PyCThostFtdcQryPartBrokerField.h"
+#include "UserApiStruct/PyCThostFtdcQryFrontStatusField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeOrderField.h"
+#include "UserApiStruct/PyCThostFtdcQryOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQrySuperUserField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeField.h"
+#include "UserApiStruct/PyCThostFtdcQryProductField.h"
+#include "UserApiStruct/PyCThostFtdcQryInstrumentField.h"
+#include "UserApiStruct/PyCThostFtdcQryDepthMarketDataField.h"
+#include "UserApiStruct/PyCThostFtdcQryBrokerUserField.h"
+#include "UserApiStruct/PyCThostFtdcQryBrokerUserFunctionField.h"
+#include "UserApiStruct/PyCThostFtdcQryTraderOfferField.h"
+#include "UserApiStruct/PyCThostFtdcQrySyncDepositField.h"
+#include "UserApiStruct/PyCThostFtdcQrySettlementInfoField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeMarginRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeMarginRateAdjustField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeRateField.h"
+#include "UserApiStruct/PyCThostFtdcQrySyncFundMortgageField.h"
+#include "UserApiStruct/PyCThostFtdcQryHisOrderField.h"
+#include "UserApiStruct/PyCThostFtdcOptionInstrMiniMarginField.h"
+#include "UserApiStruct/PyCThostFtdcOptionInstrMarginAdjustField.h"
+#include "UserApiStruct/PyCThostFtdcOptionInstrCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcOptionInstrTradeCostField.h"
+#include "UserApiStruct/PyCThostFtdcQryOptionInstrTradeCostField.h"
+#include "UserApiStruct/PyCThostFtdcQryOptionInstrCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcIndexPriceField.h"
+#include "UserApiStruct/PyCThostFtdcInputExecOrderField.h"
+#include "UserApiStruct/PyCThostFtdcInputExecOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcExecOrderField.h"
+#include "UserApiStruct/PyCThostFtdcExecOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryExecOrderField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeExecOrderField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeExecOrderField.h"
+#include "UserApiStruct/PyCThostFtdcQryExecOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeExecOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeExecOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcErrExecOrderField.h"
+#include "UserApiStruct/PyCThostFtdcQryErrExecOrderField.h"
+#include "UserApiStruct/PyCThostFtdcErrExecOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryErrExecOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcOptionInstrTradingRightField.h"
+#include "UserApiStruct/PyCThostFtdcQryOptionInstrTradingRightField.h"
+#include "UserApiStruct/PyCThostFtdcInputForQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcForQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcQryForQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeForQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeForQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcInputQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcInputQuoteActionField.h"
+#include "UserApiStruct/PyCThostFtdcQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcQuoteActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeQuoteField.h"
+#include "UserApiStruct/PyCThostFtdcQryQuoteActionField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeQuoteActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeQuoteActionField.h"
+#include "UserApiStruct/PyCThostFtdcOptionInstrDeltaField.h"
+#include "UserApiStruct/PyCThostFtdcForQuoteRspField.h"
+#include "UserApiStruct/PyCThostFtdcStrikeOffsetField.h"
+#include "UserApiStruct/PyCThostFtdcQryStrikeOffsetField.h"
+#include "UserApiStruct/PyCThostFtdcInputBatchOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcBatchOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeBatchOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryBatchOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcCombInstrumentGuardField.h"
+#include "UserApiStruct/PyCThostFtdcQryCombInstrumentGuardField.h"
+#include "UserApiStruct/PyCThostFtdcInputCombActionField.h"
+#include "UserApiStruct/PyCThostFtdcCombActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryCombActionField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeCombActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeCombActionField.h"
+#include "UserApiStruct/PyCThostFtdcProductExchRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryProductExchRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryForQuoteParamField.h"
+#include "UserApiStruct/PyCThostFtdcForQuoteParamField.h"
+#include "UserApiStruct/PyCThostFtdcMMOptionInstrCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryMMOptionInstrCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcMMInstrumentCommissionRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryMMInstrumentCommissionRateField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentOrderCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcQryInstrumentOrderCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcTradeParamField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentMarginRateULField.h"
+#include "UserApiStruct/PyCThostFtdcFutureLimitPosiParamField.h"
+#include "UserApiStruct/PyCThostFtdcLoginForbiddenIPField.h"
+#include "UserApiStruct/PyCThostFtdcIPListField.h"
+#include "UserApiStruct/PyCThostFtdcInputOptionSelfCloseField.h"
+#include "UserApiStruct/PyCThostFtdcInputOptionSelfCloseActionField.h"
+#include "UserApiStruct/PyCThostFtdcOptionSelfCloseField.h"
+#include "UserApiStruct/PyCThostFtdcOptionSelfCloseActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryOptionSelfCloseField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeOptionSelfCloseField.h"
+#include "UserApiStruct/PyCThostFtdcQryOptionSelfCloseActionField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeOptionSelfCloseActionField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDelaySwapField.h"
+#include "UserApiStruct/PyCThostFtdcQrySyncDelaySwapField.h"
+#include "UserApiStruct/PyCThostFtdcInvestUnitField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestUnitField.h"
+#include "UserApiStruct/PyCThostFtdcSecAgentCheckModeField.h"
+#include "UserApiStruct/PyCThostFtdcSecAgentTradeInfoField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataBaseField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataStaticField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataLastMatchField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataBestPriceField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataBid23Field.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataAsk23Field.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataBid45Field.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataAsk45Field.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataUpdateTimeField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataBandingPriceField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataExchangeField.h"
+#include "UserApiStruct/PyCThostFtdcSpecificInstrumentField.h"
+#include "UserApiStruct/PyCThostFtdcInstrumentStatusField.h"
+#include "UserApiStruct/PyCThostFtdcQryInstrumentStatusField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorAccountField.h"
+#include "UserApiStruct/PyCThostFtdcPositionProfitAlgorithmField.h"
+#include "UserApiStruct/PyCThostFtdcDiscountField.h"
+#include "UserApiStruct/PyCThostFtdcQryTransferBankField.h"
+#include "UserApiStruct/PyCThostFtdcTransferBankField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorPositionDetailField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorPositionDetailField.h"
+#include "UserApiStruct/PyCThostFtdcTradingAccountPasswordField.h"
+#include "UserApiStruct/PyCThostFtdcMDTraderOfferField.h"
+#include "UserApiStruct/PyCThostFtdcQryMDTraderOfferField.h"
+#include "UserApiStruct/PyCThostFtdcQryNoticeField.h"
+#include "UserApiStruct/PyCThostFtdcNoticeField.h"
+#include "UserApiStruct/PyCThostFtdcUserRightField.h"
+#include "UserApiStruct/PyCThostFtdcQrySettlementInfoConfirmField.h"
+#include "UserApiStruct/PyCThostFtdcLoadSettlementInfoField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerWithdrawAlgorithmField.h"
+#include "UserApiStruct/PyCThostFtdcTradingAccountPasswordUpdateV1Field.h"
+#include "UserApiStruct/PyCThostFtdcTradingAccountPasswordUpdateField.h"
+#include "UserApiStruct/PyCThostFtdcQryCombinationLegField.h"
+#include "UserApiStruct/PyCThostFtdcQrySyncStatusField.h"
+#include "UserApiStruct/PyCThostFtdcCombinationLegField.h"
+#include "UserApiStruct/PyCThostFtdcSyncStatusField.h"
+#include "UserApiStruct/PyCThostFtdcQryLinkManField.h"
+#include "UserApiStruct/PyCThostFtdcLinkManField.h"
+#include "UserApiStruct/PyCThostFtdcQryBrokerUserEventField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerUserEventField.h"
+#include "UserApiStruct/PyCThostFtdcQryContractBankField.h"
+#include "UserApiStruct/PyCThostFtdcContractBankField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorPositionCombineDetailField.h"
+#include "UserApiStruct/PyCThostFtdcParkedOrderField.h"
+#include "UserApiStruct/PyCThostFtdcParkedOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryParkedOrderField.h"
+#include "UserApiStruct/PyCThostFtdcQryParkedOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcRemoveParkedOrderField.h"
+#include "UserApiStruct/PyCThostFtdcRemoveParkedOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorWithdrawAlgorithmField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorPositionCombineDetailField.h"
+#include "UserApiStruct/PyCThostFtdcMarketDataAveragePriceField.h"
+#include "UserApiStruct/PyCThostFtdcVerifyInvestorPasswordField.h"
+#include "UserApiStruct/PyCThostFtdcUserIPField.h"
+#include "UserApiStruct/PyCThostFtdcTradingNoticeInfoField.h"
+#include "UserApiStruct/PyCThostFtdcTradingNoticeField.h"
+#include "UserApiStruct/PyCThostFtdcQryTradingNoticeField.h"
+#include "UserApiStruct/PyCThostFtdcQryErrOrderField.h"
+#include "UserApiStruct/PyCThostFtdcErrOrderField.h"
+#include "UserApiStruct/PyCThostFtdcErrorConditionalOrderField.h"
+#include "UserApiStruct/PyCThostFtdcQryErrOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcErrOrderActionField.h"
+#include "UserApiStruct/PyCThostFtdcQryExchangeSequenceField.h"
+#include "UserApiStruct/PyCThostFtdcExchangeSequenceField.h"
+#include "UserApiStruct/PyCThostFtdcQryMaxOrderVolumeWithPriceField.h"
+#include "UserApiStruct/PyCThostFtdcQryBrokerTradingParamsField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerTradingParamsField.h"
+#include "UserApiStruct/PyCThostFtdcQryBrokerTradingAlgosField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerTradingAlgosField.h"
+#include "UserApiStruct/PyCThostFtdcQueryBrokerDepositField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerDepositField.h"
+#include "UserApiStruct/PyCThostFtdcQryCFMMCBrokerKeyField.h"
+#include "UserApiStruct/PyCThostFtdcCFMMCBrokerKeyField.h"
+#include "UserApiStruct/PyCThostFtdcCFMMCTradingAccountKeyField.h"
+#include "UserApiStruct/PyCThostFtdcQryCFMMCTradingAccountKeyField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerUserOTPParamField.h"
+#include "UserApiStruct/PyCThostFtdcManualSyncBrokerUserOTPField.h"
+#include "UserApiStruct/PyCThostFtdcCommRateModelField.h"
+#include "UserApiStruct/PyCThostFtdcQryCommRateModelField.h"
+#include "UserApiStruct/PyCThostFtdcMarginModelField.h"
+#include "UserApiStruct/PyCThostFtdcQryMarginModelField.h"
+#include "UserApiStruct/PyCThostFtdcEWarrantOffsetField.h"
+#include "UserApiStruct/PyCThostFtdcQryEWarrantOffsetField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorProductGroupMarginField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorProductGroupMarginField.h"
+#include "UserApiStruct/PyCThostFtdcQueryCFMMCTradingAccountTokenField.h"
+#include "UserApiStruct/PyCThostFtdcCFMMCTradingAccountTokenField.h"
+#include "UserApiStruct/PyCThostFtdcQryProductGroupField.h"
+#include "UserApiStruct/PyCThostFtdcProductGroupField.h"
+#include "UserApiStruct/PyCThostFtdcBulletinField.h"
+#include "UserApiStruct/PyCThostFtdcQryBulletinField.h"
+#include "UserApiStruct/PyCThostFtdcMulticastInstrumentField.h"
+#include "UserApiStruct/PyCThostFtdcQryMulticastInstrumentField.h"
+#include "UserApiStruct/PyCThostFtdcAppIDAuthAssignField.h"
+#include "UserApiStruct/PyCThostFtdcReqOpenAccountField.h"
+#include "UserApiStruct/PyCThostFtdcReqCancelAccountField.h"
+#include "UserApiStruct/PyCThostFtdcReqChangeAccountField.h"
+#include "UserApiStruct/PyCThostFtdcReqTransferField.h"
+#include "UserApiStruct/PyCThostFtdcRspTransferField.h"
+#include "UserApiStruct/PyCThostFtdcReqRepealField.h"
+#include "UserApiStruct/PyCThostFtdcRspRepealField.h"
+#include "UserApiStruct/PyCThostFtdcReqQueryAccountField.h"
+#include "UserApiStruct/PyCThostFtdcRspQueryAccountField.h"
+#include "UserApiStruct/PyCThostFtdcFutureSignIOField.h"
+#include "UserApiStruct/PyCThostFtdcRspFutureSignInField.h"
+#include "UserApiStruct/PyCThostFtdcReqFutureSignOutField.h"
+#include "UserApiStruct/PyCThostFtdcRspFutureSignOutField.h"
+#include "UserApiStruct/PyCThostFtdcReqQueryTradeResultBySerialField.h"
+#include "UserApiStruct/PyCThostFtdcRspQueryTradeResultBySerialField.h"
+#include "UserApiStruct/PyCThostFtdcReqDayEndFileReadyField.h"
+#include "UserApiStruct/PyCThostFtdcReturnResultField.h"
+#include "UserApiStruct/PyCThostFtdcVerifyFuturePasswordField.h"
+#include "UserApiStruct/PyCThostFtdcVerifyCustInfoField.h"
+#include "UserApiStruct/PyCThostFtdcVerifyFuturePasswordAndCustInfoField.h"
+#include "UserApiStruct/PyCThostFtdcDepositResultInformField.h"
+#include "UserApiStruct/PyCThostFtdcReqSyncKeyField.h"
+#include "UserApiStruct/PyCThostFtdcRspSyncKeyField.h"
+#include "UserApiStruct/PyCThostFtdcNotifyQueryAccountField.h"
+#include "UserApiStruct/PyCThostFtdcTransferSerialField.h"
+#include "UserApiStruct/PyCThostFtdcQryTransferSerialField.h"
+#include "UserApiStruct/PyCThostFtdcNotifyFutureSignInField.h"
+#include "UserApiStruct/PyCThostFtdcNotifyFutureSignOutField.h"
+#include "UserApiStruct/PyCThostFtdcNotifySyncKeyField.h"
+#include "UserApiStruct/PyCThostFtdcQryAccountregisterField.h"
+#include "UserApiStruct/PyCThostFtdcAccountregisterField.h"
+#include "UserApiStruct/PyCThostFtdcOpenAccountField.h"
+#include "UserApiStruct/PyCThostFtdcCancelAccountField.h"
+#include "UserApiStruct/PyCThostFtdcChangeAccountField.h"
+#include "UserApiStruct/PyCThostFtdcSecAgentACIDMapField.h"
+#include "UserApiStruct/PyCThostFtdcQrySecAgentACIDMapField.h"
+#include "UserApiStruct/PyCThostFtdcUserRightsAssignField.h"
+#include "UserApiStruct/PyCThostFtdcBrokerUserRightAssignField.h"
+#include "UserApiStruct/PyCThostFtdcDRTransferField.h"
+#include "UserApiStruct/PyCThostFtdcFensUserInfoField.h"
+#include "UserApiStruct/PyCThostFtdcCurrTransferIdentityField.h"
+#include "UserApiStruct/PyCThostFtdcLoginForbiddenUserField.h"
+#include "UserApiStruct/PyCThostFtdcQryLoginForbiddenUserField.h"
+#include "UserApiStruct/PyCThostFtdcTradingAccountReserveField.h"
+#include "UserApiStruct/PyCThostFtdcQryLoginForbiddenIPField.h"
+#include "UserApiStruct/PyCThostFtdcQryIPListField.h"
+#include "UserApiStruct/PyCThostFtdcQryUserRightsAssignField.h"
+#include "UserApiStruct/PyCThostFtdcReserveOpenAccountConfirmField.h"
+#include "UserApiStruct/PyCThostFtdcReserveOpenAccountField.h"
+#include "UserApiStruct/PyCThostFtdcAccountPropertyField.h"
+#include "UserApiStruct/PyCThostFtdcQryCurrDRIdentityField.h"
+#include "UserApiStruct/PyCThostFtdcCurrDRIdentityField.h"
+#include "UserApiStruct/PyCThostFtdcQrySecAgentCheckModeField.h"
+#include "UserApiStruct/PyCThostFtdcQrySecAgentTradeInfoField.h"
+#include "UserApiStruct/PyCThostFtdcReqUserAuthMethodField.h"
+#include "UserApiStruct/PyCThostFtdcRspUserAuthMethodField.h"
+#include "UserApiStruct/PyCThostFtdcReqGenUserCaptchaField.h"
+#include "UserApiStruct/PyCThostFtdcRspGenUserCaptchaField.h"
+#include "UserApiStruct/PyCThostFtdcReqGenUserTextField.h"
+#include "UserApiStruct/PyCThostFtdcRspGenUserTextField.h"
+#include "UserApiStruct/PyCThostFtdcReqUserLoginWithCaptchaField.h"
+#include "UserApiStruct/PyCThostFtdcReqUserLoginWithTextField.h"
+#include "UserApiStruct/PyCThostFtdcReqUserLoginWithOTPField.h"
+#include "UserApiStruct/PyCThostFtdcReqApiHandshakeField.h"
+#include "UserApiStruct/PyCThostFtdcRspApiHandshakeField.h"
+#include "UserApiStruct/PyCThostFtdcReqVerifyApiKeyField.h"
+#include "UserApiStruct/PyCThostFtdcDepartmentUserField.h"
+#include "UserApiStruct/PyCThostFtdcQueryFreqField.h"
+#include "UserApiStruct/PyCThostFtdcAuthForbiddenIPField.h"
+#include "UserApiStruct/PyCThostFtdcQryAuthForbiddenIPField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDelaySwapFrozenField.h"
+#include "UserApiStruct/PyCThostFtdcUserSystemInfoField.h"
+#include "UserApiStruct/PyCThostFtdcAuthUserIDField.h"
+#include "UserApiStruct/PyCThostFtdcAuthIPField.h"
+#include "UserApiStruct/PyCThostFtdcQryClassifiedInstrumentField.h"
+#include "UserApiStruct/PyCThostFtdcQryCombPromotionParamField.h"
+#include "UserApiStruct/PyCThostFtdcCombPromotionParamField.h"
+#include "UserApiStruct/PyCThostFtdcReqUserLoginSMField.h"
+#include "UserApiStruct/PyCThostFtdcQryRiskSettleInvstPositionField.h"
+#include "UserApiStruct/PyCThostFtdcQryRiskSettleProductStatusField.h"
+#include "UserApiStruct/PyCThostFtdcRiskSettleInvstPositionField.h"
+#include "UserApiStruct/PyCThostFtdcRiskSettleProductStatusField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInfoField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaProductStatusField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInvstPosDtlField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInvstPosCombDtlField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaTradingAccountField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInitInvstMarginField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaDceCombInstrumentField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInvstMarginRateField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaExchMarginRateField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaOptExchMarginField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaOptInvstMarginField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInvstMarginRateULField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaOptInvstCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInvstCommRateField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaProductExchRateField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaDepthMarketDataField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaIndexPriceField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaEWarrantOffsetField.h"
+#include "UserApiStruct/PyCThostFtdcSPBMFutureParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSPBMOptionParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSPBMIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSPBMInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncSPBMParameterEndField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPBMFutureParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPBMOptionParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPBMIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPBMInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSPBMPortfDefinitionField.h"
+#include "UserApiStruct/PyCThostFtdcSPBMInvestorPortfDefField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorPortfMarginRatioField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPBMPortfDefinitionField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPBMInvestorPortfDefField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorPortfMarginRatioField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorProdSPBMDetailField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorProdSPBMDetailField.h"
+#include "UserApiStruct/PyCThostFtdcPortfTradeParamSettingField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorTradingRightField.h"
+#include "UserApiStruct/PyCThostFtdcMortgageParamField.h"
+#include "UserApiStruct/PyCThostFtdcWithDrawParamField.h"
+#include "UserApiStruct/PyCThostFtdcThostUserFunctionField.h"
+#include "UserApiStruct/PyCThostFtdcQryThostUserFunctionField.h"
+#include "UserApiStruct/PyCThostFtdcSPBMAddOnInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPBMAddOnInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorCommoditySPMMMarginField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorCommodityGroupSPMMMarginField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPMMInstParamField.h"
+#include "UserApiStruct/PyCThostFtdcQrySPMMProductParamField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorCommoditySPMMMarginField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorCommodityGroupSPMMMarginField.h"
+#include "UserApiStruct/PyCThostFtdcSPMMInstParamField.h"
+#include "UserApiStruct/PyCThostFtdcSPMMProductParamField.h"
+#include "UserApiStruct/PyCThostFtdcQryTraderAssignField.h"
+#include "UserApiStruct/PyCThostFtdcTraderAssignField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorInfoCntSettingField.h"
+#include "UserApiStruct/PyCThostFtdcRCAMSCombProductInfoField.h"
+#include "UserApiStruct/PyCThostFtdcRCAMSInstrParameterField.h"
+#include "UserApiStruct/PyCThostFtdcRCAMSIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcRCAMSInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcRCAMSShortOptAdjustParamField.h"
+#include "UserApiStruct/PyCThostFtdcRCAMSInvestorCombPositionField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorProdRCAMSMarginField.h"
+#include "UserApiStruct/PyCThostFtdcQryRCAMSCombProductInfoField.h"
+#include "UserApiStruct/PyCThostFtdcQryRCAMSInstrParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQryRCAMSIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQryRCAMSInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQryRCAMSShortOptAdjustParamField.h"
+#include "UserApiStruct/PyCThostFtdcQryRCAMSInvestorCombPositionField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorProdRCAMSMarginField.h"
+#include "UserApiStruct/PyCThostFtdcRULEInstrParameterField.h"
+#include "UserApiStruct/PyCThostFtdcRULEIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcRULEInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQryRULEInstrParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQryRULEIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcQryRULEInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorProdRULEMarginField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorProdRULEMarginField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPBMPortfDefinitionField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPBMInvstPortfDefField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPBMFutureParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPBMOptionParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPBMIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPBMInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPBMAddOnInterParamField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPMMInstParamField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPMMProductParamField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaInvestorSPMMModelField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaSPMMModelParamField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRCAMSCombProdInfoField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRCAMSInstrParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRCAMSIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRCAMSInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRCAMSSOptAdjParamField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRCAMSInvstCombPosField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRULEInstrParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRULEIntraParameterField.h"
+#include "UserApiStruct/PyCThostFtdcSyncDeltaRULEInterParameterField.h"
+#include "UserApiStruct/PyCThostFtdcIpAddrParamField.h"
+#include "UserApiStruct/PyCThostFtdcQryIpAddrParamField.h"
+#include "UserApiStruct/PyCThostFtdcTGIpAddrParamField.h"
+#include "UserApiStruct/PyCThostFtdcQryTGIpAddrParamField.h"
+#include "UserApiStruct/PyCThostFtdcTGSessionQryStatusField.h"
+#include "UserApiStruct/PyCThostFtdcLocalAddrConfigField.h"
+#include "UserApiStruct/PyCThostFtdcQryLocalAddrConfigField.h"
+#include "UserApiStruct/PyCThostFtdcReqQueryBankAccountBySecField.h"
+#include "UserApiStruct/PyCThostFtdcRspQueryBankAccountBySecField.h"
+#include "UserApiStruct/PyCThostFtdcReqTransferBySecField.h"
+#include "UserApiStruct/PyCThostFtdcRspTransferBySecField.h"
+#include "UserApiStruct/PyCThostFtdcNotifyQueryFutureAccountBySecField.h"
+#include "UserApiStruct/PyCThostFtdcExitEmergencyField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorPortfMarginModelField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorPortfSettingField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorPortfSettingField.h"
+#include "UserApiStruct/PyCThostFtdcUserPasswordUpdateFromSecField.h"
+#include "UserApiStruct/PyCThostFtdcSettlementInfoConfirmFromSecField.h"
+#include "UserApiStruct/PyCThostFtdcTradingAccountPasswordUpdateFromSecField.h"
+#include "UserApiStruct/PyCThostFtdcRiskForbiddenRightField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorInfoCommRecField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorInfoCommRecField.h"
+#include "UserApiStruct/PyCThostFtdcCombLegField.h"
+#include "UserApiStruct/PyCThostFtdcQryCombLegField.h"
+#include "UserApiStruct/PyCThostFtdcInputOffsetSettingField.h"
+#include "UserApiStruct/PyCThostFtdcOffsetSettingField.h"
+#include "UserApiStruct/PyCThostFtdcCancelOffsetSettingField.h"
+#include "UserApiStruct/PyCThostFtdcQryOffsetSettingField.h"
+#include "UserApiStruct/PyCThostFtdcAddrAppIDRelationField.h"
+#include "UserApiStruct/PyCThostFtdcQryAddrAppIDRelationField.h"
+#include "UserApiStruct/PyCThostFtdcFrontInfoField.h"
 
 
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDisseminationField *pDisseminationField);
-int PyCTP_Struct_FromPyDict(CThostFtdcDisseminationField *pDisseminationField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginField *pReqUserLoginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginField *pReqUserLoginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspUserLoginField *pRspUserLoginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLoginField *pRspUserLoginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserLogoutField *pUserLogoutField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserLogoutField *pUserLogoutField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForceUserLogoutField *pForceUserLogoutField);
-int PyCTP_Struct_FromPyDict(CThostFtdcForceUserLogoutField *pForceUserLogoutField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqAuthenticateField *pReqAuthenticateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqAuthenticateField *pReqAuthenticateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspAuthenticateField *pRspAuthenticateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspAuthenticateField *pRspAuthenticateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthenticationInfoField *pAuthenticationInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcAuthenticationInfoField *pAuthenticationInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspUserLogin2Field *pRspUserLogin2Field);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspUserLogin2Field *pRspUserLogin2Field, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferHeaderField *pTransferHeaderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferHeaderField *pTransferHeaderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferBankToFutureReqField *pTransferBankToFutureReqField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankToFutureReqField *pTransferBankToFutureReqField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferBankToFutureRspField *pTransferBankToFutureRspField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankToFutureRspField *pTransferBankToFutureRspField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferFutureToBankReqField *pTransferFutureToBankReqField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferFutureToBankReqField *pTransferFutureToBankReqField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferFutureToBankRspField *pTransferFutureToBankRspField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferFutureToBankRspField *pTransferFutureToBankRspField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferQryBankReqField *pTransferQryBankReqField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryBankReqField *pTransferQryBankReqField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferQryBankRspField *pTransferQryBankRspField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryBankRspField *pTransferQryBankRspField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferQryDetailReqField *pTransferQryDetailReqField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryDetailReqField *pTransferQryDetailReqField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferQryDetailRspField *pTransferQryDetailRspField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferQryDetailRspField *pTransferQryDetailRspField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspInfoField *pRspInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspInfoField *pRspInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeField *pExchangeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeField *pExchangeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductField *pProductField);
-int PyCTP_Struct_FromPyDict(CThostFtdcProductField *pProductField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentField *pInstrumentField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentField *pInstrumentField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerField *pBrokerField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerField *pBrokerField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTraderField *pTraderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTraderField *pTraderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorField *pInvestorField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorField *pInvestorField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingCodeField *pTradingCodeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingCodeField *pTradingCodeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcPartBrokerField *pPartBrokerField);
-int PyCTP_Struct_FromPyDict(CThostFtdcPartBrokerField *pPartBrokerField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSuperUserField *pSuperUserField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSuperUserField *pSuperUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSuperUserFunctionField *pSuperUserFunctionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSuperUserFunctionField *pSuperUserFunctionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorGroupField *pInvestorGroupField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorGroupField *pInvestorGroupField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountField *pTradingAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountField *pTradingAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionField *pInvestorPositionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionField *pInvestorPositionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepthMarketDataField *pDepthMarketDataField);
-int PyCTP_Struct_FromPyDict(CThostFtdcDepthMarketDataField *pDepthMarketDataField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentTradingRightField *pInstrumentTradingRightField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentTradingRightField *pInstrumentTradingRightField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserField *pBrokerUserField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserField *pBrokerUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserPasswordField *pBrokerUserPasswordField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserPasswordField *pBrokerUserPasswordField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserFunctionField *pBrokerUserFunctionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserFunctionField *pBrokerUserFunctionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTraderOfferField *pTraderOfferField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTraderOfferField *pTraderOfferField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSettlementInfoField *pSettlementInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSettlementInfoField *pSettlementInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateAdjustField *pInstrumentMarginRateAdjustField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateAdjustField *pInstrumentMarginRateAdjustField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeMarginRateField *pExchangeMarginRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateField *pExchangeMarginRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjustField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjustField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeRateField *pExchangeRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeRateField *pExchangeRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSettlementRefField *pSettlementRefField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSettlementRefField *pSettlementRefField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCurrentTimeField *pCurrentTimeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCurrentTimeField *pCurrentTimeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCommPhaseField *pCommPhaseField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCommPhaseField *pCommPhaseField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginInfoField *pLoginInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcLoginInfoField *pLoginInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLogoutAllField *pLogoutAllField);
-int PyCTP_Struct_FromPyDict(CThostFtdcLogoutAllField *pLogoutAllField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcFrontStatusField *pFrontStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcFrontStatusField *pFrontStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserPasswordUpdateField *pUserPasswordUpdateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserPasswordUpdateField *pUserPasswordUpdateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOrderField *pInputOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderField *pInputOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderField *pOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOrderField *pOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderField *pExchangeOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderField *pExchangeOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderInsertErrorField *pExchangeOrderInsertErrorField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderInsertErrorField *pExchangeOrderInsertErrorField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOrderActionField *pInputOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputOrderActionField *pInputOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOrderActionField *pOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOrderActionField *pOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderActionField *pExchangeOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionField *pExchangeOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOrderActionErrorField *pExchangeOrderActionErrorField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOrderActionErrorField *pExchangeOrderActionErrorField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeTradeField *pExchangeTradeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeTradeField *pExchangeTradeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradeField *pTradeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradeField *pTradeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSessionField *pUserSessionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserSessionField *pUserSessionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolumeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolumeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirmField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirmField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDepositField *pSyncDepositField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDepositField *pSyncDepositField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncFundMortgageField *pSyncFundMortgageField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncFundMortgageField *pSyncFundMortgageField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerSyncField *pBrokerSyncField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerSyncField *pBrokerSyncField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInvestorField *pSyncingInvestorField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorField *pSyncingInvestorField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingTradingCodeField *pSyncingTradingCodeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingTradingCodeField *pSyncingTradingCodeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInvestorGroupField *pSyncingInvestorGroupField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorGroupField *pSyncingInvestorGroupField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingTradingAccountField *pSyncingTradingAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingTradingAccountField *pSyncingTradingAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInvestorPositionField *pSyncingInvestorPositionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInvestorPositionField *pSyncingInvestorPositionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentMarginRateField *pSyncingInstrumentMarginRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentMarginRateField *pSyncingInstrumentMarginRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentCommissionRateField *pSyncingInstrumentCommissionRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentCommissionRateField *pSyncingInstrumentCommissionRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncingInstrumentTradingRightField *pSyncingInstrumentTradingRightField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncingInstrumentTradingRightField *pSyncingInstrumentTradingRightField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOrderField *pQryOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryOrderField *pQryOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTradeField *pQryTradeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTradeField *pQryTradeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPositionField *pQryInvestorPositionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionField *pQryInvestorPositionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTradingAccountField *pQryTradingAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingAccountField *pQryTradingAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorField *pQryInvestorField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorField *pQryInvestorField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTradingCodeField *pQryTradingCodeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingCodeField *pQryTradingCodeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorGroupField *pQryInvestorGroupField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorGroupField *pQryInvestorGroupField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentMarginRateField *pQryInstrumentMarginRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentMarginRateField *pQryInstrumentMarginRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentCommissionRateField *pQryInstrumentCommissionRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentCommissionRateField *pQryInstrumentCommissionRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentTradingRightField *pQryInstrumentTradingRightField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentTradingRightField *pQryInstrumentTradingRightField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerField *pQryBrokerField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerField *pQryBrokerField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTraderField *pQryTraderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTraderField *pQryTraderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySuperUserFunctionField *pQrySuperUserFunctionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySuperUserFunctionField *pQrySuperUserFunctionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryUserSessionField *pQryUserSessionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryUserSessionField *pQryUserSessionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryPartBrokerField *pQryPartBrokerField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryPartBrokerField *pQryPartBrokerField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryFrontStatusField *pQryFrontStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryFrontStatusField *pQryFrontStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeOrderField *pQryExchangeOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeOrderField *pQryExchangeOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOrderActionField *pQryOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryOrderActionField *pQryOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeOrderActionField *pQryExchangeOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeOrderActionField *pQryExchangeOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySuperUserField *pQrySuperUserField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySuperUserField *pQrySuperUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeField *pQryExchangeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeField *pQryExchangeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryProductField *pQryProductField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryProductField *pQryProductField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentField *pQryInstrumentField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentField *pQryInstrumentField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryDepthMarketDataField *pQryDepthMarketDataField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryDepthMarketDataField *pQryDepthMarketDataField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerUserField *pQryBrokerUserField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserField *pQryBrokerUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerUserFunctionField *pQryBrokerUserFunctionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserFunctionField *pQryBrokerUserFunctionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTraderOfferField *pQryTraderOfferField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTraderOfferField *pQryTraderOfferField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySyncDepositField *pQrySyncDepositField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncDepositField *pQrySyncDepositField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySettlementInfoField *pQrySettlementInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySettlementInfoField *pQrySettlementInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeMarginRateField *pQryExchangeMarginRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateField *pQryExchangeMarginRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeMarginRateAdjustField *pQryExchangeMarginRateAdjustField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeMarginRateAdjustField *pQryExchangeMarginRateAdjustField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeRateField *pQryExchangeRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeRateField *pQryExchangeRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySyncFundMortgageField *pQrySyncFundMortgageField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncFundMortgageField *pQrySyncFundMortgageField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryHisOrderField *pQryHisOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryHisOrderField *pQryHisOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrMiniMarginField *pOptionInstrMiniMarginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMiniMarginField *pOptionInstrMiniMarginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrMarginAdjustField *pOptionInstrMarginAdjustField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrMarginAdjustField *pOptionInstrMarginAdjustField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCostField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCostField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionInstrTradeCostField *pQryOptionInstrTradeCostField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradeCostField *pQryOptionInstrTradeCostField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionInstrCommRateField *pQryOptionInstrCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrCommRateField *pQryOptionInstrCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcIndexPriceField *pIndexPriceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcIndexPriceField *pIndexPriceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputExecOrderField *pInputExecOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderField *pInputExecOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputExecOrderActionField *pInputExecOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputExecOrderActionField *pInputExecOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExecOrderField *pExecOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderField *pExecOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExecOrderActionField *pExecOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExecOrderActionField *pExecOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExecOrderField *pQryExecOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExecOrderField *pQryExecOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeExecOrderField *pExchangeExecOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderField *pExchangeExecOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeExecOrderField *pQryExchangeExecOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeExecOrderField *pQryExchangeExecOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExecOrderActionField *pQryExecOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExecOrderActionField *pQryExecOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeExecOrderActionField *pExchangeExecOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeExecOrderActionField *pExchangeExecOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeExecOrderActionField *pQryExchangeExecOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeExecOrderActionField *pQryExchangeExecOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrExecOrderField *pErrExecOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderField *pErrExecOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrExecOrderField *pQryErrExecOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryErrExecOrderField *pQryErrExecOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrExecOrderActionField *pErrExecOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcErrExecOrderActionField *pErrExecOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrExecOrderActionField *pQryErrExecOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryErrExecOrderActionField *pQryErrExecOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrTradingRightField *pOptionInstrTradingRightField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrTradingRightField *pOptionInstrTradingRightField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionInstrTradingRightField *pQryOptionInstrTradingRightField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionInstrTradingRightField *pQryOptionInstrTradingRightField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputForQuoteField *pInputForQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputForQuoteField *pInputForQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForQuoteField *pForQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteField *pForQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryForQuoteField *pQryForQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteField *pQryForQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeForQuoteField *pExchangeForQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeForQuoteField *pExchangeForQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeForQuoteField *pQryExchangeForQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeForQuoteField *pQryExchangeForQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteField *pInputQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteField *pInputQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputQuoteActionField *pInputQuoteActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputQuoteActionField *pInputQuoteActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteField *pQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQuoteField *pQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQuoteActionField *pQuoteActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQuoteActionField *pQuoteActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryQuoteField *pQryQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryQuoteField *pQryQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeQuoteField *pExchangeQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteField *pExchangeQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeQuoteField *pQryExchangeQuoteField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeQuoteField *pQryExchangeQuoteField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryQuoteActionField *pQryQuoteActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryQuoteActionField *pQryQuoteActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeQuoteActionField *pExchangeQuoteActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeQuoteActionField *pExchangeQuoteActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeQuoteActionField *pQryExchangeQuoteActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeQuoteActionField *pQryExchangeQuoteActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionInstrDeltaField *pOptionInstrDeltaField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionInstrDeltaField *pOptionInstrDeltaField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForQuoteRspField *pForQuoteRspField);
-int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteRspField *pForQuoteRspField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcStrikeOffsetField *pStrikeOffsetField);
-int PyCTP_Struct_FromPyDict(CThostFtdcStrikeOffsetField *pStrikeOffsetField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryStrikeOffsetField *pQryStrikeOffsetField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryStrikeOffsetField *pQryStrikeOffsetField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputBatchOrderActionField *pInputBatchOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputBatchOrderActionField *pInputBatchOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBatchOrderActionField *pBatchOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBatchOrderActionField *pBatchOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeBatchOrderActionField *pExchangeBatchOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeBatchOrderActionField *pExchangeBatchOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBatchOrderActionField *pQryBatchOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBatchOrderActionField *pQryBatchOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombInstrumentGuardField *pCombInstrumentGuardField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCombInstrumentGuardField *pCombInstrumentGuardField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombInstrumentGuardField *pQryCombInstrumentGuardField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCombInstrumentGuardField *pQryCombInstrumentGuardField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputCombActionField *pInputCombActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputCombActionField *pInputCombActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombActionField *pCombActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCombActionField *pCombActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombActionField *pQryCombActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCombActionField *pQryCombActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeCombActionField *pExchangeCombActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeCombActionField *pExchangeCombActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeCombActionField *pQryExchangeCombActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeCombActionField *pQryExchangeCombActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductExchRateField *pProductExchRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcProductExchRateField *pProductExchRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryProductExchRateField *pQryProductExchRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryProductExchRateField *pQryProductExchRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryForQuoteParamField *pQryForQuoteParamField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryForQuoteParamField *pQryForQuoteParamField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcForQuoteParamField *pForQuoteParamField);
-int PyCTP_Struct_FromPyDict(CThostFtdcForQuoteParamField *pForQuoteParamField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstrCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstrCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMMOptionInstrCommRateField *pQryMMOptionInstrCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryMMOptionInstrCommRateField *pQryMMOptionInstrCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMMInstrumentCommissionRateField *pMMInstrumentCommissionRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMMInstrumentCommissionRateField *pMMInstrumentCommissionRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMMInstrumentCommissionRateField *pQryMMInstrumentCommissionRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryMMInstrumentCommissionRateField *pQryMMInstrumentCommissionRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentOrderCommRateField *pQryInstrumentOrderCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentOrderCommRateField *pQryInstrumentOrderCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradeParamField *pTradeParamField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradeParamField *pTradeParamField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentMarginRateULField *pInstrumentMarginRateULField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentMarginRateULField *pInstrumentMarginRateULField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcFutureLimitPosiParamField *pFutureLimitPosiParamField);
-int PyCTP_Struct_FromPyDict(CThostFtdcFutureLimitPosiParamField *pFutureLimitPosiParamField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginForbiddenIPField *pLoginForbiddenIPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcLoginForbiddenIPField *pLoginForbiddenIPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcIPListField *pIPListField);
-int PyCTP_Struct_FromPyDict(CThostFtdcIPListField *pIPListField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfCloseField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfCloseField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionSelfCloseField *pOptionSelfCloseField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseField *pOptionSelfCloseField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionSelfCloseField *pQryOptionSelfCloseField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionSelfCloseField *pQryOptionSelfCloseField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOptionSelfCloseField *pExchangeOptionSelfCloseField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseField *pExchangeOptionSelfCloseField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryOptionSelfCloseActionField *pQryOptionSelfCloseActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryOptionSelfCloseActionField *pQryOptionSelfCloseActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeOptionSelfCloseActionField *pExchangeOptionSelfCloseActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeOptionSelfCloseActionField *pExchangeOptionSelfCloseActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDelaySwapField *pSyncDelaySwapField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapField *pSyncDelaySwapField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySyncDelaySwapField *pQrySyncDelaySwapField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncDelaySwapField *pQrySyncDelaySwapField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestUnitField *pInvestUnitField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestUnitField *pInvestUnitField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestUnitField *pQryInvestUnitField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestUnitField *pQryInvestUnitField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSecAgentCheckModeField *pSecAgentCheckModeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSecAgentCheckModeField *pSecAgentCheckModeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSecAgentTradeInfoField *pSecAgentTradeInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSecAgentTradeInfoField *pSecAgentTradeInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataField *pMarketDataField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataField *pMarketDataField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataBaseField *pMarketDataBaseField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBaseField *pMarketDataBaseField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataStaticField *pMarketDataStaticField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataStaticField *pMarketDataStaticField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataLastMatchField *pMarketDataLastMatchField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataLastMatchField *pMarketDataLastMatchField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataBestPriceField *pMarketDataBestPriceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBestPriceField *pMarketDataBestPriceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataBid23Field *pMarketDataBid23Field);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBid23Field *pMarketDataBid23Field, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataAsk23Field *pMarketDataAsk23Field);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAsk23Field *pMarketDataAsk23Field, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataBid45Field *pMarketDataBid45Field);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBid45Field *pMarketDataBid45Field, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataAsk45Field *pMarketDataAsk45Field);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAsk45Field *pMarketDataAsk45Field, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataUpdateTimeField *pMarketDataUpdateTimeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataUpdateTimeField *pMarketDataUpdateTimeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataBandingPriceField *pMarketDataBandingPriceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataBandingPriceField *pMarketDataBandingPriceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataExchangeField *pMarketDataExchangeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataExchangeField *pMarketDataExchangeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSpecificInstrumentField *pSpecificInstrumentField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSpecificInstrumentField *pSpecificInstrumentField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInstrumentStatusField *pInstrumentStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInstrumentStatusField *pInstrumentStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInstrumentStatusField *pQryInstrumentStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInstrumentStatusField *pQryInstrumentStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorAccountField *pInvestorAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorAccountField *pInvestorAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcPositionProfitAlgorithmField *pPositionProfitAlgorithmField);
-int PyCTP_Struct_FromPyDict(CThostFtdcPositionProfitAlgorithmField *pPositionProfitAlgorithmField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDiscountField *pDiscountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcDiscountField *pDiscountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTransferBankField *pQryTransferBankField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTransferBankField *pQryTransferBankField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferBankField *pTransferBankField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferBankField *pTransferBankField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPositionDetailField *pQryInvestorPositionDetailField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionDetailField *pQryInvestorPositionDetailField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetailField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetailField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountPasswordField *pTradingAccountPasswordField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordField *pTradingAccountPasswordField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMDTraderOfferField *pMDTraderOfferField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMDTraderOfferField *pMDTraderOfferField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMDTraderOfferField *pQryMDTraderOfferField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryMDTraderOfferField *pQryMDTraderOfferField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryNoticeField *pQryNoticeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryNoticeField *pQryNoticeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcNoticeField *pNoticeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcNoticeField *pNoticeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserRightField *pUserRightField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserRightField *pUserRightField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySettlementInfoConfirmField *pQrySettlementInfoConfirmField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySettlementInfoConfirmField *pQrySettlementInfoConfirmField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoadSettlementInfoField *pLoadSettlementInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcLoadSettlementInfoField *pLoadSettlementInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerWithdrawAlgorithmField *pBrokerWithdrawAlgorithmField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerWithdrawAlgorithmField *pBrokerWithdrawAlgorithmField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountPasswordUpdateV1Field *pTradingAccountPasswordUpdateV1Field);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordUpdateV1Field *pTradingAccountPasswordUpdateV1Field, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountPasswordUpdateField *pTradingAccountPasswordUpdateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountPasswordUpdateField *pTradingAccountPasswordUpdateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombinationLegField *pQryCombinationLegField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCombinationLegField *pQryCombinationLegField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySyncStatusField *pQrySyncStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySyncStatusField *pQrySyncStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombinationLegField *pCombinationLegField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCombinationLegField *pCombinationLegField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncStatusField *pSyncStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncStatusField *pSyncStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryLinkManField *pQryLinkManField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryLinkManField *pQryLinkManField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLinkManField *pLinkManField);
-int PyCTP_Struct_FromPyDict(CThostFtdcLinkManField *pLinkManField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerUserEventField *pQryBrokerUserEventField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerUserEventField *pQryBrokerUserEventField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserEventField *pBrokerUserEventField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserEventField *pBrokerUserEventField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryContractBankField *pQryContractBankField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryContractBankField *pQryContractBankField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcContractBankField *pContractBankField);
-int PyCTP_Struct_FromPyDict(CThostFtdcContractBankField *pContractBankField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetailField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetailField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcParkedOrderField *pParkedOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderField *pParkedOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcParkedOrderActionField *pParkedOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcParkedOrderActionField *pParkedOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryParkedOrderField *pQryParkedOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderField *pQryParkedOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryParkedOrderActionField *pQryParkedOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryParkedOrderActionField *pQryParkedOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorWithdrawAlgorithmField *pInvestorWithdrawAlgorithmField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorWithdrawAlgorithmField *pInvestorWithdrawAlgorithmField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPositionCombineDetailField *pQryInvestorPositionCombineDetailField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPositionCombineDetailField *pQryInvestorPositionCombineDetailField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarketDataAveragePriceField *pMarketDataAveragePriceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarketDataAveragePriceField *pMarketDataAveragePriceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcVerifyInvestorPasswordField *pVerifyInvestorPasswordField);
-int PyCTP_Struct_FromPyDict(CThostFtdcVerifyInvestorPasswordField *pVerifyInvestorPasswordField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserIPField *pUserIPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserIPField *pUserIPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingNoticeInfoField *pTradingNoticeInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingNoticeInfoField *pTradingNoticeInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingNoticeField *pTradingNoticeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingNoticeField *pTradingNoticeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTradingNoticeField *pQryTradingNoticeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTradingNoticeField *pQryTradingNoticeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrOrderField *pQryErrOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryErrOrderField *pQryErrOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrOrderField *pErrOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderField *pErrOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrderField);
-int PyCTP_Struct_FromPyDict(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrderField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryErrOrderActionField *pQryErrOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryErrOrderActionField *pQryErrOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcErrOrderActionField *pErrOrderActionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcErrOrderActionField *pErrOrderActionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryExchangeSequenceField *pQryExchangeSequenceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryExchangeSequenceField *pQryExchangeSequenceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcExchangeSequenceField *pExchangeSequenceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcExchangeSequenceField *pExchangeSequenceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMaxOrderVolumeWithPriceField *pQryMaxOrderVolumeWithPriceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryMaxOrderVolumeWithPriceField *pQryMaxOrderVolumeWithPriceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerTradingParamsField *pQryBrokerTradingParamsField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingParamsField *pQryBrokerTradingParamsField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerTradingParamsField *pBrokerTradingParamsField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerTradingParamsField *pBrokerTradingParamsField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBrokerTradingAlgosField *pQryBrokerTradingAlgosField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBrokerTradingAlgosField *pQryBrokerTradingAlgosField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgosField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgosField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryBrokerDepositField *pQueryBrokerDepositField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQueryBrokerDepositField *pQueryBrokerDepositField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerDepositField *pBrokerDepositField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerDepositField *pBrokerDepositField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCFMMCBrokerKeyField *pQryCFMMCBrokerKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCFMMCBrokerKeyField *pQryCFMMCBrokerKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCFMMCBrokerKeyField *pCFMMCBrokerKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCBrokerKeyField *pCFMMCBrokerKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCFMMCTradingAccountKeyField *pCFMMCTradingAccountKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCTradingAccountKeyField *pCFMMCTradingAccountKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCFMMCTradingAccountKeyField *pQryCFMMCTradingAccountKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCFMMCTradingAccountKeyField *pQryCFMMCTradingAccountKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserOTPParamField *pBrokerUserOTPParamField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserOTPParamField *pBrokerUserOTPParamField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcManualSyncBrokerUserOTPField *pManualSyncBrokerUserOTPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcManualSyncBrokerUserOTPField *pManualSyncBrokerUserOTPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCommRateModelField *pCommRateModelField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCommRateModelField *pCommRateModelField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCommRateModelField *pQryCommRateModelField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCommRateModelField *pQryCommRateModelField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMarginModelField *pMarginModelField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMarginModelField *pMarginModelField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMarginModelField *pQryMarginModelField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryMarginModelField *pQryMarginModelField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcEWarrantOffsetField *pEWarrantOffsetField);
-int PyCTP_Struct_FromPyDict(CThostFtdcEWarrantOffsetField *pEWarrantOffsetField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryEWarrantOffsetField *pQryEWarrantOffsetField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryEWarrantOffsetField *pQryEWarrantOffsetField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorProductGroupMarginField *pQryInvestorProductGroupMarginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorProductGroupMarginField *pQryInvestorProductGroupMarginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMarginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMarginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryCFMMCTradingAccountTokenField *pQueryCFMMCTradingAccountTokenField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQueryCFMMCTradingAccountTokenField *pQueryCFMMCTradingAccountTokenField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCFMMCTradingAccountTokenField *pCFMMCTradingAccountTokenField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCFMMCTradingAccountTokenField *pCFMMCTradingAccountTokenField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryProductGroupField *pQryProductGroupField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryProductGroupField *pQryProductGroupField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcProductGroupField *pProductGroupField);
-int PyCTP_Struct_FromPyDict(CThostFtdcProductGroupField *pProductGroupField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBulletinField *pBulletinField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBulletinField *pBulletinField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryBulletinField *pQryBulletinField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryBulletinField *pQryBulletinField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcMulticastInstrumentField *pMulticastInstrumentField);
-int PyCTP_Struct_FromPyDict(CThostFtdcMulticastInstrumentField *pMulticastInstrumentField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryMulticastInstrumentField *pQryMulticastInstrumentField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryMulticastInstrumentField *pQryMulticastInstrumentField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAppIDAuthAssignField *pAppIDAuthAssignField);
-int PyCTP_Struct_FromPyDict(CThostFtdcAppIDAuthAssignField *pAppIDAuthAssignField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqOpenAccountField *pReqOpenAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqOpenAccountField *pReqOpenAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqCancelAccountField *pReqCancelAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqCancelAccountField *pReqCancelAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqChangeAccountField *pReqChangeAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqChangeAccountField *pReqChangeAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqTransferField *pReqTransferField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqTransferField *pReqTransferField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspTransferField *pRspTransferField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspTransferField *pRspTransferField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqRepealField *pReqRepealField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqRepealField *pReqRepealField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspRepealField *pRspRepealField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspRepealField *pRspRepealField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqQueryAccountField *pReqQueryAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqQueryAccountField *pReqQueryAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspQueryAccountField *pRspQueryAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspQueryAccountField *pRspQueryAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcFutureSignIOField *pFutureSignIOField);
-int PyCTP_Struct_FromPyDict(CThostFtdcFutureSignIOField *pFutureSignIOField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspFutureSignInField *pRspFutureSignInField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspFutureSignInField *pRspFutureSignInField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqFutureSignOutField *pReqFutureSignOutField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqFutureSignOutField *pReqFutureSignOutField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspFutureSignOutField *pRspFutureSignOutField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspFutureSignOutField *pRspFutureSignOutField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqQueryTradeResultBySerialField *pReqQueryTradeResultBySerialField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqQueryTradeResultBySerialField *pReqQueryTradeResultBySerialField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspQueryTradeResultBySerialField *pRspQueryTradeResultBySerialField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspQueryTradeResultBySerialField *pRspQueryTradeResultBySerialField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqDayEndFileReadyField *pReqDayEndFileReadyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqDayEndFileReadyField *pReqDayEndFileReadyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReturnResultField *pReturnResultField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReturnResultField *pReturnResultField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcVerifyFuturePasswordField *pVerifyFuturePasswordField);
-int PyCTP_Struct_FromPyDict(CThostFtdcVerifyFuturePasswordField *pVerifyFuturePasswordField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcVerifyCustInfoField *pVerifyCustInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcVerifyCustInfoField *pVerifyCustInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcVerifyFuturePasswordAndCustInfoField *pVerifyFuturePasswordAndCustInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcVerifyFuturePasswordAndCustInfoField *pVerifyFuturePasswordAndCustInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepositResultInformField *pDepositResultInformField);
-int PyCTP_Struct_FromPyDict(CThostFtdcDepositResultInformField *pDepositResultInformField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqSyncKeyField *pReqSyncKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqSyncKeyField *pReqSyncKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspSyncKeyField *pRspSyncKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspSyncKeyField *pRspSyncKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcNotifyQueryAccountField *pNotifyQueryAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcNotifyQueryAccountField *pNotifyQueryAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTransferSerialField *pTransferSerialField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTransferSerialField *pTransferSerialField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryTransferSerialField *pQryTransferSerialField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryTransferSerialField *pQryTransferSerialField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcNotifyFutureSignInField *pNotifyFutureSignInField);
-int PyCTP_Struct_FromPyDict(CThostFtdcNotifyFutureSignInField *pNotifyFutureSignInField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcNotifyFutureSignOutField *pNotifyFutureSignOutField);
-int PyCTP_Struct_FromPyDict(CThostFtdcNotifyFutureSignOutField *pNotifyFutureSignOutField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcNotifySyncKeyField *pNotifySyncKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcNotifySyncKeyField *pNotifySyncKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryAccountregisterField *pQryAccountregisterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryAccountregisterField *pQryAccountregisterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAccountregisterField *pAccountregisterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcAccountregisterField *pAccountregisterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcOpenAccountField *pOpenAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcOpenAccountField *pOpenAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCancelAccountField *pCancelAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCancelAccountField *pCancelAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcChangeAccountField *pChangeAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcChangeAccountField *pChangeAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSecAgentACIDMapField *pSecAgentACIDMapField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSecAgentACIDMapField *pSecAgentACIDMapField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySecAgentACIDMapField *pQrySecAgentACIDMapField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySecAgentACIDMapField *pQrySecAgentACIDMapField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserRightsAssignField *pUserRightsAssignField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserRightsAssignField *pUserRightsAssignField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcBrokerUserRightAssignField *pBrokerUserRightAssignField);
-int PyCTP_Struct_FromPyDict(CThostFtdcBrokerUserRightAssignField *pBrokerUserRightAssignField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDRTransferField *pDRTransferField);
-int PyCTP_Struct_FromPyDict(CThostFtdcDRTransferField *pDRTransferField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcFensUserInfoField *pFensUserInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcFensUserInfoField *pFensUserInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCurrTransferIdentityField *pCurrTransferIdentityField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCurrTransferIdentityField *pCurrTransferIdentityField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcLoginForbiddenUserField *pLoginForbiddenUserField);
-int PyCTP_Struct_FromPyDict(CThostFtdcLoginForbiddenUserField *pLoginForbiddenUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryLoginForbiddenUserField *pQryLoginForbiddenUserField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryLoginForbiddenUserField *pQryLoginForbiddenUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcTradingAccountReserveField *pTradingAccountReserveField);
-int PyCTP_Struct_FromPyDict(CThostFtdcTradingAccountReserveField *pTradingAccountReserveField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryLoginForbiddenIPField *pQryLoginForbiddenIPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryLoginForbiddenIPField *pQryLoginForbiddenIPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryIPListField *pQryIPListField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryIPListField *pQryIPListField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryUserRightsAssignField *pQryUserRightsAssignField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryUserRightsAssignField *pQryUserRightsAssignField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReserveOpenAccountConfirmField *pReserveOpenAccountConfirmField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReserveOpenAccountConfirmField *pReserveOpenAccountConfirmField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReserveOpenAccountField *pReserveOpenAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReserveOpenAccountField *pReserveOpenAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAccountPropertyField *pAccountPropertyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcAccountPropertyField *pAccountPropertyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCurrDRIdentityField *pQryCurrDRIdentityField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCurrDRIdentityField *pQryCurrDRIdentityField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCurrDRIdentityField *pCurrDRIdentityField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCurrDRIdentityField *pCurrDRIdentityField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySecAgentCheckModeField *pQrySecAgentCheckModeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySecAgentCheckModeField *pQrySecAgentCheckModeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySecAgentTradeInfoField *pQrySecAgentTradeInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySecAgentTradeInfoField *pQrySecAgentTradeInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserAuthMethodField *pReqUserAuthMethodField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqUserAuthMethodField *pReqUserAuthMethodField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspUserAuthMethodField *pRspUserAuthMethodField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspUserAuthMethodField *pRspUserAuthMethodField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqGenUserCaptchaField *pReqGenUserCaptchaField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqGenUserCaptchaField *pReqGenUserCaptchaField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspGenUserCaptchaField *pRspGenUserCaptchaField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspGenUserCaptchaField *pRspGenUserCaptchaField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqGenUserTextField *pReqGenUserTextField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqGenUserTextField *pReqGenUserTextField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspGenUserTextField *pRspGenUserTextField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspGenUserTextField *pRspGenUserTextField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithCaptchaField *pReqUserLoginWithCaptchaField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithCaptchaField *pReqUserLoginWithCaptchaField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithTextField *pReqUserLoginWithTextField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithTextField *pReqUserLoginWithTextField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginWithOTPField *pReqUserLoginWithOTPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginWithOTPField *pReqUserLoginWithOTPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqApiHandshakeField *pReqApiHandshakeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqApiHandshakeField *pReqApiHandshakeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRspApiHandshakeField *pRspApiHandshakeField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRspApiHandshakeField *pRspApiHandshakeField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqVerifyApiKeyField *pReqVerifyApiKeyField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqVerifyApiKeyField *pReqVerifyApiKeyField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcDepartmentUserField *pDepartmentUserField);
-int PyCTP_Struct_FromPyDict(CThostFtdcDepartmentUserField *pDepartmentUserField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQueryFreqField *pQueryFreqField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQueryFreqField *pQueryFreqField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcAuthForbiddenIPField *pAuthForbiddenIPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryAuthForbiddenIPField *pQryAuthForbiddenIPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDelaySwapFrozenField *pSyncDelaySwapFrozenField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDelaySwapFrozenField *pSyncDelaySwapFrozenField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcUserSystemInfoField *pUserSystemInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcUserSystemInfoField *pUserSystemInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthUserIDField *pAuthUserIDField);
-int PyCTP_Struct_FromPyDict(CThostFtdcAuthUserIDField *pAuthUserIDField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcAuthIPField *pAuthIPField);
-int PyCTP_Struct_FromPyDict(CThostFtdcAuthIPField *pAuthIPField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryClassifiedInstrumentField *pQryClassifiedInstrumentField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryClassifiedInstrumentField *pQryClassifiedInstrumentField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryCombPromotionParamField *pQryCombPromotionParamField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryCombPromotionParamField *pQryCombPromotionParamField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcCombPromotionParamField *pCombPromotionParamField);
-int PyCTP_Struct_FromPyDict(CThostFtdcCombPromotionParamField *pCombPromotionParamField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcReqUserLoginSCField *pReqUserLoginSCField);
-int PyCTP_Struct_FromPyDict(CThostFtdcReqUserLoginSCField *pReqUserLoginSCField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryRiskSettleInvstPositionField *pQryRiskSettleInvstPositionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryRiskSettleInvstPositionField *pQryRiskSettleInvstPositionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryRiskSettleProductStatusField *pQryRiskSettleProductStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryRiskSettleProductStatusField *pQryRiskSettleProductStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPositionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPositionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInfoField *pSyncDeltaInfoField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInfoField *pSyncDeltaInfoField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaProductStatusField *pSyncDeltaProductStatusField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaProductStatusField *pSyncDeltaProductStatusField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstPosDtlField *pSyncDeltaInvstPosDtlField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstPosDtlField *pSyncDeltaInvstPosDtlField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstPosCombDtlField *pSyncDeltaInvstPosCombDtlField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstPosCombDtlField *pSyncDeltaInvstPosCombDtlField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaTradingAccountField *pSyncDeltaTradingAccountField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaTradingAccountField *pSyncDeltaTradingAccountField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInitInvstMarginField *pSyncDeltaInitInvstMarginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInitInvstMarginField *pSyncDeltaInitInvstMarginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaDceCombInstrumentField *pSyncDeltaDceCombInstrumentField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaDceCombInstrumentField *pSyncDeltaDceCombInstrumentField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstMarginRateField *pSyncDeltaInvstMarginRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstMarginRateField *pSyncDeltaInvstMarginRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaExchMarginRateField *pSyncDeltaExchMarginRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaExchMarginRateField *pSyncDeltaExchMarginRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaOptExchMarginField *pSyncDeltaOptExchMarginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaOptExchMarginField *pSyncDeltaOptExchMarginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaOptInvstMarginField *pSyncDeltaOptInvstMarginField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaOptInvstMarginField *pSyncDeltaOptInvstMarginField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstMarginRateULField *pSyncDeltaInvstMarginRateULField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstMarginRateULField *pSyncDeltaInvstMarginRateULField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaOptInvstCommRateField *pSyncDeltaOptInvstCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaOptInvstCommRateField *pSyncDeltaOptInvstCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaInvstCommRateField *pSyncDeltaInvstCommRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaInvstCommRateField *pSyncDeltaInvstCommRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaProductExchRateField *pSyncDeltaProductExchRateField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaProductExchRateField *pSyncDeltaProductExchRateField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaDepthMarketDataField *pSyncDeltaDepthMarketDataField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaDepthMarketDataField *pSyncDeltaDepthMarketDataField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaIndexPriceField *pSyncDeltaIndexPriceField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaIndexPriceField *pSyncDeltaIndexPriceField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncDeltaEWarrantOffsetField *pSyncDeltaEWarrantOffsetField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncDeltaEWarrantOffsetField *pSyncDeltaEWarrantOffsetField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMInterParameterField *pSPBMInterParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSPBMInterParameterField *pSPBMInterParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSyncSPBMParameterEndField *pSyncSPBMParameterEndField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSyncSPBMParameterEndField *pSyncSPBMParameterEndField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMFutureParameterField *pQrySPBMFutureParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMFutureParameterField *pQrySPBMFutureParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMOptionParameterField *pQrySPBMOptionParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMOptionParameterField *pQrySPBMOptionParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMIntraParameterField *pQrySPBMIntraParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMIntraParameterField *pQrySPBMIntraParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMInterParameterField *pQrySPBMInterParameterField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMInterParameterField *pQrySPBMInterParameterField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinitionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinitionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDefField);
-int PyCTP_Struct_FromPyDict(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDefField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatioField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatioField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMPortfDefinitionField *pQrySPBMPortfDefinitionField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMPortfDefinitionField *pQrySPBMPortfDefinitionField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQrySPBMInvestorPortfDefField *pQrySPBMInvestorPortfDefField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQrySPBMInvestorPortfDefField *pQrySPBMInvestorPortfDefField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorPortfMarginRatioField *pQryInvestorPortfMarginRatioField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorPortfMarginRatioField *pQryInvestorPortfMarginRatioField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetailField);
-int PyCTP_Struct_FromPyDict(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetailField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcQryInvestorProdSPBMDetailField *pQryInvestorProdSPBMDetailField);
-int PyCTP_Struct_FromPyDict(CThostFtdcQryInvestorProdSPBMDetailField *pQryInvestorProdSPBMDetailField, PyObject *dict);
-PyObject *PyCTP_PyDict_FromStruct(CThostFtdcPortfTradeParamSettingField *pPortfTradeParamSettingField);
-int PyCTP_Struct_FromPyDict(CThostFtdcPortfTradeParamSettingField *pPortfTradeParamSettingField, PyObject *dict);
+extern int PyCTP_All_Type_init(PyObject *module);
 
 #endif

@@ -6,30 +6,40 @@
 #include <ThostFtdcUserApiDataType.h>
 
 
-int PyModule_AddCharConstant(PyObject *m, const char *name, char value)
+int PyModule_AddCharConstant(PyObject *m, const char *name, const char value)
 {
-	PyObject *o = PyBytes_FromFormat("%c", value);
-	if (!o)
+	PyObject *o = PyBytes_FromStringAndSize(&value, 1);
+	if (!o) {
+        PyErr_Format(PyExc_RuntimeError, "can't initialize PyCTP.%s", name);
+        return -1;
+	}
+
+	if (PyModule_AddObject(m, name, o) < 0) {
+        PyErr_Format(PyExc_RuntimeError, "Failed to add %s to module", name);
+        Py_DECREF(o);
 		return -1;
-	if (PyModule_AddObject(m, name, o) == 0)
-		return 0;
-	Py_DECREF(o);
-	return -1;
+	}
+	return 0;
 }
 
-int PyModule_AddStrConstant(PyObject *m, const char *name, char *value)
+int PyModule_AddStrConstant(PyObject *m, const char *name, const char *value)
 {
-	PyObject *o = PyBytes_FromFormat("%s", value);
-	if (!o)
+	PyObject *o = PyBytes_FromString(value);
+	if (!o) {
+        PyErr_Format(PyExc_RuntimeError, "can't initialize PyCTP.%s", name);
 		return -1;
-	if (PyModule_AddObject(m, name, o) == 0)
-		return 0;
-	Py_DECREF(o);
-	return -1;
+	}
+
+	if (PyModule_AddObject(m, name, o) < 0) {
+        PyErr_Format(PyExc_RuntimeError, "Failed to add %s to module", name);
+        Py_DECREF(o);
+		return -1;
+	}
+	return 0;
 }
 
 int PyModule_AddCTPConstant(PyObject *m)
 {
-	{{ body }}
+${body}
 	return 0;
 }

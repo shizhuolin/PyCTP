@@ -8,9 +8,9 @@ import platform
 from distutils.core import setup, Extension
 from os.path import join, split, dirname
 
-linux_ctp = ['./v6.6.9_20220914_95719.2466/v6.6.9_20220914_api/v6.6.9_20220914_20220914_api_tradeapi_se_linux64', './v6.6.9_20220914_95719.2466/clientdll/v6.6.7_20220613_api_clientdatacollectdll_linux64']
-win32_ctp = ['./v6.6.9_20220914_95719.2466/v6.6.9_20220914_winApi/tradeapi/20220914_tradeapi_se_windows', './v6.6.9_20220914_95719.2466/clientdll/20220613_clientdll_windows']
-win64_ctp = ['./v6.6.9_20220914_95719.2466/v6.6.9_20220914_winApi/tradeapi/20220914_tradeapi64_se_windows', './v6.6.9_20220914_95719.2466/clientdll/20220613_clientdll64_windows']
+linux_ctp = ['./v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_api_traderapi_linux64/v6.7.9_P1_20250319_api/v6.7.9_P1_20250319_api_traderapi_se_linux64','./sfit_pro_1.0_20220124_1468_FIX/clientdatacollectdll_生产版', './sfit_pro_1.0_20220124_1468_FIX/clientdatacollectdll_生产版/linux']
+win32_ctp = ['./v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_winApi/traderapi/20250319_traderapi_se_windows', './sfit_pro_1.0_20220124_1468_FIX/clientdatacollectdll_生产版', './sfit_pro_1.0_20220124_1468_FIX/clientdatacollectdll_生产版/windows/32位']
+win64_ctp = ['./v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_winApi/traderapi/20250319_traderapi64_se_windows', './sfit_pro_1.0_20220124_1468_FIX/clientdatacollectdll_生产版', './sfit_pro_1.0_20220124_1468_FIX/clientdatacollectdll_生产版/windows/64位']
 
 headers = ['stdafx.h', 'UserApiDataType.h', 'UserApiStruct.h', 'MdApi.h', 'TraderApi.h', 'test_PyCTP.py']
 sources = ['stdafx.cpp', 'PyCTP.cpp', 'UserApiDataType.cpp', 'UserApiStruct.cpp', 'MdApi.cpp', 'TraderApi.cpp']
@@ -35,7 +35,7 @@ if platform.system() == 'Windows':
 argments = dict(name='PyCTP',
                 sources=sources,
                 language='c++',
-                libraries=['thostmduserapi_se', 'thosttraderapi_se', 'LinuxDataCollect' if platform.system() == 'Linux' else 'WinDataCollect'],
+                libraries=['thostmduserapi_se', 'thosttraderapi_se', 'FixLinuxDataCollect' if platform.system() == 'Linux' else 'WinDataCollect'],
                 depends=depends)
 argments.update(optional)
 

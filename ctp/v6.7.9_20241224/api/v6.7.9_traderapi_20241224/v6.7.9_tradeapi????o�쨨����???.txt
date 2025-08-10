@@ -1,0 +1,20 @@
+版本号：v6.7.9
+后台版本：V6.7.9
+注意：请各终端厂商根据自身情况进行开发。
+
+变更说明：
+
+1、API断线重连时间由原来的立即重连修改为等待1s后重连。
+2、新增接口：组合腿信息查询，该接口支持查询可申请组合合约的信息和套利合约信息，查询条件中单腿合约代码（必填）。
+
+（1）查询请求
+	///组合腿信息查询
+	virtual int ReqQryCombLeg(CThostFtdcQryCombLegField *pQryCombLeg, int nRequestID) = 0;
+
+（1）查询响应
+	///组合腿信息查询响应
+	virtual void OnRspQryCombLeg(CThostFtdcCombLegField *pCombLeg, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+
+
+

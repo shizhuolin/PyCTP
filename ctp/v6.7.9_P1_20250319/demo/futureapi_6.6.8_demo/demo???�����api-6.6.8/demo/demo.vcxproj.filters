@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{2a232c56-7533-4ed9-af63-adffeb783674}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{da70df85-54a4-4387-a460-382cabf8b490}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="time.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="traderApi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="traderSpi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="getconfig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="output.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ThostFtdcUserApiDataType.h" />
+    <ClInclude Include="ThostFtdcUserApiStruct.h" />
+    <ClInclude Include="ThostFtdcMdApi.h" />
+    <ClInclude Include="ThostFtdcTraderApi.h" />
+    <ClInclude Include="DataCollect.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="traderSpi.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="getconfig.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="traderApi.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="thosttraderapi_se.lib" />
+    <Library Include="thostmduserapi_se.lib" />
+    <Library Include="WinDataCollect.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.ini" />
+    <None Include="thosttraderapi_se.dll" />
+    <None Include="thostmduserapi_se.dll" />
+    <None Include="WinDataCollect.dll" />
+  </ItemGroup>
+</Project>

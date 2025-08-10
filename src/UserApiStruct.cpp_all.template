@@ -1,0 +1,8 @@
+#include "UserApiStruct.h"
+
+int PyCTP_All_Type_init(PyObject *module) {
+
+${cppsourcecode}
+
+    return 0;
+}

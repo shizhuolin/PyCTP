@@ -1,0 +1,14 @@
+1.int CTP_GetSystemInfo(char* pSystemInfo, int& nLen);调用说明
+调用的示例代码如下：
+	char szSysInfo[600];
+	memset(szSysInfo, 0, sizeof(szSysInfo));
+	int nLen = 0;
+	CTP_GetSystemInfo(szSysInfo, nLen);
+调用参数说明:
+@pSystemInfo 出参 获得采集到的加密信息,信息使用Base64重新编码 空间需要调用者自己分配 至少600个字节
+@nLen              出参 获取到的采集信息的长度
+
+2.包含文件:
+①FixDataCollect.h:Linux和Windows共用头文件.
+②Windows包含:FixWinDataCollect.lib库文件,需包含进工程.FixWinDataCollect.dll动态库,需放在可执行程序同目录(lib和dll区分32/64位版本)
+③Linux包含:FixLinuxDataCollect.so动态库,需放在可执行程序同目录(名字前加lib,仅提供64位版本)

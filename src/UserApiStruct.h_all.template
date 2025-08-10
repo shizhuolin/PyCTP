@@ -1,0 +1,8 @@
+#ifndef PYCTP_USERAPISTRUCT_HPP
+#define PYCTP_USERAPISTRUCT_HPP
+
+${cppheadercode}
+
+extern int PyCTP_All_Type_init(PyObject *module);
+
+#endif

@@ -8,7 +8,7 @@ x64/
 test/test_PyCTP.sh
 PyCTP.depend
 PyCTP.layout
-PyCTP.cpb
+PyCTP.cbp
 PyCTP.sln
 PyCTP.vcxproj
 PyCTP.vcxproj.user

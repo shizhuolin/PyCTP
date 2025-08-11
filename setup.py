@@ -4,7 +4,7 @@ Created on Sun Aug 10 12:39:25 CST 2025
 
 @author: zhuolin
 """
-import platform, sys, os, shutil
+import platform, sys, os, shutil, tempfile
 from distutils.core import setup, Extension
 from setuptools.command.build_ext import build_ext as _build_ext
 
@@ -68,6 +68,23 @@ class build_ext(_build_ext):
                 if os.path.exists(f):
                     shutil.copy(f, build_dir)
                     
+    def build_extension(self, ext):
+        if self.compiler.compiler_type == 'msvc':
+            orig_spawn = self.compiler.spawn
+            def spawn(cmd, *args, **kwargs):
+                if len(' '.join(cmd)) > 8000:
+                    fd, rsp_path = tempfile.mkstemp(suffix=".rsp", prefix="link_args_")
+                    os.close(fd)
+                    with open(rsp_path, "w") as f:
+                        for arg in cmd[1:]:
+                            if ' ' in arg or '\t' in arg:
+                                arg = '"' + arg + '"'
+                            f.write(arg + "\n")
+                    cmd = [cmd[0], "@" + rsp_path]
+                return orig_spawn(cmd, *args, **kwargs)
+            self.compiler.spawn = spawn
+        super().build_extension(ext)
+    
 headers, sources, others = list_all_files(src_dir)
 
 ctp_version = set()
@@ -101,7 +118,7 @@ argments = dict( name = 'PyCTP'
                 ,language='c++'
                 ,runtime_library_dirs = get_runtime_dirs()
                 ,extra_link_args = get_extra_link_args()
-                ,libraries=[ 'thostmduserapi_se', 'thosttraderapi_se', 'FixLinuxDataCollect'])
+                ,libraries=[ 'thostmduserapi_se', 'thosttraderapi_se', 'FixLinuxDataCollect' if platform.system() == 'Linux' else 'FixWinDataCollect'])
 argments.update(optional)
 
 setup( name = 'PyCTP'

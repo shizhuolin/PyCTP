@@ -40,8 +40,8 @@ static PyObject *METHOD_CTP_GetDataCollectApiVersion(PyObject *self, PyObject *a
 }
 
 static PyMethodDef PyCTPMethods[] = {
-	{"CTP_GetSystemInfo",  METHOD_CTP_GetSystemInfo, METH_NOARGS, "获取AES加密和RSA加密的终端信息"},
-	{"CTP_GetDataCollectApiVersion",  METHOD_CTP_GetDataCollectApiVersion, METH_NOARGS, "版本号格式 Sfit + 生产还是测试秘钥(pro/tst) + 秘钥版本 + 编译时间 + 版本(内部)"},
+	{"CTP_GetSystemInfo",  METHOD_CTP_GetSystemInfo, METH_NOARGS, "CTP_GetSystemInfo",
+	{"CTP_GetDataCollectApiVersion",  METHOD_CTP_GetDataCollectApiVersion, METH_NOARGS, "CTP_GetDataCollectApiVersion"},
 	{NULL} /* Sentinel */
 };
 

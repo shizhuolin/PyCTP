@@ -40,7 +40,7 @@ static PyObject *METHOD_CTP_GetDataCollectApiVersion(PyObject *self, PyObject *a
 }
 
 static PyMethodDef PyCTPMethods[] = {
-	{"CTP_GetSystemInfo",  METHOD_CTP_GetSystemInfo, METH_NOARGS, "CTP_GetSystemInfo",
+	{"CTP_GetSystemInfo",  METHOD_CTP_GetSystemInfo, METH_NOARGS, "CTP_GetSystemInfo"},
 	{"CTP_GetDataCollectApiVersion",  METHOD_CTP_GetDataCollectApiVersion, METH_NOARGS, "CTP_GetDataCollectApiVersion"},
 	{NULL} /* Sentinel */
 };

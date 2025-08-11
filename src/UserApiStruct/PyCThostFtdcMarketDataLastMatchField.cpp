@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataLastMatchField.h"
 
-///行情最新成交属性
+
 
 static PyObject *PyCThostFtdcMarketDataLastMatchField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataLastMatchField *self = (PyCThostFtdcMarketDataLastMatchField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcMarketDataLastMatchField_new(PyTypeObject *type, Py
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,23 +18,19 @@ static int PyCThostFtdcMarketDataLastMatchField_init(PyCThostFtdcMarketDataLastM
 
     static const char *kwlist[] = {"LastPrice", "Volume", "Turnover", "OpenInterest",  NULL};
 
+	//TThostFtdcPriceType double
+	double pMarketDataLastMatchField_LastPrice = 0.0;
 
-    ///最新价
-    // TThostFtdcPriceType double
-    double MarketDataLastMatchField_LastPrice = 0.0;
-        
-    ///数量
-    // TThostFtdcVolumeType int
-    int MarketDataLastMatchField_Volume = 0;
-        
-    ///成交金额
-    // TThostFtdcMoneyType double
-    double MarketDataLastMatchField_Turnover = 0.0;
-        
-    ///持仓量
-    // TThostFtdcLargeVolumeType double
-    double MarketDataLastMatchField_OpenInterest = 0.0;
-        
+	//TThostFtdcVolumeType int
+	int pMarketDataLastMatchField_Volume = 0;
+
+	//TThostFtdcMoneyType double
+	double pMarketDataLastMatchField_Turnover = 0.0;
+
+	//TThostFtdcLargeVolumeType double
+	double pMarketDataLastMatchField_OpenInterest = 0.0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|didd", (char **)kwlist
@@ -41,33 +38,26 @@ static int PyCThostFtdcMarketDataLastMatchField_init(PyCThostFtdcMarketDataLastM
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|didd", (char **)kwlist
 #endif
 
-        , &MarketDataLastMatchField_LastPrice 
-        , &MarketDataLastMatchField_Volume 
-        , &MarketDataLastMatchField_Turnover 
-        , &MarketDataLastMatchField_OpenInterest 
+		, &pMarketDataLastMatchField_LastPrice
+		, &pMarketDataLastMatchField_Volume
+		, &pMarketDataLastMatchField_Turnover
+		, &pMarketDataLastMatchField_OpenInterest
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcPriceType double
+	self->data.LastPrice = pMarketDataLastMatchField_LastPrice;
+	//TThostFtdcVolumeType int
+	self->data.Volume = pMarketDataLastMatchField_Volume;
 
-    ///最新价
-    // TThostFtdcPriceType double
-    self->data.LastPrice = MarketDataLastMatchField_LastPrice;
-        
-    ///数量
-    // TThostFtdcVolumeType int
-    self->data.Volume = MarketDataLastMatchField_Volume;
-        
-    ///成交金额
-    // TThostFtdcMoneyType double
-    self->data.Turnover = MarketDataLastMatchField_Turnover;
-        
-    ///持仓量
-    // TThostFtdcLargeVolumeType double
-    self->data.OpenInterest = MarketDataLastMatchField_OpenInterest;
-        
+	//TThostFtdcMoneyType double
+	self->data.Turnover = pMarketDataLastMatchField_Turnover;
+	//TThostFtdcLargeVolumeType double
+	self->data.OpenInterest = pMarketDataLastMatchField_OpenInterest;
+
 
     return 0;
 }
@@ -84,10 +74,10 @@ static PyObject *PyCThostFtdcMarketDataLastMatchField_repr(PyCThostFtdcMarketDat
     PyObject *obj = Py_BuildValue("{s:d,s:i,s:d,s:d}"
 #endif
 
-        ,"LastPrice", self->data.LastPrice 
-        ,"Volume", self->data.Volume 
-        ,"Turnover", self->data.Turnover 
-        ,"OpenInterest", self->data.OpenInterest 
+		, "LastPrice", self->data.LastPrice
+		, "Volume", self->data.Volume
+		, "Turnover", self->data.Turnover
+		, "OpenInterest", self->data.OpenInterest
 
 
 		);
@@ -100,16 +90,27 @@ static PyObject *PyCThostFtdcMarketDataLastMatchField_repr(PyCThostFtdcMarketDat
     return PyObject_Repr(obj);
 }
 
-
-///最新价
-// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcMarketDataLastMatchField_get_LastPrice(PyCThostFtdcMarketDataLastMatchField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LastPrice);
+	return PyFloat_FromDouble(self->data.LastPrice);
 }
 
-///最新价
-// TThostFtdcPriceType double
-static int PyCThostFtdcMarketDataLastMatchField_set_LastPrice(PyCThostFtdcMarketDataLastMatchField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcMarketDataLastMatchField_get_Volume(PyCThostFtdcMarketDataLastMatchField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.Volume);
+#else 
+	return PyInt_FromLong(self->data.Volume);
+#endif 
+}
+
+static PyObject *PyCThostFtdcMarketDataLastMatchField_get_Turnover(PyCThostFtdcMarketDataLastMatchField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.Turnover);
+}
+
+static PyObject *PyCThostFtdcMarketDataLastMatchField_get_OpenInterest(PyCThostFtdcMarketDataLastMatchField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.OpenInterest);
+}
+
+static int PyCThostFtdcMarketDataLastMatchField_set_LastPrice(PyCThostFtdcMarketDataLastMatchField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LastPrice Expected float");
         return -1;
@@ -121,54 +122,34 @@ static int PyCThostFtdcMarketDataLastMatchField_set_LastPrice(PyCThostFtdcMarket
     self->data.LastPrice = buf;
     return 0;
 }
-        
-///数量
-// TThostFtdcVolumeType int
-static PyObject *PyCThostFtdcMarketDataLastMatchField_get_Volume(PyCThostFtdcMarketDataLastMatchField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.Volume);
-#else
-    return PyInt_FromLong(self->data.Volume);
-#endif
-}
 
-///数量
-// TThostFtdcVolumeType int
-static int PyCThostFtdcMarketDataLastMatchField_set_Volume(PyCThostFtdcMarketDataLastMatchField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataLastMatchField_set_Volume(PyCThostFtdcMarketDataLastMatchField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "Volume Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "Volume Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "Volume Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the Volume value out of range for C int");
-        return -1;
-    }
-    self->data.Volume = (int)buf;
-    return 0;
-}
-        
-///成交金额
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcMarketDataLastMatchField_get_Turnover(PyCThostFtdcMarketDataLastMatchField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.Turnover);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.Volume = (int)buf; 
+    return 0; 
 }
 
-///成交金额
-// TThostFtdcMoneyType double
-static int PyCThostFtdcMarketDataLastMatchField_set_Turnover(PyCThostFtdcMarketDataLastMatchField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataLastMatchField_set_Turnover(PyCThostFtdcMarketDataLastMatchField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "Turnover Expected float");
         return -1;
@@ -180,16 +161,8 @@ static int PyCThostFtdcMarketDataLastMatchField_set_Turnover(PyCThostFtdcMarketD
     self->data.Turnover = buf;
     return 0;
 }
-        
-///持仓量
-// TThostFtdcLargeVolumeType double
-static PyObject *PyCThostFtdcMarketDataLastMatchField_get_OpenInterest(PyCThostFtdcMarketDataLastMatchField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.OpenInterest);
-}
 
-///持仓量
-// TThostFtdcLargeVolumeType double
-static int PyCThostFtdcMarketDataLastMatchField_set_OpenInterest(PyCThostFtdcMarketDataLastMatchField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataLastMatchField_set_OpenInterest(PyCThostFtdcMarketDataLastMatchField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "OpenInterest Expected float");
         return -1;
@@ -201,17 +174,14 @@ static int PyCThostFtdcMarketDataLastMatchField_set_OpenInterest(PyCThostFtdcMar
     self->data.OpenInterest = buf;
     return 0;
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcMarketDataLastMatchField_getset[] = {
-    ///最新价 
-    {(char *)"LastPrice", (getter)PyCThostFtdcMarketDataLastMatchField_get_LastPrice, (setter)PyCThostFtdcMarketDataLastMatchField_set_LastPrice, (char *)"LastPrice", NULL},
-    ///数量 
-    {(char *)"Volume", (getter)PyCThostFtdcMarketDataLastMatchField_get_Volume, (setter)PyCThostFtdcMarketDataLastMatchField_set_Volume, (char *)"Volume", NULL},
-    ///成交金额 
-    {(char *)"Turnover", (getter)PyCThostFtdcMarketDataLastMatchField_get_Turnover, (setter)PyCThostFtdcMarketDataLastMatchField_set_Turnover, (char *)"Turnover", NULL},
-    ///持仓量 
-    {(char *)"OpenInterest", (getter)PyCThostFtdcMarketDataLastMatchField_get_OpenInterest, (setter)PyCThostFtdcMarketDataLastMatchField_set_OpenInterest, (char *)"OpenInterest", NULL},
+	 {(char *)"LastPrice", (getter)PyCThostFtdcMarketDataLastMatchField_get_LastPrice, (setter)PyCThostFtdcMarketDataLastMatchField_set_LastPrice, (char *)"LastPrice", NULL},
+	 {(char *)"Volume", (getter)PyCThostFtdcMarketDataLastMatchField_get_Volume, (setter)PyCThostFtdcMarketDataLastMatchField_set_Volume, (char *)"Volume", NULL},
+	 {(char *)"Turnover", (getter)PyCThostFtdcMarketDataLastMatchField_get_Turnover, (setter)PyCThostFtdcMarketDataLastMatchField_set_Turnover, (char *)"Turnover", NULL},
+	 {(char *)"OpenInterest", (getter)PyCThostFtdcMarketDataLastMatchField_get_OpenInterest, (setter)PyCThostFtdcMarketDataLastMatchField_set_OpenInterest, (char *)"OpenInterest", NULL},
 
     {NULL}
 };

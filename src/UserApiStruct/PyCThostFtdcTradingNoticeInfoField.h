@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户事件通知信息
+
 
 typedef struct PyCThostFtdcTradingNoticeInfoField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询对冲设置
+
 
 typedef struct PyCThostFtdcQryOffsetSettingField {
     PyObject_HEAD

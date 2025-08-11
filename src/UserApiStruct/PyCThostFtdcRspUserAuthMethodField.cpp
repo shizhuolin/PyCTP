@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcRspUserAuthMethodField.h"
 
-///用户发出获取安全安全登陆方法回复
+
 
 static PyObject *PyCThostFtdcRspUserAuthMethodField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcRspUserAuthMethodField *self = (PyCThostFtdcRspUserAuthMethodField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcRspUserAuthMethodField_new(PyTypeObject *type, PyOb
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,11 +18,10 @@ static int PyCThostFtdcRspUserAuthMethodField_init(PyCThostFtdcRspUserAuthMethod
 
     static const char *kwlist[] = {"UsableAuthMethod",  NULL};
 
+	//TThostFtdcCurrentAuthMethodType int
+	int pRspUserAuthMethodField_UsableAuthMethod = 0;
 
-    ///当前可以用的认证模式
-    // TThostFtdcCurrentAuthMethodType int
-    int RspUserAuthMethodField_UsableAuthMethod = 0;
-        
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
@@ -29,18 +29,17 @@ static int PyCThostFtdcRspUserAuthMethodField_init(PyCThostFtdcRspUserAuthMethod
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
 #endif
 
-        , &RspUserAuthMethodField_UsableAuthMethod 
+		, &pRspUserAuthMethodField_UsableAuthMethod
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcCurrentAuthMethodType int
+	self->data.UsableAuthMethod = pRspUserAuthMethodField_UsableAuthMethod;
 
-    ///当前可以用的认证模式
-    // TThostFtdcCurrentAuthMethodType int
-    self->data.UsableAuthMethod = RspUserAuthMethodField_UsableAuthMethod;
-        
+
 
     return 0;
 }
@@ -57,7 +56,7 @@ static PyObject *PyCThostFtdcRspUserAuthMethodField_repr(PyCThostFtdcRspUserAuth
     PyObject *obj = Py_BuildValue("{s:i}"
 #endif
 
-        ,"UsableAuthMethod", self->data.UsableAuthMethod 
+		, "UsableAuthMethod", self->data.UsableAuthMethod
 
 
 		);
@@ -70,49 +69,44 @@ static PyObject *PyCThostFtdcRspUserAuthMethodField_repr(PyCThostFtdcRspUserAuth
     return PyObject_Repr(obj);
 }
 
-
-///当前可以用的认证模式
-// TThostFtdcCurrentAuthMethodType int
 static PyObject *PyCThostFtdcRspUserAuthMethodField_get_UsableAuthMethod(PyCThostFtdcRspUserAuthMethodField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.UsableAuthMethod);
-#else
-    return PyInt_FromLong(self->data.UsableAuthMethod);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.UsableAuthMethod);
+#else 
+	return PyInt_FromLong(self->data.UsableAuthMethod);
+#endif 
 }
 
-///当前可以用的认证模式
-// TThostFtdcCurrentAuthMethodType int
-static int PyCThostFtdcRspUserAuthMethodField_set_UsableAuthMethod(PyCThostFtdcRspUserAuthMethodField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcRspUserAuthMethodField_set_UsableAuthMethod(PyCThostFtdcRspUserAuthMethodField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "UsableAuthMethod Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UsableAuthMethod Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "UsableAuthMethod Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the UsableAuthMethod value out of range for C int");
-        return -1;
-    }
-    self->data.UsableAuthMethod = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.UsableAuthMethod = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcRspUserAuthMethodField_getset[] = {
-    ///当前可以用的认证模式 
-    {(char *)"UsableAuthMethod", (getter)PyCThostFtdcRspUserAuthMethodField_get_UsableAuthMethod, (setter)PyCThostFtdcRspUserAuthMethodField_set_UsableAuthMethod, (char *)"UsableAuthMethod", NULL},
+	 {(char *)"UsableAuthMethod", (getter)PyCThostFtdcRspUserAuthMethodField_get_UsableAuthMethod, (setter)PyCThostFtdcRspUserAuthMethodField_set_UsableAuthMethod, (char *)"UsableAuthMethod", NULL},
 
     {NULL}
 };

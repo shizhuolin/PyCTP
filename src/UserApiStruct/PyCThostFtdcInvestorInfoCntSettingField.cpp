@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcInvestorInfoCntSettingField.h"
 
-///投资者申报费阶梯收取设置
+
 
 static PyObject *PyCThostFtdcInvestorInfoCntSettingField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcInvestorInfoCntSettingField *self = (PyCThostFtdcInvestorInfoCntSettingField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcInvestorInfoCntSettingField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,39 +18,32 @@ static int PyCThostFtdcInvestorInfoCntSettingField_init(PyCThostFtdcInvestorInfo
 
     static const char *kwlist[] = {"ExchangeID", "BrokerID", "InvestorID", "ProductID", "IsCalInfoComm", "IsLimitInfoMax", "InfoMaxLimit",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pInvestorInfoCntSettingField_ExchangeID = NULL;
+	Py_ssize_t pInvestorInfoCntSettingField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *InvestorInfoCntSettingField_ExchangeID = NULL;
-    Py_ssize_t InvestorInfoCntSettingField_ExchangeID_len = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *InvestorInfoCntSettingField_BrokerID = NULL;
-    Py_ssize_t InvestorInfoCntSettingField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *InvestorInfoCntSettingField_InvestorID = NULL;
-    Py_ssize_t InvestorInfoCntSettingField_InvestorID_len = 0;
-            
-    ///商品代码
-    // TThostFtdcProductIDType char[41]
-    const char *InvestorInfoCntSettingField_ProductID = NULL;
-    Py_ssize_t InvestorInfoCntSettingField_ProductID_len = 0;
-            
-    ///是否收取申报费
-    // TThostFtdcBoolType int
-    int InvestorInfoCntSettingField_IsCalInfoComm = 0;
-        
-    ///是否限制信息量
-    // TThostFtdcBoolType int
-    int InvestorInfoCntSettingField_IsLimitInfoMax = 0;
-        
-    ///信息量限制笔数
-    // TThostFtdcVolumeType int
-    int InvestorInfoCntSettingField_InfoMaxLimit = 0;
-        
+	//TThostFtdcBrokerIDType char[11]
+	const char *pInvestorInfoCntSettingField_BrokerID = NULL;
+	Py_ssize_t pInvestorInfoCntSettingField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pInvestorInfoCntSettingField_InvestorID = NULL;
+	Py_ssize_t pInvestorInfoCntSettingField_InvestorID_len = 0;
+
+	//TThostFtdcProductIDType char[41]
+	const char *pInvestorInfoCntSettingField_ProductID = NULL;
+	Py_ssize_t pInvestorInfoCntSettingField_ProductID_len = 0;
+
+	//TThostFtdcBoolType int
+	int pInvestorInfoCntSettingField_IsCalInfoComm = 0;
+
+	//TThostFtdcBoolType int
+	int pInvestorInfoCntSettingField_IsLimitInfoMax = 0;
+
+	//TThostFtdcVolumeType int
+	int pInvestorInfoCntSettingField_InfoMaxLimit = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#iii", (char **)kwlist
@@ -57,84 +51,69 @@ static int PyCThostFtdcInvestorInfoCntSettingField_init(PyCThostFtdcInvestorInfo
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#iii", (char **)kwlist
 #endif
 
-        , &InvestorInfoCntSettingField_ExchangeID, &InvestorInfoCntSettingField_ExchangeID_len 
-        , &InvestorInfoCntSettingField_BrokerID, &InvestorInfoCntSettingField_BrokerID_len 
-        , &InvestorInfoCntSettingField_InvestorID, &InvestorInfoCntSettingField_InvestorID_len 
-        , &InvestorInfoCntSettingField_ProductID, &InvestorInfoCntSettingField_ProductID_len 
-        , &InvestorInfoCntSettingField_IsCalInfoComm 
-        , &InvestorInfoCntSettingField_IsLimitInfoMax 
-        , &InvestorInfoCntSettingField_InfoMaxLimit 
+		, &pInvestorInfoCntSettingField_ExchangeID, &pInvestorInfoCntSettingField_ExchangeID_len
+		, &pInvestorInfoCntSettingField_BrokerID, &pInvestorInfoCntSettingField_BrokerID_len
+		, &pInvestorInfoCntSettingField_InvestorID, &pInvestorInfoCntSettingField_InvestorID_len
+		, &pInvestorInfoCntSettingField_ProductID, &pInvestorInfoCntSettingField_ProductID_len
+		, &pInvestorInfoCntSettingField_IsCalInfoComm
+		, &pInvestorInfoCntSettingField_IsLimitInfoMax
+		, &pInvestorInfoCntSettingField_InfoMaxLimit
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pInvestorInfoCntSettingField_ExchangeID != NULL) {
+		if(pInvestorInfoCntSettingField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pInvestorInfoCntSettingField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pInvestorInfoCntSettingField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pInvestorInfoCntSettingField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( InvestorInfoCntSettingField_ExchangeID != NULL ) {
-        if(InvestorInfoCntSettingField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InvestorInfoCntSettingField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, InvestorInfoCntSettingField_ExchangeID, InvestorInfoCntSettingField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, InvestorInfoCntSettingField_ExchangeID, sizeof(self->data.ExchangeID) );
-        InvestorInfoCntSettingField_ExchangeID = NULL;
-    }
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( InvestorInfoCntSettingField_BrokerID != NULL ) {
-        if(InvestorInfoCntSettingField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorInfoCntSettingField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, InvestorInfoCntSettingField_BrokerID, InvestorInfoCntSettingField_BrokerID_len);        
-        strncpy(self->data.BrokerID, InvestorInfoCntSettingField_BrokerID, sizeof(self->data.BrokerID) );
-        InvestorInfoCntSettingField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( InvestorInfoCntSettingField_InvestorID != NULL ) {
-        if(InvestorInfoCntSettingField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorInfoCntSettingField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, InvestorInfoCntSettingField_InvestorID, InvestorInfoCntSettingField_InvestorID_len);        
-        strncpy(self->data.InvestorID, InvestorInfoCntSettingField_InvestorID, sizeof(self->data.InvestorID) );
-        InvestorInfoCntSettingField_InvestorID = NULL;
-    }
-            
-    ///商品代码
-    // TThostFtdcProductIDType char[41]
-    if( InvestorInfoCntSettingField_ProductID != NULL ) {
-        if(InvestorInfoCntSettingField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", InvestorInfoCntSettingField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, InvestorInfoCntSettingField_ProductID, InvestorInfoCntSettingField_ProductID_len);        
-        strncpy(self->data.ProductID, InvestorInfoCntSettingField_ProductID, sizeof(self->data.ProductID) );
-        InvestorInfoCntSettingField_ProductID = NULL;
-    }
-            
-    ///是否收取申报费
-    // TThostFtdcBoolType int
-    self->data.IsCalInfoComm = InvestorInfoCntSettingField_IsCalInfoComm;
-        
-    ///是否限制信息量
-    // TThostFtdcBoolType int
-    self->data.IsLimitInfoMax = InvestorInfoCntSettingField_IsLimitInfoMax;
-        
-    ///信息量限制笔数
-    // TThostFtdcVolumeType int
-    self->data.InfoMaxLimit = InvestorInfoCntSettingField_InfoMaxLimit;
-        
+	//TThostFtdcBrokerIDType char[11]
+	if(pInvestorInfoCntSettingField_BrokerID != NULL) {
+		if(pInvestorInfoCntSettingField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pInvestorInfoCntSettingField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pInvestorInfoCntSettingField_BrokerID, sizeof(self->data.BrokerID) );
+		pInvestorInfoCntSettingField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pInvestorInfoCntSettingField_InvestorID != NULL) {
+		if(pInvestorInfoCntSettingField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pInvestorInfoCntSettingField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pInvestorInfoCntSettingField_InvestorID, sizeof(self->data.InvestorID) );
+		pInvestorInfoCntSettingField_InvestorID = NULL;
+	}
+
+	//TThostFtdcProductIDType char[41]
+	if(pInvestorInfoCntSettingField_ProductID != NULL) {
+		if(pInvestorInfoCntSettingField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pInvestorInfoCntSettingField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pInvestorInfoCntSettingField_ProductID, sizeof(self->data.ProductID) );
+		pInvestorInfoCntSettingField_ProductID = NULL;
+	}
+
+	//TThostFtdcBoolType int
+	self->data.IsCalInfoComm = pInvestorInfoCntSettingField_IsCalInfoComm;
+
+	//TThostFtdcBoolType int
+	self->data.IsLimitInfoMax = pInvestorInfoCntSettingField_IsLimitInfoMax;
+
+	//TThostFtdcVolumeType int
+	self->data.InfoMaxLimit = pInvestorInfoCntSettingField_InfoMaxLimit;
+
+
 
     return 0;
 }
@@ -151,13 +130,13 @@ static PyObject *PyCThostFtdcInvestorInfoCntSettingField_repr(PyCThostFtdcInvest
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:i,s:i,s:i}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
-        ,"IsCalInfoComm", self->data.IsCalInfoComm 
-        ,"IsLimitInfoMax", self->data.IsLimitInfoMax 
-        ,"InfoMaxLimit", self->data.InfoMaxLimit 
+		, "ExchangeID", self->data.ExchangeID 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "ProductID", self->data.ProductID 
+		, "IsCalInfoComm", self->data.IsCalInfoComm
+		, "IsLimitInfoMax", self->data.IsLimitInfoMax
+		, "InfoMaxLimit", self->data.InfoMaxLimit
 
 
 		);
@@ -170,241 +149,194 @@ static PyObject *PyCThostFtdcInvestorInfoCntSettingField_repr(PyCThostFtdcInvest
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_ExchangeID(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcInvestorInfoCntSettingField_set_ExchangeID(PyCThostFtdcInvestorInfoCntSettingField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_BrokerID(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcInvestorInfoCntSettingField_set_BrokerID(PyCThostFtdcInvestorInfoCntSettingField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_InvestorID(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcInvestorInfoCntSettingField_set_InvestorID(PyCThostFtdcInvestorInfoCntSettingField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///商品代码
-// TThostFtdcProductIDType char[41]
 static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_ProductID(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+	return PyBytes_FromString(self->data.ProductID);
 }
 
-///商品代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcInvestorInfoCntSettingField_set_ProductID(PyCThostFtdcInvestorInfoCntSettingField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
-}
-            
-///是否收取申报费
-// TThostFtdcBoolType int
 static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_IsCalInfoComm(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsCalInfoComm);
-#else
-    return PyInt_FromLong(self->data.IsCalInfoComm);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsCalInfoComm);
+#else 
+	return PyInt_FromLong(self->data.IsCalInfoComm);
+#endif 
 }
 
-///是否收取申报费
-// TThostFtdcBoolType int
-static int PyCThostFtdcInvestorInfoCntSettingField_set_IsCalInfoComm(PyCThostFtdcInvestorInfoCntSettingField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_IsLimitInfoMax(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsLimitInfoMax);
+#else 
+	return PyInt_FromLong(self->data.IsLimitInfoMax);
+#endif 
+}
+
+static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_InfoMaxLimit(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.InfoMaxLimit);
+#else 
+	return PyInt_FromLong(self->data.InfoMaxLimit);
+#endif 
+}
+
+static int PyCThostFtdcInvestorInfoCntSettingField_set_ExchangeID(PyCThostFtdcInvestorInfoCntSettingField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorInfoCntSettingField_set_BrokerID(PyCThostFtdcInvestorInfoCntSettingField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorInfoCntSettingField_set_InvestorID(PyCThostFtdcInvestorInfoCntSettingField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorInfoCntSettingField_set_ProductID(PyCThostFtdcInvestorInfoCntSettingField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorInfoCntSettingField_set_IsCalInfoComm(PyCThostFtdcInvestorInfoCntSettingField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsCalInfoComm Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsCalInfoComm Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsCalInfoComm Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsCalInfoComm value out of range for C int");
-        return -1;
-    }
-    self->data.IsCalInfoComm = (int)buf;
-    return 0;
-}
-        
-///是否限制信息量
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_IsLimitInfoMax(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsLimitInfoMax);
-#else
-    return PyInt_FromLong(self->data.IsLimitInfoMax);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsCalInfoComm = (int)buf; 
+    return 0; 
 }
 
-///是否限制信息量
-// TThostFtdcBoolType int
-static int PyCThostFtdcInvestorInfoCntSettingField_set_IsLimitInfoMax(PyCThostFtdcInvestorInfoCntSettingField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorInfoCntSettingField_set_IsLimitInfoMax(PyCThostFtdcInvestorInfoCntSettingField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsLimitInfoMax Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsLimitInfoMax Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsLimitInfoMax Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsLimitInfoMax value out of range for C int");
-        return -1;
-    }
-    self->data.IsLimitInfoMax = (int)buf;
-    return 0;
-}
-        
-///信息量限制笔数
-// TThostFtdcVolumeType int
-static PyObject *PyCThostFtdcInvestorInfoCntSettingField_get_InfoMaxLimit(PyCThostFtdcInvestorInfoCntSettingField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.InfoMaxLimit);
-#else
-    return PyInt_FromLong(self->data.InfoMaxLimit);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsLimitInfoMax = (int)buf; 
+    return 0; 
 }
 
-///信息量限制笔数
-// TThostFtdcVolumeType int
-static int PyCThostFtdcInvestorInfoCntSettingField_set_InfoMaxLimit(PyCThostFtdcInvestorInfoCntSettingField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorInfoCntSettingField_set_InfoMaxLimit(PyCThostFtdcInvestorInfoCntSettingField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "InfoMaxLimit Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InfoMaxLimit Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "InfoMaxLimit Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the InfoMaxLimit value out of range for C int");
-        return -1;
-    }
-    self->data.InfoMaxLimit = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.InfoMaxLimit = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcInvestorInfoCntSettingField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_ExchangeID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_BrokerID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_InvestorID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///商品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_ProductID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_ProductID, (char *)"ProductID", NULL},
-    ///是否收取申报费 
-    {(char *)"IsCalInfoComm", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_IsCalInfoComm, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_IsCalInfoComm, (char *)"IsCalInfoComm", NULL},
-    ///是否限制信息量 
-    {(char *)"IsLimitInfoMax", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_IsLimitInfoMax, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_IsLimitInfoMax, (char *)"IsLimitInfoMax", NULL},
-    ///信息量限制笔数 
-    {(char *)"InfoMaxLimit", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_InfoMaxLimit, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_InfoMaxLimit, (char *)"InfoMaxLimit", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_ExchangeID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_BrokerID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_InvestorID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_ProductID, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"IsCalInfoComm", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_IsCalInfoComm, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_IsCalInfoComm, (char *)"IsCalInfoComm", NULL},
+	 {(char *)"IsLimitInfoMax", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_IsLimitInfoMax, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_IsLimitInfoMax, (char *)"IsLimitInfoMax", NULL},
+	 {(char *)"InfoMaxLimit", (getter)PyCThostFtdcInvestorInfoCntSettingField_get_InfoMaxLimit, (setter)PyCThostFtdcInvestorInfoCntSettingField_set_InfoMaxLimit, (char *)"InfoMaxLimit", NULL},
 
     {NULL}
 };

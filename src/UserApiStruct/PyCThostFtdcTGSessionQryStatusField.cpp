@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTGSessionQryStatusField.h"
 
-///TGate会话查询状态
+
 
 static PyObject *PyCThostFtdcTGSessionQryStatusField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTGSessionQryStatusField *self = (PyCThostFtdcTGSessionQryStatusField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcTGSessionQryStatusField_new(PyTypeObject *type, PyO
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,15 +18,13 @@ static int PyCThostFtdcTGSessionQryStatusField_init(PyCThostFtdcTGSessionQryStat
 
     static const char *kwlist[] = {"LastQryFreq", "QryStatus",  NULL};
 
+	//TThostFtdcCommonIntType int
+	int pTGSessionQryStatusField_LastQryFreq = 0;
 
-    ///最近30s的查询频率
-    // TThostFtdcCommonIntType int
-    int TGSessionQryStatusField_LastQryFreq = 0;
-        
-    ///查询状态
-    // TThostFtdcTGSessionQryStatusType char
-    char TGSessionQryStatusField_QryStatus = 0;
-            
+	//TThostFtdcTGSessionQryStatusType char
+	char pTGSessionQryStatusField_QryStatus = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|ic", (char **)kwlist
@@ -33,23 +32,21 @@ static int PyCThostFtdcTGSessionQryStatusField_init(PyCThostFtdcTGSessionQryStat
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|ic", (char **)kwlist
 #endif
 
-        , &TGSessionQryStatusField_LastQryFreq 
-        , &TGSessionQryStatusField_QryStatus 
+		, &pTGSessionQryStatusField_LastQryFreq
+		, &pTGSessionQryStatusField_QryStatus
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcCommonIntType int
+	self->data.LastQryFreq = pTGSessionQryStatusField_LastQryFreq;
 
-    ///最近30s的查询频率
-    // TThostFtdcCommonIntType int
-    self->data.LastQryFreq = TGSessionQryStatusField_LastQryFreq;
-        
-    ///查询状态
-    // TThostFtdcTGSessionQryStatusType char
-    self->data.QryStatus = TGSessionQryStatusField_QryStatus;
-            
+	//TThostFtdcTGSessionQryStatusType char
+	self->data.QryStatus = pTGSessionQryStatusField_QryStatus;
+
+
 
     return 0;
 }
@@ -66,8 +63,8 @@ static PyObject *PyCThostFtdcTGSessionQryStatusField_repr(PyCThostFtdcTGSessionQ
     PyObject *obj = Py_BuildValue("{s:i,s:c}"
 #endif
 
-        ,"LastQryFreq", self->data.LastQryFreq 
-        ,"QryStatus", self->data.QryStatus 
+		, "LastQryFreq", self->data.LastQryFreq
+		, "QryStatus", self->data.QryStatus
 
 
 		);
@@ -80,74 +77,64 @@ static PyObject *PyCThostFtdcTGSessionQryStatusField_repr(PyCThostFtdcTGSessionQ
     return PyObject_Repr(obj);
 }
 
-
-///最近30s的查询频率
-// TThostFtdcCommonIntType int
 static PyObject *PyCThostFtdcTGSessionQryStatusField_get_LastQryFreq(PyCThostFtdcTGSessionQryStatusField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.LastQryFreq);
-#else
-    return PyInt_FromLong(self->data.LastQryFreq);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.LastQryFreq);
+#else 
+	return PyInt_FromLong(self->data.LastQryFreq);
+#endif 
 }
 
-///最近30s的查询频率
-// TThostFtdcCommonIntType int
-static int PyCThostFtdcTGSessionQryStatusField_set_LastQryFreq(PyCThostFtdcTGSessionQryStatusField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcTGSessionQryStatusField_get_QryStatus(PyCThostFtdcTGSessionQryStatusField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.QryStatus), 1);
+}
+
+static int PyCThostFtdcTGSessionQryStatusField_set_LastQryFreq(PyCThostFtdcTGSessionQryStatusField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LastQryFreq Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LastQryFreq Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "LastQryFreq Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the LastQryFreq value out of range for C int");
-        return -1;
-    }
-    self->data.LastQryFreq = (int)buf;
-    return 0;
-}
-        
-///查询状态
-// TThostFtdcTGSessionQryStatusType char
-static PyObject *PyCThostFtdcTGSessionQryStatusField_get_QryStatus(PyCThostFtdcTGSessionQryStatusField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.QryStatus), 1);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.LastQryFreq = (int)buf; 
+    return 0; 
 }
 
-///查询状态
-// TThostFtdcTGSessionQryStatusType char
-static int PyCThostFtdcTGSessionQryStatusField_set_QryStatus(PyCThostFtdcTGSessionQryStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "QryStatus Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.QryStatus)) {
-        PyErr_SetString(PyExc_ValueError, "QryStatus must be equal 1 bytes");
-        return -1;
-    }
-    self->data.QryStatus = *buf;
-    return 0;
+static int PyCThostFtdcTGSessionQryStatusField_set_QryStatus(PyCThostFtdcTGSessionQryStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "QryStatus Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.QryStatus)) {
+		PyErr_SetString(PyExc_ValueError, "QryStatus must be less than 1 bytes");
+		return -1;
+	}
+	self->data.QryStatus = *buf;
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcTGSessionQryStatusField_getset[] = {
-    ///最近30s的查询频率 
-    {(char *)"LastQryFreq", (getter)PyCThostFtdcTGSessionQryStatusField_get_LastQryFreq, (setter)PyCThostFtdcTGSessionQryStatusField_set_LastQryFreq, (char *)"LastQryFreq", NULL},
-    ///查询状态 
-    {(char *)"QryStatus", (getter)PyCThostFtdcTGSessionQryStatusField_get_QryStatus, (setter)PyCThostFtdcTGSessionQryStatusField_set_QryStatus, (char *)"QryStatus", NULL},
+	 {(char *)"LastQryFreq", (getter)PyCThostFtdcTGSessionQryStatusField_get_LastQryFreq, (setter)PyCThostFtdcTGSessionQryStatusField_set_LastQryFreq, (char *)"LastQryFreq", NULL},
+	 {(char *)"QryStatus", (getter)PyCThostFtdcTGSessionQryStatusField_get_QryStatus, (setter)PyCThostFtdcTGSessionQryStatusField_set_QryStatus, (char *)"QryStatus", NULL},
 
     {NULL}
 };

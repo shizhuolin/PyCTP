@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcCurrDRIdentityField.h"
 
-///当前交易中心
+
 
 static PyObject *PyCThostFtdcCurrDRIdentityField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcCurrDRIdentityField *self = (PyCThostFtdcCurrDRIdentityField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcCurrDRIdentityField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,11 +18,10 @@ static int PyCThostFtdcCurrDRIdentityField_init(PyCThostFtdcCurrDRIdentityField 
 
     static const char *kwlist[] = {"DRIdentityID",  NULL};
 
+	//TThostFtdcDRIdentityIDType int
+	int pCurrDRIdentityField_DRIdentityID = 0;
 
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    int CurrDRIdentityField_DRIdentityID = 0;
-        
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
@@ -29,18 +29,17 @@ static int PyCThostFtdcCurrDRIdentityField_init(PyCThostFtdcCurrDRIdentityField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
 #endif
 
-        , &CurrDRIdentityField_DRIdentityID 
+		, &pCurrDRIdentityField_DRIdentityID
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDRIdentityIDType int
+	self->data.DRIdentityID = pCurrDRIdentityField_DRIdentityID;
 
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    self->data.DRIdentityID = CurrDRIdentityField_DRIdentityID;
-        
+
 
     return 0;
 }
@@ -57,7 +56,7 @@ static PyObject *PyCThostFtdcCurrDRIdentityField_repr(PyCThostFtdcCurrDRIdentity
     PyObject *obj = Py_BuildValue("{s:i}"
 #endif
 
-        ,"DRIdentityID", self->data.DRIdentityID 
+		, "DRIdentityID", self->data.DRIdentityID
 
 
 		);
@@ -70,49 +69,44 @@ static PyObject *PyCThostFtdcCurrDRIdentityField_repr(PyCThostFtdcCurrDRIdentity
     return PyObject_Repr(obj);
 }
 
-
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
 static PyObject *PyCThostFtdcCurrDRIdentityField_get_DRIdentityID(PyCThostFtdcCurrDRIdentityField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.DRIdentityID);
-#else
-    return PyInt_FromLong(self->data.DRIdentityID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.DRIdentityID);
+#else 
+	return PyInt_FromLong(self->data.DRIdentityID);
+#endif 
 }
 
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
-static int PyCThostFtdcCurrDRIdentityField_set_DRIdentityID(PyCThostFtdcCurrDRIdentityField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcCurrDRIdentityField_set_DRIdentityID(PyCThostFtdcCurrDRIdentityField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the DRIdentityID value out of range for C int");
-        return -1;
-    }
-    self->data.DRIdentityID = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.DRIdentityID = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcCurrDRIdentityField_getset[] = {
-    ///交易中心代码 
-    {(char *)"DRIdentityID", (getter)PyCThostFtdcCurrDRIdentityField_get_DRIdentityID, (setter)PyCThostFtdcCurrDRIdentityField_set_DRIdentityID, (char *)"DRIdentityID", NULL},
+	 {(char *)"DRIdentityID", (getter)PyCThostFtdcCurrDRIdentityField_get_DRIdentityID, (setter)PyCThostFtdcCurrDRIdentityField_set_DRIdentityID, (char *)"DRIdentityID", NULL},
 
     {NULL}
 };

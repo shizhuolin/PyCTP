@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncDeltaIndexPriceField.h"
 
-///风险结算追平现货指数
+
 
 static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncDeltaIndexPriceField *self = (PyCThostFtdcSyncDeltaIndexPriceField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_new(PyTypeObject *type, Py
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,29 +18,24 @@ static int PyCThostFtdcSyncDeltaIndexPriceField_init(PyCThostFtdcSyncDeltaIndexP
 
     static const char *kwlist[] = {"BrokerID", "InstrumentID", "ClosePrice", "ActionDirection", "SyncDeltaSequenceNo",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSyncDeltaIndexPriceField_BrokerID = NULL;
+	Py_ssize_t pSyncDeltaIndexPriceField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SyncDeltaIndexPriceField_BrokerID = NULL;
-    Py_ssize_t SyncDeltaIndexPriceField_BrokerID_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *SyncDeltaIndexPriceField_InstrumentID = NULL;
-    Py_ssize_t SyncDeltaIndexPriceField_InstrumentID_len = 0;
-            
-    ///指数现货收盘价
-    // TThostFtdcPriceType double
-    double SyncDeltaIndexPriceField_ClosePrice = 0.0;
-        
-    ///操作标志
-    // TThostFtdcActionDirectionType char
-    char SyncDeltaIndexPriceField_ActionDirection = 0;
-            
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    int SyncDeltaIndexPriceField_SyncDeltaSequenceNo = 0;
-        
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pSyncDeltaIndexPriceField_InstrumentID = NULL;
+	Py_ssize_t pSyncDeltaIndexPriceField_InstrumentID_len = 0;
+
+	//TThostFtdcPriceType double
+	double pSyncDeltaIndexPriceField_ClosePrice = 0.0;
+
+	//TThostFtdcActionDirectionType char
+	char pSyncDeltaIndexPriceField_ActionDirection = 0;
+
+	//TThostFtdcSequenceNoType int
+	int pSyncDeltaIndexPriceField_SyncDeltaSequenceNo = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#dci", (char **)kwlist
@@ -47,56 +43,46 @@ static int PyCThostFtdcSyncDeltaIndexPriceField_init(PyCThostFtdcSyncDeltaIndexP
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#dci", (char **)kwlist
 #endif
 
-        , &SyncDeltaIndexPriceField_BrokerID, &SyncDeltaIndexPriceField_BrokerID_len 
-        , &SyncDeltaIndexPriceField_InstrumentID, &SyncDeltaIndexPriceField_InstrumentID_len 
-        , &SyncDeltaIndexPriceField_ClosePrice 
-        , &SyncDeltaIndexPriceField_ActionDirection 
-        , &SyncDeltaIndexPriceField_SyncDeltaSequenceNo 
+		, &pSyncDeltaIndexPriceField_BrokerID, &pSyncDeltaIndexPriceField_BrokerID_len
+		, &pSyncDeltaIndexPriceField_InstrumentID, &pSyncDeltaIndexPriceField_InstrumentID_len
+		, &pSyncDeltaIndexPriceField_ClosePrice
+		, &pSyncDeltaIndexPriceField_ActionDirection
+		, &pSyncDeltaIndexPriceField_SyncDeltaSequenceNo
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pSyncDeltaIndexPriceField_BrokerID != NULL) {
+		if(pSyncDeltaIndexPriceField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSyncDeltaIndexPriceField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSyncDeltaIndexPriceField_BrokerID, sizeof(self->data.BrokerID) );
+		pSyncDeltaIndexPriceField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SyncDeltaIndexPriceField_BrokerID != NULL ) {
-        if(SyncDeltaIndexPriceField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDeltaIndexPriceField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SyncDeltaIndexPriceField_BrokerID, SyncDeltaIndexPriceField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SyncDeltaIndexPriceField_BrokerID, sizeof(self->data.BrokerID) );
-        SyncDeltaIndexPriceField_BrokerID = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( SyncDeltaIndexPriceField_InstrumentID != NULL ) {
-        if(SyncDeltaIndexPriceField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaIndexPriceField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, SyncDeltaIndexPriceField_InstrumentID, SyncDeltaIndexPriceField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, SyncDeltaIndexPriceField_InstrumentID, sizeof(self->data.InstrumentID) );
-        SyncDeltaIndexPriceField_InstrumentID = NULL;
-    }
-            
-    ///指数现货收盘价
-    // TThostFtdcPriceType double
-    self->data.ClosePrice = SyncDeltaIndexPriceField_ClosePrice;
-        
-    ///操作标志
-    // TThostFtdcActionDirectionType char
-    self->data.ActionDirection = SyncDeltaIndexPriceField_ActionDirection;
-            
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    self->data.SyncDeltaSequenceNo = SyncDeltaIndexPriceField_SyncDeltaSequenceNo;
-        
+	//TThostFtdcInstrumentIDType char[81]
+	if(pSyncDeltaIndexPriceField_InstrumentID != NULL) {
+		if(pSyncDeltaIndexPriceField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pSyncDeltaIndexPriceField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pSyncDeltaIndexPriceField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pSyncDeltaIndexPriceField_InstrumentID = NULL;
+	}
+
+	//TThostFtdcPriceType double
+	self->data.ClosePrice = pSyncDeltaIndexPriceField_ClosePrice;
+	//TThostFtdcActionDirectionType char
+	self->data.ActionDirection = pSyncDeltaIndexPriceField_ActionDirection;
+
+	//TThostFtdcSequenceNoType int
+	self->data.SyncDeltaSequenceNo = pSyncDeltaIndexPriceField_SyncDeltaSequenceNo;
+
+
 
     return 0;
 }
@@ -113,11 +99,11 @@ static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_repr(PyCThostFtdcSyncDelta
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:d,s:c,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
-        ,"ClosePrice", self->data.ClosePrice 
-        ,"ActionDirection", self->data.ActionDirection 
-        ,"SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo 
+		, "BrokerID", self->data.BrokerID 
+		, "InstrumentID", self->data.InstrumentID 
+		, "ClosePrice", self->data.ClosePrice
+		, "ActionDirection", self->data.ActionDirection
+		, "SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo
 
 
 		);
@@ -130,68 +116,61 @@ static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_repr(PyCThostFtdcSyncDelta
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_get_BrokerID(PyCThostFtdcSyncDeltaIndexPriceField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSyncDeltaIndexPriceField_set_BrokerID(PyCThostFtdcSyncDeltaIndexPriceField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_get_InstrumentID(PyCThostFtdcSyncDeltaIndexPriceField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcSyncDeltaIndexPriceField_set_InstrumentID(PyCThostFtdcSyncDeltaIndexPriceField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
-///指数现货收盘价
-// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_get_ClosePrice(PyCThostFtdcSyncDeltaIndexPriceField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ClosePrice);
+	return PyFloat_FromDouble(self->data.ClosePrice);
 }
 
-///指数现货收盘价
-// TThostFtdcPriceType double
-static int PyCThostFtdcSyncDeltaIndexPriceField_set_ClosePrice(PyCThostFtdcSyncDeltaIndexPriceField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_get_ActionDirection(PyCThostFtdcSyncDeltaIndexPriceField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.ActionDirection), 1);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaIndexPriceField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
+#endif 
+}
+
+static int PyCThostFtdcSyncDeltaIndexPriceField_set_BrokerID(PyCThostFtdcSyncDeltaIndexPriceField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaIndexPriceField_set_InstrumentID(PyCThostFtdcSyncDeltaIndexPriceField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaIndexPriceField_set_ClosePrice(PyCThostFtdcSyncDeltaIndexPriceField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ClosePrice Expected float");
         return -1;
@@ -203,80 +182,56 @@ static int PyCThostFtdcSyncDeltaIndexPriceField_set_ClosePrice(PyCThostFtdcSyncD
     self->data.ClosePrice = buf;
     return 0;
 }
-        
-///操作标志
-// TThostFtdcActionDirectionType char
-static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_get_ActionDirection(PyCThostFtdcSyncDeltaIndexPriceField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.ActionDirection), 1);
+
+static int PyCThostFtdcSyncDeltaIndexPriceField_set_ActionDirection(PyCThostFtdcSyncDeltaIndexPriceField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ActionDirection Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ActionDirection)) {
+		PyErr_SetString(PyExc_ValueError, "ActionDirection must be less than 1 bytes");
+		return -1;
+	}
+	self->data.ActionDirection = *buf;
+	return 0;
 }
 
-///操作标志
-// TThostFtdcActionDirectionType char
-static int PyCThostFtdcSyncDeltaIndexPriceField_set_ActionDirection(PyCThostFtdcSyncDeltaIndexPriceField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ActionDirection Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDirection)) {
-        PyErr_SetString(PyExc_ValueError, "ActionDirection must be equal 1 bytes");
-        return -1;
-    }
-    self->data.ActionDirection = *buf;
-    return 0;
-}
-            
-///追平序号
-// TThostFtdcSequenceNoType int
-static PyObject *PyCThostFtdcSyncDeltaIndexPriceField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaIndexPriceField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
-#else
-    return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
-#endif
-}
-
-///追平序号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcSyncDeltaIndexPriceField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaIndexPriceField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaIndexPriceField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaIndexPriceField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SyncDeltaSequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SyncDeltaSequenceNo = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SyncDeltaSequenceNo = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSyncDeltaIndexPriceField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_InstrumentID, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_InstrumentID, (char *)"InstrumentID", NULL},
-    ///指数现货收盘价 
-    {(char *)"ClosePrice", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_ClosePrice, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_ClosePrice, (char *)"ClosePrice", NULL},
-    ///操作标志 
-    {(char *)"ActionDirection", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_ActionDirection, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_ActionDirection, (char *)"ActionDirection", NULL},
-    ///追平序号 
-    {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_InstrumentID, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"ClosePrice", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_ClosePrice, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_ClosePrice, (char *)"ClosePrice", NULL},
+	 {(char *)"ActionDirection", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_ActionDirection, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_ActionDirection, (char *)"ActionDirection", NULL},
+	 {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaIndexPriceField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaIndexPriceField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
 
     {NULL}
 };

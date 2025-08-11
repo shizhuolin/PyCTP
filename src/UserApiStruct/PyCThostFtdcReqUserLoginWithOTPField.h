@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户发出带动态验证码的登录请求请求
+
 
 typedef struct PyCThostFtdcReqUserLoginWithOTPField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncDeltaOptExchMarginField.h"
 
-///风险结算追平中金现货期权交易所保证金率
+
 
 static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncDeltaOptExchMarginField *self = (PyCThostFtdcSyncDeltaOptExchMarginField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,57 +18,45 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_init(PyCThostFtdcSyncDeltaOpt
 
     static const char *kwlist[] = {"BrokerID", "InstrumentID", "SShortMarginRatioByMoney", "SShortMarginRatioByVolume", "HShortMarginRatioByMoney", "HShortMarginRatioByVolume", "AShortMarginRatioByMoney", "AShortMarginRatioByVolume", "MShortMarginRatioByMoney", "MShortMarginRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSyncDeltaOptExchMarginField_BrokerID = NULL;
+	Py_ssize_t pSyncDeltaOptExchMarginField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SyncDeltaOptExchMarginField_BrokerID = NULL;
-    Py_ssize_t SyncDeltaOptExchMarginField_BrokerID_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *SyncDeltaOptExchMarginField_InstrumentID = NULL;
-    Py_ssize_t SyncDeltaOptExchMarginField_InstrumentID_len = 0;
-            
-    ///投机空头保证金调整系数
-    // TThostFtdcRatioType double
-    double SyncDeltaOptExchMarginField_SShortMarginRatioByMoney = 0.0;
-        
-    ///投机空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double SyncDeltaOptExchMarginField_SShortMarginRatioByVolume = 0.0;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcRatioType double
-    double SyncDeltaOptExchMarginField_HShortMarginRatioByMoney = 0.0;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double SyncDeltaOptExchMarginField_HShortMarginRatioByVolume = 0.0;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcRatioType double
-    double SyncDeltaOptExchMarginField_AShortMarginRatioByMoney = 0.0;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double SyncDeltaOptExchMarginField_AShortMarginRatioByVolume = 0.0;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcRatioType double
-    double SyncDeltaOptExchMarginField_MShortMarginRatioByMoney = 0.0;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double SyncDeltaOptExchMarginField_MShortMarginRatioByVolume = 0.0;
-        
-    ///操作标志
-    // TThostFtdcActionDirectionType char
-    char SyncDeltaOptExchMarginField_ActionDirection = 0;
-            
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    int SyncDeltaOptExchMarginField_SyncDeltaSequenceNo = 0;
-        
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pSyncDeltaOptExchMarginField_InstrumentID = NULL;
+	Py_ssize_t pSyncDeltaOptExchMarginField_InstrumentID_len = 0;
+
+	//TThostFtdcRatioType double
+	double pSyncDeltaOptExchMarginField_SShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaOptExchMarginField_SShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pSyncDeltaOptExchMarginField_HShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaOptExchMarginField_HShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pSyncDeltaOptExchMarginField_AShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaOptExchMarginField_AShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pSyncDeltaOptExchMarginField_MShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaOptExchMarginField_MShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcActionDirectionType char
+	char pSyncDeltaOptExchMarginField_ActionDirection = 0;
+
+	//TThostFtdcSequenceNoType int
+	int pSyncDeltaOptExchMarginField_SyncDeltaSequenceNo = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#ddddddddci", (char **)kwlist
@@ -75,91 +64,67 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_init(PyCThostFtdcSyncDeltaOpt
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#ddddddddci", (char **)kwlist
 #endif
 
-        , &SyncDeltaOptExchMarginField_BrokerID, &SyncDeltaOptExchMarginField_BrokerID_len 
-        , &SyncDeltaOptExchMarginField_InstrumentID, &SyncDeltaOptExchMarginField_InstrumentID_len 
-        , &SyncDeltaOptExchMarginField_SShortMarginRatioByMoney 
-        , &SyncDeltaOptExchMarginField_SShortMarginRatioByVolume 
-        , &SyncDeltaOptExchMarginField_HShortMarginRatioByMoney 
-        , &SyncDeltaOptExchMarginField_HShortMarginRatioByVolume 
-        , &SyncDeltaOptExchMarginField_AShortMarginRatioByMoney 
-        , &SyncDeltaOptExchMarginField_AShortMarginRatioByVolume 
-        , &SyncDeltaOptExchMarginField_MShortMarginRatioByMoney 
-        , &SyncDeltaOptExchMarginField_MShortMarginRatioByVolume 
-        , &SyncDeltaOptExchMarginField_ActionDirection 
-        , &SyncDeltaOptExchMarginField_SyncDeltaSequenceNo 
+		, &pSyncDeltaOptExchMarginField_BrokerID, &pSyncDeltaOptExchMarginField_BrokerID_len
+		, &pSyncDeltaOptExchMarginField_InstrumentID, &pSyncDeltaOptExchMarginField_InstrumentID_len
+		, &pSyncDeltaOptExchMarginField_SShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_SShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_HShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_HShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_AShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_AShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_MShortMarginRatioByMoney
+		, &pSyncDeltaOptExchMarginField_MShortMarginRatioByVolume
+		, &pSyncDeltaOptExchMarginField_ActionDirection
+		, &pSyncDeltaOptExchMarginField_SyncDeltaSequenceNo
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pSyncDeltaOptExchMarginField_BrokerID != NULL) {
+		if(pSyncDeltaOptExchMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSyncDeltaOptExchMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSyncDeltaOptExchMarginField_BrokerID, sizeof(self->data.BrokerID) );
+		pSyncDeltaOptExchMarginField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SyncDeltaOptExchMarginField_BrokerID != NULL ) {
-        if(SyncDeltaOptExchMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDeltaOptExchMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SyncDeltaOptExchMarginField_BrokerID, SyncDeltaOptExchMarginField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SyncDeltaOptExchMarginField_BrokerID, sizeof(self->data.BrokerID) );
-        SyncDeltaOptExchMarginField_BrokerID = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( SyncDeltaOptExchMarginField_InstrumentID != NULL ) {
-        if(SyncDeltaOptExchMarginField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaOptExchMarginField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, SyncDeltaOptExchMarginField_InstrumentID, SyncDeltaOptExchMarginField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, SyncDeltaOptExchMarginField_InstrumentID, sizeof(self->data.InstrumentID) );
-        SyncDeltaOptExchMarginField_InstrumentID = NULL;
-    }
-            
-    ///投机空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.SShortMarginRatioByMoney = SyncDeltaOptExchMarginField_SShortMarginRatioByMoney;
-        
-    ///投机空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.SShortMarginRatioByVolume = SyncDeltaOptExchMarginField_SShortMarginRatioByVolume;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.HShortMarginRatioByMoney = SyncDeltaOptExchMarginField_HShortMarginRatioByMoney;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.HShortMarginRatioByVolume = SyncDeltaOptExchMarginField_HShortMarginRatioByVolume;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.AShortMarginRatioByMoney = SyncDeltaOptExchMarginField_AShortMarginRatioByMoney;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.AShortMarginRatioByVolume = SyncDeltaOptExchMarginField_AShortMarginRatioByVolume;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.MShortMarginRatioByMoney = SyncDeltaOptExchMarginField_MShortMarginRatioByMoney;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.MShortMarginRatioByVolume = SyncDeltaOptExchMarginField_MShortMarginRatioByVolume;
-        
-    ///操作标志
-    // TThostFtdcActionDirectionType char
-    self->data.ActionDirection = SyncDeltaOptExchMarginField_ActionDirection;
-            
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    self->data.SyncDeltaSequenceNo = SyncDeltaOptExchMarginField_SyncDeltaSequenceNo;
-        
+	//TThostFtdcInstrumentIDType char[81]
+	if(pSyncDeltaOptExchMarginField_InstrumentID != NULL) {
+		if(pSyncDeltaOptExchMarginField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pSyncDeltaOptExchMarginField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pSyncDeltaOptExchMarginField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pSyncDeltaOptExchMarginField_InstrumentID = NULL;
+	}
+
+	//TThostFtdcRatioType double
+	self->data.SShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_SShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.SShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_SShortMarginRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.HShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_HShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.HShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_HShortMarginRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.AShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_AShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.AShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_AShortMarginRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.MShortMarginRatioByMoney = pSyncDeltaOptExchMarginField_MShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.MShortMarginRatioByVolume = pSyncDeltaOptExchMarginField_MShortMarginRatioByVolume;
+	//TThostFtdcActionDirectionType char
+	self->data.ActionDirection = pSyncDeltaOptExchMarginField_ActionDirection;
+
+	//TThostFtdcSequenceNoType int
+	self->data.SyncDeltaSequenceNo = pSyncDeltaOptExchMarginField_SyncDeltaSequenceNo;
+
+
 
     return 0;
 }
@@ -176,18 +141,18 @@ static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_repr(PyCThostFtdcSyncDe
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:c,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
-        ,"SShortMarginRatioByMoney", self->data.SShortMarginRatioByMoney 
-        ,"SShortMarginRatioByVolume", self->data.SShortMarginRatioByVolume 
-        ,"HShortMarginRatioByMoney", self->data.HShortMarginRatioByMoney 
-        ,"HShortMarginRatioByVolume", self->data.HShortMarginRatioByVolume 
-        ,"AShortMarginRatioByMoney", self->data.AShortMarginRatioByMoney 
-        ,"AShortMarginRatioByVolume", self->data.AShortMarginRatioByVolume 
-        ,"MShortMarginRatioByMoney", self->data.MShortMarginRatioByMoney 
-        ,"MShortMarginRatioByVolume", self->data.MShortMarginRatioByVolume 
-        ,"ActionDirection", self->data.ActionDirection 
-        ,"SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo 
+		, "BrokerID", self->data.BrokerID 
+		, "InstrumentID", self->data.InstrumentID 
+		, "SShortMarginRatioByMoney", self->data.SShortMarginRatioByMoney
+		, "SShortMarginRatioByVolume", self->data.SShortMarginRatioByVolume
+		, "HShortMarginRatioByMoney", self->data.HShortMarginRatioByMoney
+		, "HShortMarginRatioByVolume", self->data.HShortMarginRatioByVolume
+		, "AShortMarginRatioByMoney", self->data.AShortMarginRatioByMoney
+		, "AShortMarginRatioByVolume", self->data.AShortMarginRatioByVolume
+		, "MShortMarginRatioByMoney", self->data.MShortMarginRatioByMoney
+		, "MShortMarginRatioByVolume", self->data.MShortMarginRatioByVolume
+		, "ActionDirection", self->data.ActionDirection
+		, "SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo
 
 
 		);
@@ -200,68 +165,89 @@ static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_repr(PyCThostFtdcSyncDe
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_BrokerID(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_BrokerID(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_InstrumentID(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_InstrumentID(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
-///投机空头保证金调整系数
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_SShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SShortMarginRatioByMoney);
+	return PyFloat_FromDouble(self->data.SShortMarginRatioByMoney);
 }
 
-///投机空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_SShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.SShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.HShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.HShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.AShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.AShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.MShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.MShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_ActionDirection(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.ActionDirection), 1);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
+#endif 
+}
+
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_BrokerID(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_InstrumentID(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SShortMarginRatioByMoney Expected float");
         return -1;
@@ -273,16 +259,8 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByMoney(
     self->data.SShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///投机空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_SShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SShortMarginRatioByVolume);
-}
 
-///投机空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SShortMarginRatioByVolume Expected float");
         return -1;
@@ -294,16 +272,8 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByVolume
     self->data.SShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///保值空头保证金调整系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.HShortMarginRatioByMoney);
-}
 
-///保值空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "HShortMarginRatioByMoney Expected float");
         return -1;
@@ -315,16 +285,8 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByMoney(
     self->data.HShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///保值空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.HShortMarginRatioByVolume);
-}
 
-///保值空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "HShortMarginRatioByVolume Expected float");
         return -1;
@@ -336,16 +298,8 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByVolume
     self->data.HShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///套利空头保证金调整系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AShortMarginRatioByMoney);
-}
 
-///套利空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AShortMarginRatioByMoney Expected float");
         return -1;
@@ -357,16 +311,8 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByMoney(
     self->data.AShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///套利空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AShortMarginRatioByVolume);
-}
 
-///套利空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AShortMarginRatioByVolume Expected float");
         return -1;
@@ -378,16 +324,8 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByVolume
     self->data.AShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///做市商空头保证金调整系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MShortMarginRatioByMoney);
-}
 
-///做市商空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByMoney(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MShortMarginRatioByMoney Expected float");
         return -1;
@@ -399,16 +337,8 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByMoney(
     self->data.MShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///做市商空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MShortMarginRatioByVolume);
-}
 
-///做市商空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByVolume(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MShortMarginRatioByVolume Expected float");
         return -1;
@@ -420,94 +350,63 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByVolume
     self->data.MShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///操作标志
-// TThostFtdcActionDirectionType char
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_ActionDirection(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.ActionDirection), 1);
+
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_ActionDirection(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ActionDirection Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ActionDirection)) {
+		PyErr_SetString(PyExc_ValueError, "ActionDirection must be less than 1 bytes");
+		return -1;
+	}
+	self->data.ActionDirection = *buf;
+	return 0;
 }
 
-///操作标志
-// TThostFtdcActionDirectionType char
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_ActionDirection(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ActionDirection Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDirection)) {
-        PyErr_SetString(PyExc_ValueError, "ActionDirection must be equal 1 bytes");
-        return -1;
-    }
-    self->data.ActionDirection = *buf;
-    return 0;
-}
-            
-///追平序号
-// TThostFtdcSequenceNoType int
-static PyObject *PyCThostFtdcSyncDeltaOptExchMarginField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaOptExchMarginField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
-#else
-    return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
-#endif
-}
-
-///追平序号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaOptExchMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaOptExchMarginField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaOptExchMarginField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SyncDeltaSequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SyncDeltaSequenceNo = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SyncDeltaSequenceNo = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSyncDeltaOptExchMarginField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_InstrumentID, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_InstrumentID, (char *)"InstrumentID", NULL},
-    ///投机空头保证金调整系数 
-    {(char *)"SShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_SShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByMoney, (char *)"SShortMarginRatioByMoney", NULL},
-    ///投机空头保证金调整系数 
-    {(char *)"SShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_SShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByVolume, (char *)"SShortMarginRatioByVolume", NULL},
-    ///保值空头保证金调整系数 
-    {(char *)"HShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByMoney, (char *)"HShortMarginRatioByMoney", NULL},
-    ///保值空头保证金调整系数 
-    {(char *)"HShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByVolume, (char *)"HShortMarginRatioByVolume", NULL},
-    ///套利空头保证金调整系数 
-    {(char *)"AShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByMoney, (char *)"AShortMarginRatioByMoney", NULL},
-    ///套利空头保证金调整系数 
-    {(char *)"AShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByVolume, (char *)"AShortMarginRatioByVolume", NULL},
-    ///做市商空头保证金调整系数 
-    {(char *)"MShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByMoney, (char *)"MShortMarginRatioByMoney", NULL},
-    ///做市商空头保证金调整系数 
-    {(char *)"MShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByVolume, (char *)"MShortMarginRatioByVolume", NULL},
-    ///操作标志 
-    {(char *)"ActionDirection", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_ActionDirection, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_ActionDirection, (char *)"ActionDirection", NULL},
-    ///追平序号 
-    {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_InstrumentID, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"SShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_SShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByMoney, (char *)"SShortMarginRatioByMoney", NULL},
+	 {(char *)"SShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_SShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_SShortMarginRatioByVolume, (char *)"SShortMarginRatioByVolume", NULL},
+	 {(char *)"HShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByMoney, (char *)"HShortMarginRatioByMoney", NULL},
+	 {(char *)"HShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_HShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_HShortMarginRatioByVolume, (char *)"HShortMarginRatioByVolume", NULL},
+	 {(char *)"AShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByMoney, (char *)"AShortMarginRatioByMoney", NULL},
+	 {(char *)"AShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_AShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_AShortMarginRatioByVolume, (char *)"AShortMarginRatioByVolume", NULL},
+	 {(char *)"MShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByMoney, (char *)"MShortMarginRatioByMoney", NULL},
+	 {(char *)"MShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_MShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_MShortMarginRatioByVolume, (char *)"MShortMarginRatioByVolume", NULL},
+	 {(char *)"ActionDirection", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_ActionDirection, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_ActionDirection, (char *)"ActionDirection", NULL},
+	 {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaOptExchMarginField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaOptExchMarginField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
 
     {NULL}
 };

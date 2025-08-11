@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///结算引用
+
 
 typedef struct PyCThostFtdcSettlementRefField {
     PyObject_HEAD

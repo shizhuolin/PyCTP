@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///银期开户信息
+
 
 typedef struct PyCThostFtdcOpenAccountField {
     PyObject_HEAD

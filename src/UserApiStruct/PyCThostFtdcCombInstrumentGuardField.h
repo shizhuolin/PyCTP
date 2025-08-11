@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///组合合约安全系数
+
 
 typedef struct PyCThostFtdcCombInstrumentGuardField {
     PyObject_HEAD

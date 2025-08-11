@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///转帐银行
+
 
 typedef struct PyCThostFtdcTransferBankField {
     PyObject_HEAD

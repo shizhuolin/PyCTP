@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期权合约delta值
+
 
 typedef struct PyCThostFtdcOptionInstrDeltaField {
     PyObject_HEAD

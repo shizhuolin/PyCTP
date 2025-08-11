@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///请求查询银期签约关系
+
 
 typedef struct PyCThostFtdcQryAccountregisterField {
     PyObject_HEAD

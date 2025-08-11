@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者风险结算持仓查询
+
 
 typedef struct PyCThostFtdcQryRiskSettleInvstPositionField {
     PyObject_HEAD

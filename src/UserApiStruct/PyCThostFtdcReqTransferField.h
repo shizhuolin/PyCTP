@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///转账请求
+
 
 typedef struct PyCThostFtdcReqTransferField {
     PyObject_HEAD

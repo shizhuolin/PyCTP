@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平RULE品种内对锁仓折扣参数
+
 
 typedef struct PyCThostFtdcSyncDeltaRULEIntraParameterField {
     PyObject_HEAD

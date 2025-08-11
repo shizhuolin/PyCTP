@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///生成的图片验证码信息
+
 
 typedef struct PyCThostFtdcRspGenUserCaptchaField {
     PyObject_HEAD

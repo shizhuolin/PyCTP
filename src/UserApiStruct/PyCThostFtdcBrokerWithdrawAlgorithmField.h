@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///经纪公司可提资金算法表
+
 
 typedef struct PyCThostFtdcBrokerWithdrawAlgorithmField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///数据同步状态
+
 
 typedef struct PyCThostFtdcSyncStatusField {
     PyObject_HEAD

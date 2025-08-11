@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncDeltaInitInvstMarginField.h"
 
-///投资者风险结算总保证金
+
 
 static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncDeltaInitInvstMarginField *self = (PyCThostFtdcSyncDeltaInitInvstMarginField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_new(PyTypeObject *typ
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,69 +18,54 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_init(PyCThostFtdcSyncDeltaI
 
     static const char *kwlist[] = {"BrokerID", "InvestorID", "LastRiskTotalInvstMargin", "LastRiskTotalExchMargin", "ThisSyncInvstMargin", "ThisSyncExchMargin", "RemainRiskInvstMargin", "RemainRiskExchMargin", "LastRiskSpecTotalInvstMargin", "LastRiskSpecTotalExchMargin", "ThisSyncSpecInvstMargin", "ThisSyncSpecExchMargin", "RemainRiskSpecInvstMargin", "RemainRiskSpecExchMargin", "SyncDeltaSequenceNo",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSyncDeltaInitInvstMarginField_BrokerID = NULL;
+	Py_ssize_t pSyncDeltaInitInvstMarginField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SyncDeltaInitInvstMarginField_BrokerID = NULL;
-    Py_ssize_t SyncDeltaInitInvstMarginField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *SyncDeltaInitInvstMarginField_InvestorID = NULL;
-    Py_ssize_t SyncDeltaInitInvstMarginField_InvestorID_len = 0;
-            
-    ///追平前总风险保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin = 0.0;
-        
-    ///追平前交易所总风险保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_LastRiskTotalExchMargin = 0.0;
-        
-    ///本次追平品种总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_ThisSyncInvstMargin = 0.0;
-        
-    ///本次追平品种交易所总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_ThisSyncExchMargin = 0.0;
-        
-    ///本次未追平品种总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_RemainRiskInvstMargin = 0.0;
-        
-    ///本次未追平品种交易所总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_RemainRiskExchMargin = 0.0;
-        
-    ///追平前总特殊产品风险保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin = 0.0;
-        
-    ///追平前总特殊产品交易所风险保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin = 0.0;
-        
-    ///本次追平品种特殊产品总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin = 0.0;
-        
-    ///本次追平品种特殊产品交易所总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin = 0.0;
-        
-    ///本次未追平品种特殊产品总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin = 0.0;
-        
-    ///本次未追平品种特殊产品交易所总保证金
-    // TThostFtdcMoneyType double
-    double SyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin = 0.0;
-        
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    int SyncDeltaInitInvstMarginField_SyncDeltaSequenceNo = 0;
-        
+	//TThostFtdcInvestorIDType char[13]
+	const char *pSyncDeltaInitInvstMarginField_InvestorID = NULL;
+	Py_ssize_t pSyncDeltaInitInvstMarginField_InvestorID_len = 0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_LastRiskTotalExchMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_ThisSyncInvstMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_ThisSyncExchMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_RemainRiskInvstMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_RemainRiskExchMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin = 0.0;
+
+	//TThostFtdcSequenceNoType int
+	int pSyncDeltaInitInvstMarginField_SyncDeltaSequenceNo = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#ddddddddddddi", (char **)kwlist
@@ -87,106 +73,75 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_init(PyCThostFtdcSyncDeltaI
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#ddddddddddddi", (char **)kwlist
 #endif
 
-        , &SyncDeltaInitInvstMarginField_BrokerID, &SyncDeltaInitInvstMarginField_BrokerID_len 
-        , &SyncDeltaInitInvstMarginField_InvestorID, &SyncDeltaInitInvstMarginField_InvestorID_len 
-        , &SyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin 
-        , &SyncDeltaInitInvstMarginField_LastRiskTotalExchMargin 
-        , &SyncDeltaInitInvstMarginField_ThisSyncInvstMargin 
-        , &SyncDeltaInitInvstMarginField_ThisSyncExchMargin 
-        , &SyncDeltaInitInvstMarginField_RemainRiskInvstMargin 
-        , &SyncDeltaInitInvstMarginField_RemainRiskExchMargin 
-        , &SyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin 
-        , &SyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin 
-        , &SyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin 
-        , &SyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin 
-        , &SyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin 
-        , &SyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin 
-        , &SyncDeltaInitInvstMarginField_SyncDeltaSequenceNo 
+		, &pSyncDeltaInitInvstMarginField_BrokerID, &pSyncDeltaInitInvstMarginField_BrokerID_len
+		, &pSyncDeltaInitInvstMarginField_InvestorID, &pSyncDeltaInitInvstMarginField_InvestorID_len
+		, &pSyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin
+		, &pSyncDeltaInitInvstMarginField_LastRiskTotalExchMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncInvstMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncExchMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskInvstMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskExchMargin
+		, &pSyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin
+		, &pSyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin
+		, &pSyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin
+		, &pSyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin
+		, &pSyncDeltaInitInvstMarginField_SyncDeltaSequenceNo
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pSyncDeltaInitInvstMarginField_BrokerID != NULL) {
+		if(pSyncDeltaInitInvstMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSyncDeltaInitInvstMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSyncDeltaInitInvstMarginField_BrokerID, sizeof(self->data.BrokerID) );
+		pSyncDeltaInitInvstMarginField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SyncDeltaInitInvstMarginField_BrokerID != NULL ) {
-        if(SyncDeltaInitInvstMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDeltaInitInvstMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SyncDeltaInitInvstMarginField_BrokerID, SyncDeltaInitInvstMarginField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SyncDeltaInitInvstMarginField_BrokerID, sizeof(self->data.BrokerID) );
-        SyncDeltaInitInvstMarginField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( SyncDeltaInitInvstMarginField_InvestorID != NULL ) {
-        if(SyncDeltaInitInvstMarginField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SyncDeltaInitInvstMarginField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, SyncDeltaInitInvstMarginField_InvestorID, SyncDeltaInitInvstMarginField_InvestorID_len);        
-        strncpy(self->data.InvestorID, SyncDeltaInitInvstMarginField_InvestorID, sizeof(self->data.InvestorID) );
-        SyncDeltaInitInvstMarginField_InvestorID = NULL;
-    }
-            
-    ///追平前总风险保证金
-    // TThostFtdcMoneyType double
-    self->data.LastRiskTotalInvstMargin = SyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin;
-        
-    ///追平前交易所总风险保证金
-    // TThostFtdcMoneyType double
-    self->data.LastRiskTotalExchMargin = SyncDeltaInitInvstMarginField_LastRiskTotalExchMargin;
-        
-    ///本次追平品种总保证金
-    // TThostFtdcMoneyType double
-    self->data.ThisSyncInvstMargin = SyncDeltaInitInvstMarginField_ThisSyncInvstMargin;
-        
-    ///本次追平品种交易所总保证金
-    // TThostFtdcMoneyType double
-    self->data.ThisSyncExchMargin = SyncDeltaInitInvstMarginField_ThisSyncExchMargin;
-        
-    ///本次未追平品种总保证金
-    // TThostFtdcMoneyType double
-    self->data.RemainRiskInvstMargin = SyncDeltaInitInvstMarginField_RemainRiskInvstMargin;
-        
-    ///本次未追平品种交易所总保证金
-    // TThostFtdcMoneyType double
-    self->data.RemainRiskExchMargin = SyncDeltaInitInvstMarginField_RemainRiskExchMargin;
-        
-    ///追平前总特殊产品风险保证金
-    // TThostFtdcMoneyType double
-    self->data.LastRiskSpecTotalInvstMargin = SyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin;
-        
-    ///追平前总特殊产品交易所风险保证金
-    // TThostFtdcMoneyType double
-    self->data.LastRiskSpecTotalExchMargin = SyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin;
-        
-    ///本次追平品种特殊产品总保证金
-    // TThostFtdcMoneyType double
-    self->data.ThisSyncSpecInvstMargin = SyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin;
-        
-    ///本次追平品种特殊产品交易所总保证金
-    // TThostFtdcMoneyType double
-    self->data.ThisSyncSpecExchMargin = SyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin;
-        
-    ///本次未追平品种特殊产品总保证金
-    // TThostFtdcMoneyType double
-    self->data.RemainRiskSpecInvstMargin = SyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin;
-        
-    ///本次未追平品种特殊产品交易所总保证金
-    // TThostFtdcMoneyType double
-    self->data.RemainRiskSpecExchMargin = SyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin;
-        
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    self->data.SyncDeltaSequenceNo = SyncDeltaInitInvstMarginField_SyncDeltaSequenceNo;
-        
+	//TThostFtdcInvestorIDType char[13]
+	if(pSyncDeltaInitInvstMarginField_InvestorID != NULL) {
+		if(pSyncDeltaInitInvstMarginField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pSyncDeltaInitInvstMarginField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pSyncDeltaInitInvstMarginField_InvestorID, sizeof(self->data.InvestorID) );
+		pSyncDeltaInitInvstMarginField_InvestorID = NULL;
+	}
+
+	//TThostFtdcMoneyType double
+	self->data.LastRiskTotalInvstMargin = pSyncDeltaInitInvstMarginField_LastRiskTotalInvstMargin;
+	//TThostFtdcMoneyType double
+	self->data.LastRiskTotalExchMargin = pSyncDeltaInitInvstMarginField_LastRiskTotalExchMargin;
+	//TThostFtdcMoneyType double
+	self->data.ThisSyncInvstMargin = pSyncDeltaInitInvstMarginField_ThisSyncInvstMargin;
+	//TThostFtdcMoneyType double
+	self->data.ThisSyncExchMargin = pSyncDeltaInitInvstMarginField_ThisSyncExchMargin;
+	//TThostFtdcMoneyType double
+	self->data.RemainRiskInvstMargin = pSyncDeltaInitInvstMarginField_RemainRiskInvstMargin;
+	//TThostFtdcMoneyType double
+	self->data.RemainRiskExchMargin = pSyncDeltaInitInvstMarginField_RemainRiskExchMargin;
+	//TThostFtdcMoneyType double
+	self->data.LastRiskSpecTotalInvstMargin = pSyncDeltaInitInvstMarginField_LastRiskSpecTotalInvstMargin;
+	//TThostFtdcMoneyType double
+	self->data.LastRiskSpecTotalExchMargin = pSyncDeltaInitInvstMarginField_LastRiskSpecTotalExchMargin;
+	//TThostFtdcMoneyType double
+	self->data.ThisSyncSpecInvstMargin = pSyncDeltaInitInvstMarginField_ThisSyncSpecInvstMargin;
+	//TThostFtdcMoneyType double
+	self->data.ThisSyncSpecExchMargin = pSyncDeltaInitInvstMarginField_ThisSyncSpecExchMargin;
+	//TThostFtdcMoneyType double
+	self->data.RemainRiskSpecInvstMargin = pSyncDeltaInitInvstMarginField_RemainRiskSpecInvstMargin;
+	//TThostFtdcMoneyType double
+	self->data.RemainRiskSpecExchMargin = pSyncDeltaInitInvstMarginField_RemainRiskSpecExchMargin;
+	//TThostFtdcSequenceNoType int
+	self->data.SyncDeltaSequenceNo = pSyncDeltaInitInvstMarginField_SyncDeltaSequenceNo;
+
+
 
     return 0;
 }
@@ -203,21 +158,21 @@ static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_repr(PyCThostFtdcSync
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"LastRiskTotalInvstMargin", self->data.LastRiskTotalInvstMargin 
-        ,"LastRiskTotalExchMargin", self->data.LastRiskTotalExchMargin 
-        ,"ThisSyncInvstMargin", self->data.ThisSyncInvstMargin 
-        ,"ThisSyncExchMargin", self->data.ThisSyncExchMargin 
-        ,"RemainRiskInvstMargin", self->data.RemainRiskInvstMargin 
-        ,"RemainRiskExchMargin", self->data.RemainRiskExchMargin 
-        ,"LastRiskSpecTotalInvstMargin", self->data.LastRiskSpecTotalInvstMargin 
-        ,"LastRiskSpecTotalExchMargin", self->data.LastRiskSpecTotalExchMargin 
-        ,"ThisSyncSpecInvstMargin", self->data.ThisSyncSpecInvstMargin 
-        ,"ThisSyncSpecExchMargin", self->data.ThisSyncSpecExchMargin 
-        ,"RemainRiskSpecInvstMargin", self->data.RemainRiskSpecInvstMargin 
-        ,"RemainRiskSpecExchMargin", self->data.RemainRiskSpecExchMargin 
-        ,"SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "LastRiskTotalInvstMargin", self->data.LastRiskTotalInvstMargin
+		, "LastRiskTotalExchMargin", self->data.LastRiskTotalExchMargin
+		, "ThisSyncInvstMargin", self->data.ThisSyncInvstMargin
+		, "ThisSyncExchMargin", self->data.ThisSyncExchMargin
+		, "RemainRiskInvstMargin", self->data.RemainRiskInvstMargin
+		, "RemainRiskExchMargin", self->data.RemainRiskExchMargin
+		, "LastRiskSpecTotalInvstMargin", self->data.LastRiskSpecTotalInvstMargin
+		, "LastRiskSpecTotalExchMargin", self->data.LastRiskSpecTotalExchMargin
+		, "ThisSyncSpecInvstMargin", self->data.ThisSyncSpecInvstMargin
+		, "ThisSyncSpecExchMargin", self->data.ThisSyncSpecExchMargin
+		, "RemainRiskSpecInvstMargin", self->data.RemainRiskSpecInvstMargin
+		, "RemainRiskSpecExchMargin", self->data.RemainRiskSpecExchMargin
+		, "SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo
 
 
 		);
@@ -230,68 +185,101 @@ static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_repr(PyCThostFtdcSync
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_BrokerID(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_BrokerID(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_InvestorID(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_InvestorID(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///追平前总风险保证金
-// TThostFtdcMoneyType double
 static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskTotalInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LastRiskTotalInvstMargin);
+	return PyFloat_FromDouble(self->data.LastRiskTotalInvstMargin);
 }
 
-///追平前总风险保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.LastRiskTotalExchMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ThisSyncInvstMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ThisSyncExchMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.RemainRiskInvstMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.RemainRiskExchMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.LastRiskSpecTotalInvstMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.LastRiskSpecTotalExchMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ThisSyncSpecInvstMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ThisSyncSpecExchMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.RemainRiskSpecInvstMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.RemainRiskSpecExchMargin);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
+#endif 
+}
+
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_BrokerID(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_InvestorID(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LastRiskTotalInvstMargin Expected float");
         return -1;
@@ -303,16 +291,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalInvstMargi
     self->data.LastRiskTotalInvstMargin = buf;
     return 0;
 }
-        
-///追平前交易所总风险保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LastRiskTotalExchMargin);
-}
 
-///追平前交易所总风险保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LastRiskTotalExchMargin Expected float");
         return -1;
@@ -324,16 +304,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalExchMargin
     self->data.LastRiskTotalExchMargin = buf;
     return 0;
 }
-        
-///本次追平品种总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ThisSyncInvstMargin);
-}
 
-///本次追平品种总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ThisSyncInvstMargin Expected float");
         return -1;
@@ -345,16 +317,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncInvstMargin(PyC
     self->data.ThisSyncInvstMargin = buf;
     return 0;
 }
-        
-///本次追平品种交易所总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ThisSyncExchMargin);
-}
 
-///本次追平品种交易所总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ThisSyncExchMargin Expected float");
         return -1;
@@ -366,16 +330,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncExchMargin(PyCT
     self->data.ThisSyncExchMargin = buf;
     return 0;
 }
-        
-///本次未追平品种总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.RemainRiskInvstMargin);
-}
 
-///本次未追平品种总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "RemainRiskInvstMargin Expected float");
         return -1;
@@ -387,16 +343,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskInvstMargin(P
     self->data.RemainRiskInvstMargin = buf;
     return 0;
 }
-        
-///本次未追平品种交易所总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.RemainRiskExchMargin);
-}
 
-///本次未追平品种交易所总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "RemainRiskExchMargin Expected float");
         return -1;
@@ -408,16 +356,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskExchMargin(Py
     self->data.RemainRiskExchMargin = buf;
     return 0;
 }
-        
-///追平前总特殊产品风险保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LastRiskSpecTotalInvstMargin);
-}
 
-///追平前总特殊产品风险保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LastRiskSpecTotalInvstMargin Expected float");
         return -1;
@@ -429,16 +369,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalInvstM
     self->data.LastRiskSpecTotalInvstMargin = buf;
     return 0;
 }
-        
-///追平前总特殊产品交易所风险保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LastRiskSpecTotalExchMargin);
-}
 
-///追平前总特殊产品交易所风险保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LastRiskSpecTotalExchMargin Expected float");
         return -1;
@@ -450,16 +382,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalExchMa
     self->data.LastRiskSpecTotalExchMargin = buf;
     return 0;
 }
-        
-///本次追平品种特殊产品总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ThisSyncSpecInvstMargin);
-}
 
-///本次追平品种特殊产品总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ThisSyncSpecInvstMargin Expected float");
         return -1;
@@ -471,16 +395,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecInvstMargin
     self->data.ThisSyncSpecInvstMargin = buf;
     return 0;
 }
-        
-///本次追平品种特殊产品交易所总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ThisSyncSpecExchMargin);
-}
 
-///本次追平品种特殊产品交易所总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ThisSyncSpecExchMargin Expected float");
         return -1;
@@ -492,16 +408,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecExchMargin(
     self->data.ThisSyncSpecExchMargin = buf;
     return 0;
 }
-        
-///本次未追平品种特殊产品总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.RemainRiskSpecInvstMargin);
-}
 
-///本次未追平品种特殊产品总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecInvstMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "RemainRiskSpecInvstMargin Expected float");
         return -1;
@@ -513,16 +421,8 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecInvstMarg
     self->data.RemainRiskSpecInvstMargin = buf;
     return 0;
 }
-        
-///本次未追平品种特殊产品交易所总保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.RemainRiskSpecExchMargin);
-}
 
-///本次未追平品种特殊产品交易所总保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecExchMargin(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "RemainRiskSpecExchMargin Expected float");
         return -1;
@@ -534,77 +434,51 @@ static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecExchMargi
     self->data.RemainRiskSpecExchMargin = buf;
     return 0;
 }
-        
-///追平序号
-// TThostFtdcSequenceNoType int
-static PyObject *PyCThostFtdcSyncDeltaInitInvstMarginField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaInitInvstMarginField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
-#else
-    return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
-#endif
-}
 
-///追平序号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaInitInvstMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInitInvstMarginField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaInitInvstMarginField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SyncDeltaSequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SyncDeltaSequenceNo = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SyncDeltaSequenceNo = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSyncDeltaInitInvstMarginField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_InvestorID, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///追平前总风险保证金 
-    {(char *)"LastRiskTotalInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskTotalInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalInvstMargin, (char *)"LastRiskTotalInvstMargin", NULL},
-    ///追平前交易所总风险保证金 
-    {(char *)"LastRiskTotalExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskTotalExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalExchMargin, (char *)"LastRiskTotalExchMargin", NULL},
-    ///本次追平品种总保证金 
-    {(char *)"ThisSyncInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncInvstMargin, (char *)"ThisSyncInvstMargin", NULL},
-    ///本次追平品种交易所总保证金 
-    {(char *)"ThisSyncExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncExchMargin, (char *)"ThisSyncExchMargin", NULL},
-    ///本次未追平品种总保证金 
-    {(char *)"RemainRiskInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskInvstMargin, (char *)"RemainRiskInvstMargin", NULL},
-    ///本次未追平品种交易所总保证金 
-    {(char *)"RemainRiskExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskExchMargin, (char *)"RemainRiskExchMargin", NULL},
-    ///追平前总特殊产品风险保证金 
-    {(char *)"LastRiskSpecTotalInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalInvstMargin, (char *)"LastRiskSpecTotalInvstMargin", NULL},
-    ///追平前总特殊产品交易所风险保证金 
-    {(char *)"LastRiskSpecTotalExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalExchMargin, (char *)"LastRiskSpecTotalExchMargin", NULL},
-    ///本次追平品种特殊产品总保证金 
-    {(char *)"ThisSyncSpecInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecInvstMargin, (char *)"ThisSyncSpecInvstMargin", NULL},
-    ///本次追平品种特殊产品交易所总保证金 
-    {(char *)"ThisSyncSpecExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecExchMargin, (char *)"ThisSyncSpecExchMargin", NULL},
-    ///本次未追平品种特殊产品总保证金 
-    {(char *)"RemainRiskSpecInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecInvstMargin, (char *)"RemainRiskSpecInvstMargin", NULL},
-    ///本次未追平品种特殊产品交易所总保证金 
-    {(char *)"RemainRiskSpecExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecExchMargin, (char *)"RemainRiskSpecExchMargin", NULL},
-    ///追平序号 
-    {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_InvestorID, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"LastRiskTotalInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskTotalInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalInvstMargin, (char *)"LastRiskTotalInvstMargin", NULL},
+	 {(char *)"LastRiskTotalExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskTotalExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskTotalExchMargin, (char *)"LastRiskTotalExchMargin", NULL},
+	 {(char *)"ThisSyncInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncInvstMargin, (char *)"ThisSyncInvstMargin", NULL},
+	 {(char *)"ThisSyncExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncExchMargin, (char *)"ThisSyncExchMargin", NULL},
+	 {(char *)"RemainRiskInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskInvstMargin, (char *)"RemainRiskInvstMargin", NULL},
+	 {(char *)"RemainRiskExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskExchMargin, (char *)"RemainRiskExchMargin", NULL},
+	 {(char *)"LastRiskSpecTotalInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalInvstMargin, (char *)"LastRiskSpecTotalInvstMargin", NULL},
+	 {(char *)"LastRiskSpecTotalExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_LastRiskSpecTotalExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_LastRiskSpecTotalExchMargin, (char *)"LastRiskSpecTotalExchMargin", NULL},
+	 {(char *)"ThisSyncSpecInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecInvstMargin, (char *)"ThisSyncSpecInvstMargin", NULL},
+	 {(char *)"ThisSyncSpecExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_ThisSyncSpecExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_ThisSyncSpecExchMargin, (char *)"ThisSyncSpecExchMargin", NULL},
+	 {(char *)"RemainRiskSpecInvstMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecInvstMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecInvstMargin, (char *)"RemainRiskSpecInvstMargin", NULL},
+	 {(char *)"RemainRiskSpecExchMargin", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_RemainRiskSpecExchMargin, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_RemainRiskSpecExchMargin, (char *)"RemainRiskSpecExchMargin", NULL},
+	 {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaInitInvstMarginField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaInitInvstMarginField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
 
     {NULL}
 };

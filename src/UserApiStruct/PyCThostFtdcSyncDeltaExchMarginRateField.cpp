@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncDeltaExchMarginRateField.h"
 
-///风险结算追平交易所期货保证金率
+
 
 static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncDeltaExchMarginRateField *self = (PyCThostFtdcSyncDeltaExchMarginRateField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,45 +18,36 @@ static int PyCThostFtdcSyncDeltaExchMarginRateField_init(PyCThostFtdcSyncDeltaEx
 
     static const char *kwlist[] = {"BrokerID", "InstrumentID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "ActionDirection", "SyncDeltaSequenceNo",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSyncDeltaExchMarginRateField_BrokerID = NULL;
+	Py_ssize_t pSyncDeltaExchMarginRateField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SyncDeltaExchMarginRateField_BrokerID = NULL;
-    Py_ssize_t SyncDeltaExchMarginRateField_BrokerID_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *SyncDeltaExchMarginRateField_InstrumentID = NULL;
-    Py_ssize_t SyncDeltaExchMarginRateField_InstrumentID_len = 0;
-            
-    ///投机套保标志
-    // TThostFtdcHedgeFlagType char
-    char SyncDeltaExchMarginRateField_HedgeFlag = 0;
-            
-    ///多头保证金率
-    // TThostFtdcRatioType double
-    double SyncDeltaExchMarginRateField_LongMarginRatioByMoney = 0.0;
-        
-    ///多头保证金费
-    // TThostFtdcMoneyType double
-    double SyncDeltaExchMarginRateField_LongMarginRatioByVolume = 0.0;
-        
-    ///空头保证金率
-    // TThostFtdcRatioType double
-    double SyncDeltaExchMarginRateField_ShortMarginRatioByMoney = 0.0;
-        
-    ///空头保证金费
-    // TThostFtdcMoneyType double
-    double SyncDeltaExchMarginRateField_ShortMarginRatioByVolume = 0.0;
-        
-    ///操作标志
-    // TThostFtdcActionDirectionType char
-    char SyncDeltaExchMarginRateField_ActionDirection = 0;
-            
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    int SyncDeltaExchMarginRateField_SyncDeltaSequenceNo = 0;
-        
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pSyncDeltaExchMarginRateField_InstrumentID = NULL;
+	Py_ssize_t pSyncDeltaExchMarginRateField_InstrumentID_len = 0;
+
+	//TThostFtdcHedgeFlagType char
+	char pSyncDeltaExchMarginRateField_HedgeFlag = 0;
+
+	//TThostFtdcRatioType double
+	double pSyncDeltaExchMarginRateField_LongMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaExchMarginRateField_LongMarginRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pSyncDeltaExchMarginRateField_ShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDeltaExchMarginRateField_ShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcActionDirectionType char
+	char pSyncDeltaExchMarginRateField_ActionDirection = 0;
+
+	//TThostFtdcSequenceNoType int
+	int pSyncDeltaExchMarginRateField_SyncDeltaSequenceNo = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#cddddci", (char **)kwlist
@@ -63,76 +55,59 @@ static int PyCThostFtdcSyncDeltaExchMarginRateField_init(PyCThostFtdcSyncDeltaEx
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#cddddci", (char **)kwlist
 #endif
 
-        , &SyncDeltaExchMarginRateField_BrokerID, &SyncDeltaExchMarginRateField_BrokerID_len 
-        , &SyncDeltaExchMarginRateField_InstrumentID, &SyncDeltaExchMarginRateField_InstrumentID_len 
-        , &SyncDeltaExchMarginRateField_HedgeFlag 
-        , &SyncDeltaExchMarginRateField_LongMarginRatioByMoney 
-        , &SyncDeltaExchMarginRateField_LongMarginRatioByVolume 
-        , &SyncDeltaExchMarginRateField_ShortMarginRatioByMoney 
-        , &SyncDeltaExchMarginRateField_ShortMarginRatioByVolume 
-        , &SyncDeltaExchMarginRateField_ActionDirection 
-        , &SyncDeltaExchMarginRateField_SyncDeltaSequenceNo 
+		, &pSyncDeltaExchMarginRateField_BrokerID, &pSyncDeltaExchMarginRateField_BrokerID_len
+		, &pSyncDeltaExchMarginRateField_InstrumentID, &pSyncDeltaExchMarginRateField_InstrumentID_len
+		, &pSyncDeltaExchMarginRateField_HedgeFlag
+		, &pSyncDeltaExchMarginRateField_LongMarginRatioByMoney
+		, &pSyncDeltaExchMarginRateField_LongMarginRatioByVolume
+		, &pSyncDeltaExchMarginRateField_ShortMarginRatioByMoney
+		, &pSyncDeltaExchMarginRateField_ShortMarginRatioByVolume
+		, &pSyncDeltaExchMarginRateField_ActionDirection
+		, &pSyncDeltaExchMarginRateField_SyncDeltaSequenceNo
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pSyncDeltaExchMarginRateField_BrokerID != NULL) {
+		if(pSyncDeltaExchMarginRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSyncDeltaExchMarginRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSyncDeltaExchMarginRateField_BrokerID, sizeof(self->data.BrokerID) );
+		pSyncDeltaExchMarginRateField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SyncDeltaExchMarginRateField_BrokerID != NULL ) {
-        if(SyncDeltaExchMarginRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDeltaExchMarginRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SyncDeltaExchMarginRateField_BrokerID, SyncDeltaExchMarginRateField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SyncDeltaExchMarginRateField_BrokerID, sizeof(self->data.BrokerID) );
-        SyncDeltaExchMarginRateField_BrokerID = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( SyncDeltaExchMarginRateField_InstrumentID != NULL ) {
-        if(SyncDeltaExchMarginRateField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaExchMarginRateField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, SyncDeltaExchMarginRateField_InstrumentID, SyncDeltaExchMarginRateField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, SyncDeltaExchMarginRateField_InstrumentID, sizeof(self->data.InstrumentID) );
-        SyncDeltaExchMarginRateField_InstrumentID = NULL;
-    }
-            
-    ///投机套保标志
-    // TThostFtdcHedgeFlagType char
-    self->data.HedgeFlag = SyncDeltaExchMarginRateField_HedgeFlag;
-            
-    ///多头保证金率
-    // TThostFtdcRatioType double
-    self->data.LongMarginRatioByMoney = SyncDeltaExchMarginRateField_LongMarginRatioByMoney;
-        
-    ///多头保证金费
-    // TThostFtdcMoneyType double
-    self->data.LongMarginRatioByVolume = SyncDeltaExchMarginRateField_LongMarginRatioByVolume;
-        
-    ///空头保证金率
-    // TThostFtdcRatioType double
-    self->data.ShortMarginRatioByMoney = SyncDeltaExchMarginRateField_ShortMarginRatioByMoney;
-        
-    ///空头保证金费
-    // TThostFtdcMoneyType double
-    self->data.ShortMarginRatioByVolume = SyncDeltaExchMarginRateField_ShortMarginRatioByVolume;
-        
-    ///操作标志
-    // TThostFtdcActionDirectionType char
-    self->data.ActionDirection = SyncDeltaExchMarginRateField_ActionDirection;
-            
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    self->data.SyncDeltaSequenceNo = SyncDeltaExchMarginRateField_SyncDeltaSequenceNo;
-        
+	//TThostFtdcInstrumentIDType char[81]
+	if(pSyncDeltaExchMarginRateField_InstrumentID != NULL) {
+		if(pSyncDeltaExchMarginRateField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pSyncDeltaExchMarginRateField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pSyncDeltaExchMarginRateField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pSyncDeltaExchMarginRateField_InstrumentID = NULL;
+	}
+
+	//TThostFtdcHedgeFlagType char
+	self->data.HedgeFlag = pSyncDeltaExchMarginRateField_HedgeFlag;
+
+	//TThostFtdcRatioType double
+	self->data.LongMarginRatioByMoney = pSyncDeltaExchMarginRateField_LongMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.LongMarginRatioByVolume = pSyncDeltaExchMarginRateField_LongMarginRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.ShortMarginRatioByMoney = pSyncDeltaExchMarginRateField_ShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.ShortMarginRatioByVolume = pSyncDeltaExchMarginRateField_ShortMarginRatioByVolume;
+	//TThostFtdcActionDirectionType char
+	self->data.ActionDirection = pSyncDeltaExchMarginRateField_ActionDirection;
+
+	//TThostFtdcSequenceNoType int
+	self->data.SyncDeltaSequenceNo = pSyncDeltaExchMarginRateField_SyncDeltaSequenceNo;
+
+
 
     return 0;
 }
@@ -149,15 +124,15 @@ static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_repr(PyCThostFtdcSyncD
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:c,s:d,s:d,s:d,s:d,s:c,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
-        ,"HedgeFlag", self->data.HedgeFlag 
-        ,"LongMarginRatioByMoney", self->data.LongMarginRatioByMoney 
-        ,"LongMarginRatioByVolume", self->data.LongMarginRatioByVolume 
-        ,"ShortMarginRatioByMoney", self->data.ShortMarginRatioByMoney 
-        ,"ShortMarginRatioByVolume", self->data.ShortMarginRatioByVolume 
-        ,"ActionDirection", self->data.ActionDirection 
-        ,"SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo 
+		, "BrokerID", self->data.BrokerID 
+		, "InstrumentID", self->data.InstrumentID 
+		, "HedgeFlag", self->data.HedgeFlag
+		, "LongMarginRatioByMoney", self->data.LongMarginRatioByMoney
+		, "LongMarginRatioByVolume", self->data.LongMarginRatioByVolume
+		, "ShortMarginRatioByMoney", self->data.ShortMarginRatioByMoney
+		, "ShortMarginRatioByVolume", self->data.ShortMarginRatioByVolume
+		, "ActionDirection", self->data.ActionDirection
+		, "SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo
 
 
 		);
@@ -170,91 +145,92 @@ static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_repr(PyCThostFtdcSyncD
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_BrokerID(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_BrokerID(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_InstrumentID(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_InstrumentID(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
-///投机套保标志
-// TThostFtdcHedgeFlagType char
 static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_HedgeFlag(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.HedgeFlag), 1);
+	return PyBytes_FromStringAndSize(&(self->data.HedgeFlag), 1);
 }
 
-///投机套保标志
-// TThostFtdcHedgeFlagType char
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_HedgeFlag(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "HedgeFlag Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.HedgeFlag)) {
-        PyErr_SetString(PyExc_ValueError, "HedgeFlag must be equal 1 bytes");
-        return -1;
-    }
-    self->data.HedgeFlag = *buf;
-    return 0;
-}
-            
-///多头保证金率
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_LongMarginRatioByMoney(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LongMarginRatioByMoney);
+	return PyFloat_FromDouble(self->data.LongMarginRatioByMoney);
 }
 
-///多头保证金率
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByMoney(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_LongMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.LongMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByMoney(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_ActionDirection(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.ActionDirection), 1);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
+#endif 
+}
+
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_BrokerID(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_InstrumentID(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_HedgeFlag(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "HedgeFlag Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.HedgeFlag)) {
+		PyErr_SetString(PyExc_ValueError, "HedgeFlag must be less than 1 bytes");
+		return -1;
+	}
+	self->data.HedgeFlag = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByMoney(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LongMarginRatioByMoney Expected float");
         return -1;
@@ -266,16 +242,8 @@ static int PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByMoney(P
     self->data.LongMarginRatioByMoney = buf;
     return 0;
 }
-        
-///多头保证金费
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_LongMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LongMarginRatioByVolume);
-}
 
-///多头保证金费
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LongMarginRatioByVolume Expected float");
         return -1;
@@ -287,16 +255,8 @@ static int PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByVolume(
     self->data.LongMarginRatioByVolume = buf;
     return 0;
 }
-        
-///空头保证金率
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByMoney(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ShortMarginRatioByMoney);
-}
 
-///空头保证金率
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByMoney(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByMoney(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ShortMarginRatioByMoney Expected float");
         return -1;
@@ -308,16 +268,8 @@ static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByMoney(
     self->data.ShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///空头保证金费
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ShortMarginRatioByVolume);
-}
 
-///空头保证金费
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByVolume(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ShortMarginRatioByVolume Expected float");
         return -1;
@@ -329,88 +281,60 @@ static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByVolume
     self->data.ShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///操作标志
-// TThostFtdcActionDirectionType char
-static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_ActionDirection(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.ActionDirection), 1);
+
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ActionDirection(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ActionDirection Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ActionDirection)) {
+		PyErr_SetString(PyExc_ValueError, "ActionDirection must be less than 1 bytes");
+		return -1;
+	}
+	self->data.ActionDirection = *buf;
+	return 0;
 }
 
-///操作标志
-// TThostFtdcActionDirectionType char
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_ActionDirection(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ActionDirection Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDirection)) {
-        PyErr_SetString(PyExc_ValueError, "ActionDirection must be equal 1 bytes");
-        return -1;
-    }
-    self->data.ActionDirection = *buf;
-    return 0;
-}
-            
-///追平序号
-// TThostFtdcSequenceNoType int
-static PyObject *PyCThostFtdcSyncDeltaExchMarginRateField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaExchMarginRateField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
-#else
-    return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
-#endif
-}
-
-///追平序号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcSyncDeltaExchMarginRateField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaExchMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaExchMarginRateField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaExchMarginRateField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SyncDeltaSequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SyncDeltaSequenceNo = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SyncDeltaSequenceNo = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSyncDeltaExchMarginRateField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_InstrumentID, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_InstrumentID, (char *)"InstrumentID", NULL},
-    ///投机套保标志 
-    {(char *)"HedgeFlag", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_HedgeFlag, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_HedgeFlag, (char *)"HedgeFlag", NULL},
-    ///多头保证金率 
-    {(char *)"LongMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_LongMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByMoney, (char *)"LongMarginRatioByMoney", NULL},
-    ///多头保证金费 
-    {(char *)"LongMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_LongMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByVolume, (char *)"LongMarginRatioByVolume", NULL},
-    ///空头保证金率 
-    {(char *)"ShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByMoney, (char *)"ShortMarginRatioByMoney", NULL},
-    ///空头保证金费 
-    {(char *)"ShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByVolume, (char *)"ShortMarginRatioByVolume", NULL},
-    ///操作标志 
-    {(char *)"ActionDirection", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_ActionDirection, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_ActionDirection, (char *)"ActionDirection", NULL},
-    ///追平序号 
-    {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_BrokerID, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_InstrumentID, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"HedgeFlag", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_HedgeFlag, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_HedgeFlag, (char *)"HedgeFlag", NULL},
+	 {(char *)"LongMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_LongMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByMoney, (char *)"LongMarginRatioByMoney", NULL},
+	 {(char *)"LongMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_LongMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_LongMarginRatioByVolume, (char *)"LongMarginRatioByVolume", NULL},
+	 {(char *)"ShortMarginRatioByMoney", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByMoney, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByMoney, (char *)"ShortMarginRatioByMoney", NULL},
+	 {(char *)"ShortMarginRatioByVolume", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_ShortMarginRatioByVolume, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_ShortMarginRatioByVolume, (char *)"ShortMarginRatioByVolume", NULL},
+	 {(char *)"ActionDirection", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_ActionDirection, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_ActionDirection, (char *)"ActionDirection", NULL},
+	 {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaExchMarginRateField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaExchMarginRateField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
 
     {NULL}
 };

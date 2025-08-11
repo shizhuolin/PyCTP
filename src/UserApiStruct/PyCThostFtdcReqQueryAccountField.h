@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询账户信息请求
+
 
 typedef struct PyCThostFtdcReqQueryAccountField {
     PyObject_HEAD

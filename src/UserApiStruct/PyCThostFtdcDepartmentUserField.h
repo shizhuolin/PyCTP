@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///操作员组织架构关系
+
 
 typedef struct PyCThostFtdcDepartmentUserField {
     PyObject_HEAD

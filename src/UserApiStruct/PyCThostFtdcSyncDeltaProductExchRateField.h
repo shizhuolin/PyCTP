@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平交叉汇率
+
 
 typedef struct PyCThostFtdcSyncDeltaProductExchRateField {
     PyObject_HEAD

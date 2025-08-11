@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期权执行偏移值查询
+
 
 typedef struct PyCThostFtdcQryStrikeOffsetField {
     PyObject_HEAD

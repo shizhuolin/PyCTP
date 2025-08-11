@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户系统信息
+
 
 typedef struct PyCThostFtdcUserSystemInfoField {
     PyObject_HEAD

@@ -148,8 +148,8 @@ def funchar(objectid, memberid, typeid, length):
     _dec = 'const char *'+objectid+'_'+memberid+ ' = NULL;\n\tPy_ssize_t '+objectid+'_'+memberid+ '_len = 0;\n'
     # _ref = ', \"gb2312\", &'+objectid+'_'+memberid
     _ref = ', &'+objectid+'_'+memberid + ', &'+objectid+'_'+memberid+ '_len'
-    # _set = 'if(' + objectid+'_'+memberid + ' != nullptr){ strcpy_s('+objectid+'->'+memberid + ', ' + objectid+'_'+memberid + '); PyMem_Free(' + objectid+'_'+memberid + '); ' + objectid+'_'+memberid + ' = nullptr; }'
-    # _set = 'if(' + objectid+'_'+memberid + ' != nullptr){ strcpy_s('+objectid+'->'+memberid + ', ' + objectid+'_'+memberid + '); ' + objectid+'_'+memberid + ' = nullptr; }'
+    # _set = 'if(' + objectid+'_'+memberid + ' != NULL){ strcpy_s('+objectid+'->'+memberid + ', ' + objectid+'_'+memberid + '); PyMem_Free(' + objectid+'_'+memberid + '); ' + objectid+'_'+memberid + ' = NULL; }'
+    # _set = 'if(' + objectid+'_'+memberid + ' != NULL){ strcpy_s('+objectid+'->'+memberid + ', ' + objectid+'_'+memberid + '); ' + objectid+'_'+memberid + ' = NULL; }'
     
     _set = 'if(' + objectid+'_'+memberid + ' != NULL) {\n'
     _set += '\t\tif(' + objectid+'_'+memberid + '_len > (Py_ssize_t)sizeof(self->data.'+memberid + ')) {\n'
@@ -532,7 +532,7 @@ def generatemdapicode(codetree):
     if value['type']=='class' and key == 'CThostFtdcMdApi':
       for method in value['methods']:
         if method['name'] not in ['*CreateFtdcMdApi', '*GetApiVersion', '~CThostFtdcMdApi']:
-          mdapiapilist += '\t{"'+re.sub(r'^\*', '', method['name'])+'", CTP_THOST_FTDC_MD_API_'+re.sub(r'^\*', '', method['name'])+', '+('METH_VARARGS' if method['param'] else 'METH_NOARGS')+', nullptr},\n'
+          mdapiapilist += '\t{"'+re.sub(r'^\*', '', method['name'])+'", CTP_THOST_FTDC_MD_API_'+re.sub(r'^\*', '', method['name'])+', '+('METH_VARARGS' if method['param'] else 'METH_NOARGS')+', NULL},\n'
   with open('./src/MdApi.cpp.template', 'rb') as f:
     data = f.read()  
   encoding = chardet.detect(data)
@@ -641,7 +641,7 @@ def generatetraderapicode(codetree):
     if value['type']=='class' and key == 'CThostFtdcTraderApi':
       for method in value['methods']:
         if method['name'] not in ['*CreateFtdcTraderApi', '*GetApiVersion', '~CThostFtdcTraderApi']:
-          traderapiapilist += '\t{"'+re.sub(r'^\*', '', method['name'])+'", CTP_THOST_FTDC_TRADER_API_'+re.sub(r'^\*', '', method['name'])+', '+('METH_VARARGS' if method['param'] else 'METH_NOARGS')+', nullptr},\n'
+          traderapiapilist += '\t{"'+re.sub(r'^\*', '', method['name'])+'", CTP_THOST_FTDC_TRADER_API_'+re.sub(r'^\*', '', method['name'])+', '+('METH_VARARGS' if method['param'] else 'METH_NOARGS')+', NULL},\n'
   with open('./src/TraderApi.cpp.template', 'rb') as f:
     data = f.read()  
     encoding = chardet.detect(data)
@@ -653,11 +653,10 @@ def generatetraderapicode(codetree):
       f.write(sourcecode)
   
 import os
-ctpdir = './ctp/v6.7.9_P1_20250319/api/v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_api_traderapi_linux64/v6.7.9_P1_20250319_api/v6.7.9_P1_20250319_api_traderapi_se_linux64'
-#ctpdir = './v6.6.9_20220914_95719.2466/v6.6.9_20220914_api/v6.6.9_20220914_20220914_api_tradeapi_se_linux64'
-#ctpdir = './ctp/v6.6.2_P11_SM_20221103/api/v6.6.2_P11_SM_tradeapi/v6.6.2_P11_SM_20221025_api/v6.6.2_P11_SM_20221025_api_tradeapi_sm_linux64'
-#ctpdir = './ctp/v6.7.0_CP_20230303/api/v6.7.0_CP_traderapi_20230303/v6.7.0_CP_20230303_api/v6.7.0_CP_20230303_api_tradeapi_se_linux64'
-# ctpdir = './ctp/v6.7.9_20241224/api/v6.7.9_traderapi_20241224/v6.7.9_20241224_traderapi/v6.7.9_20241224_api_traderapi_linux64/v6.7.9_20241224_api/v6.7.9_20241224_api_traderapi_se_linux64'
+ctpdir = './ctp/v6.7.11_20250617/v6.7.11_20250617_api_traderapi_se_linux64'
+# ctpdir = './ctp/v6.7.9_P1_20250319/20250319_traderapi_se_windows'
+# ctpdir = './ctp/v6.7.9_P1_20250319/20250319_traderapi64_se_windows'
+
 codetree = {}
 codetree.update(structure(os.path.join(ctpdir, 'ThostFtdcUserApiDataType.h')))
 codetree.update(structure(os.path.join(ctpdir, 'ThostFtdcUserApiStruct.h')))

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcReqGenUserTextField.h"
 
-///用户发出获取安全安全登陆方法请求
+
 
 static PyObject *PyCThostFtdcReqGenUserTextField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcReqGenUserTextField *self = (PyCThostFtdcReqGenUserTextField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcReqGenUserTextField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,22 +18,19 @@ static int PyCThostFtdcReqGenUserTextField_init(PyCThostFtdcReqGenUserTextField 
 
     static const char *kwlist[] = {"TradingDay", "BrokerID", "UserID",  NULL};
 
+	//TThostFtdcDateType char[9]
+	const char *pReqGenUserTextField_TradingDay = NULL;
+	Py_ssize_t pReqGenUserTextField_TradingDay_len = 0;
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    const char *ReqGenUserTextField_TradingDay = NULL;
-    Py_ssize_t ReqGenUserTextField_TradingDay_len = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *ReqGenUserTextField_BrokerID = NULL;
-    Py_ssize_t ReqGenUserTextField_BrokerID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *ReqGenUserTextField_UserID = NULL;
-    Py_ssize_t ReqGenUserTextField_UserID_len = 0;
-            
+	//TThostFtdcBrokerIDType char[11]
+	const char *pReqGenUserTextField_BrokerID = NULL;
+	Py_ssize_t pReqGenUserTextField_BrokerID_len = 0;
+
+	//TThostFtdcUserIDType char[16]
+	const char *pReqGenUserTextField_UserID = NULL;
+	Py_ssize_t pReqGenUserTextField_UserID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#", (char **)kwlist
@@ -40,55 +38,46 @@ static int PyCThostFtdcReqGenUserTextField_init(PyCThostFtdcReqGenUserTextField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#", (char **)kwlist
 #endif
 
-        , &ReqGenUserTextField_TradingDay, &ReqGenUserTextField_TradingDay_len 
-        , &ReqGenUserTextField_BrokerID, &ReqGenUserTextField_BrokerID_len 
-        , &ReqGenUserTextField_UserID, &ReqGenUserTextField_UserID_len 
+		, &pReqGenUserTextField_TradingDay, &pReqGenUserTextField_TradingDay_len
+		, &pReqGenUserTextField_BrokerID, &pReqGenUserTextField_BrokerID_len
+		, &pReqGenUserTextField_UserID, &pReqGenUserTextField_UserID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDateType char[9]
+	if(pReqGenUserTextField_TradingDay != NULL) {
+		if(pReqGenUserTextField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pReqGenUserTextField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pReqGenUserTextField_TradingDay, sizeof(self->data.TradingDay) );
+		pReqGenUserTextField_TradingDay = NULL;
+	}
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    if( ReqGenUserTextField_TradingDay != NULL ) {
-        if(ReqGenUserTextField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", ReqGenUserTextField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, ReqGenUserTextField_TradingDay, ReqGenUserTextField_TradingDay_len);        
-        strncpy(self->data.TradingDay, ReqGenUserTextField_TradingDay, sizeof(self->data.TradingDay) );
-        ReqGenUserTextField_TradingDay = NULL;
-    }
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( ReqGenUserTextField_BrokerID != NULL ) {
-        if(ReqGenUserTextField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ReqGenUserTextField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, ReqGenUserTextField_BrokerID, ReqGenUserTextField_BrokerID_len);        
-        strncpy(self->data.BrokerID, ReqGenUserTextField_BrokerID, sizeof(self->data.BrokerID) );
-        ReqGenUserTextField_BrokerID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( ReqGenUserTextField_UserID != NULL ) {
-        if(ReqGenUserTextField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ReqGenUserTextField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, ReqGenUserTextField_UserID, ReqGenUserTextField_UserID_len);        
-        strncpy(self->data.UserID, ReqGenUserTextField_UserID, sizeof(self->data.UserID) );
-        ReqGenUserTextField_UserID = NULL;
-    }
-            
+	//TThostFtdcBrokerIDType char[11]
+	if(pReqGenUserTextField_BrokerID != NULL) {
+		if(pReqGenUserTextField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pReqGenUserTextField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pReqGenUserTextField_BrokerID, sizeof(self->data.BrokerID) );
+		pReqGenUserTextField_BrokerID = NULL;
+	}
+
+	//TThostFtdcUserIDType char[16]
+	if(pReqGenUserTextField_UserID != NULL) {
+		if(pReqGenUserTextField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pReqGenUserTextField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pReqGenUserTextField_UserID, sizeof(self->data.UserID) );
+		pReqGenUserTextField_UserID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -105,9 +94,9 @@ static PyObject *PyCThostFtdcReqGenUserTextField_repr(PyCThostFtdcReqGenUserText
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s}"
 #endif
 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
+		, "TradingDay", self->data.TradingDay 
+		, "BrokerID", self->data.BrokerID 
+		, "UserID", self->data.UserID 
 
 
 		);
@@ -120,93 +109,69 @@ static PyObject *PyCThostFtdcReqGenUserTextField_repr(PyCThostFtdcReqGenUserText
     return PyObject_Repr(obj);
 }
 
-
-///交易日
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcReqGenUserTextField_get_TradingDay(PyCThostFtdcReqGenUserTextField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易日
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcReqGenUserTextField_set_TradingDay(PyCThostFtdcReqGenUserTextField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcReqGenUserTextField_get_BrokerID(PyCThostFtdcReqGenUserTextField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcReqGenUserTextField_set_BrokerID(PyCThostFtdcReqGenUserTextField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcReqGenUserTextField_get_UserID(PyCThostFtdcReqGenUserTextField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcReqGenUserTextField_set_UserID(PyCThostFtdcReqGenUserTextField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
+static int PyCThostFtdcReqGenUserTextField_set_TradingDay(PyCThostFtdcReqGenUserTextField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
 }
-            
+
+static int PyCThostFtdcReqGenUserTextField_set_BrokerID(PyCThostFtdcReqGenUserTextField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcReqGenUserTextField_set_UserID(PyCThostFtdcReqGenUserTextField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcReqGenUserTextField_getset[] = {
-    ///交易日 
-    {(char *)"TradingDay", (getter)PyCThostFtdcReqGenUserTextField_get_TradingDay, (setter)PyCThostFtdcReqGenUserTextField_set_TradingDay, (char *)"TradingDay", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcReqGenUserTextField_get_BrokerID, (setter)PyCThostFtdcReqGenUserTextField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcReqGenUserTextField_get_UserID, (setter)PyCThostFtdcReqGenUserTextField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcReqGenUserTextField_get_TradingDay, (setter)PyCThostFtdcReqGenUserTextField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcReqGenUserTextField_get_BrokerID, (setter)PyCThostFtdcReqGenUserTextField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcReqGenUserTextField_get_UserID, (setter)PyCThostFtdcReqGenUserTextField_set_UserID, (char *)"UserID", NULL},
 
     {NULL}
 };

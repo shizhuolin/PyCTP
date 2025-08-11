@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///组合腿信息
+
 
 typedef struct PyCThostFtdcCombLegField {
     PyObject_HEAD

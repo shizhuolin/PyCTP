@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncStatusField.h"
 
-///数据同步状态
+
 
 static PyObject *PyCThostFtdcSyncStatusField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncStatusField *self = (PyCThostFtdcSyncStatusField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncStatusField_new(PyTypeObject *type, PyObject *a
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,16 +18,14 @@ static int PyCThostFtdcSyncStatusField_init(PyCThostFtdcSyncStatusField *self, P
 
     static const char *kwlist[] = {"TradingDay", "DataSyncStatus",  NULL};
 
+	//TThostFtdcDateType char[9]
+	const char *pSyncStatusField_TradingDay = NULL;
+	Py_ssize_t pSyncStatusField_TradingDay_len = 0;
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    const char *SyncStatusField_TradingDay = NULL;
-    Py_ssize_t SyncStatusField_TradingDay_len = 0;
-            
-    ///数据同步状态
-    // TThostFtdcDataSyncStatusType char
-    char SyncStatusField_DataSyncStatus = 0;
-            
+	//TThostFtdcDataSyncStatusType char
+	char pSyncStatusField_DataSyncStatus = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#c", (char **)kwlist
@@ -34,32 +33,28 @@ static int PyCThostFtdcSyncStatusField_init(PyCThostFtdcSyncStatusField *self, P
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#c", (char **)kwlist
 #endif
 
-        , &SyncStatusField_TradingDay, &SyncStatusField_TradingDay_len 
-        , &SyncStatusField_DataSyncStatus 
+		, &pSyncStatusField_TradingDay, &pSyncStatusField_TradingDay_len
+		, &pSyncStatusField_DataSyncStatus
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDateType char[9]
+	if(pSyncStatusField_TradingDay != NULL) {
+		if(pSyncStatusField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pSyncStatusField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pSyncStatusField_TradingDay, sizeof(self->data.TradingDay) );
+		pSyncStatusField_TradingDay = NULL;
+	}
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    if( SyncStatusField_TradingDay != NULL ) {
-        if(SyncStatusField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SyncStatusField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, SyncStatusField_TradingDay, SyncStatusField_TradingDay_len);        
-        strncpy(self->data.TradingDay, SyncStatusField_TradingDay, sizeof(self->data.TradingDay) );
-        SyncStatusField_TradingDay = NULL;
-    }
-            
-    ///数据同步状态
-    // TThostFtdcDataSyncStatusType char
-    self->data.DataSyncStatus = SyncStatusField_DataSyncStatus;
-            
+	//TThostFtdcDataSyncStatusType char
+	self->data.DataSyncStatus = pSyncStatusField_DataSyncStatus;
+
+
 
     return 0;
 }
@@ -76,8 +71,8 @@ static PyObject *PyCThostFtdcSyncStatusField_repr(PyCThostFtdcSyncStatusField *s
     PyObject *obj = Py_BuildValue("{s:s,s:c}"
 #endif
 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
-        ,"DataSyncStatus", self->data.DataSyncStatus 
+		, "TradingDay", self->data.TradingDay 
+		, "DataSyncStatus", self->data.DataSyncStatus
 
 
 		);
@@ -90,62 +85,49 @@ static PyObject *PyCThostFtdcSyncStatusField_repr(PyCThostFtdcSyncStatusField *s
     return PyObject_Repr(obj);
 }
 
-
-///交易日
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcSyncStatusField_get_TradingDay(PyCThostFtdcSyncStatusField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易日
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcSyncStatusField_set_TradingDay(PyCThostFtdcSyncStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
-}
-            
-///数据同步状态
-// TThostFtdcDataSyncStatusType char
 static PyObject *PyCThostFtdcSyncStatusField_get_DataSyncStatus(PyCThostFtdcSyncStatusField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.DataSyncStatus), 1);
+	return PyBytes_FromStringAndSize(&(self->data.DataSyncStatus), 1);
 }
 
-///数据同步状态
-// TThostFtdcDataSyncStatusType char
-static int PyCThostFtdcSyncStatusField_set_DataSyncStatus(PyCThostFtdcSyncStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DataSyncStatus Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DataSyncStatus)) {
-        PyErr_SetString(PyExc_ValueError, "DataSyncStatus must be equal 1 bytes");
-        return -1;
-    }
-    self->data.DataSyncStatus = *buf;
-    return 0;
+static int PyCThostFtdcSyncStatusField_set_TradingDay(PyCThostFtdcSyncStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
 }
-            
+
+static int PyCThostFtdcSyncStatusField_set_DataSyncStatus(PyCThostFtdcSyncStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "DataSyncStatus Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.DataSyncStatus)) {
+		PyErr_SetString(PyExc_ValueError, "DataSyncStatus must be less than 1 bytes");
+		return -1;
+	}
+	self->data.DataSyncStatus = *buf;
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcSyncStatusField_getset[] = {
-    ///交易日 
-    {(char *)"TradingDay", (getter)PyCThostFtdcSyncStatusField_get_TradingDay, (setter)PyCThostFtdcSyncStatusField_set_TradingDay, (char *)"TradingDay", NULL},
-    ///数据同步状态 
-    {(char *)"DataSyncStatus", (getter)PyCThostFtdcSyncStatusField_get_DataSyncStatus, (setter)PyCThostFtdcSyncStatusField_set_DataSyncStatus, (char *)"DataSyncStatus", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcSyncStatusField_get_TradingDay, (setter)PyCThostFtdcSyncStatusField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"DataSyncStatus", (getter)PyCThostFtdcSyncStatusField_get_DataSyncStatus, (setter)PyCThostFtdcSyncStatusField_set_DataSyncStatus, (char *)"DataSyncStatus", NULL},
 
     {NULL}
 };

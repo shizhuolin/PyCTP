@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryExchangeRateField.h"
 
-///查询汇率
+
 
 static PyObject *PyCThostFtdcQryExchangeRateField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryExchangeRateField *self = (PyCThostFtdcQryExchangeRateField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryExchangeRateField_new(PyTypeObject *type, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,22 +18,19 @@ static int PyCThostFtdcQryExchangeRateField_init(PyCThostFtdcQryExchangeRateFiel
 
     static const char *kwlist[] = {"BrokerID", "FromCurrencyID", "ToCurrencyID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQryExchangeRateField_BrokerID = NULL;
+	Py_ssize_t pQryExchangeRateField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QryExchangeRateField_BrokerID = NULL;
-    Py_ssize_t QryExchangeRateField_BrokerID_len = 0;
-            
-    ///源币种
-    // TThostFtdcCurrencyIDType char[4]
-    const char *QryExchangeRateField_FromCurrencyID = NULL;
-    Py_ssize_t QryExchangeRateField_FromCurrencyID_len = 0;
-            
-    ///目标币种
-    // TThostFtdcCurrencyIDType char[4]
-    const char *QryExchangeRateField_ToCurrencyID = NULL;
-    Py_ssize_t QryExchangeRateField_ToCurrencyID_len = 0;
-            
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pQryExchangeRateField_FromCurrencyID = NULL;
+	Py_ssize_t pQryExchangeRateField_FromCurrencyID_len = 0;
+
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pQryExchangeRateField_ToCurrencyID = NULL;
+	Py_ssize_t pQryExchangeRateField_ToCurrencyID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#", (char **)kwlist
@@ -40,55 +38,46 @@ static int PyCThostFtdcQryExchangeRateField_init(PyCThostFtdcQryExchangeRateFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#", (char **)kwlist
 #endif
 
-        , &QryExchangeRateField_BrokerID, &QryExchangeRateField_BrokerID_len 
-        , &QryExchangeRateField_FromCurrencyID, &QryExchangeRateField_FromCurrencyID_len 
-        , &QryExchangeRateField_ToCurrencyID, &QryExchangeRateField_ToCurrencyID_len 
+		, &pQryExchangeRateField_BrokerID, &pQryExchangeRateField_BrokerID_len
+		, &pQryExchangeRateField_FromCurrencyID, &pQryExchangeRateField_FromCurrencyID_len
+		, &pQryExchangeRateField_ToCurrencyID, &pQryExchangeRateField_ToCurrencyID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQryExchangeRateField_BrokerID != NULL) {
+		if(pQryExchangeRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQryExchangeRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQryExchangeRateField_BrokerID, sizeof(self->data.BrokerID) );
+		pQryExchangeRateField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QryExchangeRateField_BrokerID != NULL ) {
-        if(QryExchangeRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryExchangeRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QryExchangeRateField_BrokerID, QryExchangeRateField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QryExchangeRateField_BrokerID, sizeof(self->data.BrokerID) );
-        QryExchangeRateField_BrokerID = NULL;
-    }
-            
-    ///源币种
-    // TThostFtdcCurrencyIDType char[4]
-    if( QryExchangeRateField_FromCurrencyID != NULL ) {
-        if(QryExchangeRateField_FromCurrencyID_len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "FromCurrencyID too long: length=%zd (max allowed is %zd)", QryExchangeRateField_FromCurrencyID_len, (Py_ssize_t)sizeof(self->data.FromCurrencyID));
-            return -1;
-        }
-        // memset(self->data.FromCurrencyID, 0, sizeof(self->data.FromCurrencyID));
-        // memcpy(self->data.FromCurrencyID, QryExchangeRateField_FromCurrencyID, QryExchangeRateField_FromCurrencyID_len);        
-        strncpy(self->data.FromCurrencyID, QryExchangeRateField_FromCurrencyID, sizeof(self->data.FromCurrencyID) );
-        QryExchangeRateField_FromCurrencyID = NULL;
-    }
-            
-    ///目标币种
-    // TThostFtdcCurrencyIDType char[4]
-    if( QryExchangeRateField_ToCurrencyID != NULL ) {
-        if(QryExchangeRateField_ToCurrencyID_len > (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "ToCurrencyID too long: length=%zd (max allowed is %zd)", QryExchangeRateField_ToCurrencyID_len, (Py_ssize_t)sizeof(self->data.ToCurrencyID));
-            return -1;
-        }
-        // memset(self->data.ToCurrencyID, 0, sizeof(self->data.ToCurrencyID));
-        // memcpy(self->data.ToCurrencyID, QryExchangeRateField_ToCurrencyID, QryExchangeRateField_ToCurrencyID_len);        
-        strncpy(self->data.ToCurrencyID, QryExchangeRateField_ToCurrencyID, sizeof(self->data.ToCurrencyID) );
-        QryExchangeRateField_ToCurrencyID = NULL;
-    }
-            
+	//TThostFtdcCurrencyIDType char[4]
+	if(pQryExchangeRateField_FromCurrencyID != NULL) {
+		if(pQryExchangeRateField_FromCurrencyID_len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "FromCurrencyID too long: length=%zd (max allowed is %zd)", pQryExchangeRateField_FromCurrencyID_len, (Py_ssize_t)sizeof(self->data.FromCurrencyID));
+			return -1;
+		}
+		strncpy(self->data.FromCurrencyID, pQryExchangeRateField_FromCurrencyID, sizeof(self->data.FromCurrencyID) );
+		pQryExchangeRateField_FromCurrencyID = NULL;
+	}
+
+	//TThostFtdcCurrencyIDType char[4]
+	if(pQryExchangeRateField_ToCurrencyID != NULL) {
+		if(pQryExchangeRateField_ToCurrencyID_len > (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "ToCurrencyID too long: length=%zd (max allowed is %zd)", pQryExchangeRateField_ToCurrencyID_len, (Py_ssize_t)sizeof(self->data.ToCurrencyID));
+			return -1;
+		}
+		strncpy(self->data.ToCurrencyID, pQryExchangeRateField_ToCurrencyID, sizeof(self->data.ToCurrencyID) );
+		pQryExchangeRateField_ToCurrencyID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -105,9 +94,9 @@ static PyObject *PyCThostFtdcQryExchangeRateField_repr(PyCThostFtdcQryExchangeRa
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"FromCurrencyID", self->data.FromCurrencyID//, (Py_ssize_t)sizeof(self->data.FromCurrencyID) 
-        ,"ToCurrencyID", self->data.ToCurrencyID//, (Py_ssize_t)sizeof(self->data.ToCurrencyID) 
+		, "BrokerID", self->data.BrokerID 
+		, "FromCurrencyID", self->data.FromCurrencyID 
+		, "ToCurrencyID", self->data.ToCurrencyID 
 
 
 		);
@@ -120,93 +109,69 @@ static PyObject *PyCThostFtdcQryExchangeRateField_repr(PyCThostFtdcQryExchangeRa
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQryExchangeRateField_get_BrokerID(PyCThostFtdcQryExchangeRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQryExchangeRateField_set_BrokerID(PyCThostFtdcQryExchangeRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///源币种
-// TThostFtdcCurrencyIDType char[4]
 static PyObject *PyCThostFtdcQryExchangeRateField_get_FromCurrencyID(PyCThostFtdcQryExchangeRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FromCurrencyID, (Py_ssize_t)sizeof(self->data.FromCurrencyID));
-    return PyBytes_FromString(self->data.FromCurrencyID);
+	return PyBytes_FromString(self->data.FromCurrencyID);
 }
 
-///源币种
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcQryExchangeRateField_set_FromCurrencyID(PyCThostFtdcQryExchangeRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FromCurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "FromCurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.FromCurrencyID, 0, sizeof(self->data.FromCurrencyID));
-    // memcpy(self->data.FromCurrencyID, buf, len);
-    strncpy(self->data.FromCurrencyID, buf, sizeof(self->data.FromCurrencyID));
-    return 0;
-}
-            
-///目标币种
-// TThostFtdcCurrencyIDType char[4]
 static PyObject *PyCThostFtdcQryExchangeRateField_get_ToCurrencyID(PyCThostFtdcQryExchangeRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ToCurrencyID, (Py_ssize_t)sizeof(self->data.ToCurrencyID));
-    return PyBytes_FromString(self->data.ToCurrencyID);
+	return PyBytes_FromString(self->data.ToCurrencyID);
 }
 
-///目标币种
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcQryExchangeRateField_set_ToCurrencyID(PyCThostFtdcQryExchangeRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ToCurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "ToCurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.ToCurrencyID, 0, sizeof(self->data.ToCurrencyID));
-    // memcpy(self->data.ToCurrencyID, buf, len);
-    strncpy(self->data.ToCurrencyID, buf, sizeof(self->data.ToCurrencyID));
-    return 0;
+static int PyCThostFtdcQryExchangeRateField_set_BrokerID(PyCThostFtdcQryExchangeRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryExchangeRateField_set_FromCurrencyID(PyCThostFtdcQryExchangeRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FromCurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "FromCurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.FromCurrencyID, buf, sizeof(self->data.FromCurrencyID));
+	return 0;
+}
+
+static int PyCThostFtdcQryExchangeRateField_set_ToCurrencyID(PyCThostFtdcQryExchangeRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ToCurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "ToCurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.ToCurrencyID, buf, sizeof(self->data.ToCurrencyID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryExchangeRateField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQryExchangeRateField_get_BrokerID, (setter)PyCThostFtdcQryExchangeRateField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///源币种 
-    {(char *)"FromCurrencyID", (getter)PyCThostFtdcQryExchangeRateField_get_FromCurrencyID, (setter)PyCThostFtdcQryExchangeRateField_set_FromCurrencyID, (char *)"FromCurrencyID", NULL},
-    ///目标币种 
-    {(char *)"ToCurrencyID", (getter)PyCThostFtdcQryExchangeRateField_get_ToCurrencyID, (setter)PyCThostFtdcQryExchangeRateField_set_ToCurrencyID, (char *)"ToCurrencyID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQryExchangeRateField_get_BrokerID, (setter)PyCThostFtdcQryExchangeRateField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"FromCurrencyID", (getter)PyCThostFtdcQryExchangeRateField_get_FromCurrencyID, (setter)PyCThostFtdcQryExchangeRateField_set_FromCurrencyID, (char *)"FromCurrencyID", NULL},
+	 {(char *)"ToCurrencyID", (getter)PyCThostFtdcQryExchangeRateField_get_ToCurrencyID, (setter)PyCThostFtdcQryExchangeRateField_set_ToCurrencyID, (char *)"ToCurrencyID", NULL},
 
     {NULL}
 };

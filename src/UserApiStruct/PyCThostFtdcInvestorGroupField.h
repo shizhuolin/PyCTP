@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者组
+
 
 typedef struct PyCThostFtdcInvestorGroupField {
     PyObject_HEAD

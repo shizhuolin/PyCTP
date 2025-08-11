@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcLoginForbiddenUserField.h"
 
-///禁止登录用户
+
 
 static PyObject *PyCThostFtdcLoginForbiddenUserField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcLoginForbiddenUserField *self = (PyCThostFtdcLoginForbiddenUserField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcLoginForbiddenUserField_new(PyTypeObject *type, PyO
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,27 +18,23 @@ static int PyCThostFtdcLoginForbiddenUserField_init(PyCThostFtdcLoginForbiddenUs
 
     static const char *kwlist[] = {"BrokerID", "UserID", "reserve1", "IPAddress",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pLoginForbiddenUserField_BrokerID = NULL;
+	Py_ssize_t pLoginForbiddenUserField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *LoginForbiddenUserField_BrokerID = NULL;
-    Py_ssize_t LoginForbiddenUserField_BrokerID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *LoginForbiddenUserField_UserID = NULL;
-    Py_ssize_t LoginForbiddenUserField_UserID_len = 0;
-            
-    ///保留的无效字段
-    // TThostFtdcOldIPAddressType char[16]
-    const char *LoginForbiddenUserField_reserve1 = NULL;
-    Py_ssize_t LoginForbiddenUserField_reserve1_len = 0;
-            
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    const char *LoginForbiddenUserField_IPAddress = NULL;
-    Py_ssize_t LoginForbiddenUserField_IPAddress_len = 0;
-            
+	//TThostFtdcUserIDType char[16]
+	const char *pLoginForbiddenUserField_UserID = NULL;
+	Py_ssize_t pLoginForbiddenUserField_UserID_len = 0;
+
+	//TThostFtdcOldIPAddressType char[16]
+	const char *pLoginForbiddenUserField_reserve1 = NULL;
+	Py_ssize_t pLoginForbiddenUserField_reserve1_len = 0;
+
+	//TThostFtdcIPAddressType char[33]
+	const char *pLoginForbiddenUserField_IPAddress = NULL;
+	Py_ssize_t pLoginForbiddenUserField_IPAddress_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#", (char **)kwlist
@@ -45,69 +42,57 @@ static int PyCThostFtdcLoginForbiddenUserField_init(PyCThostFtdcLoginForbiddenUs
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#", (char **)kwlist
 #endif
 
-        , &LoginForbiddenUserField_BrokerID, &LoginForbiddenUserField_BrokerID_len 
-        , &LoginForbiddenUserField_UserID, &LoginForbiddenUserField_UserID_len 
-        , &LoginForbiddenUserField_reserve1, &LoginForbiddenUserField_reserve1_len 
-        , &LoginForbiddenUserField_IPAddress, &LoginForbiddenUserField_IPAddress_len 
+		, &pLoginForbiddenUserField_BrokerID, &pLoginForbiddenUserField_BrokerID_len
+		, &pLoginForbiddenUserField_UserID, &pLoginForbiddenUserField_UserID_len
+		, &pLoginForbiddenUserField_reserve1, &pLoginForbiddenUserField_reserve1_len
+		, &pLoginForbiddenUserField_IPAddress, &pLoginForbiddenUserField_IPAddress_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pLoginForbiddenUserField_BrokerID != NULL) {
+		if(pLoginForbiddenUserField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pLoginForbiddenUserField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pLoginForbiddenUserField_BrokerID, sizeof(self->data.BrokerID) );
+		pLoginForbiddenUserField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( LoginForbiddenUserField_BrokerID != NULL ) {
-        if(LoginForbiddenUserField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, LoginForbiddenUserField_BrokerID, LoginForbiddenUserField_BrokerID_len);        
-        strncpy(self->data.BrokerID, LoginForbiddenUserField_BrokerID, sizeof(self->data.BrokerID) );
-        LoginForbiddenUserField_BrokerID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( LoginForbiddenUserField_UserID != NULL ) {
-        if(LoginForbiddenUserField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, LoginForbiddenUserField_UserID, LoginForbiddenUserField_UserID_len);        
-        strncpy(self->data.UserID, LoginForbiddenUserField_UserID, sizeof(self->data.UserID) );
-        LoginForbiddenUserField_UserID = NULL;
-    }
-            
-    ///保留的无效字段
-    // TThostFtdcOldIPAddressType char[16]
-    if( LoginForbiddenUserField_reserve1 != NULL ) {
-        if(LoginForbiddenUserField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, LoginForbiddenUserField_reserve1, LoginForbiddenUserField_reserve1_len);        
-        strncpy(self->data.reserve1, LoginForbiddenUserField_reserve1, sizeof(self->data.reserve1) );
-        LoginForbiddenUserField_reserve1 = NULL;
-    }
-            
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    if( LoginForbiddenUserField_IPAddress != NULL ) {
-        if(LoginForbiddenUserField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-            PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
-            return -1;
-        }
-        // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-        // memcpy(self->data.IPAddress, LoginForbiddenUserField_IPAddress, LoginForbiddenUserField_IPAddress_len);        
-        strncpy(self->data.IPAddress, LoginForbiddenUserField_IPAddress, sizeof(self->data.IPAddress) );
-        LoginForbiddenUserField_IPAddress = NULL;
-    }
-            
+	//TThostFtdcUserIDType char[16]
+	if(pLoginForbiddenUserField_UserID != NULL) {
+		if(pLoginForbiddenUserField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pLoginForbiddenUserField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pLoginForbiddenUserField_UserID, sizeof(self->data.UserID) );
+		pLoginForbiddenUserField_UserID = NULL;
+	}
+
+	//TThostFtdcOldIPAddressType char[16]
+	if(pLoginForbiddenUserField_reserve1 != NULL) {
+		if(pLoginForbiddenUserField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pLoginForbiddenUserField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pLoginForbiddenUserField_reserve1, sizeof(self->data.reserve1) );
+		pLoginForbiddenUserField_reserve1 = NULL;
+	}
+
+	//TThostFtdcIPAddressType char[33]
+	if(pLoginForbiddenUserField_IPAddress != NULL) {
+		if(pLoginForbiddenUserField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+			PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", pLoginForbiddenUserField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
+			return -1;
+		}
+		strncpy(self->data.IPAddress, pLoginForbiddenUserField_IPAddress, sizeof(self->data.IPAddress) );
+		pLoginForbiddenUserField_IPAddress = NULL;
+	}
+
+
 
     return 0;
 }
@@ -124,10 +109,10 @@ static PyObject *PyCThostFtdcLoginForbiddenUserField_repr(PyCThostFtdcLoginForbi
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"IPAddress", self->data.IPAddress//, (Py_ssize_t)sizeof(self->data.IPAddress) 
+		, "BrokerID", self->data.BrokerID 
+		, "UserID", self->data.UserID 
+		, "reserve1", self->data.reserve1 
+		, "IPAddress", self->data.IPAddress 
 
 
 		);
@@ -140,121 +125,89 @@ static PyObject *PyCThostFtdcLoginForbiddenUserField_repr(PyCThostFtdcLoginForbi
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcLoginForbiddenUserField_get_BrokerID(PyCThostFtdcLoginForbiddenUserField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcLoginForbiddenUserField_set_BrokerID(PyCThostFtdcLoginForbiddenUserField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcLoginForbiddenUserField_get_UserID(PyCThostFtdcLoginForbiddenUserField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcLoginForbiddenUserField_set_UserID(PyCThostFtdcLoginForbiddenUserField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
-}
-            
-///保留的无效字段
-// TThostFtdcOldIPAddressType char[16]
 static PyObject *PyCThostFtdcLoginForbiddenUserField_get_reserve1(PyCThostFtdcLoginForbiddenUserField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldIPAddressType char[16]
-static int PyCThostFtdcLoginForbiddenUserField_set_reserve1(PyCThostFtdcLoginForbiddenUserField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///IP地址
-// TThostFtdcIPAddressType char[33]
 static PyObject *PyCThostFtdcLoginForbiddenUserField_get_IPAddress(PyCThostFtdcLoginForbiddenUserField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.IPAddress, (Py_ssize_t)sizeof(self->data.IPAddress));
-    return PyBytes_FromString(self->data.IPAddress);
+	return PyBytes_FromString(self->data.IPAddress);
 }
 
-///IP地址
-// TThostFtdcIPAddressType char[33]
-static int PyCThostFtdcLoginForbiddenUserField_set_IPAddress(PyCThostFtdcLoginForbiddenUserField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-        PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-    // memcpy(self->data.IPAddress, buf, len);
-    strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
-    return 0;
+static int PyCThostFtdcLoginForbiddenUserField_set_BrokerID(PyCThostFtdcLoginForbiddenUserField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcLoginForbiddenUserField_set_UserID(PyCThostFtdcLoginForbiddenUserField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
+}
+
+static int PyCThostFtdcLoginForbiddenUserField_set_reserve1(PyCThostFtdcLoginForbiddenUserField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcLoginForbiddenUserField_set_IPAddress(PyCThostFtdcLoginForbiddenUserField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+		PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcLoginForbiddenUserField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcLoginForbiddenUserField_get_BrokerID, (setter)PyCThostFtdcLoginForbiddenUserField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcLoginForbiddenUserField_get_UserID, (setter)PyCThostFtdcLoginForbiddenUserField_set_UserID, (char *)"UserID", NULL},
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcLoginForbiddenUserField_get_reserve1, (setter)PyCThostFtdcLoginForbiddenUserField_set_reserve1, (char *)"reserve1", NULL},
-    ///IP地址 
-    {(char *)"IPAddress", (getter)PyCThostFtdcLoginForbiddenUserField_get_IPAddress, (setter)PyCThostFtdcLoginForbiddenUserField_set_IPAddress, (char *)"IPAddress", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcLoginForbiddenUserField_get_BrokerID, (setter)PyCThostFtdcLoginForbiddenUserField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcLoginForbiddenUserField_get_UserID, (setter)PyCThostFtdcLoginForbiddenUserField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcLoginForbiddenUserField_get_reserve1, (setter)PyCThostFtdcLoginForbiddenUserField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"IPAddress", (getter)PyCThostFtdcLoginForbiddenUserField_get_IPAddress, (setter)PyCThostFtdcLoginForbiddenUserField_set_IPAddress, (char *)"IPAddress", NULL},
 
     {NULL}
 };

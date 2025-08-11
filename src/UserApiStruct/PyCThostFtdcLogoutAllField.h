@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///登录信息
+
 
 typedef struct PyCThostFtdcLogoutAllField {
     PyObject_HEAD

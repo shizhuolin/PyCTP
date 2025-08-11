@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///返回结果
+
 
 typedef struct PyCThostFtdcReturnResultField {
     PyObject_HEAD

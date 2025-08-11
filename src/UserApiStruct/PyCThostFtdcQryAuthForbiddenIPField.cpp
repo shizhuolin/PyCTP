@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryAuthForbiddenIPField.h"
 
-///查询禁止认证IP
+
 
 static PyObject *PyCThostFtdcQryAuthForbiddenIPField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryAuthForbiddenIPField *self = (PyCThostFtdcQryAuthForbiddenIPField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryAuthForbiddenIPField_new(PyTypeObject *type, PyO
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQryAuthForbiddenIPField_init(PyCThostFtdcQryAuthForbidden
 
     static const char *kwlist[] = {"IPAddress",  NULL};
 
+	//TThostFtdcIPAddressType char[33]
+	const char *pQryAuthForbiddenIPField_IPAddress = NULL;
+	Py_ssize_t pQryAuthForbiddenIPField_IPAddress_len = 0;
 
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    const char *QryAuthForbiddenIPField_IPAddress = NULL;
-    Py_ssize_t QryAuthForbiddenIPField_IPAddress_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQryAuthForbiddenIPField_init(PyCThostFtdcQryAuthForbidden
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QryAuthForbiddenIPField_IPAddress, &QryAuthForbiddenIPField_IPAddress_len 
+		, &pQryAuthForbiddenIPField_IPAddress, &pQryAuthForbiddenIPField_IPAddress_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcIPAddressType char[33]
+	if(pQryAuthForbiddenIPField_IPAddress != NULL) {
+		if(pQryAuthForbiddenIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+			PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", pQryAuthForbiddenIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
+			return -1;
+		}
+		strncpy(self->data.IPAddress, pQryAuthForbiddenIPField_IPAddress, sizeof(self->data.IPAddress) );
+		pQryAuthForbiddenIPField_IPAddress = NULL;
+	}
 
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    if( QryAuthForbiddenIPField_IPAddress != NULL ) {
-        if(QryAuthForbiddenIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-            PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", QryAuthForbiddenIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
-            return -1;
-        }
-        // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-        // memcpy(self->data.IPAddress, QryAuthForbiddenIPField_IPAddress, QryAuthForbiddenIPField_IPAddress_len);        
-        strncpy(self->data.IPAddress, QryAuthForbiddenIPField_IPAddress, sizeof(self->data.IPAddress) );
-        QryAuthForbiddenIPField_IPAddress = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQryAuthForbiddenIPField_repr(PyCThostFtdcQryAuthFor
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"IPAddress", self->data.IPAddress//, (Py_ssize_t)sizeof(self->data.IPAddress) 
+		, "IPAddress", self->data.IPAddress 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQryAuthForbiddenIPField_repr(PyCThostFtdcQryAuthFor
     return PyObject_Repr(obj);
 }
 
-
-///IP地址
-// TThostFtdcIPAddressType char[33]
 static PyObject *PyCThostFtdcQryAuthForbiddenIPField_get_IPAddress(PyCThostFtdcQryAuthForbiddenIPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.IPAddress, (Py_ssize_t)sizeof(self->data.IPAddress));
-    return PyBytes_FromString(self->data.IPAddress);
+	return PyBytes_FromString(self->data.IPAddress);
 }
 
-///IP地址
-// TThostFtdcIPAddressType char[33]
-static int PyCThostFtdcQryAuthForbiddenIPField_set_IPAddress(PyCThostFtdcQryAuthForbiddenIPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-        PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-    // memcpy(self->data.IPAddress, buf, len);
-    strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
-    return 0;
+static int PyCThostFtdcQryAuthForbiddenIPField_set_IPAddress(PyCThostFtdcQryAuthForbiddenIPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+		PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQryAuthForbiddenIPField_getset[] = {
-    ///IP地址 
-    {(char *)"IPAddress", (getter)PyCThostFtdcQryAuthForbiddenIPField_get_IPAddress, (setter)PyCThostFtdcQryAuthForbiddenIPField_set_IPAddress, (char *)"IPAddress", NULL},
+	 {(char *)"IPAddress", (getter)PyCThostFtdcQryAuthForbiddenIPField_get_IPAddress, (setter)PyCThostFtdcQryAuthForbiddenIPField_set_IPAddress, (char *)"IPAddress", NULL},
 
     {NULL}
 };

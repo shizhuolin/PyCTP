@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///汇率
+
 
 typedef struct PyCThostFtdcExchangeRateField {
     PyObject_HEAD

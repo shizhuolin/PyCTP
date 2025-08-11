@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///api握手请求
+
 
 typedef struct PyCThostFtdcReqApiHandshakeField {
     PyObject_HEAD

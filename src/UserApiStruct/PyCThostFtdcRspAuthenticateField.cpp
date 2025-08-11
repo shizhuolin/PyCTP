@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcRspAuthenticateField.h"
 
-///客户端认证响应
+
 
 static PyObject *PyCThostFtdcRspAuthenticateField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcRspAuthenticateField *self = (PyCThostFtdcRspAuthenticateField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcRspAuthenticateField_new(PyTypeObject *type, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,31 +18,26 @@ static int PyCThostFtdcRspAuthenticateField_init(PyCThostFtdcRspAuthenticateFiel
 
     static const char *kwlist[] = {"BrokerID", "UserID", "UserProductInfo", "AppID", "AppType",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pRspAuthenticateField_BrokerID = NULL;
+	Py_ssize_t pRspAuthenticateField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *RspAuthenticateField_BrokerID = NULL;
-    Py_ssize_t RspAuthenticateField_BrokerID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *RspAuthenticateField_UserID = NULL;
-    Py_ssize_t RspAuthenticateField_UserID_len = 0;
-            
-    ///用户端产品信息
-    // TThostFtdcProductInfoType char[11]
-    const char *RspAuthenticateField_UserProductInfo = NULL;
-    Py_ssize_t RspAuthenticateField_UserProductInfo_len = 0;
-            
-    ///App代码
-    // TThostFtdcAppIDType char[33]
-    const char *RspAuthenticateField_AppID = NULL;
-    Py_ssize_t RspAuthenticateField_AppID_len = 0;
-            
-    ///App类型
-    // TThostFtdcAppTypeType char
-    char RspAuthenticateField_AppType = 0;
-            
+	//TThostFtdcUserIDType char[16]
+	const char *pRspAuthenticateField_UserID = NULL;
+	Py_ssize_t pRspAuthenticateField_UserID_len = 0;
+
+	//TThostFtdcProductInfoType char[11]
+	const char *pRspAuthenticateField_UserProductInfo = NULL;
+	Py_ssize_t pRspAuthenticateField_UserProductInfo_len = 0;
+
+	//TThostFtdcAppIDType char[33]
+	const char *pRspAuthenticateField_AppID = NULL;
+	Py_ssize_t pRspAuthenticateField_AppID_len = 0;
+
+	//TThostFtdcAppTypeType char
+	char pRspAuthenticateField_AppType = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#c", (char **)kwlist
@@ -49,74 +45,61 @@ static int PyCThostFtdcRspAuthenticateField_init(PyCThostFtdcRspAuthenticateFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#c", (char **)kwlist
 #endif
 
-        , &RspAuthenticateField_BrokerID, &RspAuthenticateField_BrokerID_len 
-        , &RspAuthenticateField_UserID, &RspAuthenticateField_UserID_len 
-        , &RspAuthenticateField_UserProductInfo, &RspAuthenticateField_UserProductInfo_len 
-        , &RspAuthenticateField_AppID, &RspAuthenticateField_AppID_len 
-        , &RspAuthenticateField_AppType 
+		, &pRspAuthenticateField_BrokerID, &pRspAuthenticateField_BrokerID_len
+		, &pRspAuthenticateField_UserID, &pRspAuthenticateField_UserID_len
+		, &pRspAuthenticateField_UserProductInfo, &pRspAuthenticateField_UserProductInfo_len
+		, &pRspAuthenticateField_AppID, &pRspAuthenticateField_AppID_len
+		, &pRspAuthenticateField_AppType
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pRspAuthenticateField_BrokerID != NULL) {
+		if(pRspAuthenticateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pRspAuthenticateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pRspAuthenticateField_BrokerID, sizeof(self->data.BrokerID) );
+		pRspAuthenticateField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( RspAuthenticateField_BrokerID != NULL ) {
-        if(RspAuthenticateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RspAuthenticateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, RspAuthenticateField_BrokerID, RspAuthenticateField_BrokerID_len);        
-        strncpy(self->data.BrokerID, RspAuthenticateField_BrokerID, sizeof(self->data.BrokerID) );
-        RspAuthenticateField_BrokerID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( RspAuthenticateField_UserID != NULL ) {
-        if(RspAuthenticateField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", RspAuthenticateField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, RspAuthenticateField_UserID, RspAuthenticateField_UserID_len);        
-        strncpy(self->data.UserID, RspAuthenticateField_UserID, sizeof(self->data.UserID) );
-        RspAuthenticateField_UserID = NULL;
-    }
-            
-    ///用户端产品信息
-    // TThostFtdcProductInfoType char[11]
-    if( RspAuthenticateField_UserProductInfo != NULL ) {
-        if(RspAuthenticateField_UserProductInfo_len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
-            PyErr_Format(PyExc_ValueError, "UserProductInfo too long: length=%zd (max allowed is %zd)", RspAuthenticateField_UserProductInfo_len, (Py_ssize_t)sizeof(self->data.UserProductInfo));
-            return -1;
-        }
-        // memset(self->data.UserProductInfo, 0, sizeof(self->data.UserProductInfo));
-        // memcpy(self->data.UserProductInfo, RspAuthenticateField_UserProductInfo, RspAuthenticateField_UserProductInfo_len);        
-        strncpy(self->data.UserProductInfo, RspAuthenticateField_UserProductInfo, sizeof(self->data.UserProductInfo) );
-        RspAuthenticateField_UserProductInfo = NULL;
-    }
-            
-    ///App代码
-    // TThostFtdcAppIDType char[33]
-    if( RspAuthenticateField_AppID != NULL ) {
-        if(RspAuthenticateField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
-            PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", RspAuthenticateField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
-            return -1;
-        }
-        // memset(self->data.AppID, 0, sizeof(self->data.AppID));
-        // memcpy(self->data.AppID, RspAuthenticateField_AppID, RspAuthenticateField_AppID_len);        
-        strncpy(self->data.AppID, RspAuthenticateField_AppID, sizeof(self->data.AppID) );
-        RspAuthenticateField_AppID = NULL;
-    }
-            
-    ///App类型
-    // TThostFtdcAppTypeType char
-    self->data.AppType = RspAuthenticateField_AppType;
-            
+	//TThostFtdcUserIDType char[16]
+	if(pRspAuthenticateField_UserID != NULL) {
+		if(pRspAuthenticateField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pRspAuthenticateField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pRspAuthenticateField_UserID, sizeof(self->data.UserID) );
+		pRspAuthenticateField_UserID = NULL;
+	}
+
+	//TThostFtdcProductInfoType char[11]
+	if(pRspAuthenticateField_UserProductInfo != NULL) {
+		if(pRspAuthenticateField_UserProductInfo_len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+			PyErr_Format(PyExc_ValueError, "UserProductInfo too long: length=%zd (max allowed is %zd)", pRspAuthenticateField_UserProductInfo_len, (Py_ssize_t)sizeof(self->data.UserProductInfo));
+			return -1;
+		}
+		strncpy(self->data.UserProductInfo, pRspAuthenticateField_UserProductInfo, sizeof(self->data.UserProductInfo) );
+		pRspAuthenticateField_UserProductInfo = NULL;
+	}
+
+	//TThostFtdcAppIDType char[33]
+	if(pRspAuthenticateField_AppID != NULL) {
+		if(pRspAuthenticateField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+			PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", pRspAuthenticateField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
+			return -1;
+		}
+		strncpy(self->data.AppID, pRspAuthenticateField_AppID, sizeof(self->data.AppID) );
+		pRspAuthenticateField_AppID = NULL;
+	}
+
+	//TThostFtdcAppTypeType char
+	self->data.AppType = pRspAuthenticateField_AppType;
+
+
 
     return 0;
 }
@@ -133,11 +116,11 @@ static PyObject *PyCThostFtdcRspAuthenticateField_repr(PyCThostFtdcRspAuthentica
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:c}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
-        ,"UserProductInfo", self->data.UserProductInfo//, (Py_ssize_t)sizeof(self->data.UserProductInfo) 
-        ,"AppID", self->data.AppID//, (Py_ssize_t)sizeof(self->data.AppID) 
-        ,"AppType", self->data.AppType 
+		, "BrokerID", self->data.BrokerID 
+		, "UserID", self->data.UserID 
+		, "UserProductInfo", self->data.UserProductInfo 
+		, "AppID", self->data.AppID 
+		, "AppType", self->data.AppType
 
 
 		);
@@ -150,146 +133,109 @@ static PyObject *PyCThostFtdcRspAuthenticateField_repr(PyCThostFtdcRspAuthentica
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcRspAuthenticateField_get_BrokerID(PyCThostFtdcRspAuthenticateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcRspAuthenticateField_set_BrokerID(PyCThostFtdcRspAuthenticateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcRspAuthenticateField_get_UserID(PyCThostFtdcRspAuthenticateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcRspAuthenticateField_set_UserID(PyCThostFtdcRspAuthenticateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
-}
-            
-///用户端产品信息
-// TThostFtdcProductInfoType char[11]
 static PyObject *PyCThostFtdcRspAuthenticateField_get_UserProductInfo(PyCThostFtdcRspAuthenticateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserProductInfo, (Py_ssize_t)sizeof(self->data.UserProductInfo));
-    return PyBytes_FromString(self->data.UserProductInfo);
+	return PyBytes_FromString(self->data.UserProductInfo);
 }
 
-///用户端产品信息
-// TThostFtdcProductInfoType char[11]
-static int PyCThostFtdcRspAuthenticateField_set_UserProductInfo(PyCThostFtdcRspAuthenticateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserProductInfo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
-        PyErr_SetString(PyExc_ValueError, "UserProductInfo must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.UserProductInfo, 0, sizeof(self->data.UserProductInfo));
-    // memcpy(self->data.UserProductInfo, buf, len);
-    strncpy(self->data.UserProductInfo, buf, sizeof(self->data.UserProductInfo));
-    return 0;
-}
-            
-///App代码
-// TThostFtdcAppIDType char[33]
 static PyObject *PyCThostFtdcRspAuthenticateField_get_AppID(PyCThostFtdcRspAuthenticateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.AppID, (Py_ssize_t)sizeof(self->data.AppID));
-    return PyBytes_FromString(self->data.AppID);
+	return PyBytes_FromString(self->data.AppID);
 }
 
-///App代码
-// TThostFtdcAppIDType char[33]
-static int PyCThostFtdcRspAuthenticateField_set_AppID(PyCThostFtdcRspAuthenticateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AppID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
-        PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.AppID, 0, sizeof(self->data.AppID));
-    // memcpy(self->data.AppID, buf, len);
-    strncpy(self->data.AppID, buf, sizeof(self->data.AppID));
-    return 0;
-}
-            
-///App类型
-// TThostFtdcAppTypeType char
 static PyObject *PyCThostFtdcRspAuthenticateField_get_AppType(PyCThostFtdcRspAuthenticateField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.AppType), 1);
+	return PyBytes_FromStringAndSize(&(self->data.AppType), 1);
 }
 
-///App类型
-// TThostFtdcAppTypeType char
-static int PyCThostFtdcRspAuthenticateField_set_AppType(PyCThostFtdcRspAuthenticateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AppType Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppType)) {
-        PyErr_SetString(PyExc_ValueError, "AppType must be equal 1 bytes");
-        return -1;
-    }
-    self->data.AppType = *buf;
-    return 0;
+static int PyCThostFtdcRspAuthenticateField_set_BrokerID(PyCThostFtdcRspAuthenticateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcRspAuthenticateField_set_UserID(PyCThostFtdcRspAuthenticateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
+}
+
+static int PyCThostFtdcRspAuthenticateField_set_UserProductInfo(PyCThostFtdcRspAuthenticateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserProductInfo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+		PyErr_SetString(PyExc_ValueError, "UserProductInfo must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserProductInfo, buf, sizeof(self->data.UserProductInfo));
+	return 0;
+}
+
+static int PyCThostFtdcRspAuthenticateField_set_AppID(PyCThostFtdcRspAuthenticateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AppID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+		PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.AppID, buf, sizeof(self->data.AppID));
+	return 0;
+}
+
+static int PyCThostFtdcRspAuthenticateField_set_AppType(PyCThostFtdcRspAuthenticateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AppType Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AppType)) {
+		PyErr_SetString(PyExc_ValueError, "AppType must be less than 1 bytes");
+		return -1;
+	}
+	self->data.AppType = *buf;
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcRspAuthenticateField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcRspAuthenticateField_get_BrokerID, (setter)PyCThostFtdcRspAuthenticateField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcRspAuthenticateField_get_UserID, (setter)PyCThostFtdcRspAuthenticateField_set_UserID, (char *)"UserID", NULL},
-    ///用户端产品信息 
-    {(char *)"UserProductInfo", (getter)PyCThostFtdcRspAuthenticateField_get_UserProductInfo, (setter)PyCThostFtdcRspAuthenticateField_set_UserProductInfo, (char *)"UserProductInfo", NULL},
-    ///App代码 
-    {(char *)"AppID", (getter)PyCThostFtdcRspAuthenticateField_get_AppID, (setter)PyCThostFtdcRspAuthenticateField_set_AppID, (char *)"AppID", NULL},
-    ///App类型 
-    {(char *)"AppType", (getter)PyCThostFtdcRspAuthenticateField_get_AppType, (setter)PyCThostFtdcRspAuthenticateField_set_AppType, (char *)"AppType", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcRspAuthenticateField_get_BrokerID, (setter)PyCThostFtdcRspAuthenticateField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcRspAuthenticateField_get_UserID, (setter)PyCThostFtdcRspAuthenticateField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"UserProductInfo", (getter)PyCThostFtdcRspAuthenticateField_get_UserProductInfo, (setter)PyCThostFtdcRspAuthenticateField_set_UserProductInfo, (char *)"UserProductInfo", NULL},
+	 {(char *)"AppID", (getter)PyCThostFtdcRspAuthenticateField_get_AppID, (setter)PyCThostFtdcRspAuthenticateField_set_AppID, (char *)"AppID", NULL},
+	 {(char *)"AppType", (getter)PyCThostFtdcRspAuthenticateField_get_AppType, (setter)PyCThostFtdcRspAuthenticateField_set_AppType, (char *)"AppType", NULL},
 
     {NULL}
 };

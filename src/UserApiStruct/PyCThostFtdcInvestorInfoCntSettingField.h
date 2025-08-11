@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者申报费阶梯收取设置
+
 
 typedef struct PyCThostFtdcInvestorInfoCntSettingField {
     PyObject_HEAD

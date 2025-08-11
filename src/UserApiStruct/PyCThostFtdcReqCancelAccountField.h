@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///转帐销户请求
+
 
 typedef struct PyCThostFtdcReqCancelAccountField {
     PyObject_HEAD

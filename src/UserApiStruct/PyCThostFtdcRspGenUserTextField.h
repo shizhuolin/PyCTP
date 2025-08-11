@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///短信验证码生成的回复
+
 
 typedef struct PyCThostFtdcRspGenUserTextField {
     PyObject_HEAD

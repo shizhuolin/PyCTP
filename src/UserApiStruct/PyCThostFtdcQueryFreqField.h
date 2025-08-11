@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询频率，每秒查询比数
+
 
 typedef struct PyCThostFtdcQueryFreqField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///删除预埋单
+
 
 typedef struct PyCThostFtdcRemoveParkedOrderField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///组合优惠比例
+
 
 typedef struct PyCThostFtdcCombPromotionParamField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///服务地址参数查询
+
 
 typedef struct PyCThostFtdcQryIpAddrParamField {
     PyObject_HEAD

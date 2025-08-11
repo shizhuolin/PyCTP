@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///当前做市商期权合约手续费的详细内容
+
 
 typedef struct PyCThostFtdcMMOptionInstrCommRateField {
     PyObject_HEAD

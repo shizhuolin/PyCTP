@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///管理用户
+
 
 typedef struct PyCThostFtdcSuperUserField {
     PyObject_HEAD

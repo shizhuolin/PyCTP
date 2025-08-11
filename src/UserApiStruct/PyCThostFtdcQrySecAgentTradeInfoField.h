@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询二级代理商信息
+
 
 typedef struct PyCThostFtdcQrySecAgentTradeInfoField {
     PyObject_HEAD

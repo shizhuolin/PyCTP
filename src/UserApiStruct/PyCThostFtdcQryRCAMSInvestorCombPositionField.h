@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RCAMS策略组合持仓查询
+
 
 typedef struct PyCThostFtdcQryRCAMSInvestorCombPositionField {
     PyObject_HEAD

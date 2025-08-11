@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询指定流水号的交易结果请求
+
 
 typedef struct PyCThostFtdcReqQueryTradeResultBySerialField {
     PyObject_HEAD

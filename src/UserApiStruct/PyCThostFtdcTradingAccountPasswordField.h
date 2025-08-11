@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///资金账户口令域
+
 
 typedef struct PyCThostFtdcTradingAccountPasswordField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncDeltaInfoField.h"
 
-///风险结算追平信息
+
 
 static PyObject *PyCThostFtdcSyncDeltaInfoField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncDeltaInfoField *self = (PyCThostFtdcSyncDeltaInfoField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncDeltaInfoField_new(PyTypeObject *type, PyObject
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,24 +18,20 @@ static int PyCThostFtdcSyncDeltaInfoField_init(PyCThostFtdcSyncDeltaInfoField *s
 
     static const char *kwlist[] = {"SyncDeltaSequenceNo", "SyncDeltaStatus", "SyncDescription", "IsOnlyTrdDelta",  NULL};
 
+	//TThostFtdcSequenceNoType int
+	int pSyncDeltaInfoField_SyncDeltaSequenceNo = 0;
 
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    int SyncDeltaInfoField_SyncDeltaSequenceNo = 0;
-        
-    ///追平状态
-    // TThostFtdcSyncDeltaStatusType char
-    char SyncDeltaInfoField_SyncDeltaStatus = 0;
-            
-    ///追平描述
-    // TThostFtdcSyncDescriptionType char[257]
-    const char *SyncDeltaInfoField_SyncDescription = NULL;
-    Py_ssize_t SyncDeltaInfoField_SyncDescription_len = 0;
-            
-    ///是否只有资金追平
-    // TThostFtdcBoolType int
-    int SyncDeltaInfoField_IsOnlyTrdDelta = 0;
-        
+	//TThostFtdcSyncDeltaStatusType char
+	char pSyncDeltaInfoField_SyncDeltaStatus = 0;
+
+	//TThostFtdcSyncDescriptionType char[257]
+	const char *pSyncDeltaInfoField_SyncDescription = NULL;
+	Py_ssize_t pSyncDeltaInfoField_SyncDescription_len = 0;
+
+	//TThostFtdcBoolType int
+	int pSyncDeltaInfoField_IsOnlyTrdDelta = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|icy#i", (char **)kwlist
@@ -42,42 +39,36 @@ static int PyCThostFtdcSyncDeltaInfoField_init(PyCThostFtdcSyncDeltaInfoField *s
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|ics#i", (char **)kwlist
 #endif
 
-        , &SyncDeltaInfoField_SyncDeltaSequenceNo 
-        , &SyncDeltaInfoField_SyncDeltaStatus 
-        , &SyncDeltaInfoField_SyncDescription, &SyncDeltaInfoField_SyncDescription_len 
-        , &SyncDeltaInfoField_IsOnlyTrdDelta 
+		, &pSyncDeltaInfoField_SyncDeltaSequenceNo
+		, &pSyncDeltaInfoField_SyncDeltaStatus
+		, &pSyncDeltaInfoField_SyncDescription, &pSyncDeltaInfoField_SyncDescription_len
+		, &pSyncDeltaInfoField_IsOnlyTrdDelta
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcSequenceNoType int
+	self->data.SyncDeltaSequenceNo = pSyncDeltaInfoField_SyncDeltaSequenceNo;
 
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    self->data.SyncDeltaSequenceNo = SyncDeltaInfoField_SyncDeltaSequenceNo;
-        
-    ///追平状态
-    // TThostFtdcSyncDeltaStatusType char
-    self->data.SyncDeltaStatus = SyncDeltaInfoField_SyncDeltaStatus;
-            
-    ///追平描述
-    // TThostFtdcSyncDescriptionType char[257]
-    if( SyncDeltaInfoField_SyncDescription != NULL ) {
-        if(SyncDeltaInfoField_SyncDescription_len > (Py_ssize_t)sizeof(self->data.SyncDescription)) {
-            PyErr_Format(PyExc_ValueError, "SyncDescription too long: length=%zd (max allowed is %zd)", SyncDeltaInfoField_SyncDescription_len, (Py_ssize_t)sizeof(self->data.SyncDescription));
-            return -1;
-        }
-        // memset(self->data.SyncDescription, 0, sizeof(self->data.SyncDescription));
-        // memcpy(self->data.SyncDescription, SyncDeltaInfoField_SyncDescription, SyncDeltaInfoField_SyncDescription_len);        
-        strncpy(self->data.SyncDescription, SyncDeltaInfoField_SyncDescription, sizeof(self->data.SyncDescription) );
-        SyncDeltaInfoField_SyncDescription = NULL;
-    }
-            
-    ///是否只有资金追平
-    // TThostFtdcBoolType int
-    self->data.IsOnlyTrdDelta = SyncDeltaInfoField_IsOnlyTrdDelta;
-        
+	//TThostFtdcSyncDeltaStatusType char
+	self->data.SyncDeltaStatus = pSyncDeltaInfoField_SyncDeltaStatus;
+
+	//TThostFtdcSyncDescriptionType char[257]
+	if(pSyncDeltaInfoField_SyncDescription != NULL) {
+		if(pSyncDeltaInfoField_SyncDescription_len > (Py_ssize_t)sizeof(self->data.SyncDescription)) {
+			PyErr_Format(PyExc_ValueError, "SyncDescription too long: length=%zd (max allowed is %zd)", pSyncDeltaInfoField_SyncDescription_len, (Py_ssize_t)sizeof(self->data.SyncDescription));
+			return -1;
+		}
+		strncpy(self->data.SyncDescription, pSyncDeltaInfoField_SyncDescription, sizeof(self->data.SyncDescription) );
+		pSyncDeltaInfoField_SyncDescription = NULL;
+	}
+
+	//TThostFtdcBoolType int
+	self->data.IsOnlyTrdDelta = pSyncDeltaInfoField_IsOnlyTrdDelta;
+
+
 
     return 0;
 }
@@ -94,10 +85,10 @@ static PyObject *PyCThostFtdcSyncDeltaInfoField_repr(PyCThostFtdcSyncDeltaInfoFi
     PyObject *obj = Py_BuildValue("{s:i,s:c,s:s,s:i}"
 #endif
 
-        ,"SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo 
-        ,"SyncDeltaStatus", self->data.SyncDeltaStatus 
-        ,"SyncDescription", self->data.SyncDescription//, (Py_ssize_t)sizeof(self->data.SyncDescription) 
-        ,"IsOnlyTrdDelta", self->data.IsOnlyTrdDelta 
+		, "SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo
+		, "SyncDeltaStatus", self->data.SyncDeltaStatus
+		, "SyncDescription", self->data.SyncDescription 
+		, "IsOnlyTrdDelta", self->data.IsOnlyTrdDelta
 
 
 		);
@@ -110,142 +101,119 @@ static PyObject *PyCThostFtdcSyncDeltaInfoField_repr(PyCThostFtdcSyncDeltaInfoFi
     return PyObject_Repr(obj);
 }
 
-
-///追平序号
-// TThostFtdcSequenceNoType int
 static PyObject *PyCThostFtdcSyncDeltaInfoField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaInfoField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
-#else
-    return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
+#endif 
 }
 
-///追平序号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaInfoField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncDeltaInfoField_get_SyncDeltaStatus(PyCThostFtdcSyncDeltaInfoField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.SyncDeltaStatus), 1);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInfoField_get_SyncDescription(PyCThostFtdcSyncDeltaInfoField *self, void *closure) {
+	return PyBytes_FromString(self->data.SyncDescription);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaInfoField_get_IsOnlyTrdDelta(PyCThostFtdcSyncDeltaInfoField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsOnlyTrdDelta);
+#else 
+	return PyInt_FromLong(self->data.IsOnlyTrdDelta);
+#endif 
+}
+
+static int PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaInfoField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SyncDeltaSequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SyncDeltaSequenceNo = (int)buf;
-    return 0;
-}
-        
-///追平状态
-// TThostFtdcSyncDeltaStatusType char
-static PyObject *PyCThostFtdcSyncDeltaInfoField_get_SyncDeltaStatus(PyCThostFtdcSyncDeltaInfoField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.SyncDeltaStatus), 1);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SyncDeltaSequenceNo = (int)buf; 
+    return 0; 
 }
 
-///追平状态
-// TThostFtdcSyncDeltaStatusType char
-static int PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaStatus(PyCThostFtdcSyncDeltaInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDeltaStatus Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SyncDeltaStatus)) {
-        PyErr_SetString(PyExc_ValueError, "SyncDeltaStatus must be equal 1 bytes");
-        return -1;
-    }
-    self->data.SyncDeltaStatus = *buf;
-    return 0;
-}
-            
-///追平描述
-// TThostFtdcSyncDescriptionType char[257]
-static PyObject *PyCThostFtdcSyncDeltaInfoField_get_SyncDescription(PyCThostFtdcSyncDeltaInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.SyncDescription, (Py_ssize_t)sizeof(self->data.SyncDescription));
-    return PyBytes_FromString(self->data.SyncDescription);
+static int PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaStatus(PyCThostFtdcSyncDeltaInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "SyncDeltaStatus Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.SyncDeltaStatus)) {
+		PyErr_SetString(PyExc_ValueError, "SyncDeltaStatus must be less than 1 bytes");
+		return -1;
+	}
+	self->data.SyncDeltaStatus = *buf;
+	return 0;
 }
 
-///追平描述
-// TThostFtdcSyncDescriptionType char[257]
-static int PyCThostFtdcSyncDeltaInfoField_set_SyncDescription(PyCThostFtdcSyncDeltaInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDescription Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SyncDescription)) {
-        PyErr_SetString(PyExc_ValueError, "SyncDescription must be less than 257 bytes");
-        return -1;
-    }
-    // memset(self->data.SyncDescription, 0, sizeof(self->data.SyncDescription));
-    // memcpy(self->data.SyncDescription, buf, len);
-    strncpy(self->data.SyncDescription, buf, sizeof(self->data.SyncDescription));
-    return 0;
-}
-            
-///是否只有资金追平
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcSyncDeltaInfoField_get_IsOnlyTrdDelta(PyCThostFtdcSyncDeltaInfoField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsOnlyTrdDelta);
-#else
-    return PyInt_FromLong(self->data.IsOnlyTrdDelta);
-#endif
+static int PyCThostFtdcSyncDeltaInfoField_set_SyncDescription(PyCThostFtdcSyncDeltaInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "SyncDescription Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.SyncDescription)) {
+		PyErr_SetString(PyExc_ValueError, "SyncDescription must be less than 257 bytes");
+		return -1;
+	}
+	strncpy(self->data.SyncDescription, buf, sizeof(self->data.SyncDescription));
+	return 0;
 }
 
-///是否只有资金追平
-// TThostFtdcBoolType int
-static int PyCThostFtdcSyncDeltaInfoField_set_IsOnlyTrdDelta(PyCThostFtdcSyncDeltaInfoField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDeltaInfoField_set_IsOnlyTrdDelta(PyCThostFtdcSyncDeltaInfoField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsOnlyTrdDelta Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsOnlyTrdDelta Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsOnlyTrdDelta Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsOnlyTrdDelta value out of range for C int");
-        return -1;
-    }
-    self->data.IsOnlyTrdDelta = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsOnlyTrdDelta = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSyncDeltaInfoField_getset[] = {
-    ///追平序号 
-    {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaInfoField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
-    ///追平状态 
-    {(char *)"SyncDeltaStatus", (getter)PyCThostFtdcSyncDeltaInfoField_get_SyncDeltaStatus, (setter)PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaStatus, (char *)"SyncDeltaStatus", NULL},
-    ///追平描述 
-    {(char *)"SyncDescription", (getter)PyCThostFtdcSyncDeltaInfoField_get_SyncDescription, (setter)PyCThostFtdcSyncDeltaInfoField_set_SyncDescription, (char *)"SyncDescription", NULL},
-    ///是否只有资金追平 
-    {(char *)"IsOnlyTrdDelta", (getter)PyCThostFtdcSyncDeltaInfoField_get_IsOnlyTrdDelta, (setter)PyCThostFtdcSyncDeltaInfoField_set_IsOnlyTrdDelta, (char *)"IsOnlyTrdDelta", NULL},
+	 {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaInfoField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
+	 {(char *)"SyncDeltaStatus", (getter)PyCThostFtdcSyncDeltaInfoField_get_SyncDeltaStatus, (setter)PyCThostFtdcSyncDeltaInfoField_set_SyncDeltaStatus, (char *)"SyncDeltaStatus", NULL},
+	 {(char *)"SyncDescription", (getter)PyCThostFtdcSyncDeltaInfoField_get_SyncDescription, (setter)PyCThostFtdcSyncDeltaInfoField_set_SyncDescription, (char *)"SyncDescription", NULL},
+	 {(char *)"IsOnlyTrdDelta", (getter)PyCThostFtdcSyncDeltaInfoField_get_IsOnlyTrdDelta, (setter)PyCThostFtdcSyncDeltaInfoField_set_IsOnlyTrdDelta, (char *)"IsOnlyTrdDelta", NULL},
 
     {NULL}
 };

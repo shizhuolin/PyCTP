@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSettlementInfoConfirmFromSecField.h"
 
-///来自次席的结算结果确认
+
 
 static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSettlementInfoConfirmFromSecField *self = (PyCThostFtdcSettlementInfoConfirmFromSecField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_new(PyTypeObject 
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,31 +18,26 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_init(PyCThostFtdcSettle
 
     static const char *kwlist[] = {"BrokerID", "InvestorID", "ConfirmDate", "ConfirmTime", "FromSec",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSettlementInfoConfirmFromSecField_BrokerID = NULL;
+	Py_ssize_t pSettlementInfoConfirmFromSecField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SettlementInfoConfirmFromSecField_BrokerID = NULL;
-    Py_ssize_t SettlementInfoConfirmFromSecField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *SettlementInfoConfirmFromSecField_InvestorID = NULL;
-    Py_ssize_t SettlementInfoConfirmFromSecField_InvestorID_len = 0;
-            
-    ///确认日期
-    // TThostFtdcDateType char[9]
-    const char *SettlementInfoConfirmFromSecField_ConfirmDate = NULL;
-    Py_ssize_t SettlementInfoConfirmFromSecField_ConfirmDate_len = 0;
-            
-    ///确认时间
-    // TThostFtdcTimeType char[9]
-    const char *SettlementInfoConfirmFromSecField_ConfirmTime = NULL;
-    Py_ssize_t SettlementInfoConfirmFromSecField_ConfirmTime_len = 0;
-            
-    ///次席的交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    int SettlementInfoConfirmFromSecField_FromSec = 0;
-        
+	//TThostFtdcInvestorIDType char[13]
+	const char *pSettlementInfoConfirmFromSecField_InvestorID = NULL;
+	Py_ssize_t pSettlementInfoConfirmFromSecField_InvestorID_len = 0;
+
+	//TThostFtdcDateType char[9]
+	const char *pSettlementInfoConfirmFromSecField_ConfirmDate = NULL;
+	Py_ssize_t pSettlementInfoConfirmFromSecField_ConfirmDate_len = 0;
+
+	//TThostFtdcTimeType char[9]
+	const char *pSettlementInfoConfirmFromSecField_ConfirmTime = NULL;
+	Py_ssize_t pSettlementInfoConfirmFromSecField_ConfirmTime_len = 0;
+
+	//TThostFtdcDRIdentityIDType int
+	int pSettlementInfoConfirmFromSecField_FromSec = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#i", (char **)kwlist
@@ -49,74 +45,61 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_init(PyCThostFtdcSettle
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#i", (char **)kwlist
 #endif
 
-        , &SettlementInfoConfirmFromSecField_BrokerID, &SettlementInfoConfirmFromSecField_BrokerID_len 
-        , &SettlementInfoConfirmFromSecField_InvestorID, &SettlementInfoConfirmFromSecField_InvestorID_len 
-        , &SettlementInfoConfirmFromSecField_ConfirmDate, &SettlementInfoConfirmFromSecField_ConfirmDate_len 
-        , &SettlementInfoConfirmFromSecField_ConfirmTime, &SettlementInfoConfirmFromSecField_ConfirmTime_len 
-        , &SettlementInfoConfirmFromSecField_FromSec 
+		, &pSettlementInfoConfirmFromSecField_BrokerID, &pSettlementInfoConfirmFromSecField_BrokerID_len
+		, &pSettlementInfoConfirmFromSecField_InvestorID, &pSettlementInfoConfirmFromSecField_InvestorID_len
+		, &pSettlementInfoConfirmFromSecField_ConfirmDate, &pSettlementInfoConfirmFromSecField_ConfirmDate_len
+		, &pSettlementInfoConfirmFromSecField_ConfirmTime, &pSettlementInfoConfirmFromSecField_ConfirmTime_len
+		, &pSettlementInfoConfirmFromSecField_FromSec
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pSettlementInfoConfirmFromSecField_BrokerID != NULL) {
+		if(pSettlementInfoConfirmFromSecField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSettlementInfoConfirmFromSecField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSettlementInfoConfirmFromSecField_BrokerID, sizeof(self->data.BrokerID) );
+		pSettlementInfoConfirmFromSecField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SettlementInfoConfirmFromSecField_BrokerID != NULL ) {
-        if(SettlementInfoConfirmFromSecField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SettlementInfoConfirmFromSecField_BrokerID, SettlementInfoConfirmFromSecField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SettlementInfoConfirmFromSecField_BrokerID, sizeof(self->data.BrokerID) );
-        SettlementInfoConfirmFromSecField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( SettlementInfoConfirmFromSecField_InvestorID != NULL ) {
-        if(SettlementInfoConfirmFromSecField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, SettlementInfoConfirmFromSecField_InvestorID, SettlementInfoConfirmFromSecField_InvestorID_len);        
-        strncpy(self->data.InvestorID, SettlementInfoConfirmFromSecField_InvestorID, sizeof(self->data.InvestorID) );
-        SettlementInfoConfirmFromSecField_InvestorID = NULL;
-    }
-            
-    ///确认日期
-    // TThostFtdcDateType char[9]
-    if( SettlementInfoConfirmFromSecField_ConfirmDate != NULL ) {
-        if(SettlementInfoConfirmFromSecField_ConfirmDate_len > (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
-            PyErr_Format(PyExc_ValueError, "ConfirmDate too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_ConfirmDate_len, (Py_ssize_t)sizeof(self->data.ConfirmDate));
-            return -1;
-        }
-        // memset(self->data.ConfirmDate, 0, sizeof(self->data.ConfirmDate));
-        // memcpy(self->data.ConfirmDate, SettlementInfoConfirmFromSecField_ConfirmDate, SettlementInfoConfirmFromSecField_ConfirmDate_len);        
-        strncpy(self->data.ConfirmDate, SettlementInfoConfirmFromSecField_ConfirmDate, sizeof(self->data.ConfirmDate) );
-        SettlementInfoConfirmFromSecField_ConfirmDate = NULL;
-    }
-            
-    ///确认时间
-    // TThostFtdcTimeType char[9]
-    if( SettlementInfoConfirmFromSecField_ConfirmTime != NULL ) {
-        if(SettlementInfoConfirmFromSecField_ConfirmTime_len > (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
-            PyErr_Format(PyExc_ValueError, "ConfirmTime too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_ConfirmTime_len, (Py_ssize_t)sizeof(self->data.ConfirmTime));
-            return -1;
-        }
-        // memset(self->data.ConfirmTime, 0, sizeof(self->data.ConfirmTime));
-        // memcpy(self->data.ConfirmTime, SettlementInfoConfirmFromSecField_ConfirmTime, SettlementInfoConfirmFromSecField_ConfirmTime_len);        
-        strncpy(self->data.ConfirmTime, SettlementInfoConfirmFromSecField_ConfirmTime, sizeof(self->data.ConfirmTime) );
-        SettlementInfoConfirmFromSecField_ConfirmTime = NULL;
-    }
-            
-    ///次席的交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    self->data.FromSec = SettlementInfoConfirmFromSecField_FromSec;
-        
+	//TThostFtdcInvestorIDType char[13]
+	if(pSettlementInfoConfirmFromSecField_InvestorID != NULL) {
+		if(pSettlementInfoConfirmFromSecField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pSettlementInfoConfirmFromSecField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pSettlementInfoConfirmFromSecField_InvestorID, sizeof(self->data.InvestorID) );
+		pSettlementInfoConfirmFromSecField_InvestorID = NULL;
+	}
+
+	//TThostFtdcDateType char[9]
+	if(pSettlementInfoConfirmFromSecField_ConfirmDate != NULL) {
+		if(pSettlementInfoConfirmFromSecField_ConfirmDate_len > (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
+			PyErr_Format(PyExc_ValueError, "ConfirmDate too long: length=%zd (max allowed is %zd)", pSettlementInfoConfirmFromSecField_ConfirmDate_len, (Py_ssize_t)sizeof(self->data.ConfirmDate));
+			return -1;
+		}
+		strncpy(self->data.ConfirmDate, pSettlementInfoConfirmFromSecField_ConfirmDate, sizeof(self->data.ConfirmDate) );
+		pSettlementInfoConfirmFromSecField_ConfirmDate = NULL;
+	}
+
+	//TThostFtdcTimeType char[9]
+	if(pSettlementInfoConfirmFromSecField_ConfirmTime != NULL) {
+		if(pSettlementInfoConfirmFromSecField_ConfirmTime_len > (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
+			PyErr_Format(PyExc_ValueError, "ConfirmTime too long: length=%zd (max allowed is %zd)", pSettlementInfoConfirmFromSecField_ConfirmTime_len, (Py_ssize_t)sizeof(self->data.ConfirmTime));
+			return -1;
+		}
+		strncpy(self->data.ConfirmTime, pSettlementInfoConfirmFromSecField_ConfirmTime, sizeof(self->data.ConfirmTime) );
+		pSettlementInfoConfirmFromSecField_ConfirmTime = NULL;
+	}
+
+	//TThostFtdcDRIdentityIDType int
+	self->data.FromSec = pSettlementInfoConfirmFromSecField_FromSec;
+
+
 
     return 0;
 }
@@ -133,11 +116,11 @@ static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_repr(PyCThostFtdc
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"ConfirmDate", self->data.ConfirmDate//, (Py_ssize_t)sizeof(self->data.ConfirmDate) 
-        ,"ConfirmTime", self->data.ConfirmTime//, (Py_ssize_t)sizeof(self->data.ConfirmTime) 
-        ,"FromSec", self->data.FromSec 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "ConfirmDate", self->data.ConfirmDate 
+		, "ConfirmTime", self->data.ConfirmTime 
+		, "FromSec", self->data.FromSec
 
 
 		);
@@ -150,161 +133,124 @@ static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_repr(PyCThostFtdc
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_get_BrokerID(PyCThostFtdcSettlementInfoConfirmFromSecField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_BrokerID(PyCThostFtdcSettlementInfoConfirmFromSecField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_get_InvestorID(PyCThostFtdcSettlementInfoConfirmFromSecField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_InvestorID(PyCThostFtdcSettlementInfoConfirmFromSecField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///确认日期
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_get_ConfirmDate(PyCThostFtdcSettlementInfoConfirmFromSecField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ConfirmDate, (Py_ssize_t)sizeof(self->data.ConfirmDate));
-    return PyBytes_FromString(self->data.ConfirmDate);
+	return PyBytes_FromString(self->data.ConfirmDate);
 }
 
-///确认日期
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmDate(PyCThostFtdcSettlementInfoConfirmFromSecField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ConfirmDate Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
-        PyErr_SetString(PyExc_ValueError, "ConfirmDate must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ConfirmDate, 0, sizeof(self->data.ConfirmDate));
-    // memcpy(self->data.ConfirmDate, buf, len);
-    strncpy(self->data.ConfirmDate, buf, sizeof(self->data.ConfirmDate));
-    return 0;
-}
-            
-///确认时间
-// TThostFtdcTimeType char[9]
 static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_get_ConfirmTime(PyCThostFtdcSettlementInfoConfirmFromSecField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ConfirmTime, (Py_ssize_t)sizeof(self->data.ConfirmTime));
-    return PyBytes_FromString(self->data.ConfirmTime);
+	return PyBytes_FromString(self->data.ConfirmTime);
 }
 
-///确认时间
-// TThostFtdcTimeType char[9]
-static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmTime(PyCThostFtdcSettlementInfoConfirmFromSecField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ConfirmTime Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
-        PyErr_SetString(PyExc_ValueError, "ConfirmTime must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ConfirmTime, 0, sizeof(self->data.ConfirmTime));
-    // memcpy(self->data.ConfirmTime, buf, len);
-    strncpy(self->data.ConfirmTime, buf, sizeof(self->data.ConfirmTime));
-    return 0;
-}
-            
-///次席的交易中心代码
-// TThostFtdcDRIdentityIDType int
 static PyObject *PyCThostFtdcSettlementInfoConfirmFromSecField_get_FromSec(PyCThostFtdcSettlementInfoConfirmFromSecField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.FromSec);
-#else
-    return PyInt_FromLong(self->data.FromSec);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.FromSec);
+#else 
+	return PyInt_FromLong(self->data.FromSec);
+#endif 
 }
 
-///次席的交易中心代码
-// TThostFtdcDRIdentityIDType int
-static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_FromSec(PyCThostFtdcSettlementInfoConfirmFromSecField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_BrokerID(PyCThostFtdcSettlementInfoConfirmFromSecField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_InvestorID(PyCThostFtdcSettlementInfoConfirmFromSecField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmDate(PyCThostFtdcSettlementInfoConfirmFromSecField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ConfirmDate Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
+		PyErr_SetString(PyExc_ValueError, "ConfirmDate must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ConfirmDate, buf, sizeof(self->data.ConfirmDate));
+	return 0;
+}
+
+static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmTime(PyCThostFtdcSettlementInfoConfirmFromSecField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ConfirmTime Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
+		PyErr_SetString(PyExc_ValueError, "ConfirmTime must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ConfirmTime, buf, sizeof(self->data.ConfirmTime));
+	return 0;
+}
+
+static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_FromSec(PyCThostFtdcSettlementInfoConfirmFromSecField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FromSec Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FromSec Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "FromSec Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the FromSec value out of range for C int");
-        return -1;
-    }
-    self->data.FromSec = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.FromSec = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSettlementInfoConfirmFromSecField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_BrokerID, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_InvestorID, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///确认日期 
-    {(char *)"ConfirmDate", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_ConfirmDate, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmDate, (char *)"ConfirmDate", NULL},
-    ///确认时间 
-    {(char *)"ConfirmTime", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_ConfirmTime, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmTime, (char *)"ConfirmTime", NULL},
-    ///次席的交易中心代码 
-    {(char *)"FromSec", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_FromSec, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_FromSec, (char *)"FromSec", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_BrokerID, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_InvestorID, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"ConfirmDate", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_ConfirmDate, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmDate, (char *)"ConfirmDate", NULL},
+	 {(char *)"ConfirmTime", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_ConfirmTime, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmTime, (char *)"ConfirmTime", NULL},
+	 {(char *)"FromSec", (getter)PyCThostFtdcSettlementInfoConfirmFromSecField_get_FromSec, (setter)PyCThostFtdcSettlementInfoConfirmFromSecField_set_FromSec, (char *)"FromSec", NULL},
 
     {NULL}
 };

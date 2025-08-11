@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///装载结算信息
+
 
 typedef struct PyCThostFtdcLoadSettlementInfoField {
     PyObject_HEAD

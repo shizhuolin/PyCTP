@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///灾备中心交易权限
+
 
 typedef struct PyCThostFtdcUserRightsAssignField {
     PyObject_HEAD

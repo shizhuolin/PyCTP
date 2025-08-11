@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户IP绑定信息
+
 
 typedef struct PyCThostFtdcAuthIPField {
     PyObject_HEAD

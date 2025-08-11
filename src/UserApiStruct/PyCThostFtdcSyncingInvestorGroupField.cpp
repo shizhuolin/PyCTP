@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncingInvestorGroupField.h"
 
-///正在同步中的投资者分组
+
 
 static PyObject *PyCThostFtdcSyncingInvestorGroupField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncingInvestorGroupField *self = (PyCThostFtdcSyncingInvestorGroupField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncingInvestorGroupField_new(PyTypeObject *type, P
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,22 +18,19 @@ static int PyCThostFtdcSyncingInvestorGroupField_init(PyCThostFtdcSyncingInvesto
 
     static const char *kwlist[] = {"BrokerID", "InvestorGroupID", "InvestorGroupName",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSyncingInvestorGroupField_BrokerID = NULL;
+	Py_ssize_t pSyncingInvestorGroupField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SyncingInvestorGroupField_BrokerID = NULL;
-    Py_ssize_t SyncingInvestorGroupField_BrokerID_len = 0;
-            
-    ///投资者分组代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *SyncingInvestorGroupField_InvestorGroupID = NULL;
-    Py_ssize_t SyncingInvestorGroupField_InvestorGroupID_len = 0;
-            
-    ///投资者分组名称
-    // TThostFtdcInvestorGroupNameType char[41]
-    const char *SyncingInvestorGroupField_InvestorGroupName = NULL;
-    Py_ssize_t SyncingInvestorGroupField_InvestorGroupName_len = 0;
-            
+	//TThostFtdcInvestorIDType char[13]
+	const char *pSyncingInvestorGroupField_InvestorGroupID = NULL;
+	Py_ssize_t pSyncingInvestorGroupField_InvestorGroupID_len = 0;
+
+	//TThostFtdcInvestorGroupNameType char[41]
+	const char *pSyncingInvestorGroupField_InvestorGroupName = NULL;
+	Py_ssize_t pSyncingInvestorGroupField_InvestorGroupName_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#", (char **)kwlist
@@ -40,55 +38,46 @@ static int PyCThostFtdcSyncingInvestorGroupField_init(PyCThostFtdcSyncingInvesto
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#", (char **)kwlist
 #endif
 
-        , &SyncingInvestorGroupField_BrokerID, &SyncingInvestorGroupField_BrokerID_len 
-        , &SyncingInvestorGroupField_InvestorGroupID, &SyncingInvestorGroupField_InvestorGroupID_len 
-        , &SyncingInvestorGroupField_InvestorGroupName, &SyncingInvestorGroupField_InvestorGroupName_len 
+		, &pSyncingInvestorGroupField_BrokerID, &pSyncingInvestorGroupField_BrokerID_len
+		, &pSyncingInvestorGroupField_InvestorGroupID, &pSyncingInvestorGroupField_InvestorGroupID_len
+		, &pSyncingInvestorGroupField_InvestorGroupName, &pSyncingInvestorGroupField_InvestorGroupName_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pSyncingInvestorGroupField_BrokerID != NULL) {
+		if(pSyncingInvestorGroupField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSyncingInvestorGroupField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSyncingInvestorGroupField_BrokerID, sizeof(self->data.BrokerID) );
+		pSyncingInvestorGroupField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SyncingInvestorGroupField_BrokerID != NULL ) {
-        if(SyncingInvestorGroupField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncingInvestorGroupField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SyncingInvestorGroupField_BrokerID, SyncingInvestorGroupField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SyncingInvestorGroupField_BrokerID, sizeof(self->data.BrokerID) );
-        SyncingInvestorGroupField_BrokerID = NULL;
-    }
-            
-    ///投资者分组代码
-    // TThostFtdcInvestorIDType char[13]
-    if( SyncingInvestorGroupField_InvestorGroupID != NULL ) {
-        if(SyncingInvestorGroupField_InvestorGroupID_len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorGroupID too long: length=%zd (max allowed is %zd)", SyncingInvestorGroupField_InvestorGroupID_len, (Py_ssize_t)sizeof(self->data.InvestorGroupID));
-            return -1;
-        }
-        // memset(self->data.InvestorGroupID, 0, sizeof(self->data.InvestorGroupID));
-        // memcpy(self->data.InvestorGroupID, SyncingInvestorGroupField_InvestorGroupID, SyncingInvestorGroupField_InvestorGroupID_len);        
-        strncpy(self->data.InvestorGroupID, SyncingInvestorGroupField_InvestorGroupID, sizeof(self->data.InvestorGroupID) );
-        SyncingInvestorGroupField_InvestorGroupID = NULL;
-    }
-            
-    ///投资者分组名称
-    // TThostFtdcInvestorGroupNameType char[41]
-    if( SyncingInvestorGroupField_InvestorGroupName != NULL ) {
-        if(SyncingInvestorGroupField_InvestorGroupName_len > (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
-            PyErr_Format(PyExc_ValueError, "InvestorGroupName too long: length=%zd (max allowed is %zd)", SyncingInvestorGroupField_InvestorGroupName_len, (Py_ssize_t)sizeof(self->data.InvestorGroupName));
-            return -1;
-        }
-        // memset(self->data.InvestorGroupName, 0, sizeof(self->data.InvestorGroupName));
-        // memcpy(self->data.InvestorGroupName, SyncingInvestorGroupField_InvestorGroupName, SyncingInvestorGroupField_InvestorGroupName_len);        
-        strncpy(self->data.InvestorGroupName, SyncingInvestorGroupField_InvestorGroupName, sizeof(self->data.InvestorGroupName) );
-        SyncingInvestorGroupField_InvestorGroupName = NULL;
-    }
-            
+	//TThostFtdcInvestorIDType char[13]
+	if(pSyncingInvestorGroupField_InvestorGroupID != NULL) {
+		if(pSyncingInvestorGroupField_InvestorGroupID_len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorGroupID too long: length=%zd (max allowed is %zd)", pSyncingInvestorGroupField_InvestorGroupID_len, (Py_ssize_t)sizeof(self->data.InvestorGroupID));
+			return -1;
+		}
+		strncpy(self->data.InvestorGroupID, pSyncingInvestorGroupField_InvestorGroupID, sizeof(self->data.InvestorGroupID) );
+		pSyncingInvestorGroupField_InvestorGroupID = NULL;
+	}
+
+	//TThostFtdcInvestorGroupNameType char[41]
+	if(pSyncingInvestorGroupField_InvestorGroupName != NULL) {
+		if(pSyncingInvestorGroupField_InvestorGroupName_len > (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
+			PyErr_Format(PyExc_ValueError, "InvestorGroupName too long: length=%zd (max allowed is %zd)", pSyncingInvestorGroupField_InvestorGroupName_len, (Py_ssize_t)sizeof(self->data.InvestorGroupName));
+			return -1;
+		}
+		strncpy(self->data.InvestorGroupName, pSyncingInvestorGroupField_InvestorGroupName, sizeof(self->data.InvestorGroupName) );
+		pSyncingInvestorGroupField_InvestorGroupName = NULL;
+	}
+
+
 
     return 0;
 }
@@ -105,9 +94,9 @@ static PyObject *PyCThostFtdcSyncingInvestorGroupField_repr(PyCThostFtdcSyncingI
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorGroupID", self->data.InvestorGroupID//, (Py_ssize_t)sizeof(self->data.InvestorGroupID) 
-        ,"InvestorGroupName", self->data.InvestorGroupName//, (Py_ssize_t)sizeof(self->data.InvestorGroupName) 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorGroupID", self->data.InvestorGroupID 
+		, "InvestorGroupName", self->data.InvestorGroupName 
 
 
 		);
@@ -120,93 +109,69 @@ static PyObject *PyCThostFtdcSyncingInvestorGroupField_repr(PyCThostFtdcSyncingI
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSyncingInvestorGroupField_get_BrokerID(PyCThostFtdcSyncingInvestorGroupField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSyncingInvestorGroupField_set_BrokerID(PyCThostFtdcSyncingInvestorGroupField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者分组代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcSyncingInvestorGroupField_get_InvestorGroupID(PyCThostFtdcSyncingInvestorGroupField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorGroupID, (Py_ssize_t)sizeof(self->data.InvestorGroupID));
-    return PyBytes_FromString(self->data.InvestorGroupID);
+	return PyBytes_FromString(self->data.InvestorGroupID);
 }
 
-///投资者分组代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupID(PyCThostFtdcSyncingInvestorGroupField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorGroupID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorGroupID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorGroupID, 0, sizeof(self->data.InvestorGroupID));
-    // memcpy(self->data.InvestorGroupID, buf, len);
-    strncpy(self->data.InvestorGroupID, buf, sizeof(self->data.InvestorGroupID));
-    return 0;
-}
-            
-///投资者分组名称
-// TThostFtdcInvestorGroupNameType char[41]
 static PyObject *PyCThostFtdcSyncingInvestorGroupField_get_InvestorGroupName(PyCThostFtdcSyncingInvestorGroupField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorGroupName, (Py_ssize_t)sizeof(self->data.InvestorGroupName));
-    return PyBytes_FromString(self->data.InvestorGroupName);
+	return PyBytes_FromString(self->data.InvestorGroupName);
 }
 
-///投资者分组名称
-// TThostFtdcInvestorGroupNameType char[41]
-static int PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupName(PyCThostFtdcSyncingInvestorGroupField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorGroupName Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorGroupName must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorGroupName, 0, sizeof(self->data.InvestorGroupName));
-    // memcpy(self->data.InvestorGroupName, buf, len);
-    strncpy(self->data.InvestorGroupName, buf, sizeof(self->data.InvestorGroupName));
-    return 0;
+static int PyCThostFtdcSyncingInvestorGroupField_set_BrokerID(PyCThostFtdcSyncingInvestorGroupField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupID(PyCThostFtdcSyncingInvestorGroupField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorGroupID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorGroupID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorGroupID, buf, sizeof(self->data.InvestorGroupID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupName(PyCThostFtdcSyncingInvestorGroupField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorGroupName Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorGroupName must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorGroupName, buf, sizeof(self->data.InvestorGroupName));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcSyncingInvestorGroupField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSyncingInvestorGroupField_get_BrokerID, (setter)PyCThostFtdcSyncingInvestorGroupField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者分组代码 
-    {(char *)"InvestorGroupID", (getter)PyCThostFtdcSyncingInvestorGroupField_get_InvestorGroupID, (setter)PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupID, (char *)"InvestorGroupID", NULL},
-    ///投资者分组名称 
-    {(char *)"InvestorGroupName", (getter)PyCThostFtdcSyncingInvestorGroupField_get_InvestorGroupName, (setter)PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupName, (char *)"InvestorGroupName", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSyncingInvestorGroupField_get_BrokerID, (setter)PyCThostFtdcSyncingInvestorGroupField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorGroupID", (getter)PyCThostFtdcSyncingInvestorGroupField_get_InvestorGroupID, (setter)PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupID, (char *)"InvestorGroupID", NULL},
+	 {(char *)"InvestorGroupName", (getter)PyCThostFtdcSyncingInvestorGroupField_get_InvestorGroupName, (setter)PyCThostFtdcSyncingInvestorGroupField_set_InvestorGroupName, (char *)"InvestorGroupName", NULL},
 
     {NULL}
 };

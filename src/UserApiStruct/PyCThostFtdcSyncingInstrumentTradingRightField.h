@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///正在同步中的合约交易权限
+
 
 typedef struct PyCThostFtdcSyncingInstrumentTradingRightField {
     PyObject_HEAD

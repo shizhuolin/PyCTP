@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///来自次席的结算结果确认
+
 
 typedef struct PyCThostFtdcSettlementInfoConfirmFromSecField {
     PyObject_HEAD

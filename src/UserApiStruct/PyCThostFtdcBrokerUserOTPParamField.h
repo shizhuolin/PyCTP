@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户动态令牌参数
+
 
 typedef struct PyCThostFtdcBrokerUserOTPParamField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryRCAMSShortOptAdjustParamField.h"
 
-///RCAMS空头期权风险调整参数查询
+
 
 static PyObject *PyCThostFtdcQryRCAMSShortOptAdjustParamField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryRCAMSShortOptAdjustParamField *self = (PyCThostFtdcQryRCAMSShortOptAdjustParamField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryRCAMSShortOptAdjustParamField_new(PyTypeObject *
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQryRCAMSShortOptAdjustParamField_init(PyCThostFtdcQryRCAM
 
     static const char *kwlist[] = {"CombProductID",  NULL};
 
+	//TThostFtdcProductIDType char[41]
+	const char *pQryRCAMSShortOptAdjustParamField_CombProductID = NULL;
+	Py_ssize_t pQryRCAMSShortOptAdjustParamField_CombProductID_len = 0;
 
-    ///产品组合代码
-    // TThostFtdcProductIDType char[41]
-    const char *QryRCAMSShortOptAdjustParamField_CombProductID = NULL;
-    Py_ssize_t QryRCAMSShortOptAdjustParamField_CombProductID_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQryRCAMSShortOptAdjustParamField_init(PyCThostFtdcQryRCAM
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QryRCAMSShortOptAdjustParamField_CombProductID, &QryRCAMSShortOptAdjustParamField_CombProductID_len 
+		, &pQryRCAMSShortOptAdjustParamField_CombProductID, &pQryRCAMSShortOptAdjustParamField_CombProductID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcProductIDType char[41]
+	if(pQryRCAMSShortOptAdjustParamField_CombProductID != NULL) {
+		if(pQryRCAMSShortOptAdjustParamField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+			PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", pQryRCAMSShortOptAdjustParamField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
+			return -1;
+		}
+		strncpy(self->data.CombProductID, pQryRCAMSShortOptAdjustParamField_CombProductID, sizeof(self->data.CombProductID) );
+		pQryRCAMSShortOptAdjustParamField_CombProductID = NULL;
+	}
 
-    ///产品组合代码
-    // TThostFtdcProductIDType char[41]
-    if( QryRCAMSShortOptAdjustParamField_CombProductID != NULL ) {
-        if(QryRCAMSShortOptAdjustParamField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
-            PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", QryRCAMSShortOptAdjustParamField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
-            return -1;
-        }
-        // memset(self->data.CombProductID, 0, sizeof(self->data.CombProductID));
-        // memcpy(self->data.CombProductID, QryRCAMSShortOptAdjustParamField_CombProductID, QryRCAMSShortOptAdjustParamField_CombProductID_len);        
-        strncpy(self->data.CombProductID, QryRCAMSShortOptAdjustParamField_CombProductID, sizeof(self->data.CombProductID) );
-        QryRCAMSShortOptAdjustParamField_CombProductID = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQryRCAMSShortOptAdjustParamField_repr(PyCThostFtdcQ
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"CombProductID", self->data.CombProductID//, (Py_ssize_t)sizeof(self->data.CombProductID) 
+		, "CombProductID", self->data.CombProductID 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQryRCAMSShortOptAdjustParamField_repr(PyCThostFtdcQ
     return PyObject_Repr(obj);
 }
 
-
-///产品组合代码
-// TThostFtdcProductIDType char[41]
 static PyObject *PyCThostFtdcQryRCAMSShortOptAdjustParamField_get_CombProductID(PyCThostFtdcQryRCAMSShortOptAdjustParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CombProductID, (Py_ssize_t)sizeof(self->data.CombProductID));
-    return PyBytes_FromString(self->data.CombProductID);
+	return PyBytes_FromString(self->data.CombProductID);
 }
 
-///产品组合代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcQryRCAMSShortOptAdjustParamField_set_CombProductID(PyCThostFtdcQryRCAMSShortOptAdjustParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CombProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
-        PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.CombProductID, 0, sizeof(self->data.CombProductID));
-    // memcpy(self->data.CombProductID, buf, len);
-    strncpy(self->data.CombProductID, buf, sizeof(self->data.CombProductID));
-    return 0;
+static int PyCThostFtdcQryRCAMSShortOptAdjustParamField_set_CombProductID(PyCThostFtdcQryRCAMSShortOptAdjustParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CombProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+		PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.CombProductID, buf, sizeof(self->data.CombProductID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQryRCAMSShortOptAdjustParamField_getset[] = {
-    ///产品组合代码 
-    {(char *)"CombProductID", (getter)PyCThostFtdcQryRCAMSShortOptAdjustParamField_get_CombProductID, (setter)PyCThostFtdcQryRCAMSShortOptAdjustParamField_set_CombProductID, (char *)"CombProductID", NULL},
+	 {(char *)"CombProductID", (getter)PyCThostFtdcQryRCAMSShortOptAdjustParamField_get_CombProductID, (setter)PyCThostFtdcQryRCAMSShortOptAdjustParamField_set_CombProductID, (char *)"CombProductID", NULL},
 
     {NULL}
 };

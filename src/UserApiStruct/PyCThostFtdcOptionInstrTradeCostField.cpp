@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcOptionInstrTradeCostField.h"
 
-///期权交易成本
+
 
 static PyObject *PyCThostFtdcOptionInstrTradeCostField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcOptionInstrTradeCostField *self = (PyCThostFtdcOptionInstrTradeCostField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcOptionInstrTradeCostField_new(PyTypeObject *type, P
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,61 +18,49 @@ static int PyCThostFtdcOptionInstrTradeCostField_init(PyCThostFtdcOptionInstrTra
 
     static const char *kwlist[] = {"BrokerID", "InvestorID", "reserve1", "HedgeFlag", "FixedMargin", "MiniMargin", "Royalty", "ExchFixedMargin", "ExchMiniMargin", "ExchangeID", "InvestUnitID", "InstrumentID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pOptionInstrTradeCostField_BrokerID = NULL;
+	Py_ssize_t pOptionInstrTradeCostField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *OptionInstrTradeCostField_BrokerID = NULL;
-    Py_ssize_t OptionInstrTradeCostField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *OptionInstrTradeCostField_InvestorID = NULL;
-    Py_ssize_t OptionInstrTradeCostField_InvestorID_len = 0;
-            
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *OptionInstrTradeCostField_reserve1 = NULL;
-    Py_ssize_t OptionInstrTradeCostField_reserve1_len = 0;
-            
-    ///投机套保标志
-    // TThostFtdcHedgeFlagType char
-    char OptionInstrTradeCostField_HedgeFlag = 0;
-            
-    ///期权合约保证金不变部分
-    // TThostFtdcMoneyType double
-    double OptionInstrTradeCostField_FixedMargin = 0.0;
-        
-    ///期权合约最小保证金
-    // TThostFtdcMoneyType double
-    double OptionInstrTradeCostField_MiniMargin = 0.0;
-        
-    ///期权合约权利金
-    // TThostFtdcMoneyType double
-    double OptionInstrTradeCostField_Royalty = 0.0;
-        
-    ///交易所期权合约保证金不变部分
-    // TThostFtdcMoneyType double
-    double OptionInstrTradeCostField_ExchFixedMargin = 0.0;
-        
-    ///交易所期权合约最小保证金
-    // TThostFtdcMoneyType double
-    double OptionInstrTradeCostField_ExchMiniMargin = 0.0;
-        
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *OptionInstrTradeCostField_ExchangeID = NULL;
-    Py_ssize_t OptionInstrTradeCostField_ExchangeID_len = 0;
-            
-    ///投资单元代码
-    // TThostFtdcInvestUnitIDType char[17]
-    const char *OptionInstrTradeCostField_InvestUnitID = NULL;
-    Py_ssize_t OptionInstrTradeCostField_InvestUnitID_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *OptionInstrTradeCostField_InstrumentID = NULL;
-    Py_ssize_t OptionInstrTradeCostField_InstrumentID_len = 0;
-            
+	//TThostFtdcInvestorIDType char[13]
+	const char *pOptionInstrTradeCostField_InvestorID = NULL;
+	Py_ssize_t pOptionInstrTradeCostField_InvestorID_len = 0;
+
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pOptionInstrTradeCostField_reserve1 = NULL;
+	Py_ssize_t pOptionInstrTradeCostField_reserve1_len = 0;
+
+	//TThostFtdcHedgeFlagType char
+	char pOptionInstrTradeCostField_HedgeFlag = 0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrTradeCostField_FixedMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrTradeCostField_MiniMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrTradeCostField_Royalty = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrTradeCostField_ExchFixedMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrTradeCostField_ExchMiniMargin = 0.0;
+
+	//TThostFtdcExchangeIDType char[9]
+	const char *pOptionInstrTradeCostField_ExchangeID = NULL;
+	Py_ssize_t pOptionInstrTradeCostField_ExchangeID_len = 0;
+
+	//TThostFtdcInvestUnitIDType char[17]
+	const char *pOptionInstrTradeCostField_InvestUnitID = NULL;
+	Py_ssize_t pOptionInstrTradeCostField_InvestUnitID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pOptionInstrTradeCostField_InstrumentID = NULL;
+	Py_ssize_t pOptionInstrTradeCostField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#cdddddy#y#y#", (char **)kwlist
@@ -79,127 +68,98 @@ static int PyCThostFtdcOptionInstrTradeCostField_init(PyCThostFtdcOptionInstrTra
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#cddddds#s#s#", (char **)kwlist
 #endif
 
-        , &OptionInstrTradeCostField_BrokerID, &OptionInstrTradeCostField_BrokerID_len 
-        , &OptionInstrTradeCostField_InvestorID, &OptionInstrTradeCostField_InvestorID_len 
-        , &OptionInstrTradeCostField_reserve1, &OptionInstrTradeCostField_reserve1_len 
-        , &OptionInstrTradeCostField_HedgeFlag 
-        , &OptionInstrTradeCostField_FixedMargin 
-        , &OptionInstrTradeCostField_MiniMargin 
-        , &OptionInstrTradeCostField_Royalty 
-        , &OptionInstrTradeCostField_ExchFixedMargin 
-        , &OptionInstrTradeCostField_ExchMiniMargin 
-        , &OptionInstrTradeCostField_ExchangeID, &OptionInstrTradeCostField_ExchangeID_len 
-        , &OptionInstrTradeCostField_InvestUnitID, &OptionInstrTradeCostField_InvestUnitID_len 
-        , &OptionInstrTradeCostField_InstrumentID, &OptionInstrTradeCostField_InstrumentID_len 
+		, &pOptionInstrTradeCostField_BrokerID, &pOptionInstrTradeCostField_BrokerID_len
+		, &pOptionInstrTradeCostField_InvestorID, &pOptionInstrTradeCostField_InvestorID_len
+		, &pOptionInstrTradeCostField_reserve1, &pOptionInstrTradeCostField_reserve1_len
+		, &pOptionInstrTradeCostField_HedgeFlag
+		, &pOptionInstrTradeCostField_FixedMargin
+		, &pOptionInstrTradeCostField_MiniMargin
+		, &pOptionInstrTradeCostField_Royalty
+		, &pOptionInstrTradeCostField_ExchFixedMargin
+		, &pOptionInstrTradeCostField_ExchMiniMargin
+		, &pOptionInstrTradeCostField_ExchangeID, &pOptionInstrTradeCostField_ExchangeID_len
+		, &pOptionInstrTradeCostField_InvestUnitID, &pOptionInstrTradeCostField_InvestUnitID_len
+		, &pOptionInstrTradeCostField_InstrumentID, &pOptionInstrTradeCostField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pOptionInstrTradeCostField_BrokerID != NULL) {
+		if(pOptionInstrTradeCostField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pOptionInstrTradeCostField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pOptionInstrTradeCostField_BrokerID, sizeof(self->data.BrokerID) );
+		pOptionInstrTradeCostField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( OptionInstrTradeCostField_BrokerID != NULL ) {
-        if(OptionInstrTradeCostField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", OptionInstrTradeCostField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, OptionInstrTradeCostField_BrokerID, OptionInstrTradeCostField_BrokerID_len);        
-        strncpy(self->data.BrokerID, OptionInstrTradeCostField_BrokerID, sizeof(self->data.BrokerID) );
-        OptionInstrTradeCostField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( OptionInstrTradeCostField_InvestorID != NULL ) {
-        if(OptionInstrTradeCostField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", OptionInstrTradeCostField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, OptionInstrTradeCostField_InvestorID, OptionInstrTradeCostField_InvestorID_len);        
-        strncpy(self->data.InvestorID, OptionInstrTradeCostField_InvestorID, sizeof(self->data.InvestorID) );
-        OptionInstrTradeCostField_InvestorID = NULL;
-    }
-            
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( OptionInstrTradeCostField_reserve1 != NULL ) {
-        if(OptionInstrTradeCostField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", OptionInstrTradeCostField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, OptionInstrTradeCostField_reserve1, OptionInstrTradeCostField_reserve1_len);        
-        strncpy(self->data.reserve1, OptionInstrTradeCostField_reserve1, sizeof(self->data.reserve1) );
-        OptionInstrTradeCostField_reserve1 = NULL;
-    }
-            
-    ///投机套保标志
-    // TThostFtdcHedgeFlagType char
-    self->data.HedgeFlag = OptionInstrTradeCostField_HedgeFlag;
-            
-    ///期权合约保证金不变部分
-    // TThostFtdcMoneyType double
-    self->data.FixedMargin = OptionInstrTradeCostField_FixedMargin;
-        
-    ///期权合约最小保证金
-    // TThostFtdcMoneyType double
-    self->data.MiniMargin = OptionInstrTradeCostField_MiniMargin;
-        
-    ///期权合约权利金
-    // TThostFtdcMoneyType double
-    self->data.Royalty = OptionInstrTradeCostField_Royalty;
-        
-    ///交易所期权合约保证金不变部分
-    // TThostFtdcMoneyType double
-    self->data.ExchFixedMargin = OptionInstrTradeCostField_ExchFixedMargin;
-        
-    ///交易所期权合约最小保证金
-    // TThostFtdcMoneyType double
-    self->data.ExchMiniMargin = OptionInstrTradeCostField_ExchMiniMargin;
-        
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( OptionInstrTradeCostField_ExchangeID != NULL ) {
-        if(OptionInstrTradeCostField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", OptionInstrTradeCostField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, OptionInstrTradeCostField_ExchangeID, OptionInstrTradeCostField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, OptionInstrTradeCostField_ExchangeID, sizeof(self->data.ExchangeID) );
-        OptionInstrTradeCostField_ExchangeID = NULL;
-    }
-            
-    ///投资单元代码
-    // TThostFtdcInvestUnitIDType char[17]
-    if( OptionInstrTradeCostField_InvestUnitID != NULL ) {
-        if(OptionInstrTradeCostField_InvestUnitID_len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
-            PyErr_Format(PyExc_ValueError, "InvestUnitID too long: length=%zd (max allowed is %zd)", OptionInstrTradeCostField_InvestUnitID_len, (Py_ssize_t)sizeof(self->data.InvestUnitID));
-            return -1;
-        }
-        // memset(self->data.InvestUnitID, 0, sizeof(self->data.InvestUnitID));
-        // memcpy(self->data.InvestUnitID, OptionInstrTradeCostField_InvestUnitID, OptionInstrTradeCostField_InvestUnitID_len);        
-        strncpy(self->data.InvestUnitID, OptionInstrTradeCostField_InvestUnitID, sizeof(self->data.InvestUnitID) );
-        OptionInstrTradeCostField_InvestUnitID = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( OptionInstrTradeCostField_InstrumentID != NULL ) {
-        if(OptionInstrTradeCostField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", OptionInstrTradeCostField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, OptionInstrTradeCostField_InstrumentID, OptionInstrTradeCostField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, OptionInstrTradeCostField_InstrumentID, sizeof(self->data.InstrumentID) );
-        OptionInstrTradeCostField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInvestorIDType char[13]
+	if(pOptionInstrTradeCostField_InvestorID != NULL) {
+		if(pOptionInstrTradeCostField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pOptionInstrTradeCostField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pOptionInstrTradeCostField_InvestorID, sizeof(self->data.InvestorID) );
+		pOptionInstrTradeCostField_InvestorID = NULL;
+	}
+
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pOptionInstrTradeCostField_reserve1 != NULL) {
+		if(pOptionInstrTradeCostField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pOptionInstrTradeCostField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pOptionInstrTradeCostField_reserve1, sizeof(self->data.reserve1) );
+		pOptionInstrTradeCostField_reserve1 = NULL;
+	}
+
+	//TThostFtdcHedgeFlagType char
+	self->data.HedgeFlag = pOptionInstrTradeCostField_HedgeFlag;
+
+	//TThostFtdcMoneyType double
+	self->data.FixedMargin = pOptionInstrTradeCostField_FixedMargin;
+	//TThostFtdcMoneyType double
+	self->data.MiniMargin = pOptionInstrTradeCostField_MiniMargin;
+	//TThostFtdcMoneyType double
+	self->data.Royalty = pOptionInstrTradeCostField_Royalty;
+	//TThostFtdcMoneyType double
+	self->data.ExchFixedMargin = pOptionInstrTradeCostField_ExchFixedMargin;
+	//TThostFtdcMoneyType double
+	self->data.ExchMiniMargin = pOptionInstrTradeCostField_ExchMiniMargin;
+	//TThostFtdcExchangeIDType char[9]
+	if(pOptionInstrTradeCostField_ExchangeID != NULL) {
+		if(pOptionInstrTradeCostField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pOptionInstrTradeCostField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pOptionInstrTradeCostField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pOptionInstrTradeCostField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcInvestUnitIDType char[17]
+	if(pOptionInstrTradeCostField_InvestUnitID != NULL) {
+		if(pOptionInstrTradeCostField_InvestUnitID_len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+			PyErr_Format(PyExc_ValueError, "InvestUnitID too long: length=%zd (max allowed is %zd)", pOptionInstrTradeCostField_InvestUnitID_len, (Py_ssize_t)sizeof(self->data.InvestUnitID));
+			return -1;
+		}
+		strncpy(self->data.InvestUnitID, pOptionInstrTradeCostField_InvestUnitID, sizeof(self->data.InvestUnitID) );
+		pOptionInstrTradeCostField_InvestUnitID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pOptionInstrTradeCostField_InstrumentID != NULL) {
+		if(pOptionInstrTradeCostField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pOptionInstrTradeCostField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pOptionInstrTradeCostField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pOptionInstrTradeCostField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -216,18 +176,18 @@ static PyObject *PyCThostFtdcOptionInstrTradeCostField_repr(PyCThostFtdcOptionIn
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:c,s:d,s:d,s:d,s:d,s:d,s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"HedgeFlag", self->data.HedgeFlag 
-        ,"FixedMargin", self->data.FixedMargin 
-        ,"MiniMargin", self->data.MiniMargin 
-        ,"Royalty", self->data.Royalty 
-        ,"ExchFixedMargin", self->data.ExchFixedMargin 
-        ,"ExchMiniMargin", self->data.ExchMiniMargin 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"InvestUnitID", self->data.InvestUnitID//, (Py_ssize_t)sizeof(self->data.InvestUnitID) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "reserve1", self->data.reserve1 
+		, "HedgeFlag", self->data.HedgeFlag
+		, "FixedMargin", self->data.FixedMargin
+		, "MiniMargin", self->data.MiniMargin
+		, "Royalty", self->data.Royalty
+		, "ExchFixedMargin", self->data.ExchFixedMargin
+		, "ExchMiniMargin", self->data.ExchMiniMargin
+		, "ExchangeID", self->data.ExchangeID 
+		, "InvestUnitID", self->data.InvestUnitID 
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -240,117 +200,115 @@ static PyObject *PyCThostFtdcOptionInstrTradeCostField_repr(PyCThostFtdcOptionIn
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_BrokerID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcOptionInstrTradeCostField_set_BrokerID(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_InvestorID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcOptionInstrTradeCostField_set_InvestorID(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_reserve1(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcOptionInstrTradeCostField_set_reserve1(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///投机套保标志
-// TThostFtdcHedgeFlagType char
 static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_HedgeFlag(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.HedgeFlag), 1);
+	return PyBytes_FromStringAndSize(&(self->data.HedgeFlag), 1);
 }
 
-///投机套保标志
-// TThostFtdcHedgeFlagType char
-static int PyCThostFtdcOptionInstrTradeCostField_set_HedgeFlag(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "HedgeFlag Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.HedgeFlag)) {
-        PyErr_SetString(PyExc_ValueError, "HedgeFlag must be equal 1 bytes");
-        return -1;
-    }
-    self->data.HedgeFlag = *buf;
-    return 0;
-}
-            
-///期权合约保证金不变部分
-// TThostFtdcMoneyType double
 static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_FixedMargin(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.FixedMargin);
+	return PyFloat_FromDouble(self->data.FixedMargin);
 }
 
-///期权合约保证金不变部分
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrTradeCostField_set_FixedMargin(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_MiniMargin(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.MiniMargin);
+}
+
+static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_Royalty(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.Royalty);
+}
+
+static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_ExchFixedMargin(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ExchFixedMargin);
+}
+
+static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_ExchMiniMargin(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ExchMiniMargin);
+}
+
+static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_ExchangeID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
+	return PyBytes_FromString(self->data.ExchangeID);
+}
+
+static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_InvestUnitID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
+	return PyBytes_FromString(self->data.InvestUnitID);
+}
+
+static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_InstrumentID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
+	return PyBytes_FromString(self->data.InstrumentID);
+}
+
+static int PyCThostFtdcOptionInstrTradeCostField_set_BrokerID(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrTradeCostField_set_InvestorID(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrTradeCostField_set_reserve1(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrTradeCostField_set_HedgeFlag(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "HedgeFlag Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.HedgeFlag)) {
+		PyErr_SetString(PyExc_ValueError, "HedgeFlag must be less than 1 bytes");
+		return -1;
+	}
+	self->data.HedgeFlag = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrTradeCostField_set_FixedMargin(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FixedMargin Expected float");
         return -1;
@@ -362,16 +320,8 @@ static int PyCThostFtdcOptionInstrTradeCostField_set_FixedMargin(PyCThostFtdcOpt
     self->data.FixedMargin = buf;
     return 0;
 }
-        
-///期权合约最小保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_MiniMargin(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MiniMargin);
-}
 
-///期权合约最小保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrTradeCostField_set_MiniMargin(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrTradeCostField_set_MiniMargin(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MiniMargin Expected float");
         return -1;
@@ -383,16 +333,8 @@ static int PyCThostFtdcOptionInstrTradeCostField_set_MiniMargin(PyCThostFtdcOpti
     self->data.MiniMargin = buf;
     return 0;
 }
-        
-///期权合约权利金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_Royalty(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.Royalty);
-}
 
-///期权合约权利金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrTradeCostField_set_Royalty(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrTradeCostField_set_Royalty(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "Royalty Expected float");
         return -1;
@@ -404,16 +346,8 @@ static int PyCThostFtdcOptionInstrTradeCostField_set_Royalty(PyCThostFtdcOptionI
     self->data.Royalty = buf;
     return 0;
 }
-        
-///交易所期权合约保证金不变部分
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_ExchFixedMargin(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ExchFixedMargin);
-}
 
-///交易所期权合约保证金不变部分
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrTradeCostField_set_ExchFixedMargin(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrTradeCostField_set_ExchFixedMargin(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ExchFixedMargin Expected float");
         return -1;
@@ -425,16 +359,8 @@ static int PyCThostFtdcOptionInstrTradeCostField_set_ExchFixedMargin(PyCThostFtd
     self->data.ExchFixedMargin = buf;
     return 0;
 }
-        
-///交易所期权合约最小保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_ExchMiniMargin(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ExchMiniMargin);
-}
 
-///交易所期权合约最小保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrTradeCostField_set_ExchMiniMargin(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrTradeCostField_set_ExchMiniMargin(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ExchMiniMargin Expected float");
         return -1;
@@ -446,111 +372,67 @@ static int PyCThostFtdcOptionInstrTradeCostField_set_ExchMiniMargin(PyCThostFtdc
     self->data.ExchMiniMargin = buf;
     return 0;
 }
-        
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_ExchangeID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+
+static int PyCThostFtdcOptionInstrTradeCostField_set_ExchangeID(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcOptionInstrTradeCostField_set_ExchangeID(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///投资单元代码
-// TThostFtdcInvestUnitIDType char[17]
-static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_InvestUnitID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestUnitID, (Py_ssize_t)sizeof(self->data.InvestUnitID));
-    return PyBytes_FromString(self->data.InvestUnitID);
+static int PyCThostFtdcOptionInstrTradeCostField_set_InvestUnitID(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestUnitID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestUnitID must be less than 17 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestUnitID, buf, sizeof(self->data.InvestUnitID));
+	return 0;
 }
 
-///投资单元代码
-// TThostFtdcInvestUnitIDType char[17]
-static int PyCThostFtdcOptionInstrTradeCostField_set_InvestUnitID(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestUnitID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestUnitID must be less than 17 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestUnitID, 0, sizeof(self->data.InvestUnitID));
-    // memcpy(self->data.InvestUnitID, buf, len);
-    strncpy(self->data.InvestUnitID, buf, sizeof(self->data.InvestUnitID));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcOptionInstrTradeCostField_get_InstrumentID(PyCThostFtdcOptionInstrTradeCostField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+static int PyCThostFtdcOptionInstrTradeCostField_set_InstrumentID(PyCThostFtdcOptionInstrTradeCostField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcOptionInstrTradeCostField_set_InstrumentID(PyCThostFtdcOptionInstrTradeCostField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcOptionInstrTradeCostField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_BrokerID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_InvestorID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrTradeCostField_get_reserve1, (setter)PyCThostFtdcOptionInstrTradeCostField_set_reserve1, (char *)"reserve1", NULL},
-    ///投机套保标志 
-    {(char *)"HedgeFlag", (getter)PyCThostFtdcOptionInstrTradeCostField_get_HedgeFlag, (setter)PyCThostFtdcOptionInstrTradeCostField_set_HedgeFlag, (char *)"HedgeFlag", NULL},
-    ///期权合约保证金不变部分 
-    {(char *)"FixedMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_FixedMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_FixedMargin, (char *)"FixedMargin", NULL},
-    ///期权合约最小保证金 
-    {(char *)"MiniMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_MiniMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_MiniMargin, (char *)"MiniMargin", NULL},
-    ///期权合约权利金 
-    {(char *)"Royalty", (getter)PyCThostFtdcOptionInstrTradeCostField_get_Royalty, (setter)PyCThostFtdcOptionInstrTradeCostField_set_Royalty, (char *)"Royalty", NULL},
-    ///交易所期权合约保证金不变部分 
-    {(char *)"ExchFixedMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_ExchFixedMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_ExchFixedMargin, (char *)"ExchFixedMargin", NULL},
-    ///交易所期权合约最小保证金 
-    {(char *)"ExchMiniMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_ExchMiniMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_ExchMiniMargin, (char *)"ExchMiniMargin", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_ExchangeID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///投资单元代码 
-    {(char *)"InvestUnitID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_InvestUnitID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_InvestUnitID, (char *)"InvestUnitID", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_BrokerID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_InvestorID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrTradeCostField_get_reserve1, (setter)PyCThostFtdcOptionInstrTradeCostField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"HedgeFlag", (getter)PyCThostFtdcOptionInstrTradeCostField_get_HedgeFlag, (setter)PyCThostFtdcOptionInstrTradeCostField_set_HedgeFlag, (char *)"HedgeFlag", NULL},
+	 {(char *)"FixedMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_FixedMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_FixedMargin, (char *)"FixedMargin", NULL},
+	 {(char *)"MiniMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_MiniMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_MiniMargin, (char *)"MiniMargin", NULL},
+	 {(char *)"Royalty", (getter)PyCThostFtdcOptionInstrTradeCostField_get_Royalty, (setter)PyCThostFtdcOptionInstrTradeCostField_set_Royalty, (char *)"Royalty", NULL},
+	 {(char *)"ExchFixedMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_ExchFixedMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_ExchFixedMargin, (char *)"ExchFixedMargin", NULL},
+	 {(char *)"ExchMiniMargin", (getter)PyCThostFtdcOptionInstrTradeCostField_get_ExchMiniMargin, (setter)PyCThostFtdcOptionInstrTradeCostField_set_ExchMiniMargin, (char *)"ExchMiniMargin", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_ExchangeID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"InvestUnitID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_InvestUnitID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_InvestUnitID, (char *)"InvestUnitID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrTradeCostField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrTradeCostField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

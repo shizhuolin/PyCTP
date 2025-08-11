@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///校验投资者密码
+
 
 typedef struct PyCThostFtdcVerifyInvestorPasswordField {
     PyObject_HEAD

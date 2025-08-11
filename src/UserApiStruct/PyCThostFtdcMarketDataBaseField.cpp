@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataBaseField.h"
 
-///行情基础属性
+
 
 static PyObject *PyCThostFtdcMarketDataBaseField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataBaseField *self = (PyCThostFtdcMarketDataBaseField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcMarketDataBaseField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,28 +18,23 @@ static int PyCThostFtdcMarketDataBaseField_init(PyCThostFtdcMarketDataBaseField 
 
     static const char *kwlist[] = {"TradingDay", "PreSettlementPrice", "PreClosePrice", "PreOpenInterest", "PreDelta",  NULL};
 
+	//TThostFtdcDateType char[9]
+	const char *pMarketDataBaseField_TradingDay = NULL;
+	Py_ssize_t pMarketDataBaseField_TradingDay_len = 0;
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    const char *MarketDataBaseField_TradingDay = NULL;
-    Py_ssize_t MarketDataBaseField_TradingDay_len = 0;
-            
-    ///上次结算价
-    // TThostFtdcPriceType double
-    double MarketDataBaseField_PreSettlementPrice = 0.0;
-        
-    ///昨收盘
-    // TThostFtdcPriceType double
-    double MarketDataBaseField_PreClosePrice = 0.0;
-        
-    ///昨持仓量
-    // TThostFtdcLargeVolumeType double
-    double MarketDataBaseField_PreOpenInterest = 0.0;
-        
-    ///昨虚实度
-    // TThostFtdcRatioType double
-    double MarketDataBaseField_PreDelta = 0.0;
-        
+	//TThostFtdcPriceType double
+	double pMarketDataBaseField_PreSettlementPrice = 0.0;
+
+	//TThostFtdcPriceType double
+	double pMarketDataBaseField_PreClosePrice = 0.0;
+
+	//TThostFtdcLargeVolumeType double
+	double pMarketDataBaseField_PreOpenInterest = 0.0;
+
+	//TThostFtdcRatioType double
+	double pMarketDataBaseField_PreDelta = 0.0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#dddd", (char **)kwlist
@@ -46,47 +42,36 @@ static int PyCThostFtdcMarketDataBaseField_init(PyCThostFtdcMarketDataBaseField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#dddd", (char **)kwlist
 #endif
 
-        , &MarketDataBaseField_TradingDay, &MarketDataBaseField_TradingDay_len 
-        , &MarketDataBaseField_PreSettlementPrice 
-        , &MarketDataBaseField_PreClosePrice 
-        , &MarketDataBaseField_PreOpenInterest 
-        , &MarketDataBaseField_PreDelta 
+		, &pMarketDataBaseField_TradingDay, &pMarketDataBaseField_TradingDay_len
+		, &pMarketDataBaseField_PreSettlementPrice
+		, &pMarketDataBaseField_PreClosePrice
+		, &pMarketDataBaseField_PreOpenInterest
+		, &pMarketDataBaseField_PreDelta
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDateType char[9]
+	if(pMarketDataBaseField_TradingDay != NULL) {
+		if(pMarketDataBaseField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pMarketDataBaseField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pMarketDataBaseField_TradingDay, sizeof(self->data.TradingDay) );
+		pMarketDataBaseField_TradingDay = NULL;
+	}
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    if( MarketDataBaseField_TradingDay != NULL ) {
-        if(MarketDataBaseField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", MarketDataBaseField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, MarketDataBaseField_TradingDay, MarketDataBaseField_TradingDay_len);        
-        strncpy(self->data.TradingDay, MarketDataBaseField_TradingDay, sizeof(self->data.TradingDay) );
-        MarketDataBaseField_TradingDay = NULL;
-    }
-            
-    ///上次结算价
-    // TThostFtdcPriceType double
-    self->data.PreSettlementPrice = MarketDataBaseField_PreSettlementPrice;
-        
-    ///昨收盘
-    // TThostFtdcPriceType double
-    self->data.PreClosePrice = MarketDataBaseField_PreClosePrice;
-        
-    ///昨持仓量
-    // TThostFtdcLargeVolumeType double
-    self->data.PreOpenInterest = MarketDataBaseField_PreOpenInterest;
-        
-    ///昨虚实度
-    // TThostFtdcRatioType double
-    self->data.PreDelta = MarketDataBaseField_PreDelta;
-        
+	//TThostFtdcPriceType double
+	self->data.PreSettlementPrice = pMarketDataBaseField_PreSettlementPrice;
+	//TThostFtdcPriceType double
+	self->data.PreClosePrice = pMarketDataBaseField_PreClosePrice;
+	//TThostFtdcLargeVolumeType double
+	self->data.PreOpenInterest = pMarketDataBaseField_PreOpenInterest;
+	//TThostFtdcRatioType double
+	self->data.PreDelta = pMarketDataBaseField_PreDelta;
+
 
     return 0;
 }
@@ -103,11 +88,11 @@ static PyObject *PyCThostFtdcMarketDataBaseField_repr(PyCThostFtdcMarketDataBase
     PyObject *obj = Py_BuildValue("{s:s,s:d,s:d,s:d,s:d}"
 #endif
 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
-        ,"PreSettlementPrice", self->data.PreSettlementPrice 
-        ,"PreClosePrice", self->data.PreClosePrice 
-        ,"PreOpenInterest", self->data.PreOpenInterest 
-        ,"PreDelta", self->data.PreDelta 
+		, "TradingDay", self->data.TradingDay 
+		, "PreSettlementPrice", self->data.PreSettlementPrice
+		, "PreClosePrice", self->data.PreClosePrice
+		, "PreOpenInterest", self->data.PreOpenInterest
+		, "PreDelta", self->data.PreDelta
 
 
 		);
@@ -120,42 +105,42 @@ static PyObject *PyCThostFtdcMarketDataBaseField_repr(PyCThostFtdcMarketDataBase
     return PyObject_Repr(obj);
 }
 
-
-///交易日
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcMarketDataBaseField_get_TradingDay(PyCThostFtdcMarketDataBaseField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易日
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcMarketDataBaseField_set_TradingDay(PyCThostFtdcMarketDataBaseField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
-}
-            
-///上次结算价
-// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcMarketDataBaseField_get_PreSettlementPrice(PyCThostFtdcMarketDataBaseField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.PreSettlementPrice);
+	return PyFloat_FromDouble(self->data.PreSettlementPrice);
 }
 
-///上次结算价
-// TThostFtdcPriceType double
-static int PyCThostFtdcMarketDataBaseField_set_PreSettlementPrice(PyCThostFtdcMarketDataBaseField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcMarketDataBaseField_get_PreClosePrice(PyCThostFtdcMarketDataBaseField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.PreClosePrice);
+}
+
+static PyObject *PyCThostFtdcMarketDataBaseField_get_PreOpenInterest(PyCThostFtdcMarketDataBaseField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.PreOpenInterest);
+}
+
+static PyObject *PyCThostFtdcMarketDataBaseField_get_PreDelta(PyCThostFtdcMarketDataBaseField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.PreDelta);
+}
+
+static int PyCThostFtdcMarketDataBaseField_set_TradingDay(PyCThostFtdcMarketDataBaseField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
+}
+
+static int PyCThostFtdcMarketDataBaseField_set_PreSettlementPrice(PyCThostFtdcMarketDataBaseField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "PreSettlementPrice Expected float");
         return -1;
@@ -167,16 +152,8 @@ static int PyCThostFtdcMarketDataBaseField_set_PreSettlementPrice(PyCThostFtdcMa
     self->data.PreSettlementPrice = buf;
     return 0;
 }
-        
-///昨收盘
-// TThostFtdcPriceType double
-static PyObject *PyCThostFtdcMarketDataBaseField_get_PreClosePrice(PyCThostFtdcMarketDataBaseField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.PreClosePrice);
-}
 
-///昨收盘
-// TThostFtdcPriceType double
-static int PyCThostFtdcMarketDataBaseField_set_PreClosePrice(PyCThostFtdcMarketDataBaseField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataBaseField_set_PreClosePrice(PyCThostFtdcMarketDataBaseField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "PreClosePrice Expected float");
         return -1;
@@ -188,16 +165,8 @@ static int PyCThostFtdcMarketDataBaseField_set_PreClosePrice(PyCThostFtdcMarketD
     self->data.PreClosePrice = buf;
     return 0;
 }
-        
-///昨持仓量
-// TThostFtdcLargeVolumeType double
-static PyObject *PyCThostFtdcMarketDataBaseField_get_PreOpenInterest(PyCThostFtdcMarketDataBaseField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.PreOpenInterest);
-}
 
-///昨持仓量
-// TThostFtdcLargeVolumeType double
-static int PyCThostFtdcMarketDataBaseField_set_PreOpenInterest(PyCThostFtdcMarketDataBaseField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataBaseField_set_PreOpenInterest(PyCThostFtdcMarketDataBaseField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "PreOpenInterest Expected float");
         return -1;
@@ -209,16 +178,8 @@ static int PyCThostFtdcMarketDataBaseField_set_PreOpenInterest(PyCThostFtdcMarke
     self->data.PreOpenInterest = buf;
     return 0;
 }
-        
-///昨虚实度
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcMarketDataBaseField_get_PreDelta(PyCThostFtdcMarketDataBaseField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.PreDelta);
-}
 
-///昨虚实度
-// TThostFtdcRatioType double
-static int PyCThostFtdcMarketDataBaseField_set_PreDelta(PyCThostFtdcMarketDataBaseField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataBaseField_set_PreDelta(PyCThostFtdcMarketDataBaseField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "PreDelta Expected float");
         return -1;
@@ -230,19 +191,15 @@ static int PyCThostFtdcMarketDataBaseField_set_PreDelta(PyCThostFtdcMarketDataBa
     self->data.PreDelta = buf;
     return 0;
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcMarketDataBaseField_getset[] = {
-    ///交易日 
-    {(char *)"TradingDay", (getter)PyCThostFtdcMarketDataBaseField_get_TradingDay, (setter)PyCThostFtdcMarketDataBaseField_set_TradingDay, (char *)"TradingDay", NULL},
-    ///上次结算价 
-    {(char *)"PreSettlementPrice", (getter)PyCThostFtdcMarketDataBaseField_get_PreSettlementPrice, (setter)PyCThostFtdcMarketDataBaseField_set_PreSettlementPrice, (char *)"PreSettlementPrice", NULL},
-    ///昨收盘 
-    {(char *)"PreClosePrice", (getter)PyCThostFtdcMarketDataBaseField_get_PreClosePrice, (setter)PyCThostFtdcMarketDataBaseField_set_PreClosePrice, (char *)"PreClosePrice", NULL},
-    ///昨持仓量 
-    {(char *)"PreOpenInterest", (getter)PyCThostFtdcMarketDataBaseField_get_PreOpenInterest, (setter)PyCThostFtdcMarketDataBaseField_set_PreOpenInterest, (char *)"PreOpenInterest", NULL},
-    ///昨虚实度 
-    {(char *)"PreDelta", (getter)PyCThostFtdcMarketDataBaseField_get_PreDelta, (setter)PyCThostFtdcMarketDataBaseField_set_PreDelta, (char *)"PreDelta", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcMarketDataBaseField_get_TradingDay, (setter)PyCThostFtdcMarketDataBaseField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"PreSettlementPrice", (getter)PyCThostFtdcMarketDataBaseField_get_PreSettlementPrice, (setter)PyCThostFtdcMarketDataBaseField_set_PreSettlementPrice, (char *)"PreSettlementPrice", NULL},
+	 {(char *)"PreClosePrice", (getter)PyCThostFtdcMarketDataBaseField_get_PreClosePrice, (setter)PyCThostFtdcMarketDataBaseField_set_PreClosePrice, (char *)"PreClosePrice", NULL},
+	 {(char *)"PreOpenInterest", (getter)PyCThostFtdcMarketDataBaseField_get_PreOpenInterest, (setter)PyCThostFtdcMarketDataBaseField_set_PreOpenInterest, (char *)"PreOpenInterest", NULL},
+	 {(char *)"PreDelta", (getter)PyCThostFtdcMarketDataBaseField_get_PreDelta, (setter)PyCThostFtdcMarketDataBaseField_set_PreDelta, (char *)"PreDelta", NULL},
 
     {NULL}
 };

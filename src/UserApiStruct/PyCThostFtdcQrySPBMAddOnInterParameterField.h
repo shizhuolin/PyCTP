@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///SPBM附加跨品种抵扣参数查询
+
 
 typedef struct PyCThostFtdcQrySPBMAddOnInterParameterField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///错误报单
+
 
 typedef struct PyCThostFtdcErrOrderField {
     PyObject_HEAD

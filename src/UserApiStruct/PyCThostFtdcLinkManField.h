@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///联系人
+
 
 typedef struct PyCThostFtdcLinkManField {
     PyObject_HEAD

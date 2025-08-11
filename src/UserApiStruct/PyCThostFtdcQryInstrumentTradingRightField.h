@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询合约交易权限
+
 
 typedef struct PyCThostFtdcQryInstrumentTradingRightField {
     PyObject_HEAD

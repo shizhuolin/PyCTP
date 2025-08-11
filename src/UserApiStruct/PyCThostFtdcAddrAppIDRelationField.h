@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///服务地址和AppID的关系
+
 
 typedef struct PyCThostFtdcAddrAppIDRelationField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMMInstrumentCommissionRateField.h"
 
-///做市商合约手续费率
+
 
 static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMMInstrumentCommissionRateField *self = (PyCThostFtdcMMInstrumentCommissionRateField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_new(PyTypeObject *t
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,55 +18,44 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_init(PyCThostFtdcMMInstru
 
     static const char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "OpenRatioByMoney", "OpenRatioByVolume", "CloseRatioByMoney", "CloseRatioByVolume", "CloseTodayRatioByMoney", "CloseTodayRatioByVolume", "InstrumentID",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pMMInstrumentCommissionRateField_reserve1 = NULL;
+	Py_ssize_t pMMInstrumentCommissionRateField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *MMInstrumentCommissionRateField_reserve1 = NULL;
-    Py_ssize_t MMInstrumentCommissionRateField_reserve1_len = 0;
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    char MMInstrumentCommissionRateField_InvestorRange = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *MMInstrumentCommissionRateField_BrokerID = NULL;
-    Py_ssize_t MMInstrumentCommissionRateField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *MMInstrumentCommissionRateField_InvestorID = NULL;
-    Py_ssize_t MMInstrumentCommissionRateField_InvestorID_len = 0;
-            
-    ///开仓手续费率
-    // TThostFtdcRatioType double
-    double MMInstrumentCommissionRateField_OpenRatioByMoney = 0.0;
-        
-    ///开仓手续费
-    // TThostFtdcRatioType double
-    double MMInstrumentCommissionRateField_OpenRatioByVolume = 0.0;
-        
-    ///平仓手续费率
-    // TThostFtdcRatioType double
-    double MMInstrumentCommissionRateField_CloseRatioByMoney = 0.0;
-        
-    ///平仓手续费
-    // TThostFtdcRatioType double
-    double MMInstrumentCommissionRateField_CloseRatioByVolume = 0.0;
-        
-    ///平今手续费率
-    // TThostFtdcRatioType double
-    double MMInstrumentCommissionRateField_CloseTodayRatioByMoney = 0.0;
-        
-    ///平今手续费
-    // TThostFtdcRatioType double
-    double MMInstrumentCommissionRateField_CloseTodayRatioByVolume = 0.0;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *MMInstrumentCommissionRateField_InstrumentID = NULL;
-    Py_ssize_t MMInstrumentCommissionRateField_InstrumentID_len = 0;
-            
+	//TThostFtdcInvestorRangeType char
+	char pMMInstrumentCommissionRateField_InvestorRange = 0;
+
+	//TThostFtdcBrokerIDType char[11]
+	const char *pMMInstrumentCommissionRateField_BrokerID = NULL;
+	Py_ssize_t pMMInstrumentCommissionRateField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pMMInstrumentCommissionRateField_InvestorID = NULL;
+	Py_ssize_t pMMInstrumentCommissionRateField_InvestorID_len = 0;
+
+	//TThostFtdcRatioType double
+	double pMMInstrumentCommissionRateField_OpenRatioByMoney = 0.0;
+
+	//TThostFtdcRatioType double
+	double pMMInstrumentCommissionRateField_OpenRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pMMInstrumentCommissionRateField_CloseRatioByMoney = 0.0;
+
+	//TThostFtdcRatioType double
+	double pMMInstrumentCommissionRateField_CloseRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pMMInstrumentCommissionRateField_CloseTodayRatioByMoney = 0.0;
+
+	//TThostFtdcRatioType double
+	double pMMInstrumentCommissionRateField_CloseTodayRatioByVolume = 0.0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pMMInstrumentCommissionRateField_InstrumentID = NULL;
+	Py_ssize_t pMMInstrumentCommissionRateField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cy#y#ddddddy#", (char **)kwlist
@@ -73,104 +63,79 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_init(PyCThostFtdcMMInstru
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cs#s#dddddds#", (char **)kwlist
 #endif
 
-        , &MMInstrumentCommissionRateField_reserve1, &MMInstrumentCommissionRateField_reserve1_len 
-        , &MMInstrumentCommissionRateField_InvestorRange 
-        , &MMInstrumentCommissionRateField_BrokerID, &MMInstrumentCommissionRateField_BrokerID_len 
-        , &MMInstrumentCommissionRateField_InvestorID, &MMInstrumentCommissionRateField_InvestorID_len 
-        , &MMInstrumentCommissionRateField_OpenRatioByMoney 
-        , &MMInstrumentCommissionRateField_OpenRatioByVolume 
-        , &MMInstrumentCommissionRateField_CloseRatioByMoney 
-        , &MMInstrumentCommissionRateField_CloseRatioByVolume 
-        , &MMInstrumentCommissionRateField_CloseTodayRatioByMoney 
-        , &MMInstrumentCommissionRateField_CloseTodayRatioByVolume 
-        , &MMInstrumentCommissionRateField_InstrumentID, &MMInstrumentCommissionRateField_InstrumentID_len 
+		, &pMMInstrumentCommissionRateField_reserve1, &pMMInstrumentCommissionRateField_reserve1_len
+		, &pMMInstrumentCommissionRateField_InvestorRange
+		, &pMMInstrumentCommissionRateField_BrokerID, &pMMInstrumentCommissionRateField_BrokerID_len
+		, &pMMInstrumentCommissionRateField_InvestorID, &pMMInstrumentCommissionRateField_InvestorID_len
+		, &pMMInstrumentCommissionRateField_OpenRatioByMoney
+		, &pMMInstrumentCommissionRateField_OpenRatioByVolume
+		, &pMMInstrumentCommissionRateField_CloseRatioByMoney
+		, &pMMInstrumentCommissionRateField_CloseRatioByVolume
+		, &pMMInstrumentCommissionRateField_CloseTodayRatioByMoney
+		, &pMMInstrumentCommissionRateField_CloseTodayRatioByVolume
+		, &pMMInstrumentCommissionRateField_InstrumentID, &pMMInstrumentCommissionRateField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pMMInstrumentCommissionRateField_reserve1 != NULL) {
+		if(pMMInstrumentCommissionRateField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pMMInstrumentCommissionRateField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pMMInstrumentCommissionRateField_reserve1, sizeof(self->data.reserve1) );
+		pMMInstrumentCommissionRateField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( MMInstrumentCommissionRateField_reserve1 != NULL ) {
-        if(MMInstrumentCommissionRateField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", MMInstrumentCommissionRateField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, MMInstrumentCommissionRateField_reserve1, MMInstrumentCommissionRateField_reserve1_len);        
-        strncpy(self->data.reserve1, MMInstrumentCommissionRateField_reserve1, sizeof(self->data.reserve1) );
-        MMInstrumentCommissionRateField_reserve1 = NULL;
-    }
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    self->data.InvestorRange = MMInstrumentCommissionRateField_InvestorRange;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( MMInstrumentCommissionRateField_BrokerID != NULL ) {
-        if(MMInstrumentCommissionRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", MMInstrumentCommissionRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, MMInstrumentCommissionRateField_BrokerID, MMInstrumentCommissionRateField_BrokerID_len);        
-        strncpy(self->data.BrokerID, MMInstrumentCommissionRateField_BrokerID, sizeof(self->data.BrokerID) );
-        MMInstrumentCommissionRateField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( MMInstrumentCommissionRateField_InvestorID != NULL ) {
-        if(MMInstrumentCommissionRateField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", MMInstrumentCommissionRateField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, MMInstrumentCommissionRateField_InvestorID, MMInstrumentCommissionRateField_InvestorID_len);        
-        strncpy(self->data.InvestorID, MMInstrumentCommissionRateField_InvestorID, sizeof(self->data.InvestorID) );
-        MMInstrumentCommissionRateField_InvestorID = NULL;
-    }
-            
-    ///开仓手续费率
-    // TThostFtdcRatioType double
-    self->data.OpenRatioByMoney = MMInstrumentCommissionRateField_OpenRatioByMoney;
-        
-    ///开仓手续费
-    // TThostFtdcRatioType double
-    self->data.OpenRatioByVolume = MMInstrumentCommissionRateField_OpenRatioByVolume;
-        
-    ///平仓手续费率
-    // TThostFtdcRatioType double
-    self->data.CloseRatioByMoney = MMInstrumentCommissionRateField_CloseRatioByMoney;
-        
-    ///平仓手续费
-    // TThostFtdcRatioType double
-    self->data.CloseRatioByVolume = MMInstrumentCommissionRateField_CloseRatioByVolume;
-        
-    ///平今手续费率
-    // TThostFtdcRatioType double
-    self->data.CloseTodayRatioByMoney = MMInstrumentCommissionRateField_CloseTodayRatioByMoney;
-        
-    ///平今手续费
-    // TThostFtdcRatioType double
-    self->data.CloseTodayRatioByVolume = MMInstrumentCommissionRateField_CloseTodayRatioByVolume;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( MMInstrumentCommissionRateField_InstrumentID != NULL ) {
-        if(MMInstrumentCommissionRateField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", MMInstrumentCommissionRateField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, MMInstrumentCommissionRateField_InstrumentID, MMInstrumentCommissionRateField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, MMInstrumentCommissionRateField_InstrumentID, sizeof(self->data.InstrumentID) );
-        MMInstrumentCommissionRateField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInvestorRangeType char
+	self->data.InvestorRange = pMMInstrumentCommissionRateField_InvestorRange;
+
+	//TThostFtdcBrokerIDType char[11]
+	if(pMMInstrumentCommissionRateField_BrokerID != NULL) {
+		if(pMMInstrumentCommissionRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pMMInstrumentCommissionRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pMMInstrumentCommissionRateField_BrokerID, sizeof(self->data.BrokerID) );
+		pMMInstrumentCommissionRateField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pMMInstrumentCommissionRateField_InvestorID != NULL) {
+		if(pMMInstrumentCommissionRateField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pMMInstrumentCommissionRateField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pMMInstrumentCommissionRateField_InvestorID, sizeof(self->data.InvestorID) );
+		pMMInstrumentCommissionRateField_InvestorID = NULL;
+	}
+
+	//TThostFtdcRatioType double
+	self->data.OpenRatioByMoney = pMMInstrumentCommissionRateField_OpenRatioByMoney;
+	//TThostFtdcRatioType double
+	self->data.OpenRatioByVolume = pMMInstrumentCommissionRateField_OpenRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.CloseRatioByMoney = pMMInstrumentCommissionRateField_CloseRatioByMoney;
+	//TThostFtdcRatioType double
+	self->data.CloseRatioByVolume = pMMInstrumentCommissionRateField_CloseRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.CloseTodayRatioByMoney = pMMInstrumentCommissionRateField_CloseTodayRatioByMoney;
+	//TThostFtdcRatioType double
+	self->data.CloseTodayRatioByVolume = pMMInstrumentCommissionRateField_CloseTodayRatioByVolume;
+	//TThostFtdcInstrumentIDType char[81]
+	if(pMMInstrumentCommissionRateField_InstrumentID != NULL) {
+		if(pMMInstrumentCommissionRateField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pMMInstrumentCommissionRateField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pMMInstrumentCommissionRateField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pMMInstrumentCommissionRateField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -187,17 +152,17 @@ static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_repr(PyCThostFtdcMM
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:s,s:s,s:d,s:d,s:d,s:d,s:d,s:d,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"InvestorRange", self->data.InvestorRange 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"OpenRatioByMoney", self->data.OpenRatioByMoney 
-        ,"OpenRatioByVolume", self->data.OpenRatioByVolume 
-        ,"CloseRatioByMoney", self->data.CloseRatioByMoney 
-        ,"CloseRatioByVolume", self->data.CloseRatioByVolume 
-        ,"CloseTodayRatioByMoney", self->data.CloseTodayRatioByMoney 
-        ,"CloseTodayRatioByVolume", self->data.CloseTodayRatioByVolume 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "reserve1", self->data.reserve1 
+		, "InvestorRange", self->data.InvestorRange
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "OpenRatioByMoney", self->data.OpenRatioByMoney
+		, "OpenRatioByVolume", self->data.OpenRatioByVolume
+		, "CloseRatioByMoney", self->data.CloseRatioByMoney
+		, "CloseRatioByVolume", self->data.CloseRatioByVolume
+		, "CloseTodayRatioByMoney", self->data.CloseTodayRatioByMoney
+		, "CloseTodayRatioByVolume", self->data.CloseTodayRatioByVolume
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -210,117 +175,111 @@ static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_repr(PyCThostFtdcMM
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_reserve1(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_reserve1(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///投资者范围
-// TThostFtdcInvestorRangeType char
 static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_InvestorRange(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
+	return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
 }
 
-///投资者范围
-// TThostFtdcInvestorRangeType char
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorRange(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorRange must be equal 1 bytes");
-        return -1;
-    }
-    self->data.InvestorRange = *buf;
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_BrokerID(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_BrokerID(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_InvestorID(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorID(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///开仓手续费率
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_OpenRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.OpenRatioByMoney);
+	return PyFloat_FromDouble(self->data.OpenRatioByMoney);
 }
 
-///开仓手续费率
-// TThostFtdcRatioType double
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_OpenRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.OpenRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.CloseRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.CloseRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.CloseTodayRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.CloseTodayRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_InstrumentID(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
+	return PyBytes_FromString(self->data.InstrumentID);
+}
+
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_reserve1(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorRange(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorRange must be less than 1 bytes");
+		return -1;
+	}
+	self->data.InvestorRange = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_BrokerID(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorID(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "OpenRatioByMoney Expected float");
         return -1;
@@ -332,16 +291,8 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByMoney(PyCT
     self->data.OpenRatioByMoney = buf;
     return 0;
 }
-        
-///开仓手续费
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_OpenRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.OpenRatioByVolume);
-}
 
-///开仓手续费
-// TThostFtdcRatioType double
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "OpenRatioByVolume Expected float");
         return -1;
@@ -353,16 +304,8 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByVolume(PyC
     self->data.OpenRatioByVolume = buf;
     return 0;
 }
-        
-///平仓手续费率
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.CloseRatioByMoney);
-}
 
-///平仓手续费率
-// TThostFtdcRatioType double
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CloseRatioByMoney Expected float");
         return -1;
@@ -374,16 +317,8 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByMoney(PyC
     self->data.CloseRatioByMoney = buf;
     return 0;
 }
-        
-///平仓手续费
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.CloseRatioByVolume);
-}
 
-///平仓手续费
-// TThostFtdcRatioType double
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CloseRatioByVolume Expected float");
         return -1;
@@ -395,16 +330,8 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByVolume(Py
     self->data.CloseRatioByVolume = buf;
     return 0;
 }
-        
-///平今手续费率
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.CloseTodayRatioByMoney);
-}
 
-///平今手续费率
-// TThostFtdcRatioType double
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByMoney(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CloseTodayRatioByMoney Expected float");
         return -1;
@@ -416,16 +343,8 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByMone
     self->data.CloseTodayRatioByMoney = buf;
     return 0;
 }
-        
-///平今手续费
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.CloseTodayRatioByVolume);
-}
 
-///平今手续费
-// TThostFtdcRatioType double
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByVolume(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CloseTodayRatioByVolume Expected float");
         return -1;
@@ -437,57 +356,36 @@ static int PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByVolu
     self->data.CloseTodayRatioByVolume = buf;
     return 0;
 }
-        
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcMMInstrumentCommissionRateField_get_InstrumentID(PyCThostFtdcMMInstrumentCommissionRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+
+static int PyCThostFtdcMMInstrumentCommissionRateField_set_InstrumentID(PyCThostFtdcMMInstrumentCommissionRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcMMInstrumentCommissionRateField_set_InstrumentID(PyCThostFtdcMMInstrumentCommissionRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcMMInstrumentCommissionRateField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_reserve1, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_reserve1, (char *)"reserve1", NULL},
-    ///投资者范围 
-    {(char *)"InvestorRange", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_InvestorRange, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorRange, (char *)"InvestorRange", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_BrokerID, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_InvestorID, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///开仓手续费率 
-    {(char *)"OpenRatioByMoney", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_OpenRatioByMoney, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByMoney, (char *)"OpenRatioByMoney", NULL},
-    ///开仓手续费 
-    {(char *)"OpenRatioByVolume", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_OpenRatioByVolume, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByVolume, (char *)"OpenRatioByVolume", NULL},
-    ///平仓手续费率 
-    {(char *)"CloseRatioByMoney", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByMoney, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByMoney, (char *)"CloseRatioByMoney", NULL},
-    ///平仓手续费 
-    {(char *)"CloseRatioByVolume", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByVolume, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByVolume, (char *)"CloseRatioByVolume", NULL},
-    ///平今手续费率 
-    {(char *)"CloseTodayRatioByMoney", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByMoney, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByMoney, (char *)"CloseTodayRatioByMoney", NULL},
-    ///平今手续费 
-    {(char *)"CloseTodayRatioByVolume", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByVolume, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByVolume, (char *)"CloseTodayRatioByVolume", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_InstrumentID, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_reserve1, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"InvestorRange", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_InvestorRange, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorRange, (char *)"InvestorRange", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_BrokerID, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_InvestorID, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"OpenRatioByMoney", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_OpenRatioByMoney, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByMoney, (char *)"OpenRatioByMoney", NULL},
+	 {(char *)"OpenRatioByVolume", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_OpenRatioByVolume, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_OpenRatioByVolume, (char *)"OpenRatioByVolume", NULL},
+	 {(char *)"CloseRatioByMoney", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByMoney, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByMoney, (char *)"CloseRatioByMoney", NULL},
+	 {(char *)"CloseRatioByVolume", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseRatioByVolume, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseRatioByVolume, (char *)"CloseRatioByVolume", NULL},
+	 {(char *)"CloseTodayRatioByMoney", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByMoney, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByMoney, (char *)"CloseTodayRatioByMoney", NULL},
+	 {(char *)"CloseTodayRatioByVolume", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_CloseTodayRatioByVolume, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_CloseTodayRatioByVolume, (char *)"CloseTodayRatioByVolume", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcMMInstrumentCommissionRateField_get_InstrumentID, (setter)PyCThostFtdcMMInstrumentCommissionRateField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

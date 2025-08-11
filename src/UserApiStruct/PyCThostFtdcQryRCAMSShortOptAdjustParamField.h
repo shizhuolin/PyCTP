@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RCAMS空头期权风险调整参数查询
+
 
 typedef struct PyCThostFtdcQryRCAMSShortOptAdjustParamField {
     PyObject_HEAD

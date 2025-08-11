@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///产品报价汇率查询
+
 
 typedef struct PyCThostFtdcQryProductExchRateField {
     PyObject_HEAD

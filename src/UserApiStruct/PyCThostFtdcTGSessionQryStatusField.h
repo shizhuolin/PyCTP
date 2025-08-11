@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///TGate会话查询状态
+
 
 typedef struct PyCThostFtdcTGSessionQryStatusField {
     PyObject_HEAD

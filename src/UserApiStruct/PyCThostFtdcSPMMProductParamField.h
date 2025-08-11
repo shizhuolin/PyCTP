@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///SPMM产品参数
+
 
 typedef struct PyCThostFtdcSPMMProductParamField {
     PyObject_HEAD

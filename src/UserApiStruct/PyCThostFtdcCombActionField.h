@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///申请组合
+
 
 typedef struct PyCThostFtdcCombActionField {
     PyObject_HEAD

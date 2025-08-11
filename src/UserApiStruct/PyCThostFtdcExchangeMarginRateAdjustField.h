@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易所保证金率调整
+
 
 typedef struct PyCThostFtdcExchangeMarginRateAdjustField {
     PyObject_HEAD

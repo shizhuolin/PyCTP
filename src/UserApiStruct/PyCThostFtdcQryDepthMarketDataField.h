@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询行情
+
 
 typedef struct PyCThostFtdcQryDepthMarketDataField {
     PyObject_HEAD

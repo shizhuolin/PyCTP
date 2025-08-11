@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcOptionInstrMarginAdjustField.h"
 
-///当前期权合约保证金调整系数
+
 
 static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcOptionInstrMarginAdjustField *self = (PyCThostFtdcOptionInstrMarginAdjustField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,67 +18,53 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_init(PyCThostFtdcOptionInstr
 
     static const char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "SShortMarginRatioByMoney", "SShortMarginRatioByVolume", "HShortMarginRatioByMoney", "HShortMarginRatioByVolume", "AShortMarginRatioByMoney", "AShortMarginRatioByVolume", "IsRelative", "MShortMarginRatioByMoney", "MShortMarginRatioByVolume", "InstrumentID",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pOptionInstrMarginAdjustField_reserve1 = NULL;
+	Py_ssize_t pOptionInstrMarginAdjustField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *OptionInstrMarginAdjustField_reserve1 = NULL;
-    Py_ssize_t OptionInstrMarginAdjustField_reserve1_len = 0;
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    char OptionInstrMarginAdjustField_InvestorRange = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *OptionInstrMarginAdjustField_BrokerID = NULL;
-    Py_ssize_t OptionInstrMarginAdjustField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *OptionInstrMarginAdjustField_InvestorID = NULL;
-    Py_ssize_t OptionInstrMarginAdjustField_InvestorID_len = 0;
-            
-    ///投机空头保证金调整系数
-    // TThostFtdcRatioType double
-    double OptionInstrMarginAdjustField_SShortMarginRatioByMoney = 0.0;
-        
-    ///投机空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double OptionInstrMarginAdjustField_SShortMarginRatioByVolume = 0.0;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcRatioType double
-    double OptionInstrMarginAdjustField_HShortMarginRatioByMoney = 0.0;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double OptionInstrMarginAdjustField_HShortMarginRatioByVolume = 0.0;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcRatioType double
-    double OptionInstrMarginAdjustField_AShortMarginRatioByMoney = 0.0;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double OptionInstrMarginAdjustField_AShortMarginRatioByVolume = 0.0;
-        
-    ///是否跟随交易所收取
-    // TThostFtdcBoolType int
-    int OptionInstrMarginAdjustField_IsRelative = 0;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcRatioType double
-    double OptionInstrMarginAdjustField_MShortMarginRatioByMoney = 0.0;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcMoneyType double
-    double OptionInstrMarginAdjustField_MShortMarginRatioByVolume = 0.0;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *OptionInstrMarginAdjustField_InstrumentID = NULL;
-    Py_ssize_t OptionInstrMarginAdjustField_InstrumentID_len = 0;
-            
+	//TThostFtdcInvestorRangeType char
+	char pOptionInstrMarginAdjustField_InvestorRange = 0;
+
+	//TThostFtdcBrokerIDType char[11]
+	const char *pOptionInstrMarginAdjustField_BrokerID = NULL;
+	Py_ssize_t pOptionInstrMarginAdjustField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pOptionInstrMarginAdjustField_InvestorID = NULL;
+	Py_ssize_t pOptionInstrMarginAdjustField_InvestorID_len = 0;
+
+	//TThostFtdcRatioType double
+	double pOptionInstrMarginAdjustField_SShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrMarginAdjustField_SShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pOptionInstrMarginAdjustField_HShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrMarginAdjustField_HShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pOptionInstrMarginAdjustField_AShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrMarginAdjustField_AShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcBoolType int
+	int pOptionInstrMarginAdjustField_IsRelative = 0;
+
+	//TThostFtdcRatioType double
+	double pOptionInstrMarginAdjustField_MShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrMarginAdjustField_MShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pOptionInstrMarginAdjustField_InstrumentID = NULL;
+	Py_ssize_t pOptionInstrMarginAdjustField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cy#y#ddddddiddy#", (char **)kwlist
@@ -85,119 +72,89 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_init(PyCThostFtdcOptionInstr
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cs#s#ddddddidds#", (char **)kwlist
 #endif
 
-        , &OptionInstrMarginAdjustField_reserve1, &OptionInstrMarginAdjustField_reserve1_len 
-        , &OptionInstrMarginAdjustField_InvestorRange 
-        , &OptionInstrMarginAdjustField_BrokerID, &OptionInstrMarginAdjustField_BrokerID_len 
-        , &OptionInstrMarginAdjustField_InvestorID, &OptionInstrMarginAdjustField_InvestorID_len 
-        , &OptionInstrMarginAdjustField_SShortMarginRatioByMoney 
-        , &OptionInstrMarginAdjustField_SShortMarginRatioByVolume 
-        , &OptionInstrMarginAdjustField_HShortMarginRatioByMoney 
-        , &OptionInstrMarginAdjustField_HShortMarginRatioByVolume 
-        , &OptionInstrMarginAdjustField_AShortMarginRatioByMoney 
-        , &OptionInstrMarginAdjustField_AShortMarginRatioByVolume 
-        , &OptionInstrMarginAdjustField_IsRelative 
-        , &OptionInstrMarginAdjustField_MShortMarginRatioByMoney 
-        , &OptionInstrMarginAdjustField_MShortMarginRatioByVolume 
-        , &OptionInstrMarginAdjustField_InstrumentID, &OptionInstrMarginAdjustField_InstrumentID_len 
+		, &pOptionInstrMarginAdjustField_reserve1, &pOptionInstrMarginAdjustField_reserve1_len
+		, &pOptionInstrMarginAdjustField_InvestorRange
+		, &pOptionInstrMarginAdjustField_BrokerID, &pOptionInstrMarginAdjustField_BrokerID_len
+		, &pOptionInstrMarginAdjustField_InvestorID, &pOptionInstrMarginAdjustField_InvestorID_len
+		, &pOptionInstrMarginAdjustField_SShortMarginRatioByMoney
+		, &pOptionInstrMarginAdjustField_SShortMarginRatioByVolume
+		, &pOptionInstrMarginAdjustField_HShortMarginRatioByMoney
+		, &pOptionInstrMarginAdjustField_HShortMarginRatioByVolume
+		, &pOptionInstrMarginAdjustField_AShortMarginRatioByMoney
+		, &pOptionInstrMarginAdjustField_AShortMarginRatioByVolume
+		, &pOptionInstrMarginAdjustField_IsRelative
+		, &pOptionInstrMarginAdjustField_MShortMarginRatioByMoney
+		, &pOptionInstrMarginAdjustField_MShortMarginRatioByVolume
+		, &pOptionInstrMarginAdjustField_InstrumentID, &pOptionInstrMarginAdjustField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pOptionInstrMarginAdjustField_reserve1 != NULL) {
+		if(pOptionInstrMarginAdjustField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pOptionInstrMarginAdjustField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pOptionInstrMarginAdjustField_reserve1, sizeof(self->data.reserve1) );
+		pOptionInstrMarginAdjustField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( OptionInstrMarginAdjustField_reserve1 != NULL ) {
-        if(OptionInstrMarginAdjustField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", OptionInstrMarginAdjustField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, OptionInstrMarginAdjustField_reserve1, OptionInstrMarginAdjustField_reserve1_len);        
-        strncpy(self->data.reserve1, OptionInstrMarginAdjustField_reserve1, sizeof(self->data.reserve1) );
-        OptionInstrMarginAdjustField_reserve1 = NULL;
-    }
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    self->data.InvestorRange = OptionInstrMarginAdjustField_InvestorRange;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( OptionInstrMarginAdjustField_BrokerID != NULL ) {
-        if(OptionInstrMarginAdjustField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", OptionInstrMarginAdjustField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, OptionInstrMarginAdjustField_BrokerID, OptionInstrMarginAdjustField_BrokerID_len);        
-        strncpy(self->data.BrokerID, OptionInstrMarginAdjustField_BrokerID, sizeof(self->data.BrokerID) );
-        OptionInstrMarginAdjustField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( OptionInstrMarginAdjustField_InvestorID != NULL ) {
-        if(OptionInstrMarginAdjustField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", OptionInstrMarginAdjustField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, OptionInstrMarginAdjustField_InvestorID, OptionInstrMarginAdjustField_InvestorID_len);        
-        strncpy(self->data.InvestorID, OptionInstrMarginAdjustField_InvestorID, sizeof(self->data.InvestorID) );
-        OptionInstrMarginAdjustField_InvestorID = NULL;
-    }
-            
-    ///投机空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.SShortMarginRatioByMoney = OptionInstrMarginAdjustField_SShortMarginRatioByMoney;
-        
-    ///投机空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.SShortMarginRatioByVolume = OptionInstrMarginAdjustField_SShortMarginRatioByVolume;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.HShortMarginRatioByMoney = OptionInstrMarginAdjustField_HShortMarginRatioByMoney;
-        
-    ///保值空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.HShortMarginRatioByVolume = OptionInstrMarginAdjustField_HShortMarginRatioByVolume;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.AShortMarginRatioByMoney = OptionInstrMarginAdjustField_AShortMarginRatioByMoney;
-        
-    ///套利空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.AShortMarginRatioByVolume = OptionInstrMarginAdjustField_AShortMarginRatioByVolume;
-        
-    ///是否跟随交易所收取
-    // TThostFtdcBoolType int
-    self->data.IsRelative = OptionInstrMarginAdjustField_IsRelative;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcRatioType double
-    self->data.MShortMarginRatioByMoney = OptionInstrMarginAdjustField_MShortMarginRatioByMoney;
-        
-    ///做市商空头保证金调整系数
-    // TThostFtdcMoneyType double
-    self->data.MShortMarginRatioByVolume = OptionInstrMarginAdjustField_MShortMarginRatioByVolume;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( OptionInstrMarginAdjustField_InstrumentID != NULL ) {
-        if(OptionInstrMarginAdjustField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", OptionInstrMarginAdjustField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, OptionInstrMarginAdjustField_InstrumentID, OptionInstrMarginAdjustField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, OptionInstrMarginAdjustField_InstrumentID, sizeof(self->data.InstrumentID) );
-        OptionInstrMarginAdjustField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInvestorRangeType char
+	self->data.InvestorRange = pOptionInstrMarginAdjustField_InvestorRange;
+
+	//TThostFtdcBrokerIDType char[11]
+	if(pOptionInstrMarginAdjustField_BrokerID != NULL) {
+		if(pOptionInstrMarginAdjustField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pOptionInstrMarginAdjustField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pOptionInstrMarginAdjustField_BrokerID, sizeof(self->data.BrokerID) );
+		pOptionInstrMarginAdjustField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pOptionInstrMarginAdjustField_InvestorID != NULL) {
+		if(pOptionInstrMarginAdjustField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pOptionInstrMarginAdjustField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pOptionInstrMarginAdjustField_InvestorID, sizeof(self->data.InvestorID) );
+		pOptionInstrMarginAdjustField_InvestorID = NULL;
+	}
+
+	//TThostFtdcRatioType double
+	self->data.SShortMarginRatioByMoney = pOptionInstrMarginAdjustField_SShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.SShortMarginRatioByVolume = pOptionInstrMarginAdjustField_SShortMarginRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.HShortMarginRatioByMoney = pOptionInstrMarginAdjustField_HShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.HShortMarginRatioByVolume = pOptionInstrMarginAdjustField_HShortMarginRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.AShortMarginRatioByMoney = pOptionInstrMarginAdjustField_AShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.AShortMarginRatioByVolume = pOptionInstrMarginAdjustField_AShortMarginRatioByVolume;
+	//TThostFtdcBoolType int
+	self->data.IsRelative = pOptionInstrMarginAdjustField_IsRelative;
+
+	//TThostFtdcRatioType double
+	self->data.MShortMarginRatioByMoney = pOptionInstrMarginAdjustField_MShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.MShortMarginRatioByVolume = pOptionInstrMarginAdjustField_MShortMarginRatioByVolume;
+	//TThostFtdcInstrumentIDType char[81]
+	if(pOptionInstrMarginAdjustField_InstrumentID != NULL) {
+		if(pOptionInstrMarginAdjustField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pOptionInstrMarginAdjustField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pOptionInstrMarginAdjustField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pOptionInstrMarginAdjustField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -214,20 +171,20 @@ static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_repr(PyCThostFtdcOptio
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:s,s:s,s:d,s:d,s:d,s:d,s:d,s:d,s:i,s:d,s:d,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"InvestorRange", self->data.InvestorRange 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"SShortMarginRatioByMoney", self->data.SShortMarginRatioByMoney 
-        ,"SShortMarginRatioByVolume", self->data.SShortMarginRatioByVolume 
-        ,"HShortMarginRatioByMoney", self->data.HShortMarginRatioByMoney 
-        ,"HShortMarginRatioByVolume", self->data.HShortMarginRatioByVolume 
-        ,"AShortMarginRatioByMoney", self->data.AShortMarginRatioByMoney 
-        ,"AShortMarginRatioByVolume", self->data.AShortMarginRatioByVolume 
-        ,"IsRelative", self->data.IsRelative 
-        ,"MShortMarginRatioByMoney", self->data.MShortMarginRatioByMoney 
-        ,"MShortMarginRatioByVolume", self->data.MShortMarginRatioByVolume 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "reserve1", self->data.reserve1 
+		, "InvestorRange", self->data.InvestorRange
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "SShortMarginRatioByMoney", self->data.SShortMarginRatioByMoney
+		, "SShortMarginRatioByVolume", self->data.SShortMarginRatioByVolume
+		, "HShortMarginRatioByMoney", self->data.HShortMarginRatioByMoney
+		, "HShortMarginRatioByVolume", self->data.HShortMarginRatioByVolume
+		, "AShortMarginRatioByMoney", self->data.AShortMarginRatioByMoney
+		, "AShortMarginRatioByVolume", self->data.AShortMarginRatioByVolume
+		, "IsRelative", self->data.IsRelative
+		, "MShortMarginRatioByMoney", self->data.MShortMarginRatioByMoney
+		, "MShortMarginRatioByVolume", self->data.MShortMarginRatioByVolume
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -240,117 +197,127 @@ static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_repr(PyCThostFtdcOptio
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_reserve1(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_reserve1(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///投资者范围
-// TThostFtdcInvestorRangeType char
 static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_InvestorRange(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
+	return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
 }
 
-///投资者范围
-// TThostFtdcInvestorRangeType char
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorRange(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorRange must be equal 1 bytes");
-        return -1;
-    }
-    self->data.InvestorRange = *buf;
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_BrokerID(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_BrokerID(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_InvestorID(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorID(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///投机空头保证金调整系数
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_SShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SShortMarginRatioByMoney);
+	return PyFloat_FromDouble(self->data.SShortMarginRatioByMoney);
 }
 
-///投机空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_SShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.SShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.HShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.HShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.AShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.AShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_IsRelative(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsRelative);
+#else 
+	return PyInt_FromLong(self->data.IsRelative);
+#endif 
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.MShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.MShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_InstrumentID(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
+	return PyBytes_FromString(self->data.InstrumentID);
+}
+
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_reserve1(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorRange(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorRange must be less than 1 bytes");
+		return -1;
+	}
+	self->data.InvestorRange = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_BrokerID(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorID(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SShortMarginRatioByMoney Expected float");
         return -1;
@@ -362,16 +329,8 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByMoney
     self->data.SShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///投机空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_SShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SShortMarginRatioByVolume);
-}
 
-///投机空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SShortMarginRatioByVolume Expected float");
         return -1;
@@ -383,16 +342,8 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByVolum
     self->data.SShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///保值空头保证金调整系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.HShortMarginRatioByMoney);
-}
 
-///保值空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "HShortMarginRatioByMoney Expected float");
         return -1;
@@ -404,16 +355,8 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByMoney
     self->data.HShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///保值空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.HShortMarginRatioByVolume);
-}
 
-///保值空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "HShortMarginRatioByVolume Expected float");
         return -1;
@@ -425,16 +368,8 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByVolum
     self->data.HShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///套利空头保证金调整系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AShortMarginRatioByMoney);
-}
 
-///套利空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AShortMarginRatioByMoney Expected float");
         return -1;
@@ -446,16 +381,8 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByMoney
     self->data.AShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///套利空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AShortMarginRatioByVolume);
-}
 
-///套利空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AShortMarginRatioByVolume Expected float");
         return -1;
@@ -467,54 +394,34 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByVolum
     self->data.AShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///是否跟随交易所收取
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_IsRelative(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsRelative);
-#else
-    return PyInt_FromLong(self->data.IsRelative);
-#endif
-}
 
-///是否跟随交易所收取
-// TThostFtdcBoolType int
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_IsRelative(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_IsRelative(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsRelative Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsRelative Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsRelative Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsRelative value out of range for C int");
-        return -1;
-    }
-    self->data.IsRelative = (int)buf;
-    return 0;
-}
-        
-///做市商空头保证金调整系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MShortMarginRatioByMoney);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsRelative = (int)buf; 
+    return 0; 
 }
 
-///做市商空头保证金调整系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByMoney(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MShortMarginRatioByMoney Expected float");
         return -1;
@@ -526,16 +433,8 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByMoney
     self->data.MShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///做市商空头保证金调整系数
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MShortMarginRatioByVolume);
-}
 
-///做市商空头保证金调整系数
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByVolume(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MShortMarginRatioByVolume Expected float");
         return -1;
@@ -547,63 +446,39 @@ static int PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByVolum
     self->data.MShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcOptionInstrMarginAdjustField_get_InstrumentID(PyCThostFtdcOptionInstrMarginAdjustField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+
+static int PyCThostFtdcOptionInstrMarginAdjustField_set_InstrumentID(PyCThostFtdcOptionInstrMarginAdjustField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcOptionInstrMarginAdjustField_set_InstrumentID(PyCThostFtdcOptionInstrMarginAdjustField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcOptionInstrMarginAdjustField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_reserve1, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_reserve1, (char *)"reserve1", NULL},
-    ///投资者范围 
-    {(char *)"InvestorRange", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_InvestorRange, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorRange, (char *)"InvestorRange", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_BrokerID, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_InvestorID, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///投机空头保证金调整系数 
-    {(char *)"SShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_SShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByMoney, (char *)"SShortMarginRatioByMoney", NULL},
-    ///投机空头保证金调整系数 
-    {(char *)"SShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_SShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByVolume, (char *)"SShortMarginRatioByVolume", NULL},
-    ///保值空头保证金调整系数 
-    {(char *)"HShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByMoney, (char *)"HShortMarginRatioByMoney", NULL},
-    ///保值空头保证金调整系数 
-    {(char *)"HShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByVolume, (char *)"HShortMarginRatioByVolume", NULL},
-    ///套利空头保证金调整系数 
-    {(char *)"AShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByMoney, (char *)"AShortMarginRatioByMoney", NULL},
-    ///套利空头保证金调整系数 
-    {(char *)"AShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByVolume, (char *)"AShortMarginRatioByVolume", NULL},
-    ///是否跟随交易所收取 
-    {(char *)"IsRelative", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_IsRelative, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_IsRelative, (char *)"IsRelative", NULL},
-    ///做市商空头保证金调整系数 
-    {(char *)"MShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByMoney, (char *)"MShortMarginRatioByMoney", NULL},
-    ///做市商空头保证金调整系数 
-    {(char *)"MShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByVolume, (char *)"MShortMarginRatioByVolume", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_reserve1, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"InvestorRange", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_InvestorRange, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorRange, (char *)"InvestorRange", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_BrokerID, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_InvestorID, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"SShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_SShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByMoney, (char *)"SShortMarginRatioByMoney", NULL},
+	 {(char *)"SShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_SShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_SShortMarginRatioByVolume, (char *)"SShortMarginRatioByVolume", NULL},
+	 {(char *)"HShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByMoney, (char *)"HShortMarginRatioByMoney", NULL},
+	 {(char *)"HShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_HShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_HShortMarginRatioByVolume, (char *)"HShortMarginRatioByVolume", NULL},
+	 {(char *)"AShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByMoney, (char *)"AShortMarginRatioByMoney", NULL},
+	 {(char *)"AShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_AShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_AShortMarginRatioByVolume, (char *)"AShortMarginRatioByVolume", NULL},
+	 {(char *)"IsRelative", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_IsRelative, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_IsRelative, (char *)"IsRelative", NULL},
+	 {(char *)"MShortMarginRatioByMoney", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByMoney, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByMoney, (char *)"MShortMarginRatioByMoney", NULL},
+	 {(char *)"MShortMarginRatioByVolume", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_MShortMarginRatioByVolume, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_MShortMarginRatioByVolume, (char *)"MShortMarginRatioByVolume", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrMarginAdjustField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrMarginAdjustField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

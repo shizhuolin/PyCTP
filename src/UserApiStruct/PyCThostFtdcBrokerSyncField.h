@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///经纪公司同步
+
 
 typedef struct PyCThostFtdcBrokerSyncField {
     PyObject_HEAD

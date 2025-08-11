@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///输入的申请组合
+
 
 typedef struct PyCThostFtdcInputCombActionField {
     PyObject_HEAD

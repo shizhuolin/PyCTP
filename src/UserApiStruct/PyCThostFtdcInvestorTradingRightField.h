@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者交易权限设置
+
 
 typedef struct PyCThostFtdcInvestorTradingRightField {
     PyObject_HEAD

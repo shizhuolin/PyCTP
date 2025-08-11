@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///MulticastInstrument
+
 
 typedef struct PyCThostFtdcMulticastInstrumentField {
     PyObject_HEAD

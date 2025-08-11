@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcCFMMCBrokerKeyField.h"
 
-///保证金监管系统经纪公司密钥
+
 
 static PyObject *PyCThostFtdcCFMMCBrokerKeyField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcCFMMCBrokerKeyField *self = (PyCThostFtdcCFMMCBrokerKeyField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcCFMMCBrokerKeyField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,40 +18,33 @@ static int PyCThostFtdcCFMMCBrokerKeyField_init(PyCThostFtdcCFMMCBrokerKeyField 
 
     static const char *kwlist[] = {"BrokerID", "ParticipantID", "CreateDate", "CreateTime", "KeyID", "CurrentKey", "KeyKind",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pCFMMCBrokerKeyField_BrokerID = NULL;
+	Py_ssize_t pCFMMCBrokerKeyField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *CFMMCBrokerKeyField_BrokerID = NULL;
-    Py_ssize_t CFMMCBrokerKeyField_BrokerID_len = 0;
-            
-    ///经纪公司统一编码
-    // TThostFtdcParticipantIDType char[11]
-    const char *CFMMCBrokerKeyField_ParticipantID = NULL;
-    Py_ssize_t CFMMCBrokerKeyField_ParticipantID_len = 0;
-            
-    ///密钥生成日期
-    // TThostFtdcDateType char[9]
-    const char *CFMMCBrokerKeyField_CreateDate = NULL;
-    Py_ssize_t CFMMCBrokerKeyField_CreateDate_len = 0;
-            
-    ///密钥生成时间
-    // TThostFtdcTimeType char[9]
-    const char *CFMMCBrokerKeyField_CreateTime = NULL;
-    Py_ssize_t CFMMCBrokerKeyField_CreateTime_len = 0;
-            
-    ///密钥编号
-    // TThostFtdcSequenceNoType int
-    int CFMMCBrokerKeyField_KeyID = 0;
-        
-    ///动态密钥
-    // TThostFtdcCFMMCKeyType char[21]
-    const char *CFMMCBrokerKeyField_CurrentKey = NULL;
-    Py_ssize_t CFMMCBrokerKeyField_CurrentKey_len = 0;
-            
-    ///动态密钥类型
-    // TThostFtdcCFMMCKeyKindType char
-    char CFMMCBrokerKeyField_KeyKind = 0;
-            
+	//TThostFtdcParticipantIDType char[11]
+	const char *pCFMMCBrokerKeyField_ParticipantID = NULL;
+	Py_ssize_t pCFMMCBrokerKeyField_ParticipantID_len = 0;
+
+	//TThostFtdcDateType char[9]
+	const char *pCFMMCBrokerKeyField_CreateDate = NULL;
+	Py_ssize_t pCFMMCBrokerKeyField_CreateDate_len = 0;
+
+	//TThostFtdcTimeType char[9]
+	const char *pCFMMCBrokerKeyField_CreateTime = NULL;
+	Py_ssize_t pCFMMCBrokerKeyField_CreateTime_len = 0;
+
+	//TThostFtdcSequenceNoType int
+	int pCFMMCBrokerKeyField_KeyID = 0;
+
+	//TThostFtdcCFMMCKeyType char[21]
+	const char *pCFMMCBrokerKeyField_CurrentKey = NULL;
+	Py_ssize_t pCFMMCBrokerKeyField_CurrentKey_len = 0;
+
+	//TThostFtdcCFMMCKeyKindType char
+	char pCFMMCBrokerKeyField_KeyKind = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#iy#c", (char **)kwlist
@@ -58,93 +52,76 @@ static int PyCThostFtdcCFMMCBrokerKeyField_init(PyCThostFtdcCFMMCBrokerKeyField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#is#c", (char **)kwlist
 #endif
 
-        , &CFMMCBrokerKeyField_BrokerID, &CFMMCBrokerKeyField_BrokerID_len 
-        , &CFMMCBrokerKeyField_ParticipantID, &CFMMCBrokerKeyField_ParticipantID_len 
-        , &CFMMCBrokerKeyField_CreateDate, &CFMMCBrokerKeyField_CreateDate_len 
-        , &CFMMCBrokerKeyField_CreateTime, &CFMMCBrokerKeyField_CreateTime_len 
-        , &CFMMCBrokerKeyField_KeyID 
-        , &CFMMCBrokerKeyField_CurrentKey, &CFMMCBrokerKeyField_CurrentKey_len 
-        , &CFMMCBrokerKeyField_KeyKind 
+		, &pCFMMCBrokerKeyField_BrokerID, &pCFMMCBrokerKeyField_BrokerID_len
+		, &pCFMMCBrokerKeyField_ParticipantID, &pCFMMCBrokerKeyField_ParticipantID_len
+		, &pCFMMCBrokerKeyField_CreateDate, &pCFMMCBrokerKeyField_CreateDate_len
+		, &pCFMMCBrokerKeyField_CreateTime, &pCFMMCBrokerKeyField_CreateTime_len
+		, &pCFMMCBrokerKeyField_KeyID
+		, &pCFMMCBrokerKeyField_CurrentKey, &pCFMMCBrokerKeyField_CurrentKey_len
+		, &pCFMMCBrokerKeyField_KeyKind
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pCFMMCBrokerKeyField_BrokerID != NULL) {
+		if(pCFMMCBrokerKeyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pCFMMCBrokerKeyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pCFMMCBrokerKeyField_BrokerID, sizeof(self->data.BrokerID) );
+		pCFMMCBrokerKeyField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( CFMMCBrokerKeyField_BrokerID != NULL ) {
-        if(CFMMCBrokerKeyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, CFMMCBrokerKeyField_BrokerID, CFMMCBrokerKeyField_BrokerID_len);        
-        strncpy(self->data.BrokerID, CFMMCBrokerKeyField_BrokerID, sizeof(self->data.BrokerID) );
-        CFMMCBrokerKeyField_BrokerID = NULL;
-    }
-            
-    ///经纪公司统一编码
-    // TThostFtdcParticipantIDType char[11]
-    if( CFMMCBrokerKeyField_ParticipantID != NULL ) {
-        if(CFMMCBrokerKeyField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
-            PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
-            return -1;
-        }
-        // memset(self->data.ParticipantID, 0, sizeof(self->data.ParticipantID));
-        // memcpy(self->data.ParticipantID, CFMMCBrokerKeyField_ParticipantID, CFMMCBrokerKeyField_ParticipantID_len);        
-        strncpy(self->data.ParticipantID, CFMMCBrokerKeyField_ParticipantID, sizeof(self->data.ParticipantID) );
-        CFMMCBrokerKeyField_ParticipantID = NULL;
-    }
-            
-    ///密钥生成日期
-    // TThostFtdcDateType char[9]
-    if( CFMMCBrokerKeyField_CreateDate != NULL ) {
-        if(CFMMCBrokerKeyField_CreateDate_len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
-            PyErr_Format(PyExc_ValueError, "CreateDate too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_CreateDate_len, (Py_ssize_t)sizeof(self->data.CreateDate));
-            return -1;
-        }
-        // memset(self->data.CreateDate, 0, sizeof(self->data.CreateDate));
-        // memcpy(self->data.CreateDate, CFMMCBrokerKeyField_CreateDate, CFMMCBrokerKeyField_CreateDate_len);        
-        strncpy(self->data.CreateDate, CFMMCBrokerKeyField_CreateDate, sizeof(self->data.CreateDate) );
-        CFMMCBrokerKeyField_CreateDate = NULL;
-    }
-            
-    ///密钥生成时间
-    // TThostFtdcTimeType char[9]
-    if( CFMMCBrokerKeyField_CreateTime != NULL ) {
-        if(CFMMCBrokerKeyField_CreateTime_len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
-            PyErr_Format(PyExc_ValueError, "CreateTime too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_CreateTime_len, (Py_ssize_t)sizeof(self->data.CreateTime));
-            return -1;
-        }
-        // memset(self->data.CreateTime, 0, sizeof(self->data.CreateTime));
-        // memcpy(self->data.CreateTime, CFMMCBrokerKeyField_CreateTime, CFMMCBrokerKeyField_CreateTime_len);        
-        strncpy(self->data.CreateTime, CFMMCBrokerKeyField_CreateTime, sizeof(self->data.CreateTime) );
-        CFMMCBrokerKeyField_CreateTime = NULL;
-    }
-            
-    ///密钥编号
-    // TThostFtdcSequenceNoType int
-    self->data.KeyID = CFMMCBrokerKeyField_KeyID;
-        
-    ///动态密钥
-    // TThostFtdcCFMMCKeyType char[21]
-    if( CFMMCBrokerKeyField_CurrentKey != NULL ) {
-        if(CFMMCBrokerKeyField_CurrentKey_len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
-            PyErr_Format(PyExc_ValueError, "CurrentKey too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_CurrentKey_len, (Py_ssize_t)sizeof(self->data.CurrentKey));
-            return -1;
-        }
-        // memset(self->data.CurrentKey, 0, sizeof(self->data.CurrentKey));
-        // memcpy(self->data.CurrentKey, CFMMCBrokerKeyField_CurrentKey, CFMMCBrokerKeyField_CurrentKey_len);        
-        strncpy(self->data.CurrentKey, CFMMCBrokerKeyField_CurrentKey, sizeof(self->data.CurrentKey) );
-        CFMMCBrokerKeyField_CurrentKey = NULL;
-    }
-            
-    ///动态密钥类型
-    // TThostFtdcCFMMCKeyKindType char
-    self->data.KeyKind = CFMMCBrokerKeyField_KeyKind;
-            
+	//TThostFtdcParticipantIDType char[11]
+	if(pCFMMCBrokerKeyField_ParticipantID != NULL) {
+		if(pCFMMCBrokerKeyField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+			PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", pCFMMCBrokerKeyField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
+			return -1;
+		}
+		strncpy(self->data.ParticipantID, pCFMMCBrokerKeyField_ParticipantID, sizeof(self->data.ParticipantID) );
+		pCFMMCBrokerKeyField_ParticipantID = NULL;
+	}
+
+	//TThostFtdcDateType char[9]
+	if(pCFMMCBrokerKeyField_CreateDate != NULL) {
+		if(pCFMMCBrokerKeyField_CreateDate_len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+			PyErr_Format(PyExc_ValueError, "CreateDate too long: length=%zd (max allowed is %zd)", pCFMMCBrokerKeyField_CreateDate_len, (Py_ssize_t)sizeof(self->data.CreateDate));
+			return -1;
+		}
+		strncpy(self->data.CreateDate, pCFMMCBrokerKeyField_CreateDate, sizeof(self->data.CreateDate) );
+		pCFMMCBrokerKeyField_CreateDate = NULL;
+	}
+
+	//TThostFtdcTimeType char[9]
+	if(pCFMMCBrokerKeyField_CreateTime != NULL) {
+		if(pCFMMCBrokerKeyField_CreateTime_len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+			PyErr_Format(PyExc_ValueError, "CreateTime too long: length=%zd (max allowed is %zd)", pCFMMCBrokerKeyField_CreateTime_len, (Py_ssize_t)sizeof(self->data.CreateTime));
+			return -1;
+		}
+		strncpy(self->data.CreateTime, pCFMMCBrokerKeyField_CreateTime, sizeof(self->data.CreateTime) );
+		pCFMMCBrokerKeyField_CreateTime = NULL;
+	}
+
+	//TThostFtdcSequenceNoType int
+	self->data.KeyID = pCFMMCBrokerKeyField_KeyID;
+
+	//TThostFtdcCFMMCKeyType char[21]
+	if(pCFMMCBrokerKeyField_CurrentKey != NULL) {
+		if(pCFMMCBrokerKeyField_CurrentKey_len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+			PyErr_Format(PyExc_ValueError, "CurrentKey too long: length=%zd (max allowed is %zd)", pCFMMCBrokerKeyField_CurrentKey_len, (Py_ssize_t)sizeof(self->data.CurrentKey));
+			return -1;
+		}
+		strncpy(self->data.CurrentKey, pCFMMCBrokerKeyField_CurrentKey, sizeof(self->data.CurrentKey) );
+		pCFMMCBrokerKeyField_CurrentKey = NULL;
+	}
+
+	//TThostFtdcCFMMCKeyKindType char
+	self->data.KeyKind = pCFMMCBrokerKeyField_KeyKind;
+
+
 
     return 0;
 }
@@ -161,13 +138,13 @@ static PyObject *PyCThostFtdcCFMMCBrokerKeyField_repr(PyCThostFtdcCFMMCBrokerKey
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:i,s:s,s:c}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"ParticipantID", self->data.ParticipantID//, (Py_ssize_t)sizeof(self->data.ParticipantID) 
-        ,"CreateDate", self->data.CreateDate//, (Py_ssize_t)sizeof(self->data.CreateDate) 
-        ,"CreateTime", self->data.CreateTime//, (Py_ssize_t)sizeof(self->data.CreateTime) 
-        ,"KeyID", self->data.KeyID 
-        ,"CurrentKey", self->data.CurrentKey//, (Py_ssize_t)sizeof(self->data.CurrentKey) 
-        ,"KeyKind", self->data.KeyKind 
+		, "BrokerID", self->data.BrokerID 
+		, "ParticipantID", self->data.ParticipantID 
+		, "CreateDate", self->data.CreateDate 
+		, "CreateTime", self->data.CreateTime 
+		, "KeyID", self->data.KeyID
+		, "CurrentKey", self->data.CurrentKey 
+		, "KeyKind", self->data.KeyKind
 
 
 		);
@@ -180,214 +157,164 @@ static PyObject *PyCThostFtdcCFMMCBrokerKeyField_repr(PyCThostFtdcCFMMCBrokerKey
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_BrokerID(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcCFMMCBrokerKeyField_set_BrokerID(PyCThostFtdcCFMMCBrokerKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///经纪公司统一编码
-// TThostFtdcParticipantIDType char[11]
 static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_ParticipantID(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ParticipantID, (Py_ssize_t)sizeof(self->data.ParticipantID));
-    return PyBytes_FromString(self->data.ParticipantID);
+	return PyBytes_FromString(self->data.ParticipantID);
 }
 
-///经纪公司统一编码
-// TThostFtdcParticipantIDType char[11]
-static int PyCThostFtdcCFMMCBrokerKeyField_set_ParticipantID(PyCThostFtdcCFMMCBrokerKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ParticipantID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
-        PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.ParticipantID, 0, sizeof(self->data.ParticipantID));
-    // memcpy(self->data.ParticipantID, buf, len);
-    strncpy(self->data.ParticipantID, buf, sizeof(self->data.ParticipantID));
-    return 0;
-}
-            
-///密钥生成日期
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_CreateDate(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CreateDate, (Py_ssize_t)sizeof(self->data.CreateDate));
-    return PyBytes_FromString(self->data.CreateDate);
+	return PyBytes_FromString(self->data.CreateDate);
 }
 
-///密钥生成日期
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcCFMMCBrokerKeyField_set_CreateDate(PyCThostFtdcCFMMCBrokerKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CreateDate Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
-        PyErr_SetString(PyExc_ValueError, "CreateDate must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.CreateDate, 0, sizeof(self->data.CreateDate));
-    // memcpy(self->data.CreateDate, buf, len);
-    strncpy(self->data.CreateDate, buf, sizeof(self->data.CreateDate));
-    return 0;
-}
-            
-///密钥生成时间
-// TThostFtdcTimeType char[9]
 static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_CreateTime(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CreateTime, (Py_ssize_t)sizeof(self->data.CreateTime));
-    return PyBytes_FromString(self->data.CreateTime);
+	return PyBytes_FromString(self->data.CreateTime);
 }
 
-///密钥生成时间
-// TThostFtdcTimeType char[9]
-static int PyCThostFtdcCFMMCBrokerKeyField_set_CreateTime(PyCThostFtdcCFMMCBrokerKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CreateTime Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
-        PyErr_SetString(PyExc_ValueError, "CreateTime must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.CreateTime, 0, sizeof(self->data.CreateTime));
-    // memcpy(self->data.CreateTime, buf, len);
-    strncpy(self->data.CreateTime, buf, sizeof(self->data.CreateTime));
-    return 0;
-}
-            
-///密钥编号
-// TThostFtdcSequenceNoType int
 static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_KeyID(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.KeyID);
-#else
-    return PyInt_FromLong(self->data.KeyID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.KeyID);
+#else 
+	return PyInt_FromLong(self->data.KeyID);
+#endif 
 }
 
-///密钥编号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcCFMMCBrokerKeyField_set_KeyID(PyCThostFtdcCFMMCBrokerKeyField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_CurrentKey(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
+	return PyBytes_FromString(self->data.CurrentKey);
+}
+
+static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_KeyKind(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.KeyKind), 1);
+}
+
+static int PyCThostFtdcCFMMCBrokerKeyField_set_BrokerID(PyCThostFtdcCFMMCBrokerKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcCFMMCBrokerKeyField_set_ParticipantID(PyCThostFtdcCFMMCBrokerKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ParticipantID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+		PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.ParticipantID, buf, sizeof(self->data.ParticipantID));
+	return 0;
+}
+
+static int PyCThostFtdcCFMMCBrokerKeyField_set_CreateDate(PyCThostFtdcCFMMCBrokerKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CreateDate Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+		PyErr_SetString(PyExc_ValueError, "CreateDate must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.CreateDate, buf, sizeof(self->data.CreateDate));
+	return 0;
+}
+
+static int PyCThostFtdcCFMMCBrokerKeyField_set_CreateTime(PyCThostFtdcCFMMCBrokerKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CreateTime Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+		PyErr_SetString(PyExc_ValueError, "CreateTime must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.CreateTime, buf, sizeof(self->data.CreateTime));
+	return 0;
+}
+
+static int PyCThostFtdcCFMMCBrokerKeyField_set_KeyID(PyCThostFtdcCFMMCBrokerKeyField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "KeyID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "KeyID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "KeyID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the KeyID value out of range for C int");
-        return -1;
-    }
-    self->data.KeyID = (int)buf;
-    return 0;
-}
-        
-///动态密钥
-// TThostFtdcCFMMCKeyType char[21]
-static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_CurrentKey(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrentKey, (Py_ssize_t)sizeof(self->data.CurrentKey));
-    return PyBytes_FromString(self->data.CurrentKey);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.KeyID = (int)buf; 
+    return 0; 
 }
 
-///动态密钥
-// TThostFtdcCFMMCKeyType char[21]
-static int PyCThostFtdcCFMMCBrokerKeyField_set_CurrentKey(PyCThostFtdcCFMMCBrokerKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrentKey Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
-        PyErr_SetString(PyExc_ValueError, "CurrentKey must be less than 21 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrentKey, 0, sizeof(self->data.CurrentKey));
-    // memcpy(self->data.CurrentKey, buf, len);
-    strncpy(self->data.CurrentKey, buf, sizeof(self->data.CurrentKey));
-    return 0;
-}
-            
-///动态密钥类型
-// TThostFtdcCFMMCKeyKindType char
-static PyObject *PyCThostFtdcCFMMCBrokerKeyField_get_KeyKind(PyCThostFtdcCFMMCBrokerKeyField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.KeyKind), 1);
+static int PyCThostFtdcCFMMCBrokerKeyField_set_CurrentKey(PyCThostFtdcCFMMCBrokerKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrentKey Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+		PyErr_SetString(PyExc_ValueError, "CurrentKey must be less than 21 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrentKey, buf, sizeof(self->data.CurrentKey));
+	return 0;
 }
 
-///动态密钥类型
-// TThostFtdcCFMMCKeyKindType char
-static int PyCThostFtdcCFMMCBrokerKeyField_set_KeyKind(PyCThostFtdcCFMMCBrokerKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "KeyKind Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.KeyKind)) {
-        PyErr_SetString(PyExc_ValueError, "KeyKind must be equal 1 bytes");
-        return -1;
-    }
-    self->data.KeyKind = *buf;
-    return 0;
+static int PyCThostFtdcCFMMCBrokerKeyField_set_KeyKind(PyCThostFtdcCFMMCBrokerKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "KeyKind Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.KeyKind)) {
+		PyErr_SetString(PyExc_ValueError, "KeyKind must be less than 1 bytes");
+		return -1;
+	}
+	self->data.KeyKind = *buf;
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcCFMMCBrokerKeyField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_BrokerID, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///经纪公司统一编码 
-    {(char *)"ParticipantID", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_ParticipantID, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_ParticipantID, (char *)"ParticipantID", NULL},
-    ///密钥生成日期 
-    {(char *)"CreateDate", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_CreateDate, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_CreateDate, (char *)"CreateDate", NULL},
-    ///密钥生成时间 
-    {(char *)"CreateTime", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_CreateTime, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_CreateTime, (char *)"CreateTime", NULL},
-    ///密钥编号 
-    {(char *)"KeyID", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_KeyID, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_KeyID, (char *)"KeyID", NULL},
-    ///动态密钥 
-    {(char *)"CurrentKey", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_CurrentKey, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_CurrentKey, (char *)"CurrentKey", NULL},
-    ///动态密钥类型 
-    {(char *)"KeyKind", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_KeyKind, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_KeyKind, (char *)"KeyKind", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_BrokerID, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"ParticipantID", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_ParticipantID, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_ParticipantID, (char *)"ParticipantID", NULL},
+	 {(char *)"CreateDate", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_CreateDate, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_CreateDate, (char *)"CreateDate", NULL},
+	 {(char *)"CreateTime", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_CreateTime, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_CreateTime, (char *)"CreateTime", NULL},
+	 {(char *)"KeyID", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_KeyID, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_KeyID, (char *)"KeyID", NULL},
+	 {(char *)"CurrentKey", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_CurrentKey, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_CurrentKey, (char *)"CurrentKey", NULL},
+	 {(char *)"KeyKind", (getter)PyCThostFtdcCFMMCBrokerKeyField_get_KeyKind, (setter)PyCThostFtdcCFMMCBrokerKeyField_set_KeyKind, (char *)"KeyKind", NULL},
 
     {NULL}
 };

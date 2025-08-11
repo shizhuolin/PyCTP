@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryInstrumentField.h"
 
-///查询合约
+
 
 static PyObject *PyCThostFtdcQryInstrumentField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryInstrumentField *self = (PyCThostFtdcQryInstrumentField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryInstrumentField_new(PyTypeObject *type, PyObject
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,42 +18,35 @@ static int PyCThostFtdcQryInstrumentField_init(PyCThostFtdcQryInstrumentField *s
 
     static const char *kwlist[] = {"reserve1", "ExchangeID", "reserve2", "reserve3", "InstrumentID", "ExchangeInstID", "ProductID",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pQryInstrumentField_reserve1 = NULL;
+	Py_ssize_t pQryInstrumentField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *QryInstrumentField_reserve1 = NULL;
-    Py_ssize_t QryInstrumentField_reserve1_len = 0;
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *QryInstrumentField_ExchangeID = NULL;
-    Py_ssize_t QryInstrumentField_ExchangeID_len = 0;
-            
-    ///保留的无效字段
-    // TThostFtdcOldExchangeInstIDType char[31]
-    const char *QryInstrumentField_reserve2 = NULL;
-    Py_ssize_t QryInstrumentField_reserve2_len = 0;
-            
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *QryInstrumentField_reserve3 = NULL;
-    Py_ssize_t QryInstrumentField_reserve3_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryInstrumentField_InstrumentID = NULL;
-    Py_ssize_t QryInstrumentField_InstrumentID_len = 0;
-            
-    ///合约在交易所的代码
-    // TThostFtdcExchangeInstIDType char[81]
-    const char *QryInstrumentField_ExchangeInstID = NULL;
-    Py_ssize_t QryInstrumentField_ExchangeInstID_len = 0;
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryInstrumentField_ProductID = NULL;
-    Py_ssize_t QryInstrumentField_ProductID_len = 0;
-            
+	//TThostFtdcExchangeIDType char[9]
+	const char *pQryInstrumentField_ExchangeID = NULL;
+	Py_ssize_t pQryInstrumentField_ExchangeID_len = 0;
+
+	//TThostFtdcOldExchangeInstIDType char[31]
+	const char *pQryInstrumentField_reserve2 = NULL;
+	Py_ssize_t pQryInstrumentField_reserve2_len = 0;
+
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pQryInstrumentField_reserve3 = NULL;
+	Py_ssize_t pQryInstrumentField_reserve3_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryInstrumentField_InstrumentID = NULL;
+	Py_ssize_t pQryInstrumentField_InstrumentID_len = 0;
+
+	//TThostFtdcExchangeInstIDType char[81]
+	const char *pQryInstrumentField_ExchangeInstID = NULL;
+	Py_ssize_t pQryInstrumentField_ExchangeInstID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryInstrumentField_ProductID = NULL;
+	Py_ssize_t pQryInstrumentField_ProductID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#y#y#y#", (char **)kwlist
@@ -60,111 +54,90 @@ static int PyCThostFtdcQryInstrumentField_init(PyCThostFtdcQryInstrumentField *s
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#s#s#s#", (char **)kwlist
 #endif
 
-        , &QryInstrumentField_reserve1, &QryInstrumentField_reserve1_len 
-        , &QryInstrumentField_ExchangeID, &QryInstrumentField_ExchangeID_len 
-        , &QryInstrumentField_reserve2, &QryInstrumentField_reserve2_len 
-        , &QryInstrumentField_reserve3, &QryInstrumentField_reserve3_len 
-        , &QryInstrumentField_InstrumentID, &QryInstrumentField_InstrumentID_len 
-        , &QryInstrumentField_ExchangeInstID, &QryInstrumentField_ExchangeInstID_len 
-        , &QryInstrumentField_ProductID, &QryInstrumentField_ProductID_len 
+		, &pQryInstrumentField_reserve1, &pQryInstrumentField_reserve1_len
+		, &pQryInstrumentField_ExchangeID, &pQryInstrumentField_ExchangeID_len
+		, &pQryInstrumentField_reserve2, &pQryInstrumentField_reserve2_len
+		, &pQryInstrumentField_reserve3, &pQryInstrumentField_reserve3_len
+		, &pQryInstrumentField_InstrumentID, &pQryInstrumentField_InstrumentID_len
+		, &pQryInstrumentField_ExchangeInstID, &pQryInstrumentField_ExchangeInstID_len
+		, &pQryInstrumentField_ProductID, &pQryInstrumentField_ProductID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pQryInstrumentField_reserve1 != NULL) {
+		if(pQryInstrumentField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pQryInstrumentField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pQryInstrumentField_reserve1, sizeof(self->data.reserve1) );
+		pQryInstrumentField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( QryInstrumentField_reserve1 != NULL ) {
-        if(QryInstrumentField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryInstrumentField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, QryInstrumentField_reserve1, QryInstrumentField_reserve1_len);        
-        strncpy(self->data.reserve1, QryInstrumentField_reserve1, sizeof(self->data.reserve1) );
-        QryInstrumentField_reserve1 = NULL;
-    }
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( QryInstrumentField_ExchangeID != NULL ) {
-        if(QryInstrumentField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryInstrumentField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, QryInstrumentField_ExchangeID, QryInstrumentField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, QryInstrumentField_ExchangeID, sizeof(self->data.ExchangeID) );
-        QryInstrumentField_ExchangeID = NULL;
-    }
-            
-    ///保留的无效字段
-    // TThostFtdcOldExchangeInstIDType char[31]
-    if( QryInstrumentField_reserve2 != NULL ) {
-        if(QryInstrumentField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
-            PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", QryInstrumentField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
-            return -1;
-        }
-        // memset(self->data.reserve2, 0, sizeof(self->data.reserve2));
-        // memcpy(self->data.reserve2, QryInstrumentField_reserve2, QryInstrumentField_reserve2_len);        
-        strncpy(self->data.reserve2, QryInstrumentField_reserve2, sizeof(self->data.reserve2) );
-        QryInstrumentField_reserve2 = NULL;
-    }
-            
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( QryInstrumentField_reserve3 != NULL ) {
-        if(QryInstrumentField_reserve3_len > (Py_ssize_t)sizeof(self->data.reserve3)) {
-            PyErr_Format(PyExc_ValueError, "reserve3 too long: length=%zd (max allowed is %zd)", QryInstrumentField_reserve3_len, (Py_ssize_t)sizeof(self->data.reserve3));
-            return -1;
-        }
-        // memset(self->data.reserve3, 0, sizeof(self->data.reserve3));
-        // memcpy(self->data.reserve3, QryInstrumentField_reserve3, QryInstrumentField_reserve3_len);        
-        strncpy(self->data.reserve3, QryInstrumentField_reserve3, sizeof(self->data.reserve3) );
-        QryInstrumentField_reserve3 = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryInstrumentField_InstrumentID != NULL ) {
-        if(QryInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, QryInstrumentField_InstrumentID, QryInstrumentField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, QryInstrumentField_InstrumentID, sizeof(self->data.InstrumentID) );
-        QryInstrumentField_InstrumentID = NULL;
-    }
-            
-    ///合约在交易所的代码
-    // TThostFtdcExchangeInstIDType char[81]
-    if( QryInstrumentField_ExchangeInstID != NULL ) {
-        if(QryInstrumentField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", QryInstrumentField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
-            return -1;
-        }
-        // memset(self->data.ExchangeInstID, 0, sizeof(self->data.ExchangeInstID));
-        // memcpy(self->data.ExchangeInstID, QryInstrumentField_ExchangeInstID, QryInstrumentField_ExchangeInstID_len);        
-        strncpy(self->data.ExchangeInstID, QryInstrumentField_ExchangeInstID, sizeof(self->data.ExchangeInstID) );
-        QryInstrumentField_ExchangeInstID = NULL;
-    }
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryInstrumentField_ProductID != NULL ) {
-        if(QryInstrumentField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryInstrumentField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, QryInstrumentField_ProductID, QryInstrumentField_ProductID_len);        
-        strncpy(self->data.ProductID, QryInstrumentField_ProductID, sizeof(self->data.ProductID) );
-        QryInstrumentField_ProductID = NULL;
-    }
-            
+	//TThostFtdcExchangeIDType char[9]
+	if(pQryInstrumentField_ExchangeID != NULL) {
+		if(pQryInstrumentField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pQryInstrumentField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pQryInstrumentField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pQryInstrumentField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcOldExchangeInstIDType char[31]
+	if(pQryInstrumentField_reserve2 != NULL) {
+		if(pQryInstrumentField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+			PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", pQryInstrumentField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
+			return -1;
+		}
+		strncpy(self->data.reserve2, pQryInstrumentField_reserve2, sizeof(self->data.reserve2) );
+		pQryInstrumentField_reserve2 = NULL;
+	}
+
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pQryInstrumentField_reserve3 != NULL) {
+		if(pQryInstrumentField_reserve3_len > (Py_ssize_t)sizeof(self->data.reserve3)) {
+			PyErr_Format(PyExc_ValueError, "reserve3 too long: length=%zd (max allowed is %zd)", pQryInstrumentField_reserve3_len, (Py_ssize_t)sizeof(self->data.reserve3));
+			return -1;
+		}
+		strncpy(self->data.reserve3, pQryInstrumentField_reserve3, sizeof(self->data.reserve3) );
+		pQryInstrumentField_reserve3 = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryInstrumentField_InstrumentID != NULL) {
+		if(pQryInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pQryInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pQryInstrumentField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pQryInstrumentField_InstrumentID = NULL;
+	}
+
+	//TThostFtdcExchangeInstIDType char[81]
+	if(pQryInstrumentField_ExchangeInstID != NULL) {
+		if(pQryInstrumentField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", pQryInstrumentField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeInstID, pQryInstrumentField_ExchangeInstID, sizeof(self->data.ExchangeInstID) );
+		pQryInstrumentField_ExchangeInstID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryInstrumentField_ProductID != NULL) {
+		if(pQryInstrumentField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pQryInstrumentField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pQryInstrumentField_ProductID, sizeof(self->data.ProductID) );
+		pQryInstrumentField_ProductID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -181,13 +154,13 @@ static PyObject *PyCThostFtdcQryInstrumentField_repr(PyCThostFtdcQryInstrumentFi
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:s,s:s,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"reserve2", self->data.reserve2//, (Py_ssize_t)sizeof(self->data.reserve2) 
-        ,"reserve3", self->data.reserve3//, (Py_ssize_t)sizeof(self->data.reserve3) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
-        ,"ExchangeInstID", self->data.ExchangeInstID//, (Py_ssize_t)sizeof(self->data.ExchangeInstID) 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
+		, "reserve1", self->data.reserve1 
+		, "ExchangeID", self->data.ExchangeID 
+		, "reserve2", self->data.reserve2 
+		, "reserve3", self->data.reserve3 
+		, "InstrumentID", self->data.InstrumentID 
+		, "ExchangeInstID", self->data.ExchangeInstID 
+		, "ProductID", self->data.ProductID 
 
 
 		);
@@ -200,205 +173,149 @@ static PyObject *PyCThostFtdcQryInstrumentField_repr(PyCThostFtdcQryInstrumentFi
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcQryInstrumentField_get_reserve1(PyCThostFtdcQryInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcQryInstrumentField_set_reserve1(PyCThostFtdcQryInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcQryInstrumentField_get_ExchangeID(PyCThostFtdcQryInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcQryInstrumentField_set_ExchangeID(PyCThostFtdcQryInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///保留的无效字段
-// TThostFtdcOldExchangeInstIDType char[31]
 static PyObject *PyCThostFtdcQryInstrumentField_get_reserve2(PyCThostFtdcQryInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve2, (Py_ssize_t)sizeof(self->data.reserve2));
-    return PyBytes_FromString(self->data.reserve2);
+	return PyBytes_FromString(self->data.reserve2);
 }
 
-///保留的无效字段
-// TThostFtdcOldExchangeInstIDType char[31]
-static int PyCThostFtdcQryInstrumentField_set_reserve2(PyCThostFtdcQryInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve2 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
-        PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve2, 0, sizeof(self->data.reserve2));
-    // memcpy(self->data.reserve2, buf, len);
-    strncpy(self->data.reserve2, buf, sizeof(self->data.reserve2));
-    return 0;
-}
-            
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcQryInstrumentField_get_reserve3(PyCThostFtdcQryInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve3, (Py_ssize_t)sizeof(self->data.reserve3));
-    return PyBytes_FromString(self->data.reserve3);
+	return PyBytes_FromString(self->data.reserve3);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcQryInstrumentField_set_reserve3(PyCThostFtdcQryInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve3 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve3)) {
-        PyErr_SetString(PyExc_ValueError, "reserve3 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve3, 0, sizeof(self->data.reserve3));
-    // memcpy(self->data.reserve3, buf, len);
-    strncpy(self->data.reserve3, buf, sizeof(self->data.reserve3));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryInstrumentField_get_InstrumentID(PyCThostFtdcQryInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryInstrumentField_set_InstrumentID(PyCThostFtdcQryInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
-///合约在交易所的代码
-// TThostFtdcExchangeInstIDType char[81]
 static PyObject *PyCThostFtdcQryInstrumentField_get_ExchangeInstID(PyCThostFtdcQryInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeInstID, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
-    return PyBytes_FromString(self->data.ExchangeInstID);
+	return PyBytes_FromString(self->data.ExchangeInstID);
 }
 
-///合约在交易所的代码
-// TThostFtdcExchangeInstIDType char[81]
-static int PyCThostFtdcQryInstrumentField_set_ExchangeInstID(PyCThostFtdcQryInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeInstID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeInstID, 0, sizeof(self->data.ExchangeInstID));
-    // memcpy(self->data.ExchangeInstID, buf, len);
-    strncpy(self->data.ExchangeInstID, buf, sizeof(self->data.ExchangeInstID));
-    return 0;
-}
-            
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryInstrumentField_get_ProductID(PyCThostFtdcQryInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+	return PyBytes_FromString(self->data.ProductID);
 }
 
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryInstrumentField_set_ProductID(PyCThostFtdcQryInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
+static int PyCThostFtdcQryInstrumentField_set_reserve1(PyCThostFtdcQryInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryInstrumentField_set_ExchangeID(PyCThostFtdcQryInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcQryInstrumentField_set_reserve2(PyCThostFtdcQryInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve2 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+		PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve2, buf, sizeof(self->data.reserve2));
+	return 0;
+}
+
+static int PyCThostFtdcQryInstrumentField_set_reserve3(PyCThostFtdcQryInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve3 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve3)) {
+		PyErr_SetString(PyExc_ValueError, "reserve3 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve3, buf, sizeof(self->data.reserve3));
+	return 0;
+}
+
+static int PyCThostFtdcQryInstrumentField_set_InstrumentID(PyCThostFtdcQryInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
+}
+
+static int PyCThostFtdcQryInstrumentField_set_ExchangeInstID(PyCThostFtdcQryInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeInstID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeInstID, buf, sizeof(self->data.ExchangeInstID));
+	return 0;
+}
+
+static int PyCThostFtdcQryInstrumentField_set_ProductID(PyCThostFtdcQryInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryInstrumentField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcQryInstrumentField_get_reserve1, (setter)PyCThostFtdcQryInstrumentField_set_reserve1, (char *)"reserve1", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcQryInstrumentField_get_ExchangeID, (setter)PyCThostFtdcQryInstrumentField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///保留的无效字段 
-    {(char *)"reserve2", (getter)PyCThostFtdcQryInstrumentField_get_reserve2, (setter)PyCThostFtdcQryInstrumentField_set_reserve2, (char *)"reserve2", NULL},
-    ///保留的无效字段 
-    {(char *)"reserve3", (getter)PyCThostFtdcQryInstrumentField_get_reserve3, (setter)PyCThostFtdcQryInstrumentField_set_reserve3, (char *)"reserve3", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcQryInstrumentField_get_InstrumentID, (setter)PyCThostFtdcQryInstrumentField_set_InstrumentID, (char *)"InstrumentID", NULL},
-    ///合约在交易所的代码 
-    {(char *)"ExchangeInstID", (getter)PyCThostFtdcQryInstrumentField_get_ExchangeInstID, (setter)PyCThostFtdcQryInstrumentField_set_ExchangeInstID, (char *)"ExchangeInstID", NULL},
-    ///产品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcQryInstrumentField_get_ProductID, (setter)PyCThostFtdcQryInstrumentField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcQryInstrumentField_get_reserve1, (setter)PyCThostFtdcQryInstrumentField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcQryInstrumentField_get_ExchangeID, (setter)PyCThostFtdcQryInstrumentField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"reserve2", (getter)PyCThostFtdcQryInstrumentField_get_reserve2, (setter)PyCThostFtdcQryInstrumentField_set_reserve2, (char *)"reserve2", NULL},
+	 {(char *)"reserve3", (getter)PyCThostFtdcQryInstrumentField_get_reserve3, (setter)PyCThostFtdcQryInstrumentField_set_reserve3, (char *)"reserve3", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcQryInstrumentField_get_InstrumentID, (setter)PyCThostFtdcQryInstrumentField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"ExchangeInstID", (getter)PyCThostFtdcQryInstrumentField_get_ExchangeInstID, (setter)PyCThostFtdcQryInstrumentField_set_ExchangeInstID, (char *)"ExchangeInstID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcQryInstrumentField_get_ProductID, (setter)PyCThostFtdcQryInstrumentField_set_ProductID, (char *)"ProductID", NULL},
 
     {NULL}
 };

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询签约银行请求
+
 
 typedef struct PyCThostFtdcQryContractBankField {
     PyObject_HEAD

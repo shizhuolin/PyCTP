@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平仓单折抵
+
 
 typedef struct PyCThostFtdcSyncDeltaEWarrantOffsetField {
     PyObject_HEAD

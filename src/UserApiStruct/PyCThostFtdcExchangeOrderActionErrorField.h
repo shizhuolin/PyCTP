@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易所报单操作失败
+
 
 typedef struct PyCThostFtdcExchangeOrderActionErrorField {
     PyObject_HEAD

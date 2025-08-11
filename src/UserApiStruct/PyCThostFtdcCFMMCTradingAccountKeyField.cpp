@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcCFMMCTradingAccountKeyField.h"
 
-///保证金监管系统经纪公司资金账户密钥
+
 
 static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcCFMMCTradingAccountKeyField *self = (PyCThostFtdcCFMMCTradingAccountKeyField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,31 +18,26 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_init(PyCThostFtdcCFMMCTrading
 
     static const char *kwlist[] = {"BrokerID", "ParticipantID", "AccountID", "KeyID", "CurrentKey",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pCFMMCTradingAccountKeyField_BrokerID = NULL;
+	Py_ssize_t pCFMMCTradingAccountKeyField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *CFMMCTradingAccountKeyField_BrokerID = NULL;
-    Py_ssize_t CFMMCTradingAccountKeyField_BrokerID_len = 0;
-            
-    ///经纪公司统一编码
-    // TThostFtdcParticipantIDType char[11]
-    const char *CFMMCTradingAccountKeyField_ParticipantID = NULL;
-    Py_ssize_t CFMMCTradingAccountKeyField_ParticipantID_len = 0;
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    const char *CFMMCTradingAccountKeyField_AccountID = NULL;
-    Py_ssize_t CFMMCTradingAccountKeyField_AccountID_len = 0;
-            
-    ///密钥编号
-    // TThostFtdcSequenceNoType int
-    int CFMMCTradingAccountKeyField_KeyID = 0;
-        
-    ///动态密钥
-    // TThostFtdcCFMMCKeyType char[21]
-    const char *CFMMCTradingAccountKeyField_CurrentKey = NULL;
-    Py_ssize_t CFMMCTradingAccountKeyField_CurrentKey_len = 0;
-            
+	//TThostFtdcParticipantIDType char[11]
+	const char *pCFMMCTradingAccountKeyField_ParticipantID = NULL;
+	Py_ssize_t pCFMMCTradingAccountKeyField_ParticipantID_len = 0;
+
+	//TThostFtdcAccountIDType char[13]
+	const char *pCFMMCTradingAccountKeyField_AccountID = NULL;
+	Py_ssize_t pCFMMCTradingAccountKeyField_AccountID_len = 0;
+
+	//TThostFtdcSequenceNoType int
+	int pCFMMCTradingAccountKeyField_KeyID = 0;
+
+	//TThostFtdcCFMMCKeyType char[21]
+	const char *pCFMMCTradingAccountKeyField_CurrentKey = NULL;
+	Py_ssize_t pCFMMCTradingAccountKeyField_CurrentKey_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#iy#", (char **)kwlist
@@ -49,74 +45,61 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_init(PyCThostFtdcCFMMCTrading
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#is#", (char **)kwlist
 #endif
 
-        , &CFMMCTradingAccountKeyField_BrokerID, &CFMMCTradingAccountKeyField_BrokerID_len 
-        , &CFMMCTradingAccountKeyField_ParticipantID, &CFMMCTradingAccountKeyField_ParticipantID_len 
-        , &CFMMCTradingAccountKeyField_AccountID, &CFMMCTradingAccountKeyField_AccountID_len 
-        , &CFMMCTradingAccountKeyField_KeyID 
-        , &CFMMCTradingAccountKeyField_CurrentKey, &CFMMCTradingAccountKeyField_CurrentKey_len 
+		, &pCFMMCTradingAccountKeyField_BrokerID, &pCFMMCTradingAccountKeyField_BrokerID_len
+		, &pCFMMCTradingAccountKeyField_ParticipantID, &pCFMMCTradingAccountKeyField_ParticipantID_len
+		, &pCFMMCTradingAccountKeyField_AccountID, &pCFMMCTradingAccountKeyField_AccountID_len
+		, &pCFMMCTradingAccountKeyField_KeyID
+		, &pCFMMCTradingAccountKeyField_CurrentKey, &pCFMMCTradingAccountKeyField_CurrentKey_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pCFMMCTradingAccountKeyField_BrokerID != NULL) {
+		if(pCFMMCTradingAccountKeyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pCFMMCTradingAccountKeyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pCFMMCTradingAccountKeyField_BrokerID, sizeof(self->data.BrokerID) );
+		pCFMMCTradingAccountKeyField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( CFMMCTradingAccountKeyField_BrokerID != NULL ) {
-        if(CFMMCTradingAccountKeyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, CFMMCTradingAccountKeyField_BrokerID, CFMMCTradingAccountKeyField_BrokerID_len);        
-        strncpy(self->data.BrokerID, CFMMCTradingAccountKeyField_BrokerID, sizeof(self->data.BrokerID) );
-        CFMMCTradingAccountKeyField_BrokerID = NULL;
-    }
-            
-    ///经纪公司统一编码
-    // TThostFtdcParticipantIDType char[11]
-    if( CFMMCTradingAccountKeyField_ParticipantID != NULL ) {
-        if(CFMMCTradingAccountKeyField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
-            PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
-            return -1;
-        }
-        // memset(self->data.ParticipantID, 0, sizeof(self->data.ParticipantID));
-        // memcpy(self->data.ParticipantID, CFMMCTradingAccountKeyField_ParticipantID, CFMMCTradingAccountKeyField_ParticipantID_len);        
-        strncpy(self->data.ParticipantID, CFMMCTradingAccountKeyField_ParticipantID, sizeof(self->data.ParticipantID) );
-        CFMMCTradingAccountKeyField_ParticipantID = NULL;
-    }
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    if( CFMMCTradingAccountKeyField_AccountID != NULL ) {
-        if(CFMMCTradingAccountKeyField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-            PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
-            return -1;
-        }
-        // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-        // memcpy(self->data.AccountID, CFMMCTradingAccountKeyField_AccountID, CFMMCTradingAccountKeyField_AccountID_len);        
-        strncpy(self->data.AccountID, CFMMCTradingAccountKeyField_AccountID, sizeof(self->data.AccountID) );
-        CFMMCTradingAccountKeyField_AccountID = NULL;
-    }
-            
-    ///密钥编号
-    // TThostFtdcSequenceNoType int
-    self->data.KeyID = CFMMCTradingAccountKeyField_KeyID;
-        
-    ///动态密钥
-    // TThostFtdcCFMMCKeyType char[21]
-    if( CFMMCTradingAccountKeyField_CurrentKey != NULL ) {
-        if(CFMMCTradingAccountKeyField_CurrentKey_len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
-            PyErr_Format(PyExc_ValueError, "CurrentKey too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_CurrentKey_len, (Py_ssize_t)sizeof(self->data.CurrentKey));
-            return -1;
-        }
-        // memset(self->data.CurrentKey, 0, sizeof(self->data.CurrentKey));
-        // memcpy(self->data.CurrentKey, CFMMCTradingAccountKeyField_CurrentKey, CFMMCTradingAccountKeyField_CurrentKey_len);        
-        strncpy(self->data.CurrentKey, CFMMCTradingAccountKeyField_CurrentKey, sizeof(self->data.CurrentKey) );
-        CFMMCTradingAccountKeyField_CurrentKey = NULL;
-    }
-            
+	//TThostFtdcParticipantIDType char[11]
+	if(pCFMMCTradingAccountKeyField_ParticipantID != NULL) {
+		if(pCFMMCTradingAccountKeyField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+			PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", pCFMMCTradingAccountKeyField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
+			return -1;
+		}
+		strncpy(self->data.ParticipantID, pCFMMCTradingAccountKeyField_ParticipantID, sizeof(self->data.ParticipantID) );
+		pCFMMCTradingAccountKeyField_ParticipantID = NULL;
+	}
+
+	//TThostFtdcAccountIDType char[13]
+	if(pCFMMCTradingAccountKeyField_AccountID != NULL) {
+		if(pCFMMCTradingAccountKeyField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+			PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", pCFMMCTradingAccountKeyField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
+			return -1;
+		}
+		strncpy(self->data.AccountID, pCFMMCTradingAccountKeyField_AccountID, sizeof(self->data.AccountID) );
+		pCFMMCTradingAccountKeyField_AccountID = NULL;
+	}
+
+	//TThostFtdcSequenceNoType int
+	self->data.KeyID = pCFMMCTradingAccountKeyField_KeyID;
+
+	//TThostFtdcCFMMCKeyType char[21]
+	if(pCFMMCTradingAccountKeyField_CurrentKey != NULL) {
+		if(pCFMMCTradingAccountKeyField_CurrentKey_len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+			PyErr_Format(PyExc_ValueError, "CurrentKey too long: length=%zd (max allowed is %zd)", pCFMMCTradingAccountKeyField_CurrentKey_len, (Py_ssize_t)sizeof(self->data.CurrentKey));
+			return -1;
+		}
+		strncpy(self->data.CurrentKey, pCFMMCTradingAccountKeyField_CurrentKey, sizeof(self->data.CurrentKey) );
+		pCFMMCTradingAccountKeyField_CurrentKey = NULL;
+	}
+
+
 
     return 0;
 }
@@ -133,11 +116,11 @@ static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_repr(PyCThostFtdcCFMMCT
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:i,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"ParticipantID", self->data.ParticipantID//, (Py_ssize_t)sizeof(self->data.ParticipantID) 
-        ,"AccountID", self->data.AccountID//, (Py_ssize_t)sizeof(self->data.AccountID) 
-        ,"KeyID", self->data.KeyID 
-        ,"CurrentKey", self->data.CurrentKey//, (Py_ssize_t)sizeof(self->data.CurrentKey) 
+		, "BrokerID", self->data.BrokerID 
+		, "ParticipantID", self->data.ParticipantID 
+		, "AccountID", self->data.AccountID 
+		, "KeyID", self->data.KeyID
+		, "CurrentKey", self->data.CurrentKey 
 
 
 		);
@@ -150,161 +133,124 @@ static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_repr(PyCThostFtdcCFMMCT
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_get_BrokerID(PyCThostFtdcCFMMCTradingAccountKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcCFMMCTradingAccountKeyField_set_BrokerID(PyCThostFtdcCFMMCTradingAccountKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///经纪公司统一编码
-// TThostFtdcParticipantIDType char[11]
 static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_get_ParticipantID(PyCThostFtdcCFMMCTradingAccountKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ParticipantID, (Py_ssize_t)sizeof(self->data.ParticipantID));
-    return PyBytes_FromString(self->data.ParticipantID);
+	return PyBytes_FromString(self->data.ParticipantID);
 }
 
-///经纪公司统一编码
-// TThostFtdcParticipantIDType char[11]
-static int PyCThostFtdcCFMMCTradingAccountKeyField_set_ParticipantID(PyCThostFtdcCFMMCTradingAccountKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ParticipantID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
-        PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.ParticipantID, 0, sizeof(self->data.ParticipantID));
-    // memcpy(self->data.ParticipantID, buf, len);
-    strncpy(self->data.ParticipantID, buf, sizeof(self->data.ParticipantID));
-    return 0;
-}
-            
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_get_AccountID(PyCThostFtdcCFMMCTradingAccountKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.AccountID, (Py_ssize_t)sizeof(self->data.AccountID));
-    return PyBytes_FromString(self->data.AccountID);
+	return PyBytes_FromString(self->data.AccountID);
 }
 
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
-static int PyCThostFtdcCFMMCTradingAccountKeyField_set_AccountID(PyCThostFtdcCFMMCTradingAccountKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-        PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-    // memcpy(self->data.AccountID, buf, len);
-    strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
-    return 0;
-}
-            
-///密钥编号
-// TThostFtdcSequenceNoType int
 static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_get_KeyID(PyCThostFtdcCFMMCTradingAccountKeyField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.KeyID);
-#else
-    return PyInt_FromLong(self->data.KeyID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.KeyID);
+#else 
+	return PyInt_FromLong(self->data.KeyID);
+#endif 
 }
 
-///密钥编号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcCFMMCTradingAccountKeyField_set_KeyID(PyCThostFtdcCFMMCTradingAccountKeyField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_get_CurrentKey(PyCThostFtdcCFMMCTradingAccountKeyField *self, void *closure) {
+	return PyBytes_FromString(self->data.CurrentKey);
+}
+
+static int PyCThostFtdcCFMMCTradingAccountKeyField_set_BrokerID(PyCThostFtdcCFMMCTradingAccountKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcCFMMCTradingAccountKeyField_set_ParticipantID(PyCThostFtdcCFMMCTradingAccountKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ParticipantID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+		PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.ParticipantID, buf, sizeof(self->data.ParticipantID));
+	return 0;
+}
+
+static int PyCThostFtdcCFMMCTradingAccountKeyField_set_AccountID(PyCThostFtdcCFMMCTradingAccountKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+		PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
+	return 0;
+}
+
+static int PyCThostFtdcCFMMCTradingAccountKeyField_set_KeyID(PyCThostFtdcCFMMCTradingAccountKeyField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "KeyID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "KeyID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "KeyID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the KeyID value out of range for C int");
-        return -1;
-    }
-    self->data.KeyID = (int)buf;
-    return 0;
-}
-        
-///动态密钥
-// TThostFtdcCFMMCKeyType char[21]
-static PyObject *PyCThostFtdcCFMMCTradingAccountKeyField_get_CurrentKey(PyCThostFtdcCFMMCTradingAccountKeyField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrentKey, (Py_ssize_t)sizeof(self->data.CurrentKey));
-    return PyBytes_FromString(self->data.CurrentKey);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.KeyID = (int)buf; 
+    return 0; 
 }
 
-///动态密钥
-// TThostFtdcCFMMCKeyType char[21]
-static int PyCThostFtdcCFMMCTradingAccountKeyField_set_CurrentKey(PyCThostFtdcCFMMCTradingAccountKeyField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrentKey Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
-        PyErr_SetString(PyExc_ValueError, "CurrentKey must be less than 21 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrentKey, 0, sizeof(self->data.CurrentKey));
-    // memcpy(self->data.CurrentKey, buf, len);
-    strncpy(self->data.CurrentKey, buf, sizeof(self->data.CurrentKey));
-    return 0;
+static int PyCThostFtdcCFMMCTradingAccountKeyField_set_CurrentKey(PyCThostFtdcCFMMCTradingAccountKeyField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrentKey Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+		PyErr_SetString(PyExc_ValueError, "CurrentKey must be less than 21 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrentKey, buf, sizeof(self->data.CurrentKey));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcCFMMCTradingAccountKeyField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_BrokerID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///经纪公司统一编码 
-    {(char *)"ParticipantID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_ParticipantID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_ParticipantID, (char *)"ParticipantID", NULL},
-    ///投资者帐号 
-    {(char *)"AccountID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_AccountID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_AccountID, (char *)"AccountID", NULL},
-    ///密钥编号 
-    {(char *)"KeyID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_KeyID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_KeyID, (char *)"KeyID", NULL},
-    ///动态密钥 
-    {(char *)"CurrentKey", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_CurrentKey, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_CurrentKey, (char *)"CurrentKey", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_BrokerID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"ParticipantID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_ParticipantID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_ParticipantID, (char *)"ParticipantID", NULL},
+	 {(char *)"AccountID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_AccountID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_AccountID, (char *)"AccountID", NULL},
+	 {(char *)"KeyID", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_KeyID, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_KeyID, (char *)"KeyID", NULL},
+	 {(char *)"CurrentKey", (getter)PyCThostFtdcCFMMCTradingAccountKeyField_get_CurrentKey, (setter)PyCThostFtdcCFMMCTradingAccountKeyField_set_CurrentKey, (char *)"CurrentKey", NULL},
 
     {NULL}
 };

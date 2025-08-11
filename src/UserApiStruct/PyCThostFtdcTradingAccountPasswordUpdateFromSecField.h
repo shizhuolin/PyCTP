@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///来自次席的资金账户口令变更
+
 
 typedef struct PyCThostFtdcTradingAccountPasswordUpdateFromSecField {
     PyObject_HEAD

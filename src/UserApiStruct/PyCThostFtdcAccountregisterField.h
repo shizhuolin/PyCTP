@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///客户开销户信息表
+
 
 typedef struct PyCThostFtdcAccountregisterField {
     PyObject_HEAD

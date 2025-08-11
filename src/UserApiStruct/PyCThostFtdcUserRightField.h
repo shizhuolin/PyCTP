@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户权限
+
 
 typedef struct PyCThostFtdcUserRightField {
     PyObject_HEAD

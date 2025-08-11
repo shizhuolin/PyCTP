@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期商签退响应
+
 
 typedef struct PyCThostFtdcRspFutureSignOutField {
     PyObject_HEAD

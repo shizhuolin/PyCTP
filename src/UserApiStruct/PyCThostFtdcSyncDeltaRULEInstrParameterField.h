@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平RULE合约保证金参数
+
 
 typedef struct PyCThostFtdcSyncDeltaRULEInstrParameterField {
     PyObject_HEAD

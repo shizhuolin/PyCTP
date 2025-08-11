@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平RCAMS策略组合规则明细
+
 
 typedef struct PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField {
     PyObject_HEAD

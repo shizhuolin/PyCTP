@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易所期权自对冲操作
+
 
 typedef struct PyCThostFtdcExchangeOptionSelfCloseActionField {
     PyObject_HEAD

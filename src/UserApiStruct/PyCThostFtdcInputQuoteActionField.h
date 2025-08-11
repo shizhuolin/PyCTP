@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///输入报价操作
+
 
 typedef struct PyCThostFtdcInputQuoteActionField {
     PyObject_HEAD

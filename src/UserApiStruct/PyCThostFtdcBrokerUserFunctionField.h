@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///经纪公司用户功能权限
+
 
 typedef struct PyCThostFtdcBrokerUserFunctionField {
     PyObject_HEAD

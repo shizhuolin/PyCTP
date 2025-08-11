@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncSPBMParameterEndField.h"
 
-///同步SPBM参数结束
+
 
 static PyObject *PyCThostFtdcSyncSPBMParameterEndField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncSPBMParameterEndField *self = (PyCThostFtdcSyncSPBMParameterEndField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncSPBMParameterEndField_new(PyTypeObject *type, P
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcSyncSPBMParameterEndField_init(PyCThostFtdcSyncSPBMParame
 
     static const char *kwlist[] = {"TradingDay",  NULL};
 
+	//TThostFtdcDateType char[9]
+	const char *pSyncSPBMParameterEndField_TradingDay = NULL;
+	Py_ssize_t pSyncSPBMParameterEndField_TradingDay_len = 0;
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    const char *SyncSPBMParameterEndField_TradingDay = NULL;
-    Py_ssize_t SyncSPBMParameterEndField_TradingDay_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcSyncSPBMParameterEndField_init(PyCThostFtdcSyncSPBMParame
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &SyncSPBMParameterEndField_TradingDay, &SyncSPBMParameterEndField_TradingDay_len 
+		, &pSyncSPBMParameterEndField_TradingDay, &pSyncSPBMParameterEndField_TradingDay_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDateType char[9]
+	if(pSyncSPBMParameterEndField_TradingDay != NULL) {
+		if(pSyncSPBMParameterEndField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pSyncSPBMParameterEndField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pSyncSPBMParameterEndField_TradingDay, sizeof(self->data.TradingDay) );
+		pSyncSPBMParameterEndField_TradingDay = NULL;
+	}
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    if( SyncSPBMParameterEndField_TradingDay != NULL ) {
-        if(SyncSPBMParameterEndField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SyncSPBMParameterEndField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, SyncSPBMParameterEndField_TradingDay, SyncSPBMParameterEndField_TradingDay_len);        
-        strncpy(self->data.TradingDay, SyncSPBMParameterEndField_TradingDay, sizeof(self->data.TradingDay) );
-        SyncSPBMParameterEndField_TradingDay = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcSyncSPBMParameterEndField_repr(PyCThostFtdcSyncSPBM
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
+		, "TradingDay", self->data.TradingDay 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcSyncSPBMParameterEndField_repr(PyCThostFtdcSyncSPBM
     return PyObject_Repr(obj);
 }
 
-
-///交易日
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcSyncSPBMParameterEndField_get_TradingDay(PyCThostFtdcSyncSPBMParameterEndField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易日
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcSyncSPBMParameterEndField_set_TradingDay(PyCThostFtdcSyncSPBMParameterEndField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
+static int PyCThostFtdcSyncSPBMParameterEndField_set_TradingDay(PyCThostFtdcSyncSPBMParameterEndField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcSyncSPBMParameterEndField_getset[] = {
-    ///交易日 
-    {(char *)"TradingDay", (getter)PyCThostFtdcSyncSPBMParameterEndField_get_TradingDay, (setter)PyCThostFtdcSyncSPBMParameterEndField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcSyncSPBMParameterEndField_get_TradingDay, (setter)PyCThostFtdcSyncSPBMParameterEndField_set_TradingDay, (char *)"TradingDay", NULL},
 
     {NULL}
 };

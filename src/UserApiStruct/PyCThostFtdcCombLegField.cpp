@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcCombLegField.h"
 
-///组合腿信息
+
 
 static PyObject *PyCThostFtdcCombLegField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcCombLegField *self = (PyCThostFtdcCombLegField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcCombLegField_new(PyTypeObject *type, PyObject *args
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,33 +18,27 @@ static int PyCThostFtdcCombLegField_init(PyCThostFtdcCombLegField *self, PyObjec
 
     static const char *kwlist[] = {"CombInstrumentID", "LegID", "LegInstrumentID", "Direction", "LegMultiple", "ImplyLevel",  NULL};
 
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pCombLegField_CombInstrumentID = NULL;
+	Py_ssize_t pCombLegField_CombInstrumentID_len = 0;
 
-    ///组合合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *CombLegField_CombInstrumentID = NULL;
-    Py_ssize_t CombLegField_CombInstrumentID_len = 0;
-            
-    ///单腿编号
-    // TThostFtdcLegIDType int
-    int CombLegField_LegID = 0;
-        
-    ///单腿合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *CombLegField_LegInstrumentID = NULL;
-    Py_ssize_t CombLegField_LegInstrumentID_len = 0;
-            
-    ///买卖方向
-    // TThostFtdcDirectionType char
-    char CombLegField_Direction = 0;
-            
-    ///单腿乘数
-    // TThostFtdcLegMultipleType int
-    int CombLegField_LegMultiple = 0;
-        
-    ///派生层数
-    // TThostFtdcImplyLevelType int
-    int CombLegField_ImplyLevel = 0;
-        
+	//TThostFtdcLegIDType int
+	int pCombLegField_LegID = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pCombLegField_LegInstrumentID = NULL;
+	Py_ssize_t pCombLegField_LegInstrumentID_len = 0;
+
+	//TThostFtdcDirectionType char
+	char pCombLegField_Direction = 0;
+
+	//TThostFtdcLegMultipleType int
+	int pCombLegField_LegMultiple = 0;
+
+	//TThostFtdcImplyLevelType int
+	int pCombLegField_ImplyLevel = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#iy#cii", (char **)kwlist
@@ -51,61 +46,51 @@ static int PyCThostFtdcCombLegField_init(PyCThostFtdcCombLegField *self, PyObjec
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#is#cii", (char **)kwlist
 #endif
 
-        , &CombLegField_CombInstrumentID, &CombLegField_CombInstrumentID_len 
-        , &CombLegField_LegID 
-        , &CombLegField_LegInstrumentID, &CombLegField_LegInstrumentID_len 
-        , &CombLegField_Direction 
-        , &CombLegField_LegMultiple 
-        , &CombLegField_ImplyLevel 
+		, &pCombLegField_CombInstrumentID, &pCombLegField_CombInstrumentID_len
+		, &pCombLegField_LegID
+		, &pCombLegField_LegInstrumentID, &pCombLegField_LegInstrumentID_len
+		, &pCombLegField_Direction
+		, &pCombLegField_LegMultiple
+		, &pCombLegField_ImplyLevel
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcInstrumentIDType char[81]
+	if(pCombLegField_CombInstrumentID != NULL) {
+		if(pCombLegField_CombInstrumentID_len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "CombInstrumentID too long: length=%zd (max allowed is %zd)", pCombLegField_CombInstrumentID_len, (Py_ssize_t)sizeof(self->data.CombInstrumentID));
+			return -1;
+		}
+		strncpy(self->data.CombInstrumentID, pCombLegField_CombInstrumentID, sizeof(self->data.CombInstrumentID) );
+		pCombLegField_CombInstrumentID = NULL;
+	}
 
-    ///组合合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( CombLegField_CombInstrumentID != NULL ) {
-        if(CombLegField_CombInstrumentID_len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "CombInstrumentID too long: length=%zd (max allowed is %zd)", CombLegField_CombInstrumentID_len, (Py_ssize_t)sizeof(self->data.CombInstrumentID));
-            return -1;
-        }
-        // memset(self->data.CombInstrumentID, 0, sizeof(self->data.CombInstrumentID));
-        // memcpy(self->data.CombInstrumentID, CombLegField_CombInstrumentID, CombLegField_CombInstrumentID_len);        
-        strncpy(self->data.CombInstrumentID, CombLegField_CombInstrumentID, sizeof(self->data.CombInstrumentID) );
-        CombLegField_CombInstrumentID = NULL;
-    }
-            
-    ///单腿编号
-    // TThostFtdcLegIDType int
-    self->data.LegID = CombLegField_LegID;
-        
-    ///单腿合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( CombLegField_LegInstrumentID != NULL ) {
-        if(CombLegField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", CombLegField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
-            return -1;
-        }
-        // memset(self->data.LegInstrumentID, 0, sizeof(self->data.LegInstrumentID));
-        // memcpy(self->data.LegInstrumentID, CombLegField_LegInstrumentID, CombLegField_LegInstrumentID_len);        
-        strncpy(self->data.LegInstrumentID, CombLegField_LegInstrumentID, sizeof(self->data.LegInstrumentID) );
-        CombLegField_LegInstrumentID = NULL;
-    }
-            
-    ///买卖方向
-    // TThostFtdcDirectionType char
-    self->data.Direction = CombLegField_Direction;
-            
-    ///单腿乘数
-    // TThostFtdcLegMultipleType int
-    self->data.LegMultiple = CombLegField_LegMultiple;
-        
-    ///派生层数
-    // TThostFtdcImplyLevelType int
-    self->data.ImplyLevel = CombLegField_ImplyLevel;
-        
+	//TThostFtdcLegIDType int
+	self->data.LegID = pCombLegField_LegID;
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pCombLegField_LegInstrumentID != NULL) {
+		if(pCombLegField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", pCombLegField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
+			return -1;
+		}
+		strncpy(self->data.LegInstrumentID, pCombLegField_LegInstrumentID, sizeof(self->data.LegInstrumentID) );
+		pCombLegField_LegInstrumentID = NULL;
+	}
+
+	//TThostFtdcDirectionType char
+	self->data.Direction = pCombLegField_Direction;
+
+	//TThostFtdcLegMultipleType int
+	self->data.LegMultiple = pCombLegField_LegMultiple;
+
+	//TThostFtdcImplyLevelType int
+	self->data.ImplyLevel = pCombLegField_ImplyLevel;
+
+
 
     return 0;
 }
@@ -122,12 +107,12 @@ static PyObject *PyCThostFtdcCombLegField_repr(PyCThostFtdcCombLegField *self) {
     PyObject *obj = Py_BuildValue("{s:s,s:i,s:s,s:c,s:i,s:i}"
 #endif
 
-        ,"CombInstrumentID", self->data.CombInstrumentID//, (Py_ssize_t)sizeof(self->data.CombInstrumentID) 
-        ,"LegID", self->data.LegID 
-        ,"LegInstrumentID", self->data.LegInstrumentID//, (Py_ssize_t)sizeof(self->data.LegInstrumentID) 
-        ,"Direction", self->data.Direction 
-        ,"LegMultiple", self->data.LegMultiple 
-        ,"ImplyLevel", self->data.ImplyLevel 
+		, "CombInstrumentID", self->data.CombInstrumentID 
+		, "LegID", self->data.LegID
+		, "LegInstrumentID", self->data.LegInstrumentID 
+		, "Direction", self->data.Direction
+		, "LegMultiple", self->data.LegMultiple
+		, "ImplyLevel", self->data.ImplyLevel
 
 
 		);
@@ -140,210 +125,174 @@ static PyObject *PyCThostFtdcCombLegField_repr(PyCThostFtdcCombLegField *self) {
     return PyObject_Repr(obj);
 }
 
-
-///组合合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcCombLegField_get_CombInstrumentID(PyCThostFtdcCombLegField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CombInstrumentID, (Py_ssize_t)sizeof(self->data.CombInstrumentID));
-    return PyBytes_FromString(self->data.CombInstrumentID);
+	return PyBytes_FromString(self->data.CombInstrumentID);
 }
 
-///组合合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcCombLegField_set_CombInstrumentID(PyCThostFtdcCombLegField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CombInstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "CombInstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.CombInstrumentID, 0, sizeof(self->data.CombInstrumentID));
-    // memcpy(self->data.CombInstrumentID, buf, len);
-    strncpy(self->data.CombInstrumentID, buf, sizeof(self->data.CombInstrumentID));
-    return 0;
-}
-            
-///单腿编号
-// TThostFtdcLegIDType int
 static PyObject *PyCThostFtdcCombLegField_get_LegID(PyCThostFtdcCombLegField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.LegID);
-#else
-    return PyInt_FromLong(self->data.LegID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.LegID);
+#else 
+	return PyInt_FromLong(self->data.LegID);
+#endif 
 }
 
-///单腿编号
-// TThostFtdcLegIDType int
-static int PyCThostFtdcCombLegField_set_LegID(PyCThostFtdcCombLegField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcCombLegField_get_LegInstrumentID(PyCThostFtdcCombLegField *self, void *closure) {
+	return PyBytes_FromString(self->data.LegInstrumentID);
+}
+
+static PyObject *PyCThostFtdcCombLegField_get_Direction(PyCThostFtdcCombLegField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.Direction), 1);
+}
+
+static PyObject *PyCThostFtdcCombLegField_get_LegMultiple(PyCThostFtdcCombLegField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.LegMultiple);
+#else 
+	return PyInt_FromLong(self->data.LegMultiple);
+#endif 
+}
+
+static PyObject *PyCThostFtdcCombLegField_get_ImplyLevel(PyCThostFtdcCombLegField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.ImplyLevel);
+#else 
+	return PyInt_FromLong(self->data.ImplyLevel);
+#endif 
+}
+
+static int PyCThostFtdcCombLegField_set_CombInstrumentID(PyCThostFtdcCombLegField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CombInstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "CombInstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.CombInstrumentID, buf, sizeof(self->data.CombInstrumentID));
+	return 0;
+}
+
+static int PyCThostFtdcCombLegField_set_LegID(PyCThostFtdcCombLegField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LegID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LegID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "LegID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the LegID value out of range for C int");
-        return -1;
-    }
-    self->data.LegID = (int)buf;
-    return 0;
-}
-        
-///单腿合约代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcCombLegField_get_LegInstrumentID(PyCThostFtdcCombLegField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.LegInstrumentID, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
-    return PyBytes_FromString(self->data.LegInstrumentID);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.LegID = (int)buf; 
+    return 0; 
 }
 
-///单腿合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcCombLegField_set_LegInstrumentID(PyCThostFtdcCombLegField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LegInstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.LegInstrumentID, 0, sizeof(self->data.LegInstrumentID));
-    // memcpy(self->data.LegInstrumentID, buf, len);
-    strncpy(self->data.LegInstrumentID, buf, sizeof(self->data.LegInstrumentID));
-    return 0;
-}
-            
-///买卖方向
-// TThostFtdcDirectionType char
-static PyObject *PyCThostFtdcCombLegField_get_Direction(PyCThostFtdcCombLegField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.Direction), 1);
+static int PyCThostFtdcCombLegField_set_LegInstrumentID(PyCThostFtdcCombLegField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "LegInstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.LegInstrumentID, buf, sizeof(self->data.LegInstrumentID));
+	return 0;
 }
 
-///买卖方向
-// TThostFtdcDirectionType char
-static int PyCThostFtdcCombLegField_set_Direction(PyCThostFtdcCombLegField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "Direction Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Direction)) {
-        PyErr_SetString(PyExc_ValueError, "Direction must be equal 1 bytes");
-        return -1;
-    }
-    self->data.Direction = *buf;
-    return 0;
-}
-            
-///单腿乘数
-// TThostFtdcLegMultipleType int
-static PyObject *PyCThostFtdcCombLegField_get_LegMultiple(PyCThostFtdcCombLegField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.LegMultiple);
-#else
-    return PyInt_FromLong(self->data.LegMultiple);
-#endif
+static int PyCThostFtdcCombLegField_set_Direction(PyCThostFtdcCombLegField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "Direction Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.Direction)) {
+		PyErr_SetString(PyExc_ValueError, "Direction must be less than 1 bytes");
+		return -1;
+	}
+	self->data.Direction = *buf;
+	return 0;
 }
 
-///单腿乘数
-// TThostFtdcLegMultipleType int
-static int PyCThostFtdcCombLegField_set_LegMultiple(PyCThostFtdcCombLegField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcCombLegField_set_LegMultiple(PyCThostFtdcCombLegField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LegMultiple Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LegMultiple Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "LegMultiple Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the LegMultiple value out of range for C int");
-        return -1;
-    }
-    self->data.LegMultiple = (int)buf;
-    return 0;
-}
-        
-///派生层数
-// TThostFtdcImplyLevelType int
-static PyObject *PyCThostFtdcCombLegField_get_ImplyLevel(PyCThostFtdcCombLegField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.ImplyLevel);
-#else
-    return PyInt_FromLong(self->data.ImplyLevel);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.LegMultiple = (int)buf; 
+    return 0; 
 }
 
-///派生层数
-// TThostFtdcImplyLevelType int
-static int PyCThostFtdcCombLegField_set_ImplyLevel(PyCThostFtdcCombLegField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcCombLegField_set_ImplyLevel(PyCThostFtdcCombLegField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ImplyLevel Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ImplyLevel Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "ImplyLevel Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the ImplyLevel value out of range for C int");
-        return -1;
-    }
-    self->data.ImplyLevel = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.ImplyLevel = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcCombLegField_getset[] = {
-    ///组合合约代码 
-    {(char *)"CombInstrumentID", (getter)PyCThostFtdcCombLegField_get_CombInstrumentID, (setter)PyCThostFtdcCombLegField_set_CombInstrumentID, (char *)"CombInstrumentID", NULL},
-    ///单腿编号 
-    {(char *)"LegID", (getter)PyCThostFtdcCombLegField_get_LegID, (setter)PyCThostFtdcCombLegField_set_LegID, (char *)"LegID", NULL},
-    ///单腿合约代码 
-    {(char *)"LegInstrumentID", (getter)PyCThostFtdcCombLegField_get_LegInstrumentID, (setter)PyCThostFtdcCombLegField_set_LegInstrumentID, (char *)"LegInstrumentID", NULL},
-    ///买卖方向 
-    {(char *)"Direction", (getter)PyCThostFtdcCombLegField_get_Direction, (setter)PyCThostFtdcCombLegField_set_Direction, (char *)"Direction", NULL},
-    ///单腿乘数 
-    {(char *)"LegMultiple", (getter)PyCThostFtdcCombLegField_get_LegMultiple, (setter)PyCThostFtdcCombLegField_set_LegMultiple, (char *)"LegMultiple", NULL},
-    ///派生层数 
-    {(char *)"ImplyLevel", (getter)PyCThostFtdcCombLegField_get_ImplyLevel, (setter)PyCThostFtdcCombLegField_set_ImplyLevel, (char *)"ImplyLevel", NULL},
+	 {(char *)"CombInstrumentID", (getter)PyCThostFtdcCombLegField_get_CombInstrumentID, (setter)PyCThostFtdcCombLegField_set_CombInstrumentID, (char *)"CombInstrumentID", NULL},
+	 {(char *)"LegID", (getter)PyCThostFtdcCombLegField_get_LegID, (setter)PyCThostFtdcCombLegField_set_LegID, (char *)"LegID", NULL},
+	 {(char *)"LegInstrumentID", (getter)PyCThostFtdcCombLegField_get_LegInstrumentID, (setter)PyCThostFtdcCombLegField_set_LegInstrumentID, (char *)"LegInstrumentID", NULL},
+	 {(char *)"Direction", (getter)PyCThostFtdcCombLegField_get_Direction, (setter)PyCThostFtdcCombLegField_set_Direction, (char *)"Direction", NULL},
+	 {(char *)"LegMultiple", (getter)PyCThostFtdcCombLegField_get_LegMultiple, (setter)PyCThostFtdcCombLegField_set_LegMultiple, (char *)"LegMultiple", NULL},
+	 {(char *)"ImplyLevel", (getter)PyCThostFtdcCombLegField_get_ImplyLevel, (setter)PyCThostFtdcCombLegField_set_ImplyLevel, (char *)"ImplyLevel", NULL},
 
     {NULL}
 };

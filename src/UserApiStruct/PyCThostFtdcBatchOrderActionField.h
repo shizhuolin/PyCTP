@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///批量报单操作
+
 
 typedef struct PyCThostFtdcBatchOrderActionField {
     PyObject_HEAD

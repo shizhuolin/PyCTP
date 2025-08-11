@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///报单
+
 
 typedef struct PyCThostFtdcOrderField {
     PyObject_HEAD

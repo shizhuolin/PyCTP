@@ -636,7 +636,7 @@ def generate_api_cppsource_code(AST_Api, cpython_path, template_filename, genera
             METH_VARARGS_FLAG = 'METH_VARARGS' if method_param else 'METH_NOARGS'
             if method_IsStatic: continue
             apilist += '\t' + '\n\t'.join(method_comment) + '\n'
-            apilist += f'    {{"{method_name}", CTP_THOST_FTDC_{PYAPICLASS_FLAG}_API_{method_name}, {METH_VARARGS_FLAG}, nullptr}},\n\n'
+            apilist += f'    {{"{method_name}", CTP_THOST_FTDC_{PYAPICLASS_FLAG}_API_{method_name}, {METH_VARARGS_FLAG}, NULL}},\n\n'
             
     template_filename = os.path.join(cpython_path, template_filename)
     generate_filename = os.path.join(cpython_path, generate_filename)
@@ -665,11 +665,9 @@ def generate_cpp_from_ctp(cpp_path, cpython_path):
     generate_api_cppsource_code(AST_TraderApi, cpython_path, 'TraderApi.cpp.template', 'TraderApi.cpp', 'CThostFtdcTraderSpi', 'CThostFtdcTraderApi', ['CreateFtdcTraderApi', 'GetApiVersion', 'RegisterSpi', 'Release', '~CThostFtdcTraderApi', 'SubscribePrivateTopic', 'SubscribePublicTopic'])
     
 ###################################################################################################################################
-ctp_cpp_path = './ctp/v6.7.9_P1_20250319/api/v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_traderapi/v6.7.9_P1_20250319_api_traderapi_linux64/v6.7.9_P1_20250319_api/v6.7.9_P1_20250319_api_traderapi_se_linux64'
-# ctp_cpp_path = './v6.6.9_20220914_95719.2466/v6.6.9_20220914_api/v6.6.9_20220914_20220914_api_tradeapi_se_linux64'
-# ctp_cpp_path = './ctp/v6.6.2_P11_SM_20221103/api/v6.6.2_P11_SM_tradeapi/v6.6.2_P11_SM_20221025_api/v6.6.2_P11_SM_20221025_api_tradeapi_sm_linux64'
-# ctp_cpp_path = './ctp/v6.7.0_CP_20230303/api/v6.7.0_CP_traderapi_20230303/v6.7.0_CP_20230303_api/v6.7.0_CP_20230303_api_tradeapi_se_linux64'
-# ctp_cpp_path = './ctp/v6.7.9_20241224/api/v6.7.9_traderapi_20241224/v6.7.9_20241224_traderapi/v6.7.9_20241224_api_traderapi_linux64/v6.7.9_20241224_api/v6.7.9_20241224_api_traderapi_se_linux64'
+ctp_cpp_path = './ctp/v6.7.11_20250617/v6.7.11_20250617_api_traderapi_se_linux64'
+# ctp_cpp_path = './ctp/v6.7.9_P1_20250319/20250319_traderapi_se_windows'
+# ctp_cpp_path = './ctp/v6.7.9_P1_20250319/20250319_traderapi64_se_windows'
 ###################################################################################################################################
 ctp_cpython_path = './src'
 generate_cpp_from_ctp(ctp_cpp_path, ctp_cpython_path)

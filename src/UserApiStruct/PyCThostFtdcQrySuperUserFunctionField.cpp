@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQrySuperUserFunctionField.h"
 
-///查询管理用户功能权限
+
 
 static PyObject *PyCThostFtdcQrySuperUserFunctionField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQrySuperUserFunctionField *self = (PyCThostFtdcQrySuperUserFunctionField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQrySuperUserFunctionField_new(PyTypeObject *type, P
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQrySuperUserFunctionField_init(PyCThostFtdcQrySuperUserFu
 
     static const char *kwlist[] = {"UserID",  NULL};
 
+	//TThostFtdcUserIDType char[16]
+	const char *pQrySuperUserFunctionField_UserID = NULL;
+	Py_ssize_t pQrySuperUserFunctionField_UserID_len = 0;
 
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *QrySuperUserFunctionField_UserID = NULL;
-    Py_ssize_t QrySuperUserFunctionField_UserID_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQrySuperUserFunctionField_init(PyCThostFtdcQrySuperUserFu
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QrySuperUserFunctionField_UserID, &QrySuperUserFunctionField_UserID_len 
+		, &pQrySuperUserFunctionField_UserID, &pQrySuperUserFunctionField_UserID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcUserIDType char[16]
+	if(pQrySuperUserFunctionField_UserID != NULL) {
+		if(pQrySuperUserFunctionField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pQrySuperUserFunctionField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pQrySuperUserFunctionField_UserID, sizeof(self->data.UserID) );
+		pQrySuperUserFunctionField_UserID = NULL;
+	}
 
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( QrySuperUserFunctionField_UserID != NULL ) {
-        if(QrySuperUserFunctionField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", QrySuperUserFunctionField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, QrySuperUserFunctionField_UserID, QrySuperUserFunctionField_UserID_len);        
-        strncpy(self->data.UserID, QrySuperUserFunctionField_UserID, sizeof(self->data.UserID) );
-        QrySuperUserFunctionField_UserID = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQrySuperUserFunctionField_repr(PyCThostFtdcQrySuper
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
+		, "UserID", self->data.UserID 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQrySuperUserFunctionField_repr(PyCThostFtdcQrySuper
     return PyObject_Repr(obj);
 }
 
-
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcQrySuperUserFunctionField_get_UserID(PyCThostFtdcQrySuperUserFunctionField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcQrySuperUserFunctionField_set_UserID(PyCThostFtdcQrySuperUserFunctionField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
+static int PyCThostFtdcQrySuperUserFunctionField_set_UserID(PyCThostFtdcQrySuperUserFunctionField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQrySuperUserFunctionField_getset[] = {
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcQrySuperUserFunctionField_get_UserID, (setter)PyCThostFtdcQrySuperUserFunctionField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcQrySuperUserFunctionField_get_UserID, (setter)PyCThostFtdcQrySuperUserFunctionField_set_UserID, (char *)"UserID", NULL},
 
     {NULL}
 };

@@ -1,10 +1,12 @@
 .vs/
 build/
+dist/
 bin/
 obj/
 x32/
 x86/
 x64/
+PyCTP.egg-info/
 test/test_PyCTP.sh
 PyCTP.depend
 PyCTP.layout

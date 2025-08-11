@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期商签到通知
+
 
 typedef struct PyCThostFtdcNotifyFutureSignInField {
     PyObject_HEAD

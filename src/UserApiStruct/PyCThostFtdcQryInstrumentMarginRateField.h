@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询合约保证金率
+
 
 typedef struct PyCThostFtdcQryInstrumentMarginRateField {
     PyObject_HEAD

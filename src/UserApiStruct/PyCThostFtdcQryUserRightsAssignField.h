@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询用户下单权限分配表
+
 
 typedef struct PyCThostFtdcQryUserRightsAssignField {
     PyObject_HEAD

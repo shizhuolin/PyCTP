@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///信息分发
+
 
 typedef struct PyCThostFtdcDisseminationField {
     PyObject_HEAD

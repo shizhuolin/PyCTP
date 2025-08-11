@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询仓单折抵信息
+
 
 typedef struct PyCThostFtdcQryEWarrantOffsetField {
     PyObject_HEAD

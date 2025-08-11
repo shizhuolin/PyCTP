@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///当前交易中心
+
 
 typedef struct PyCThostFtdcCurrDRIdentityField {
     PyObject_HEAD

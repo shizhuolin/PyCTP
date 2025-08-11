@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcRCAMSIntraParameterField.h"
 
-///RCAMS品种内风险对冲参数
+
 
 static PyObject *PyCThostFtdcRCAMSIntraParameterField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcRCAMSIntraParameterField *self = (PyCThostFtdcRCAMSIntraParameterField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcRCAMSIntraParameterField_new(PyTypeObject *type, Py
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,26 +18,22 @@ static int PyCThostFtdcRCAMSIntraParameterField_init(PyCThostFtdcRCAMSIntraParam
 
     static const char *kwlist[] = {"TradingDay", "ExchangeID", "CombProductID", "HedgeRate",  NULL};
 
+	//TThostFtdcDateType char[9]
+	const char *pRCAMSIntraParameterField_TradingDay = NULL;
+	Py_ssize_t pRCAMSIntraParameterField_TradingDay_len = 0;
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    const char *RCAMSIntraParameterField_TradingDay = NULL;
-    Py_ssize_t RCAMSIntraParameterField_TradingDay_len = 0;
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *RCAMSIntraParameterField_ExchangeID = NULL;
-    Py_ssize_t RCAMSIntraParameterField_ExchangeID_len = 0;
-            
-    ///产品组合代码
-    // TThostFtdcProductIDType char[41]
-    const char *RCAMSIntraParameterField_CombProductID = NULL;
-    Py_ssize_t RCAMSIntraParameterField_CombProductID_len = 0;
-            
-    ///品种内对冲比率
-    // TThostFtdcHedgeRateType double
-    double RCAMSIntraParameterField_HedgeRate = 0.0;
-        
+	//TThostFtdcExchangeIDType char[9]
+	const char *pRCAMSIntraParameterField_ExchangeID = NULL;
+	Py_ssize_t pRCAMSIntraParameterField_ExchangeID_len = 0;
+
+	//TThostFtdcProductIDType char[41]
+	const char *pRCAMSIntraParameterField_CombProductID = NULL;
+	Py_ssize_t pRCAMSIntraParameterField_CombProductID_len = 0;
+
+	//TThostFtdcHedgeRateType double
+	double pRCAMSIntraParameterField_HedgeRate = 0.0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#d", (char **)kwlist
@@ -44,60 +41,49 @@ static int PyCThostFtdcRCAMSIntraParameterField_init(PyCThostFtdcRCAMSIntraParam
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#d", (char **)kwlist
 #endif
 
-        , &RCAMSIntraParameterField_TradingDay, &RCAMSIntraParameterField_TradingDay_len 
-        , &RCAMSIntraParameterField_ExchangeID, &RCAMSIntraParameterField_ExchangeID_len 
-        , &RCAMSIntraParameterField_CombProductID, &RCAMSIntraParameterField_CombProductID_len 
-        , &RCAMSIntraParameterField_HedgeRate 
+		, &pRCAMSIntraParameterField_TradingDay, &pRCAMSIntraParameterField_TradingDay_len
+		, &pRCAMSIntraParameterField_ExchangeID, &pRCAMSIntraParameterField_ExchangeID_len
+		, &pRCAMSIntraParameterField_CombProductID, &pRCAMSIntraParameterField_CombProductID_len
+		, &pRCAMSIntraParameterField_HedgeRate
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDateType char[9]
+	if(pRCAMSIntraParameterField_TradingDay != NULL) {
+		if(pRCAMSIntraParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pRCAMSIntraParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pRCAMSIntraParameterField_TradingDay, sizeof(self->data.TradingDay) );
+		pRCAMSIntraParameterField_TradingDay = NULL;
+	}
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    if( RCAMSIntraParameterField_TradingDay != NULL ) {
-        if(RCAMSIntraParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", RCAMSIntraParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, RCAMSIntraParameterField_TradingDay, RCAMSIntraParameterField_TradingDay_len);        
-        strncpy(self->data.TradingDay, RCAMSIntraParameterField_TradingDay, sizeof(self->data.TradingDay) );
-        RCAMSIntraParameterField_TradingDay = NULL;
-    }
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( RCAMSIntraParameterField_ExchangeID != NULL ) {
-        if(RCAMSIntraParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", RCAMSIntraParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, RCAMSIntraParameterField_ExchangeID, RCAMSIntraParameterField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, RCAMSIntraParameterField_ExchangeID, sizeof(self->data.ExchangeID) );
-        RCAMSIntraParameterField_ExchangeID = NULL;
-    }
-            
-    ///产品组合代码
-    // TThostFtdcProductIDType char[41]
-    if( RCAMSIntraParameterField_CombProductID != NULL ) {
-        if(RCAMSIntraParameterField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
-            PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", RCAMSIntraParameterField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
-            return -1;
-        }
-        // memset(self->data.CombProductID, 0, sizeof(self->data.CombProductID));
-        // memcpy(self->data.CombProductID, RCAMSIntraParameterField_CombProductID, RCAMSIntraParameterField_CombProductID_len);        
-        strncpy(self->data.CombProductID, RCAMSIntraParameterField_CombProductID, sizeof(self->data.CombProductID) );
-        RCAMSIntraParameterField_CombProductID = NULL;
-    }
-            
-    ///品种内对冲比率
-    // TThostFtdcHedgeRateType double
-    self->data.HedgeRate = RCAMSIntraParameterField_HedgeRate;
-        
+	//TThostFtdcExchangeIDType char[9]
+	if(pRCAMSIntraParameterField_ExchangeID != NULL) {
+		if(pRCAMSIntraParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pRCAMSIntraParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pRCAMSIntraParameterField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pRCAMSIntraParameterField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcProductIDType char[41]
+	if(pRCAMSIntraParameterField_CombProductID != NULL) {
+		if(pRCAMSIntraParameterField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+			PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", pRCAMSIntraParameterField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
+			return -1;
+		}
+		strncpy(self->data.CombProductID, pRCAMSIntraParameterField_CombProductID, sizeof(self->data.CombProductID) );
+		pRCAMSIntraParameterField_CombProductID = NULL;
+	}
+
+	//TThostFtdcHedgeRateType double
+	self->data.HedgeRate = pRCAMSIntraParameterField_HedgeRate;
+
 
     return 0;
 }
@@ -114,10 +100,10 @@ static PyObject *PyCThostFtdcRCAMSIntraParameterField_repr(PyCThostFtdcRCAMSIntr
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:d}"
 #endif
 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"CombProductID", self->data.CombProductID//, (Py_ssize_t)sizeof(self->data.CombProductID) 
-        ,"HedgeRate", self->data.HedgeRate 
+		, "TradingDay", self->data.TradingDay 
+		, "ExchangeID", self->data.ExchangeID 
+		, "CombProductID", self->data.CombProductID 
+		, "HedgeRate", self->data.HedgeRate
 
 
 		);
@@ -130,94 +116,68 @@ static PyObject *PyCThostFtdcRCAMSIntraParameterField_repr(PyCThostFtdcRCAMSIntr
     return PyObject_Repr(obj);
 }
 
-
-///交易日
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcRCAMSIntraParameterField_get_TradingDay(PyCThostFtdcRCAMSIntraParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易日
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcRCAMSIntraParameterField_set_TradingDay(PyCThostFtdcRCAMSIntraParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
-}
-            
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcRCAMSIntraParameterField_get_ExchangeID(PyCThostFtdcRCAMSIntraParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcRCAMSIntraParameterField_set_ExchangeID(PyCThostFtdcRCAMSIntraParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///产品组合代码
-// TThostFtdcProductIDType char[41]
 static PyObject *PyCThostFtdcRCAMSIntraParameterField_get_CombProductID(PyCThostFtdcRCAMSIntraParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CombProductID, (Py_ssize_t)sizeof(self->data.CombProductID));
-    return PyBytes_FromString(self->data.CombProductID);
+	return PyBytes_FromString(self->data.CombProductID);
 }
 
-///产品组合代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcRCAMSIntraParameterField_set_CombProductID(PyCThostFtdcRCAMSIntraParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CombProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
-        PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.CombProductID, 0, sizeof(self->data.CombProductID));
-    // memcpy(self->data.CombProductID, buf, len);
-    strncpy(self->data.CombProductID, buf, sizeof(self->data.CombProductID));
-    return 0;
-}
-            
-///品种内对冲比率
-// TThostFtdcHedgeRateType double
 static PyObject *PyCThostFtdcRCAMSIntraParameterField_get_HedgeRate(PyCThostFtdcRCAMSIntraParameterField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.HedgeRate);
+	return PyFloat_FromDouble(self->data.HedgeRate);
 }
 
-///品种内对冲比率
-// TThostFtdcHedgeRateType double
-static int PyCThostFtdcRCAMSIntraParameterField_set_HedgeRate(PyCThostFtdcRCAMSIntraParameterField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcRCAMSIntraParameterField_set_TradingDay(PyCThostFtdcRCAMSIntraParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
+}
+
+static int PyCThostFtdcRCAMSIntraParameterField_set_ExchangeID(PyCThostFtdcRCAMSIntraParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcRCAMSIntraParameterField_set_CombProductID(PyCThostFtdcRCAMSIntraParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CombProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+		PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.CombProductID, buf, sizeof(self->data.CombProductID));
+	return 0;
+}
+
+static int PyCThostFtdcRCAMSIntraParameterField_set_HedgeRate(PyCThostFtdcRCAMSIntraParameterField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "HedgeRate Expected float");
         return -1;
@@ -229,17 +189,14 @@ static int PyCThostFtdcRCAMSIntraParameterField_set_HedgeRate(PyCThostFtdcRCAMSI
     self->data.HedgeRate = buf;
     return 0;
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcRCAMSIntraParameterField_getset[] = {
-    ///交易日 
-    {(char *)"TradingDay", (getter)PyCThostFtdcRCAMSIntraParameterField_get_TradingDay, (setter)PyCThostFtdcRCAMSIntraParameterField_set_TradingDay, (char *)"TradingDay", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcRCAMSIntraParameterField_get_ExchangeID, (setter)PyCThostFtdcRCAMSIntraParameterField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///产品组合代码 
-    {(char *)"CombProductID", (getter)PyCThostFtdcRCAMSIntraParameterField_get_CombProductID, (setter)PyCThostFtdcRCAMSIntraParameterField_set_CombProductID, (char *)"CombProductID", NULL},
-    ///品种内对冲比率 
-    {(char *)"HedgeRate", (getter)PyCThostFtdcRCAMSIntraParameterField_get_HedgeRate, (setter)PyCThostFtdcRCAMSIntraParameterField_set_HedgeRate, (char *)"HedgeRate", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcRCAMSIntraParameterField_get_TradingDay, (setter)PyCThostFtdcRCAMSIntraParameterField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcRCAMSIntraParameterField_get_ExchangeID, (setter)PyCThostFtdcRCAMSIntraParameterField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"CombProductID", (getter)PyCThostFtdcRCAMSIntraParameterField_get_CombProductID, (setter)PyCThostFtdcRCAMSIntraParameterField_set_CombProductID, (char *)"CombProductID", NULL},
+	 {(char *)"HedgeRate", (getter)PyCThostFtdcRCAMSIntraParameterField_get_HedgeRate, (setter)PyCThostFtdcRCAMSIntraParameterField_set_HedgeRate, (char *)"HedgeRate", NULL},
 
     {NULL}
 };

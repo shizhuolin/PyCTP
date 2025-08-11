@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户发出带短信验证码的登录请求请求
+
 
 typedef struct PyCThostFtdcReqUserLoginWithTextField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///灾备交易转换报文
+
 
 typedef struct PyCThostFtdcDRTransferField {
     PyObject_HEAD

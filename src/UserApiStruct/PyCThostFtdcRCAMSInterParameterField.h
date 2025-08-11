@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RCAMS跨品种风险折抵参数
+
 
 typedef struct PyCThostFtdcRCAMSInterParameterField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询IP列表
+
 
 typedef struct PyCThostFtdcQryIPListField {
     PyObject_HEAD

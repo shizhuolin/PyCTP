@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者产品SPBM明细查询
+
 
 typedef struct PyCThostFtdcQryInvestorProdSPBMDetailField {
     PyObject_HEAD

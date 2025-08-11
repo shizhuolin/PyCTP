@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcExchangeSequenceField.h"
 
-///交易所状态
+
 
 static PyObject *PyCThostFtdcExchangeSequenceField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcExchangeSequenceField *self = (PyCThostFtdcExchangeSequenceField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcExchangeSequenceField_new(PyTypeObject *type, PyObj
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,20 +18,17 @@ static int PyCThostFtdcExchangeSequenceField_init(PyCThostFtdcExchangeSequenceFi
 
     static const char *kwlist[] = {"ExchangeID", "SequenceNo", "MarketStatus",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pExchangeSequenceField_ExchangeID = NULL;
+	Py_ssize_t pExchangeSequenceField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *ExchangeSequenceField_ExchangeID = NULL;
-    Py_ssize_t ExchangeSequenceField_ExchangeID_len = 0;
-            
-    ///序号
-    // TThostFtdcSequenceNoType int
-    int ExchangeSequenceField_SequenceNo = 0;
-        
-    ///合约交易状态
-    // TThostFtdcInstrumentStatusType char
-    char ExchangeSequenceField_MarketStatus = 0;
-            
+	//TThostFtdcSequenceNoType int
+	int pExchangeSequenceField_SequenceNo = 0;
+
+	//TThostFtdcInstrumentStatusType char
+	char pExchangeSequenceField_MarketStatus = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#ic", (char **)kwlist
@@ -38,37 +36,32 @@ static int PyCThostFtdcExchangeSequenceField_init(PyCThostFtdcExchangeSequenceFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#ic", (char **)kwlist
 #endif
 
-        , &ExchangeSequenceField_ExchangeID, &ExchangeSequenceField_ExchangeID_len 
-        , &ExchangeSequenceField_SequenceNo 
-        , &ExchangeSequenceField_MarketStatus 
+		, &pExchangeSequenceField_ExchangeID, &pExchangeSequenceField_ExchangeID_len
+		, &pExchangeSequenceField_SequenceNo
+		, &pExchangeSequenceField_MarketStatus
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pExchangeSequenceField_ExchangeID != NULL) {
+		if(pExchangeSequenceField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pExchangeSequenceField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pExchangeSequenceField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pExchangeSequenceField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( ExchangeSequenceField_ExchangeID != NULL ) {
-        if(ExchangeSequenceField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", ExchangeSequenceField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, ExchangeSequenceField_ExchangeID, ExchangeSequenceField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, ExchangeSequenceField_ExchangeID, sizeof(self->data.ExchangeID) );
-        ExchangeSequenceField_ExchangeID = NULL;
-    }
-            
-    ///序号
-    // TThostFtdcSequenceNoType int
-    self->data.SequenceNo = ExchangeSequenceField_SequenceNo;
-        
-    ///合约交易状态
-    // TThostFtdcInstrumentStatusType char
-    self->data.MarketStatus = ExchangeSequenceField_MarketStatus;
-            
+	//TThostFtdcSequenceNoType int
+	self->data.SequenceNo = pExchangeSequenceField_SequenceNo;
+
+	//TThostFtdcInstrumentStatusType char
+	self->data.MarketStatus = pExchangeSequenceField_MarketStatus;
+
+
 
     return 0;
 }
@@ -85,9 +78,9 @@ static PyObject *PyCThostFtdcExchangeSequenceField_repr(PyCThostFtdcExchangeSequ
     PyObject *obj = Py_BuildValue("{s:s,s:i,s:c}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"SequenceNo", self->data.SequenceNo 
-        ,"MarketStatus", self->data.MarketStatus 
+		, "ExchangeID", self->data.ExchangeID 
+		, "SequenceNo", self->data.SequenceNo
+		, "MarketStatus", self->data.MarketStatus
 
 
 		);
@@ -100,102 +93,84 @@ static PyObject *PyCThostFtdcExchangeSequenceField_repr(PyCThostFtdcExchangeSequ
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcExchangeSequenceField_get_ExchangeID(PyCThostFtdcExchangeSequenceField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcExchangeSequenceField_set_ExchangeID(PyCThostFtdcExchangeSequenceField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///序号
-// TThostFtdcSequenceNoType int
 static PyObject *PyCThostFtdcExchangeSequenceField_get_SequenceNo(PyCThostFtdcExchangeSequenceField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SequenceNo);
-#else
-    return PyInt_FromLong(self->data.SequenceNo);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SequenceNo);
+#endif 
 }
 
-///序号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcExchangeSequenceField_set_SequenceNo(PyCThostFtdcExchangeSequenceField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcExchangeSequenceField_get_MarketStatus(PyCThostFtdcExchangeSequenceField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.MarketStatus), 1);
+}
+
+static int PyCThostFtdcExchangeSequenceField_set_ExchangeID(PyCThostFtdcExchangeSequenceField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcExchangeSequenceField_set_SequenceNo(PyCThostFtdcExchangeSequenceField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SequenceNo = (int)buf;
-    return 0;
-}
-        
-///合约交易状态
-// TThostFtdcInstrumentStatusType char
-static PyObject *PyCThostFtdcExchangeSequenceField_get_MarketStatus(PyCThostFtdcExchangeSequenceField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.MarketStatus), 1);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SequenceNo = (int)buf; 
+    return 0; 
 }
 
-///合约交易状态
-// TThostFtdcInstrumentStatusType char
-static int PyCThostFtdcExchangeSequenceField_set_MarketStatus(PyCThostFtdcExchangeSequenceField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "MarketStatus Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MarketStatus)) {
-        PyErr_SetString(PyExc_ValueError, "MarketStatus must be equal 1 bytes");
-        return -1;
-    }
-    self->data.MarketStatus = *buf;
-    return 0;
+static int PyCThostFtdcExchangeSequenceField_set_MarketStatus(PyCThostFtdcExchangeSequenceField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "MarketStatus Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.MarketStatus)) {
+		PyErr_SetString(PyExc_ValueError, "MarketStatus must be less than 1 bytes");
+		return -1;
+	}
+	self->data.MarketStatus = *buf;
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcExchangeSequenceField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcExchangeSequenceField_get_ExchangeID, (setter)PyCThostFtdcExchangeSequenceField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///序号 
-    {(char *)"SequenceNo", (getter)PyCThostFtdcExchangeSequenceField_get_SequenceNo, (setter)PyCThostFtdcExchangeSequenceField_set_SequenceNo, (char *)"SequenceNo", NULL},
-    ///合约交易状态 
-    {(char *)"MarketStatus", (getter)PyCThostFtdcExchangeSequenceField_get_MarketStatus, (setter)PyCThostFtdcExchangeSequenceField_set_MarketStatus, (char *)"MarketStatus", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcExchangeSequenceField_get_ExchangeID, (setter)PyCThostFtdcExchangeSequenceField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"SequenceNo", (getter)PyCThostFtdcExchangeSequenceField_get_SequenceNo, (setter)PyCThostFtdcExchangeSequenceField_set_SequenceNo, (char *)"SequenceNo", NULL},
+	 {(char *)"MarketStatus", (getter)PyCThostFtdcExchangeSequenceField_get_MarketStatus, (setter)PyCThostFtdcExchangeSequenceField_set_MarketStatus, (char *)"MarketStatus", NULL},
 
     {NULL}
 };

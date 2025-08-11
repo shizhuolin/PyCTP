@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///当前银期所属交易中心
+
 
 typedef struct PyCThostFtdcCurrTransferIdentityField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///SPBM品种内对锁仓折扣参数查询
+
 
 typedef struct PyCThostFtdcQrySPBMIntraParameterField {
     PyObject_HEAD

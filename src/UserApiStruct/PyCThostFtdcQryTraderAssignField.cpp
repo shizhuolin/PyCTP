@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryTraderAssignField.h"
 
-///席位与交易中心对应关系维护查询
+
 
 static PyObject *PyCThostFtdcQryTraderAssignField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryTraderAssignField *self = (PyCThostFtdcQryTraderAssignField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryTraderAssignField_new(PyTypeObject *type, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQryTraderAssignField_init(PyCThostFtdcQryTraderAssignFiel
 
     static const char *kwlist[] = {"TraderID",  NULL};
 
+	//TThostFtdcTraderIDType char[21]
+	const char *pQryTraderAssignField_TraderID = NULL;
+	Py_ssize_t pQryTraderAssignField_TraderID_len = 0;
 
-    ///交易员代码
-    // TThostFtdcTraderIDType char[21]
-    const char *QryTraderAssignField_TraderID = NULL;
-    Py_ssize_t QryTraderAssignField_TraderID_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQryTraderAssignField_init(PyCThostFtdcQryTraderAssignFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QryTraderAssignField_TraderID, &QryTraderAssignField_TraderID_len 
+		, &pQryTraderAssignField_TraderID, &pQryTraderAssignField_TraderID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcTraderIDType char[21]
+	if(pQryTraderAssignField_TraderID != NULL) {
+		if(pQryTraderAssignField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+			PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", pQryTraderAssignField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
+			return -1;
+		}
+		strncpy(self->data.TraderID, pQryTraderAssignField_TraderID, sizeof(self->data.TraderID) );
+		pQryTraderAssignField_TraderID = NULL;
+	}
 
-    ///交易员代码
-    // TThostFtdcTraderIDType char[21]
-    if( QryTraderAssignField_TraderID != NULL ) {
-        if(QryTraderAssignField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
-            PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", QryTraderAssignField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
-            return -1;
-        }
-        // memset(self->data.TraderID, 0, sizeof(self->data.TraderID));
-        // memcpy(self->data.TraderID, QryTraderAssignField_TraderID, QryTraderAssignField_TraderID_len);        
-        strncpy(self->data.TraderID, QryTraderAssignField_TraderID, sizeof(self->data.TraderID) );
-        QryTraderAssignField_TraderID = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQryTraderAssignField_repr(PyCThostFtdcQryTraderAssi
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"TraderID", self->data.TraderID//, (Py_ssize_t)sizeof(self->data.TraderID) 
+		, "TraderID", self->data.TraderID 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQryTraderAssignField_repr(PyCThostFtdcQryTraderAssi
     return PyObject_Repr(obj);
 }
 
-
-///交易员代码
-// TThostFtdcTraderIDType char[21]
 static PyObject *PyCThostFtdcQryTraderAssignField_get_TraderID(PyCThostFtdcQryTraderAssignField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TraderID, (Py_ssize_t)sizeof(self->data.TraderID));
-    return PyBytes_FromString(self->data.TraderID);
+	return PyBytes_FromString(self->data.TraderID);
 }
 
-///交易员代码
-// TThostFtdcTraderIDType char[21]
-static int PyCThostFtdcQryTraderAssignField_set_TraderID(PyCThostFtdcQryTraderAssignField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TraderID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
-        PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
-        return -1;
-    }
-    // memset(self->data.TraderID, 0, sizeof(self->data.TraderID));
-    // memcpy(self->data.TraderID, buf, len);
-    strncpy(self->data.TraderID, buf, sizeof(self->data.TraderID));
-    return 0;
+static int PyCThostFtdcQryTraderAssignField_set_TraderID(PyCThostFtdcQryTraderAssignField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TraderID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+		PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
+		return -1;
+	}
+	strncpy(self->data.TraderID, buf, sizeof(self->data.TraderID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQryTraderAssignField_getset[] = {
-    ///交易员代码 
-    {(char *)"TraderID", (getter)PyCThostFtdcQryTraderAssignField_get_TraderID, (setter)PyCThostFtdcQryTraderAssignField_set_TraderID, (char *)"TraderID", NULL},
+	 {(char *)"TraderID", (getter)PyCThostFtdcQryTraderAssignField_get_TraderID, (setter)PyCThostFtdcQryTraderAssignField_set_TraderID, (char *)"TraderID", NULL},
 
     {NULL}
 };

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易编码
+
 
 typedef struct PyCThostFtdcTradingCodeField {
     PyObject_HEAD

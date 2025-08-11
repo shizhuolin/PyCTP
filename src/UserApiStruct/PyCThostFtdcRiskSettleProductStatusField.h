@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险品种
+
 
 typedef struct PyCThostFtdcRiskSettleProductStatusField {
     PyObject_HEAD

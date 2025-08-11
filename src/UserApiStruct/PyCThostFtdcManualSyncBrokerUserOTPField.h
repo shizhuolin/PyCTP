@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///手工同步用户动态令牌
+
 
 typedef struct PyCThostFtdcManualSyncBrokerUserOTPField {
     PyObject_HEAD

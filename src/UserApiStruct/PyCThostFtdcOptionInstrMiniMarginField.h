@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///当前期权合约最小保证金
+
 
 typedef struct PyCThostFtdcOptionInstrMiniMarginField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///通讯阶段
+
 
 typedef struct PyCThostFtdcCommPhaseField {
     PyObject_HEAD

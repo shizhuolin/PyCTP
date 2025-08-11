@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///请求查询保证金监管系统经纪公司资金账户密钥
+
 
 typedef struct PyCThostFtdcQryCFMMCTradingAccountKeyField {
     PyObject_HEAD

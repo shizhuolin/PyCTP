@@ -497,6 +497,11 @@
 #include "UserApiStruct/PyCThostFtdcQryOffsetSettingField.h"
 #include "UserApiStruct/PyCThostFtdcAddrAppIDRelationField.h"
 #include "UserApiStruct/PyCThostFtdcQryAddrAppIDRelationField.h"
+#include "UserApiStruct/PyCThostFtdcWechatUserSystemInfoField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorReserveInfoField.h"
+#include "UserApiStruct/PyCThostFtdcQryInvestorDepartmentFlatField.h"
+#include "UserApiStruct/PyCThostFtdcInvestorDepartmentFlatField.h"
+#include "UserApiStruct/PyCThostFtdcQryDepartmentUserField.h"
 #include "UserApiStruct/PyCThostFtdcFrontInfoField.h"
 
 

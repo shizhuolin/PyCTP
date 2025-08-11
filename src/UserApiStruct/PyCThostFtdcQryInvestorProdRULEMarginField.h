@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者产品RULE保证金查询
+
 
 typedef struct PyCThostFtdcQryInvestorProdRULEMarginField {
     PyObject_HEAD

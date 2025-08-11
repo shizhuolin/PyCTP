@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTradingNoticeInfoField.h"
 
-///用户事件通知信息
+
 
 static PyObject *PyCThostFtdcTradingNoticeInfoField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTradingNoticeInfoField *self = (PyCThostFtdcTradingNoticeInfoField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcTradingNoticeInfoField_new(PyTypeObject *type, PyOb
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,40 +18,33 @@ static int PyCThostFtdcTradingNoticeInfoField_init(PyCThostFtdcTradingNoticeInfo
 
     static const char *kwlist[] = {"BrokerID", "InvestorID", "SendTime", "FieldContent", "SequenceSeries", "SequenceNo", "InvestUnitID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pTradingNoticeInfoField_BrokerID = NULL;
+	Py_ssize_t pTradingNoticeInfoField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *TradingNoticeInfoField_BrokerID = NULL;
-    Py_ssize_t TradingNoticeInfoField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *TradingNoticeInfoField_InvestorID = NULL;
-    Py_ssize_t TradingNoticeInfoField_InvestorID_len = 0;
-            
-    ///发送时间
-    // TThostFtdcTimeType char[9]
-    const char *TradingNoticeInfoField_SendTime = NULL;
-    Py_ssize_t TradingNoticeInfoField_SendTime_len = 0;
-            
-    ///消息正文
-    // TThostFtdcContentType char[501]
-    const char *TradingNoticeInfoField_FieldContent = NULL;
-    Py_ssize_t TradingNoticeInfoField_FieldContent_len = 0;
-            
-    ///序列系列号
-    // TThostFtdcSequenceSeriesType short
-    short TradingNoticeInfoField_SequenceSeries = 0;
-        
-    ///序列号
-    // TThostFtdcSequenceNoType int
-    int TradingNoticeInfoField_SequenceNo = 0;
-        
-    ///投资单元代码
-    // TThostFtdcInvestUnitIDType char[17]
-    const char *TradingNoticeInfoField_InvestUnitID = NULL;
-    Py_ssize_t TradingNoticeInfoField_InvestUnitID_len = 0;
-            
+	//TThostFtdcInvestorIDType char[13]
+	const char *pTradingNoticeInfoField_InvestorID = NULL;
+	Py_ssize_t pTradingNoticeInfoField_InvestorID_len = 0;
+
+	//TThostFtdcTimeType char[9]
+	const char *pTradingNoticeInfoField_SendTime = NULL;
+	Py_ssize_t pTradingNoticeInfoField_SendTime_len = 0;
+
+	//TThostFtdcContentType char[501]
+	const char *pTradingNoticeInfoField_FieldContent = NULL;
+	Py_ssize_t pTradingNoticeInfoField_FieldContent_len = 0;
+
+	//TThostFtdcSequenceSeriesType short
+	short pTradingNoticeInfoField_SequenceSeries = 0;
+
+	//TThostFtdcSequenceNoType int
+	int pTradingNoticeInfoField_SequenceNo = 0;
+
+	//TThostFtdcInvestUnitIDType char[17]
+	const char *pTradingNoticeInfoField_InvestUnitID = NULL;
+	Py_ssize_t pTradingNoticeInfoField_InvestUnitID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#hiy#", (char **)kwlist
@@ -58,93 +52,76 @@ static int PyCThostFtdcTradingNoticeInfoField_init(PyCThostFtdcTradingNoticeInfo
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#his#", (char **)kwlist
 #endif
 
-        , &TradingNoticeInfoField_BrokerID, &TradingNoticeInfoField_BrokerID_len 
-        , &TradingNoticeInfoField_InvestorID, &TradingNoticeInfoField_InvestorID_len 
-        , &TradingNoticeInfoField_SendTime, &TradingNoticeInfoField_SendTime_len 
-        , &TradingNoticeInfoField_FieldContent, &TradingNoticeInfoField_FieldContent_len 
-        , &TradingNoticeInfoField_SequenceSeries 
-        , &TradingNoticeInfoField_SequenceNo 
-        , &TradingNoticeInfoField_InvestUnitID, &TradingNoticeInfoField_InvestUnitID_len 
+		, &pTradingNoticeInfoField_BrokerID, &pTradingNoticeInfoField_BrokerID_len
+		, &pTradingNoticeInfoField_InvestorID, &pTradingNoticeInfoField_InvestorID_len
+		, &pTradingNoticeInfoField_SendTime, &pTradingNoticeInfoField_SendTime_len
+		, &pTradingNoticeInfoField_FieldContent, &pTradingNoticeInfoField_FieldContent_len
+		, &pTradingNoticeInfoField_SequenceSeries
+		, &pTradingNoticeInfoField_SequenceNo
+		, &pTradingNoticeInfoField_InvestUnitID, &pTradingNoticeInfoField_InvestUnitID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pTradingNoticeInfoField_BrokerID != NULL) {
+		if(pTradingNoticeInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pTradingNoticeInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pTradingNoticeInfoField_BrokerID, sizeof(self->data.BrokerID) );
+		pTradingNoticeInfoField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( TradingNoticeInfoField_BrokerID != NULL ) {
-        if(TradingNoticeInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradingNoticeInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, TradingNoticeInfoField_BrokerID, TradingNoticeInfoField_BrokerID_len);        
-        strncpy(self->data.BrokerID, TradingNoticeInfoField_BrokerID, sizeof(self->data.BrokerID) );
-        TradingNoticeInfoField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( TradingNoticeInfoField_InvestorID != NULL ) {
-        if(TradingNoticeInfoField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", TradingNoticeInfoField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, TradingNoticeInfoField_InvestorID, TradingNoticeInfoField_InvestorID_len);        
-        strncpy(self->data.InvestorID, TradingNoticeInfoField_InvestorID, sizeof(self->data.InvestorID) );
-        TradingNoticeInfoField_InvestorID = NULL;
-    }
-            
-    ///发送时间
-    // TThostFtdcTimeType char[9]
-    if( TradingNoticeInfoField_SendTime != NULL ) {
-        if(TradingNoticeInfoField_SendTime_len > (Py_ssize_t)sizeof(self->data.SendTime)) {
-            PyErr_Format(PyExc_ValueError, "SendTime too long: length=%zd (max allowed is %zd)", TradingNoticeInfoField_SendTime_len, (Py_ssize_t)sizeof(self->data.SendTime));
-            return -1;
-        }
-        // memset(self->data.SendTime, 0, sizeof(self->data.SendTime));
-        // memcpy(self->data.SendTime, TradingNoticeInfoField_SendTime, TradingNoticeInfoField_SendTime_len);        
-        strncpy(self->data.SendTime, TradingNoticeInfoField_SendTime, sizeof(self->data.SendTime) );
-        TradingNoticeInfoField_SendTime = NULL;
-    }
-            
-    ///消息正文
-    // TThostFtdcContentType char[501]
-    if( TradingNoticeInfoField_FieldContent != NULL ) {
-        if(TradingNoticeInfoField_FieldContent_len > (Py_ssize_t)sizeof(self->data.FieldContent)) {
-            PyErr_Format(PyExc_ValueError, "FieldContent too long: length=%zd (max allowed is %zd)", TradingNoticeInfoField_FieldContent_len, (Py_ssize_t)sizeof(self->data.FieldContent));
-            return -1;
-        }
-        // memset(self->data.FieldContent, 0, sizeof(self->data.FieldContent));
-        // memcpy(self->data.FieldContent, TradingNoticeInfoField_FieldContent, TradingNoticeInfoField_FieldContent_len);        
-        strncpy(self->data.FieldContent, TradingNoticeInfoField_FieldContent, sizeof(self->data.FieldContent) );
-        TradingNoticeInfoField_FieldContent = NULL;
-    }
-            
-    ///序列系列号
-    // TThostFtdcSequenceSeriesType short
-    self->data.SequenceSeries = TradingNoticeInfoField_SequenceSeries;
-        
-    ///序列号
-    // TThostFtdcSequenceNoType int
-    self->data.SequenceNo = TradingNoticeInfoField_SequenceNo;
-        
-    ///投资单元代码
-    // TThostFtdcInvestUnitIDType char[17]
-    if( TradingNoticeInfoField_InvestUnitID != NULL ) {
-        if(TradingNoticeInfoField_InvestUnitID_len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
-            PyErr_Format(PyExc_ValueError, "InvestUnitID too long: length=%zd (max allowed is %zd)", TradingNoticeInfoField_InvestUnitID_len, (Py_ssize_t)sizeof(self->data.InvestUnitID));
-            return -1;
-        }
-        // memset(self->data.InvestUnitID, 0, sizeof(self->data.InvestUnitID));
-        // memcpy(self->data.InvestUnitID, TradingNoticeInfoField_InvestUnitID, TradingNoticeInfoField_InvestUnitID_len);        
-        strncpy(self->data.InvestUnitID, TradingNoticeInfoField_InvestUnitID, sizeof(self->data.InvestUnitID) );
-        TradingNoticeInfoField_InvestUnitID = NULL;
-    }
-            
+	//TThostFtdcInvestorIDType char[13]
+	if(pTradingNoticeInfoField_InvestorID != NULL) {
+		if(pTradingNoticeInfoField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pTradingNoticeInfoField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pTradingNoticeInfoField_InvestorID, sizeof(self->data.InvestorID) );
+		pTradingNoticeInfoField_InvestorID = NULL;
+	}
+
+	//TThostFtdcTimeType char[9]
+	if(pTradingNoticeInfoField_SendTime != NULL) {
+		if(pTradingNoticeInfoField_SendTime_len > (Py_ssize_t)sizeof(self->data.SendTime)) {
+			PyErr_Format(PyExc_ValueError, "SendTime too long: length=%zd (max allowed is %zd)", pTradingNoticeInfoField_SendTime_len, (Py_ssize_t)sizeof(self->data.SendTime));
+			return -1;
+		}
+		strncpy(self->data.SendTime, pTradingNoticeInfoField_SendTime, sizeof(self->data.SendTime) );
+		pTradingNoticeInfoField_SendTime = NULL;
+	}
+
+	//TThostFtdcContentType char[501]
+	if(pTradingNoticeInfoField_FieldContent != NULL) {
+		if(pTradingNoticeInfoField_FieldContent_len > (Py_ssize_t)sizeof(self->data.FieldContent)) {
+			PyErr_Format(PyExc_ValueError, "FieldContent too long: length=%zd (max allowed is %zd)", pTradingNoticeInfoField_FieldContent_len, (Py_ssize_t)sizeof(self->data.FieldContent));
+			return -1;
+		}
+		strncpy(self->data.FieldContent, pTradingNoticeInfoField_FieldContent, sizeof(self->data.FieldContent) );
+		pTradingNoticeInfoField_FieldContent = NULL;
+	}
+
+	//TThostFtdcSequenceSeriesType short
+	self->data.SequenceSeries = pTradingNoticeInfoField_SequenceSeries;
+
+	//TThostFtdcSequenceNoType int
+	self->data.SequenceNo = pTradingNoticeInfoField_SequenceNo;
+
+	//TThostFtdcInvestUnitIDType char[17]
+	if(pTradingNoticeInfoField_InvestUnitID != NULL) {
+		if(pTradingNoticeInfoField_InvestUnitID_len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+			PyErr_Format(PyExc_ValueError, "InvestUnitID too long: length=%zd (max allowed is %zd)", pTradingNoticeInfoField_InvestUnitID_len, (Py_ssize_t)sizeof(self->data.InvestUnitID));
+			return -1;
+		}
+		strncpy(self->data.InvestUnitID, pTradingNoticeInfoField_InvestUnitID, sizeof(self->data.InvestUnitID) );
+		pTradingNoticeInfoField_InvestUnitID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -161,13 +138,13 @@ static PyObject *PyCThostFtdcTradingNoticeInfoField_repr(PyCThostFtdcTradingNoti
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:h,s:i,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"SendTime", self->data.SendTime//, (Py_ssize_t)sizeof(self->data.SendTime) 
-        ,"FieldContent", self->data.FieldContent//, (Py_ssize_t)sizeof(self->data.FieldContent) 
-        ,"SequenceSeries", self->data.SequenceSeries 
-        ,"SequenceNo", self->data.SequenceNo 
-        ,"InvestUnitID", self->data.InvestUnitID//, (Py_ssize_t)sizeof(self->data.InvestUnitID) 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "SendTime", self->data.SendTime 
+		, "FieldContent", self->data.FieldContent 
+		, "SequenceSeries", self->data.SequenceSeries
+		, "SequenceNo", self->data.SequenceNo
+		, "InvestUnitID", self->data.InvestUnitID 
 
 
 		);
@@ -180,229 +157,179 @@ static PyObject *PyCThostFtdcTradingNoticeInfoField_repr(PyCThostFtdcTradingNoti
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcTradingNoticeInfoField_get_BrokerID(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcTradingNoticeInfoField_set_BrokerID(PyCThostFtdcTradingNoticeInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcTradingNoticeInfoField_get_InvestorID(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcTradingNoticeInfoField_set_InvestorID(PyCThostFtdcTradingNoticeInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///发送时间
-// TThostFtdcTimeType char[9]
 static PyObject *PyCThostFtdcTradingNoticeInfoField_get_SendTime(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.SendTime, (Py_ssize_t)sizeof(self->data.SendTime));
-    return PyBytes_FromString(self->data.SendTime);
+	return PyBytes_FromString(self->data.SendTime);
 }
 
-///发送时间
-// TThostFtdcTimeType char[9]
-static int PyCThostFtdcTradingNoticeInfoField_set_SendTime(PyCThostFtdcTradingNoticeInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SendTime Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SendTime)) {
-        PyErr_SetString(PyExc_ValueError, "SendTime must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.SendTime, 0, sizeof(self->data.SendTime));
-    // memcpy(self->data.SendTime, buf, len);
-    strncpy(self->data.SendTime, buf, sizeof(self->data.SendTime));
-    return 0;
-}
-            
-///消息正文
-// TThostFtdcContentType char[501]
 static PyObject *PyCThostFtdcTradingNoticeInfoField_get_FieldContent(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FieldContent, (Py_ssize_t)sizeof(self->data.FieldContent));
-    return PyBytes_FromString(self->data.FieldContent);
+	return PyBytes_FromString(self->data.FieldContent);
 }
 
-///消息正文
-// TThostFtdcContentType char[501]
-static int PyCThostFtdcTradingNoticeInfoField_set_FieldContent(PyCThostFtdcTradingNoticeInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FieldContent Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FieldContent)) {
-        PyErr_SetString(PyExc_ValueError, "FieldContent must be less than 501 bytes");
-        return -1;
-    }
-    // memset(self->data.FieldContent, 0, sizeof(self->data.FieldContent));
-    // memcpy(self->data.FieldContent, buf, len);
-    strncpy(self->data.FieldContent, buf, sizeof(self->data.FieldContent));
-    return 0;
-}
-            
-///序列系列号
-// TThostFtdcSequenceSeriesType short
 static PyObject *PyCThostFtdcTradingNoticeInfoField_get_SequenceSeries(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SequenceSeries);
-#else
-    return PyInt_FromLong(self->data.SequenceSeries);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SequenceSeries);
+#else 
+	return PyInt_FromLong(self->data.SequenceSeries);
+#endif 
 }
 
-///序列系列号
-// TThostFtdcSequenceSeriesType short
-static int PyCThostFtdcTradingNoticeInfoField_set_SequenceSeries(PyCThostFtdcTradingNoticeInfoField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcTradingNoticeInfoField_get_SequenceNo(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SequenceNo);
+#endif 
+}
+
+static PyObject *PyCThostFtdcTradingNoticeInfoField_get_InvestUnitID(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
+	return PyBytes_FromString(self->data.InvestUnitID);
+}
+
+static int PyCThostFtdcTradingNoticeInfoField_set_BrokerID(PyCThostFtdcTradingNoticeInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcTradingNoticeInfoField_set_InvestorID(PyCThostFtdcTradingNoticeInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcTradingNoticeInfoField_set_SendTime(PyCThostFtdcTradingNoticeInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "SendTime Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.SendTime)) {
+		PyErr_SetString(PyExc_ValueError, "SendTime must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.SendTime, buf, sizeof(self->data.SendTime));
+	return 0;
+}
+
+static int PyCThostFtdcTradingNoticeInfoField_set_FieldContent(PyCThostFtdcTradingNoticeInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FieldContent Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FieldContent)) {
+		PyErr_SetString(PyExc_ValueError, "FieldContent must be less than 501 bytes");
+		return -1;
+	}
+	strncpy(self->data.FieldContent, buf, sizeof(self->data.FieldContent));
+	return 0;
+}
+
+static int PyCThostFtdcTradingNoticeInfoField_set_SequenceSeries(PyCThostFtdcTradingNoticeInfoField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SequenceSeries Expected short");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SequenceSeries Expected short");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SequenceSeries Expected short"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
     if (buf == -1 && PyErr_Occurred()) { 
-        return -1;
-    }
-    if (buf < SHRT_MIN || buf > SHRT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SequenceSeries value out of range for C short");
-        return -1;
-    }
-    self->data.SequenceSeries = (short)buf;
-    return 0;
-}
-        
-///序列号
-// TThostFtdcSequenceNoType int
-static PyObject *PyCThostFtdcTradingNoticeInfoField_get_SequenceNo(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SequenceNo);
-#else
-    return PyInt_FromLong(self->data.SequenceNo);
-#endif
+        return -1; 
+    } 
+    if (buf < SHRT_MIN || buf > SHRT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C short"); 
+        return -1; 
+    } 
+    self->data.SequenceSeries = (short)buf; 
+    return 0; 
 }
 
-///序列号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcTradingNoticeInfoField_set_SequenceNo(PyCThostFtdcTradingNoticeInfoField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcTradingNoticeInfoField_set_SequenceNo(PyCThostFtdcTradingNoticeInfoField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SequenceNo = (int)buf;
-    return 0;
-}
-        
-///投资单元代码
-// TThostFtdcInvestUnitIDType char[17]
-static PyObject *PyCThostFtdcTradingNoticeInfoField_get_InvestUnitID(PyCThostFtdcTradingNoticeInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestUnitID, (Py_ssize_t)sizeof(self->data.InvestUnitID));
-    return PyBytes_FromString(self->data.InvestUnitID);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SequenceNo = (int)buf; 
+    return 0; 
 }
 
-///投资单元代码
-// TThostFtdcInvestUnitIDType char[17]
-static int PyCThostFtdcTradingNoticeInfoField_set_InvestUnitID(PyCThostFtdcTradingNoticeInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestUnitID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestUnitID must be less than 17 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestUnitID, 0, sizeof(self->data.InvestUnitID));
-    // memcpy(self->data.InvestUnitID, buf, len);
-    strncpy(self->data.InvestUnitID, buf, sizeof(self->data.InvestUnitID));
-    return 0;
+static int PyCThostFtdcTradingNoticeInfoField_set_InvestUnitID(PyCThostFtdcTradingNoticeInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestUnitID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestUnitID must be less than 17 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestUnitID, buf, sizeof(self->data.InvestUnitID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcTradingNoticeInfoField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcTradingNoticeInfoField_get_BrokerID, (setter)PyCThostFtdcTradingNoticeInfoField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcTradingNoticeInfoField_get_InvestorID, (setter)PyCThostFtdcTradingNoticeInfoField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///发送时间 
-    {(char *)"SendTime", (getter)PyCThostFtdcTradingNoticeInfoField_get_SendTime, (setter)PyCThostFtdcTradingNoticeInfoField_set_SendTime, (char *)"SendTime", NULL},
-    ///消息正文 
-    {(char *)"FieldContent", (getter)PyCThostFtdcTradingNoticeInfoField_get_FieldContent, (setter)PyCThostFtdcTradingNoticeInfoField_set_FieldContent, (char *)"FieldContent", NULL},
-    ///序列系列号 
-    {(char *)"SequenceSeries", (getter)PyCThostFtdcTradingNoticeInfoField_get_SequenceSeries, (setter)PyCThostFtdcTradingNoticeInfoField_set_SequenceSeries, (char *)"SequenceSeries", NULL},
-    ///序列号 
-    {(char *)"SequenceNo", (getter)PyCThostFtdcTradingNoticeInfoField_get_SequenceNo, (setter)PyCThostFtdcTradingNoticeInfoField_set_SequenceNo, (char *)"SequenceNo", NULL},
-    ///投资单元代码 
-    {(char *)"InvestUnitID", (getter)PyCThostFtdcTradingNoticeInfoField_get_InvestUnitID, (setter)PyCThostFtdcTradingNoticeInfoField_set_InvestUnitID, (char *)"InvestUnitID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcTradingNoticeInfoField_get_BrokerID, (setter)PyCThostFtdcTradingNoticeInfoField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcTradingNoticeInfoField_get_InvestorID, (setter)PyCThostFtdcTradingNoticeInfoField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"SendTime", (getter)PyCThostFtdcTradingNoticeInfoField_get_SendTime, (setter)PyCThostFtdcTradingNoticeInfoField_set_SendTime, (char *)"SendTime", NULL},
+	 {(char *)"FieldContent", (getter)PyCThostFtdcTradingNoticeInfoField_get_FieldContent, (setter)PyCThostFtdcTradingNoticeInfoField_set_FieldContent, (char *)"FieldContent", NULL},
+	 {(char *)"SequenceSeries", (getter)PyCThostFtdcTradingNoticeInfoField_get_SequenceSeries, (setter)PyCThostFtdcTradingNoticeInfoField_set_SequenceSeries, (char *)"SequenceSeries", NULL},
+	 {(char *)"SequenceNo", (getter)PyCThostFtdcTradingNoticeInfoField_get_SequenceNo, (setter)PyCThostFtdcTradingNoticeInfoField_set_SequenceNo, (char *)"SequenceNo", NULL},
+	 {(char *)"InvestUnitID", (getter)PyCThostFtdcTradingNoticeInfoField_get_InvestUnitID, (setter)PyCThostFtdcTradingNoticeInfoField_set_InvestUnitID, (char *)"InvestUnitID", NULL},
 
     {NULL}
 };

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户口令变更
+
 
 typedef struct PyCThostFtdcUserPasswordUpdateField {
     PyObject_HEAD

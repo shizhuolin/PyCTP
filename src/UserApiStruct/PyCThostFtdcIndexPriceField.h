@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///股指现货指数
+
 
 typedef struct PyCThostFtdcIndexPriceField {
     PyObject_HEAD

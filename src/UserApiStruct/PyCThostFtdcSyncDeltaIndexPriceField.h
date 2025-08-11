@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平现货指数
+
 
 typedef struct PyCThostFtdcSyncDeltaIndexPriceField {
     PyObject_HEAD

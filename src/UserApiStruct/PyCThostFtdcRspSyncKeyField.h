@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易核心向银期报盘发出密钥同步响应
+
 
 typedef struct PyCThostFtdcRspSyncKeyField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///转帐开户请求
+
 
 typedef struct PyCThostFtdcReqOpenAccountField {
     PyObject_HEAD

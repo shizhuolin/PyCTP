@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///银行资金转期货请求响应
+
 
 typedef struct PyCThostFtdcTransferBankToFutureRspField {
     PyObject_HEAD

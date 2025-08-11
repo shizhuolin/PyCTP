@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryUserRightsAssignField.h"
 
-///查询用户下单权限分配表
+
 
 static PyObject *PyCThostFtdcQryUserRightsAssignField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryUserRightsAssignField *self = (PyCThostFtdcQryUserRightsAssignField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryUserRightsAssignField_new(PyTypeObject *type, Py
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQryUserRightsAssignField_init(PyCThostFtdcQryUserRightsAs
 
     static const char *kwlist[] = {"BrokerID", "UserID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQryUserRightsAssignField_BrokerID = NULL;
+	Py_ssize_t pQryUserRightsAssignField_BrokerID_len = 0;
 
-    ///应用单元代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QryUserRightsAssignField_BrokerID = NULL;
-    Py_ssize_t QryUserRightsAssignField_BrokerID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *QryUserRightsAssignField_UserID = NULL;
-    Py_ssize_t QryUserRightsAssignField_UserID_len = 0;
-            
+	//TThostFtdcUserIDType char[16]
+	const char *pQryUserRightsAssignField_UserID = NULL;
+	Py_ssize_t pQryUserRightsAssignField_UserID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQryUserRightsAssignField_init(PyCThostFtdcQryUserRightsAs
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QryUserRightsAssignField_BrokerID, &QryUserRightsAssignField_BrokerID_len 
-        , &QryUserRightsAssignField_UserID, &QryUserRightsAssignField_UserID_len 
+		, &pQryUserRightsAssignField_BrokerID, &pQryUserRightsAssignField_BrokerID_len
+		, &pQryUserRightsAssignField_UserID, &pQryUserRightsAssignField_UserID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQryUserRightsAssignField_BrokerID != NULL) {
+		if(pQryUserRightsAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQryUserRightsAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQryUserRightsAssignField_BrokerID, sizeof(self->data.BrokerID) );
+		pQryUserRightsAssignField_BrokerID = NULL;
+	}
 
-    ///应用单元代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QryUserRightsAssignField_BrokerID != NULL ) {
-        if(QryUserRightsAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryUserRightsAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QryUserRightsAssignField_BrokerID, QryUserRightsAssignField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QryUserRightsAssignField_BrokerID, sizeof(self->data.BrokerID) );
-        QryUserRightsAssignField_BrokerID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( QryUserRightsAssignField_UserID != NULL ) {
-        if(QryUserRightsAssignField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", QryUserRightsAssignField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, QryUserRightsAssignField_UserID, QryUserRightsAssignField_UserID_len);        
-        strncpy(self->data.UserID, QryUserRightsAssignField_UserID, sizeof(self->data.UserID) );
-        QryUserRightsAssignField_UserID = NULL;
-    }
-            
+	//TThostFtdcUserIDType char[16]
+	if(pQryUserRightsAssignField_UserID != NULL) {
+		if(pQryUserRightsAssignField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pQryUserRightsAssignField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pQryUserRightsAssignField_UserID, sizeof(self->data.UserID) );
+		pQryUserRightsAssignField_UserID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQryUserRightsAssignField_repr(PyCThostFtdcQryUserRi
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
+		, "BrokerID", self->data.BrokerID 
+		, "UserID", self->data.UserID 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQryUserRightsAssignField_repr(PyCThostFtdcQryUserRi
     return PyObject_Repr(obj);
 }
 
-
-///应用单元代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQryUserRightsAssignField_get_BrokerID(PyCThostFtdcQryUserRightsAssignField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///应用单元代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQryUserRightsAssignField_set_BrokerID(PyCThostFtdcQryUserRightsAssignField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcQryUserRightsAssignField_get_UserID(PyCThostFtdcQryUserRightsAssignField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcQryUserRightsAssignField_set_UserID(PyCThostFtdcQryUserRightsAssignField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
+static int PyCThostFtdcQryUserRightsAssignField_set_BrokerID(PyCThostFtdcQryUserRightsAssignField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryUserRightsAssignField_set_UserID(PyCThostFtdcQryUserRightsAssignField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryUserRightsAssignField_getset[] = {
-    ///应用单元代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQryUserRightsAssignField_get_BrokerID, (setter)PyCThostFtdcQryUserRightsAssignField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcQryUserRightsAssignField_get_UserID, (setter)PyCThostFtdcQryUserRightsAssignField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQryUserRightsAssignField_get_BrokerID, (setter)PyCThostFtdcQryUserRightsAssignField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcQryUserRightsAssignField_get_UserID, (setter)PyCThostFtdcQryUserRightsAssignField_set_UserID, (char *)"UserID", NULL},
 
     {NULL}
 };

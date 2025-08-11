@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询最大报单数量
+
 
 typedef struct PyCThostFtdcQryMaxOrderVolumeField {
     PyObject_HEAD

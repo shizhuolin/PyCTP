@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcAppIDAuthAssignField.h"
 
-///App客户端权限分配
+
 
 static PyObject *PyCThostFtdcAppIDAuthAssignField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcAppIDAuthAssignField *self = (PyCThostFtdcAppIDAuthAssignField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcAppIDAuthAssignField_new(PyTypeObject *type, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,21 +18,18 @@ static int PyCThostFtdcAppIDAuthAssignField_init(PyCThostFtdcAppIDAuthAssignFiel
 
     static const char *kwlist[] = {"BrokerID", "AppID", "DRIdentityID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pAppIDAuthAssignField_BrokerID = NULL;
+	Py_ssize_t pAppIDAuthAssignField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *AppIDAuthAssignField_BrokerID = NULL;
-    Py_ssize_t AppIDAuthAssignField_BrokerID_len = 0;
-            
-    ///App代码
-    // TThostFtdcAppIDType char[33]
-    const char *AppIDAuthAssignField_AppID = NULL;
-    Py_ssize_t AppIDAuthAssignField_AppID_len = 0;
-            
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    int AppIDAuthAssignField_DRIdentityID = 0;
-        
+	//TThostFtdcAppIDType char[33]
+	const char *pAppIDAuthAssignField_AppID = NULL;
+	Py_ssize_t pAppIDAuthAssignField_AppID_len = 0;
+
+	//TThostFtdcDRIdentityIDType int
+	int pAppIDAuthAssignField_DRIdentityID = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#i", (char **)kwlist
@@ -39,46 +37,39 @@ static int PyCThostFtdcAppIDAuthAssignField_init(PyCThostFtdcAppIDAuthAssignFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#i", (char **)kwlist
 #endif
 
-        , &AppIDAuthAssignField_BrokerID, &AppIDAuthAssignField_BrokerID_len 
-        , &AppIDAuthAssignField_AppID, &AppIDAuthAssignField_AppID_len 
-        , &AppIDAuthAssignField_DRIdentityID 
+		, &pAppIDAuthAssignField_BrokerID, &pAppIDAuthAssignField_BrokerID_len
+		, &pAppIDAuthAssignField_AppID, &pAppIDAuthAssignField_AppID_len
+		, &pAppIDAuthAssignField_DRIdentityID
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pAppIDAuthAssignField_BrokerID != NULL) {
+		if(pAppIDAuthAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pAppIDAuthAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pAppIDAuthAssignField_BrokerID, sizeof(self->data.BrokerID) );
+		pAppIDAuthAssignField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( AppIDAuthAssignField_BrokerID != NULL ) {
-        if(AppIDAuthAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AppIDAuthAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, AppIDAuthAssignField_BrokerID, AppIDAuthAssignField_BrokerID_len);        
-        strncpy(self->data.BrokerID, AppIDAuthAssignField_BrokerID, sizeof(self->data.BrokerID) );
-        AppIDAuthAssignField_BrokerID = NULL;
-    }
-            
-    ///App代码
-    // TThostFtdcAppIDType char[33]
-    if( AppIDAuthAssignField_AppID != NULL ) {
-        if(AppIDAuthAssignField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
-            PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", AppIDAuthAssignField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
-            return -1;
-        }
-        // memset(self->data.AppID, 0, sizeof(self->data.AppID));
-        // memcpy(self->data.AppID, AppIDAuthAssignField_AppID, AppIDAuthAssignField_AppID_len);        
-        strncpy(self->data.AppID, AppIDAuthAssignField_AppID, sizeof(self->data.AppID) );
-        AppIDAuthAssignField_AppID = NULL;
-    }
-            
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    self->data.DRIdentityID = AppIDAuthAssignField_DRIdentityID;
-        
+	//TThostFtdcAppIDType char[33]
+	if(pAppIDAuthAssignField_AppID != NULL) {
+		if(pAppIDAuthAssignField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+			PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", pAppIDAuthAssignField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
+			return -1;
+		}
+		strncpy(self->data.AppID, pAppIDAuthAssignField_AppID, sizeof(self->data.AppID) );
+		pAppIDAuthAssignField_AppID = NULL;
+	}
+
+	//TThostFtdcDRIdentityIDType int
+	self->data.DRIdentityID = pAppIDAuthAssignField_DRIdentityID;
+
+
 
     return 0;
 }
@@ -95,9 +86,9 @@ static PyObject *PyCThostFtdcAppIDAuthAssignField_repr(PyCThostFtdcAppIDAuthAssi
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"AppID", self->data.AppID//, (Py_ssize_t)sizeof(self->data.AppID) 
-        ,"DRIdentityID", self->data.DRIdentityID 
+		, "BrokerID", self->data.BrokerID 
+		, "AppID", self->data.AppID 
+		, "DRIdentityID", self->data.DRIdentityID
 
 
 		);
@@ -110,105 +101,84 @@ static PyObject *PyCThostFtdcAppIDAuthAssignField_repr(PyCThostFtdcAppIDAuthAssi
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcAppIDAuthAssignField_get_BrokerID(PyCThostFtdcAppIDAuthAssignField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcAppIDAuthAssignField_set_BrokerID(PyCThostFtdcAppIDAuthAssignField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///App代码
-// TThostFtdcAppIDType char[33]
 static PyObject *PyCThostFtdcAppIDAuthAssignField_get_AppID(PyCThostFtdcAppIDAuthAssignField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.AppID, (Py_ssize_t)sizeof(self->data.AppID));
-    return PyBytes_FromString(self->data.AppID);
+	return PyBytes_FromString(self->data.AppID);
 }
 
-///App代码
-// TThostFtdcAppIDType char[33]
-static int PyCThostFtdcAppIDAuthAssignField_set_AppID(PyCThostFtdcAppIDAuthAssignField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AppID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
-        PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.AppID, 0, sizeof(self->data.AppID));
-    // memcpy(self->data.AppID, buf, len);
-    strncpy(self->data.AppID, buf, sizeof(self->data.AppID));
-    return 0;
-}
-            
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
 static PyObject *PyCThostFtdcAppIDAuthAssignField_get_DRIdentityID(PyCThostFtdcAppIDAuthAssignField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.DRIdentityID);
-#else
-    return PyInt_FromLong(self->data.DRIdentityID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.DRIdentityID);
+#else 
+	return PyInt_FromLong(self->data.DRIdentityID);
+#endif 
 }
 
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
-static int PyCThostFtdcAppIDAuthAssignField_set_DRIdentityID(PyCThostFtdcAppIDAuthAssignField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcAppIDAuthAssignField_set_BrokerID(PyCThostFtdcAppIDAuthAssignField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcAppIDAuthAssignField_set_AppID(PyCThostFtdcAppIDAuthAssignField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AppID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+		PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.AppID, buf, sizeof(self->data.AppID));
+	return 0;
+}
+
+static int PyCThostFtdcAppIDAuthAssignField_set_DRIdentityID(PyCThostFtdcAppIDAuthAssignField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the DRIdentityID value out of range for C int");
-        return -1;
-    }
-    self->data.DRIdentityID = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.DRIdentityID = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcAppIDAuthAssignField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcAppIDAuthAssignField_get_BrokerID, (setter)PyCThostFtdcAppIDAuthAssignField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///App代码 
-    {(char *)"AppID", (getter)PyCThostFtdcAppIDAuthAssignField_get_AppID, (setter)PyCThostFtdcAppIDAuthAssignField_set_AppID, (char *)"AppID", NULL},
-    ///交易中心代码 
-    {(char *)"DRIdentityID", (getter)PyCThostFtdcAppIDAuthAssignField_get_DRIdentityID, (setter)PyCThostFtdcAppIDAuthAssignField_set_DRIdentityID, (char *)"DRIdentityID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcAppIDAuthAssignField_get_BrokerID, (setter)PyCThostFtdcAppIDAuthAssignField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"AppID", (getter)PyCThostFtdcAppIDAuthAssignField_get_AppID, (setter)PyCThostFtdcAppIDAuthAssignField_set_AppID, (char *)"AppID", NULL},
+	 {(char *)"DRIdentityID", (getter)PyCThostFtdcAppIDAuthAssignField_get_DRIdentityID, (setter)PyCThostFtdcAppIDAuthAssignField_set_DRIdentityID, (char *)"DRIdentityID", NULL},
 
     {NULL}
 };

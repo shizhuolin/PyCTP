@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///当前期权合约保证金调整系数
+
 
 typedef struct PyCThostFtdcOptionInstrMarginAdjustField {
     PyObject_HEAD

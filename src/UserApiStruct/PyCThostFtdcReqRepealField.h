@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///冲正请求
+
 
 typedef struct PyCThostFtdcReqRepealField {
     PyObject_HEAD

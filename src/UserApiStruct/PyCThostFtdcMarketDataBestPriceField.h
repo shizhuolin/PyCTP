@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///行情最优价属性
+
 
 typedef struct PyCThostFtdcMarketDataBestPriceField {
     PyObject_HEAD

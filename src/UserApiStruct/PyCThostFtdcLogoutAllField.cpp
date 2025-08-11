@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcLogoutAllField.h"
 
-///登录信息
+
 
 static PyObject *PyCThostFtdcLogoutAllField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcLogoutAllField *self = (PyCThostFtdcLogoutAllField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcLogoutAllField_new(PyTypeObject *type, PyObject *ar
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,20 +18,17 @@ static int PyCThostFtdcLogoutAllField_init(PyCThostFtdcLogoutAllField *self, PyO
 
     static const char *kwlist[] = {"FrontID", "SessionID", "SystemName",  NULL};
 
+	//TThostFtdcFrontIDType int
+	int pLogoutAllField_FrontID = 0;
 
-    ///前置编号
-    // TThostFtdcFrontIDType int
-    int LogoutAllField_FrontID = 0;
-        
-    ///会话编号
-    // TThostFtdcSessionIDType int
-    int LogoutAllField_SessionID = 0;
-        
-    ///系统名称
-    // TThostFtdcSystemNameType char[41]
-    const char *LogoutAllField_SystemName = NULL;
-    Py_ssize_t LogoutAllField_SystemName_len = 0;
-            
+	//TThostFtdcSessionIDType int
+	int pLogoutAllField_SessionID = 0;
+
+	//TThostFtdcSystemNameType char[41]
+	const char *pLogoutAllField_SystemName = NULL;
+	Py_ssize_t pLogoutAllField_SystemName_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|iiy#", (char **)kwlist
@@ -38,37 +36,32 @@ static int PyCThostFtdcLogoutAllField_init(PyCThostFtdcLogoutAllField *self, PyO
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|iis#", (char **)kwlist
 #endif
 
-        , &LogoutAllField_FrontID 
-        , &LogoutAllField_SessionID 
-        , &LogoutAllField_SystemName, &LogoutAllField_SystemName_len 
+		, &pLogoutAllField_FrontID
+		, &pLogoutAllField_SessionID
+		, &pLogoutAllField_SystemName, &pLogoutAllField_SystemName_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcFrontIDType int
+	self->data.FrontID = pLogoutAllField_FrontID;
 
-    ///前置编号
-    // TThostFtdcFrontIDType int
-    self->data.FrontID = LogoutAllField_FrontID;
-        
-    ///会话编号
-    // TThostFtdcSessionIDType int
-    self->data.SessionID = LogoutAllField_SessionID;
-        
-    ///系统名称
-    // TThostFtdcSystemNameType char[41]
-    if( LogoutAllField_SystemName != NULL ) {
-        if(LogoutAllField_SystemName_len > (Py_ssize_t)sizeof(self->data.SystemName)) {
-            PyErr_Format(PyExc_ValueError, "SystemName too long: length=%zd (max allowed is %zd)", LogoutAllField_SystemName_len, (Py_ssize_t)sizeof(self->data.SystemName));
-            return -1;
-        }
-        // memset(self->data.SystemName, 0, sizeof(self->data.SystemName));
-        // memcpy(self->data.SystemName, LogoutAllField_SystemName, LogoutAllField_SystemName_len);        
-        strncpy(self->data.SystemName, LogoutAllField_SystemName, sizeof(self->data.SystemName) );
-        LogoutAllField_SystemName = NULL;
-    }
-            
+	//TThostFtdcSessionIDType int
+	self->data.SessionID = pLogoutAllField_SessionID;
+
+	//TThostFtdcSystemNameType char[41]
+	if(pLogoutAllField_SystemName != NULL) {
+		if(pLogoutAllField_SystemName_len > (Py_ssize_t)sizeof(self->data.SystemName)) {
+			PyErr_Format(PyExc_ValueError, "SystemName too long: length=%zd (max allowed is %zd)", pLogoutAllField_SystemName_len, (Py_ssize_t)sizeof(self->data.SystemName));
+			return -1;
+		}
+		strncpy(self->data.SystemName, pLogoutAllField_SystemName, sizeof(self->data.SystemName) );
+		pLogoutAllField_SystemName = NULL;
+	}
+
+
 
     return 0;
 }
@@ -85,9 +78,9 @@ static PyObject *PyCThostFtdcLogoutAllField_repr(PyCThostFtdcLogoutAllField *sel
     PyObject *obj = Py_BuildValue("{s:i,s:i,s:s}"
 #endif
 
-        ,"FrontID", self->data.FrontID 
-        ,"SessionID", self->data.SessionID 
-        ,"SystemName", self->data.SystemName//, (Py_ssize_t)sizeof(self->data.SystemName) 
+		, "FrontID", self->data.FrontID
+		, "SessionID", self->data.SessionID
+		, "SystemName", self->data.SystemName 
 
 
 		);
@@ -100,117 +93,99 @@ static PyObject *PyCThostFtdcLogoutAllField_repr(PyCThostFtdcLogoutAllField *sel
     return PyObject_Repr(obj);
 }
 
-
-///前置编号
-// TThostFtdcFrontIDType int
 static PyObject *PyCThostFtdcLogoutAllField_get_FrontID(PyCThostFtdcLogoutAllField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.FrontID);
-#else
-    return PyInt_FromLong(self->data.FrontID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.FrontID);
+#else 
+	return PyInt_FromLong(self->data.FrontID);
+#endif 
 }
 
-///前置编号
-// TThostFtdcFrontIDType int
-static int PyCThostFtdcLogoutAllField_set_FrontID(PyCThostFtdcLogoutAllField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcLogoutAllField_get_SessionID(PyCThostFtdcLogoutAllField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SessionID);
+#else 
+	return PyInt_FromLong(self->data.SessionID);
+#endif 
+}
+
+static PyObject *PyCThostFtdcLogoutAllField_get_SystemName(PyCThostFtdcLogoutAllField *self, void *closure) {
+	return PyBytes_FromString(self->data.SystemName);
+}
+
+static int PyCThostFtdcLogoutAllField_set_FrontID(PyCThostFtdcLogoutAllField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FrontID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FrontID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "FrontID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the FrontID value out of range for C int");
-        return -1;
-    }
-    self->data.FrontID = (int)buf;
-    return 0;
-}
-        
-///会话编号
-// TThostFtdcSessionIDType int
-static PyObject *PyCThostFtdcLogoutAllField_get_SessionID(PyCThostFtdcLogoutAllField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SessionID);
-#else
-    return PyInt_FromLong(self->data.SessionID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.FrontID = (int)buf; 
+    return 0; 
 }
 
-///会话编号
-// TThostFtdcSessionIDType int
-static int PyCThostFtdcLogoutAllField_set_SessionID(PyCThostFtdcLogoutAllField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcLogoutAllField_set_SessionID(PyCThostFtdcLogoutAllField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SessionID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SessionID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SessionID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SessionID value out of range for C int");
-        return -1;
-    }
-    self->data.SessionID = (int)buf;
-    return 0;
-}
-        
-///系统名称
-// TThostFtdcSystemNameType char[41]
-static PyObject *PyCThostFtdcLogoutAllField_get_SystemName(PyCThostFtdcLogoutAllField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.SystemName, (Py_ssize_t)sizeof(self->data.SystemName));
-    return PyBytes_FromString(self->data.SystemName);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SessionID = (int)buf; 
+    return 0; 
 }
 
-///系统名称
-// TThostFtdcSystemNameType char[41]
-static int PyCThostFtdcLogoutAllField_set_SystemName(PyCThostFtdcLogoutAllField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SystemName Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SystemName)) {
-        PyErr_SetString(PyExc_ValueError, "SystemName must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.SystemName, 0, sizeof(self->data.SystemName));
-    // memcpy(self->data.SystemName, buf, len);
-    strncpy(self->data.SystemName, buf, sizeof(self->data.SystemName));
-    return 0;
+static int PyCThostFtdcLogoutAllField_set_SystemName(PyCThostFtdcLogoutAllField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "SystemName Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.SystemName)) {
+		PyErr_SetString(PyExc_ValueError, "SystemName must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.SystemName, buf, sizeof(self->data.SystemName));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcLogoutAllField_getset[] = {
-    ///前置编号 
-    {(char *)"FrontID", (getter)PyCThostFtdcLogoutAllField_get_FrontID, (setter)PyCThostFtdcLogoutAllField_set_FrontID, (char *)"FrontID", NULL},
-    ///会话编号 
-    {(char *)"SessionID", (getter)PyCThostFtdcLogoutAllField_get_SessionID, (setter)PyCThostFtdcLogoutAllField_set_SessionID, (char *)"SessionID", NULL},
-    ///系统名称 
-    {(char *)"SystemName", (getter)PyCThostFtdcLogoutAllField_get_SystemName, (setter)PyCThostFtdcLogoutAllField_set_SystemName, (char *)"SystemName", NULL},
+	 {(char *)"FrontID", (getter)PyCThostFtdcLogoutAllField_get_FrontID, (setter)PyCThostFtdcLogoutAllField_set_FrontID, (char *)"FrontID", NULL},
+	 {(char *)"SessionID", (getter)PyCThostFtdcLogoutAllField_get_SessionID, (setter)PyCThostFtdcLogoutAllField_set_SessionID, (char *)"SessionID", NULL},
+	 {(char *)"SystemName", (getter)PyCThostFtdcLogoutAllField_get_SystemName, (setter)PyCThostFtdcLogoutAllField_set_SystemName, (char *)"SystemName", NULL},
 
     {NULL}
 };

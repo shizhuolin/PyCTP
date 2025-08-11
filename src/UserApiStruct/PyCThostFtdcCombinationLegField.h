@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///组合交易合约的单腿
+
 
 typedef struct PyCThostFtdcCombinationLegField {
     PyObject_HEAD

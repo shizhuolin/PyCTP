@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///行情上下带价
+
 
 typedef struct PyCThostFtdcMarketDataBandingPriceField {
     PyObject_HEAD

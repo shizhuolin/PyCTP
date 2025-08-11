@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///货币质押同步
+
 
 typedef struct PyCThostFtdcSyncFundMortgageField {
     PyObject_HEAD

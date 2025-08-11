@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///发给做市商的询价请求
+
 
 typedef struct PyCThostFtdcForQuoteRspField {
     PyObject_HEAD

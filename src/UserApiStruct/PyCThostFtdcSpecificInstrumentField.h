@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///指定的合约
+
 
 typedef struct PyCThostFtdcSpecificInstrumentField {
     PyObject_HEAD

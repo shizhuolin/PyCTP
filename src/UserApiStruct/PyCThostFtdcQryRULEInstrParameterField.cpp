@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryRULEInstrParameterField.h"
 
-///RULE合约保证金参数查询
+
 
 static PyObject *PyCThostFtdcQryRULEInstrParameterField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryRULEInstrParameterField *self = (PyCThostFtdcQryRULEInstrParameterField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryRULEInstrParameterField_new(PyTypeObject *type, 
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQryRULEInstrParameterField_init(PyCThostFtdcQryRULEInstrP
 
     static const char *kwlist[] = {"ExchangeID", "InstrumentID",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pQryRULEInstrParameterField_ExchangeID = NULL;
+	Py_ssize_t pQryRULEInstrParameterField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *QryRULEInstrParameterField_ExchangeID = NULL;
-    Py_ssize_t QryRULEInstrParameterField_ExchangeID_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryRULEInstrParameterField_InstrumentID = NULL;
-    Py_ssize_t QryRULEInstrParameterField_InstrumentID_len = 0;
-            
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryRULEInstrParameterField_InstrumentID = NULL;
+	Py_ssize_t pQryRULEInstrParameterField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQryRULEInstrParameterField_init(PyCThostFtdcQryRULEInstrP
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QryRULEInstrParameterField_ExchangeID, &QryRULEInstrParameterField_ExchangeID_len 
-        , &QryRULEInstrParameterField_InstrumentID, &QryRULEInstrParameterField_InstrumentID_len 
+		, &pQryRULEInstrParameterField_ExchangeID, &pQryRULEInstrParameterField_ExchangeID_len
+		, &pQryRULEInstrParameterField_InstrumentID, &pQryRULEInstrParameterField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pQryRULEInstrParameterField_ExchangeID != NULL) {
+		if(pQryRULEInstrParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pQryRULEInstrParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pQryRULEInstrParameterField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pQryRULEInstrParameterField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( QryRULEInstrParameterField_ExchangeID != NULL ) {
-        if(QryRULEInstrParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryRULEInstrParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, QryRULEInstrParameterField_ExchangeID, QryRULEInstrParameterField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, QryRULEInstrParameterField_ExchangeID, sizeof(self->data.ExchangeID) );
-        QryRULEInstrParameterField_ExchangeID = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryRULEInstrParameterField_InstrumentID != NULL ) {
-        if(QryRULEInstrParameterField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryRULEInstrParameterField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, QryRULEInstrParameterField_InstrumentID, QryRULEInstrParameterField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, QryRULEInstrParameterField_InstrumentID, sizeof(self->data.InstrumentID) );
-        QryRULEInstrParameterField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryRULEInstrParameterField_InstrumentID != NULL) {
+		if(pQryRULEInstrParameterField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pQryRULEInstrParameterField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pQryRULEInstrParameterField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pQryRULEInstrParameterField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQryRULEInstrParameterField_repr(PyCThostFtdcQryRULE
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "ExchangeID", self->data.ExchangeID 
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQryRULEInstrParameterField_repr(PyCThostFtdcQryRULE
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcQryRULEInstrParameterField_get_ExchangeID(PyCThostFtdcQryRULEInstrParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcQryRULEInstrParameterField_set_ExchangeID(PyCThostFtdcQryRULEInstrParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryRULEInstrParameterField_get_InstrumentID(PyCThostFtdcQryRULEInstrParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryRULEInstrParameterField_set_InstrumentID(PyCThostFtdcQryRULEInstrParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
+static int PyCThostFtdcQryRULEInstrParameterField_set_ExchangeID(PyCThostFtdcQryRULEInstrParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryRULEInstrParameterField_set_InstrumentID(PyCThostFtdcQryRULEInstrParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryRULEInstrParameterField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcQryRULEInstrParameterField_get_ExchangeID, (setter)PyCThostFtdcQryRULEInstrParameterField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcQryRULEInstrParameterField_get_InstrumentID, (setter)PyCThostFtdcQryRULEInstrParameterField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcQryRULEInstrParameterField_get_ExchangeID, (setter)PyCThostFtdcQryRULEInstrParameterField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcQryRULEInstrParameterField_get_InstrumentID, (setter)PyCThostFtdcQryRULEInstrParameterField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

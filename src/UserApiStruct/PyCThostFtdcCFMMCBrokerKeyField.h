@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///保证金监管系统经纪公司密钥
+
 
 typedef struct PyCThostFtdcCFMMCBrokerKeyField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RULE品种内对锁仓折扣参数
+
 
 typedef struct PyCThostFtdcRULEIntraParameterField {
     PyObject_HEAD

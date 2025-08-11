@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///退出紧急状态参数
+
 
 typedef struct PyCThostFtdcExitEmergencyField {
     PyObject_HEAD

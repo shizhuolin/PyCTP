@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///App客户端权限分配
+
 
 typedef struct PyCThostFtdcAppIDAuthAssignField {
     PyObject_HEAD

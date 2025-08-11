@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期货持仓限制参数
+
 
 typedef struct PyCThostFtdcFutureLimitPosiParamField {
     PyObject_HEAD

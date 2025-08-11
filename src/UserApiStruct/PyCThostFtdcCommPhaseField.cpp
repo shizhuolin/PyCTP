@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcCommPhaseField.h"
 
-///通讯阶段
+
 
 static PyObject *PyCThostFtdcCommPhaseField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcCommPhaseField *self = (PyCThostFtdcCommPhaseField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcCommPhaseField_new(PyTypeObject *type, PyObject *ar
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,21 +18,18 @@ static int PyCThostFtdcCommPhaseField_init(PyCThostFtdcCommPhaseField *self, PyO
 
     static const char *kwlist[] = {"TradingDay", "CommPhaseNo", "SystemID",  NULL};
 
+	//TThostFtdcDateType char[9]
+	const char *pCommPhaseField_TradingDay = NULL;
+	Py_ssize_t pCommPhaseField_TradingDay_len = 0;
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    const char *CommPhaseField_TradingDay = NULL;
-    Py_ssize_t CommPhaseField_TradingDay_len = 0;
-            
-    ///通讯时段编号
-    // TThostFtdcCommPhaseNoType short
-    short CommPhaseField_CommPhaseNo = 0;
-        
-    ///系统编号
-    // TThostFtdcSystemIDType char[21]
-    const char *CommPhaseField_SystemID = NULL;
-    Py_ssize_t CommPhaseField_SystemID_len = 0;
-            
+	//TThostFtdcCommPhaseNoType short
+	short pCommPhaseField_CommPhaseNo = 0;
+
+	//TThostFtdcSystemIDType char[21]
+	const char *pCommPhaseField_SystemID = NULL;
+	Py_ssize_t pCommPhaseField_SystemID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#hy#", (char **)kwlist
@@ -39,46 +37,39 @@ static int PyCThostFtdcCommPhaseField_init(PyCThostFtdcCommPhaseField *self, PyO
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#hs#", (char **)kwlist
 #endif
 
-        , &CommPhaseField_TradingDay, &CommPhaseField_TradingDay_len 
-        , &CommPhaseField_CommPhaseNo 
-        , &CommPhaseField_SystemID, &CommPhaseField_SystemID_len 
+		, &pCommPhaseField_TradingDay, &pCommPhaseField_TradingDay_len
+		, &pCommPhaseField_CommPhaseNo
+		, &pCommPhaseField_SystemID, &pCommPhaseField_SystemID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDateType char[9]
+	if(pCommPhaseField_TradingDay != NULL) {
+		if(pCommPhaseField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pCommPhaseField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pCommPhaseField_TradingDay, sizeof(self->data.TradingDay) );
+		pCommPhaseField_TradingDay = NULL;
+	}
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    if( CommPhaseField_TradingDay != NULL ) {
-        if(CommPhaseField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", CommPhaseField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, CommPhaseField_TradingDay, CommPhaseField_TradingDay_len);        
-        strncpy(self->data.TradingDay, CommPhaseField_TradingDay, sizeof(self->data.TradingDay) );
-        CommPhaseField_TradingDay = NULL;
-    }
-            
-    ///通讯时段编号
-    // TThostFtdcCommPhaseNoType short
-    self->data.CommPhaseNo = CommPhaseField_CommPhaseNo;
-        
-    ///系统编号
-    // TThostFtdcSystemIDType char[21]
-    if( CommPhaseField_SystemID != NULL ) {
-        if(CommPhaseField_SystemID_len > (Py_ssize_t)sizeof(self->data.SystemID)) {
-            PyErr_Format(PyExc_ValueError, "SystemID too long: length=%zd (max allowed is %zd)", CommPhaseField_SystemID_len, (Py_ssize_t)sizeof(self->data.SystemID));
-            return -1;
-        }
-        // memset(self->data.SystemID, 0, sizeof(self->data.SystemID));
-        // memcpy(self->data.SystemID, CommPhaseField_SystemID, CommPhaseField_SystemID_len);        
-        strncpy(self->data.SystemID, CommPhaseField_SystemID, sizeof(self->data.SystemID) );
-        CommPhaseField_SystemID = NULL;
-    }
-            
+	//TThostFtdcCommPhaseNoType short
+	self->data.CommPhaseNo = pCommPhaseField_CommPhaseNo;
+
+	//TThostFtdcSystemIDType char[21]
+	if(pCommPhaseField_SystemID != NULL) {
+		if(pCommPhaseField_SystemID_len > (Py_ssize_t)sizeof(self->data.SystemID)) {
+			PyErr_Format(PyExc_ValueError, "SystemID too long: length=%zd (max allowed is %zd)", pCommPhaseField_SystemID_len, (Py_ssize_t)sizeof(self->data.SystemID));
+			return -1;
+		}
+		strncpy(self->data.SystemID, pCommPhaseField_SystemID, sizeof(self->data.SystemID) );
+		pCommPhaseField_SystemID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -95,9 +86,9 @@ static PyObject *PyCThostFtdcCommPhaseField_repr(PyCThostFtdcCommPhaseField *sel
     PyObject *obj = Py_BuildValue("{s:s,s:h,s:s}"
 #endif
 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
-        ,"CommPhaseNo", self->data.CommPhaseNo 
-        ,"SystemID", self->data.SystemID//, (Py_ssize_t)sizeof(self->data.SystemID) 
+		, "TradingDay", self->data.TradingDay 
+		, "CommPhaseNo", self->data.CommPhaseNo
+		, "SystemID", self->data.SystemID 
 
 
 		);
@@ -110,105 +101,84 @@ static PyObject *PyCThostFtdcCommPhaseField_repr(PyCThostFtdcCommPhaseField *sel
     return PyObject_Repr(obj);
 }
 
-
-///交易日
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcCommPhaseField_get_TradingDay(PyCThostFtdcCommPhaseField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易日
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcCommPhaseField_set_TradingDay(PyCThostFtdcCommPhaseField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
-}
-            
-///通讯时段编号
-// TThostFtdcCommPhaseNoType short
 static PyObject *PyCThostFtdcCommPhaseField_get_CommPhaseNo(PyCThostFtdcCommPhaseField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.CommPhaseNo);
-#else
-    return PyInt_FromLong(self->data.CommPhaseNo);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.CommPhaseNo);
+#else 
+	return PyInt_FromLong(self->data.CommPhaseNo);
+#endif 
 }
 
-///通讯时段编号
-// TThostFtdcCommPhaseNoType short
-static int PyCThostFtdcCommPhaseField_set_CommPhaseNo(PyCThostFtdcCommPhaseField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcCommPhaseField_get_SystemID(PyCThostFtdcCommPhaseField *self, void *closure) {
+	return PyBytes_FromString(self->data.SystemID);
+}
+
+static int PyCThostFtdcCommPhaseField_set_TradingDay(PyCThostFtdcCommPhaseField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
+}
+
+static int PyCThostFtdcCommPhaseField_set_CommPhaseNo(PyCThostFtdcCommPhaseField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CommPhaseNo Expected short");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CommPhaseNo Expected short");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "CommPhaseNo Expected short"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
     if (buf == -1 && PyErr_Occurred()) { 
-        return -1;
-    }
-    if (buf < SHRT_MIN || buf > SHRT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the CommPhaseNo value out of range for C short");
-        return -1;
-    }
-    self->data.CommPhaseNo = (short)buf;
-    return 0;
-}
-        
-///系统编号
-// TThostFtdcSystemIDType char[21]
-static PyObject *PyCThostFtdcCommPhaseField_get_SystemID(PyCThostFtdcCommPhaseField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.SystemID, (Py_ssize_t)sizeof(self->data.SystemID));
-    return PyBytes_FromString(self->data.SystemID);
+        return -1; 
+    } 
+    if (buf < SHRT_MIN || buf > SHRT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C short"); 
+        return -1; 
+    } 
+    self->data.CommPhaseNo = (short)buf; 
+    return 0; 
 }
 
-///系统编号
-// TThostFtdcSystemIDType char[21]
-static int PyCThostFtdcCommPhaseField_set_SystemID(PyCThostFtdcCommPhaseField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SystemID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SystemID)) {
-        PyErr_SetString(PyExc_ValueError, "SystemID must be less than 21 bytes");
-        return -1;
-    }
-    // memset(self->data.SystemID, 0, sizeof(self->data.SystemID));
-    // memcpy(self->data.SystemID, buf, len);
-    strncpy(self->data.SystemID, buf, sizeof(self->data.SystemID));
-    return 0;
+static int PyCThostFtdcCommPhaseField_set_SystemID(PyCThostFtdcCommPhaseField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "SystemID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.SystemID)) {
+		PyErr_SetString(PyExc_ValueError, "SystemID must be less than 21 bytes");
+		return -1;
+	}
+	strncpy(self->data.SystemID, buf, sizeof(self->data.SystemID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcCommPhaseField_getset[] = {
-    ///交易日 
-    {(char *)"TradingDay", (getter)PyCThostFtdcCommPhaseField_get_TradingDay, (setter)PyCThostFtdcCommPhaseField_set_TradingDay, (char *)"TradingDay", NULL},
-    ///通讯时段编号 
-    {(char *)"CommPhaseNo", (getter)PyCThostFtdcCommPhaseField_get_CommPhaseNo, (setter)PyCThostFtdcCommPhaseField_set_CommPhaseNo, (char *)"CommPhaseNo", NULL},
-    ///系统编号 
-    {(char *)"SystemID", (getter)PyCThostFtdcCommPhaseField_get_SystemID, (setter)PyCThostFtdcCommPhaseField_set_SystemID, (char *)"SystemID", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcCommPhaseField_get_TradingDay, (setter)PyCThostFtdcCommPhaseField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"CommPhaseNo", (getter)PyCThostFtdcCommPhaseField_get_CommPhaseNo, (setter)PyCThostFtdcCommPhaseField_set_CommPhaseNo, (char *)"CommPhaseNo", NULL},
+	 {(char *)"SystemID", (getter)PyCThostFtdcCommPhaseField_get_SystemID, (setter)PyCThostFtdcCommPhaseField_set_SystemID, (char *)"SystemID", NULL},
 
     {NULL}
 };

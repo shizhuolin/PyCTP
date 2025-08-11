@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平SPBM跨品种抵扣参数
+
 
 typedef struct PyCThostFtdcSyncDeltaSPBMInterParameterField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询经纪公司交易算法
+
 
 typedef struct PyCThostFtdcQryBrokerTradingAlgosField {
     PyObject_HEAD

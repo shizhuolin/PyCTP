@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcFrontStatusField.h"
 
-///前置状态
+
 
 static PyObject *PyCThostFtdcFrontStatusField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcFrontStatusField *self = (PyCThostFtdcFrontStatusField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcFrontStatusField_new(PyTypeObject *type, PyObject *
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,25 +18,21 @@ static int PyCThostFtdcFrontStatusField_init(PyCThostFtdcFrontStatusField *self,
 
     static const char *kwlist[] = {"FrontID", "LastReportDate", "LastReportTime", "IsActive",  NULL};
 
+	//TThostFtdcFrontIDType int
+	int pFrontStatusField_FrontID = 0;
 
-    ///前置编号
-    // TThostFtdcFrontIDType int
-    int FrontStatusField_FrontID = 0;
-        
-    ///上次报告日期
-    // TThostFtdcDateType char[9]
-    const char *FrontStatusField_LastReportDate = NULL;
-    Py_ssize_t FrontStatusField_LastReportDate_len = 0;
-            
-    ///上次报告时间
-    // TThostFtdcTimeType char[9]
-    const char *FrontStatusField_LastReportTime = NULL;
-    Py_ssize_t FrontStatusField_LastReportTime_len = 0;
-            
-    ///是否活跃
-    // TThostFtdcBoolType int
-    int FrontStatusField_IsActive = 0;
-        
+	//TThostFtdcDateType char[9]
+	const char *pFrontStatusField_LastReportDate = NULL;
+	Py_ssize_t pFrontStatusField_LastReportDate_len = 0;
+
+	//TThostFtdcTimeType char[9]
+	const char *pFrontStatusField_LastReportTime = NULL;
+	Py_ssize_t pFrontStatusField_LastReportTime_len = 0;
+
+	//TThostFtdcBoolType int
+	int pFrontStatusField_IsActive = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|iy#y#i", (char **)kwlist
@@ -43,51 +40,43 @@ static int PyCThostFtdcFrontStatusField_init(PyCThostFtdcFrontStatusField *self,
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|is#s#i", (char **)kwlist
 #endif
 
-        , &FrontStatusField_FrontID 
-        , &FrontStatusField_LastReportDate, &FrontStatusField_LastReportDate_len 
-        , &FrontStatusField_LastReportTime, &FrontStatusField_LastReportTime_len 
-        , &FrontStatusField_IsActive 
+		, &pFrontStatusField_FrontID
+		, &pFrontStatusField_LastReportDate, &pFrontStatusField_LastReportDate_len
+		, &pFrontStatusField_LastReportTime, &pFrontStatusField_LastReportTime_len
+		, &pFrontStatusField_IsActive
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcFrontIDType int
+	self->data.FrontID = pFrontStatusField_FrontID;
 
-    ///前置编号
-    // TThostFtdcFrontIDType int
-    self->data.FrontID = FrontStatusField_FrontID;
-        
-    ///上次报告日期
-    // TThostFtdcDateType char[9]
-    if( FrontStatusField_LastReportDate != NULL ) {
-        if(FrontStatusField_LastReportDate_len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
-            PyErr_Format(PyExc_ValueError, "LastReportDate too long: length=%zd (max allowed is %zd)", FrontStatusField_LastReportDate_len, (Py_ssize_t)sizeof(self->data.LastReportDate));
-            return -1;
-        }
-        // memset(self->data.LastReportDate, 0, sizeof(self->data.LastReportDate));
-        // memcpy(self->data.LastReportDate, FrontStatusField_LastReportDate, FrontStatusField_LastReportDate_len);        
-        strncpy(self->data.LastReportDate, FrontStatusField_LastReportDate, sizeof(self->data.LastReportDate) );
-        FrontStatusField_LastReportDate = NULL;
-    }
-            
-    ///上次报告时间
-    // TThostFtdcTimeType char[9]
-    if( FrontStatusField_LastReportTime != NULL ) {
-        if(FrontStatusField_LastReportTime_len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
-            PyErr_Format(PyExc_ValueError, "LastReportTime too long: length=%zd (max allowed is %zd)", FrontStatusField_LastReportTime_len, (Py_ssize_t)sizeof(self->data.LastReportTime));
-            return -1;
-        }
-        // memset(self->data.LastReportTime, 0, sizeof(self->data.LastReportTime));
-        // memcpy(self->data.LastReportTime, FrontStatusField_LastReportTime, FrontStatusField_LastReportTime_len);        
-        strncpy(self->data.LastReportTime, FrontStatusField_LastReportTime, sizeof(self->data.LastReportTime) );
-        FrontStatusField_LastReportTime = NULL;
-    }
-            
-    ///是否活跃
-    // TThostFtdcBoolType int
-    self->data.IsActive = FrontStatusField_IsActive;
-        
+	//TThostFtdcDateType char[9]
+	if(pFrontStatusField_LastReportDate != NULL) {
+		if(pFrontStatusField_LastReportDate_len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
+			PyErr_Format(PyExc_ValueError, "LastReportDate too long: length=%zd (max allowed is %zd)", pFrontStatusField_LastReportDate_len, (Py_ssize_t)sizeof(self->data.LastReportDate));
+			return -1;
+		}
+		strncpy(self->data.LastReportDate, pFrontStatusField_LastReportDate, sizeof(self->data.LastReportDate) );
+		pFrontStatusField_LastReportDate = NULL;
+	}
+
+	//TThostFtdcTimeType char[9]
+	if(pFrontStatusField_LastReportTime != NULL) {
+		if(pFrontStatusField_LastReportTime_len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
+			PyErr_Format(PyExc_ValueError, "LastReportTime too long: length=%zd (max allowed is %zd)", pFrontStatusField_LastReportTime_len, (Py_ssize_t)sizeof(self->data.LastReportTime));
+			return -1;
+		}
+		strncpy(self->data.LastReportTime, pFrontStatusField_LastReportTime, sizeof(self->data.LastReportTime) );
+		pFrontStatusField_LastReportTime = NULL;
+	}
+
+	//TThostFtdcBoolType int
+	self->data.IsActive = pFrontStatusField_IsActive;
+
+
 
     return 0;
 }
@@ -104,10 +93,10 @@ static PyObject *PyCThostFtdcFrontStatusField_repr(PyCThostFtdcFrontStatusField 
     PyObject *obj = Py_BuildValue("{s:i,s:s,s:s,s:i}"
 #endif
 
-        ,"FrontID", self->data.FrontID 
-        ,"LastReportDate", self->data.LastReportDate//, (Py_ssize_t)sizeof(self->data.LastReportDate) 
-        ,"LastReportTime", self->data.LastReportTime//, (Py_ssize_t)sizeof(self->data.LastReportTime) 
-        ,"IsActive", self->data.IsActive 
+		, "FrontID", self->data.FrontID
+		, "LastReportDate", self->data.LastReportDate 
+		, "LastReportTime", self->data.LastReportTime 
+		, "IsActive", self->data.IsActive
 
 
 		);
@@ -120,145 +109,119 @@ static PyObject *PyCThostFtdcFrontStatusField_repr(PyCThostFtdcFrontStatusField 
     return PyObject_Repr(obj);
 }
 
-
-///前置编号
-// TThostFtdcFrontIDType int
 static PyObject *PyCThostFtdcFrontStatusField_get_FrontID(PyCThostFtdcFrontStatusField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.FrontID);
-#else
-    return PyInt_FromLong(self->data.FrontID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.FrontID);
+#else 
+	return PyInt_FromLong(self->data.FrontID);
+#endif 
 }
 
-///前置编号
-// TThostFtdcFrontIDType int
-static int PyCThostFtdcFrontStatusField_set_FrontID(PyCThostFtdcFrontStatusField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcFrontStatusField_get_LastReportDate(PyCThostFtdcFrontStatusField *self, void *closure) {
+	return PyBytes_FromString(self->data.LastReportDate);
+}
+
+static PyObject *PyCThostFtdcFrontStatusField_get_LastReportTime(PyCThostFtdcFrontStatusField *self, void *closure) {
+	return PyBytes_FromString(self->data.LastReportTime);
+}
+
+static PyObject *PyCThostFtdcFrontStatusField_get_IsActive(PyCThostFtdcFrontStatusField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsActive);
+#else 
+	return PyInt_FromLong(self->data.IsActive);
+#endif 
+}
+
+static int PyCThostFtdcFrontStatusField_set_FrontID(PyCThostFtdcFrontStatusField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FrontID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FrontID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "FrontID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the FrontID value out of range for C int");
-        return -1;
-    }
-    self->data.FrontID = (int)buf;
-    return 0;
-}
-        
-///上次报告日期
-// TThostFtdcDateType char[9]
-static PyObject *PyCThostFtdcFrontStatusField_get_LastReportDate(PyCThostFtdcFrontStatusField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.LastReportDate, (Py_ssize_t)sizeof(self->data.LastReportDate));
-    return PyBytes_FromString(self->data.LastReportDate);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.FrontID = (int)buf; 
+    return 0; 
 }
 
-///上次报告日期
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcFrontStatusField_set_LastReportDate(PyCThostFtdcFrontStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LastReportDate Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
-        PyErr_SetString(PyExc_ValueError, "LastReportDate must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.LastReportDate, 0, sizeof(self->data.LastReportDate));
-    // memcpy(self->data.LastReportDate, buf, len);
-    strncpy(self->data.LastReportDate, buf, sizeof(self->data.LastReportDate));
-    return 0;
-}
-            
-///上次报告时间
-// TThostFtdcTimeType char[9]
-static PyObject *PyCThostFtdcFrontStatusField_get_LastReportTime(PyCThostFtdcFrontStatusField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.LastReportTime, (Py_ssize_t)sizeof(self->data.LastReportTime));
-    return PyBytes_FromString(self->data.LastReportTime);
+static int PyCThostFtdcFrontStatusField_set_LastReportDate(PyCThostFtdcFrontStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "LastReportDate Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
+		PyErr_SetString(PyExc_ValueError, "LastReportDate must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.LastReportDate, buf, sizeof(self->data.LastReportDate));
+	return 0;
 }
 
-///上次报告时间
-// TThostFtdcTimeType char[9]
-static int PyCThostFtdcFrontStatusField_set_LastReportTime(PyCThostFtdcFrontStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LastReportTime Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
-        PyErr_SetString(PyExc_ValueError, "LastReportTime must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.LastReportTime, 0, sizeof(self->data.LastReportTime));
-    // memcpy(self->data.LastReportTime, buf, len);
-    strncpy(self->data.LastReportTime, buf, sizeof(self->data.LastReportTime));
-    return 0;
-}
-            
-///是否活跃
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcFrontStatusField_get_IsActive(PyCThostFtdcFrontStatusField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsActive);
-#else
-    return PyInt_FromLong(self->data.IsActive);
-#endif
+static int PyCThostFtdcFrontStatusField_set_LastReportTime(PyCThostFtdcFrontStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "LastReportTime Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
+		PyErr_SetString(PyExc_ValueError, "LastReportTime must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.LastReportTime, buf, sizeof(self->data.LastReportTime));
+	return 0;
 }
 
-///是否活跃
-// TThostFtdcBoolType int
-static int PyCThostFtdcFrontStatusField_set_IsActive(PyCThostFtdcFrontStatusField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcFrontStatusField_set_IsActive(PyCThostFtdcFrontStatusField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsActive Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsActive Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsActive Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsActive value out of range for C int");
-        return -1;
-    }
-    self->data.IsActive = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsActive = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcFrontStatusField_getset[] = {
-    ///前置编号 
-    {(char *)"FrontID", (getter)PyCThostFtdcFrontStatusField_get_FrontID, (setter)PyCThostFtdcFrontStatusField_set_FrontID, (char *)"FrontID", NULL},
-    ///上次报告日期 
-    {(char *)"LastReportDate", (getter)PyCThostFtdcFrontStatusField_get_LastReportDate, (setter)PyCThostFtdcFrontStatusField_set_LastReportDate, (char *)"LastReportDate", NULL},
-    ///上次报告时间 
-    {(char *)"LastReportTime", (getter)PyCThostFtdcFrontStatusField_get_LastReportTime, (setter)PyCThostFtdcFrontStatusField_set_LastReportTime, (char *)"LastReportTime", NULL},
-    ///是否活跃 
-    {(char *)"IsActive", (getter)PyCThostFtdcFrontStatusField_get_IsActive, (setter)PyCThostFtdcFrontStatusField_set_IsActive, (char *)"IsActive", NULL},
+	 {(char *)"FrontID", (getter)PyCThostFtdcFrontStatusField_get_FrontID, (setter)PyCThostFtdcFrontStatusField_set_FrontID, (char *)"FrontID", NULL},
+	 {(char *)"LastReportDate", (getter)PyCThostFtdcFrontStatusField_get_LastReportDate, (setter)PyCThostFtdcFrontStatusField_set_LastReportDate, (char *)"LastReportDate", NULL},
+	 {(char *)"LastReportTime", (getter)PyCThostFtdcFrontStatusField_get_LastReportTime, (setter)PyCThostFtdcFrontStatusField_set_LastReportTime, (char *)"LastReportTime", NULL},
+	 {(char *)"IsActive", (getter)PyCThostFtdcFrontStatusField_get_IsActive, (setter)PyCThostFtdcFrontStatusField_set_IsActive, (char *)"IsActive", NULL},
 
     {NULL}
 };

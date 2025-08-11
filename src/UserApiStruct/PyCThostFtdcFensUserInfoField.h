@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///Fens用户信息
+
 
 typedef struct PyCThostFtdcFensUserInfoField {
     PyObject_HEAD

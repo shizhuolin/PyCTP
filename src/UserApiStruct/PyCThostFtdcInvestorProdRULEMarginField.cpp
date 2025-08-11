@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcInvestorProdRULEMarginField.h"
 
-///投资者产品RULE保证金
+
 
 static PyObject *PyCThostFtdcInvestorProdRULEMarginField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcInvestorProdRULEMarginField *self = (PyCThostFtdcInvestorProdRULEMarginField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcInvestorProdRULEMarginField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,119 +18,92 @@ static int PyCThostFtdcInvestorProdRULEMarginField_init(PyCThostFtdcInvestorProd
 
     static const char *kwlist[] = {"ExchangeID", "BrokerID", "InvestorID", "ProdFamilyCode", "InstrumentClass", "CommodityGroupID", "BStdPosition", "SStdPosition", "BStdOpenFrozen", "SStdOpenFrozen", "BStdCloseFrozen", "SStdCloseFrozen", "IntraProdStdPosition", "NetStdPosition", "InterProdStdPosition", "SingleStdPosition", "IntraProdMargin", "InterProdMargin", "SingleMargin", "NonCombMargin", "AddOnMargin", "ExchMargin", "AddOnFrozenMargin", "OpenFrozenMargin", "CloseFrozenMargin", "Margin", "FrozenMargin",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pInvestorProdRULEMarginField_ExchangeID = NULL;
+	Py_ssize_t pInvestorProdRULEMarginField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *InvestorProdRULEMarginField_ExchangeID = NULL;
-    Py_ssize_t InvestorProdRULEMarginField_ExchangeID_len = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *InvestorProdRULEMarginField_BrokerID = NULL;
-    Py_ssize_t InvestorProdRULEMarginField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *InvestorProdRULEMarginField_InvestorID = NULL;
-    Py_ssize_t InvestorProdRULEMarginField_InvestorID_len = 0;
-            
-    ///品种代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *InvestorProdRULEMarginField_ProdFamilyCode = NULL;
-    Py_ssize_t InvestorProdRULEMarginField_ProdFamilyCode_len = 0;
-            
-    ///合约类型
-    // TThostFtdcInstrumentClassType char
-    char InvestorProdRULEMarginField_InstrumentClass = 0;
-            
-    ///商品群号
-    // TThostFtdcCommodityGroupIDType int
-    int InvestorProdRULEMarginField_CommodityGroupID = 0;
-        
-    ///买标准持仓
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_BStdPosition = 0.0;
-        
-    ///卖标准持仓
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_SStdPosition = 0.0;
-        
-    ///买标准开仓冻结
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_BStdOpenFrozen = 0.0;
-        
-    ///卖标准开仓冻结
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_SStdOpenFrozen = 0.0;
-        
-    ///买标准平仓冻结
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_BStdCloseFrozen = 0.0;
-        
-    ///卖标准平仓冻结
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_SStdCloseFrozen = 0.0;
-        
-    ///品种内对冲标准持仓
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_IntraProdStdPosition = 0.0;
-        
-    ///品种内单腿标准持仓
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_NetStdPosition = 0.0;
-        
-    ///品种间对冲标准持仓
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_InterProdStdPosition = 0.0;
-        
-    ///单腿标准持仓
-    // TThostFtdcStdPositionType double
-    double InvestorProdRULEMarginField_SingleStdPosition = 0.0;
-        
-    ///品种内对锁保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_IntraProdMargin = 0.0;
-        
-    ///品种间对锁保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_InterProdMargin = 0.0;
-        
-    ///跨品种单腿保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_SingleMargin = 0.0;
-        
-    ///非组合合约保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_NonCombMargin = 0.0;
-        
-    ///附加保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_AddOnMargin = 0.0;
-        
-    ///交易所保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_ExchMargin = 0.0;
-        
-    ///附加冻结保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_AddOnFrozenMargin = 0.0;
-        
-    ///开仓冻结保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_OpenFrozenMargin = 0.0;
-        
-    ///平仓冻结保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_CloseFrozenMargin = 0.0;
-        
-    ///品种保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_Margin = 0.0;
-        
-    ///冻结保证金
-    // TThostFtdcMoneyType double
-    double InvestorProdRULEMarginField_FrozenMargin = 0.0;
-        
+	//TThostFtdcBrokerIDType char[11]
+	const char *pInvestorProdRULEMarginField_BrokerID = NULL;
+	Py_ssize_t pInvestorProdRULEMarginField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pInvestorProdRULEMarginField_InvestorID = NULL;
+	Py_ssize_t pInvestorProdRULEMarginField_InvestorID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pInvestorProdRULEMarginField_ProdFamilyCode = NULL;
+	Py_ssize_t pInvestorProdRULEMarginField_ProdFamilyCode_len = 0;
+
+	//TThostFtdcInstrumentClassType char
+	char pInvestorProdRULEMarginField_InstrumentClass = 0;
+
+	//TThostFtdcCommodityGroupIDType int
+	int pInvestorProdRULEMarginField_CommodityGroupID = 0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_BStdPosition = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_SStdPosition = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_BStdOpenFrozen = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_SStdOpenFrozen = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_BStdCloseFrozen = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_SStdCloseFrozen = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_IntraProdStdPosition = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_NetStdPosition = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_InterProdStdPosition = 0.0;
+
+	//TThostFtdcStdPositionType double
+	double pInvestorProdRULEMarginField_SingleStdPosition = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_IntraProdMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_InterProdMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_SingleMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_NonCombMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_AddOnMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_ExchMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_AddOnFrozenMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_OpenFrozenMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_CloseFrozenMargin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_Margin = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pInvestorProdRULEMarginField_FrozenMargin = 0.0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#ciddddddddddddddddddddd", (char **)kwlist
@@ -137,184 +111,128 @@ static int PyCThostFtdcInvestorProdRULEMarginField_init(PyCThostFtdcInvestorProd
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#ciddddddddddddddddddddd", (char **)kwlist
 #endif
 
-        , &InvestorProdRULEMarginField_ExchangeID, &InvestorProdRULEMarginField_ExchangeID_len 
-        , &InvestorProdRULEMarginField_BrokerID, &InvestorProdRULEMarginField_BrokerID_len 
-        , &InvestorProdRULEMarginField_InvestorID, &InvestorProdRULEMarginField_InvestorID_len 
-        , &InvestorProdRULEMarginField_ProdFamilyCode, &InvestorProdRULEMarginField_ProdFamilyCode_len 
-        , &InvestorProdRULEMarginField_InstrumentClass 
-        , &InvestorProdRULEMarginField_CommodityGroupID 
-        , &InvestorProdRULEMarginField_BStdPosition 
-        , &InvestorProdRULEMarginField_SStdPosition 
-        , &InvestorProdRULEMarginField_BStdOpenFrozen 
-        , &InvestorProdRULEMarginField_SStdOpenFrozen 
-        , &InvestorProdRULEMarginField_BStdCloseFrozen 
-        , &InvestorProdRULEMarginField_SStdCloseFrozen 
-        , &InvestorProdRULEMarginField_IntraProdStdPosition 
-        , &InvestorProdRULEMarginField_NetStdPosition 
-        , &InvestorProdRULEMarginField_InterProdStdPosition 
-        , &InvestorProdRULEMarginField_SingleStdPosition 
-        , &InvestorProdRULEMarginField_IntraProdMargin 
-        , &InvestorProdRULEMarginField_InterProdMargin 
-        , &InvestorProdRULEMarginField_SingleMargin 
-        , &InvestorProdRULEMarginField_NonCombMargin 
-        , &InvestorProdRULEMarginField_AddOnMargin 
-        , &InvestorProdRULEMarginField_ExchMargin 
-        , &InvestorProdRULEMarginField_AddOnFrozenMargin 
-        , &InvestorProdRULEMarginField_OpenFrozenMargin 
-        , &InvestorProdRULEMarginField_CloseFrozenMargin 
-        , &InvestorProdRULEMarginField_Margin 
-        , &InvestorProdRULEMarginField_FrozenMargin 
+		, &pInvestorProdRULEMarginField_ExchangeID, &pInvestorProdRULEMarginField_ExchangeID_len
+		, &pInvestorProdRULEMarginField_BrokerID, &pInvestorProdRULEMarginField_BrokerID_len
+		, &pInvestorProdRULEMarginField_InvestorID, &pInvestorProdRULEMarginField_InvestorID_len
+		, &pInvestorProdRULEMarginField_ProdFamilyCode, &pInvestorProdRULEMarginField_ProdFamilyCode_len
+		, &pInvestorProdRULEMarginField_InstrumentClass
+		, &pInvestorProdRULEMarginField_CommodityGroupID
+		, &pInvestorProdRULEMarginField_BStdPosition
+		, &pInvestorProdRULEMarginField_SStdPosition
+		, &pInvestorProdRULEMarginField_BStdOpenFrozen
+		, &pInvestorProdRULEMarginField_SStdOpenFrozen
+		, &pInvestorProdRULEMarginField_BStdCloseFrozen
+		, &pInvestorProdRULEMarginField_SStdCloseFrozen
+		, &pInvestorProdRULEMarginField_IntraProdStdPosition
+		, &pInvestorProdRULEMarginField_NetStdPosition
+		, &pInvestorProdRULEMarginField_InterProdStdPosition
+		, &pInvestorProdRULEMarginField_SingleStdPosition
+		, &pInvestorProdRULEMarginField_IntraProdMargin
+		, &pInvestorProdRULEMarginField_InterProdMargin
+		, &pInvestorProdRULEMarginField_SingleMargin
+		, &pInvestorProdRULEMarginField_NonCombMargin
+		, &pInvestorProdRULEMarginField_AddOnMargin
+		, &pInvestorProdRULEMarginField_ExchMargin
+		, &pInvestorProdRULEMarginField_AddOnFrozenMargin
+		, &pInvestorProdRULEMarginField_OpenFrozenMargin
+		, &pInvestorProdRULEMarginField_CloseFrozenMargin
+		, &pInvestorProdRULEMarginField_Margin
+		, &pInvestorProdRULEMarginField_FrozenMargin
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pInvestorProdRULEMarginField_ExchangeID != NULL) {
+		if(pInvestorProdRULEMarginField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pInvestorProdRULEMarginField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pInvestorProdRULEMarginField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pInvestorProdRULEMarginField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( InvestorProdRULEMarginField_ExchangeID != NULL ) {
-        if(InvestorProdRULEMarginField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InvestorProdRULEMarginField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, InvestorProdRULEMarginField_ExchangeID, InvestorProdRULEMarginField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, InvestorProdRULEMarginField_ExchangeID, sizeof(self->data.ExchangeID) );
-        InvestorProdRULEMarginField_ExchangeID = NULL;
-    }
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( InvestorProdRULEMarginField_BrokerID != NULL ) {
-        if(InvestorProdRULEMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorProdRULEMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, InvestorProdRULEMarginField_BrokerID, InvestorProdRULEMarginField_BrokerID_len);        
-        strncpy(self->data.BrokerID, InvestorProdRULEMarginField_BrokerID, sizeof(self->data.BrokerID) );
-        InvestorProdRULEMarginField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( InvestorProdRULEMarginField_InvestorID != NULL ) {
-        if(InvestorProdRULEMarginField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorProdRULEMarginField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, InvestorProdRULEMarginField_InvestorID, InvestorProdRULEMarginField_InvestorID_len);        
-        strncpy(self->data.InvestorID, InvestorProdRULEMarginField_InvestorID, sizeof(self->data.InvestorID) );
-        InvestorProdRULEMarginField_InvestorID = NULL;
-    }
-            
-    ///品种代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( InvestorProdRULEMarginField_ProdFamilyCode != NULL ) {
-        if(InvestorProdRULEMarginField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
-            PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", InvestorProdRULEMarginField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
-            return -1;
-        }
-        // memset(self->data.ProdFamilyCode, 0, sizeof(self->data.ProdFamilyCode));
-        // memcpy(self->data.ProdFamilyCode, InvestorProdRULEMarginField_ProdFamilyCode, InvestorProdRULEMarginField_ProdFamilyCode_len);        
-        strncpy(self->data.ProdFamilyCode, InvestorProdRULEMarginField_ProdFamilyCode, sizeof(self->data.ProdFamilyCode) );
-        InvestorProdRULEMarginField_ProdFamilyCode = NULL;
-    }
-            
-    ///合约类型
-    // TThostFtdcInstrumentClassType char
-    self->data.InstrumentClass = InvestorProdRULEMarginField_InstrumentClass;
-            
-    ///商品群号
-    // TThostFtdcCommodityGroupIDType int
-    self->data.CommodityGroupID = InvestorProdRULEMarginField_CommodityGroupID;
-        
-    ///买标准持仓
-    // TThostFtdcStdPositionType double
-    self->data.BStdPosition = InvestorProdRULEMarginField_BStdPosition;
-        
-    ///卖标准持仓
-    // TThostFtdcStdPositionType double
-    self->data.SStdPosition = InvestorProdRULEMarginField_SStdPosition;
-        
-    ///买标准开仓冻结
-    // TThostFtdcStdPositionType double
-    self->data.BStdOpenFrozen = InvestorProdRULEMarginField_BStdOpenFrozen;
-        
-    ///卖标准开仓冻结
-    // TThostFtdcStdPositionType double
-    self->data.SStdOpenFrozen = InvestorProdRULEMarginField_SStdOpenFrozen;
-        
-    ///买标准平仓冻结
-    // TThostFtdcStdPositionType double
-    self->data.BStdCloseFrozen = InvestorProdRULEMarginField_BStdCloseFrozen;
-        
-    ///卖标准平仓冻结
-    // TThostFtdcStdPositionType double
-    self->data.SStdCloseFrozen = InvestorProdRULEMarginField_SStdCloseFrozen;
-        
-    ///品种内对冲标准持仓
-    // TThostFtdcStdPositionType double
-    self->data.IntraProdStdPosition = InvestorProdRULEMarginField_IntraProdStdPosition;
-        
-    ///品种内单腿标准持仓
-    // TThostFtdcStdPositionType double
-    self->data.NetStdPosition = InvestorProdRULEMarginField_NetStdPosition;
-        
-    ///品种间对冲标准持仓
-    // TThostFtdcStdPositionType double
-    self->data.InterProdStdPosition = InvestorProdRULEMarginField_InterProdStdPosition;
-        
-    ///单腿标准持仓
-    // TThostFtdcStdPositionType double
-    self->data.SingleStdPosition = InvestorProdRULEMarginField_SingleStdPosition;
-        
-    ///品种内对锁保证金
-    // TThostFtdcMoneyType double
-    self->data.IntraProdMargin = InvestorProdRULEMarginField_IntraProdMargin;
-        
-    ///品种间对锁保证金
-    // TThostFtdcMoneyType double
-    self->data.InterProdMargin = InvestorProdRULEMarginField_InterProdMargin;
-        
-    ///跨品种单腿保证金
-    // TThostFtdcMoneyType double
-    self->data.SingleMargin = InvestorProdRULEMarginField_SingleMargin;
-        
-    ///非组合合约保证金
-    // TThostFtdcMoneyType double
-    self->data.NonCombMargin = InvestorProdRULEMarginField_NonCombMargin;
-        
-    ///附加保证金
-    // TThostFtdcMoneyType double
-    self->data.AddOnMargin = InvestorProdRULEMarginField_AddOnMargin;
-        
-    ///交易所保证金
-    // TThostFtdcMoneyType double
-    self->data.ExchMargin = InvestorProdRULEMarginField_ExchMargin;
-        
-    ///附加冻结保证金
-    // TThostFtdcMoneyType double
-    self->data.AddOnFrozenMargin = InvestorProdRULEMarginField_AddOnFrozenMargin;
-        
-    ///开仓冻结保证金
-    // TThostFtdcMoneyType double
-    self->data.OpenFrozenMargin = InvestorProdRULEMarginField_OpenFrozenMargin;
-        
-    ///平仓冻结保证金
-    // TThostFtdcMoneyType double
-    self->data.CloseFrozenMargin = InvestorProdRULEMarginField_CloseFrozenMargin;
-        
-    ///品种保证金
-    // TThostFtdcMoneyType double
-    self->data.Margin = InvestorProdRULEMarginField_Margin;
-        
-    ///冻结保证金
-    // TThostFtdcMoneyType double
-    self->data.FrozenMargin = InvestorProdRULEMarginField_FrozenMargin;
-        
+	//TThostFtdcBrokerIDType char[11]
+	if(pInvestorProdRULEMarginField_BrokerID != NULL) {
+		if(pInvestorProdRULEMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pInvestorProdRULEMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pInvestorProdRULEMarginField_BrokerID, sizeof(self->data.BrokerID) );
+		pInvestorProdRULEMarginField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pInvestorProdRULEMarginField_InvestorID != NULL) {
+		if(pInvestorProdRULEMarginField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pInvestorProdRULEMarginField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pInvestorProdRULEMarginField_InvestorID, sizeof(self->data.InvestorID) );
+		pInvestorProdRULEMarginField_InvestorID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pInvestorProdRULEMarginField_ProdFamilyCode != NULL) {
+		if(pInvestorProdRULEMarginField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+			PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", pInvestorProdRULEMarginField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
+			return -1;
+		}
+		strncpy(self->data.ProdFamilyCode, pInvestorProdRULEMarginField_ProdFamilyCode, sizeof(self->data.ProdFamilyCode) );
+		pInvestorProdRULEMarginField_ProdFamilyCode = NULL;
+	}
+
+	//TThostFtdcInstrumentClassType char
+	self->data.InstrumentClass = pInvestorProdRULEMarginField_InstrumentClass;
+
+	//TThostFtdcCommodityGroupIDType int
+	self->data.CommodityGroupID = pInvestorProdRULEMarginField_CommodityGroupID;
+
+	//TThostFtdcStdPositionType double
+	self->data.BStdPosition = pInvestorProdRULEMarginField_BStdPosition;
+	//TThostFtdcStdPositionType double
+	self->data.SStdPosition = pInvestorProdRULEMarginField_SStdPosition;
+	//TThostFtdcStdPositionType double
+	self->data.BStdOpenFrozen = pInvestorProdRULEMarginField_BStdOpenFrozen;
+	//TThostFtdcStdPositionType double
+	self->data.SStdOpenFrozen = pInvestorProdRULEMarginField_SStdOpenFrozen;
+	//TThostFtdcStdPositionType double
+	self->data.BStdCloseFrozen = pInvestorProdRULEMarginField_BStdCloseFrozen;
+	//TThostFtdcStdPositionType double
+	self->data.SStdCloseFrozen = pInvestorProdRULEMarginField_SStdCloseFrozen;
+	//TThostFtdcStdPositionType double
+	self->data.IntraProdStdPosition = pInvestorProdRULEMarginField_IntraProdStdPosition;
+	//TThostFtdcStdPositionType double
+	self->data.NetStdPosition = pInvestorProdRULEMarginField_NetStdPosition;
+	//TThostFtdcStdPositionType double
+	self->data.InterProdStdPosition = pInvestorProdRULEMarginField_InterProdStdPosition;
+	//TThostFtdcStdPositionType double
+	self->data.SingleStdPosition = pInvestorProdRULEMarginField_SingleStdPosition;
+	//TThostFtdcMoneyType double
+	self->data.IntraProdMargin = pInvestorProdRULEMarginField_IntraProdMargin;
+	//TThostFtdcMoneyType double
+	self->data.InterProdMargin = pInvestorProdRULEMarginField_InterProdMargin;
+	//TThostFtdcMoneyType double
+	self->data.SingleMargin = pInvestorProdRULEMarginField_SingleMargin;
+	//TThostFtdcMoneyType double
+	self->data.NonCombMargin = pInvestorProdRULEMarginField_NonCombMargin;
+	//TThostFtdcMoneyType double
+	self->data.AddOnMargin = pInvestorProdRULEMarginField_AddOnMargin;
+	//TThostFtdcMoneyType double
+	self->data.ExchMargin = pInvestorProdRULEMarginField_ExchMargin;
+	//TThostFtdcMoneyType double
+	self->data.AddOnFrozenMargin = pInvestorProdRULEMarginField_AddOnFrozenMargin;
+	//TThostFtdcMoneyType double
+	self->data.OpenFrozenMargin = pInvestorProdRULEMarginField_OpenFrozenMargin;
+	//TThostFtdcMoneyType double
+	self->data.CloseFrozenMargin = pInvestorProdRULEMarginField_CloseFrozenMargin;
+	//TThostFtdcMoneyType double
+	self->data.Margin = pInvestorProdRULEMarginField_Margin;
+	//TThostFtdcMoneyType double
+	self->data.FrozenMargin = pInvestorProdRULEMarginField_FrozenMargin;
+
 
     return 0;
 }
@@ -331,33 +249,33 @@ static PyObject *PyCThostFtdcInvestorProdRULEMarginField_repr(PyCThostFtdcInvest
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:c,s:i,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"ProdFamilyCode", self->data.ProdFamilyCode//, (Py_ssize_t)sizeof(self->data.ProdFamilyCode) 
-        ,"InstrumentClass", self->data.InstrumentClass 
-        ,"CommodityGroupID", self->data.CommodityGroupID 
-        ,"BStdPosition", self->data.BStdPosition 
-        ,"SStdPosition", self->data.SStdPosition 
-        ,"BStdOpenFrozen", self->data.BStdOpenFrozen 
-        ,"SStdOpenFrozen", self->data.SStdOpenFrozen 
-        ,"BStdCloseFrozen", self->data.BStdCloseFrozen 
-        ,"SStdCloseFrozen", self->data.SStdCloseFrozen 
-        ,"IntraProdStdPosition", self->data.IntraProdStdPosition 
-        ,"NetStdPosition", self->data.NetStdPosition 
-        ,"InterProdStdPosition", self->data.InterProdStdPosition 
-        ,"SingleStdPosition", self->data.SingleStdPosition 
-        ,"IntraProdMargin", self->data.IntraProdMargin 
-        ,"InterProdMargin", self->data.InterProdMargin 
-        ,"SingleMargin", self->data.SingleMargin 
-        ,"NonCombMargin", self->data.NonCombMargin 
-        ,"AddOnMargin", self->data.AddOnMargin 
-        ,"ExchMargin", self->data.ExchMargin 
-        ,"AddOnFrozenMargin", self->data.AddOnFrozenMargin 
-        ,"OpenFrozenMargin", self->data.OpenFrozenMargin 
-        ,"CloseFrozenMargin", self->data.CloseFrozenMargin 
-        ,"Margin", self->data.Margin 
-        ,"FrozenMargin", self->data.FrozenMargin 
+		, "ExchangeID", self->data.ExchangeID 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "ProdFamilyCode", self->data.ProdFamilyCode 
+		, "InstrumentClass", self->data.InstrumentClass
+		, "CommodityGroupID", self->data.CommodityGroupID
+		, "BStdPosition", self->data.BStdPosition
+		, "SStdPosition", self->data.SStdPosition
+		, "BStdOpenFrozen", self->data.BStdOpenFrozen
+		, "SStdOpenFrozen", self->data.SStdOpenFrozen
+		, "BStdCloseFrozen", self->data.BStdCloseFrozen
+		, "SStdCloseFrozen", self->data.SStdCloseFrozen
+		, "IntraProdStdPosition", self->data.IntraProdStdPosition
+		, "NetStdPosition", self->data.NetStdPosition
+		, "InterProdStdPosition", self->data.InterProdStdPosition
+		, "SingleStdPosition", self->data.SingleStdPosition
+		, "IntraProdMargin", self->data.IntraProdMargin
+		, "InterProdMargin", self->data.InterProdMargin
+		, "SingleMargin", self->data.SingleMargin
+		, "NonCombMargin", self->data.NonCombMargin
+		, "AddOnMargin", self->data.AddOnMargin
+		, "ExchMargin", self->data.ExchMargin
+		, "AddOnFrozenMargin", self->data.AddOnFrozenMargin
+		, "OpenFrozenMargin", self->data.OpenFrozenMargin
+		, "CloseFrozenMargin", self->data.CloseFrozenMargin
+		, "Margin", self->data.Margin
+		, "FrozenMargin", self->data.FrozenMargin
 
 
 		);
@@ -370,181 +288,220 @@ static PyObject *PyCThostFtdcInvestorProdRULEMarginField_repr(PyCThostFtdcInvest
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_ExchangeID(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcInvestorProdRULEMarginField_set_ExchangeID(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_BrokerID(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcInvestorProdRULEMarginField_set_BrokerID(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_InvestorID(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcInvestorProdRULEMarginField_set_InvestorID(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///品种代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_ProdFamilyCode(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProdFamilyCode, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
-    return PyBytes_FromString(self->data.ProdFamilyCode);
+	return PyBytes_FromString(self->data.ProdFamilyCode);
 }
 
-///品种代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcInvestorProdRULEMarginField_set_ProdFamilyCode(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProdFamilyCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
-        PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ProdFamilyCode, 0, sizeof(self->data.ProdFamilyCode));
-    // memcpy(self->data.ProdFamilyCode, buf, len);
-    strncpy(self->data.ProdFamilyCode, buf, sizeof(self->data.ProdFamilyCode));
-    return 0;
-}
-            
-///合约类型
-// TThostFtdcInstrumentClassType char
 static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_InstrumentClass(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.InstrumentClass), 1);
+	return PyBytes_FromStringAndSize(&(self->data.InstrumentClass), 1);
 }
 
-///合约类型
-// TThostFtdcInstrumentClassType char
-static int PyCThostFtdcInvestorProdRULEMarginField_set_InstrumentClass(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentClass Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentClass)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentClass must be equal 1 bytes");
-        return -1;
-    }
-    self->data.InstrumentClass = *buf;
-    return 0;
-}
-            
-///商品群号
-// TThostFtdcCommodityGroupIDType int
 static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_CommodityGroupID(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.CommodityGroupID);
-#else
-    return PyInt_FromLong(self->data.CommodityGroupID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.CommodityGroupID);
+#else 
+	return PyInt_FromLong(self->data.CommodityGroupID);
+#endif 
 }
 
-///商品群号
-// TThostFtdcCommodityGroupIDType int
-static int PyCThostFtdcInvestorProdRULEMarginField_set_CommodityGroupID(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_BStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.BStdPosition);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.SStdPosition);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_BStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.BStdOpenFrozen);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.SStdOpenFrozen);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_BStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.BStdCloseFrozen);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.SStdCloseFrozen);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.IntraProdStdPosition);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_NetStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.NetStdPosition);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_InterProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.InterProdStdPosition);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SingleStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.SingleStdPosition);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.IntraProdMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_InterProdMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.InterProdMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SingleMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.SingleMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_NonCombMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.NonCombMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_AddOnMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.AddOnMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_ExchMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ExchMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_AddOnFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.AddOnFrozenMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_OpenFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.OpenFrozenMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_CloseFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.CloseFrozenMargin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_Margin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.Margin);
+}
+
+static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_FrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.FrozenMargin);
+}
+
+static int PyCThostFtdcInvestorProdRULEMarginField_set_ExchangeID(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorProdRULEMarginField_set_BrokerID(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorProdRULEMarginField_set_InvestorID(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorProdRULEMarginField_set_ProdFamilyCode(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProdFamilyCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+		PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProdFamilyCode, buf, sizeof(self->data.ProdFamilyCode));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorProdRULEMarginField_set_InstrumentClass(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentClass Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentClass)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentClass must be less than 1 bytes");
+		return -1;
+	}
+	self->data.InstrumentClass = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcInvestorProdRULEMarginField_set_CommodityGroupID(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CommodityGroupID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CommodityGroupID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "CommodityGroupID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the CommodityGroupID value out of range for C int");
-        return -1;
-    }
-    self->data.CommodityGroupID = (int)buf;
-    return 0;
-}
-        
-///买标准持仓
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_BStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.BStdPosition);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.CommodityGroupID = (int)buf; 
+    return 0; 
 }
 
-///买标准持仓
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdPosition(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "BStdPosition Expected float");
         return -1;
@@ -556,16 +513,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdPosition(PyCThostFtdc
     self->data.BStdPosition = buf;
     return 0;
 }
-        
-///卖标准持仓
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SStdPosition);
-}
 
-///卖标准持仓
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdPosition(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SStdPosition Expected float");
         return -1;
@@ -577,16 +526,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdPosition(PyCThostFtdc
     self->data.SStdPosition = buf;
     return 0;
 }
-        
-///买标准开仓冻结
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_BStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.BStdOpenFrozen);
-}
 
-///买标准开仓冻结
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "BStdOpenFrozen Expected float");
         return -1;
@@ -598,16 +539,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdOpenFrozen(PyCThostFt
     self->data.BStdOpenFrozen = buf;
     return 0;
 }
-        
-///卖标准开仓冻结
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SStdOpenFrozen);
-}
 
-///卖标准开仓冻结
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdOpenFrozen(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SStdOpenFrozen Expected float");
         return -1;
@@ -619,16 +552,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdOpenFrozen(PyCThostFt
     self->data.SStdOpenFrozen = buf;
     return 0;
 }
-        
-///买标准平仓冻结
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_BStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.BStdCloseFrozen);
-}
 
-///买标准平仓冻结
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "BStdCloseFrozen Expected float");
         return -1;
@@ -640,16 +565,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_BStdCloseFrozen(PyCThostF
     self->data.BStdCloseFrozen = buf;
     return 0;
 }
-        
-///卖标准平仓冻结
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SStdCloseFrozen);
-}
 
-///卖标准平仓冻结
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdCloseFrozen(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SStdCloseFrozen Expected float");
         return -1;
@@ -661,16 +578,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_SStdCloseFrozen(PyCThostF
     self->data.SStdCloseFrozen = buf;
     return 0;
 }
-        
-///品种内对冲标准持仓
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.IntraProdStdPosition);
-}
 
-///品种内对冲标准持仓
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IntraProdStdPosition Expected float");
         return -1;
@@ -682,16 +591,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdStdPosition(PyCT
     self->data.IntraProdStdPosition = buf;
     return 0;
 }
-        
-///品种内单腿标准持仓
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_NetStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.NetStdPosition);
-}
 
-///品种内单腿标准持仓
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_NetStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_NetStdPosition(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "NetStdPosition Expected float");
         return -1;
@@ -703,16 +604,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_NetStdPosition(PyCThostFt
     self->data.NetStdPosition = buf;
     return 0;
 }
-        
-///品种间对冲标准持仓
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_InterProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.InterProdStdPosition);
-}
 
-///品种间对冲标准持仓
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_InterProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_InterProdStdPosition(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "InterProdStdPosition Expected float");
         return -1;
@@ -724,16 +617,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_InterProdStdPosition(PyCT
     self->data.InterProdStdPosition = buf;
     return 0;
 }
-        
-///单腿标准持仓
-// TThostFtdcStdPositionType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SingleStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SingleStdPosition);
-}
 
-///单腿标准持仓
-// TThostFtdcStdPositionType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_SingleStdPosition(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_SingleStdPosition(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SingleStdPosition Expected float");
         return -1;
@@ -745,16 +630,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_SingleStdPosition(PyCThos
     self->data.SingleStdPosition = buf;
     return 0;
 }
-        
-///品种内对锁保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.IntraProdMargin);
-}
 
-///品种内对锁保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IntraProdMargin Expected float");
         return -1;
@@ -766,16 +643,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdMargin(PyCThostF
     self->data.IntraProdMargin = buf;
     return 0;
 }
-        
-///品种间对锁保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_InterProdMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.InterProdMargin);
-}
 
-///品种间对锁保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_InterProdMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_InterProdMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "InterProdMargin Expected float");
         return -1;
@@ -787,16 +656,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_InterProdMargin(PyCThostF
     self->data.InterProdMargin = buf;
     return 0;
 }
-        
-///跨品种单腿保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_SingleMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.SingleMargin);
-}
 
-///跨品种单腿保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_SingleMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_SingleMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SingleMargin Expected float");
         return -1;
@@ -808,16 +669,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_SingleMargin(PyCThostFtdc
     self->data.SingleMargin = buf;
     return 0;
 }
-        
-///非组合合约保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_NonCombMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.NonCombMargin);
-}
 
-///非组合合约保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_NonCombMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_NonCombMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "NonCombMargin Expected float");
         return -1;
@@ -829,16 +682,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_NonCombMargin(PyCThostFtd
     self->data.NonCombMargin = buf;
     return 0;
 }
-        
-///附加保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_AddOnMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AddOnMargin);
-}
 
-///附加保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_AddOnMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_AddOnMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AddOnMargin Expected float");
         return -1;
@@ -850,16 +695,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_AddOnMargin(PyCThostFtdcI
     self->data.AddOnMargin = buf;
     return 0;
 }
-        
-///交易所保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_ExchMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ExchMargin);
-}
 
-///交易所保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_ExchMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_ExchMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ExchMargin Expected float");
         return -1;
@@ -871,16 +708,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_ExchMargin(PyCThostFtdcIn
     self->data.ExchMargin = buf;
     return 0;
 }
-        
-///附加冻结保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_AddOnFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AddOnFrozenMargin);
-}
 
-///附加冻结保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_AddOnFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_AddOnFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AddOnFrozenMargin Expected float");
         return -1;
@@ -892,16 +721,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_AddOnFrozenMargin(PyCThos
     self->data.AddOnFrozenMargin = buf;
     return 0;
 }
-        
-///开仓冻结保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_OpenFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.OpenFrozenMargin);
-}
 
-///开仓冻结保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_OpenFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_OpenFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "OpenFrozenMargin Expected float");
         return -1;
@@ -913,16 +734,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_OpenFrozenMargin(PyCThost
     self->data.OpenFrozenMargin = buf;
     return 0;
 }
-        
-///平仓冻结保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_CloseFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.CloseFrozenMargin);
-}
 
-///平仓冻结保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_CloseFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_CloseFrozenMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CloseFrozenMargin Expected float");
         return -1;
@@ -934,16 +747,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_CloseFrozenMargin(PyCThos
     self->data.CloseFrozenMargin = buf;
     return 0;
 }
-        
-///品种保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_Margin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.Margin);
-}
 
-///品种保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_Margin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_Margin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "Margin Expected float");
         return -1;
@@ -955,16 +760,8 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_Margin(PyCThostFtdcInvest
     self->data.Margin = buf;
     return 0;
 }
-        
-///冻结保证金
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcInvestorProdRULEMarginField_get_FrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.FrozenMargin);
-}
 
-///冻结保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcInvestorProdRULEMarginField_set_FrozenMargin(PyCThostFtdcInvestorProdRULEMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcInvestorProdRULEMarginField_set_FrozenMargin(PyCThostFtdcInvestorProdRULEMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FrozenMargin Expected float");
         return -1;
@@ -976,63 +773,37 @@ static int PyCThostFtdcInvestorProdRULEMarginField_set_FrozenMargin(PyCThostFtdc
     self->data.FrozenMargin = buf;
     return 0;
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcInvestorProdRULEMarginField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_ExchangeID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BrokerID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InvestorID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///品种代码 
-    {(char *)"ProdFamilyCode", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_ProdFamilyCode, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_ProdFamilyCode, (char *)"ProdFamilyCode", NULL},
-    ///合约类型 
-    {(char *)"InstrumentClass", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InstrumentClass, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InstrumentClass, (char *)"InstrumentClass", NULL},
-    ///商品群号 
-    {(char *)"CommodityGroupID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_CommodityGroupID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_CommodityGroupID, (char *)"CommodityGroupID", NULL},
-    ///买标准持仓 
-    {(char *)"BStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BStdPosition, (char *)"BStdPosition", NULL},
-    ///卖标准持仓 
-    {(char *)"SStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SStdPosition, (char *)"SStdPosition", NULL},
-    ///买标准开仓冻结 
-    {(char *)"BStdOpenFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BStdOpenFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BStdOpenFrozen, (char *)"BStdOpenFrozen", NULL},
-    ///卖标准开仓冻结 
-    {(char *)"SStdOpenFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SStdOpenFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SStdOpenFrozen, (char *)"SStdOpenFrozen", NULL},
-    ///买标准平仓冻结 
-    {(char *)"BStdCloseFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BStdCloseFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BStdCloseFrozen, (char *)"BStdCloseFrozen", NULL},
-    ///卖标准平仓冻结 
-    {(char *)"SStdCloseFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SStdCloseFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SStdCloseFrozen, (char *)"SStdCloseFrozen", NULL},
-    ///品种内对冲标准持仓 
-    {(char *)"IntraProdStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdStdPosition, (char *)"IntraProdStdPosition", NULL},
-    ///品种内单腿标准持仓 
-    {(char *)"NetStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_NetStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_NetStdPosition, (char *)"NetStdPosition", NULL},
-    ///品种间对冲标准持仓 
-    {(char *)"InterProdStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InterProdStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InterProdStdPosition, (char *)"InterProdStdPosition", NULL},
-    ///单腿标准持仓 
-    {(char *)"SingleStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SingleStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SingleStdPosition, (char *)"SingleStdPosition", NULL},
-    ///品种内对锁保证金 
-    {(char *)"IntraProdMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdMargin, (char *)"IntraProdMargin", NULL},
-    ///品种间对锁保证金 
-    {(char *)"InterProdMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InterProdMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InterProdMargin, (char *)"InterProdMargin", NULL},
-    ///跨品种单腿保证金 
-    {(char *)"SingleMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SingleMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SingleMargin, (char *)"SingleMargin", NULL},
-    ///非组合合约保证金 
-    {(char *)"NonCombMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_NonCombMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_NonCombMargin, (char *)"NonCombMargin", NULL},
-    ///附加保证金 
-    {(char *)"AddOnMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_AddOnMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_AddOnMargin, (char *)"AddOnMargin", NULL},
-    ///交易所保证金 
-    {(char *)"ExchMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_ExchMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_ExchMargin, (char *)"ExchMargin", NULL},
-    ///附加冻结保证金 
-    {(char *)"AddOnFrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_AddOnFrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_AddOnFrozenMargin, (char *)"AddOnFrozenMargin", NULL},
-    ///开仓冻结保证金 
-    {(char *)"OpenFrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_OpenFrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_OpenFrozenMargin, (char *)"OpenFrozenMargin", NULL},
-    ///平仓冻结保证金 
-    {(char *)"CloseFrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_CloseFrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_CloseFrozenMargin, (char *)"CloseFrozenMargin", NULL},
-    ///品种保证金 
-    {(char *)"Margin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_Margin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_Margin, (char *)"Margin", NULL},
-    ///冻结保证金 
-    {(char *)"FrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_FrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_FrozenMargin, (char *)"FrozenMargin", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_ExchangeID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BrokerID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InvestorID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"ProdFamilyCode", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_ProdFamilyCode, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_ProdFamilyCode, (char *)"ProdFamilyCode", NULL},
+	 {(char *)"InstrumentClass", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InstrumentClass, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InstrumentClass, (char *)"InstrumentClass", NULL},
+	 {(char *)"CommodityGroupID", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_CommodityGroupID, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_CommodityGroupID, (char *)"CommodityGroupID", NULL},
+	 {(char *)"BStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BStdPosition, (char *)"BStdPosition", NULL},
+	 {(char *)"SStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SStdPosition, (char *)"SStdPosition", NULL},
+	 {(char *)"BStdOpenFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BStdOpenFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BStdOpenFrozen, (char *)"BStdOpenFrozen", NULL},
+	 {(char *)"SStdOpenFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SStdOpenFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SStdOpenFrozen, (char *)"SStdOpenFrozen", NULL},
+	 {(char *)"BStdCloseFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_BStdCloseFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_BStdCloseFrozen, (char *)"BStdCloseFrozen", NULL},
+	 {(char *)"SStdCloseFrozen", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SStdCloseFrozen, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SStdCloseFrozen, (char *)"SStdCloseFrozen", NULL},
+	 {(char *)"IntraProdStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdStdPosition, (char *)"IntraProdStdPosition", NULL},
+	 {(char *)"NetStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_NetStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_NetStdPosition, (char *)"NetStdPosition", NULL},
+	 {(char *)"InterProdStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InterProdStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InterProdStdPosition, (char *)"InterProdStdPosition", NULL},
+	 {(char *)"SingleStdPosition", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SingleStdPosition, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SingleStdPosition, (char *)"SingleStdPosition", NULL},
+	 {(char *)"IntraProdMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_IntraProdMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_IntraProdMargin, (char *)"IntraProdMargin", NULL},
+	 {(char *)"InterProdMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_InterProdMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_InterProdMargin, (char *)"InterProdMargin", NULL},
+	 {(char *)"SingleMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_SingleMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_SingleMargin, (char *)"SingleMargin", NULL},
+	 {(char *)"NonCombMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_NonCombMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_NonCombMargin, (char *)"NonCombMargin", NULL},
+	 {(char *)"AddOnMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_AddOnMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_AddOnMargin, (char *)"AddOnMargin", NULL},
+	 {(char *)"ExchMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_ExchMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_ExchMargin, (char *)"ExchMargin", NULL},
+	 {(char *)"AddOnFrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_AddOnFrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_AddOnFrozenMargin, (char *)"AddOnFrozenMargin", NULL},
+	 {(char *)"OpenFrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_OpenFrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_OpenFrozenMargin, (char *)"OpenFrozenMargin", NULL},
+	 {(char *)"CloseFrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_CloseFrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_CloseFrozenMargin, (char *)"CloseFrozenMargin", NULL},
+	 {(char *)"Margin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_Margin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_Margin, (char *)"Margin", NULL},
+	 {(char *)"FrozenMargin", (getter)PyCThostFtdcInvestorProdRULEMarginField_get_FrozenMargin, (setter)PyCThostFtdcInvestorProdRULEMarginField_set_FrozenMargin, (char *)"FrozenMargin", NULL},
 
     {NULL}
 };

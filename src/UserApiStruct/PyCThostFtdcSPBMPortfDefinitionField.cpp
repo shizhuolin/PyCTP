@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSPBMPortfDefinitionField.h"
 
-///组合保证金套餐
+
 
 static PyObject *PyCThostFtdcSPBMPortfDefinitionField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSPBMPortfDefinitionField *self = (PyCThostFtdcSPBMPortfDefinitionField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSPBMPortfDefinitionField_new(PyTypeObject *type, Py
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,25 +18,21 @@ static int PyCThostFtdcSPBMPortfDefinitionField_init(PyCThostFtdcSPBMPortfDefini
 
     static const char *kwlist[] = {"ExchangeID", "PortfolioDefID", "ProdFamilyCode", "IsSPBM",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pSPBMPortfDefinitionField_ExchangeID = NULL;
+	Py_ssize_t pSPBMPortfDefinitionField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *SPBMPortfDefinitionField_ExchangeID = NULL;
-    Py_ssize_t SPBMPortfDefinitionField_ExchangeID_len = 0;
-            
-    ///组合保证金套餐代码
-    // TThostFtdcPortfolioDefIDType int
-    int SPBMPortfDefinitionField_PortfolioDefID = 0;
-        
-    ///品种代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *SPBMPortfDefinitionField_ProdFamilyCode = NULL;
-    Py_ssize_t SPBMPortfDefinitionField_ProdFamilyCode_len = 0;
-            
-    ///是否启用SPBM
-    // TThostFtdcBoolType int
-    int SPBMPortfDefinitionField_IsSPBM = 0;
-        
+	//TThostFtdcPortfolioDefIDType int
+	int pSPBMPortfDefinitionField_PortfolioDefID = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pSPBMPortfDefinitionField_ProdFamilyCode = NULL;
+	Py_ssize_t pSPBMPortfDefinitionField_ProdFamilyCode_len = 0;
+
+	//TThostFtdcBoolType int
+	int pSPBMPortfDefinitionField_IsSPBM = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#iy#i", (char **)kwlist
@@ -43,51 +40,43 @@ static int PyCThostFtdcSPBMPortfDefinitionField_init(PyCThostFtdcSPBMPortfDefini
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#is#i", (char **)kwlist
 #endif
 
-        , &SPBMPortfDefinitionField_ExchangeID, &SPBMPortfDefinitionField_ExchangeID_len 
-        , &SPBMPortfDefinitionField_PortfolioDefID 
-        , &SPBMPortfDefinitionField_ProdFamilyCode, &SPBMPortfDefinitionField_ProdFamilyCode_len 
-        , &SPBMPortfDefinitionField_IsSPBM 
+		, &pSPBMPortfDefinitionField_ExchangeID, &pSPBMPortfDefinitionField_ExchangeID_len
+		, &pSPBMPortfDefinitionField_PortfolioDefID
+		, &pSPBMPortfDefinitionField_ProdFamilyCode, &pSPBMPortfDefinitionField_ProdFamilyCode_len
+		, &pSPBMPortfDefinitionField_IsSPBM
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pSPBMPortfDefinitionField_ExchangeID != NULL) {
+		if(pSPBMPortfDefinitionField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pSPBMPortfDefinitionField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pSPBMPortfDefinitionField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pSPBMPortfDefinitionField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( SPBMPortfDefinitionField_ExchangeID != NULL ) {
-        if(SPBMPortfDefinitionField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SPBMPortfDefinitionField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, SPBMPortfDefinitionField_ExchangeID, SPBMPortfDefinitionField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, SPBMPortfDefinitionField_ExchangeID, sizeof(self->data.ExchangeID) );
-        SPBMPortfDefinitionField_ExchangeID = NULL;
-    }
-            
-    ///组合保证金套餐代码
-    // TThostFtdcPortfolioDefIDType int
-    self->data.PortfolioDefID = SPBMPortfDefinitionField_PortfolioDefID;
-        
-    ///品种代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( SPBMPortfDefinitionField_ProdFamilyCode != NULL ) {
-        if(SPBMPortfDefinitionField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
-            PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", SPBMPortfDefinitionField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
-            return -1;
-        }
-        // memset(self->data.ProdFamilyCode, 0, sizeof(self->data.ProdFamilyCode));
-        // memcpy(self->data.ProdFamilyCode, SPBMPortfDefinitionField_ProdFamilyCode, SPBMPortfDefinitionField_ProdFamilyCode_len);        
-        strncpy(self->data.ProdFamilyCode, SPBMPortfDefinitionField_ProdFamilyCode, sizeof(self->data.ProdFamilyCode) );
-        SPBMPortfDefinitionField_ProdFamilyCode = NULL;
-    }
-            
-    ///是否启用SPBM
-    // TThostFtdcBoolType int
-    self->data.IsSPBM = SPBMPortfDefinitionField_IsSPBM;
-        
+	//TThostFtdcPortfolioDefIDType int
+	self->data.PortfolioDefID = pSPBMPortfDefinitionField_PortfolioDefID;
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pSPBMPortfDefinitionField_ProdFamilyCode != NULL) {
+		if(pSPBMPortfDefinitionField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+			PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", pSPBMPortfDefinitionField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
+			return -1;
+		}
+		strncpy(self->data.ProdFamilyCode, pSPBMPortfDefinitionField_ProdFamilyCode, sizeof(self->data.ProdFamilyCode) );
+		pSPBMPortfDefinitionField_ProdFamilyCode = NULL;
+	}
+
+	//TThostFtdcBoolType int
+	self->data.IsSPBM = pSPBMPortfDefinitionField_IsSPBM;
+
+
 
     return 0;
 }
@@ -104,10 +93,10 @@ static PyObject *PyCThostFtdcSPBMPortfDefinitionField_repr(PyCThostFtdcSPBMPortf
     PyObject *obj = Py_BuildValue("{s:s,s:i,s:s,s:i}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"PortfolioDefID", self->data.PortfolioDefID 
-        ,"ProdFamilyCode", self->data.ProdFamilyCode//, (Py_ssize_t)sizeof(self->data.ProdFamilyCode) 
-        ,"IsSPBM", self->data.IsSPBM 
+		, "ExchangeID", self->data.ExchangeID 
+		, "PortfolioDefID", self->data.PortfolioDefID
+		, "ProdFamilyCode", self->data.ProdFamilyCode 
+		, "IsSPBM", self->data.IsSPBM
 
 
 		);
@@ -120,145 +109,119 @@ static PyObject *PyCThostFtdcSPBMPortfDefinitionField_repr(PyCThostFtdcSPBMPortf
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcSPBMPortfDefinitionField_get_ExchangeID(PyCThostFtdcSPBMPortfDefinitionField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcSPBMPortfDefinitionField_set_ExchangeID(PyCThostFtdcSPBMPortfDefinitionField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///组合保证金套餐代码
-// TThostFtdcPortfolioDefIDType int
 static PyObject *PyCThostFtdcSPBMPortfDefinitionField_get_PortfolioDefID(PyCThostFtdcSPBMPortfDefinitionField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.PortfolioDefID);
-#else
-    return PyInt_FromLong(self->data.PortfolioDefID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.PortfolioDefID);
+#else 
+	return PyInt_FromLong(self->data.PortfolioDefID);
+#endif 
 }
 
-///组合保证金套餐代码
-// TThostFtdcPortfolioDefIDType int
-static int PyCThostFtdcSPBMPortfDefinitionField_set_PortfolioDefID(PyCThostFtdcSPBMPortfDefinitionField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSPBMPortfDefinitionField_get_ProdFamilyCode(PyCThostFtdcSPBMPortfDefinitionField *self, void *closure) {
+	return PyBytes_FromString(self->data.ProdFamilyCode);
+}
+
+static PyObject *PyCThostFtdcSPBMPortfDefinitionField_get_IsSPBM(PyCThostFtdcSPBMPortfDefinitionField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsSPBM);
+#else 
+	return PyInt_FromLong(self->data.IsSPBM);
+#endif 
+}
+
+static int PyCThostFtdcSPBMPortfDefinitionField_set_ExchangeID(PyCThostFtdcSPBMPortfDefinitionField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcSPBMPortfDefinitionField_set_PortfolioDefID(PyCThostFtdcSPBMPortfDefinitionField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "PortfolioDefID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "PortfolioDefID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "PortfolioDefID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the PortfolioDefID value out of range for C int");
-        return -1;
-    }
-    self->data.PortfolioDefID = (int)buf;
-    return 0;
-}
-        
-///品种代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcSPBMPortfDefinitionField_get_ProdFamilyCode(PyCThostFtdcSPBMPortfDefinitionField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProdFamilyCode, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
-    return PyBytes_FromString(self->data.ProdFamilyCode);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.PortfolioDefID = (int)buf; 
+    return 0; 
 }
 
-///品种代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcSPBMPortfDefinitionField_set_ProdFamilyCode(PyCThostFtdcSPBMPortfDefinitionField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProdFamilyCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
-        PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ProdFamilyCode, 0, sizeof(self->data.ProdFamilyCode));
-    // memcpy(self->data.ProdFamilyCode, buf, len);
-    strncpy(self->data.ProdFamilyCode, buf, sizeof(self->data.ProdFamilyCode));
-    return 0;
-}
-            
-///是否启用SPBM
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcSPBMPortfDefinitionField_get_IsSPBM(PyCThostFtdcSPBMPortfDefinitionField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsSPBM);
-#else
-    return PyInt_FromLong(self->data.IsSPBM);
-#endif
+static int PyCThostFtdcSPBMPortfDefinitionField_set_ProdFamilyCode(PyCThostFtdcSPBMPortfDefinitionField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProdFamilyCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+		PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProdFamilyCode, buf, sizeof(self->data.ProdFamilyCode));
+	return 0;
 }
 
-///是否启用SPBM
-// TThostFtdcBoolType int
-static int PyCThostFtdcSPBMPortfDefinitionField_set_IsSPBM(PyCThostFtdcSPBMPortfDefinitionField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSPBMPortfDefinitionField_set_IsSPBM(PyCThostFtdcSPBMPortfDefinitionField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsSPBM Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsSPBM Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsSPBM Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsSPBM value out of range for C int");
-        return -1;
-    }
-    self->data.IsSPBM = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsSPBM = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSPBMPortfDefinitionField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_ExchangeID, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///组合保证金套餐代码 
-    {(char *)"PortfolioDefID", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_PortfolioDefID, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_PortfolioDefID, (char *)"PortfolioDefID", NULL},
-    ///品种代码 
-    {(char *)"ProdFamilyCode", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_ProdFamilyCode, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_ProdFamilyCode, (char *)"ProdFamilyCode", NULL},
-    ///是否启用SPBM 
-    {(char *)"IsSPBM", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_IsSPBM, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_IsSPBM, (char *)"IsSPBM", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_ExchangeID, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"PortfolioDefID", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_PortfolioDefID, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_PortfolioDefID, (char *)"PortfolioDefID", NULL},
+	 {(char *)"ProdFamilyCode", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_ProdFamilyCode, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_ProdFamilyCode, (char *)"ProdFamilyCode", NULL},
+	 {(char *)"IsSPBM", (getter)PyCThostFtdcSPBMPortfDefinitionField_get_IsSPBM, (setter)PyCThostFtdcSPBMPortfDefinitionField_set_IsSPBM, (char *)"IsSPBM", NULL},
 
     {NULL}
 };

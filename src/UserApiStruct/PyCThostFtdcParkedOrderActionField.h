@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///输入预埋单操作
+
 
 typedef struct PyCThostFtdcParkedOrderActionField {
     PyObject_HEAD

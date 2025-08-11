@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RULE跨品种抵扣参数
+
 
 typedef struct PyCThostFtdcRULEInterParameterField {
     PyObject_HEAD

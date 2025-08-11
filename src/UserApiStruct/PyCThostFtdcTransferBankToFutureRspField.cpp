@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTransferBankToFutureRspField.h"
 
-///银行资金转期货请求响应
+
 
 static PyObject *PyCThostFtdcTransferBankToFutureRspField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTransferBankToFutureRspField *self = (PyCThostFtdcTransferBankToFutureRspField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcTransferBankToFutureRspField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,35 +18,29 @@ static int PyCThostFtdcTransferBankToFutureRspField_init(PyCThostFtdcTransferBan
 
     static const char *kwlist[] = {"RetCode", "RetInfo", "FutureAccount", "TradeAmt", "CustFee", "CurrencyCode",  NULL};
 
+	//TThostFtdcRetCodeType char[5]
+	const char *pTransferBankToFutureRspField_RetCode = NULL;
+	Py_ssize_t pTransferBankToFutureRspField_RetCode_len = 0;
 
-    ///响应代码
-    // TThostFtdcRetCodeType char[5]
-    const char *TransferBankToFutureRspField_RetCode = NULL;
-    Py_ssize_t TransferBankToFutureRspField_RetCode_len = 0;
-            
-    ///响应信息
-    // TThostFtdcRetInfoType char[129]
-    const char *TransferBankToFutureRspField_RetInfo = NULL;
-    Py_ssize_t TransferBankToFutureRspField_RetInfo_len = 0;
-            
-    ///资金账户
-    // TThostFtdcAccountIDType char[13]
-    const char *TransferBankToFutureRspField_FutureAccount = NULL;
-    Py_ssize_t TransferBankToFutureRspField_FutureAccount_len = 0;
-            
-    ///转帐金额
-    // TThostFtdcMoneyType double
-    double TransferBankToFutureRspField_TradeAmt = 0.0;
-        
-    ///应收客户手续费
-    // TThostFtdcMoneyType double
-    double TransferBankToFutureRspField_CustFee = 0.0;
-        
-    ///币种
-    // TThostFtdcCurrencyCodeType char[4]
-    const char *TransferBankToFutureRspField_CurrencyCode = NULL;
-    Py_ssize_t TransferBankToFutureRspField_CurrencyCode_len = 0;
-            
+	//TThostFtdcRetInfoType char[129]
+	const char *pTransferBankToFutureRspField_RetInfo = NULL;
+	Py_ssize_t pTransferBankToFutureRspField_RetInfo_len = 0;
+
+	//TThostFtdcAccountIDType char[13]
+	const char *pTransferBankToFutureRspField_FutureAccount = NULL;
+	Py_ssize_t pTransferBankToFutureRspField_FutureAccount_len = 0;
+
+	//TThostFtdcMoneyType double
+	double pTransferBankToFutureRspField_TradeAmt = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pTransferBankToFutureRspField_CustFee = 0.0;
+
+	//TThostFtdcCurrencyCodeType char[4]
+	const char *pTransferBankToFutureRspField_CurrencyCode = NULL;
+	Py_ssize_t pTransferBankToFutureRspField_CurrencyCode_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#ddy#", (char **)kwlist
@@ -53,79 +48,63 @@ static int PyCThostFtdcTransferBankToFutureRspField_init(PyCThostFtdcTransferBan
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#dds#", (char **)kwlist
 #endif
 
-        , &TransferBankToFutureRspField_RetCode, &TransferBankToFutureRspField_RetCode_len 
-        , &TransferBankToFutureRspField_RetInfo, &TransferBankToFutureRspField_RetInfo_len 
-        , &TransferBankToFutureRspField_FutureAccount, &TransferBankToFutureRspField_FutureAccount_len 
-        , &TransferBankToFutureRspField_TradeAmt 
-        , &TransferBankToFutureRspField_CustFee 
-        , &TransferBankToFutureRspField_CurrencyCode, &TransferBankToFutureRspField_CurrencyCode_len 
+		, &pTransferBankToFutureRspField_RetCode, &pTransferBankToFutureRspField_RetCode_len
+		, &pTransferBankToFutureRspField_RetInfo, &pTransferBankToFutureRspField_RetInfo_len
+		, &pTransferBankToFutureRspField_FutureAccount, &pTransferBankToFutureRspField_FutureAccount_len
+		, &pTransferBankToFutureRspField_TradeAmt
+		, &pTransferBankToFutureRspField_CustFee
+		, &pTransferBankToFutureRspField_CurrencyCode, &pTransferBankToFutureRspField_CurrencyCode_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcRetCodeType char[5]
+	if(pTransferBankToFutureRspField_RetCode != NULL) {
+		if(pTransferBankToFutureRspField_RetCode_len > (Py_ssize_t)sizeof(self->data.RetCode)) {
+			PyErr_Format(PyExc_ValueError, "RetCode too long: length=%zd (max allowed is %zd)", pTransferBankToFutureRspField_RetCode_len, (Py_ssize_t)sizeof(self->data.RetCode));
+			return -1;
+		}
+		strncpy(self->data.RetCode, pTransferBankToFutureRspField_RetCode, sizeof(self->data.RetCode) );
+		pTransferBankToFutureRspField_RetCode = NULL;
+	}
 
-    ///响应代码
-    // TThostFtdcRetCodeType char[5]
-    if( TransferBankToFutureRspField_RetCode != NULL ) {
-        if(TransferBankToFutureRspField_RetCode_len > (Py_ssize_t)sizeof(self->data.RetCode)) {
-            PyErr_Format(PyExc_ValueError, "RetCode too long: length=%zd (max allowed is %zd)", TransferBankToFutureRspField_RetCode_len, (Py_ssize_t)sizeof(self->data.RetCode));
-            return -1;
-        }
-        // memset(self->data.RetCode, 0, sizeof(self->data.RetCode));
-        // memcpy(self->data.RetCode, TransferBankToFutureRspField_RetCode, TransferBankToFutureRspField_RetCode_len);        
-        strncpy(self->data.RetCode, TransferBankToFutureRspField_RetCode, sizeof(self->data.RetCode) );
-        TransferBankToFutureRspField_RetCode = NULL;
-    }
-            
-    ///响应信息
-    // TThostFtdcRetInfoType char[129]
-    if( TransferBankToFutureRspField_RetInfo != NULL ) {
-        if(TransferBankToFutureRspField_RetInfo_len > (Py_ssize_t)sizeof(self->data.RetInfo)) {
-            PyErr_Format(PyExc_ValueError, "RetInfo too long: length=%zd (max allowed is %zd)", TransferBankToFutureRspField_RetInfo_len, (Py_ssize_t)sizeof(self->data.RetInfo));
-            return -1;
-        }
-        // memset(self->data.RetInfo, 0, sizeof(self->data.RetInfo));
-        // memcpy(self->data.RetInfo, TransferBankToFutureRspField_RetInfo, TransferBankToFutureRspField_RetInfo_len);        
-        strncpy(self->data.RetInfo, TransferBankToFutureRspField_RetInfo, sizeof(self->data.RetInfo) );
-        TransferBankToFutureRspField_RetInfo = NULL;
-    }
-            
-    ///资金账户
-    // TThostFtdcAccountIDType char[13]
-    if( TransferBankToFutureRspField_FutureAccount != NULL ) {
-        if(TransferBankToFutureRspField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
-            PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", TransferBankToFutureRspField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
-            return -1;
-        }
-        // memset(self->data.FutureAccount, 0, sizeof(self->data.FutureAccount));
-        // memcpy(self->data.FutureAccount, TransferBankToFutureRspField_FutureAccount, TransferBankToFutureRspField_FutureAccount_len);        
-        strncpy(self->data.FutureAccount, TransferBankToFutureRspField_FutureAccount, sizeof(self->data.FutureAccount) );
-        TransferBankToFutureRspField_FutureAccount = NULL;
-    }
-            
-    ///转帐金额
-    // TThostFtdcMoneyType double
-    self->data.TradeAmt = TransferBankToFutureRspField_TradeAmt;
-        
-    ///应收客户手续费
-    // TThostFtdcMoneyType double
-    self->data.CustFee = TransferBankToFutureRspField_CustFee;
-        
-    ///币种
-    // TThostFtdcCurrencyCodeType char[4]
-    if( TransferBankToFutureRspField_CurrencyCode != NULL ) {
-        if(TransferBankToFutureRspField_CurrencyCode_len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
-            PyErr_Format(PyExc_ValueError, "CurrencyCode too long: length=%zd (max allowed is %zd)", TransferBankToFutureRspField_CurrencyCode_len, (Py_ssize_t)sizeof(self->data.CurrencyCode));
-            return -1;
-        }
-        // memset(self->data.CurrencyCode, 0, sizeof(self->data.CurrencyCode));
-        // memcpy(self->data.CurrencyCode, TransferBankToFutureRspField_CurrencyCode, TransferBankToFutureRspField_CurrencyCode_len);        
-        strncpy(self->data.CurrencyCode, TransferBankToFutureRspField_CurrencyCode, sizeof(self->data.CurrencyCode) );
-        TransferBankToFutureRspField_CurrencyCode = NULL;
-    }
-            
+	//TThostFtdcRetInfoType char[129]
+	if(pTransferBankToFutureRspField_RetInfo != NULL) {
+		if(pTransferBankToFutureRspField_RetInfo_len > (Py_ssize_t)sizeof(self->data.RetInfo)) {
+			PyErr_Format(PyExc_ValueError, "RetInfo too long: length=%zd (max allowed is %zd)", pTransferBankToFutureRspField_RetInfo_len, (Py_ssize_t)sizeof(self->data.RetInfo));
+			return -1;
+		}
+		strncpy(self->data.RetInfo, pTransferBankToFutureRspField_RetInfo, sizeof(self->data.RetInfo) );
+		pTransferBankToFutureRspField_RetInfo = NULL;
+	}
+
+	//TThostFtdcAccountIDType char[13]
+	if(pTransferBankToFutureRspField_FutureAccount != NULL) {
+		if(pTransferBankToFutureRspField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+			PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", pTransferBankToFutureRspField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
+			return -1;
+		}
+		strncpy(self->data.FutureAccount, pTransferBankToFutureRspField_FutureAccount, sizeof(self->data.FutureAccount) );
+		pTransferBankToFutureRspField_FutureAccount = NULL;
+	}
+
+	//TThostFtdcMoneyType double
+	self->data.TradeAmt = pTransferBankToFutureRspField_TradeAmt;
+	//TThostFtdcMoneyType double
+	self->data.CustFee = pTransferBankToFutureRspField_CustFee;
+	//TThostFtdcCurrencyCodeType char[4]
+	if(pTransferBankToFutureRspField_CurrencyCode != NULL) {
+		if(pTransferBankToFutureRspField_CurrencyCode_len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+			PyErr_Format(PyExc_ValueError, "CurrencyCode too long: length=%zd (max allowed is %zd)", pTransferBankToFutureRspField_CurrencyCode_len, (Py_ssize_t)sizeof(self->data.CurrencyCode));
+			return -1;
+		}
+		strncpy(self->data.CurrencyCode, pTransferBankToFutureRspField_CurrencyCode, sizeof(self->data.CurrencyCode) );
+		pTransferBankToFutureRspField_CurrencyCode = NULL;
+	}
+
+
 
     return 0;
 }
@@ -142,12 +121,12 @@ static PyObject *PyCThostFtdcTransferBankToFutureRspField_repr(PyCThostFtdcTrans
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:d,s:d,s:s}"
 #endif
 
-        ,"RetCode", self->data.RetCode//, (Py_ssize_t)sizeof(self->data.RetCode) 
-        ,"RetInfo", self->data.RetInfo//, (Py_ssize_t)sizeof(self->data.RetInfo) 
-        ,"FutureAccount", self->data.FutureAccount//, (Py_ssize_t)sizeof(self->data.FutureAccount) 
-        ,"TradeAmt", self->data.TradeAmt 
-        ,"CustFee", self->data.CustFee 
-        ,"CurrencyCode", self->data.CurrencyCode//, (Py_ssize_t)sizeof(self->data.CurrencyCode) 
+		, "RetCode", self->data.RetCode 
+		, "RetInfo", self->data.RetInfo 
+		, "FutureAccount", self->data.FutureAccount 
+		, "TradeAmt", self->data.TradeAmt
+		, "CustFee", self->data.CustFee
+		, "CurrencyCode", self->data.CurrencyCode 
 
 
 		);
@@ -160,94 +139,76 @@ static PyObject *PyCThostFtdcTransferBankToFutureRspField_repr(PyCThostFtdcTrans
     return PyObject_Repr(obj);
 }
 
-
-///响应代码
-// TThostFtdcRetCodeType char[5]
 static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_RetCode(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.RetCode, (Py_ssize_t)sizeof(self->data.RetCode));
-    return PyBytes_FromString(self->data.RetCode);
+	return PyBytes_FromString(self->data.RetCode);
 }
 
-///响应代码
-// TThostFtdcRetCodeType char[5]
-static int PyCThostFtdcTransferBankToFutureRspField_set_RetCode(PyCThostFtdcTransferBankToFutureRspField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "RetCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RetCode)) {
-        PyErr_SetString(PyExc_ValueError, "RetCode must be less than 5 bytes");
-        return -1;
-    }
-    // memset(self->data.RetCode, 0, sizeof(self->data.RetCode));
-    // memcpy(self->data.RetCode, buf, len);
-    strncpy(self->data.RetCode, buf, sizeof(self->data.RetCode));
-    return 0;
-}
-            
-///响应信息
-// TThostFtdcRetInfoType char[129]
 static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_RetInfo(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.RetInfo, (Py_ssize_t)sizeof(self->data.RetInfo));
-    return PyBytes_FromString(self->data.RetInfo);
+	return PyBytes_FromString(self->data.RetInfo);
 }
 
-///响应信息
-// TThostFtdcRetInfoType char[129]
-static int PyCThostFtdcTransferBankToFutureRspField_set_RetInfo(PyCThostFtdcTransferBankToFutureRspField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "RetInfo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RetInfo)) {
-        PyErr_SetString(PyExc_ValueError, "RetInfo must be less than 129 bytes");
-        return -1;
-    }
-    // memset(self->data.RetInfo, 0, sizeof(self->data.RetInfo));
-    // memcpy(self->data.RetInfo, buf, len);
-    strncpy(self->data.RetInfo, buf, sizeof(self->data.RetInfo));
-    return 0;
-}
-            
-///资金账户
-// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_FutureAccount(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FutureAccount, (Py_ssize_t)sizeof(self->data.FutureAccount));
-    return PyBytes_FromString(self->data.FutureAccount);
+	return PyBytes_FromString(self->data.FutureAccount);
 }
 
-///资金账户
-// TThostFtdcAccountIDType char[13]
-static int PyCThostFtdcTransferBankToFutureRspField_set_FutureAccount(PyCThostFtdcTransferBankToFutureRspField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FutureAccount Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
-        PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.FutureAccount, 0, sizeof(self->data.FutureAccount));
-    // memcpy(self->data.FutureAccount, buf, len);
-    strncpy(self->data.FutureAccount, buf, sizeof(self->data.FutureAccount));
-    return 0;
-}
-            
-///转帐金额
-// TThostFtdcMoneyType double
 static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_TradeAmt(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.TradeAmt);
+	return PyFloat_FromDouble(self->data.TradeAmt);
 }
 
-///转帐金额
-// TThostFtdcMoneyType double
-static int PyCThostFtdcTransferBankToFutureRspField_set_TradeAmt(PyCThostFtdcTransferBankToFutureRspField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_CustFee(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.CustFee);
+}
+
+static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_CurrencyCode(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
+	return PyBytes_FromString(self->data.CurrencyCode);
+}
+
+static int PyCThostFtdcTransferBankToFutureRspField_set_RetCode(PyCThostFtdcTransferBankToFutureRspField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "RetCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.RetCode)) {
+		PyErr_SetString(PyExc_ValueError, "RetCode must be less than 5 bytes");
+		return -1;
+	}
+	strncpy(self->data.RetCode, buf, sizeof(self->data.RetCode));
+	return 0;
+}
+
+static int PyCThostFtdcTransferBankToFutureRspField_set_RetInfo(PyCThostFtdcTransferBankToFutureRspField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "RetInfo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.RetInfo)) {
+		PyErr_SetString(PyExc_ValueError, "RetInfo must be less than 129 bytes");
+		return -1;
+	}
+	strncpy(self->data.RetInfo, buf, sizeof(self->data.RetInfo));
+	return 0;
+}
+
+static int PyCThostFtdcTransferBankToFutureRspField_set_FutureAccount(PyCThostFtdcTransferBankToFutureRspField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FutureAccount Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+		PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.FutureAccount, buf, sizeof(self->data.FutureAccount));
+	return 0;
+}
+
+static int PyCThostFtdcTransferBankToFutureRspField_set_TradeAmt(PyCThostFtdcTransferBankToFutureRspField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "TradeAmt Expected float");
         return -1;
@@ -259,16 +220,8 @@ static int PyCThostFtdcTransferBankToFutureRspField_set_TradeAmt(PyCThostFtdcTra
     self->data.TradeAmt = buf;
     return 0;
 }
-        
-///应收客户手续费
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_CustFee(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.CustFee);
-}
 
-///应收客户手续费
-// TThostFtdcMoneyType double
-static int PyCThostFtdcTransferBankToFutureRspField_set_CustFee(PyCThostFtdcTransferBankToFutureRspField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcTransferBankToFutureRspField_set_CustFee(PyCThostFtdcTransferBankToFutureRspField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CustFee Expected float");
         return -1;
@@ -280,47 +233,31 @@ static int PyCThostFtdcTransferBankToFutureRspField_set_CustFee(PyCThostFtdcTran
     self->data.CustFee = buf;
     return 0;
 }
-        
-///币种
-// TThostFtdcCurrencyCodeType char[4]
-static PyObject *PyCThostFtdcTransferBankToFutureRspField_get_CurrencyCode(PyCThostFtdcTransferBankToFutureRspField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrencyCode, (Py_ssize_t)sizeof(self->data.CurrencyCode));
-    return PyBytes_FromString(self->data.CurrencyCode);
+
+static int PyCThostFtdcTransferBankToFutureRspField_set_CurrencyCode(PyCThostFtdcTransferBankToFutureRspField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrencyCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+		PyErr_SetString(PyExc_ValueError, "CurrencyCode must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrencyCode, buf, sizeof(self->data.CurrencyCode));
+	return 0;
 }
 
-///币种
-// TThostFtdcCurrencyCodeType char[4]
-static int PyCThostFtdcTransferBankToFutureRspField_set_CurrencyCode(PyCThostFtdcTransferBankToFutureRspField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrencyCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
-        PyErr_SetString(PyExc_ValueError, "CurrencyCode must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrencyCode, 0, sizeof(self->data.CurrencyCode));
-    // memcpy(self->data.CurrencyCode, buf, len);
-    strncpy(self->data.CurrencyCode, buf, sizeof(self->data.CurrencyCode));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcTransferBankToFutureRspField_getset[] = {
-    ///响应代码 
-    {(char *)"RetCode", (getter)PyCThostFtdcTransferBankToFutureRspField_get_RetCode, (setter)PyCThostFtdcTransferBankToFutureRspField_set_RetCode, (char *)"RetCode", NULL},
-    ///响应信息 
-    {(char *)"RetInfo", (getter)PyCThostFtdcTransferBankToFutureRspField_get_RetInfo, (setter)PyCThostFtdcTransferBankToFutureRspField_set_RetInfo, (char *)"RetInfo", NULL},
-    ///资金账户 
-    {(char *)"FutureAccount", (getter)PyCThostFtdcTransferBankToFutureRspField_get_FutureAccount, (setter)PyCThostFtdcTransferBankToFutureRspField_set_FutureAccount, (char *)"FutureAccount", NULL},
-    ///转帐金额 
-    {(char *)"TradeAmt", (getter)PyCThostFtdcTransferBankToFutureRspField_get_TradeAmt, (setter)PyCThostFtdcTransferBankToFutureRspField_set_TradeAmt, (char *)"TradeAmt", NULL},
-    ///应收客户手续费 
-    {(char *)"CustFee", (getter)PyCThostFtdcTransferBankToFutureRspField_get_CustFee, (setter)PyCThostFtdcTransferBankToFutureRspField_set_CustFee, (char *)"CustFee", NULL},
-    ///币种 
-    {(char *)"CurrencyCode", (getter)PyCThostFtdcTransferBankToFutureRspField_get_CurrencyCode, (setter)PyCThostFtdcTransferBankToFutureRspField_set_CurrencyCode, (char *)"CurrencyCode", NULL},
+	 {(char *)"RetCode", (getter)PyCThostFtdcTransferBankToFutureRspField_get_RetCode, (setter)PyCThostFtdcTransferBankToFutureRspField_set_RetCode, (char *)"RetCode", NULL},
+	 {(char *)"RetInfo", (getter)PyCThostFtdcTransferBankToFutureRspField_get_RetInfo, (setter)PyCThostFtdcTransferBankToFutureRspField_set_RetInfo, (char *)"RetInfo", NULL},
+	 {(char *)"FutureAccount", (getter)PyCThostFtdcTransferBankToFutureRspField_get_FutureAccount, (setter)PyCThostFtdcTransferBankToFutureRspField_set_FutureAccount, (char *)"FutureAccount", NULL},
+	 {(char *)"TradeAmt", (getter)PyCThostFtdcTransferBankToFutureRspField_get_TradeAmt, (setter)PyCThostFtdcTransferBankToFutureRspField_set_TradeAmt, (char *)"TradeAmt", NULL},
+	 {(char *)"CustFee", (getter)PyCThostFtdcTransferBankToFutureRspField_get_CustFee, (setter)PyCThostFtdcTransferBankToFutureRspField_set_CustFee, (char *)"CustFee", NULL},
+	 {(char *)"CurrencyCode", (getter)PyCThostFtdcTransferBankToFutureRspField_get_CurrencyCode, (setter)PyCThostFtdcTransferBankToFutureRspField_set_CurrencyCode, (char *)"CurrencyCode", NULL},
 
     {NULL}
 };

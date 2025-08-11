@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询出入金流水
+
 
 typedef struct PyCThostFtdcQrySyncDepositField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平SPMM合约参数
+
 
 typedef struct PyCThostFtdcSyncDeltaSPMMInstParamField {
     PyObject_HEAD

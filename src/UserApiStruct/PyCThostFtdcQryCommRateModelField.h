@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///请求查询投资者手续费率模板
+
 
 typedef struct PyCThostFtdcQryCommRateModelField {
     PyObject_HEAD

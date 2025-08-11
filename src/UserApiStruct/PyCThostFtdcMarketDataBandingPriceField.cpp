@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataBandingPriceField.h"
 
-///行情上下带价
+
 
 static PyObject *PyCThostFtdcMarketDataBandingPriceField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataBandingPriceField *self = (PyCThostFtdcMarketDataBandingPriceField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcMarketDataBandingPriceField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,15 +18,13 @@ static int PyCThostFtdcMarketDataBandingPriceField_init(PyCThostFtdcMarketDataBa
 
     static const char *kwlist[] = {"BandingUpperPrice", "BandingLowerPrice",  NULL};
 
+	//TThostFtdcPriceType double
+	double pMarketDataBandingPriceField_BandingUpperPrice = 0.0;
 
-    ///上带价
-    // TThostFtdcPriceType double
-    double MarketDataBandingPriceField_BandingUpperPrice = 0.0;
-        
-    ///下带价
-    // TThostFtdcPriceType double
-    double MarketDataBandingPriceField_BandingLowerPrice = 0.0;
-        
+	//TThostFtdcPriceType double
+	double pMarketDataBandingPriceField_BandingLowerPrice = 0.0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|dd", (char **)kwlist
@@ -33,23 +32,19 @@ static int PyCThostFtdcMarketDataBandingPriceField_init(PyCThostFtdcMarketDataBa
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|dd", (char **)kwlist
 #endif
 
-        , &MarketDataBandingPriceField_BandingUpperPrice 
-        , &MarketDataBandingPriceField_BandingLowerPrice 
+		, &pMarketDataBandingPriceField_BandingUpperPrice
+		, &pMarketDataBandingPriceField_BandingLowerPrice
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcPriceType double
+	self->data.BandingUpperPrice = pMarketDataBandingPriceField_BandingUpperPrice;
+	//TThostFtdcPriceType double
+	self->data.BandingLowerPrice = pMarketDataBandingPriceField_BandingLowerPrice;
 
-    ///上带价
-    // TThostFtdcPriceType double
-    self->data.BandingUpperPrice = MarketDataBandingPriceField_BandingUpperPrice;
-        
-    ///下带价
-    // TThostFtdcPriceType double
-    self->data.BandingLowerPrice = MarketDataBandingPriceField_BandingLowerPrice;
-        
 
     return 0;
 }
@@ -66,8 +61,8 @@ static PyObject *PyCThostFtdcMarketDataBandingPriceField_repr(PyCThostFtdcMarket
     PyObject *obj = Py_BuildValue("{s:d,s:d}"
 #endif
 
-        ,"BandingUpperPrice", self->data.BandingUpperPrice 
-        ,"BandingLowerPrice", self->data.BandingLowerPrice 
+		, "BandingUpperPrice", self->data.BandingUpperPrice
+		, "BandingLowerPrice", self->data.BandingLowerPrice
 
 
 		);
@@ -80,16 +75,15 @@ static PyObject *PyCThostFtdcMarketDataBandingPriceField_repr(PyCThostFtdcMarket
     return PyObject_Repr(obj);
 }
 
-
-///上带价
-// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcMarketDataBandingPriceField_get_BandingUpperPrice(PyCThostFtdcMarketDataBandingPriceField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.BandingUpperPrice);
+	return PyFloat_FromDouble(self->data.BandingUpperPrice);
 }
 
-///上带价
-// TThostFtdcPriceType double
-static int PyCThostFtdcMarketDataBandingPriceField_set_BandingUpperPrice(PyCThostFtdcMarketDataBandingPriceField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcMarketDataBandingPriceField_get_BandingLowerPrice(PyCThostFtdcMarketDataBandingPriceField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.BandingLowerPrice);
+}
+
+static int PyCThostFtdcMarketDataBandingPriceField_set_BandingUpperPrice(PyCThostFtdcMarketDataBandingPriceField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "BandingUpperPrice Expected float");
         return -1;
@@ -101,16 +95,8 @@ static int PyCThostFtdcMarketDataBandingPriceField_set_BandingUpperPrice(PyCThos
     self->data.BandingUpperPrice = buf;
     return 0;
 }
-        
-///下带价
-// TThostFtdcPriceType double
-static PyObject *PyCThostFtdcMarketDataBandingPriceField_get_BandingLowerPrice(PyCThostFtdcMarketDataBandingPriceField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.BandingLowerPrice);
-}
 
-///下带价
-// TThostFtdcPriceType double
-static int PyCThostFtdcMarketDataBandingPriceField_set_BandingLowerPrice(PyCThostFtdcMarketDataBandingPriceField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataBandingPriceField_set_BandingLowerPrice(PyCThostFtdcMarketDataBandingPriceField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "BandingLowerPrice Expected float");
         return -1;
@@ -122,13 +108,12 @@ static int PyCThostFtdcMarketDataBandingPriceField_set_BandingLowerPrice(PyCThos
     self->data.BandingLowerPrice = buf;
     return 0;
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcMarketDataBandingPriceField_getset[] = {
-    ///上带价 
-    {(char *)"BandingUpperPrice", (getter)PyCThostFtdcMarketDataBandingPriceField_get_BandingUpperPrice, (setter)PyCThostFtdcMarketDataBandingPriceField_set_BandingUpperPrice, (char *)"BandingUpperPrice", NULL},
-    ///下带价 
-    {(char *)"BandingLowerPrice", (getter)PyCThostFtdcMarketDataBandingPriceField_get_BandingLowerPrice, (setter)PyCThostFtdcMarketDataBandingPriceField_set_BandingLowerPrice, (char *)"BandingLowerPrice", NULL},
+	 {(char *)"BandingUpperPrice", (getter)PyCThostFtdcMarketDataBandingPriceField_get_BandingUpperPrice, (setter)PyCThostFtdcMarketDataBandingPriceField_set_BandingUpperPrice, (char *)"BandingUpperPrice", NULL},
+	 {(char *)"BandingLowerPrice", (getter)PyCThostFtdcMarketDataBandingPriceField_get_BandingLowerPrice, (setter)PyCThostFtdcMarketDataBandingPriceField_set_BandingLowerPrice, (char *)"BandingLowerPrice", NULL},
 
     {NULL}
 };

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcIPListField.h"
 
-///IP列表
+
 
 static PyObject *PyCThostFtdcIPListField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcIPListField *self = (PyCThostFtdcIPListField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcIPListField_new(PyTypeObject *type, PyObject *args,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,21 +18,18 @@ static int PyCThostFtdcIPListField_init(PyCThostFtdcIPListField *self, PyObject 
 
     static const char *kwlist[] = {"reserve1", "IsWhite", "IPAddress",  NULL};
 
+	//TThostFtdcOldIPAddressType char[16]
+	const char *pIPListField_reserve1 = NULL;
+	Py_ssize_t pIPListField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldIPAddressType char[16]
-    const char *IPListField_reserve1 = NULL;
-    Py_ssize_t IPListField_reserve1_len = 0;
-            
-    ///是否白名单
-    // TThostFtdcBoolType int
-    int IPListField_IsWhite = 0;
-        
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    const char *IPListField_IPAddress = NULL;
-    Py_ssize_t IPListField_IPAddress_len = 0;
-            
+	//TThostFtdcBoolType int
+	int pIPListField_IsWhite = 0;
+
+	//TThostFtdcIPAddressType char[33]
+	const char *pIPListField_IPAddress = NULL;
+	Py_ssize_t pIPListField_IPAddress_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#iy#", (char **)kwlist
@@ -39,46 +37,39 @@ static int PyCThostFtdcIPListField_init(PyCThostFtdcIPListField *self, PyObject 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#is#", (char **)kwlist
 #endif
 
-        , &IPListField_reserve1, &IPListField_reserve1_len 
-        , &IPListField_IsWhite 
-        , &IPListField_IPAddress, &IPListField_IPAddress_len 
+		, &pIPListField_reserve1, &pIPListField_reserve1_len
+		, &pIPListField_IsWhite
+		, &pIPListField_IPAddress, &pIPListField_IPAddress_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldIPAddressType char[16]
+	if(pIPListField_reserve1 != NULL) {
+		if(pIPListField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pIPListField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pIPListField_reserve1, sizeof(self->data.reserve1) );
+		pIPListField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldIPAddressType char[16]
-    if( IPListField_reserve1 != NULL ) {
-        if(IPListField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", IPListField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, IPListField_reserve1, IPListField_reserve1_len);        
-        strncpy(self->data.reserve1, IPListField_reserve1, sizeof(self->data.reserve1) );
-        IPListField_reserve1 = NULL;
-    }
-            
-    ///是否白名单
-    // TThostFtdcBoolType int
-    self->data.IsWhite = IPListField_IsWhite;
-        
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    if( IPListField_IPAddress != NULL ) {
-        if(IPListField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-            PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", IPListField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
-            return -1;
-        }
-        // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-        // memcpy(self->data.IPAddress, IPListField_IPAddress, IPListField_IPAddress_len);        
-        strncpy(self->data.IPAddress, IPListField_IPAddress, sizeof(self->data.IPAddress) );
-        IPListField_IPAddress = NULL;
-    }
-            
+	//TThostFtdcBoolType int
+	self->data.IsWhite = pIPListField_IsWhite;
+
+	//TThostFtdcIPAddressType char[33]
+	if(pIPListField_IPAddress != NULL) {
+		if(pIPListField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+			PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", pIPListField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
+			return -1;
+		}
+		strncpy(self->data.IPAddress, pIPListField_IPAddress, sizeof(self->data.IPAddress) );
+		pIPListField_IPAddress = NULL;
+	}
+
+
 
     return 0;
 }
@@ -95,9 +86,9 @@ static PyObject *PyCThostFtdcIPListField_repr(PyCThostFtdcIPListField *self) {
     PyObject *obj = Py_BuildValue("{s:s,s:i,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"IsWhite", self->data.IsWhite 
-        ,"IPAddress", self->data.IPAddress//, (Py_ssize_t)sizeof(self->data.IPAddress) 
+		, "reserve1", self->data.reserve1 
+		, "IsWhite", self->data.IsWhite
+		, "IPAddress", self->data.IPAddress 
 
 
 		);
@@ -110,105 +101,84 @@ static PyObject *PyCThostFtdcIPListField_repr(PyCThostFtdcIPListField *self) {
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldIPAddressType char[16]
 static PyObject *PyCThostFtdcIPListField_get_reserve1(PyCThostFtdcIPListField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldIPAddressType char[16]
-static int PyCThostFtdcIPListField_set_reserve1(PyCThostFtdcIPListField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///是否白名单
-// TThostFtdcBoolType int
 static PyObject *PyCThostFtdcIPListField_get_IsWhite(PyCThostFtdcIPListField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsWhite);
-#else
-    return PyInt_FromLong(self->data.IsWhite);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsWhite);
+#else 
+	return PyInt_FromLong(self->data.IsWhite);
+#endif 
 }
 
-///是否白名单
-// TThostFtdcBoolType int
-static int PyCThostFtdcIPListField_set_IsWhite(PyCThostFtdcIPListField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcIPListField_get_IPAddress(PyCThostFtdcIPListField *self, void *closure) {
+	return PyBytes_FromString(self->data.IPAddress);
+}
+
+static int PyCThostFtdcIPListField_set_reserve1(PyCThostFtdcIPListField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcIPListField_set_IsWhite(PyCThostFtdcIPListField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsWhite Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsWhite Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsWhite Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsWhite value out of range for C int");
-        return -1;
-    }
-    self->data.IsWhite = (int)buf;
-    return 0;
-}
-        
-///IP地址
-// TThostFtdcIPAddressType char[33]
-static PyObject *PyCThostFtdcIPListField_get_IPAddress(PyCThostFtdcIPListField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.IPAddress, (Py_ssize_t)sizeof(self->data.IPAddress));
-    return PyBytes_FromString(self->data.IPAddress);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsWhite = (int)buf; 
+    return 0; 
 }
 
-///IP地址
-// TThostFtdcIPAddressType char[33]
-static int PyCThostFtdcIPListField_set_IPAddress(PyCThostFtdcIPListField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-        PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-    // memcpy(self->data.IPAddress, buf, len);
-    strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
-    return 0;
+static int PyCThostFtdcIPListField_set_IPAddress(PyCThostFtdcIPListField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+		PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcIPListField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcIPListField_get_reserve1, (setter)PyCThostFtdcIPListField_set_reserve1, (char *)"reserve1", NULL},
-    ///是否白名单 
-    {(char *)"IsWhite", (getter)PyCThostFtdcIPListField_get_IsWhite, (setter)PyCThostFtdcIPListField_set_IsWhite, (char *)"IsWhite", NULL},
-    ///IP地址 
-    {(char *)"IPAddress", (getter)PyCThostFtdcIPListField_get_IPAddress, (setter)PyCThostFtdcIPListField_set_IPAddress, (char *)"IPAddress", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcIPListField_get_reserve1, (setter)PyCThostFtdcIPListField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"IsWhite", (getter)PyCThostFtdcIPListField_get_IsWhite, (setter)PyCThostFtdcIPListField_set_IsWhite, (char *)"IsWhite", NULL},
+	 {(char *)"IPAddress", (getter)PyCThostFtdcIPListField_get_IPAddress, (setter)PyCThostFtdcIPListField_set_IPAddress, (char *)"IPAddress", NULL},
 
     {NULL}
 };

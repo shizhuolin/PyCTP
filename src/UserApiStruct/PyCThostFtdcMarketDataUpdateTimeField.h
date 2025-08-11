@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///行情更新时间属性
+
 
 typedef struct PyCThostFtdcMarketDataUpdateTimeField {
     PyObject_HEAD

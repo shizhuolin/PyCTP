@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询产品
+
 
 typedef struct PyCThostFtdcQryProductField {
     PyObject_HEAD

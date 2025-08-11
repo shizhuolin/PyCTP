@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期权自对冲查询
+
 
 typedef struct PyCThostFtdcQryOptionSelfCloseField {
     PyObject_HEAD

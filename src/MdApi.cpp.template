@@ -34,7 +34,7 @@ ${apibody}
 
 static PyObject *CTP_THOST_FTDC_MD_API_CreateFtdcMdApi(PyTypeObject *type, PyObject *args)
 {
-	char *pszFlowPath = nullptr;
+	char *pszFlowPath = NULL;
 	bool bIsUsingUdp = false, bIsMulticast = false;
 #if PY_MAJOR_VERSION >= 3
 	if (!PyArg_ParseTuple(args, "|ypp", &pszFlowPath, &bIsUsingUdp, &bIsMulticast))
@@ -43,24 +43,24 @@ static PyObject *CTP_THOST_FTDC_MD_API_CreateFtdcMdApi(PyTypeObject *type, PyObj
 #endif
 	{
 		PyErr_SetString(PyExc_ValueError, "parameter invalid.");
-		return nullptr;
+		return NULL;
 	}
 
 	/* 构造api对象 */
 	CTP_THOST_FTDC_MD_API *self = (CTP_THOST_FTDC_MD_API *) type->tp_alloc(type, 0);
 
-	if(self==nullptr){
+	if(self==NULL){
 		PyErr_SetString(PyExc_RuntimeError, "don't create instance.");
-		return nullptr;
+		return NULL;
 	}
 
 	/* 创建ctpapi实例 */
-	self->api = CThostFtdcMdApi::CreateFtdcMdApi(pszFlowPath==nullptr? "":pszFlowPath, bIsUsingUdp, bIsMulticast);
+	self->api = CThostFtdcMdApi::CreateFtdcMdApi(pszFlowPath==NULL? "":pszFlowPath, bIsUsingUdp, bIsMulticast);
 
-	if(self->api == nullptr){
+	if(self->api == NULL){
 		PyErr_SetString(PyExc_RuntimeError, "CThostFtdcMdApi::CreateFtdcMdApi error.");
 		Py_DECREF(self);
-		return nullptr;
+		return NULL;
 	}
 
 	self->spi  = new CTP_THOST_FTDC_MD_SPI(self);
@@ -84,7 +84,7 @@ static PyObject *CTP_THOST_FTDC_MD_API_RegisterSpi(PyObject *self, PyObject *arg
 	if (!PyArg_ParseTuple(args, "O", &api->pySpi))
 	{
 		PyErr_SetString(PyExc_ValueError, "parameter invalid.");
-		return nullptr;
+		return NULL;
 	}
 
 	Py_XDECREF(tmp);
@@ -96,15 +96,15 @@ static PyObject *CTP_THOST_FTDC_MD_API_RegisterSpi(PyObject *self, PyObject *arg
 static PyObject *CTP_THOST_FTDC_MD_API_Release(PyObject *self, PyObject *args)
 {
 	CTP_THOST_FTDC_MD_API *obj = (CTP_THOST_FTDC_MD_API *) self;
-	if(obj->api != nullptr)
+	if(obj->api != NULL)
 	{
-		obj->api->RegisterSpi(nullptr);
+		obj->api->RegisterSpi(NULL);
 		obj->api->Release();
-		obj->api = nullptr;
+		obj->api = NULL;
 	}
-	if(obj->spi != nullptr){
+	if(obj->spi != NULL){
 		delete dynamic_cast<CTP_THOST_FTDC_MD_SPI *>(obj->spi);
-		obj->spi = nullptr;
+		obj->spi = NULL;
 	}
 	Py_XDECREF(obj->pySpi);
 	Py_RETURN_NONE;
@@ -130,10 +130,10 @@ static PyMethodDef CTP_THOST_FTDC_MD_API_methods[] = {
 
 	///获取API的版本信息
 	///@retrun 获取到的版本号
-	{"GetApiVersion", CTP_THOST_FTDC_MD_API_GetApiVersion, METH_NOARGS | METH_STATIC, nullptr},
+	{"GetApiVersion", CTP_THOST_FTDC_MD_API_GetApiVersion, METH_NOARGS | METH_STATIC, NULL},
 
 ${apilist}
-	{nullptr}  /* Sentinel */
+	{NULL}  /* Sentinel */
 };
 
 PyTypeObject CTP_THOST_FTDC_MD_API_TYPE = {

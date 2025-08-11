@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平RULE跨品种抵扣参数
+
 
 typedef struct PyCThostFtdcSyncDeltaRULEInterParameterField {
     PyObject_HEAD

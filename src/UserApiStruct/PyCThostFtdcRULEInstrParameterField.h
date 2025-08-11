@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RULE合约保证金参数
+
 
 typedef struct PyCThostFtdcRULEInstrParameterField {
     PyObject_HEAD

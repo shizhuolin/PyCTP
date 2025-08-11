@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平信息
+
 
 typedef struct PyCThostFtdcSyncDeltaInfoField {
     PyObject_HEAD

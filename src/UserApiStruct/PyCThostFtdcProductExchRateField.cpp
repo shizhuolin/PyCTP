@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcProductExchRateField.h"
 
-///产品报价汇率
+
 
 static PyObject *PyCThostFtdcProductExchRateField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcProductExchRateField *self = (PyCThostFtdcProductExchRateField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcProductExchRateField_new(PyTypeObject *type, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,31 +18,26 @@ static int PyCThostFtdcProductExchRateField_init(PyCThostFtdcProductExchRateFiel
 
     static const char *kwlist[] = {"reserve1", "QuoteCurrencyID", "ExchangeRate", "ExchangeID", "ProductID",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pProductExchRateField_reserve1 = NULL;
+	Py_ssize_t pProductExchRateField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *ProductExchRateField_reserve1 = NULL;
-    Py_ssize_t ProductExchRateField_reserve1_len = 0;
-            
-    ///报价币种类型
-    // TThostFtdcCurrencyIDType char[4]
-    const char *ProductExchRateField_QuoteCurrencyID = NULL;
-    Py_ssize_t ProductExchRateField_QuoteCurrencyID_len = 0;
-            
-    ///汇率
-    // TThostFtdcExchangeRateType double
-    double ProductExchRateField_ExchangeRate = 0.0;
-        
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *ProductExchRateField_ExchangeID = NULL;
-    Py_ssize_t ProductExchRateField_ExchangeID_len = 0;
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *ProductExchRateField_ProductID = NULL;
-    Py_ssize_t ProductExchRateField_ProductID_len = 0;
-            
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pProductExchRateField_QuoteCurrencyID = NULL;
+	Py_ssize_t pProductExchRateField_QuoteCurrencyID_len = 0;
+
+	//TThostFtdcExchangeRateType double
+	double pProductExchRateField_ExchangeRate = 0.0;
+
+	//TThostFtdcExchangeIDType char[9]
+	const char *pProductExchRateField_ExchangeID = NULL;
+	Py_ssize_t pProductExchRateField_ExchangeID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pProductExchRateField_ProductID = NULL;
+	Py_ssize_t pProductExchRateField_ProductID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#dy#y#", (char **)kwlist
@@ -49,74 +45,60 @@ static int PyCThostFtdcProductExchRateField_init(PyCThostFtdcProductExchRateFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#ds#s#", (char **)kwlist
 #endif
 
-        , &ProductExchRateField_reserve1, &ProductExchRateField_reserve1_len 
-        , &ProductExchRateField_QuoteCurrencyID, &ProductExchRateField_QuoteCurrencyID_len 
-        , &ProductExchRateField_ExchangeRate 
-        , &ProductExchRateField_ExchangeID, &ProductExchRateField_ExchangeID_len 
-        , &ProductExchRateField_ProductID, &ProductExchRateField_ProductID_len 
+		, &pProductExchRateField_reserve1, &pProductExchRateField_reserve1_len
+		, &pProductExchRateField_QuoteCurrencyID, &pProductExchRateField_QuoteCurrencyID_len
+		, &pProductExchRateField_ExchangeRate
+		, &pProductExchRateField_ExchangeID, &pProductExchRateField_ExchangeID_len
+		, &pProductExchRateField_ProductID, &pProductExchRateField_ProductID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pProductExchRateField_reserve1 != NULL) {
+		if(pProductExchRateField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pProductExchRateField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pProductExchRateField_reserve1, sizeof(self->data.reserve1) );
+		pProductExchRateField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( ProductExchRateField_reserve1 != NULL ) {
-        if(ProductExchRateField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", ProductExchRateField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, ProductExchRateField_reserve1, ProductExchRateField_reserve1_len);        
-        strncpy(self->data.reserve1, ProductExchRateField_reserve1, sizeof(self->data.reserve1) );
-        ProductExchRateField_reserve1 = NULL;
-    }
-            
-    ///报价币种类型
-    // TThostFtdcCurrencyIDType char[4]
-    if( ProductExchRateField_QuoteCurrencyID != NULL ) {
-        if(ProductExchRateField_QuoteCurrencyID_len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "QuoteCurrencyID too long: length=%zd (max allowed is %zd)", ProductExchRateField_QuoteCurrencyID_len, (Py_ssize_t)sizeof(self->data.QuoteCurrencyID));
-            return -1;
-        }
-        // memset(self->data.QuoteCurrencyID, 0, sizeof(self->data.QuoteCurrencyID));
-        // memcpy(self->data.QuoteCurrencyID, ProductExchRateField_QuoteCurrencyID, ProductExchRateField_QuoteCurrencyID_len);        
-        strncpy(self->data.QuoteCurrencyID, ProductExchRateField_QuoteCurrencyID, sizeof(self->data.QuoteCurrencyID) );
-        ProductExchRateField_QuoteCurrencyID = NULL;
-    }
-            
-    ///汇率
-    // TThostFtdcExchangeRateType double
-    self->data.ExchangeRate = ProductExchRateField_ExchangeRate;
-        
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( ProductExchRateField_ExchangeID != NULL ) {
-        if(ProductExchRateField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", ProductExchRateField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, ProductExchRateField_ExchangeID, ProductExchRateField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, ProductExchRateField_ExchangeID, sizeof(self->data.ExchangeID) );
-        ProductExchRateField_ExchangeID = NULL;
-    }
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( ProductExchRateField_ProductID != NULL ) {
-        if(ProductExchRateField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", ProductExchRateField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, ProductExchRateField_ProductID, ProductExchRateField_ProductID_len);        
-        strncpy(self->data.ProductID, ProductExchRateField_ProductID, sizeof(self->data.ProductID) );
-        ProductExchRateField_ProductID = NULL;
-    }
-            
+	//TThostFtdcCurrencyIDType char[4]
+	if(pProductExchRateField_QuoteCurrencyID != NULL) {
+		if(pProductExchRateField_QuoteCurrencyID_len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "QuoteCurrencyID too long: length=%zd (max allowed is %zd)", pProductExchRateField_QuoteCurrencyID_len, (Py_ssize_t)sizeof(self->data.QuoteCurrencyID));
+			return -1;
+		}
+		strncpy(self->data.QuoteCurrencyID, pProductExchRateField_QuoteCurrencyID, sizeof(self->data.QuoteCurrencyID) );
+		pProductExchRateField_QuoteCurrencyID = NULL;
+	}
+
+	//TThostFtdcExchangeRateType double
+	self->data.ExchangeRate = pProductExchRateField_ExchangeRate;
+	//TThostFtdcExchangeIDType char[9]
+	if(pProductExchRateField_ExchangeID != NULL) {
+		if(pProductExchRateField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pProductExchRateField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pProductExchRateField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pProductExchRateField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pProductExchRateField_ProductID != NULL) {
+		if(pProductExchRateField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pProductExchRateField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pProductExchRateField_ProductID, sizeof(self->data.ProductID) );
+		pProductExchRateField_ProductID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -133,11 +115,11 @@ static PyObject *PyCThostFtdcProductExchRateField_repr(PyCThostFtdcProductExchRa
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:d,s:s,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"QuoteCurrencyID", self->data.QuoteCurrencyID//, (Py_ssize_t)sizeof(self->data.QuoteCurrencyID) 
-        ,"ExchangeRate", self->data.ExchangeRate 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
+		, "reserve1", self->data.reserve1 
+		, "QuoteCurrencyID", self->data.QuoteCurrencyID 
+		, "ExchangeRate", self->data.ExchangeRate
+		, "ExchangeID", self->data.ExchangeID 
+		, "ProductID", self->data.ProductID 
 
 
 		);
@@ -150,68 +132,57 @@ static PyObject *PyCThostFtdcProductExchRateField_repr(PyCThostFtdcProductExchRa
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcProductExchRateField_get_reserve1(PyCThostFtdcProductExchRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcProductExchRateField_set_reserve1(PyCThostFtdcProductExchRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///报价币种类型
-// TThostFtdcCurrencyIDType char[4]
 static PyObject *PyCThostFtdcProductExchRateField_get_QuoteCurrencyID(PyCThostFtdcProductExchRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.QuoteCurrencyID, (Py_ssize_t)sizeof(self->data.QuoteCurrencyID));
-    return PyBytes_FromString(self->data.QuoteCurrencyID);
+	return PyBytes_FromString(self->data.QuoteCurrencyID);
 }
 
-///报价币种类型
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcProductExchRateField_set_QuoteCurrencyID(PyCThostFtdcProductExchRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "QuoteCurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "QuoteCurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.QuoteCurrencyID, 0, sizeof(self->data.QuoteCurrencyID));
-    // memcpy(self->data.QuoteCurrencyID, buf, len);
-    strncpy(self->data.QuoteCurrencyID, buf, sizeof(self->data.QuoteCurrencyID));
-    return 0;
-}
-            
-///汇率
-// TThostFtdcExchangeRateType double
 static PyObject *PyCThostFtdcProductExchRateField_get_ExchangeRate(PyCThostFtdcProductExchRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ExchangeRate);
+	return PyFloat_FromDouble(self->data.ExchangeRate);
 }
 
-///汇率
-// TThostFtdcExchangeRateType double
-static int PyCThostFtdcProductExchRateField_set_ExchangeRate(PyCThostFtdcProductExchRateField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcProductExchRateField_get_ExchangeID(PyCThostFtdcProductExchRateField *self, void *closure) {
+	return PyBytes_FromString(self->data.ExchangeID);
+}
+
+static PyObject *PyCThostFtdcProductExchRateField_get_ProductID(PyCThostFtdcProductExchRateField *self, void *closure) {
+	return PyBytes_FromString(self->data.ProductID);
+}
+
+static int PyCThostFtdcProductExchRateField_set_reserve1(PyCThostFtdcProductExchRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcProductExchRateField_set_QuoteCurrencyID(PyCThostFtdcProductExchRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "QuoteCurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "QuoteCurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.QuoteCurrencyID, buf, sizeof(self->data.QuoteCurrencyID));
+	return 0;
+}
+
+static int PyCThostFtdcProductExchRateField_set_ExchangeRate(PyCThostFtdcProductExchRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ExchangeRate Expected float");
         return -1;
@@ -223,71 +194,45 @@ static int PyCThostFtdcProductExchRateField_set_ExchangeRate(PyCThostFtdcProduct
     self->data.ExchangeRate = buf;
     return 0;
 }
-        
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static PyObject *PyCThostFtdcProductExchRateField_get_ExchangeID(PyCThostFtdcProductExchRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+
+static int PyCThostFtdcProductExchRateField_set_ExchangeID(PyCThostFtdcProductExchRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcProductExchRateField_set_ExchangeID(PyCThostFtdcProductExchRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcProductExchRateField_get_ProductID(PyCThostFtdcProductExchRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+static int PyCThostFtdcProductExchRateField_set_ProductID(PyCThostFtdcProductExchRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
 }
 
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcProductExchRateField_set_ProductID(PyCThostFtdcProductExchRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcProductExchRateField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcProductExchRateField_get_reserve1, (setter)PyCThostFtdcProductExchRateField_set_reserve1, (char *)"reserve1", NULL},
-    ///报价币种类型 
-    {(char *)"QuoteCurrencyID", (getter)PyCThostFtdcProductExchRateField_get_QuoteCurrencyID, (setter)PyCThostFtdcProductExchRateField_set_QuoteCurrencyID, (char *)"QuoteCurrencyID", NULL},
-    ///汇率 
-    {(char *)"ExchangeRate", (getter)PyCThostFtdcProductExchRateField_get_ExchangeRate, (setter)PyCThostFtdcProductExchRateField_set_ExchangeRate, (char *)"ExchangeRate", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcProductExchRateField_get_ExchangeID, (setter)PyCThostFtdcProductExchRateField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///产品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcProductExchRateField_get_ProductID, (setter)PyCThostFtdcProductExchRateField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcProductExchRateField_get_reserve1, (setter)PyCThostFtdcProductExchRateField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"QuoteCurrencyID", (getter)PyCThostFtdcProductExchRateField_get_QuoteCurrencyID, (setter)PyCThostFtdcProductExchRateField_set_QuoteCurrencyID, (char *)"QuoteCurrencyID", NULL},
+	 {(char *)"ExchangeRate", (getter)PyCThostFtdcProductExchRateField_get_ExchangeRate, (setter)PyCThostFtdcProductExchRateField_set_ExchangeRate, (char *)"ExchangeRate", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcProductExchRateField_get_ExchangeID, (setter)PyCThostFtdcProductExchRateField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcProductExchRateField_get_ProductID, (setter)PyCThostFtdcProductExchRateField_set_ProductID, (char *)"ProductID", NULL},
 
     {NULL}
 };

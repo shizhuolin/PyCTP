@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///内网地址配置查询
+
 
 typedef struct PyCThostFtdcQryLocalAddrConfigField {
     PyObject_HEAD

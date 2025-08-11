@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易所询价查询
+
 
 typedef struct PyCThostFtdcQryExchangeForQuoteField {
     PyObject_HEAD

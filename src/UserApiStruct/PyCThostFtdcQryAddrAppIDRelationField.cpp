@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryAddrAppIDRelationField.h"
 
-///服务地址和AppID的关系查询
+
 
 static PyObject *PyCThostFtdcQryAddrAppIDRelationField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryAddrAppIDRelationField *self = (PyCThostFtdcQryAddrAppIDRelationField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryAddrAppIDRelationField_new(PyTypeObject *type, P
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQryAddrAppIDRelationField_init(PyCThostFtdcQryAddrAppIDRe
 
     static const char *kwlist[] = {"BrokerID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQryAddrAppIDRelationField_BrokerID = NULL;
+	Py_ssize_t pQryAddrAppIDRelationField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QryAddrAppIDRelationField_BrokerID = NULL;
-    Py_ssize_t QryAddrAppIDRelationField_BrokerID_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQryAddrAppIDRelationField_init(PyCThostFtdcQryAddrAppIDRe
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QryAddrAppIDRelationField_BrokerID, &QryAddrAppIDRelationField_BrokerID_len 
+		, &pQryAddrAppIDRelationField_BrokerID, &pQryAddrAppIDRelationField_BrokerID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQryAddrAppIDRelationField_BrokerID != NULL) {
+		if(pQryAddrAppIDRelationField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQryAddrAppIDRelationField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQryAddrAppIDRelationField_BrokerID, sizeof(self->data.BrokerID) );
+		pQryAddrAppIDRelationField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QryAddrAppIDRelationField_BrokerID != NULL ) {
-        if(QryAddrAppIDRelationField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryAddrAppIDRelationField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QryAddrAppIDRelationField_BrokerID, QryAddrAppIDRelationField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QryAddrAppIDRelationField_BrokerID, sizeof(self->data.BrokerID) );
-        QryAddrAppIDRelationField_BrokerID = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQryAddrAppIDRelationField_repr(PyCThostFtdcQryAddrA
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
+		, "BrokerID", self->data.BrokerID 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQryAddrAppIDRelationField_repr(PyCThostFtdcQryAddrA
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQryAddrAppIDRelationField_get_BrokerID(PyCThostFtdcQryAddrAppIDRelationField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQryAddrAppIDRelationField_set_BrokerID(PyCThostFtdcQryAddrAppIDRelationField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
+static int PyCThostFtdcQryAddrAppIDRelationField_set_BrokerID(PyCThostFtdcQryAddrAppIDRelationField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQryAddrAppIDRelationField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQryAddrAppIDRelationField_get_BrokerID, (setter)PyCThostFtdcQryAddrAppIDRelationField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQryAddrAppIDRelationField_get_BrokerID, (setter)PyCThostFtdcQryAddrAppIDRelationField_set_BrokerID, (char *)"BrokerID", NULL},
 
     {NULL}
 };

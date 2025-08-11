@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQrySyncDelaySwapField.h"
 
-///查询延时换汇同步
+
 
 static PyObject *PyCThostFtdcQrySyncDelaySwapField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQrySyncDelaySwapField *self = (PyCThostFtdcQrySyncDelaySwapField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQrySyncDelaySwapField_new(PyTypeObject *type, PyObj
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQrySyncDelaySwapField_init(PyCThostFtdcQrySyncDelaySwapFi
 
     static const char *kwlist[] = {"BrokerID", "DelaySwapSeqNo",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQrySyncDelaySwapField_BrokerID = NULL;
+	Py_ssize_t pQrySyncDelaySwapField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QrySyncDelaySwapField_BrokerID = NULL;
-    Py_ssize_t QrySyncDelaySwapField_BrokerID_len = 0;
-            
-    ///延时换汇流水号
-    // TThostFtdcDepositSeqNoType char[15]
-    const char *QrySyncDelaySwapField_DelaySwapSeqNo = NULL;
-    Py_ssize_t QrySyncDelaySwapField_DelaySwapSeqNo_len = 0;
-            
+	//TThostFtdcDepositSeqNoType char[15]
+	const char *pQrySyncDelaySwapField_DelaySwapSeqNo = NULL;
+	Py_ssize_t pQrySyncDelaySwapField_DelaySwapSeqNo_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQrySyncDelaySwapField_init(PyCThostFtdcQrySyncDelaySwapFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QrySyncDelaySwapField_BrokerID, &QrySyncDelaySwapField_BrokerID_len 
-        , &QrySyncDelaySwapField_DelaySwapSeqNo, &QrySyncDelaySwapField_DelaySwapSeqNo_len 
+		, &pQrySyncDelaySwapField_BrokerID, &pQrySyncDelaySwapField_BrokerID_len
+		, &pQrySyncDelaySwapField_DelaySwapSeqNo, &pQrySyncDelaySwapField_DelaySwapSeqNo_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQrySyncDelaySwapField_BrokerID != NULL) {
+		if(pQrySyncDelaySwapField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQrySyncDelaySwapField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQrySyncDelaySwapField_BrokerID, sizeof(self->data.BrokerID) );
+		pQrySyncDelaySwapField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QrySyncDelaySwapField_BrokerID != NULL ) {
-        if(QrySyncDelaySwapField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySyncDelaySwapField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QrySyncDelaySwapField_BrokerID, QrySyncDelaySwapField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QrySyncDelaySwapField_BrokerID, sizeof(self->data.BrokerID) );
-        QrySyncDelaySwapField_BrokerID = NULL;
-    }
-            
-    ///延时换汇流水号
-    // TThostFtdcDepositSeqNoType char[15]
-    if( QrySyncDelaySwapField_DelaySwapSeqNo != NULL ) {
-        if(QrySyncDelaySwapField_DelaySwapSeqNo_len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
-            PyErr_Format(PyExc_ValueError, "DelaySwapSeqNo too long: length=%zd (max allowed is %zd)", QrySyncDelaySwapField_DelaySwapSeqNo_len, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo));
-            return -1;
-        }
-        // memset(self->data.DelaySwapSeqNo, 0, sizeof(self->data.DelaySwapSeqNo));
-        // memcpy(self->data.DelaySwapSeqNo, QrySyncDelaySwapField_DelaySwapSeqNo, QrySyncDelaySwapField_DelaySwapSeqNo_len);        
-        strncpy(self->data.DelaySwapSeqNo, QrySyncDelaySwapField_DelaySwapSeqNo, sizeof(self->data.DelaySwapSeqNo) );
-        QrySyncDelaySwapField_DelaySwapSeqNo = NULL;
-    }
-            
+	//TThostFtdcDepositSeqNoType char[15]
+	if(pQrySyncDelaySwapField_DelaySwapSeqNo != NULL) {
+		if(pQrySyncDelaySwapField_DelaySwapSeqNo_len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
+			PyErr_Format(PyExc_ValueError, "DelaySwapSeqNo too long: length=%zd (max allowed is %zd)", pQrySyncDelaySwapField_DelaySwapSeqNo_len, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo));
+			return -1;
+		}
+		strncpy(self->data.DelaySwapSeqNo, pQrySyncDelaySwapField_DelaySwapSeqNo, sizeof(self->data.DelaySwapSeqNo) );
+		pQrySyncDelaySwapField_DelaySwapSeqNo = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQrySyncDelaySwapField_repr(PyCThostFtdcQrySyncDelay
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"DelaySwapSeqNo", self->data.DelaySwapSeqNo//, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo) 
+		, "BrokerID", self->data.BrokerID 
+		, "DelaySwapSeqNo", self->data.DelaySwapSeqNo 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQrySyncDelaySwapField_repr(PyCThostFtdcQrySyncDelay
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQrySyncDelaySwapField_get_BrokerID(PyCThostFtdcQrySyncDelaySwapField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQrySyncDelaySwapField_set_BrokerID(PyCThostFtdcQrySyncDelaySwapField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///延时换汇流水号
-// TThostFtdcDepositSeqNoType char[15]
 static PyObject *PyCThostFtdcQrySyncDelaySwapField_get_DelaySwapSeqNo(PyCThostFtdcQrySyncDelaySwapField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.DelaySwapSeqNo, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo));
-    return PyBytes_FromString(self->data.DelaySwapSeqNo);
+	return PyBytes_FromString(self->data.DelaySwapSeqNo);
 }
 
-///延时换汇流水号
-// TThostFtdcDepositSeqNoType char[15]
-static int PyCThostFtdcQrySyncDelaySwapField_set_DelaySwapSeqNo(PyCThostFtdcQrySyncDelaySwapField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DelaySwapSeqNo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
-        PyErr_SetString(PyExc_ValueError, "DelaySwapSeqNo must be less than 15 bytes");
-        return -1;
-    }
-    // memset(self->data.DelaySwapSeqNo, 0, sizeof(self->data.DelaySwapSeqNo));
-    // memcpy(self->data.DelaySwapSeqNo, buf, len);
-    strncpy(self->data.DelaySwapSeqNo, buf, sizeof(self->data.DelaySwapSeqNo));
-    return 0;
+static int PyCThostFtdcQrySyncDelaySwapField_set_BrokerID(PyCThostFtdcQrySyncDelaySwapField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQrySyncDelaySwapField_set_DelaySwapSeqNo(PyCThostFtdcQrySyncDelaySwapField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "DelaySwapSeqNo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
+		PyErr_SetString(PyExc_ValueError, "DelaySwapSeqNo must be less than 15 bytes");
+		return -1;
+	}
+	strncpy(self->data.DelaySwapSeqNo, buf, sizeof(self->data.DelaySwapSeqNo));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQrySyncDelaySwapField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQrySyncDelaySwapField_get_BrokerID, (setter)PyCThostFtdcQrySyncDelaySwapField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///延时换汇流水号 
-    {(char *)"DelaySwapSeqNo", (getter)PyCThostFtdcQrySyncDelaySwapField_get_DelaySwapSeqNo, (setter)PyCThostFtdcQrySyncDelaySwapField_set_DelaySwapSeqNo, (char *)"DelaySwapSeqNo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQrySyncDelaySwapField_get_BrokerID, (setter)PyCThostFtdcQrySyncDelaySwapField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"DelaySwapSeqNo", (getter)PyCThostFtdcQrySyncDelaySwapField_get_DelaySwapSeqNo, (setter)PyCThostFtdcQrySyncDelaySwapField_set_DelaySwapSeqNo, (char *)"DelaySwapSeqNo", NULL},
 
     {NULL}
 };

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户登录应答2
+
 
 typedef struct PyCThostFtdcRspUserLogin2Field {
     PyObject_HEAD

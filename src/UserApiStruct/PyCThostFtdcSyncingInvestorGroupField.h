@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///正在同步中的投资者分组
+
 
 typedef struct PyCThostFtdcSyncingInvestorGroupField {
     PyObject_HEAD

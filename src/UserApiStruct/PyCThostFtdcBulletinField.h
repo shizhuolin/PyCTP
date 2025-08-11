@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易所公告
+
 
 typedef struct PyCThostFtdcBulletinField {
     PyObject_HEAD

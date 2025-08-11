@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryRCAMSInstrParameterField.h"
 
-///RCAMS同合约风险对冲参数查询
+
 
 static PyObject *PyCThostFtdcQryRCAMSInstrParameterField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryRCAMSInstrParameterField *self = (PyCThostFtdcQryRCAMSInstrParameterField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryRCAMSInstrParameterField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQryRCAMSInstrParameterField_init(PyCThostFtdcQryRCAMSInst
 
     static const char *kwlist[] = {"ProductID",  NULL};
 
+	//TThostFtdcProductIDType char[41]
+	const char *pQryRCAMSInstrParameterField_ProductID = NULL;
+	Py_ssize_t pQryRCAMSInstrParameterField_ProductID_len = 0;
 
-    ///产品代码
-    // TThostFtdcProductIDType char[41]
-    const char *QryRCAMSInstrParameterField_ProductID = NULL;
-    Py_ssize_t QryRCAMSInstrParameterField_ProductID_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQryRCAMSInstrParameterField_init(PyCThostFtdcQryRCAMSInst
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QryRCAMSInstrParameterField_ProductID, &QryRCAMSInstrParameterField_ProductID_len 
+		, &pQryRCAMSInstrParameterField_ProductID, &pQryRCAMSInstrParameterField_ProductID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcProductIDType char[41]
+	if(pQryRCAMSInstrParameterField_ProductID != NULL) {
+		if(pQryRCAMSInstrParameterField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pQryRCAMSInstrParameterField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pQryRCAMSInstrParameterField_ProductID, sizeof(self->data.ProductID) );
+		pQryRCAMSInstrParameterField_ProductID = NULL;
+	}
 
-    ///产品代码
-    // TThostFtdcProductIDType char[41]
-    if( QryRCAMSInstrParameterField_ProductID != NULL ) {
-        if(QryRCAMSInstrParameterField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryRCAMSInstrParameterField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, QryRCAMSInstrParameterField_ProductID, QryRCAMSInstrParameterField_ProductID_len);        
-        strncpy(self->data.ProductID, QryRCAMSInstrParameterField_ProductID, sizeof(self->data.ProductID) );
-        QryRCAMSInstrParameterField_ProductID = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQryRCAMSInstrParameterField_repr(PyCThostFtdcQryRCA
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
+		, "ProductID", self->data.ProductID 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQryRCAMSInstrParameterField_repr(PyCThostFtdcQryRCA
     return PyObject_Repr(obj);
 }
 
-
-///产品代码
-// TThostFtdcProductIDType char[41]
 static PyObject *PyCThostFtdcQryRCAMSInstrParameterField_get_ProductID(PyCThostFtdcQryRCAMSInstrParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+	return PyBytes_FromString(self->data.ProductID);
 }
 
-///产品代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcQryRCAMSInstrParameterField_set_ProductID(PyCThostFtdcQryRCAMSInstrParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
+static int PyCThostFtdcQryRCAMSInstrParameterField_set_ProductID(PyCThostFtdcQryRCAMSInstrParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQryRCAMSInstrParameterField_getset[] = {
-    ///产品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcQryRCAMSInstrParameterField_get_ProductID, (setter)PyCThostFtdcQryRCAMSInstrParameterField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcQryRCAMSInstrParameterField_get_ProductID, (setter)PyCThostFtdcQryRCAMSInstrParameterField_set_ProductID, (char *)"ProductID", NULL},
 
     {NULL}
 };

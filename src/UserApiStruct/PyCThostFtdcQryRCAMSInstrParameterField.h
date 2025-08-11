@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RCAMS同合约风险对冲参数查询
+
 
 typedef struct PyCThostFtdcQryRCAMSInstrParameterField {
     PyObject_HEAD

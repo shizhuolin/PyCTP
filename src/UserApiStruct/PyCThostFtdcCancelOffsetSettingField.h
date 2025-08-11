@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///撤销对冲设置
+
 
 typedef struct PyCThostFtdcCancelOffsetSettingField {
     PyObject_HEAD

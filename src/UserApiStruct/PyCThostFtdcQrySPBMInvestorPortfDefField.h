@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者套餐选择查询
+
 
 typedef struct PyCThostFtdcQrySPBMInvestorPortfDefField {
     PyObject_HEAD

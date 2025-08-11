@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///交易所执行宣告信息
+
 
 typedef struct PyCThostFtdcExchangeExecOrderField {
     PyObject_HEAD

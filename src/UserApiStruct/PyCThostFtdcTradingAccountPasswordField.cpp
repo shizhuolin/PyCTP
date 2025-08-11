@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTradingAccountPasswordField.h"
 
-///资金账户口令域
+
 
 static PyObject *PyCThostFtdcTradingAccountPasswordField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTradingAccountPasswordField *self = (PyCThostFtdcTradingAccountPasswordField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcTradingAccountPasswordField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,27 +18,23 @@ static int PyCThostFtdcTradingAccountPasswordField_init(PyCThostFtdcTradingAccou
 
     static const char *kwlist[] = {"BrokerID", "AccountID", "Password", "CurrencyID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pTradingAccountPasswordField_BrokerID = NULL;
+	Py_ssize_t pTradingAccountPasswordField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *TradingAccountPasswordField_BrokerID = NULL;
-    Py_ssize_t TradingAccountPasswordField_BrokerID_len = 0;
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    const char *TradingAccountPasswordField_AccountID = NULL;
-    Py_ssize_t TradingAccountPasswordField_AccountID_len = 0;
-            
-    ///密码
-    // TThostFtdcPasswordType char[41]
-    const char *TradingAccountPasswordField_Password = NULL;
-    Py_ssize_t TradingAccountPasswordField_Password_len = 0;
-            
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    const char *TradingAccountPasswordField_CurrencyID = NULL;
-    Py_ssize_t TradingAccountPasswordField_CurrencyID_len = 0;
-            
+	//TThostFtdcAccountIDType char[13]
+	const char *pTradingAccountPasswordField_AccountID = NULL;
+	Py_ssize_t pTradingAccountPasswordField_AccountID_len = 0;
+
+	//TThostFtdcPasswordType char[41]
+	const char *pTradingAccountPasswordField_Password = NULL;
+	Py_ssize_t pTradingAccountPasswordField_Password_len = 0;
+
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pTradingAccountPasswordField_CurrencyID = NULL;
+	Py_ssize_t pTradingAccountPasswordField_CurrencyID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#", (char **)kwlist
@@ -45,69 +42,57 @@ static int PyCThostFtdcTradingAccountPasswordField_init(PyCThostFtdcTradingAccou
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#", (char **)kwlist
 #endif
 
-        , &TradingAccountPasswordField_BrokerID, &TradingAccountPasswordField_BrokerID_len 
-        , &TradingAccountPasswordField_AccountID, &TradingAccountPasswordField_AccountID_len 
-        , &TradingAccountPasswordField_Password, &TradingAccountPasswordField_Password_len 
-        , &TradingAccountPasswordField_CurrencyID, &TradingAccountPasswordField_CurrencyID_len 
+		, &pTradingAccountPasswordField_BrokerID, &pTradingAccountPasswordField_BrokerID_len
+		, &pTradingAccountPasswordField_AccountID, &pTradingAccountPasswordField_AccountID_len
+		, &pTradingAccountPasswordField_Password, &pTradingAccountPasswordField_Password_len
+		, &pTradingAccountPasswordField_CurrencyID, &pTradingAccountPasswordField_CurrencyID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pTradingAccountPasswordField_BrokerID != NULL) {
+		if(pTradingAccountPasswordField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pTradingAccountPasswordField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pTradingAccountPasswordField_BrokerID, sizeof(self->data.BrokerID) );
+		pTradingAccountPasswordField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( TradingAccountPasswordField_BrokerID != NULL ) {
-        if(TradingAccountPasswordField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, TradingAccountPasswordField_BrokerID, TradingAccountPasswordField_BrokerID_len);        
-        strncpy(self->data.BrokerID, TradingAccountPasswordField_BrokerID, sizeof(self->data.BrokerID) );
-        TradingAccountPasswordField_BrokerID = NULL;
-    }
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    if( TradingAccountPasswordField_AccountID != NULL ) {
-        if(TradingAccountPasswordField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-            PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
-            return -1;
-        }
-        // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-        // memcpy(self->data.AccountID, TradingAccountPasswordField_AccountID, TradingAccountPasswordField_AccountID_len);        
-        strncpy(self->data.AccountID, TradingAccountPasswordField_AccountID, sizeof(self->data.AccountID) );
-        TradingAccountPasswordField_AccountID = NULL;
-    }
-            
-    ///密码
-    // TThostFtdcPasswordType char[41]
-    if( TradingAccountPasswordField_Password != NULL ) {
-        if(TradingAccountPasswordField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
-            PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
-            return -1;
-        }
-        // memset(self->data.Password, 0, sizeof(self->data.Password));
-        // memcpy(self->data.Password, TradingAccountPasswordField_Password, TradingAccountPasswordField_Password_len);        
-        strncpy(self->data.Password, TradingAccountPasswordField_Password, sizeof(self->data.Password) );
-        TradingAccountPasswordField_Password = NULL;
-    }
-            
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    if( TradingAccountPasswordField_CurrencyID != NULL ) {
-        if(TradingAccountPasswordField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
-            return -1;
-        }
-        // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-        // memcpy(self->data.CurrencyID, TradingAccountPasswordField_CurrencyID, TradingAccountPasswordField_CurrencyID_len);        
-        strncpy(self->data.CurrencyID, TradingAccountPasswordField_CurrencyID, sizeof(self->data.CurrencyID) );
-        TradingAccountPasswordField_CurrencyID = NULL;
-    }
-            
+	//TThostFtdcAccountIDType char[13]
+	if(pTradingAccountPasswordField_AccountID != NULL) {
+		if(pTradingAccountPasswordField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+			PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", pTradingAccountPasswordField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
+			return -1;
+		}
+		strncpy(self->data.AccountID, pTradingAccountPasswordField_AccountID, sizeof(self->data.AccountID) );
+		pTradingAccountPasswordField_AccountID = NULL;
+	}
+
+	//TThostFtdcPasswordType char[41]
+	if(pTradingAccountPasswordField_Password != NULL) {
+		if(pTradingAccountPasswordField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+			PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", pTradingAccountPasswordField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
+			return -1;
+		}
+		strncpy(self->data.Password, pTradingAccountPasswordField_Password, sizeof(self->data.Password) );
+		pTradingAccountPasswordField_Password = NULL;
+	}
+
+	//TThostFtdcCurrencyIDType char[4]
+	if(pTradingAccountPasswordField_CurrencyID != NULL) {
+		if(pTradingAccountPasswordField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", pTradingAccountPasswordField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
+			return -1;
+		}
+		strncpy(self->data.CurrencyID, pTradingAccountPasswordField_CurrencyID, sizeof(self->data.CurrencyID) );
+		pTradingAccountPasswordField_CurrencyID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -124,10 +109,10 @@ static PyObject *PyCThostFtdcTradingAccountPasswordField_repr(PyCThostFtdcTradin
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"AccountID", self->data.AccountID//, (Py_ssize_t)sizeof(self->data.AccountID) 
-        ,"Password", self->data.Password//, (Py_ssize_t)sizeof(self->data.Password) 
-        ,"CurrencyID", self->data.CurrencyID//, (Py_ssize_t)sizeof(self->data.CurrencyID) 
+		, "BrokerID", self->data.BrokerID 
+		, "AccountID", self->data.AccountID 
+		, "Password", self->data.Password 
+		, "CurrencyID", self->data.CurrencyID 
 
 
 		);
@@ -140,121 +125,89 @@ static PyObject *PyCThostFtdcTradingAccountPasswordField_repr(PyCThostFtdcTradin
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcTradingAccountPasswordField_get_BrokerID(PyCThostFtdcTradingAccountPasswordField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcTradingAccountPasswordField_set_BrokerID(PyCThostFtdcTradingAccountPasswordField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcTradingAccountPasswordField_get_AccountID(PyCThostFtdcTradingAccountPasswordField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.AccountID, (Py_ssize_t)sizeof(self->data.AccountID));
-    return PyBytes_FromString(self->data.AccountID);
+	return PyBytes_FromString(self->data.AccountID);
 }
 
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
-static int PyCThostFtdcTradingAccountPasswordField_set_AccountID(PyCThostFtdcTradingAccountPasswordField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-        PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-    // memcpy(self->data.AccountID, buf, len);
-    strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
-    return 0;
-}
-            
-///密码
-// TThostFtdcPasswordType char[41]
 static PyObject *PyCThostFtdcTradingAccountPasswordField_get_Password(PyCThostFtdcTradingAccountPasswordField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.Password, (Py_ssize_t)sizeof(self->data.Password));
-    return PyBytes_FromString(self->data.Password);
+	return PyBytes_FromString(self->data.Password);
 }
 
-///密码
-// TThostFtdcPasswordType char[41]
-static int PyCThostFtdcTradingAccountPasswordField_set_Password(PyCThostFtdcTradingAccountPasswordField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "Password Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
-        PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.Password, 0, sizeof(self->data.Password));
-    // memcpy(self->data.Password, buf, len);
-    strncpy(self->data.Password, buf, sizeof(self->data.Password));
-    return 0;
-}
-            
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
 static PyObject *PyCThostFtdcTradingAccountPasswordField_get_CurrencyID(PyCThostFtdcTradingAccountPasswordField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrencyID, (Py_ssize_t)sizeof(self->data.CurrencyID));
-    return PyBytes_FromString(self->data.CurrencyID);
+	return PyBytes_FromString(self->data.CurrencyID);
 }
 
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcTradingAccountPasswordField_set_CurrencyID(PyCThostFtdcTradingAccountPasswordField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-    // memcpy(self->data.CurrencyID, buf, len);
-    strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
-    return 0;
+static int PyCThostFtdcTradingAccountPasswordField_set_BrokerID(PyCThostFtdcTradingAccountPasswordField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcTradingAccountPasswordField_set_AccountID(PyCThostFtdcTradingAccountPasswordField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+		PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
+	return 0;
+}
+
+static int PyCThostFtdcTradingAccountPasswordField_set_Password(PyCThostFtdcTradingAccountPasswordField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "Password Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+		PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.Password, buf, sizeof(self->data.Password));
+	return 0;
+}
+
+static int PyCThostFtdcTradingAccountPasswordField_set_CurrencyID(PyCThostFtdcTradingAccountPasswordField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcTradingAccountPasswordField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcTradingAccountPasswordField_get_BrokerID, (setter)PyCThostFtdcTradingAccountPasswordField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者帐号 
-    {(char *)"AccountID", (getter)PyCThostFtdcTradingAccountPasswordField_get_AccountID, (setter)PyCThostFtdcTradingAccountPasswordField_set_AccountID, (char *)"AccountID", NULL},
-    ///密码 
-    {(char *)"Password", (getter)PyCThostFtdcTradingAccountPasswordField_get_Password, (setter)PyCThostFtdcTradingAccountPasswordField_set_Password, (char *)"Password", NULL},
-    ///币种代码 
-    {(char *)"CurrencyID", (getter)PyCThostFtdcTradingAccountPasswordField_get_CurrencyID, (setter)PyCThostFtdcTradingAccountPasswordField_set_CurrencyID, (char *)"CurrencyID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcTradingAccountPasswordField_get_BrokerID, (setter)PyCThostFtdcTradingAccountPasswordField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"AccountID", (getter)PyCThostFtdcTradingAccountPasswordField_get_AccountID, (setter)PyCThostFtdcTradingAccountPasswordField_set_AccountID, (char *)"AccountID", NULL},
+	 {(char *)"Password", (getter)PyCThostFtdcTradingAccountPasswordField_get_Password, (setter)PyCThostFtdcTradingAccountPasswordField_set_Password, (char *)"Password", NULL},
+	 {(char *)"CurrencyID", (getter)PyCThostFtdcTradingAccountPasswordField_get_CurrencyID, (setter)PyCThostFtdcTradingAccountPasswordField_set_CurrencyID, (char *)"CurrencyID", NULL},
 
     {NULL}
 };

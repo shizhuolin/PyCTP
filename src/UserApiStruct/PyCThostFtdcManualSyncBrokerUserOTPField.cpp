@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcManualSyncBrokerUserOTPField.h"
 
-///手工同步用户动态令牌
+
 
 static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcManualSyncBrokerUserOTPField *self = (PyCThostFtdcManualSyncBrokerUserOTPField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,31 +18,26 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_init(PyCThostFtdcManualSyncB
 
     static const char *kwlist[] = {"BrokerID", "UserID", "OTPType", "FirstOTP", "SecondOTP",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pManualSyncBrokerUserOTPField_BrokerID = NULL;
+	Py_ssize_t pManualSyncBrokerUserOTPField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *ManualSyncBrokerUserOTPField_BrokerID = NULL;
-    Py_ssize_t ManualSyncBrokerUserOTPField_BrokerID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *ManualSyncBrokerUserOTPField_UserID = NULL;
-    Py_ssize_t ManualSyncBrokerUserOTPField_UserID_len = 0;
-            
-    ///动态令牌类型
-    // TThostFtdcOTPTypeType char
-    char ManualSyncBrokerUserOTPField_OTPType = 0;
-            
-    ///第一个动态密码
-    // TThostFtdcPasswordType char[41]
-    const char *ManualSyncBrokerUserOTPField_FirstOTP = NULL;
-    Py_ssize_t ManualSyncBrokerUserOTPField_FirstOTP_len = 0;
-            
-    ///第二个动态密码
-    // TThostFtdcPasswordType char[41]
-    const char *ManualSyncBrokerUserOTPField_SecondOTP = NULL;
-    Py_ssize_t ManualSyncBrokerUserOTPField_SecondOTP_len = 0;
-            
+	//TThostFtdcUserIDType char[16]
+	const char *pManualSyncBrokerUserOTPField_UserID = NULL;
+	Py_ssize_t pManualSyncBrokerUserOTPField_UserID_len = 0;
+
+	//TThostFtdcOTPTypeType char
+	char pManualSyncBrokerUserOTPField_OTPType = 0;
+
+	//TThostFtdcPasswordType char[41]
+	const char *pManualSyncBrokerUserOTPField_FirstOTP = NULL;
+	Py_ssize_t pManualSyncBrokerUserOTPField_FirstOTP_len = 0;
+
+	//TThostFtdcPasswordType char[41]
+	const char *pManualSyncBrokerUserOTPField_SecondOTP = NULL;
+	Py_ssize_t pManualSyncBrokerUserOTPField_SecondOTP_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#cy#y#", (char **)kwlist
@@ -49,74 +45,61 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_init(PyCThostFtdcManualSyncB
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#cs#s#", (char **)kwlist
 #endif
 
-        , &ManualSyncBrokerUserOTPField_BrokerID, &ManualSyncBrokerUserOTPField_BrokerID_len 
-        , &ManualSyncBrokerUserOTPField_UserID, &ManualSyncBrokerUserOTPField_UserID_len 
-        , &ManualSyncBrokerUserOTPField_OTPType 
-        , &ManualSyncBrokerUserOTPField_FirstOTP, &ManualSyncBrokerUserOTPField_FirstOTP_len 
-        , &ManualSyncBrokerUserOTPField_SecondOTP, &ManualSyncBrokerUserOTPField_SecondOTP_len 
+		, &pManualSyncBrokerUserOTPField_BrokerID, &pManualSyncBrokerUserOTPField_BrokerID_len
+		, &pManualSyncBrokerUserOTPField_UserID, &pManualSyncBrokerUserOTPField_UserID_len
+		, &pManualSyncBrokerUserOTPField_OTPType
+		, &pManualSyncBrokerUserOTPField_FirstOTP, &pManualSyncBrokerUserOTPField_FirstOTP_len
+		, &pManualSyncBrokerUserOTPField_SecondOTP, &pManualSyncBrokerUserOTPField_SecondOTP_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pManualSyncBrokerUserOTPField_BrokerID != NULL) {
+		if(pManualSyncBrokerUserOTPField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pManualSyncBrokerUserOTPField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pManualSyncBrokerUserOTPField_BrokerID, sizeof(self->data.BrokerID) );
+		pManualSyncBrokerUserOTPField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( ManualSyncBrokerUserOTPField_BrokerID != NULL ) {
-        if(ManualSyncBrokerUserOTPField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, ManualSyncBrokerUserOTPField_BrokerID, ManualSyncBrokerUserOTPField_BrokerID_len);        
-        strncpy(self->data.BrokerID, ManualSyncBrokerUserOTPField_BrokerID, sizeof(self->data.BrokerID) );
-        ManualSyncBrokerUserOTPField_BrokerID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( ManualSyncBrokerUserOTPField_UserID != NULL ) {
-        if(ManualSyncBrokerUserOTPField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, ManualSyncBrokerUserOTPField_UserID, ManualSyncBrokerUserOTPField_UserID_len);        
-        strncpy(self->data.UserID, ManualSyncBrokerUserOTPField_UserID, sizeof(self->data.UserID) );
-        ManualSyncBrokerUserOTPField_UserID = NULL;
-    }
-            
-    ///动态令牌类型
-    // TThostFtdcOTPTypeType char
-    self->data.OTPType = ManualSyncBrokerUserOTPField_OTPType;
-            
-    ///第一个动态密码
-    // TThostFtdcPasswordType char[41]
-    if( ManualSyncBrokerUserOTPField_FirstOTP != NULL ) {
-        if(ManualSyncBrokerUserOTPField_FirstOTP_len > (Py_ssize_t)sizeof(self->data.FirstOTP)) {
-            PyErr_Format(PyExc_ValueError, "FirstOTP too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_FirstOTP_len, (Py_ssize_t)sizeof(self->data.FirstOTP));
-            return -1;
-        }
-        // memset(self->data.FirstOTP, 0, sizeof(self->data.FirstOTP));
-        // memcpy(self->data.FirstOTP, ManualSyncBrokerUserOTPField_FirstOTP, ManualSyncBrokerUserOTPField_FirstOTP_len);        
-        strncpy(self->data.FirstOTP, ManualSyncBrokerUserOTPField_FirstOTP, sizeof(self->data.FirstOTP) );
-        ManualSyncBrokerUserOTPField_FirstOTP = NULL;
-    }
-            
-    ///第二个动态密码
-    // TThostFtdcPasswordType char[41]
-    if( ManualSyncBrokerUserOTPField_SecondOTP != NULL ) {
-        if(ManualSyncBrokerUserOTPField_SecondOTP_len > (Py_ssize_t)sizeof(self->data.SecondOTP)) {
-            PyErr_Format(PyExc_ValueError, "SecondOTP too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_SecondOTP_len, (Py_ssize_t)sizeof(self->data.SecondOTP));
-            return -1;
-        }
-        // memset(self->data.SecondOTP, 0, sizeof(self->data.SecondOTP));
-        // memcpy(self->data.SecondOTP, ManualSyncBrokerUserOTPField_SecondOTP, ManualSyncBrokerUserOTPField_SecondOTP_len);        
-        strncpy(self->data.SecondOTP, ManualSyncBrokerUserOTPField_SecondOTP, sizeof(self->data.SecondOTP) );
-        ManualSyncBrokerUserOTPField_SecondOTP = NULL;
-    }
-            
+	//TThostFtdcUserIDType char[16]
+	if(pManualSyncBrokerUserOTPField_UserID != NULL) {
+		if(pManualSyncBrokerUserOTPField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pManualSyncBrokerUserOTPField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pManualSyncBrokerUserOTPField_UserID, sizeof(self->data.UserID) );
+		pManualSyncBrokerUserOTPField_UserID = NULL;
+	}
+
+	//TThostFtdcOTPTypeType char
+	self->data.OTPType = pManualSyncBrokerUserOTPField_OTPType;
+
+	//TThostFtdcPasswordType char[41]
+	if(pManualSyncBrokerUserOTPField_FirstOTP != NULL) {
+		if(pManualSyncBrokerUserOTPField_FirstOTP_len > (Py_ssize_t)sizeof(self->data.FirstOTP)) {
+			PyErr_Format(PyExc_ValueError, "FirstOTP too long: length=%zd (max allowed is %zd)", pManualSyncBrokerUserOTPField_FirstOTP_len, (Py_ssize_t)sizeof(self->data.FirstOTP));
+			return -1;
+		}
+		strncpy(self->data.FirstOTP, pManualSyncBrokerUserOTPField_FirstOTP, sizeof(self->data.FirstOTP) );
+		pManualSyncBrokerUserOTPField_FirstOTP = NULL;
+	}
+
+	//TThostFtdcPasswordType char[41]
+	if(pManualSyncBrokerUserOTPField_SecondOTP != NULL) {
+		if(pManualSyncBrokerUserOTPField_SecondOTP_len > (Py_ssize_t)sizeof(self->data.SecondOTP)) {
+			PyErr_Format(PyExc_ValueError, "SecondOTP too long: length=%zd (max allowed is %zd)", pManualSyncBrokerUserOTPField_SecondOTP_len, (Py_ssize_t)sizeof(self->data.SecondOTP));
+			return -1;
+		}
+		strncpy(self->data.SecondOTP, pManualSyncBrokerUserOTPField_SecondOTP, sizeof(self->data.SecondOTP) );
+		pManualSyncBrokerUserOTPField_SecondOTP = NULL;
+	}
+
+
 
     return 0;
 }
@@ -133,11 +116,11 @@ static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_repr(PyCThostFtdcManua
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:c,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
-        ,"OTPType", self->data.OTPType 
-        ,"FirstOTP", self->data.FirstOTP//, (Py_ssize_t)sizeof(self->data.FirstOTP) 
-        ,"SecondOTP", self->data.SecondOTP//, (Py_ssize_t)sizeof(self->data.SecondOTP) 
+		, "BrokerID", self->data.BrokerID 
+		, "UserID", self->data.UserID 
+		, "OTPType", self->data.OTPType
+		, "FirstOTP", self->data.FirstOTP 
+		, "SecondOTP", self->data.SecondOTP 
 
 
 		);
@@ -150,146 +133,109 @@ static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_repr(PyCThostFtdcManua
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_get_BrokerID(PyCThostFtdcManualSyncBrokerUserOTPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcManualSyncBrokerUserOTPField_set_BrokerID(PyCThostFtdcManualSyncBrokerUserOTPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_get_UserID(PyCThostFtdcManualSyncBrokerUserOTPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcManualSyncBrokerUserOTPField_set_UserID(PyCThostFtdcManualSyncBrokerUserOTPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
-}
-            
-///动态令牌类型
-// TThostFtdcOTPTypeType char
 static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_get_OTPType(PyCThostFtdcManualSyncBrokerUserOTPField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.OTPType), 1);
+	return PyBytes_FromStringAndSize(&(self->data.OTPType), 1);
 }
 
-///动态令牌类型
-// TThostFtdcOTPTypeType char
-static int PyCThostFtdcManualSyncBrokerUserOTPField_set_OTPType(PyCThostFtdcManualSyncBrokerUserOTPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "OTPType Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OTPType)) {
-        PyErr_SetString(PyExc_ValueError, "OTPType must be equal 1 bytes");
-        return -1;
-    }
-    self->data.OTPType = *buf;
-    return 0;
-}
-            
-///第一个动态密码
-// TThostFtdcPasswordType char[41]
 static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_get_FirstOTP(PyCThostFtdcManualSyncBrokerUserOTPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FirstOTP, (Py_ssize_t)sizeof(self->data.FirstOTP));
-    return PyBytes_FromString(self->data.FirstOTP);
+	return PyBytes_FromString(self->data.FirstOTP);
 }
 
-///第一个动态密码
-// TThostFtdcPasswordType char[41]
-static int PyCThostFtdcManualSyncBrokerUserOTPField_set_FirstOTP(PyCThostFtdcManualSyncBrokerUserOTPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FirstOTP Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FirstOTP)) {
-        PyErr_SetString(PyExc_ValueError, "FirstOTP must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.FirstOTP, 0, sizeof(self->data.FirstOTP));
-    // memcpy(self->data.FirstOTP, buf, len);
-    strncpy(self->data.FirstOTP, buf, sizeof(self->data.FirstOTP));
-    return 0;
-}
-            
-///第二个动态密码
-// TThostFtdcPasswordType char[41]
 static PyObject *PyCThostFtdcManualSyncBrokerUserOTPField_get_SecondOTP(PyCThostFtdcManualSyncBrokerUserOTPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.SecondOTP, (Py_ssize_t)sizeof(self->data.SecondOTP));
-    return PyBytes_FromString(self->data.SecondOTP);
+	return PyBytes_FromString(self->data.SecondOTP);
 }
 
-///第二个动态密码
-// TThostFtdcPasswordType char[41]
-static int PyCThostFtdcManualSyncBrokerUserOTPField_set_SecondOTP(PyCThostFtdcManualSyncBrokerUserOTPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SecondOTP Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SecondOTP)) {
-        PyErr_SetString(PyExc_ValueError, "SecondOTP must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.SecondOTP, 0, sizeof(self->data.SecondOTP));
-    // memcpy(self->data.SecondOTP, buf, len);
-    strncpy(self->data.SecondOTP, buf, sizeof(self->data.SecondOTP));
-    return 0;
+static int PyCThostFtdcManualSyncBrokerUserOTPField_set_BrokerID(PyCThostFtdcManualSyncBrokerUserOTPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcManualSyncBrokerUserOTPField_set_UserID(PyCThostFtdcManualSyncBrokerUserOTPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
+}
+
+static int PyCThostFtdcManualSyncBrokerUserOTPField_set_OTPType(PyCThostFtdcManualSyncBrokerUserOTPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "OTPType Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.OTPType)) {
+		PyErr_SetString(PyExc_ValueError, "OTPType must be less than 1 bytes");
+		return -1;
+	}
+	self->data.OTPType = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcManualSyncBrokerUserOTPField_set_FirstOTP(PyCThostFtdcManualSyncBrokerUserOTPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FirstOTP Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FirstOTP)) {
+		PyErr_SetString(PyExc_ValueError, "FirstOTP must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.FirstOTP, buf, sizeof(self->data.FirstOTP));
+	return 0;
+}
+
+static int PyCThostFtdcManualSyncBrokerUserOTPField_set_SecondOTP(PyCThostFtdcManualSyncBrokerUserOTPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "SecondOTP Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.SecondOTP)) {
+		PyErr_SetString(PyExc_ValueError, "SecondOTP must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.SecondOTP, buf, sizeof(self->data.SecondOTP));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcManualSyncBrokerUserOTPField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_BrokerID, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_UserID, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_UserID, (char *)"UserID", NULL},
-    ///动态令牌类型 
-    {(char *)"OTPType", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_OTPType, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_OTPType, (char *)"OTPType", NULL},
-    ///第一个动态密码 
-    {(char *)"FirstOTP", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_FirstOTP, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_FirstOTP, (char *)"FirstOTP", NULL},
-    ///第二个动态密码 
-    {(char *)"SecondOTP", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_SecondOTP, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_SecondOTP, (char *)"SecondOTP", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_BrokerID, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_UserID, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"OTPType", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_OTPType, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_OTPType, (char *)"OTPType", NULL},
+	 {(char *)"FirstOTP", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_FirstOTP, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_FirstOTP, (char *)"FirstOTP", NULL},
+	 {(char *)"SecondOTP", (getter)PyCThostFtdcManualSyncBrokerUserOTPField_get_SecondOTP, (setter)PyCThostFtdcManualSyncBrokerUserOTPField_set_SecondOTP, (char *)"SecondOTP", NULL},
 
     {NULL}
 };

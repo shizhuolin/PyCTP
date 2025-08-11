@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询监控中心用户令牌
+
 
 typedef struct PyCThostFtdcQueryCFMMCTradingAccountTokenField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询禁止认证IP
+
 
 typedef struct PyCThostFtdcQryAuthForbiddenIPField {
     PyObject_HEAD

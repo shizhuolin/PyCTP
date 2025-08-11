@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///浮动盈亏算法
+
 
 typedef struct PyCThostFtdcPositionProfitAlgorithmField {
     PyObject_HEAD

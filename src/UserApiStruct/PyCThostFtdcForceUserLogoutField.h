@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///强制交易员退出
+
 
 typedef struct PyCThostFtdcForceUserLogoutField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平RCAMS空头期权风险调整参数
+
 
 typedef struct PyCThostFtdcSyncDeltaRCAMSSOptAdjParamField {
     PyObject_HEAD

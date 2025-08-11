@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryTransferSerialField.h"
 
-///请求查询转帐流水
+
 
 static PyObject *PyCThostFtdcQryTransferSerialField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryTransferSerialField *self = (PyCThostFtdcQryTransferSerialField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryTransferSerialField_new(PyTypeObject *type, PyOb
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,27 +18,23 @@ static int PyCThostFtdcQryTransferSerialField_init(PyCThostFtdcQryTransferSerial
 
     static const char *kwlist[] = {"BrokerID", "AccountID", "BankID", "CurrencyID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQryTransferSerialField_BrokerID = NULL;
+	Py_ssize_t pQryTransferSerialField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QryTransferSerialField_BrokerID = NULL;
-    Py_ssize_t QryTransferSerialField_BrokerID_len = 0;
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    const char *QryTransferSerialField_AccountID = NULL;
-    Py_ssize_t QryTransferSerialField_AccountID_len = 0;
-            
-    ///银行编码
-    // TThostFtdcBankIDType char[4]
-    const char *QryTransferSerialField_BankID = NULL;
-    Py_ssize_t QryTransferSerialField_BankID_len = 0;
-            
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    const char *QryTransferSerialField_CurrencyID = NULL;
-    Py_ssize_t QryTransferSerialField_CurrencyID_len = 0;
-            
+	//TThostFtdcAccountIDType char[13]
+	const char *pQryTransferSerialField_AccountID = NULL;
+	Py_ssize_t pQryTransferSerialField_AccountID_len = 0;
+
+	//TThostFtdcBankIDType char[4]
+	const char *pQryTransferSerialField_BankID = NULL;
+	Py_ssize_t pQryTransferSerialField_BankID_len = 0;
+
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pQryTransferSerialField_CurrencyID = NULL;
+	Py_ssize_t pQryTransferSerialField_CurrencyID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#", (char **)kwlist
@@ -45,69 +42,57 @@ static int PyCThostFtdcQryTransferSerialField_init(PyCThostFtdcQryTransferSerial
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#", (char **)kwlist
 #endif
 
-        , &QryTransferSerialField_BrokerID, &QryTransferSerialField_BrokerID_len 
-        , &QryTransferSerialField_AccountID, &QryTransferSerialField_AccountID_len 
-        , &QryTransferSerialField_BankID, &QryTransferSerialField_BankID_len 
-        , &QryTransferSerialField_CurrencyID, &QryTransferSerialField_CurrencyID_len 
+		, &pQryTransferSerialField_BrokerID, &pQryTransferSerialField_BrokerID_len
+		, &pQryTransferSerialField_AccountID, &pQryTransferSerialField_AccountID_len
+		, &pQryTransferSerialField_BankID, &pQryTransferSerialField_BankID_len
+		, &pQryTransferSerialField_CurrencyID, &pQryTransferSerialField_CurrencyID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQryTransferSerialField_BrokerID != NULL) {
+		if(pQryTransferSerialField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQryTransferSerialField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQryTransferSerialField_BrokerID, sizeof(self->data.BrokerID) );
+		pQryTransferSerialField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QryTransferSerialField_BrokerID != NULL ) {
-        if(QryTransferSerialField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QryTransferSerialField_BrokerID, QryTransferSerialField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QryTransferSerialField_BrokerID, sizeof(self->data.BrokerID) );
-        QryTransferSerialField_BrokerID = NULL;
-    }
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    if( QryTransferSerialField_AccountID != NULL ) {
-        if(QryTransferSerialField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-            PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
-            return -1;
-        }
-        // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-        // memcpy(self->data.AccountID, QryTransferSerialField_AccountID, QryTransferSerialField_AccountID_len);        
-        strncpy(self->data.AccountID, QryTransferSerialField_AccountID, sizeof(self->data.AccountID) );
-        QryTransferSerialField_AccountID = NULL;
-    }
-            
-    ///银行编码
-    // TThostFtdcBankIDType char[4]
-    if( QryTransferSerialField_BankID != NULL ) {
-        if(QryTransferSerialField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
-            PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
-            return -1;
-        }
-        // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-        // memcpy(self->data.BankID, QryTransferSerialField_BankID, QryTransferSerialField_BankID_len);        
-        strncpy(self->data.BankID, QryTransferSerialField_BankID, sizeof(self->data.BankID) );
-        QryTransferSerialField_BankID = NULL;
-    }
-            
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    if( QryTransferSerialField_CurrencyID != NULL ) {
-        if(QryTransferSerialField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
-            return -1;
-        }
-        // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-        // memcpy(self->data.CurrencyID, QryTransferSerialField_CurrencyID, QryTransferSerialField_CurrencyID_len);        
-        strncpy(self->data.CurrencyID, QryTransferSerialField_CurrencyID, sizeof(self->data.CurrencyID) );
-        QryTransferSerialField_CurrencyID = NULL;
-    }
-            
+	//TThostFtdcAccountIDType char[13]
+	if(pQryTransferSerialField_AccountID != NULL) {
+		if(pQryTransferSerialField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+			PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", pQryTransferSerialField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
+			return -1;
+		}
+		strncpy(self->data.AccountID, pQryTransferSerialField_AccountID, sizeof(self->data.AccountID) );
+		pQryTransferSerialField_AccountID = NULL;
+	}
+
+	//TThostFtdcBankIDType char[4]
+	if(pQryTransferSerialField_BankID != NULL) {
+		if(pQryTransferSerialField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+			PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", pQryTransferSerialField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
+			return -1;
+		}
+		strncpy(self->data.BankID, pQryTransferSerialField_BankID, sizeof(self->data.BankID) );
+		pQryTransferSerialField_BankID = NULL;
+	}
+
+	//TThostFtdcCurrencyIDType char[4]
+	if(pQryTransferSerialField_CurrencyID != NULL) {
+		if(pQryTransferSerialField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", pQryTransferSerialField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
+			return -1;
+		}
+		strncpy(self->data.CurrencyID, pQryTransferSerialField_CurrencyID, sizeof(self->data.CurrencyID) );
+		pQryTransferSerialField_CurrencyID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -124,10 +109,10 @@ static PyObject *PyCThostFtdcQryTransferSerialField_repr(PyCThostFtdcQryTransfer
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"AccountID", self->data.AccountID//, (Py_ssize_t)sizeof(self->data.AccountID) 
-        ,"BankID", self->data.BankID//, (Py_ssize_t)sizeof(self->data.BankID) 
-        ,"CurrencyID", self->data.CurrencyID//, (Py_ssize_t)sizeof(self->data.CurrencyID) 
+		, "BrokerID", self->data.BrokerID 
+		, "AccountID", self->data.AccountID 
+		, "BankID", self->data.BankID 
+		, "CurrencyID", self->data.CurrencyID 
 
 
 		);
@@ -140,121 +125,89 @@ static PyObject *PyCThostFtdcQryTransferSerialField_repr(PyCThostFtdcQryTransfer
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQryTransferSerialField_get_BrokerID(PyCThostFtdcQryTransferSerialField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQryTransferSerialField_set_BrokerID(PyCThostFtdcQryTransferSerialField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcQryTransferSerialField_get_AccountID(PyCThostFtdcQryTransferSerialField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.AccountID, (Py_ssize_t)sizeof(self->data.AccountID));
-    return PyBytes_FromString(self->data.AccountID);
+	return PyBytes_FromString(self->data.AccountID);
 }
 
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
-static int PyCThostFtdcQryTransferSerialField_set_AccountID(PyCThostFtdcQryTransferSerialField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-        PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-    // memcpy(self->data.AccountID, buf, len);
-    strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
-    return 0;
-}
-            
-///银行编码
-// TThostFtdcBankIDType char[4]
 static PyObject *PyCThostFtdcQryTransferSerialField_get_BankID(PyCThostFtdcQryTransferSerialField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankID, (Py_ssize_t)sizeof(self->data.BankID));
-    return PyBytes_FromString(self->data.BankID);
+	return PyBytes_FromString(self->data.BankID);
 }
 
-///银行编码
-// TThostFtdcBankIDType char[4]
-static int PyCThostFtdcQryTransferSerialField_set_BankID(PyCThostFtdcQryTransferSerialField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
-        PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-    // memcpy(self->data.BankID, buf, len);
-    strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
-    return 0;
-}
-            
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
 static PyObject *PyCThostFtdcQryTransferSerialField_get_CurrencyID(PyCThostFtdcQryTransferSerialField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrencyID, (Py_ssize_t)sizeof(self->data.CurrencyID));
-    return PyBytes_FromString(self->data.CurrencyID);
+	return PyBytes_FromString(self->data.CurrencyID);
 }
 
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcQryTransferSerialField_set_CurrencyID(PyCThostFtdcQryTransferSerialField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-    // memcpy(self->data.CurrencyID, buf, len);
-    strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
-    return 0;
+static int PyCThostFtdcQryTransferSerialField_set_BrokerID(PyCThostFtdcQryTransferSerialField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryTransferSerialField_set_AccountID(PyCThostFtdcQryTransferSerialField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+		PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
+	return 0;
+}
+
+static int PyCThostFtdcQryTransferSerialField_set_BankID(PyCThostFtdcQryTransferSerialField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+		PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
+	return 0;
+}
+
+static int PyCThostFtdcQryTransferSerialField_set_CurrencyID(PyCThostFtdcQryTransferSerialField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryTransferSerialField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQryTransferSerialField_get_BrokerID, (setter)PyCThostFtdcQryTransferSerialField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者帐号 
-    {(char *)"AccountID", (getter)PyCThostFtdcQryTransferSerialField_get_AccountID, (setter)PyCThostFtdcQryTransferSerialField_set_AccountID, (char *)"AccountID", NULL},
-    ///银行编码 
-    {(char *)"BankID", (getter)PyCThostFtdcQryTransferSerialField_get_BankID, (setter)PyCThostFtdcQryTransferSerialField_set_BankID, (char *)"BankID", NULL},
-    ///币种代码 
-    {(char *)"CurrencyID", (getter)PyCThostFtdcQryTransferSerialField_get_CurrencyID, (setter)PyCThostFtdcQryTransferSerialField_set_CurrencyID, (char *)"CurrencyID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQryTransferSerialField_get_BrokerID, (setter)PyCThostFtdcQryTransferSerialField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"AccountID", (getter)PyCThostFtdcQryTransferSerialField_get_AccountID, (setter)PyCThostFtdcQryTransferSerialField_set_AccountID, (char *)"AccountID", NULL},
+	 {(char *)"BankID", (getter)PyCThostFtdcQryTransferSerialField_get_BankID, (setter)PyCThostFtdcQryTransferSerialField_set_BankID, (char *)"BankID", NULL},
+	 {(char *)"CurrencyID", (getter)PyCThostFtdcQryTransferSerialField_get_CurrencyID, (setter)PyCThostFtdcQryTransferSerialField_set_CurrencyID, (char *)"CurrencyID", NULL},
 
     {NULL}
 };

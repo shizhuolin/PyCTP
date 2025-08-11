@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///行情静态属性
+
 
 typedef struct PyCThostFtdcMarketDataStaticField {
     PyObject_HEAD

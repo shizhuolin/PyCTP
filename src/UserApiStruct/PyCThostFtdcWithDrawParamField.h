@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///可提控制参数
+
 
 typedef struct PyCThostFtdcWithDrawParamField {
     PyObject_HEAD

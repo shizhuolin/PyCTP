@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcBrokerWithdrawAlgorithmField.h"
 
-///经纪公司可提资金算法表
+
 
 static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcBrokerWithdrawAlgorithmField *self = (PyCThostFtdcBrokerWithdrawAlgorithmField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,49 +18,39 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_init(PyCThostFtdcBrokerWithd
 
     static const char *kwlist[] = {"BrokerID", "WithdrawAlgorithm", "UsingRatio", "IncludeCloseProfit", "AllWithoutTrade", "AvailIncludeCloseProfit", "IsBrokerUserEvent", "CurrencyID", "FundMortgageRatio", "BalanceAlgorithm",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pBrokerWithdrawAlgorithmField_BrokerID = NULL;
+	Py_ssize_t pBrokerWithdrawAlgorithmField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *BrokerWithdrawAlgorithmField_BrokerID = NULL;
-    Py_ssize_t BrokerWithdrawAlgorithmField_BrokerID_len = 0;
-            
-    ///可提资金算法
-    // TThostFtdcAlgorithmType char
-    char BrokerWithdrawAlgorithmField_WithdrawAlgorithm = 0;
-            
-    ///资金使用率
-    // TThostFtdcRatioType double
-    double BrokerWithdrawAlgorithmField_UsingRatio = 0.0;
-        
-    ///可提是否包含平仓盈利
-    // TThostFtdcIncludeCloseProfitType char
-    char BrokerWithdrawAlgorithmField_IncludeCloseProfit = 0;
-            
-    ///本日无仓且无成交客户是否受可提比例限制
-    // TThostFtdcAllWithoutTradeType char
-    char BrokerWithdrawAlgorithmField_AllWithoutTrade = 0;
-            
-    ///可用是否包含平仓盈利
-    // TThostFtdcIncludeCloseProfitType char
-    char BrokerWithdrawAlgorithmField_AvailIncludeCloseProfit = 0;
-            
-    ///是否启用用户事件
-    // TThostFtdcBoolType int
-    int BrokerWithdrawAlgorithmField_IsBrokerUserEvent = 0;
-        
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    const char *BrokerWithdrawAlgorithmField_CurrencyID = NULL;
-    Py_ssize_t BrokerWithdrawAlgorithmField_CurrencyID_len = 0;
-            
-    ///货币质押比率
-    // TThostFtdcRatioType double
-    double BrokerWithdrawAlgorithmField_FundMortgageRatio = 0.0;
-        
-    ///权益算法
-    // TThostFtdcBalanceAlgorithmType char
-    char BrokerWithdrawAlgorithmField_BalanceAlgorithm = 0;
-            
+	//TThostFtdcAlgorithmType char
+	char pBrokerWithdrawAlgorithmField_WithdrawAlgorithm = 0;
+
+	//TThostFtdcRatioType double
+	double pBrokerWithdrawAlgorithmField_UsingRatio = 0.0;
+
+	//TThostFtdcIncludeCloseProfitType char
+	char pBrokerWithdrawAlgorithmField_IncludeCloseProfit = 0;
+
+	//TThostFtdcAllWithoutTradeType char
+	char pBrokerWithdrawAlgorithmField_AllWithoutTrade = 0;
+
+	//TThostFtdcIncludeCloseProfitType char
+	char pBrokerWithdrawAlgorithmField_AvailIncludeCloseProfit = 0;
+
+	//TThostFtdcBoolType int
+	int pBrokerWithdrawAlgorithmField_IsBrokerUserEvent = 0;
+
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pBrokerWithdrawAlgorithmField_CurrencyID = NULL;
+	Py_ssize_t pBrokerWithdrawAlgorithmField_CurrencyID_len = 0;
+
+	//TThostFtdcRatioType double
+	double pBrokerWithdrawAlgorithmField_FundMortgageRatio = 0.0;
+
+	//TThostFtdcBalanceAlgorithmType char
+	char pBrokerWithdrawAlgorithmField_BalanceAlgorithm = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cdccciy#dc", (char **)kwlist
@@ -67,81 +58,65 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_init(PyCThostFtdcBrokerWithd
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cdcccis#dc", (char **)kwlist
 #endif
 
-        , &BrokerWithdrawAlgorithmField_BrokerID, &BrokerWithdrawAlgorithmField_BrokerID_len 
-        , &BrokerWithdrawAlgorithmField_WithdrawAlgorithm 
-        , &BrokerWithdrawAlgorithmField_UsingRatio 
-        , &BrokerWithdrawAlgorithmField_IncludeCloseProfit 
-        , &BrokerWithdrawAlgorithmField_AllWithoutTrade 
-        , &BrokerWithdrawAlgorithmField_AvailIncludeCloseProfit 
-        , &BrokerWithdrawAlgorithmField_IsBrokerUserEvent 
-        , &BrokerWithdrawAlgorithmField_CurrencyID, &BrokerWithdrawAlgorithmField_CurrencyID_len 
-        , &BrokerWithdrawAlgorithmField_FundMortgageRatio 
-        , &BrokerWithdrawAlgorithmField_BalanceAlgorithm 
+		, &pBrokerWithdrawAlgorithmField_BrokerID, &pBrokerWithdrawAlgorithmField_BrokerID_len
+		, &pBrokerWithdrawAlgorithmField_WithdrawAlgorithm
+		, &pBrokerWithdrawAlgorithmField_UsingRatio
+		, &pBrokerWithdrawAlgorithmField_IncludeCloseProfit
+		, &pBrokerWithdrawAlgorithmField_AllWithoutTrade
+		, &pBrokerWithdrawAlgorithmField_AvailIncludeCloseProfit
+		, &pBrokerWithdrawAlgorithmField_IsBrokerUserEvent
+		, &pBrokerWithdrawAlgorithmField_CurrencyID, &pBrokerWithdrawAlgorithmField_CurrencyID_len
+		, &pBrokerWithdrawAlgorithmField_FundMortgageRatio
+		, &pBrokerWithdrawAlgorithmField_BalanceAlgorithm
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pBrokerWithdrawAlgorithmField_BrokerID != NULL) {
+		if(pBrokerWithdrawAlgorithmField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pBrokerWithdrawAlgorithmField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pBrokerWithdrawAlgorithmField_BrokerID, sizeof(self->data.BrokerID) );
+		pBrokerWithdrawAlgorithmField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( BrokerWithdrawAlgorithmField_BrokerID != NULL ) {
-        if(BrokerWithdrawAlgorithmField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerWithdrawAlgorithmField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, BrokerWithdrawAlgorithmField_BrokerID, BrokerWithdrawAlgorithmField_BrokerID_len);        
-        strncpy(self->data.BrokerID, BrokerWithdrawAlgorithmField_BrokerID, sizeof(self->data.BrokerID) );
-        BrokerWithdrawAlgorithmField_BrokerID = NULL;
-    }
-            
-    ///可提资金算法
-    // TThostFtdcAlgorithmType char
-    self->data.WithdrawAlgorithm = BrokerWithdrawAlgorithmField_WithdrawAlgorithm;
-            
-    ///资金使用率
-    // TThostFtdcRatioType double
-    self->data.UsingRatio = BrokerWithdrawAlgorithmField_UsingRatio;
-        
-    ///可提是否包含平仓盈利
-    // TThostFtdcIncludeCloseProfitType char
-    self->data.IncludeCloseProfit = BrokerWithdrawAlgorithmField_IncludeCloseProfit;
-            
-    ///本日无仓且无成交客户是否受可提比例限制
-    // TThostFtdcAllWithoutTradeType char
-    self->data.AllWithoutTrade = BrokerWithdrawAlgorithmField_AllWithoutTrade;
-            
-    ///可用是否包含平仓盈利
-    // TThostFtdcIncludeCloseProfitType char
-    self->data.AvailIncludeCloseProfit = BrokerWithdrawAlgorithmField_AvailIncludeCloseProfit;
-            
-    ///是否启用用户事件
-    // TThostFtdcBoolType int
-    self->data.IsBrokerUserEvent = BrokerWithdrawAlgorithmField_IsBrokerUserEvent;
-        
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    if( BrokerWithdrawAlgorithmField_CurrencyID != NULL ) {
-        if(BrokerWithdrawAlgorithmField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", BrokerWithdrawAlgorithmField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
-            return -1;
-        }
-        // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-        // memcpy(self->data.CurrencyID, BrokerWithdrawAlgorithmField_CurrencyID, BrokerWithdrawAlgorithmField_CurrencyID_len);        
-        strncpy(self->data.CurrencyID, BrokerWithdrawAlgorithmField_CurrencyID, sizeof(self->data.CurrencyID) );
-        BrokerWithdrawAlgorithmField_CurrencyID = NULL;
-    }
-            
-    ///货币质押比率
-    // TThostFtdcRatioType double
-    self->data.FundMortgageRatio = BrokerWithdrawAlgorithmField_FundMortgageRatio;
-        
-    ///权益算法
-    // TThostFtdcBalanceAlgorithmType char
-    self->data.BalanceAlgorithm = BrokerWithdrawAlgorithmField_BalanceAlgorithm;
-            
+	//TThostFtdcAlgorithmType char
+	self->data.WithdrawAlgorithm = pBrokerWithdrawAlgorithmField_WithdrawAlgorithm;
+
+	//TThostFtdcRatioType double
+	self->data.UsingRatio = pBrokerWithdrawAlgorithmField_UsingRatio;
+	//TThostFtdcIncludeCloseProfitType char
+	self->data.IncludeCloseProfit = pBrokerWithdrawAlgorithmField_IncludeCloseProfit;
+
+	//TThostFtdcAllWithoutTradeType char
+	self->data.AllWithoutTrade = pBrokerWithdrawAlgorithmField_AllWithoutTrade;
+
+	//TThostFtdcIncludeCloseProfitType char
+	self->data.AvailIncludeCloseProfit = pBrokerWithdrawAlgorithmField_AvailIncludeCloseProfit;
+
+	//TThostFtdcBoolType int
+	self->data.IsBrokerUserEvent = pBrokerWithdrawAlgorithmField_IsBrokerUserEvent;
+
+	//TThostFtdcCurrencyIDType char[4]
+	if(pBrokerWithdrawAlgorithmField_CurrencyID != NULL) {
+		if(pBrokerWithdrawAlgorithmField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", pBrokerWithdrawAlgorithmField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
+			return -1;
+		}
+		strncpy(self->data.CurrencyID, pBrokerWithdrawAlgorithmField_CurrencyID, sizeof(self->data.CurrencyID) );
+		pBrokerWithdrawAlgorithmField_CurrencyID = NULL;
+	}
+
+	//TThostFtdcRatioType double
+	self->data.FundMortgageRatio = pBrokerWithdrawAlgorithmField_FundMortgageRatio;
+	//TThostFtdcBalanceAlgorithmType char
+	self->data.BalanceAlgorithm = pBrokerWithdrawAlgorithmField_BalanceAlgorithm;
+
+
 
     return 0;
 }
@@ -158,16 +133,16 @@ static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_repr(PyCThostFtdcBroke
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:d,s:c,s:c,s:c,s:i,s:s,s:d,s:c}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"WithdrawAlgorithm", self->data.WithdrawAlgorithm 
-        ,"UsingRatio", self->data.UsingRatio 
-        ,"IncludeCloseProfit", self->data.IncludeCloseProfit 
-        ,"AllWithoutTrade", self->data.AllWithoutTrade 
-        ,"AvailIncludeCloseProfit", self->data.AvailIncludeCloseProfit 
-        ,"IsBrokerUserEvent", self->data.IsBrokerUserEvent 
-        ,"CurrencyID", self->data.CurrencyID//, (Py_ssize_t)sizeof(self->data.CurrencyID) 
-        ,"FundMortgageRatio", self->data.FundMortgageRatio 
-        ,"BalanceAlgorithm", self->data.BalanceAlgorithm 
+		, "BrokerID", self->data.BrokerID 
+		, "WithdrawAlgorithm", self->data.WithdrawAlgorithm
+		, "UsingRatio", self->data.UsingRatio
+		, "IncludeCloseProfit", self->data.IncludeCloseProfit
+		, "AllWithoutTrade", self->data.AllWithoutTrade
+		, "AvailIncludeCloseProfit", self->data.AvailIncludeCloseProfit
+		, "IsBrokerUserEvent", self->data.IsBrokerUserEvent
+		, "CurrencyID", self->data.CurrencyID 
+		, "FundMortgageRatio", self->data.FundMortgageRatio
+		, "BalanceAlgorithm", self->data.BalanceAlgorithm
 
 
 		);
@@ -180,65 +155,81 @@ static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_repr(PyCThostFtdcBroke
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_BrokerID(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_BrokerID(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///可提资金算法
-// TThostFtdcAlgorithmType char
 static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_WithdrawAlgorithm(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.WithdrawAlgorithm), 1);
+	return PyBytes_FromStringAndSize(&(self->data.WithdrawAlgorithm), 1);
 }
 
-///可提资金算法
-// TThostFtdcAlgorithmType char
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_WithdrawAlgorithm(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "WithdrawAlgorithm Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.WithdrawAlgorithm)) {
-        PyErr_SetString(PyExc_ValueError, "WithdrawAlgorithm must be equal 1 bytes");
-        return -1;
-    }
-    self->data.WithdrawAlgorithm = *buf;
-    return 0;
-}
-            
-///资金使用率
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_UsingRatio(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.UsingRatio);
+	return PyFloat_FromDouble(self->data.UsingRatio);
 }
 
-///资金使用率
-// TThostFtdcRatioType double
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_UsingRatio(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_IncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.IncludeCloseProfit), 1);
+}
+
+static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_AllWithoutTrade(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.AllWithoutTrade), 1);
+}
+
+static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_AvailIncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.AvailIncludeCloseProfit), 1);
+}
+
+static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_IsBrokerUserEvent(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsBrokerUserEvent);
+#else 
+	return PyInt_FromLong(self->data.IsBrokerUserEvent);
+#endif 
+}
+
+static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_CurrencyID(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
+	return PyBytes_FromString(self->data.CurrencyID);
+}
+
+static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_FundMortgageRatio(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.FundMortgageRatio);
+}
+
+static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_BalanceAlgorithm(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.BalanceAlgorithm), 1);
+}
+
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_BrokerID(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_WithdrawAlgorithm(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "WithdrawAlgorithm Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.WithdrawAlgorithm)) {
+		PyErr_SetString(PyExc_ValueError, "WithdrawAlgorithm must be less than 1 bytes");
+		return -1;
+	}
+	self->data.WithdrawAlgorithm = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_UsingRatio(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "UsingRatio Expected float");
         return -1;
@@ -250,149 +241,94 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_UsingRatio(PyCThostFtdcB
     self->data.UsingRatio = buf;
     return 0;
 }
-        
-///可提是否包含平仓盈利
-// TThostFtdcIncludeCloseProfitType char
-static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_IncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.IncludeCloseProfit), 1);
+
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_IncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "IncludeCloseProfit Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.IncludeCloseProfit)) {
+		PyErr_SetString(PyExc_ValueError, "IncludeCloseProfit must be less than 1 bytes");
+		return -1;
+	}
+	self->data.IncludeCloseProfit = *buf;
+	return 0;
 }
 
-///可提是否包含平仓盈利
-// TThostFtdcIncludeCloseProfitType char
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_IncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IncludeCloseProfit Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IncludeCloseProfit)) {
-        PyErr_SetString(PyExc_ValueError, "IncludeCloseProfit must be equal 1 bytes");
-        return -1;
-    }
-    self->data.IncludeCloseProfit = *buf;
-    return 0;
-}
-            
-///本日无仓且无成交客户是否受可提比例限制
-// TThostFtdcAllWithoutTradeType char
-static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_AllWithoutTrade(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.AllWithoutTrade), 1);
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_AllWithoutTrade(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AllWithoutTrade Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AllWithoutTrade)) {
+		PyErr_SetString(PyExc_ValueError, "AllWithoutTrade must be less than 1 bytes");
+		return -1;
+	}
+	self->data.AllWithoutTrade = *buf;
+	return 0;
 }
 
-///本日无仓且无成交客户是否受可提比例限制
-// TThostFtdcAllWithoutTradeType char
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_AllWithoutTrade(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AllWithoutTrade Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AllWithoutTrade)) {
-        PyErr_SetString(PyExc_ValueError, "AllWithoutTrade must be equal 1 bytes");
-        return -1;
-    }
-    self->data.AllWithoutTrade = *buf;
-    return 0;
-}
-            
-///可用是否包含平仓盈利
-// TThostFtdcIncludeCloseProfitType char
-static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_AvailIncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.AvailIncludeCloseProfit), 1);
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_AvailIncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AvailIncludeCloseProfit Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AvailIncludeCloseProfit)) {
+		PyErr_SetString(PyExc_ValueError, "AvailIncludeCloseProfit must be less than 1 bytes");
+		return -1;
+	}
+	self->data.AvailIncludeCloseProfit = *buf;
+	return 0;
 }
 
-///可用是否包含平仓盈利
-// TThostFtdcIncludeCloseProfitType char
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_AvailIncludeCloseProfit(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AvailIncludeCloseProfit Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AvailIncludeCloseProfit)) {
-        PyErr_SetString(PyExc_ValueError, "AvailIncludeCloseProfit must be equal 1 bytes");
-        return -1;
-    }
-    self->data.AvailIncludeCloseProfit = *buf;
-    return 0;
-}
-            
-///是否启用用户事件
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_IsBrokerUserEvent(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsBrokerUserEvent);
-#else
-    return PyInt_FromLong(self->data.IsBrokerUserEvent);
-#endif
-}
-
-///是否启用用户事件
-// TThostFtdcBoolType int
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_IsBrokerUserEvent(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_IsBrokerUserEvent(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsBrokerUserEvent Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsBrokerUserEvent Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsBrokerUserEvent Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsBrokerUserEvent value out of range for C int");
-        return -1;
-    }
-    self->data.IsBrokerUserEvent = (int)buf;
-    return 0;
-}
-        
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
-static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_CurrencyID(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrencyID, (Py_ssize_t)sizeof(self->data.CurrencyID));
-    return PyBytes_FromString(self->data.CurrencyID);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsBrokerUserEvent = (int)buf; 
+    return 0; 
 }
 
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_CurrencyID(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-    // memcpy(self->data.CurrencyID, buf, len);
-    strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
-    return 0;
-}
-            
-///货币质押比率
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_FundMortgageRatio(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.FundMortgageRatio);
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_CurrencyID(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
+	return 0;
 }
 
-///货币质押比率
-// TThostFtdcRatioType double
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_FundMortgageRatio(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_FundMortgageRatio(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FundMortgageRatio Expected float");
         return -1;
@@ -404,52 +340,35 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_FundMortgageRatio(PyCTho
     self->data.FundMortgageRatio = buf;
     return 0;
 }
-        
-///权益算法
-// TThostFtdcBalanceAlgorithmType char
-static PyObject *PyCThostFtdcBrokerWithdrawAlgorithmField_get_BalanceAlgorithm(PyCThostFtdcBrokerWithdrawAlgorithmField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.BalanceAlgorithm), 1);
+
+static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_BalanceAlgorithm(PyCThostFtdcBrokerWithdrawAlgorithmField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BalanceAlgorithm Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BalanceAlgorithm)) {
+		PyErr_SetString(PyExc_ValueError, "BalanceAlgorithm must be less than 1 bytes");
+		return -1;
+	}
+	self->data.BalanceAlgorithm = *buf;
+	return 0;
 }
 
-///权益算法
-// TThostFtdcBalanceAlgorithmType char
-static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_BalanceAlgorithm(PyCThostFtdcBrokerWithdrawAlgorithmField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BalanceAlgorithm Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BalanceAlgorithm)) {
-        PyErr_SetString(PyExc_ValueError, "BalanceAlgorithm must be equal 1 bytes");
-        return -1;
-    }
-    self->data.BalanceAlgorithm = *buf;
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcBrokerWithdrawAlgorithmField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_BrokerID, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///可提资金算法 
-    {(char *)"WithdrawAlgorithm", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_WithdrawAlgorithm, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_WithdrawAlgorithm, (char *)"WithdrawAlgorithm", NULL},
-    ///资金使用率 
-    {(char *)"UsingRatio", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_UsingRatio, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_UsingRatio, (char *)"UsingRatio", NULL},
-    ///可提是否包含平仓盈利 
-    {(char *)"IncludeCloseProfit", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_IncludeCloseProfit, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_IncludeCloseProfit, (char *)"IncludeCloseProfit", NULL},
-    ///本日无仓且无成交客户是否受可提比例限制 
-    {(char *)"AllWithoutTrade", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_AllWithoutTrade, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_AllWithoutTrade, (char *)"AllWithoutTrade", NULL},
-    ///可用是否包含平仓盈利 
-    {(char *)"AvailIncludeCloseProfit", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_AvailIncludeCloseProfit, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_AvailIncludeCloseProfit, (char *)"AvailIncludeCloseProfit", NULL},
-    ///是否启用用户事件 
-    {(char *)"IsBrokerUserEvent", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_IsBrokerUserEvent, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_IsBrokerUserEvent, (char *)"IsBrokerUserEvent", NULL},
-    ///币种代码 
-    {(char *)"CurrencyID", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_CurrencyID, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_CurrencyID, (char *)"CurrencyID", NULL},
-    ///货币质押比率 
-    {(char *)"FundMortgageRatio", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_FundMortgageRatio, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_FundMortgageRatio, (char *)"FundMortgageRatio", NULL},
-    ///权益算法 
-    {(char *)"BalanceAlgorithm", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_BalanceAlgorithm, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_BalanceAlgorithm, (char *)"BalanceAlgorithm", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_BrokerID, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"WithdrawAlgorithm", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_WithdrawAlgorithm, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_WithdrawAlgorithm, (char *)"WithdrawAlgorithm", NULL},
+	 {(char *)"UsingRatio", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_UsingRatio, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_UsingRatio, (char *)"UsingRatio", NULL},
+	 {(char *)"IncludeCloseProfit", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_IncludeCloseProfit, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_IncludeCloseProfit, (char *)"IncludeCloseProfit", NULL},
+	 {(char *)"AllWithoutTrade", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_AllWithoutTrade, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_AllWithoutTrade, (char *)"AllWithoutTrade", NULL},
+	 {(char *)"AvailIncludeCloseProfit", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_AvailIncludeCloseProfit, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_AvailIncludeCloseProfit, (char *)"AvailIncludeCloseProfit", NULL},
+	 {(char *)"IsBrokerUserEvent", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_IsBrokerUserEvent, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_IsBrokerUserEvent, (char *)"IsBrokerUserEvent", NULL},
+	 {(char *)"CurrencyID", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_CurrencyID, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_CurrencyID, (char *)"CurrencyID", NULL},
+	 {(char *)"FundMortgageRatio", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_FundMortgageRatio, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_FundMortgageRatio, (char *)"FundMortgageRatio", NULL},
+	 {(char *)"BalanceAlgorithm", (getter)PyCThostFtdcBrokerWithdrawAlgorithmField_get_BalanceAlgorithm, (setter)PyCThostFtdcBrokerWithdrawAlgorithmField_set_BalanceAlgorithm, (char *)"BalanceAlgorithm", NULL},
 
     {NULL}
 };

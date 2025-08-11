@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///输入的对冲设置
+
 
 typedef struct PyCThostFtdcInputOffsetSettingField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平期权标的调整保证金率
+
 
 typedef struct PyCThostFtdcSyncDeltaInvstMarginRateULField {
     PyObject_HEAD

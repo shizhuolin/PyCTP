@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期权交易成本
+
 
 typedef struct PyCThostFtdcOptionInstrTradeCostField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///二级代理操作员银期权限
+
 
 typedef struct PyCThostFtdcSecAgentACIDMapField {
     PyObject_HEAD

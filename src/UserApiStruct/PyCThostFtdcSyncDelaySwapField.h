@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///延时换汇同步
+
 
 typedef struct PyCThostFtdcSyncDelaySwapField {
     PyObject_HEAD

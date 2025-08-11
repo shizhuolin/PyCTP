@@ -9,7 +9,8 @@ static PyObject *Py${struct_name}_new(PyTypeObject *type, PyObject *args, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 

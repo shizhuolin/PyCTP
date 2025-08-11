@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcBrokerUserRightAssignField.h"
 
-///经济公司是否有在本标示的交易权限
+
 
 static PyObject *PyCThostFtdcBrokerUserRightAssignField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcBrokerUserRightAssignField *self = (PyCThostFtdcBrokerUserRightAssignField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcBrokerUserRightAssignField_new(PyTypeObject *type, 
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,20 +18,17 @@ static int PyCThostFtdcBrokerUserRightAssignField_init(PyCThostFtdcBrokerUserRig
 
     static const char *kwlist[] = {"BrokerID", "DRIdentityID", "Tradeable",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pBrokerUserRightAssignField_BrokerID = NULL;
+	Py_ssize_t pBrokerUserRightAssignField_BrokerID_len = 0;
 
-    ///应用单元代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *BrokerUserRightAssignField_BrokerID = NULL;
-    Py_ssize_t BrokerUserRightAssignField_BrokerID_len = 0;
-            
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    int BrokerUserRightAssignField_DRIdentityID = 0;
-        
-    ///能否交易
-    // TThostFtdcBoolType int
-    int BrokerUserRightAssignField_Tradeable = 0;
-        
+	//TThostFtdcDRIdentityIDType int
+	int pBrokerUserRightAssignField_DRIdentityID = 0;
+
+	//TThostFtdcBoolType int
+	int pBrokerUserRightAssignField_Tradeable = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#ii", (char **)kwlist
@@ -38,37 +36,32 @@ static int PyCThostFtdcBrokerUserRightAssignField_init(PyCThostFtdcBrokerUserRig
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#ii", (char **)kwlist
 #endif
 
-        , &BrokerUserRightAssignField_BrokerID, &BrokerUserRightAssignField_BrokerID_len 
-        , &BrokerUserRightAssignField_DRIdentityID 
-        , &BrokerUserRightAssignField_Tradeable 
+		, &pBrokerUserRightAssignField_BrokerID, &pBrokerUserRightAssignField_BrokerID_len
+		, &pBrokerUserRightAssignField_DRIdentityID
+		, &pBrokerUserRightAssignField_Tradeable
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pBrokerUserRightAssignField_BrokerID != NULL) {
+		if(pBrokerUserRightAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pBrokerUserRightAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pBrokerUserRightAssignField_BrokerID, sizeof(self->data.BrokerID) );
+		pBrokerUserRightAssignField_BrokerID = NULL;
+	}
 
-    ///应用单元代码
-    // TThostFtdcBrokerIDType char[11]
-    if( BrokerUserRightAssignField_BrokerID != NULL ) {
-        if(BrokerUserRightAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerUserRightAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, BrokerUserRightAssignField_BrokerID, BrokerUserRightAssignField_BrokerID_len);        
-        strncpy(self->data.BrokerID, BrokerUserRightAssignField_BrokerID, sizeof(self->data.BrokerID) );
-        BrokerUserRightAssignField_BrokerID = NULL;
-    }
-            
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    self->data.DRIdentityID = BrokerUserRightAssignField_DRIdentityID;
-        
-    ///能否交易
-    // TThostFtdcBoolType int
-    self->data.Tradeable = BrokerUserRightAssignField_Tradeable;
-        
+	//TThostFtdcDRIdentityIDType int
+	self->data.DRIdentityID = pBrokerUserRightAssignField_DRIdentityID;
+
+	//TThostFtdcBoolType int
+	self->data.Tradeable = pBrokerUserRightAssignField_Tradeable;
+
+
 
     return 0;
 }
@@ -85,9 +78,9 @@ static PyObject *PyCThostFtdcBrokerUserRightAssignField_repr(PyCThostFtdcBrokerU
     PyObject *obj = Py_BuildValue("{s:s,s:i,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"DRIdentityID", self->data.DRIdentityID 
-        ,"Tradeable", self->data.Tradeable 
+		, "BrokerID", self->data.BrokerID 
+		, "DRIdentityID", self->data.DRIdentityID
+		, "Tradeable", self->data.Tradeable
 
 
 		);
@@ -100,117 +93,99 @@ static PyObject *PyCThostFtdcBrokerUserRightAssignField_repr(PyCThostFtdcBrokerU
     return PyObject_Repr(obj);
 }
 
-
-///应用单元代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcBrokerUserRightAssignField_get_BrokerID(PyCThostFtdcBrokerUserRightAssignField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///应用单元代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcBrokerUserRightAssignField_set_BrokerID(PyCThostFtdcBrokerUserRightAssignField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
 static PyObject *PyCThostFtdcBrokerUserRightAssignField_get_DRIdentityID(PyCThostFtdcBrokerUserRightAssignField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.DRIdentityID);
-#else
-    return PyInt_FromLong(self->data.DRIdentityID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.DRIdentityID);
+#else 
+	return PyInt_FromLong(self->data.DRIdentityID);
+#endif 
 }
 
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
-static int PyCThostFtdcBrokerUserRightAssignField_set_DRIdentityID(PyCThostFtdcBrokerUserRightAssignField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcBrokerUserRightAssignField_get_Tradeable(PyCThostFtdcBrokerUserRightAssignField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.Tradeable);
+#else 
+	return PyInt_FromLong(self->data.Tradeable);
+#endif 
+}
+
+static int PyCThostFtdcBrokerUserRightAssignField_set_BrokerID(PyCThostFtdcBrokerUserRightAssignField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcBrokerUserRightAssignField_set_DRIdentityID(PyCThostFtdcBrokerUserRightAssignField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "DRIdentityID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the DRIdentityID value out of range for C int");
-        return -1;
-    }
-    self->data.DRIdentityID = (int)buf;
-    return 0;
-}
-        
-///能否交易
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcBrokerUserRightAssignField_get_Tradeable(PyCThostFtdcBrokerUserRightAssignField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.Tradeable);
-#else
-    return PyInt_FromLong(self->data.Tradeable);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.DRIdentityID = (int)buf; 
+    return 0; 
 }
 
-///能否交易
-// TThostFtdcBoolType int
-static int PyCThostFtdcBrokerUserRightAssignField_set_Tradeable(PyCThostFtdcBrokerUserRightAssignField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcBrokerUserRightAssignField_set_Tradeable(PyCThostFtdcBrokerUserRightAssignField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "Tradeable Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "Tradeable Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "Tradeable Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the Tradeable value out of range for C int");
-        return -1;
-    }
-    self->data.Tradeable = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.Tradeable = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcBrokerUserRightAssignField_getset[] = {
-    ///应用单元代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcBrokerUserRightAssignField_get_BrokerID, (setter)PyCThostFtdcBrokerUserRightAssignField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///交易中心代码 
-    {(char *)"DRIdentityID", (getter)PyCThostFtdcBrokerUserRightAssignField_get_DRIdentityID, (setter)PyCThostFtdcBrokerUserRightAssignField_set_DRIdentityID, (char *)"DRIdentityID", NULL},
-    ///能否交易 
-    {(char *)"Tradeable", (getter)PyCThostFtdcBrokerUserRightAssignField_get_Tradeable, (setter)PyCThostFtdcBrokerUserRightAssignField_set_Tradeable, (char *)"Tradeable", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcBrokerUserRightAssignField_get_BrokerID, (setter)PyCThostFtdcBrokerUserRightAssignField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"DRIdentityID", (getter)PyCThostFtdcBrokerUserRightAssignField_get_DRIdentityID, (setter)PyCThostFtdcBrokerUserRightAssignField_set_DRIdentityID, (char *)"DRIdentityID", NULL},
+	 {(char *)"Tradeable", (getter)PyCThostFtdcBrokerUserRightAssignField_get_Tradeable, (setter)PyCThostFtdcBrokerUserRightAssignField_set_Tradeable, (char *)"Tradeable", NULL},
 
     {NULL}
 };

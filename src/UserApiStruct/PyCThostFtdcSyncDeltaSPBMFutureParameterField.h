@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平SPBM期货合约保证金参数
+
 
 typedef struct PyCThostFtdcSyncDeltaSPBMFutureParameterField {
     PyObject_HEAD

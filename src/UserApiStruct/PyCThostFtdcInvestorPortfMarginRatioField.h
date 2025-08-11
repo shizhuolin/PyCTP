@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者新型组合保证金系数
+
 
 typedef struct PyCThostFtdcInvestorPortfMarginRatioField {
     PyObject_HEAD

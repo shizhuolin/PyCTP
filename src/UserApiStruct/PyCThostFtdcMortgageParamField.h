@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///质押配比参数
+
 
 typedef struct PyCThostFtdcMortgageParamField {
     PyObject_HEAD

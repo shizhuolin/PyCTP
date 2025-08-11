@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///银期销户信息
+
 
 typedef struct PyCThostFtdcCancelAccountField {
     PyObject_HEAD

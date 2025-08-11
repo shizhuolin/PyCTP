@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryLoginForbiddenIPField.h"
 
-///查询禁止登录IP
+
 
 static PyObject *PyCThostFtdcQryLoginForbiddenIPField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryLoginForbiddenIPField *self = (PyCThostFtdcQryLoginForbiddenIPField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryLoginForbiddenIPField_new(PyTypeObject *type, Py
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQryLoginForbiddenIPField_init(PyCThostFtdcQryLoginForbidd
 
     static const char *kwlist[] = {"reserve1", "IPAddress",  NULL};
 
+	//TThostFtdcOldIPAddressType char[16]
+	const char *pQryLoginForbiddenIPField_reserve1 = NULL;
+	Py_ssize_t pQryLoginForbiddenIPField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldIPAddressType char[16]
-    const char *QryLoginForbiddenIPField_reserve1 = NULL;
-    Py_ssize_t QryLoginForbiddenIPField_reserve1_len = 0;
-            
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    const char *QryLoginForbiddenIPField_IPAddress = NULL;
-    Py_ssize_t QryLoginForbiddenIPField_IPAddress_len = 0;
-            
+	//TThostFtdcIPAddressType char[33]
+	const char *pQryLoginForbiddenIPField_IPAddress = NULL;
+	Py_ssize_t pQryLoginForbiddenIPField_IPAddress_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQryLoginForbiddenIPField_init(PyCThostFtdcQryLoginForbidd
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QryLoginForbiddenIPField_reserve1, &QryLoginForbiddenIPField_reserve1_len 
-        , &QryLoginForbiddenIPField_IPAddress, &QryLoginForbiddenIPField_IPAddress_len 
+		, &pQryLoginForbiddenIPField_reserve1, &pQryLoginForbiddenIPField_reserve1_len
+		, &pQryLoginForbiddenIPField_IPAddress, &pQryLoginForbiddenIPField_IPAddress_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldIPAddressType char[16]
+	if(pQryLoginForbiddenIPField_reserve1 != NULL) {
+		if(pQryLoginForbiddenIPField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pQryLoginForbiddenIPField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pQryLoginForbiddenIPField_reserve1, sizeof(self->data.reserve1) );
+		pQryLoginForbiddenIPField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldIPAddressType char[16]
-    if( QryLoginForbiddenIPField_reserve1 != NULL ) {
-        if(QryLoginForbiddenIPField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryLoginForbiddenIPField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, QryLoginForbiddenIPField_reserve1, QryLoginForbiddenIPField_reserve1_len);        
-        strncpy(self->data.reserve1, QryLoginForbiddenIPField_reserve1, sizeof(self->data.reserve1) );
-        QryLoginForbiddenIPField_reserve1 = NULL;
-    }
-            
-    ///IP地址
-    // TThostFtdcIPAddressType char[33]
-    if( QryLoginForbiddenIPField_IPAddress != NULL ) {
-        if(QryLoginForbiddenIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-            PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", QryLoginForbiddenIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
-            return -1;
-        }
-        // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-        // memcpy(self->data.IPAddress, QryLoginForbiddenIPField_IPAddress, QryLoginForbiddenIPField_IPAddress_len);        
-        strncpy(self->data.IPAddress, QryLoginForbiddenIPField_IPAddress, sizeof(self->data.IPAddress) );
-        QryLoginForbiddenIPField_IPAddress = NULL;
-    }
-            
+	//TThostFtdcIPAddressType char[33]
+	if(pQryLoginForbiddenIPField_IPAddress != NULL) {
+		if(pQryLoginForbiddenIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+			PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", pQryLoginForbiddenIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
+			return -1;
+		}
+		strncpy(self->data.IPAddress, pQryLoginForbiddenIPField_IPAddress, sizeof(self->data.IPAddress) );
+		pQryLoginForbiddenIPField_IPAddress = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQryLoginForbiddenIPField_repr(PyCThostFtdcQryLoginF
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"IPAddress", self->data.IPAddress//, (Py_ssize_t)sizeof(self->data.IPAddress) 
+		, "reserve1", self->data.reserve1 
+		, "IPAddress", self->data.IPAddress 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQryLoginForbiddenIPField_repr(PyCThostFtdcQryLoginF
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldIPAddressType char[16]
 static PyObject *PyCThostFtdcQryLoginForbiddenIPField_get_reserve1(PyCThostFtdcQryLoginForbiddenIPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldIPAddressType char[16]
-static int PyCThostFtdcQryLoginForbiddenIPField_set_reserve1(PyCThostFtdcQryLoginForbiddenIPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///IP地址
-// TThostFtdcIPAddressType char[33]
 static PyObject *PyCThostFtdcQryLoginForbiddenIPField_get_IPAddress(PyCThostFtdcQryLoginForbiddenIPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.IPAddress, (Py_ssize_t)sizeof(self->data.IPAddress));
-    return PyBytes_FromString(self->data.IPAddress);
+	return PyBytes_FromString(self->data.IPAddress);
 }
 
-///IP地址
-// TThostFtdcIPAddressType char[33]
-static int PyCThostFtdcQryLoginForbiddenIPField_set_IPAddress(PyCThostFtdcQryLoginForbiddenIPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-        PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-    // memcpy(self->data.IPAddress, buf, len);
-    strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
-    return 0;
+static int PyCThostFtdcQryLoginForbiddenIPField_set_reserve1(PyCThostFtdcQryLoginForbiddenIPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryLoginForbiddenIPField_set_IPAddress(PyCThostFtdcQryLoginForbiddenIPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+		PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryLoginForbiddenIPField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcQryLoginForbiddenIPField_get_reserve1, (setter)PyCThostFtdcQryLoginForbiddenIPField_set_reserve1, (char *)"reserve1", NULL},
-    ///IP地址 
-    {(char *)"IPAddress", (getter)PyCThostFtdcQryLoginForbiddenIPField_get_IPAddress, (setter)PyCThostFtdcQryLoginForbiddenIPField_set_IPAddress, (char *)"IPAddress", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcQryLoginForbiddenIPField_get_reserve1, (setter)PyCThostFtdcQryLoginForbiddenIPField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"IPAddress", (getter)PyCThostFtdcQryLoginForbiddenIPField_get_IPAddress, (setter)PyCThostFtdcQryLoginForbiddenIPField_set_IPAddress, (char *)"IPAddress", NULL},
 
     {NULL}
 };

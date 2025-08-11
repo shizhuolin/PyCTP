@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///输入报单操作
+
 
 typedef struct PyCThostFtdcInputOrderActionField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcCurrTransferIdentityField.h"
 
-///当前银期所属交易中心
+
 
 static PyObject *PyCThostFtdcCurrTransferIdentityField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcCurrTransferIdentityField *self = (PyCThostFtdcCurrTransferIdentityField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcCurrTransferIdentityField_new(PyTypeObject *type, P
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,11 +18,10 @@ static int PyCThostFtdcCurrTransferIdentityField_init(PyCThostFtdcCurrTransferId
 
     static const char *kwlist[] = {"IdentityID",  NULL};
 
+	//TThostFtdcDRIdentityIDType int
+	int pCurrTransferIdentityField_IdentityID = 0;
 
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    int CurrTransferIdentityField_IdentityID = 0;
-        
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
@@ -29,18 +29,17 @@ static int PyCThostFtdcCurrTransferIdentityField_init(PyCThostFtdcCurrTransferId
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
 #endif
 
-        , &CurrTransferIdentityField_IdentityID 
+		, &pCurrTransferIdentityField_IdentityID
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDRIdentityIDType int
+	self->data.IdentityID = pCurrTransferIdentityField_IdentityID;
 
-    ///交易中心代码
-    // TThostFtdcDRIdentityIDType int
-    self->data.IdentityID = CurrTransferIdentityField_IdentityID;
-        
+
 
     return 0;
 }
@@ -57,7 +56,7 @@ static PyObject *PyCThostFtdcCurrTransferIdentityField_repr(PyCThostFtdcCurrTran
     PyObject *obj = Py_BuildValue("{s:i}"
 #endif
 
-        ,"IdentityID", self->data.IdentityID 
+		, "IdentityID", self->data.IdentityID
 
 
 		);
@@ -70,49 +69,44 @@ static PyObject *PyCThostFtdcCurrTransferIdentityField_repr(PyCThostFtdcCurrTran
     return PyObject_Repr(obj);
 }
 
-
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
 static PyObject *PyCThostFtdcCurrTransferIdentityField_get_IdentityID(PyCThostFtdcCurrTransferIdentityField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IdentityID);
-#else
-    return PyInt_FromLong(self->data.IdentityID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IdentityID);
+#else 
+	return PyInt_FromLong(self->data.IdentityID);
+#endif 
 }
 
-///交易中心代码
-// TThostFtdcDRIdentityIDType int
-static int PyCThostFtdcCurrTransferIdentityField_set_IdentityID(PyCThostFtdcCurrTransferIdentityField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcCurrTransferIdentityField_set_IdentityID(PyCThostFtdcCurrTransferIdentityField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IdentityID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IdentityID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IdentityID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IdentityID value out of range for C int");
-        return -1;
-    }
-    self->data.IdentityID = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IdentityID = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcCurrTransferIdentityField_getset[] = {
-    ///交易中心代码 
-    {(char *)"IdentityID", (getter)PyCThostFtdcCurrTransferIdentityField_get_IdentityID, (setter)PyCThostFtdcCurrTransferIdentityField_set_IdentityID, (char *)"IdentityID", NULL},
+	 {(char *)"IdentityID", (getter)PyCThostFtdcCurrTransferIdentityField_get_IdentityID, (setter)PyCThostFtdcCurrTransferIdentityField_set_IdentityID, (char *)"IdentityID", NULL},
 
     {NULL}
 };

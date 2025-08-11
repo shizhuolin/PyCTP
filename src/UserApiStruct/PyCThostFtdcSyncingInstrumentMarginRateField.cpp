@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncingInstrumentMarginRateField.h"
 
-///正在同步中的合约保证金率
+
 
 static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncingInstrumentMarginRateField *self = (PyCThostFtdcSyncingInstrumentMarginRateField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_new(PyTypeObject *
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,55 +18,44 @@ static int PyCThostFtdcSyncingInstrumentMarginRateField_init(PyCThostFtdcSyncing
 
     static const char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "HedgeFlag", "LongMarginRatioByMoney", "LongMarginRatioByVolume", "ShortMarginRatioByMoney", "ShortMarginRatioByVolume", "IsRelative", "InstrumentID",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pSyncingInstrumentMarginRateField_reserve1 = NULL;
+	Py_ssize_t pSyncingInstrumentMarginRateField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *SyncingInstrumentMarginRateField_reserve1 = NULL;
-    Py_ssize_t SyncingInstrumentMarginRateField_reserve1_len = 0;
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    char SyncingInstrumentMarginRateField_InvestorRange = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SyncingInstrumentMarginRateField_BrokerID = NULL;
-    Py_ssize_t SyncingInstrumentMarginRateField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *SyncingInstrumentMarginRateField_InvestorID = NULL;
-    Py_ssize_t SyncingInstrumentMarginRateField_InvestorID_len = 0;
-            
-    ///投机套保标志
-    // TThostFtdcHedgeFlagType char
-    char SyncingInstrumentMarginRateField_HedgeFlag = 0;
-            
-    ///多头保证金率
-    // TThostFtdcRatioType double
-    double SyncingInstrumentMarginRateField_LongMarginRatioByMoney = 0.0;
-        
-    ///多头保证金费
-    // TThostFtdcMoneyType double
-    double SyncingInstrumentMarginRateField_LongMarginRatioByVolume = 0.0;
-        
-    ///空头保证金率
-    // TThostFtdcRatioType double
-    double SyncingInstrumentMarginRateField_ShortMarginRatioByMoney = 0.0;
-        
-    ///空头保证金费
-    // TThostFtdcMoneyType double
-    double SyncingInstrumentMarginRateField_ShortMarginRatioByVolume = 0.0;
-        
-    ///是否相对交易所收取
-    // TThostFtdcBoolType int
-    int SyncingInstrumentMarginRateField_IsRelative = 0;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *SyncingInstrumentMarginRateField_InstrumentID = NULL;
-    Py_ssize_t SyncingInstrumentMarginRateField_InstrumentID_len = 0;
-            
+	//TThostFtdcInvestorRangeType char
+	char pSyncingInstrumentMarginRateField_InvestorRange = 0;
+
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSyncingInstrumentMarginRateField_BrokerID = NULL;
+	Py_ssize_t pSyncingInstrumentMarginRateField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pSyncingInstrumentMarginRateField_InvestorID = NULL;
+	Py_ssize_t pSyncingInstrumentMarginRateField_InvestorID_len = 0;
+
+	//TThostFtdcHedgeFlagType char
+	char pSyncingInstrumentMarginRateField_HedgeFlag = 0;
+
+	//TThostFtdcRatioType double
+	double pSyncingInstrumentMarginRateField_LongMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncingInstrumentMarginRateField_LongMarginRatioByVolume = 0.0;
+
+	//TThostFtdcRatioType double
+	double pSyncingInstrumentMarginRateField_ShortMarginRatioByMoney = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pSyncingInstrumentMarginRateField_ShortMarginRatioByVolume = 0.0;
+
+	//TThostFtdcBoolType int
+	int pSyncingInstrumentMarginRateField_IsRelative = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pSyncingInstrumentMarginRateField_InstrumentID = NULL;
+	Py_ssize_t pSyncingInstrumentMarginRateField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cy#y#cddddiy#", (char **)kwlist
@@ -73,104 +63,81 @@ static int PyCThostFtdcSyncingInstrumentMarginRateField_init(PyCThostFtdcSyncing
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cs#s#cddddis#", (char **)kwlist
 #endif
 
-        , &SyncingInstrumentMarginRateField_reserve1, &SyncingInstrumentMarginRateField_reserve1_len 
-        , &SyncingInstrumentMarginRateField_InvestorRange 
-        , &SyncingInstrumentMarginRateField_BrokerID, &SyncingInstrumentMarginRateField_BrokerID_len 
-        , &SyncingInstrumentMarginRateField_InvestorID, &SyncingInstrumentMarginRateField_InvestorID_len 
-        , &SyncingInstrumentMarginRateField_HedgeFlag 
-        , &SyncingInstrumentMarginRateField_LongMarginRatioByMoney 
-        , &SyncingInstrumentMarginRateField_LongMarginRatioByVolume 
-        , &SyncingInstrumentMarginRateField_ShortMarginRatioByMoney 
-        , &SyncingInstrumentMarginRateField_ShortMarginRatioByVolume 
-        , &SyncingInstrumentMarginRateField_IsRelative 
-        , &SyncingInstrumentMarginRateField_InstrumentID, &SyncingInstrumentMarginRateField_InstrumentID_len 
+		, &pSyncingInstrumentMarginRateField_reserve1, &pSyncingInstrumentMarginRateField_reserve1_len
+		, &pSyncingInstrumentMarginRateField_InvestorRange
+		, &pSyncingInstrumentMarginRateField_BrokerID, &pSyncingInstrumentMarginRateField_BrokerID_len
+		, &pSyncingInstrumentMarginRateField_InvestorID, &pSyncingInstrumentMarginRateField_InvestorID_len
+		, &pSyncingInstrumentMarginRateField_HedgeFlag
+		, &pSyncingInstrumentMarginRateField_LongMarginRatioByMoney
+		, &pSyncingInstrumentMarginRateField_LongMarginRatioByVolume
+		, &pSyncingInstrumentMarginRateField_ShortMarginRatioByMoney
+		, &pSyncingInstrumentMarginRateField_ShortMarginRatioByVolume
+		, &pSyncingInstrumentMarginRateField_IsRelative
+		, &pSyncingInstrumentMarginRateField_InstrumentID, &pSyncingInstrumentMarginRateField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pSyncingInstrumentMarginRateField_reserve1 != NULL) {
+		if(pSyncingInstrumentMarginRateField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pSyncingInstrumentMarginRateField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pSyncingInstrumentMarginRateField_reserve1, sizeof(self->data.reserve1) );
+		pSyncingInstrumentMarginRateField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( SyncingInstrumentMarginRateField_reserve1 != NULL ) {
-        if(SyncingInstrumentMarginRateField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", SyncingInstrumentMarginRateField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, SyncingInstrumentMarginRateField_reserve1, SyncingInstrumentMarginRateField_reserve1_len);        
-        strncpy(self->data.reserve1, SyncingInstrumentMarginRateField_reserve1, sizeof(self->data.reserve1) );
-        SyncingInstrumentMarginRateField_reserve1 = NULL;
-    }
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    self->data.InvestorRange = SyncingInstrumentMarginRateField_InvestorRange;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SyncingInstrumentMarginRateField_BrokerID != NULL ) {
-        if(SyncingInstrumentMarginRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncingInstrumentMarginRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SyncingInstrumentMarginRateField_BrokerID, SyncingInstrumentMarginRateField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SyncingInstrumentMarginRateField_BrokerID, sizeof(self->data.BrokerID) );
-        SyncingInstrumentMarginRateField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( SyncingInstrumentMarginRateField_InvestorID != NULL ) {
-        if(SyncingInstrumentMarginRateField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SyncingInstrumentMarginRateField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, SyncingInstrumentMarginRateField_InvestorID, SyncingInstrumentMarginRateField_InvestorID_len);        
-        strncpy(self->data.InvestorID, SyncingInstrumentMarginRateField_InvestorID, sizeof(self->data.InvestorID) );
-        SyncingInstrumentMarginRateField_InvestorID = NULL;
-    }
-            
-    ///投机套保标志
-    // TThostFtdcHedgeFlagType char
-    self->data.HedgeFlag = SyncingInstrumentMarginRateField_HedgeFlag;
-            
-    ///多头保证金率
-    // TThostFtdcRatioType double
-    self->data.LongMarginRatioByMoney = SyncingInstrumentMarginRateField_LongMarginRatioByMoney;
-        
-    ///多头保证金费
-    // TThostFtdcMoneyType double
-    self->data.LongMarginRatioByVolume = SyncingInstrumentMarginRateField_LongMarginRatioByVolume;
-        
-    ///空头保证金率
-    // TThostFtdcRatioType double
-    self->data.ShortMarginRatioByMoney = SyncingInstrumentMarginRateField_ShortMarginRatioByMoney;
-        
-    ///空头保证金费
-    // TThostFtdcMoneyType double
-    self->data.ShortMarginRatioByVolume = SyncingInstrumentMarginRateField_ShortMarginRatioByVolume;
-        
-    ///是否相对交易所收取
-    // TThostFtdcBoolType int
-    self->data.IsRelative = SyncingInstrumentMarginRateField_IsRelative;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( SyncingInstrumentMarginRateField_InstrumentID != NULL ) {
-        if(SyncingInstrumentMarginRateField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncingInstrumentMarginRateField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, SyncingInstrumentMarginRateField_InstrumentID, SyncingInstrumentMarginRateField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, SyncingInstrumentMarginRateField_InstrumentID, sizeof(self->data.InstrumentID) );
-        SyncingInstrumentMarginRateField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInvestorRangeType char
+	self->data.InvestorRange = pSyncingInstrumentMarginRateField_InvestorRange;
+
+	//TThostFtdcBrokerIDType char[11]
+	if(pSyncingInstrumentMarginRateField_BrokerID != NULL) {
+		if(pSyncingInstrumentMarginRateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSyncingInstrumentMarginRateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSyncingInstrumentMarginRateField_BrokerID, sizeof(self->data.BrokerID) );
+		pSyncingInstrumentMarginRateField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pSyncingInstrumentMarginRateField_InvestorID != NULL) {
+		if(pSyncingInstrumentMarginRateField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pSyncingInstrumentMarginRateField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pSyncingInstrumentMarginRateField_InvestorID, sizeof(self->data.InvestorID) );
+		pSyncingInstrumentMarginRateField_InvestorID = NULL;
+	}
+
+	//TThostFtdcHedgeFlagType char
+	self->data.HedgeFlag = pSyncingInstrumentMarginRateField_HedgeFlag;
+
+	//TThostFtdcRatioType double
+	self->data.LongMarginRatioByMoney = pSyncingInstrumentMarginRateField_LongMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.LongMarginRatioByVolume = pSyncingInstrumentMarginRateField_LongMarginRatioByVolume;
+	//TThostFtdcRatioType double
+	self->data.ShortMarginRatioByMoney = pSyncingInstrumentMarginRateField_ShortMarginRatioByMoney;
+	//TThostFtdcMoneyType double
+	self->data.ShortMarginRatioByVolume = pSyncingInstrumentMarginRateField_ShortMarginRatioByVolume;
+	//TThostFtdcBoolType int
+	self->data.IsRelative = pSyncingInstrumentMarginRateField_IsRelative;
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pSyncingInstrumentMarginRateField_InstrumentID != NULL) {
+		if(pSyncingInstrumentMarginRateField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pSyncingInstrumentMarginRateField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pSyncingInstrumentMarginRateField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pSyncingInstrumentMarginRateField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -187,17 +154,17 @@ static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_repr(PyCThostFtdcS
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:s,s:s,s:c,s:d,s:d,s:d,s:d,s:i,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"InvestorRange", self->data.InvestorRange 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"HedgeFlag", self->data.HedgeFlag 
-        ,"LongMarginRatioByMoney", self->data.LongMarginRatioByMoney 
-        ,"LongMarginRatioByVolume", self->data.LongMarginRatioByVolume 
-        ,"ShortMarginRatioByMoney", self->data.ShortMarginRatioByMoney 
-        ,"ShortMarginRatioByVolume", self->data.ShortMarginRatioByVolume 
-        ,"IsRelative", self->data.IsRelative 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "reserve1", self->data.reserve1 
+		, "InvestorRange", self->data.InvestorRange
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "HedgeFlag", self->data.HedgeFlag
+		, "LongMarginRatioByMoney", self->data.LongMarginRatioByMoney
+		, "LongMarginRatioByVolume", self->data.LongMarginRatioByVolume
+		, "ShortMarginRatioByMoney", self->data.ShortMarginRatioByMoney
+		, "ShortMarginRatioByVolume", self->data.ShortMarginRatioByVolume
+		, "IsRelative", self->data.IsRelative
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -210,140 +177,130 @@ static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_repr(PyCThostFtdcS
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_reserve1(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_reserve1(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///投资者范围
-// TThostFtdcInvestorRangeType char
 static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_InvestorRange(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
+	return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
 }
 
-///投资者范围
-// TThostFtdcInvestorRangeType char
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorRange(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorRange must be equal 1 bytes");
-        return -1;
-    }
-    self->data.InvestorRange = *buf;
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_BrokerID(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_BrokerID(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_InvestorID(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorID(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///投机套保标志
-// TThostFtdcHedgeFlagType char
 static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_HedgeFlag(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.HedgeFlag), 1);
+	return PyBytes_FromStringAndSize(&(self->data.HedgeFlag), 1);
 }
 
-///投机套保标志
-// TThostFtdcHedgeFlagType char
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_HedgeFlag(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "HedgeFlag Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.HedgeFlag)) {
-        PyErr_SetString(PyExc_ValueError, "HedgeFlag must be equal 1 bytes");
-        return -1;
-    }
-    self->data.HedgeFlag = *buf;
-    return 0;
-}
-            
-///多头保证金率
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_LongMarginRatioByMoney(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LongMarginRatioByMoney);
+	return PyFloat_FromDouble(self->data.LongMarginRatioByMoney);
 }
 
-///多头保证金率
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByMoney(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_LongMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.LongMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByMoney(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ShortMarginRatioByMoney);
+}
+
+static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.ShortMarginRatioByVolume);
+}
+
+static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_IsRelative(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsRelative);
+#else 
+	return PyInt_FromLong(self->data.IsRelative);
+#endif 
+}
+
+static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_InstrumentID(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
+	return PyBytes_FromString(self->data.InstrumentID);
+}
+
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_reserve1(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorRange(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorRange must be less than 1 bytes");
+		return -1;
+	}
+	self->data.InvestorRange = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_BrokerID(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorID(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_HedgeFlag(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "HedgeFlag Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.HedgeFlag)) {
+		PyErr_SetString(PyExc_ValueError, "HedgeFlag must be less than 1 bytes");
+		return -1;
+	}
+	self->data.HedgeFlag = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByMoney(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LongMarginRatioByMoney Expected float");
         return -1;
@@ -355,16 +312,8 @@ static int PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByMon
     self->data.LongMarginRatioByMoney = buf;
     return 0;
 }
-        
-///多头保证金费
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_LongMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.LongMarginRatioByVolume);
-}
 
-///多头保证金费
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LongMarginRatioByVolume Expected float");
         return -1;
@@ -376,16 +325,8 @@ static int PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByVol
     self->data.LongMarginRatioByVolume = buf;
     return 0;
 }
-        
-///空头保证金率
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByMoney(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ShortMarginRatioByMoney);
-}
 
-///空头保证金率
-// TThostFtdcRatioType double
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByMoney(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByMoney(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ShortMarginRatioByMoney Expected float");
         return -1;
@@ -397,16 +338,8 @@ static int PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByMo
     self->data.ShortMarginRatioByMoney = buf;
     return 0;
 }
-        
-///空头保证金费
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.ShortMarginRatioByVolume);
-}
 
-///空头保证金费
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByVolume(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ShortMarginRatioByVolume Expected float");
         return -1;
@@ -418,95 +351,62 @@ static int PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByVo
     self->data.ShortMarginRatioByVolume = buf;
     return 0;
 }
-        
-///是否相对交易所收取
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_IsRelative(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsRelative);
-#else
-    return PyInt_FromLong(self->data.IsRelative);
-#endif
-}
 
-///是否相对交易所收取
-// TThostFtdcBoolType int
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_IsRelative(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_IsRelative(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsRelative Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsRelative Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsRelative Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsRelative value out of range for C int");
-        return -1;
-    }
-    self->data.IsRelative = (int)buf;
-    return 0;
-}
-        
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcSyncingInstrumentMarginRateField_get_InstrumentID(PyCThostFtdcSyncingInstrumentMarginRateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsRelative = (int)buf; 
+    return 0; 
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcSyncingInstrumentMarginRateField_set_InstrumentID(PyCThostFtdcSyncingInstrumentMarginRateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
+static int PyCThostFtdcSyncingInstrumentMarginRateField_set_InstrumentID(PyCThostFtdcSyncingInstrumentMarginRateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcSyncingInstrumentMarginRateField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_reserve1, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_reserve1, (char *)"reserve1", NULL},
-    ///投资者范围 
-    {(char *)"InvestorRange", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_InvestorRange, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorRange, (char *)"InvestorRange", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_BrokerID, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_InvestorID, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///投机套保标志 
-    {(char *)"HedgeFlag", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_HedgeFlag, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_HedgeFlag, (char *)"HedgeFlag", NULL},
-    ///多头保证金率 
-    {(char *)"LongMarginRatioByMoney", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_LongMarginRatioByMoney, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByMoney, (char *)"LongMarginRatioByMoney", NULL},
-    ///多头保证金费 
-    {(char *)"LongMarginRatioByVolume", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_LongMarginRatioByVolume, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByVolume, (char *)"LongMarginRatioByVolume", NULL},
-    ///空头保证金率 
-    {(char *)"ShortMarginRatioByMoney", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByMoney, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByMoney, (char *)"ShortMarginRatioByMoney", NULL},
-    ///空头保证金费 
-    {(char *)"ShortMarginRatioByVolume", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByVolume, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByVolume, (char *)"ShortMarginRatioByVolume", NULL},
-    ///是否相对交易所收取 
-    {(char *)"IsRelative", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_IsRelative, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_IsRelative, (char *)"IsRelative", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_InstrumentID, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_reserve1, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"InvestorRange", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_InvestorRange, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorRange, (char *)"InvestorRange", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_BrokerID, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_InvestorID, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"HedgeFlag", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_HedgeFlag, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_HedgeFlag, (char *)"HedgeFlag", NULL},
+	 {(char *)"LongMarginRatioByMoney", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_LongMarginRatioByMoney, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByMoney, (char *)"LongMarginRatioByMoney", NULL},
+	 {(char *)"LongMarginRatioByVolume", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_LongMarginRatioByVolume, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_LongMarginRatioByVolume, (char *)"LongMarginRatioByVolume", NULL},
+	 {(char *)"ShortMarginRatioByMoney", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByMoney, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByMoney, (char *)"ShortMarginRatioByMoney", NULL},
+	 {(char *)"ShortMarginRatioByVolume", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_ShortMarginRatioByVolume, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_ShortMarginRatioByVolume, (char *)"ShortMarginRatioByVolume", NULL},
+	 {(char *)"IsRelative", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_IsRelative, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_IsRelative, (char *)"IsRelative", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcSyncingInstrumentMarginRateField_get_InstrumentID, (setter)PyCThostFtdcSyncingInstrumentMarginRateField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

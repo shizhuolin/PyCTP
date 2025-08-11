@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryCombPromotionParamField.h"
 
-///查询组合优惠比例
+
 
 static PyObject *PyCThostFtdcQryCombPromotionParamField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryCombPromotionParamField *self = (PyCThostFtdcQryCombPromotionParamField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryCombPromotionParamField_new(PyTypeObject *type, 
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQryCombPromotionParamField_init(PyCThostFtdcQryCombPromot
 
     static const char *kwlist[] = {"ExchangeID", "InstrumentID",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pQryCombPromotionParamField_ExchangeID = NULL;
+	Py_ssize_t pQryCombPromotionParamField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *QryCombPromotionParamField_ExchangeID = NULL;
-    Py_ssize_t QryCombPromotionParamField_ExchangeID_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryCombPromotionParamField_InstrumentID = NULL;
-    Py_ssize_t QryCombPromotionParamField_InstrumentID_len = 0;
-            
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryCombPromotionParamField_InstrumentID = NULL;
+	Py_ssize_t pQryCombPromotionParamField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQryCombPromotionParamField_init(PyCThostFtdcQryCombPromot
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QryCombPromotionParamField_ExchangeID, &QryCombPromotionParamField_ExchangeID_len 
-        , &QryCombPromotionParamField_InstrumentID, &QryCombPromotionParamField_InstrumentID_len 
+		, &pQryCombPromotionParamField_ExchangeID, &pQryCombPromotionParamField_ExchangeID_len
+		, &pQryCombPromotionParamField_InstrumentID, &pQryCombPromotionParamField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pQryCombPromotionParamField_ExchangeID != NULL) {
+		if(pQryCombPromotionParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pQryCombPromotionParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pQryCombPromotionParamField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pQryCombPromotionParamField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( QryCombPromotionParamField_ExchangeID != NULL ) {
-        if(QryCombPromotionParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryCombPromotionParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, QryCombPromotionParamField_ExchangeID, QryCombPromotionParamField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, QryCombPromotionParamField_ExchangeID, sizeof(self->data.ExchangeID) );
-        QryCombPromotionParamField_ExchangeID = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryCombPromotionParamField_InstrumentID != NULL ) {
-        if(QryCombPromotionParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryCombPromotionParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, QryCombPromotionParamField_InstrumentID, QryCombPromotionParamField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, QryCombPromotionParamField_InstrumentID, sizeof(self->data.InstrumentID) );
-        QryCombPromotionParamField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryCombPromotionParamField_InstrumentID != NULL) {
+		if(pQryCombPromotionParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pQryCombPromotionParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pQryCombPromotionParamField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pQryCombPromotionParamField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQryCombPromotionParamField_repr(PyCThostFtdcQryComb
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "ExchangeID", self->data.ExchangeID 
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQryCombPromotionParamField_repr(PyCThostFtdcQryComb
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcQryCombPromotionParamField_get_ExchangeID(PyCThostFtdcQryCombPromotionParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcQryCombPromotionParamField_set_ExchangeID(PyCThostFtdcQryCombPromotionParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryCombPromotionParamField_get_InstrumentID(PyCThostFtdcQryCombPromotionParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryCombPromotionParamField_set_InstrumentID(PyCThostFtdcQryCombPromotionParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
+static int PyCThostFtdcQryCombPromotionParamField_set_ExchangeID(PyCThostFtdcQryCombPromotionParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryCombPromotionParamField_set_InstrumentID(PyCThostFtdcQryCombPromotionParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryCombPromotionParamField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcQryCombPromotionParamField_get_ExchangeID, (setter)PyCThostFtdcQryCombPromotionParamField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcQryCombPromotionParamField_get_InstrumentID, (setter)PyCThostFtdcQryCombPromotionParamField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcQryCombPromotionParamField_get_ExchangeID, (setter)PyCThostFtdcQryCombPromotionParamField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcQryCombPromotionParamField_get_InstrumentID, (setter)PyCThostFtdcQryCombPromotionParamField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

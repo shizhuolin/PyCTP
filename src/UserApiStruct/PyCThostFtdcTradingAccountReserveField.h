@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///资金账户基本准备金
+
 
 typedef struct PyCThostFtdcTradingAccountReserveField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcRspGenUserTextField.h"
 
-///短信验证码生成的回复
+
 
 static PyObject *PyCThostFtdcRspGenUserTextField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcRspGenUserTextField *self = (PyCThostFtdcRspGenUserTextField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcRspGenUserTextField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,11 +18,10 @@ static int PyCThostFtdcRspGenUserTextField_init(PyCThostFtdcRspGenUserTextField 
 
     static const char *kwlist[] = {"UserTextSeq",  NULL};
 
+	//TThostFtdcUserTextSeqType int
+	int pRspGenUserTextField_UserTextSeq = 0;
 
-    ///短信验证码序号
-    // TThostFtdcUserTextSeqType int
-    int RspGenUserTextField_UserTextSeq = 0;
-        
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
@@ -29,18 +29,17 @@ static int PyCThostFtdcRspGenUserTextField_init(PyCThostFtdcRspGenUserTextField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
 #endif
 
-        , &RspGenUserTextField_UserTextSeq 
+		, &pRspGenUserTextField_UserTextSeq
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcUserTextSeqType int
+	self->data.UserTextSeq = pRspGenUserTextField_UserTextSeq;
 
-    ///短信验证码序号
-    // TThostFtdcUserTextSeqType int
-    self->data.UserTextSeq = RspGenUserTextField_UserTextSeq;
-        
+
 
     return 0;
 }
@@ -57,7 +56,7 @@ static PyObject *PyCThostFtdcRspGenUserTextField_repr(PyCThostFtdcRspGenUserText
     PyObject *obj = Py_BuildValue("{s:i}"
 #endif
 
-        ,"UserTextSeq", self->data.UserTextSeq 
+		, "UserTextSeq", self->data.UserTextSeq
 
 
 		);
@@ -70,49 +69,44 @@ static PyObject *PyCThostFtdcRspGenUserTextField_repr(PyCThostFtdcRspGenUserText
     return PyObject_Repr(obj);
 }
 
-
-///短信验证码序号
-// TThostFtdcUserTextSeqType int
 static PyObject *PyCThostFtdcRspGenUserTextField_get_UserTextSeq(PyCThostFtdcRspGenUserTextField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.UserTextSeq);
-#else
-    return PyInt_FromLong(self->data.UserTextSeq);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.UserTextSeq);
+#else 
+	return PyInt_FromLong(self->data.UserTextSeq);
+#endif 
 }
 
-///短信验证码序号
-// TThostFtdcUserTextSeqType int
-static int PyCThostFtdcRspGenUserTextField_set_UserTextSeq(PyCThostFtdcRspGenUserTextField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcRspGenUserTextField_set_UserTextSeq(PyCThostFtdcRspGenUserTextField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "UserTextSeq Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserTextSeq Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "UserTextSeq Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the UserTextSeq value out of range for C int");
-        return -1;
-    }
-    self->data.UserTextSeq = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.UserTextSeq = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcRspGenUserTextField_getset[] = {
-    ///短信验证码序号 
-    {(char *)"UserTextSeq", (getter)PyCThostFtdcRspGenUserTextField_get_UserTextSeq, (setter)PyCThostFtdcRspGenUserTextField_set_UserTextSeq, (char *)"UserTextSeq", NULL},
+	 {(char *)"UserTextSeq", (getter)PyCThostFtdcRspGenUserTextField_get_UserTextSeq, (setter)PyCThostFtdcRspGenUserTextField_set_UserTextSeq, (char *)"UserTextSeq", NULL},
 
     {NULL}
 };

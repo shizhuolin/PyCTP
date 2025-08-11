@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///出入金同步
+
 
 typedef struct PyCThostFtdcSyncDepositField {
     PyObject_HEAD

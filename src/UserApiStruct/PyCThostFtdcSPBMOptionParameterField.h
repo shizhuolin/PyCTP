@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///SPBM期权合约保证金参数
+
 
 typedef struct PyCThostFtdcSPBMOptionParameterField {
     PyObject_HEAD

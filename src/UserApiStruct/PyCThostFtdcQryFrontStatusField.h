@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询前置状态
+
 
 typedef struct PyCThostFtdcQryFrontStatusField {
     PyObject_HEAD

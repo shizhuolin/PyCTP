@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///RCAMS产品组合信息
+
 
 typedef struct PyCThostFtdcRCAMSCombProductInfoField {
     PyObject_HEAD

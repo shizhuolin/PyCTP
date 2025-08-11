@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///正在同步中的合约保证金率
+
 
 typedef struct PyCThostFtdcSyncingInstrumentMarginRateField {
     PyObject_HEAD

@@ -25,22 +25,22 @@
 
 #if PY_MAJOR_VERSION >= 3
     #define PyCTP_FUNCTION_MAGIC_VOID_STRING(_in_class, _in_fun) \
-        static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { char *pStr = nullptr; \
-        if (!PyArg_ParseTuple(args, "y", &pStr)) { PyErr_SetString(PyExc_ValueError, "parameter invalid."); return nullptr; } \
+        static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { char *pStr = NULL; \
+        if (!PyArg_ParseTuple(args, "y", &pStr)) { PyErr_SetString(PyExc_ValueError, "parameter invalid."); return NULL; } \
         (( _in_class *) self)->api->_in_fun(pStr); \
         Py_RETURN_NONE; }
 #else
     #define PyCTP_FUNCTION_MAGIC_VOID_STRING(_in_class, _in_fun) \
-        static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { char *pStr = nullptr; \
-        if (!PyArg_ParseTuple(args, "s", &pStr)) { PyErr_SetString(PyExc_ValueError, "parameter invalid."); return nullptr; } \
+        static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { char *pStr = NULL; \
+        if (!PyArg_ParseTuple(args, "s", &pStr)) { PyErr_SetString(PyExc_ValueError, "parameter invalid."); return NULL; } \
         (( _in_class *) self)->api->_in_fun(pStr); \
         Py_RETURN_NONE; }
 #endif
 
 #define PyCTP_FUNCTION_MAGIC_VOID_STRUCT(_in_class, _in_fun, _in_type) \
     static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
-	PyObject *pArg1 = nullptr; \
-	if (!PyArg_ParseTuple(args, "O", &pArg1)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return nullptr; } \
+	PyObject *pArg1 = NULL; \
+	if (!PyArg_ParseTuple(args, "O", &pArg1)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return NULL; } \
     if (!PyObject_TypeCheck(pArg1, &Py##_in_type##Type )) { PyErr_Format( PyExc_TypeError, "Expected a %s instance", #_in_type); return NULL; } \
 	Py##_in_type *arg1 = (Py##_in_type *)pArg1; \
 	(( _in_class *) self)->api->_in_fun(&(arg1->data)); \
@@ -48,8 +48,8 @@
 
 #define PyCTP_FUNCTION_MAGIC_INT_STRUCT(_in_class, _in_fun, _in_type) \
 	static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
-	int ret; PyObject *pArg1 = nullptr; \
-	if (!PyArg_ParseTuple(args, "O", &pArg1)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return nullptr; } \
+	int ret; PyObject *pArg1 = NULL; \
+	if (!PyArg_ParseTuple(args, "O", &pArg1)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return NULL; } \
     if (!PyObject_TypeCheck(pArg1, &Py##_in_type##Type )) { PyErr_Format( PyExc_TypeError, "param 1 expected a %s instance", #_in_type); return NULL; } \
 	Py##_in_type *arg1 = (Py##_in_type *)pArg1; \
 	ret = (( _in_class *) self)->api->_in_fun(&(arg1->data)); \
@@ -57,8 +57,8 @@
 
 #define PyCTP_FUNCTION_MAGIC_INT_STRUCT_INT(_in_class, _in_fun, _in_type) \
     static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
-	int arg2, ret; PyObject *pArg1 = nullptr; \
-	if (!PyArg_ParseTuple(args, "Oi", &pArg1, &arg2)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return nullptr; } \
+	int arg2, ret; PyObject *pArg1 = NULL; \
+	if (!PyArg_ParseTuple(args, "Oi", &pArg1, &arg2)) { PyErr_SetString( PyExc_ValueError, "The parameter invalid." ); return NULL; } \
     if (!PyObject_TypeCheck(pArg1, &Py##_in_type##Type )) { PyErr_Format( PyExc_TypeError, "param 1 expected a %s instance", #_in_type); return NULL; } \
 	Py##_in_type *arg1 = (Py##_in_type *)pArg1; \
 	ret = (( _in_class *) self)->api->_in_fun(&(arg1->data), arg2); \
@@ -66,14 +66,14 @@
 
 #define PyCTP_FUNCTION_MAGIC_INT_SUBSCRIBE(_in_class, _in_fun) \
 	static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
-	PyListObject *py_ppInstrumentID = nullptr; int nCount, ret; char **ppInstrumentID; \
-	if ( !PyArg_ParseTuple(args, "Oi", &py_ppInstrumentID, &nCount) ) { PyErr_SetString(PyExc_ValueError, "parameter invalid."); return nullptr; } \
-	if( !PyList_Check((PyObject *) py_ppInstrumentID) ) { PyErr_SetString(PyExc_TypeError, "first parameter must is PyList."); return nullptr; } \
-	if( PyList_Size((PyObject *) py_ppInstrumentID) != nCount ) { PyErr_SetString(PyExc_ValueError, "nCount invalid."); return nullptr; } \
+	PyListObject *py_ppInstrumentID = NULL; int nCount, ret; char **ppInstrumentID; \
+	if ( !PyArg_ParseTuple(args, "Oi", &py_ppInstrumentID, &nCount) ) { PyErr_SetString(PyExc_ValueError, "parameter invalid."); return NULL; } \
+	if( !PyList_Check((PyObject *) py_ppInstrumentID) ) { PyErr_SetString(PyExc_TypeError, "first parameter must is PyList."); return NULL; } \
+	if( PyList_Size((PyObject *) py_ppInstrumentID) != nCount ) { PyErr_SetString(PyExc_ValueError, "nCount invalid."); return NULL; } \
 	ppInstrumentID = new char*[nCount]; \
 	for(int i=0; i < nCount; i++) { \
 	PyObject* item = PyList_GetItem((PyObject *) py_ppInstrumentID, i); \
-	if( !PyBytes_Check(item) ) { PyErr_SetString(PyExc_TypeError, "Instrument ID must is bytes"); return nullptr; } \
+	if( !PyBytes_Check(item) ) { PyErr_SetString(PyExc_TypeError, "Instrument ID must is bytes"); return NULL; } \
 	ppInstrumentID[i] = PyBytes_AsString(item); } \
 	ret = ((_in_class *) self)->api->_in_fun(ppInstrumentID, nCount); \
 	delete[] ppInstrumentID; return PyLong_FromLong(ret); }

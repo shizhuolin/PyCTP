@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询银行资金请求响应
+
 
 typedef struct PyCThostFtdcTransferQryBankRspField {
     PyObject_HEAD

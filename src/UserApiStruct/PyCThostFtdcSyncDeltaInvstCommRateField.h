@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平期货手续费率
+
 
 typedef struct PyCThostFtdcSyncDeltaInvstCommRateField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///用户会话
+
 
 typedef struct PyCThostFtdcUserSessionField {
     PyObject_HEAD

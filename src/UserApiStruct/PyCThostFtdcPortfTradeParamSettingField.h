@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///组保交易参数设置
+
 
 typedef struct PyCThostFtdcPortfTradeParamSettingField {
     PyObject_HEAD

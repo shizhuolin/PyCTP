@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///禁止登录用户
+
 
 typedef struct PyCThostFtdcLoginForbiddenUserField {
     PyObject_HEAD

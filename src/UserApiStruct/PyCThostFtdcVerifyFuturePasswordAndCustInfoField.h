@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///验证期货资金密码和客户信息
+
 
 typedef struct PyCThostFtdcVerifyFuturePasswordAndCustInfoField {
     PyObject_HEAD

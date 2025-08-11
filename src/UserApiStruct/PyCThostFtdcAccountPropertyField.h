@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///银行账户属性
+
 
 typedef struct PyCThostFtdcAccountPropertyField {
     PyObject_HEAD

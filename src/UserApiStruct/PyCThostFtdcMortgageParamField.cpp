@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMortgageParamField.h"
 
-///质押配比参数
+
 
 static PyObject *PyCThostFtdcMortgageParamField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMortgageParamField *self = (PyCThostFtdcMortgageParamField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcMortgageParamField_new(PyTypeObject *type, PyObject
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,25 +18,21 @@ static int PyCThostFtdcMortgageParamField_init(PyCThostFtdcMortgageParamField *s
 
     static const char *kwlist[] = {"BrokerID", "AccountID", "MortgageBalance", "CheckMortgageRatio",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pMortgageParamField_BrokerID = NULL;
+	Py_ssize_t pMortgageParamField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *MortgageParamField_BrokerID = NULL;
-    Py_ssize_t MortgageParamField_BrokerID_len = 0;
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    const char *MortgageParamField_AccountID = NULL;
-    Py_ssize_t MortgageParamField_AccountID_len = 0;
-            
-    ///质押配比系数
-    // TThostFtdcRatioType double
-    double MortgageParamField_MortgageBalance = 0.0;
-        
-    ///开仓是否验证质押配比
-    // TThostFtdcBoolType int
-    int MortgageParamField_CheckMortgageRatio = 0;
-        
+	//TThostFtdcAccountIDType char[13]
+	const char *pMortgageParamField_AccountID = NULL;
+	Py_ssize_t pMortgageParamField_AccountID_len = 0;
+
+	//TThostFtdcRatioType double
+	double pMortgageParamField_MortgageBalance = 0.0;
+
+	//TThostFtdcBoolType int
+	int pMortgageParamField_CheckMortgageRatio = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#di", (char **)kwlist
@@ -43,51 +40,42 @@ static int PyCThostFtdcMortgageParamField_init(PyCThostFtdcMortgageParamField *s
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#di", (char **)kwlist
 #endif
 
-        , &MortgageParamField_BrokerID, &MortgageParamField_BrokerID_len 
-        , &MortgageParamField_AccountID, &MortgageParamField_AccountID_len 
-        , &MortgageParamField_MortgageBalance 
-        , &MortgageParamField_CheckMortgageRatio 
+		, &pMortgageParamField_BrokerID, &pMortgageParamField_BrokerID_len
+		, &pMortgageParamField_AccountID, &pMortgageParamField_AccountID_len
+		, &pMortgageParamField_MortgageBalance
+		, &pMortgageParamField_CheckMortgageRatio
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pMortgageParamField_BrokerID != NULL) {
+		if(pMortgageParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pMortgageParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pMortgageParamField_BrokerID, sizeof(self->data.BrokerID) );
+		pMortgageParamField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( MortgageParamField_BrokerID != NULL ) {
-        if(MortgageParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", MortgageParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, MortgageParamField_BrokerID, MortgageParamField_BrokerID_len);        
-        strncpy(self->data.BrokerID, MortgageParamField_BrokerID, sizeof(self->data.BrokerID) );
-        MortgageParamField_BrokerID = NULL;
-    }
-            
-    ///投资者帐号
-    // TThostFtdcAccountIDType char[13]
-    if( MortgageParamField_AccountID != NULL ) {
-        if(MortgageParamField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-            PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", MortgageParamField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
-            return -1;
-        }
-        // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-        // memcpy(self->data.AccountID, MortgageParamField_AccountID, MortgageParamField_AccountID_len);        
-        strncpy(self->data.AccountID, MortgageParamField_AccountID, sizeof(self->data.AccountID) );
-        MortgageParamField_AccountID = NULL;
-    }
-            
-    ///质押配比系数
-    // TThostFtdcRatioType double
-    self->data.MortgageBalance = MortgageParamField_MortgageBalance;
-        
-    ///开仓是否验证质押配比
-    // TThostFtdcBoolType int
-    self->data.CheckMortgageRatio = MortgageParamField_CheckMortgageRatio;
-        
+	//TThostFtdcAccountIDType char[13]
+	if(pMortgageParamField_AccountID != NULL) {
+		if(pMortgageParamField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+			PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", pMortgageParamField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
+			return -1;
+		}
+		strncpy(self->data.AccountID, pMortgageParamField_AccountID, sizeof(self->data.AccountID) );
+		pMortgageParamField_AccountID = NULL;
+	}
+
+	//TThostFtdcRatioType double
+	self->data.MortgageBalance = pMortgageParamField_MortgageBalance;
+	//TThostFtdcBoolType int
+	self->data.CheckMortgageRatio = pMortgageParamField_CheckMortgageRatio;
+
+
 
     return 0;
 }
@@ -104,10 +92,10 @@ static PyObject *PyCThostFtdcMortgageParamField_repr(PyCThostFtdcMortgageParamFi
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:d,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"AccountID", self->data.AccountID//, (Py_ssize_t)sizeof(self->data.AccountID) 
-        ,"MortgageBalance", self->data.MortgageBalance 
-        ,"CheckMortgageRatio", self->data.CheckMortgageRatio 
+		, "BrokerID", self->data.BrokerID 
+		, "AccountID", self->data.AccountID 
+		, "MortgageBalance", self->data.MortgageBalance
+		, "CheckMortgageRatio", self->data.CheckMortgageRatio
 
 
 		);
@@ -120,68 +108,57 @@ static PyObject *PyCThostFtdcMortgageParamField_repr(PyCThostFtdcMortgageParamFi
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcMortgageParamField_get_BrokerID(PyCThostFtdcMortgageParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcMortgageParamField_set_BrokerID(PyCThostFtdcMortgageParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcMortgageParamField_get_AccountID(PyCThostFtdcMortgageParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.AccountID, (Py_ssize_t)sizeof(self->data.AccountID));
-    return PyBytes_FromString(self->data.AccountID);
+	return PyBytes_FromString(self->data.AccountID);
 }
 
-///投资者帐号
-// TThostFtdcAccountIDType char[13]
-static int PyCThostFtdcMortgageParamField_set_AccountID(PyCThostFtdcMortgageParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
-        PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.AccountID, 0, sizeof(self->data.AccountID));
-    // memcpy(self->data.AccountID, buf, len);
-    strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
-    return 0;
-}
-            
-///质押配比系数
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcMortgageParamField_get_MortgageBalance(PyCThostFtdcMortgageParamField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MortgageBalance);
+	return PyFloat_FromDouble(self->data.MortgageBalance);
 }
 
-///质押配比系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcMortgageParamField_set_MortgageBalance(PyCThostFtdcMortgageParamField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcMortgageParamField_get_CheckMortgageRatio(PyCThostFtdcMortgageParamField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.CheckMortgageRatio);
+#else 
+	return PyInt_FromLong(self->data.CheckMortgageRatio);
+#endif 
+}
+
+static int PyCThostFtdcMortgageParamField_set_BrokerID(PyCThostFtdcMortgageParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcMortgageParamField_set_AccountID(PyCThostFtdcMortgageParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AccountID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+		PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.AccountID, buf, sizeof(self->data.AccountID));
+	return 0;
+}
+
+static int PyCThostFtdcMortgageParamField_set_MortgageBalance(PyCThostFtdcMortgageParamField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MortgageBalance Expected float");
         return -1;
@@ -193,55 +170,40 @@ static int PyCThostFtdcMortgageParamField_set_MortgageBalance(PyCThostFtdcMortga
     self->data.MortgageBalance = buf;
     return 0;
 }
-        
-///开仓是否验证质押配比
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcMortgageParamField_get_CheckMortgageRatio(PyCThostFtdcMortgageParamField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.CheckMortgageRatio);
-#else
-    return PyInt_FromLong(self->data.CheckMortgageRatio);
-#endif
-}
 
-///开仓是否验证质押配比
-// TThostFtdcBoolType int
-static int PyCThostFtdcMortgageParamField_set_CheckMortgageRatio(PyCThostFtdcMortgageParamField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMortgageParamField_set_CheckMortgageRatio(PyCThostFtdcMortgageParamField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CheckMortgageRatio Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CheckMortgageRatio Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "CheckMortgageRatio Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the CheckMortgageRatio value out of range for C int");
-        return -1;
-    }
-    self->data.CheckMortgageRatio = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.CheckMortgageRatio = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcMortgageParamField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcMortgageParamField_get_BrokerID, (setter)PyCThostFtdcMortgageParamField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者帐号 
-    {(char *)"AccountID", (getter)PyCThostFtdcMortgageParamField_get_AccountID, (setter)PyCThostFtdcMortgageParamField_set_AccountID, (char *)"AccountID", NULL},
-    ///质押配比系数 
-    {(char *)"MortgageBalance", (getter)PyCThostFtdcMortgageParamField_get_MortgageBalance, (setter)PyCThostFtdcMortgageParamField_set_MortgageBalance, (char *)"MortgageBalance", NULL},
-    ///开仓是否验证质押配比 
-    {(char *)"CheckMortgageRatio", (getter)PyCThostFtdcMortgageParamField_get_CheckMortgageRatio, (setter)PyCThostFtdcMortgageParamField_set_CheckMortgageRatio, (char *)"CheckMortgageRatio", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcMortgageParamField_get_BrokerID, (setter)PyCThostFtdcMortgageParamField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"AccountID", (getter)PyCThostFtdcMortgageParamField_get_AccountID, (setter)PyCThostFtdcMortgageParamField_set_AccountID, (char *)"AccountID", NULL},
+	 {(char *)"MortgageBalance", (getter)PyCThostFtdcMortgageParamField_get_MortgageBalance, (setter)PyCThostFtdcMortgageParamField_set_MortgageBalance, (char *)"MortgageBalance", NULL},
+	 {(char *)"CheckMortgageRatio", (getter)PyCThostFtdcMortgageParamField_get_CheckMortgageRatio, (setter)PyCThostFtdcMortgageParamField_set_CheckMortgageRatio, (char *)"CheckMortgageRatio", NULL},
 
     {NULL}
 };

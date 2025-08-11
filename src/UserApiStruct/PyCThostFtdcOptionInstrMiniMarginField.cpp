@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcOptionInstrMiniMarginField.h"
 
-///当前期权合约最小保证金
+
 
 static PyObject *PyCThostFtdcOptionInstrMiniMarginField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcOptionInstrMiniMarginField *self = (PyCThostFtdcOptionInstrMiniMarginField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcOptionInstrMiniMarginField_new(PyTypeObject *type, 
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,43 +18,35 @@ static int PyCThostFtdcOptionInstrMiniMarginField_init(PyCThostFtdcOptionInstrMi
 
     static const char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "MinMargin", "ValueMethod", "IsRelative", "InstrumentID",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pOptionInstrMiniMarginField_reserve1 = NULL;
+	Py_ssize_t pOptionInstrMiniMarginField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *OptionInstrMiniMarginField_reserve1 = NULL;
-    Py_ssize_t OptionInstrMiniMarginField_reserve1_len = 0;
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    char OptionInstrMiniMarginField_InvestorRange = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *OptionInstrMiniMarginField_BrokerID = NULL;
-    Py_ssize_t OptionInstrMiniMarginField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *OptionInstrMiniMarginField_InvestorID = NULL;
-    Py_ssize_t OptionInstrMiniMarginField_InvestorID_len = 0;
-            
-    ///单位（手）期权合约最小保证金
-    // TThostFtdcMoneyType double
-    double OptionInstrMiniMarginField_MinMargin = 0.0;
-        
-    ///取值方式
-    // TThostFtdcValueMethodType char
-    char OptionInstrMiniMarginField_ValueMethod = 0;
-            
-    ///是否跟随交易所收取
-    // TThostFtdcBoolType int
-    int OptionInstrMiniMarginField_IsRelative = 0;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *OptionInstrMiniMarginField_InstrumentID = NULL;
-    Py_ssize_t OptionInstrMiniMarginField_InstrumentID_len = 0;
-            
+	//TThostFtdcInvestorRangeType char
+	char pOptionInstrMiniMarginField_InvestorRange = 0;
+
+	//TThostFtdcBrokerIDType char[11]
+	const char *pOptionInstrMiniMarginField_BrokerID = NULL;
+	Py_ssize_t pOptionInstrMiniMarginField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pOptionInstrMiniMarginField_InvestorID = NULL;
+	Py_ssize_t pOptionInstrMiniMarginField_InvestorID_len = 0;
+
+	//TThostFtdcMoneyType double
+	double pOptionInstrMiniMarginField_MinMargin = 0.0;
+
+	//TThostFtdcValueMethodType char
+	char pOptionInstrMiniMarginField_ValueMethod = 0;
+
+	//TThostFtdcBoolType int
+	int pOptionInstrMiniMarginField_IsRelative = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pOptionInstrMiniMarginField_InstrumentID = NULL;
+	Py_ssize_t pOptionInstrMiniMarginField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cy#y#dciy#", (char **)kwlist
@@ -61,89 +54,72 @@ static int PyCThostFtdcOptionInstrMiniMarginField_init(PyCThostFtdcOptionInstrMi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cs#s#dcis#", (char **)kwlist
 #endif
 
-        , &OptionInstrMiniMarginField_reserve1, &OptionInstrMiniMarginField_reserve1_len 
-        , &OptionInstrMiniMarginField_InvestorRange 
-        , &OptionInstrMiniMarginField_BrokerID, &OptionInstrMiniMarginField_BrokerID_len 
-        , &OptionInstrMiniMarginField_InvestorID, &OptionInstrMiniMarginField_InvestorID_len 
-        , &OptionInstrMiniMarginField_MinMargin 
-        , &OptionInstrMiniMarginField_ValueMethod 
-        , &OptionInstrMiniMarginField_IsRelative 
-        , &OptionInstrMiniMarginField_InstrumentID, &OptionInstrMiniMarginField_InstrumentID_len 
+		, &pOptionInstrMiniMarginField_reserve1, &pOptionInstrMiniMarginField_reserve1_len
+		, &pOptionInstrMiniMarginField_InvestorRange
+		, &pOptionInstrMiniMarginField_BrokerID, &pOptionInstrMiniMarginField_BrokerID_len
+		, &pOptionInstrMiniMarginField_InvestorID, &pOptionInstrMiniMarginField_InvestorID_len
+		, &pOptionInstrMiniMarginField_MinMargin
+		, &pOptionInstrMiniMarginField_ValueMethod
+		, &pOptionInstrMiniMarginField_IsRelative
+		, &pOptionInstrMiniMarginField_InstrumentID, &pOptionInstrMiniMarginField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pOptionInstrMiniMarginField_reserve1 != NULL) {
+		if(pOptionInstrMiniMarginField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pOptionInstrMiniMarginField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pOptionInstrMiniMarginField_reserve1, sizeof(self->data.reserve1) );
+		pOptionInstrMiniMarginField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( OptionInstrMiniMarginField_reserve1 != NULL ) {
-        if(OptionInstrMiniMarginField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", OptionInstrMiniMarginField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, OptionInstrMiniMarginField_reserve1, OptionInstrMiniMarginField_reserve1_len);        
-        strncpy(self->data.reserve1, OptionInstrMiniMarginField_reserve1, sizeof(self->data.reserve1) );
-        OptionInstrMiniMarginField_reserve1 = NULL;
-    }
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    self->data.InvestorRange = OptionInstrMiniMarginField_InvestorRange;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( OptionInstrMiniMarginField_BrokerID != NULL ) {
-        if(OptionInstrMiniMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", OptionInstrMiniMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, OptionInstrMiniMarginField_BrokerID, OptionInstrMiniMarginField_BrokerID_len);        
-        strncpy(self->data.BrokerID, OptionInstrMiniMarginField_BrokerID, sizeof(self->data.BrokerID) );
-        OptionInstrMiniMarginField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( OptionInstrMiniMarginField_InvestorID != NULL ) {
-        if(OptionInstrMiniMarginField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", OptionInstrMiniMarginField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, OptionInstrMiniMarginField_InvestorID, OptionInstrMiniMarginField_InvestorID_len);        
-        strncpy(self->data.InvestorID, OptionInstrMiniMarginField_InvestorID, sizeof(self->data.InvestorID) );
-        OptionInstrMiniMarginField_InvestorID = NULL;
-    }
-            
-    ///单位（手）期权合约最小保证金
-    // TThostFtdcMoneyType double
-    self->data.MinMargin = OptionInstrMiniMarginField_MinMargin;
-        
-    ///取值方式
-    // TThostFtdcValueMethodType char
-    self->data.ValueMethod = OptionInstrMiniMarginField_ValueMethod;
-            
-    ///是否跟随交易所收取
-    // TThostFtdcBoolType int
-    self->data.IsRelative = OptionInstrMiniMarginField_IsRelative;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( OptionInstrMiniMarginField_InstrumentID != NULL ) {
-        if(OptionInstrMiniMarginField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", OptionInstrMiniMarginField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, OptionInstrMiniMarginField_InstrumentID, OptionInstrMiniMarginField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, OptionInstrMiniMarginField_InstrumentID, sizeof(self->data.InstrumentID) );
-        OptionInstrMiniMarginField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInvestorRangeType char
+	self->data.InvestorRange = pOptionInstrMiniMarginField_InvestorRange;
+
+	//TThostFtdcBrokerIDType char[11]
+	if(pOptionInstrMiniMarginField_BrokerID != NULL) {
+		if(pOptionInstrMiniMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pOptionInstrMiniMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pOptionInstrMiniMarginField_BrokerID, sizeof(self->data.BrokerID) );
+		pOptionInstrMiniMarginField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pOptionInstrMiniMarginField_InvestorID != NULL) {
+		if(pOptionInstrMiniMarginField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pOptionInstrMiniMarginField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pOptionInstrMiniMarginField_InvestorID, sizeof(self->data.InvestorID) );
+		pOptionInstrMiniMarginField_InvestorID = NULL;
+	}
+
+	//TThostFtdcMoneyType double
+	self->data.MinMargin = pOptionInstrMiniMarginField_MinMargin;
+	//TThostFtdcValueMethodType char
+	self->data.ValueMethod = pOptionInstrMiniMarginField_ValueMethod;
+
+	//TThostFtdcBoolType int
+	self->data.IsRelative = pOptionInstrMiniMarginField_IsRelative;
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pOptionInstrMiniMarginField_InstrumentID != NULL) {
+		if(pOptionInstrMiniMarginField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pOptionInstrMiniMarginField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pOptionInstrMiniMarginField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pOptionInstrMiniMarginField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -160,14 +136,14 @@ static PyObject *PyCThostFtdcOptionInstrMiniMarginField_repr(PyCThostFtdcOptionI
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:s,s:s,s:d,s:c,s:i,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"InvestorRange", self->data.InvestorRange 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"MinMargin", self->data.MinMargin 
-        ,"ValueMethod", self->data.ValueMethod 
-        ,"IsRelative", self->data.IsRelative 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "reserve1", self->data.reserve1 
+		, "InvestorRange", self->data.InvestorRange
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "MinMargin", self->data.MinMargin
+		, "ValueMethod", self->data.ValueMethod
+		, "IsRelative", self->data.IsRelative
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -180,117 +156,103 @@ static PyObject *PyCThostFtdcOptionInstrMiniMarginField_repr(PyCThostFtdcOptionI
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_reserve1(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcOptionInstrMiniMarginField_set_reserve1(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///投资者范围
-// TThostFtdcInvestorRangeType char
 static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_InvestorRange(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
+	return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
 }
 
-///投资者范围
-// TThostFtdcInvestorRangeType char
-static int PyCThostFtdcOptionInstrMiniMarginField_set_InvestorRange(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorRange must be equal 1 bytes");
-        return -1;
-    }
-    self->data.InvestorRange = *buf;
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_BrokerID(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcOptionInstrMiniMarginField_set_BrokerID(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_InvestorID(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcOptionInstrMiniMarginField_set_InvestorID(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///单位（手）期权合约最小保证金
-// TThostFtdcMoneyType double
 static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_MinMargin(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MinMargin);
+	return PyFloat_FromDouble(self->data.MinMargin);
 }
 
-///单位（手）期权合约最小保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcOptionInstrMiniMarginField_set_MinMargin(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_ValueMethod(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.ValueMethod), 1);
+}
+
+static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_IsRelative(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsRelative);
+#else 
+	return PyInt_FromLong(self->data.IsRelative);
+#endif 
+}
+
+static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_InstrumentID(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
+	return PyBytes_FromString(self->data.InstrumentID);
+}
+
+static int PyCThostFtdcOptionInstrMiniMarginField_set_reserve1(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMiniMarginField_set_InvestorRange(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorRange must be less than 1 bytes");
+		return -1;
+	}
+	self->data.InvestorRange = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMiniMarginField_set_BrokerID(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMiniMarginField_set_InvestorID(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrMiniMarginField_set_MinMargin(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MinMargin Expected float");
         return -1;
@@ -302,112 +264,74 @@ static int PyCThostFtdcOptionInstrMiniMarginField_set_MinMargin(PyCThostFtdcOpti
     self->data.MinMargin = buf;
     return 0;
 }
-        
-///取值方式
-// TThostFtdcValueMethodType char
-static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_ValueMethod(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.ValueMethod), 1);
+
+static int PyCThostFtdcOptionInstrMiniMarginField_set_ValueMethod(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ValueMethod Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ValueMethod)) {
+		PyErr_SetString(PyExc_ValueError, "ValueMethod must be less than 1 bytes");
+		return -1;
+	}
+	self->data.ValueMethod = *buf;
+	return 0;
 }
 
-///取值方式
-// TThostFtdcValueMethodType char
-static int PyCThostFtdcOptionInstrMiniMarginField_set_ValueMethod(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ValueMethod Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ValueMethod)) {
-        PyErr_SetString(PyExc_ValueError, "ValueMethod must be equal 1 bytes");
-        return -1;
-    }
-    self->data.ValueMethod = *buf;
-    return 0;
-}
-            
-///是否跟随交易所收取
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_IsRelative(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsRelative);
-#else
-    return PyInt_FromLong(self->data.IsRelative);
-#endif
-}
-
-///是否跟随交易所收取
-// TThostFtdcBoolType int
-static int PyCThostFtdcOptionInstrMiniMarginField_set_IsRelative(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcOptionInstrMiniMarginField_set_IsRelative(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsRelative Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsRelative Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsRelative Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsRelative value out of range for C int");
-        return -1;
-    }
-    self->data.IsRelative = (int)buf;
-    return 0;
-}
-        
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcOptionInstrMiniMarginField_get_InstrumentID(PyCThostFtdcOptionInstrMiniMarginField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsRelative = (int)buf; 
+    return 0; 
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcOptionInstrMiniMarginField_set_InstrumentID(PyCThostFtdcOptionInstrMiniMarginField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
+static int PyCThostFtdcOptionInstrMiniMarginField_set_InstrumentID(PyCThostFtdcOptionInstrMiniMarginField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcOptionInstrMiniMarginField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_reserve1, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_reserve1, (char *)"reserve1", NULL},
-    ///投资者范围 
-    {(char *)"InvestorRange", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_InvestorRange, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_InvestorRange, (char *)"InvestorRange", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_BrokerID, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_InvestorID, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///单位（手）期权合约最小保证金 
-    {(char *)"MinMargin", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_MinMargin, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_MinMargin, (char *)"MinMargin", NULL},
-    ///取值方式 
-    {(char *)"ValueMethod", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_ValueMethod, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_ValueMethod, (char *)"ValueMethod", NULL},
-    ///是否跟随交易所收取 
-    {(char *)"IsRelative", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_IsRelative, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_IsRelative, (char *)"IsRelative", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_reserve1, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"InvestorRange", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_InvestorRange, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_InvestorRange, (char *)"InvestorRange", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_BrokerID, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_InvestorID, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"MinMargin", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_MinMargin, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_MinMargin, (char *)"MinMargin", NULL},
+	 {(char *)"ValueMethod", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_ValueMethod, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_ValueMethod, (char *)"ValueMethod", NULL},
+	 {(char *)"IsRelative", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_IsRelative, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_IsRelative, (char *)"IsRelative", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrMiniMarginField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrMiniMarginField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

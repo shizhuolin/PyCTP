@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSPMMProductParamField.h"
 
-///SPMM产品参数
+
 
 static PyObject *PyCThostFtdcSPMMProductParamField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSPMMProductParamField *self = (PyCThostFtdcSPMMProductParamField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSPMMProductParamField_new(PyTypeObject *type, PyObj
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,27 +18,23 @@ static int PyCThostFtdcSPMMProductParamField_init(PyCThostFtdcSPMMProductParamFi
 
     static const char *kwlist[] = {"ExchangeID", "ProductID", "CommodityID", "CommodityGroupID",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pSPMMProductParamField_ExchangeID = NULL;
+	Py_ssize_t pSPMMProductParamField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *SPMMProductParamField_ExchangeID = NULL;
-    Py_ssize_t SPMMProductParamField_ExchangeID_len = 0;
-            
-    ///产品代码
-    // TThostFtdcSPMMProductIDType char[41]
-    const char *SPMMProductParamField_ProductID = NULL;
-    Py_ssize_t SPMMProductParamField_ProductID_len = 0;
-            
-    ///商品组代码
-    // TThostFtdcSPMMProductIDType char[41]
-    const char *SPMMProductParamField_CommodityID = NULL;
-    Py_ssize_t SPMMProductParamField_CommodityID_len = 0;
-            
-    ///商品群代码
-    // TThostFtdcSPMMProductIDType char[41]
-    const char *SPMMProductParamField_CommodityGroupID = NULL;
-    Py_ssize_t SPMMProductParamField_CommodityGroupID_len = 0;
-            
+	//TThostFtdcSPMMProductIDType char[41]
+	const char *pSPMMProductParamField_ProductID = NULL;
+	Py_ssize_t pSPMMProductParamField_ProductID_len = 0;
+
+	//TThostFtdcSPMMProductIDType char[41]
+	const char *pSPMMProductParamField_CommodityID = NULL;
+	Py_ssize_t pSPMMProductParamField_CommodityID_len = 0;
+
+	//TThostFtdcSPMMProductIDType char[41]
+	const char *pSPMMProductParamField_CommodityGroupID = NULL;
+	Py_ssize_t pSPMMProductParamField_CommodityGroupID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#", (char **)kwlist
@@ -45,69 +42,57 @@ static int PyCThostFtdcSPMMProductParamField_init(PyCThostFtdcSPMMProductParamFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#", (char **)kwlist
 #endif
 
-        , &SPMMProductParamField_ExchangeID, &SPMMProductParamField_ExchangeID_len 
-        , &SPMMProductParamField_ProductID, &SPMMProductParamField_ProductID_len 
-        , &SPMMProductParamField_CommodityID, &SPMMProductParamField_CommodityID_len 
-        , &SPMMProductParamField_CommodityGroupID, &SPMMProductParamField_CommodityGroupID_len 
+		, &pSPMMProductParamField_ExchangeID, &pSPMMProductParamField_ExchangeID_len
+		, &pSPMMProductParamField_ProductID, &pSPMMProductParamField_ProductID_len
+		, &pSPMMProductParamField_CommodityID, &pSPMMProductParamField_CommodityID_len
+		, &pSPMMProductParamField_CommodityGroupID, &pSPMMProductParamField_CommodityGroupID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pSPMMProductParamField_ExchangeID != NULL) {
+		if(pSPMMProductParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pSPMMProductParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pSPMMProductParamField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pSPMMProductParamField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( SPMMProductParamField_ExchangeID != NULL ) {
-        if(SPMMProductParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SPMMProductParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, SPMMProductParamField_ExchangeID, SPMMProductParamField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, SPMMProductParamField_ExchangeID, sizeof(self->data.ExchangeID) );
-        SPMMProductParamField_ExchangeID = NULL;
-    }
-            
-    ///产品代码
-    // TThostFtdcSPMMProductIDType char[41]
-    if( SPMMProductParamField_ProductID != NULL ) {
-        if(SPMMProductParamField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", SPMMProductParamField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, SPMMProductParamField_ProductID, SPMMProductParamField_ProductID_len);        
-        strncpy(self->data.ProductID, SPMMProductParamField_ProductID, sizeof(self->data.ProductID) );
-        SPMMProductParamField_ProductID = NULL;
-    }
-            
-    ///商品组代码
-    // TThostFtdcSPMMProductIDType char[41]
-    if( SPMMProductParamField_CommodityID != NULL ) {
-        if(SPMMProductParamField_CommodityID_len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
-            PyErr_Format(PyExc_ValueError, "CommodityID too long: length=%zd (max allowed is %zd)", SPMMProductParamField_CommodityID_len, (Py_ssize_t)sizeof(self->data.CommodityID));
-            return -1;
-        }
-        // memset(self->data.CommodityID, 0, sizeof(self->data.CommodityID));
-        // memcpy(self->data.CommodityID, SPMMProductParamField_CommodityID, SPMMProductParamField_CommodityID_len);        
-        strncpy(self->data.CommodityID, SPMMProductParamField_CommodityID, sizeof(self->data.CommodityID) );
-        SPMMProductParamField_CommodityID = NULL;
-    }
-            
-    ///商品群代码
-    // TThostFtdcSPMMProductIDType char[41]
-    if( SPMMProductParamField_CommodityGroupID != NULL ) {
-        if(SPMMProductParamField_CommodityGroupID_len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
-            PyErr_Format(PyExc_ValueError, "CommodityGroupID too long: length=%zd (max allowed is %zd)", SPMMProductParamField_CommodityGroupID_len, (Py_ssize_t)sizeof(self->data.CommodityGroupID));
-            return -1;
-        }
-        // memset(self->data.CommodityGroupID, 0, sizeof(self->data.CommodityGroupID));
-        // memcpy(self->data.CommodityGroupID, SPMMProductParamField_CommodityGroupID, SPMMProductParamField_CommodityGroupID_len);        
-        strncpy(self->data.CommodityGroupID, SPMMProductParamField_CommodityGroupID, sizeof(self->data.CommodityGroupID) );
-        SPMMProductParamField_CommodityGroupID = NULL;
-    }
-            
+	//TThostFtdcSPMMProductIDType char[41]
+	if(pSPMMProductParamField_ProductID != NULL) {
+		if(pSPMMProductParamField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pSPMMProductParamField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pSPMMProductParamField_ProductID, sizeof(self->data.ProductID) );
+		pSPMMProductParamField_ProductID = NULL;
+	}
+
+	//TThostFtdcSPMMProductIDType char[41]
+	if(pSPMMProductParamField_CommodityID != NULL) {
+		if(pSPMMProductParamField_CommodityID_len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
+			PyErr_Format(PyExc_ValueError, "CommodityID too long: length=%zd (max allowed is %zd)", pSPMMProductParamField_CommodityID_len, (Py_ssize_t)sizeof(self->data.CommodityID));
+			return -1;
+		}
+		strncpy(self->data.CommodityID, pSPMMProductParamField_CommodityID, sizeof(self->data.CommodityID) );
+		pSPMMProductParamField_CommodityID = NULL;
+	}
+
+	//TThostFtdcSPMMProductIDType char[41]
+	if(pSPMMProductParamField_CommodityGroupID != NULL) {
+		if(pSPMMProductParamField_CommodityGroupID_len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
+			PyErr_Format(PyExc_ValueError, "CommodityGroupID too long: length=%zd (max allowed is %zd)", pSPMMProductParamField_CommodityGroupID_len, (Py_ssize_t)sizeof(self->data.CommodityGroupID));
+			return -1;
+		}
+		strncpy(self->data.CommodityGroupID, pSPMMProductParamField_CommodityGroupID, sizeof(self->data.CommodityGroupID) );
+		pSPMMProductParamField_CommodityGroupID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -124,10 +109,10 @@ static PyObject *PyCThostFtdcSPMMProductParamField_repr(PyCThostFtdcSPMMProductP
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
-        ,"CommodityID", self->data.CommodityID//, (Py_ssize_t)sizeof(self->data.CommodityID) 
-        ,"CommodityGroupID", self->data.CommodityGroupID//, (Py_ssize_t)sizeof(self->data.CommodityGroupID) 
+		, "ExchangeID", self->data.ExchangeID 
+		, "ProductID", self->data.ProductID 
+		, "CommodityID", self->data.CommodityID 
+		, "CommodityGroupID", self->data.CommodityGroupID 
 
 
 		);
@@ -140,121 +125,89 @@ static PyObject *PyCThostFtdcSPMMProductParamField_repr(PyCThostFtdcSPMMProductP
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcSPMMProductParamField_get_ExchangeID(PyCThostFtdcSPMMProductParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcSPMMProductParamField_set_ExchangeID(PyCThostFtdcSPMMProductParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///产品代码
-// TThostFtdcSPMMProductIDType char[41]
 static PyObject *PyCThostFtdcSPMMProductParamField_get_ProductID(PyCThostFtdcSPMMProductParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+	return PyBytes_FromString(self->data.ProductID);
 }
 
-///产品代码
-// TThostFtdcSPMMProductIDType char[41]
-static int PyCThostFtdcSPMMProductParamField_set_ProductID(PyCThostFtdcSPMMProductParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
-}
-            
-///商品组代码
-// TThostFtdcSPMMProductIDType char[41]
 static PyObject *PyCThostFtdcSPMMProductParamField_get_CommodityID(PyCThostFtdcSPMMProductParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CommodityID, (Py_ssize_t)sizeof(self->data.CommodityID));
-    return PyBytes_FromString(self->data.CommodityID);
+	return PyBytes_FromString(self->data.CommodityID);
 }
 
-///商品组代码
-// TThostFtdcSPMMProductIDType char[41]
-static int PyCThostFtdcSPMMProductParamField_set_CommodityID(PyCThostFtdcSPMMProductParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CommodityID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
-        PyErr_SetString(PyExc_ValueError, "CommodityID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.CommodityID, 0, sizeof(self->data.CommodityID));
-    // memcpy(self->data.CommodityID, buf, len);
-    strncpy(self->data.CommodityID, buf, sizeof(self->data.CommodityID));
-    return 0;
-}
-            
-///商品群代码
-// TThostFtdcSPMMProductIDType char[41]
 static PyObject *PyCThostFtdcSPMMProductParamField_get_CommodityGroupID(PyCThostFtdcSPMMProductParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CommodityGroupID, (Py_ssize_t)sizeof(self->data.CommodityGroupID));
-    return PyBytes_FromString(self->data.CommodityGroupID);
+	return PyBytes_FromString(self->data.CommodityGroupID);
 }
 
-///商品群代码
-// TThostFtdcSPMMProductIDType char[41]
-static int PyCThostFtdcSPMMProductParamField_set_CommodityGroupID(PyCThostFtdcSPMMProductParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CommodityGroupID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
-        PyErr_SetString(PyExc_ValueError, "CommodityGroupID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.CommodityGroupID, 0, sizeof(self->data.CommodityGroupID));
-    // memcpy(self->data.CommodityGroupID, buf, len);
-    strncpy(self->data.CommodityGroupID, buf, sizeof(self->data.CommodityGroupID));
-    return 0;
+static int PyCThostFtdcSPMMProductParamField_set_ExchangeID(PyCThostFtdcSPMMProductParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcSPMMProductParamField_set_ProductID(PyCThostFtdcSPMMProductParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
+}
+
+static int PyCThostFtdcSPMMProductParamField_set_CommodityID(PyCThostFtdcSPMMProductParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CommodityID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
+		PyErr_SetString(PyExc_ValueError, "CommodityID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.CommodityID, buf, sizeof(self->data.CommodityID));
+	return 0;
+}
+
+static int PyCThostFtdcSPMMProductParamField_set_CommodityGroupID(PyCThostFtdcSPMMProductParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CommodityGroupID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
+		PyErr_SetString(PyExc_ValueError, "CommodityGroupID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.CommodityGroupID, buf, sizeof(self->data.CommodityGroupID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcSPMMProductParamField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcSPMMProductParamField_get_ExchangeID, (setter)PyCThostFtdcSPMMProductParamField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///产品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcSPMMProductParamField_get_ProductID, (setter)PyCThostFtdcSPMMProductParamField_set_ProductID, (char *)"ProductID", NULL},
-    ///商品组代码 
-    {(char *)"CommodityID", (getter)PyCThostFtdcSPMMProductParamField_get_CommodityID, (setter)PyCThostFtdcSPMMProductParamField_set_CommodityID, (char *)"CommodityID", NULL},
-    ///商品群代码 
-    {(char *)"CommodityGroupID", (getter)PyCThostFtdcSPMMProductParamField_get_CommodityGroupID, (setter)PyCThostFtdcSPMMProductParamField_set_CommodityGroupID, (char *)"CommodityGroupID", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcSPMMProductParamField_get_ExchangeID, (setter)PyCThostFtdcSPMMProductParamField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcSPMMProductParamField_get_ProductID, (setter)PyCThostFtdcSPMMProductParamField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"CommodityID", (getter)PyCThostFtdcSPMMProductParamField_get_CommodityID, (setter)PyCThostFtdcSPMMProductParamField_set_CommodityID, (char *)"CommodityID", NULL},
+	 {(char *)"CommodityGroupID", (getter)PyCThostFtdcSPMMProductParamField_get_CommodityGroupID, (setter)PyCThostFtdcSPMMProductParamField_set_CommodityGroupID, (char *)"CommodityGroupID", NULL},
 
     {NULL}
 };

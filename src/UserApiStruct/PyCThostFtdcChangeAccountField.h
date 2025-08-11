@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///银期变更银行账号信息
+
 
 typedef struct PyCThostFtdcChangeAccountField {
     PyObject_HEAD

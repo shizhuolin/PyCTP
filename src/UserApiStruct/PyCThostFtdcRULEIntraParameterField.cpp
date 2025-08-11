@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcRULEIntraParameterField.h"
 
-///RULE品种内对锁仓折扣参数
+
 
 static PyObject *PyCThostFtdcRULEIntraParameterField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcRULEIntraParameterField *self = (PyCThostFtdcRULEIntraParameterField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcRULEIntraParameterField_new(PyTypeObject *type, PyO
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,39 +18,32 @@ static int PyCThostFtdcRULEIntraParameterField_init(PyCThostFtdcRULEIntraParamet
 
     static const char *kwlist[] = {"TradingDay", "ExchangeID", "ProdFamilyCode", "StdInstrumentID", "StdInstrMargin", "UsualIntraRate", "DeliveryIntraRate",  NULL};
 
+	//TThostFtdcDateType char[9]
+	const char *pRULEIntraParameterField_TradingDay = NULL;
+	Py_ssize_t pRULEIntraParameterField_TradingDay_len = 0;
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    const char *RULEIntraParameterField_TradingDay = NULL;
-    Py_ssize_t RULEIntraParameterField_TradingDay_len = 0;
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *RULEIntraParameterField_ExchangeID = NULL;
-    Py_ssize_t RULEIntraParameterField_ExchangeID_len = 0;
-            
-    ///品种代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *RULEIntraParameterField_ProdFamilyCode = NULL;
-    Py_ssize_t RULEIntraParameterField_ProdFamilyCode_len = 0;
-            
-    ///标准合约
-    // TThostFtdcInstrumentIDType char[81]
-    const char *RULEIntraParameterField_StdInstrumentID = NULL;
-    Py_ssize_t RULEIntraParameterField_StdInstrumentID_len = 0;
-            
-    ///标准合约保证金
-    // TThostFtdcMoneyType double
-    double RULEIntraParameterField_StdInstrMargin = 0.0;
-        
-    ///一般月份合约组合保证金系数
-    // TThostFtdcRatioType double
-    double RULEIntraParameterField_UsualIntraRate = 0.0;
-        
-    ///临近交割合约组合保证金系数
-    // TThostFtdcRatioType double
-    double RULEIntraParameterField_DeliveryIntraRate = 0.0;
-        
+	//TThostFtdcExchangeIDType char[9]
+	const char *pRULEIntraParameterField_ExchangeID = NULL;
+	Py_ssize_t pRULEIntraParameterField_ExchangeID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pRULEIntraParameterField_ProdFamilyCode = NULL;
+	Py_ssize_t pRULEIntraParameterField_ProdFamilyCode_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pRULEIntraParameterField_StdInstrumentID = NULL;
+	Py_ssize_t pRULEIntraParameterField_StdInstrumentID_len = 0;
+
+	//TThostFtdcMoneyType double
+	double pRULEIntraParameterField_StdInstrMargin = 0.0;
+
+	//TThostFtdcRatioType double
+	double pRULEIntraParameterField_UsualIntraRate = 0.0;
+
+	//TThostFtdcRatioType double
+	double pRULEIntraParameterField_DeliveryIntraRate = 0.0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#ddd", (char **)kwlist
@@ -57,84 +51,66 @@ static int PyCThostFtdcRULEIntraParameterField_init(PyCThostFtdcRULEIntraParamet
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#ddd", (char **)kwlist
 #endif
 
-        , &RULEIntraParameterField_TradingDay, &RULEIntraParameterField_TradingDay_len 
-        , &RULEIntraParameterField_ExchangeID, &RULEIntraParameterField_ExchangeID_len 
-        , &RULEIntraParameterField_ProdFamilyCode, &RULEIntraParameterField_ProdFamilyCode_len 
-        , &RULEIntraParameterField_StdInstrumentID, &RULEIntraParameterField_StdInstrumentID_len 
-        , &RULEIntraParameterField_StdInstrMargin 
-        , &RULEIntraParameterField_UsualIntraRate 
-        , &RULEIntraParameterField_DeliveryIntraRate 
+		, &pRULEIntraParameterField_TradingDay, &pRULEIntraParameterField_TradingDay_len
+		, &pRULEIntraParameterField_ExchangeID, &pRULEIntraParameterField_ExchangeID_len
+		, &pRULEIntraParameterField_ProdFamilyCode, &pRULEIntraParameterField_ProdFamilyCode_len
+		, &pRULEIntraParameterField_StdInstrumentID, &pRULEIntraParameterField_StdInstrumentID_len
+		, &pRULEIntraParameterField_StdInstrMargin
+		, &pRULEIntraParameterField_UsualIntraRate
+		, &pRULEIntraParameterField_DeliveryIntraRate
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDateType char[9]
+	if(pRULEIntraParameterField_TradingDay != NULL) {
+		if(pRULEIntraParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pRULEIntraParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pRULEIntraParameterField_TradingDay, sizeof(self->data.TradingDay) );
+		pRULEIntraParameterField_TradingDay = NULL;
+	}
 
-    ///交易日
-    // TThostFtdcDateType char[9]
-    if( RULEIntraParameterField_TradingDay != NULL ) {
-        if(RULEIntraParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", RULEIntraParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, RULEIntraParameterField_TradingDay, RULEIntraParameterField_TradingDay_len);        
-        strncpy(self->data.TradingDay, RULEIntraParameterField_TradingDay, sizeof(self->data.TradingDay) );
-        RULEIntraParameterField_TradingDay = NULL;
-    }
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( RULEIntraParameterField_ExchangeID != NULL ) {
-        if(RULEIntraParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", RULEIntraParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, RULEIntraParameterField_ExchangeID, RULEIntraParameterField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, RULEIntraParameterField_ExchangeID, sizeof(self->data.ExchangeID) );
-        RULEIntraParameterField_ExchangeID = NULL;
-    }
-            
-    ///品种代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( RULEIntraParameterField_ProdFamilyCode != NULL ) {
-        if(RULEIntraParameterField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
-            PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", RULEIntraParameterField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
-            return -1;
-        }
-        // memset(self->data.ProdFamilyCode, 0, sizeof(self->data.ProdFamilyCode));
-        // memcpy(self->data.ProdFamilyCode, RULEIntraParameterField_ProdFamilyCode, RULEIntraParameterField_ProdFamilyCode_len);        
-        strncpy(self->data.ProdFamilyCode, RULEIntraParameterField_ProdFamilyCode, sizeof(self->data.ProdFamilyCode) );
-        RULEIntraParameterField_ProdFamilyCode = NULL;
-    }
-            
-    ///标准合约
-    // TThostFtdcInstrumentIDType char[81]
-    if( RULEIntraParameterField_StdInstrumentID != NULL ) {
-        if(RULEIntraParameterField_StdInstrumentID_len > (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "StdInstrumentID too long: length=%zd (max allowed is %zd)", RULEIntraParameterField_StdInstrumentID_len, (Py_ssize_t)sizeof(self->data.StdInstrumentID));
-            return -1;
-        }
-        // memset(self->data.StdInstrumentID, 0, sizeof(self->data.StdInstrumentID));
-        // memcpy(self->data.StdInstrumentID, RULEIntraParameterField_StdInstrumentID, RULEIntraParameterField_StdInstrumentID_len);        
-        strncpy(self->data.StdInstrumentID, RULEIntraParameterField_StdInstrumentID, sizeof(self->data.StdInstrumentID) );
-        RULEIntraParameterField_StdInstrumentID = NULL;
-    }
-            
-    ///标准合约保证金
-    // TThostFtdcMoneyType double
-    self->data.StdInstrMargin = RULEIntraParameterField_StdInstrMargin;
-        
-    ///一般月份合约组合保证金系数
-    // TThostFtdcRatioType double
-    self->data.UsualIntraRate = RULEIntraParameterField_UsualIntraRate;
-        
-    ///临近交割合约组合保证金系数
-    // TThostFtdcRatioType double
-    self->data.DeliveryIntraRate = RULEIntraParameterField_DeliveryIntraRate;
-        
+	//TThostFtdcExchangeIDType char[9]
+	if(pRULEIntraParameterField_ExchangeID != NULL) {
+		if(pRULEIntraParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pRULEIntraParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pRULEIntraParameterField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pRULEIntraParameterField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pRULEIntraParameterField_ProdFamilyCode != NULL) {
+		if(pRULEIntraParameterField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+			PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", pRULEIntraParameterField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
+			return -1;
+		}
+		strncpy(self->data.ProdFamilyCode, pRULEIntraParameterField_ProdFamilyCode, sizeof(self->data.ProdFamilyCode) );
+		pRULEIntraParameterField_ProdFamilyCode = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pRULEIntraParameterField_StdInstrumentID != NULL) {
+		if(pRULEIntraParameterField_StdInstrumentID_len > (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "StdInstrumentID too long: length=%zd (max allowed is %zd)", pRULEIntraParameterField_StdInstrumentID_len, (Py_ssize_t)sizeof(self->data.StdInstrumentID));
+			return -1;
+		}
+		strncpy(self->data.StdInstrumentID, pRULEIntraParameterField_StdInstrumentID, sizeof(self->data.StdInstrumentID) );
+		pRULEIntraParameterField_StdInstrumentID = NULL;
+	}
+
+	//TThostFtdcMoneyType double
+	self->data.StdInstrMargin = pRULEIntraParameterField_StdInstrMargin;
+	//TThostFtdcRatioType double
+	self->data.UsualIntraRate = pRULEIntraParameterField_UsualIntraRate;
+	//TThostFtdcRatioType double
+	self->data.DeliveryIntraRate = pRULEIntraParameterField_DeliveryIntraRate;
+
 
     return 0;
 }
@@ -151,13 +127,13 @@ static PyObject *PyCThostFtdcRULEIntraParameterField_repr(PyCThostFtdcRULEIntraP
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:d,s:d,s:d}"
 #endif
 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"ProdFamilyCode", self->data.ProdFamilyCode//, (Py_ssize_t)sizeof(self->data.ProdFamilyCode) 
-        ,"StdInstrumentID", self->data.StdInstrumentID//, (Py_ssize_t)sizeof(self->data.StdInstrumentID) 
-        ,"StdInstrMargin", self->data.StdInstrMargin 
-        ,"UsualIntraRate", self->data.UsualIntraRate 
-        ,"DeliveryIntraRate", self->data.DeliveryIntraRate 
+		, "TradingDay", self->data.TradingDay 
+		, "ExchangeID", self->data.ExchangeID 
+		, "ProdFamilyCode", self->data.ProdFamilyCode 
+		, "StdInstrumentID", self->data.StdInstrumentID 
+		, "StdInstrMargin", self->data.StdInstrMargin
+		, "UsualIntraRate", self->data.UsualIntraRate
+		, "DeliveryIntraRate", self->data.DeliveryIntraRate
 
 
 		);
@@ -170,120 +146,95 @@ static PyObject *PyCThostFtdcRULEIntraParameterField_repr(PyCThostFtdcRULEIntraP
     return PyObject_Repr(obj);
 }
 
-
-///交易日
-// TThostFtdcDateType char[9]
 static PyObject *PyCThostFtdcRULEIntraParameterField_get_TradingDay(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易日
-// TThostFtdcDateType char[9]
-static int PyCThostFtdcRULEIntraParameterField_set_TradingDay(PyCThostFtdcRULEIntraParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
-}
-            
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcRULEIntraParameterField_get_ExchangeID(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcRULEIntraParameterField_set_ExchangeID(PyCThostFtdcRULEIntraParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///品种代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcRULEIntraParameterField_get_ProdFamilyCode(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProdFamilyCode, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
-    return PyBytes_FromString(self->data.ProdFamilyCode);
+	return PyBytes_FromString(self->data.ProdFamilyCode);
 }
 
-///品种代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcRULEIntraParameterField_set_ProdFamilyCode(PyCThostFtdcRULEIntraParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProdFamilyCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
-        PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ProdFamilyCode, 0, sizeof(self->data.ProdFamilyCode));
-    // memcpy(self->data.ProdFamilyCode, buf, len);
-    strncpy(self->data.ProdFamilyCode, buf, sizeof(self->data.ProdFamilyCode));
-    return 0;
-}
-            
-///标准合约
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcRULEIntraParameterField_get_StdInstrumentID(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.StdInstrumentID, (Py_ssize_t)sizeof(self->data.StdInstrumentID));
-    return PyBytes_FromString(self->data.StdInstrumentID);
+	return PyBytes_FromString(self->data.StdInstrumentID);
 }
 
-///标准合约
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcRULEIntraParameterField_set_StdInstrumentID(PyCThostFtdcRULEIntraParameterField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "StdInstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "StdInstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.StdInstrumentID, 0, sizeof(self->data.StdInstrumentID));
-    // memcpy(self->data.StdInstrumentID, buf, len);
-    strncpy(self->data.StdInstrumentID, buf, sizeof(self->data.StdInstrumentID));
-    return 0;
-}
-            
-///标准合约保证金
-// TThostFtdcMoneyType double
 static PyObject *PyCThostFtdcRULEIntraParameterField_get_StdInstrMargin(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.StdInstrMargin);
+	return PyFloat_FromDouble(self->data.StdInstrMargin);
 }
 
-///标准合约保证金
-// TThostFtdcMoneyType double
-static int PyCThostFtdcRULEIntraParameterField_set_StdInstrMargin(PyCThostFtdcRULEIntraParameterField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcRULEIntraParameterField_get_UsualIntraRate(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.UsualIntraRate);
+}
+
+static PyObject *PyCThostFtdcRULEIntraParameterField_get_DeliveryIntraRate(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.DeliveryIntraRate);
+}
+
+static int PyCThostFtdcRULEIntraParameterField_set_TradingDay(PyCThostFtdcRULEIntraParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
+}
+
+static int PyCThostFtdcRULEIntraParameterField_set_ExchangeID(PyCThostFtdcRULEIntraParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcRULEIntraParameterField_set_ProdFamilyCode(PyCThostFtdcRULEIntraParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProdFamilyCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+		PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProdFamilyCode, buf, sizeof(self->data.ProdFamilyCode));
+	return 0;
+}
+
+static int PyCThostFtdcRULEIntraParameterField_set_StdInstrumentID(PyCThostFtdcRULEIntraParameterField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "StdInstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "StdInstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.StdInstrumentID, buf, sizeof(self->data.StdInstrumentID));
+	return 0;
+}
+
+static int PyCThostFtdcRULEIntraParameterField_set_StdInstrMargin(PyCThostFtdcRULEIntraParameterField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "StdInstrMargin Expected float");
         return -1;
@@ -295,16 +246,8 @@ static int PyCThostFtdcRULEIntraParameterField_set_StdInstrMargin(PyCThostFtdcRU
     self->data.StdInstrMargin = buf;
     return 0;
 }
-        
-///一般月份合约组合保证金系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcRULEIntraParameterField_get_UsualIntraRate(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.UsualIntraRate);
-}
 
-///一般月份合约组合保证金系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcRULEIntraParameterField_set_UsualIntraRate(PyCThostFtdcRULEIntraParameterField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcRULEIntraParameterField_set_UsualIntraRate(PyCThostFtdcRULEIntraParameterField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "UsualIntraRate Expected float");
         return -1;
@@ -316,16 +259,8 @@ static int PyCThostFtdcRULEIntraParameterField_set_UsualIntraRate(PyCThostFtdcRU
     self->data.UsualIntraRate = buf;
     return 0;
 }
-        
-///临近交割合约组合保证金系数
-// TThostFtdcRatioType double
-static PyObject *PyCThostFtdcRULEIntraParameterField_get_DeliveryIntraRate(PyCThostFtdcRULEIntraParameterField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.DeliveryIntraRate);
-}
 
-///临近交割合约组合保证金系数
-// TThostFtdcRatioType double
-static int PyCThostFtdcRULEIntraParameterField_set_DeliveryIntraRate(PyCThostFtdcRULEIntraParameterField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcRULEIntraParameterField_set_DeliveryIntraRate(PyCThostFtdcRULEIntraParameterField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "DeliveryIntraRate Expected float");
         return -1;
@@ -337,23 +272,17 @@ static int PyCThostFtdcRULEIntraParameterField_set_DeliveryIntraRate(PyCThostFtd
     self->data.DeliveryIntraRate = buf;
     return 0;
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcRULEIntraParameterField_getset[] = {
-    ///交易日 
-    {(char *)"TradingDay", (getter)PyCThostFtdcRULEIntraParameterField_get_TradingDay, (setter)PyCThostFtdcRULEIntraParameterField_set_TradingDay, (char *)"TradingDay", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcRULEIntraParameterField_get_ExchangeID, (setter)PyCThostFtdcRULEIntraParameterField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///品种代码 
-    {(char *)"ProdFamilyCode", (getter)PyCThostFtdcRULEIntraParameterField_get_ProdFamilyCode, (setter)PyCThostFtdcRULEIntraParameterField_set_ProdFamilyCode, (char *)"ProdFamilyCode", NULL},
-    ///标准合约 
-    {(char *)"StdInstrumentID", (getter)PyCThostFtdcRULEIntraParameterField_get_StdInstrumentID, (setter)PyCThostFtdcRULEIntraParameterField_set_StdInstrumentID, (char *)"StdInstrumentID", NULL},
-    ///标准合约保证金 
-    {(char *)"StdInstrMargin", (getter)PyCThostFtdcRULEIntraParameterField_get_StdInstrMargin, (setter)PyCThostFtdcRULEIntraParameterField_set_StdInstrMargin, (char *)"StdInstrMargin", NULL},
-    ///一般月份合约组合保证金系数 
-    {(char *)"UsualIntraRate", (getter)PyCThostFtdcRULEIntraParameterField_get_UsualIntraRate, (setter)PyCThostFtdcRULEIntraParameterField_set_UsualIntraRate, (char *)"UsualIntraRate", NULL},
-    ///临近交割合约组合保证金系数 
-    {(char *)"DeliveryIntraRate", (getter)PyCThostFtdcRULEIntraParameterField_get_DeliveryIntraRate, (setter)PyCThostFtdcRULEIntraParameterField_set_DeliveryIntraRate, (char *)"DeliveryIntraRate", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcRULEIntraParameterField_get_TradingDay, (setter)PyCThostFtdcRULEIntraParameterField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcRULEIntraParameterField_get_ExchangeID, (setter)PyCThostFtdcRULEIntraParameterField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"ProdFamilyCode", (getter)PyCThostFtdcRULEIntraParameterField_get_ProdFamilyCode, (setter)PyCThostFtdcRULEIntraParameterField_set_ProdFamilyCode, (char *)"ProdFamilyCode", NULL},
+	 {(char *)"StdInstrumentID", (getter)PyCThostFtdcRULEIntraParameterField_get_StdInstrumentID, (setter)PyCThostFtdcRULEIntraParameterField_set_StdInstrumentID, (char *)"StdInstrumentID", NULL},
+	 {(char *)"StdInstrMargin", (getter)PyCThostFtdcRULEIntraParameterField_get_StdInstrMargin, (setter)PyCThostFtdcRULEIntraParameterField_set_StdInstrMargin, (char *)"StdInstrMargin", NULL},
+	 {(char *)"UsualIntraRate", (getter)PyCThostFtdcRULEIntraParameterField_get_UsualIntraRate, (setter)PyCThostFtdcRULEIntraParameterField_set_UsualIntraRate, (char *)"UsualIntraRate", NULL},
+	 {(char *)"DeliveryIntraRate", (getter)PyCThostFtdcRULEIntraParameterField_get_DeliveryIntraRate, (setter)PyCThostFtdcRULEIntraParameterField_set_DeliveryIntraRate, (char *)"DeliveryIntraRate", NULL},
 
     {NULL}
 };

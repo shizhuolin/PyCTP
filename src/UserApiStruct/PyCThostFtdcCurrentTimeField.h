@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///当前时间
+
 
 typedef struct PyCThostFtdcCurrentTimeField {
     PyObject_HEAD

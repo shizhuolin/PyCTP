@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者申报费阶梯收取记录查询
+
 
 typedef struct PyCThostFtdcQryInvestorInfoCommRecField {
     PyObject_HEAD

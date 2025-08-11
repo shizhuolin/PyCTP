@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQrySPMMInstParamField.h"
 
-///SPMM合约参数查询
+
 
 static PyObject *PyCThostFtdcQrySPMMInstParamField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQrySPMMInstParamField *self = (PyCThostFtdcQrySPMMInstParamField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQrySPMMInstParamField_new(PyTypeObject *type, PyObj
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQrySPMMInstParamField_init(PyCThostFtdcQrySPMMInstParamFi
 
     static const char *kwlist[] = {"InstrumentID",  NULL};
 
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQrySPMMInstParamField_InstrumentID = NULL;
+	Py_ssize_t pQrySPMMInstParamField_InstrumentID_len = 0;
 
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QrySPMMInstParamField_InstrumentID = NULL;
-    Py_ssize_t QrySPMMInstParamField_InstrumentID_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQrySPMMInstParamField_init(PyCThostFtdcQrySPMMInstParamFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QrySPMMInstParamField_InstrumentID, &QrySPMMInstParamField_InstrumentID_len 
+		, &pQrySPMMInstParamField_InstrumentID, &pQrySPMMInstParamField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQrySPMMInstParamField_InstrumentID != NULL) {
+		if(pQrySPMMInstParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pQrySPMMInstParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pQrySPMMInstParamField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pQrySPMMInstParamField_InstrumentID = NULL;
+	}
 
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QrySPMMInstParamField_InstrumentID != NULL ) {
-        if(QrySPMMInstParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QrySPMMInstParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, QrySPMMInstParamField_InstrumentID, QrySPMMInstParamField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, QrySPMMInstParamField_InstrumentID, sizeof(self->data.InstrumentID) );
-        QrySPMMInstParamField_InstrumentID = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQrySPMMInstParamField_repr(PyCThostFtdcQrySPMMInstP
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQrySPMMInstParamField_repr(PyCThostFtdcQrySPMMInstP
     return PyObject_Repr(obj);
 }
 
-
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQrySPMMInstParamField_get_InstrumentID(PyCThostFtdcQrySPMMInstParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQrySPMMInstParamField_set_InstrumentID(PyCThostFtdcQrySPMMInstParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
+static int PyCThostFtdcQrySPMMInstParamField_set_InstrumentID(PyCThostFtdcQrySPMMInstParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQrySPMMInstParamField_getset[] = {
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcQrySPMMInstParamField_get_InstrumentID, (setter)PyCThostFtdcQrySPMMInstParamField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcQrySPMMInstParamField_get_InstrumentID, (setter)PyCThostFtdcQrySPMMInstParamField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

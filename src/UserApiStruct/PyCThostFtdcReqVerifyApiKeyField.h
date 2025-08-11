@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///api给front的验证key的请求
+
 
 typedef struct PyCThostFtdcReqVerifyApiKeyField {
     PyObject_HEAD

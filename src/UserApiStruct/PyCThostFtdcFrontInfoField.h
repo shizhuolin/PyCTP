@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///前置信息
+
 
 typedef struct PyCThostFtdcFrontInfoField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryPartBrokerField.h"
 
-///查询经纪公司会员代码
+
 
 static PyObject *PyCThostFtdcQryPartBrokerField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryPartBrokerField *self = (PyCThostFtdcQryPartBrokerField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryPartBrokerField_new(PyTypeObject *type, PyObject
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,22 +18,19 @@ static int PyCThostFtdcQryPartBrokerField_init(PyCThostFtdcQryPartBrokerField *s
 
     static const char *kwlist[] = {"ExchangeID", "BrokerID", "ParticipantID",  NULL};
 
+	//TThostFtdcExchangeIDType char[9]
+	const char *pQryPartBrokerField_ExchangeID = NULL;
+	Py_ssize_t pQryPartBrokerField_ExchangeID_len = 0;
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *QryPartBrokerField_ExchangeID = NULL;
-    Py_ssize_t QryPartBrokerField_ExchangeID_len = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QryPartBrokerField_BrokerID = NULL;
-    Py_ssize_t QryPartBrokerField_BrokerID_len = 0;
-            
-    ///会员代码
-    // TThostFtdcParticipantIDType char[11]
-    const char *QryPartBrokerField_ParticipantID = NULL;
-    Py_ssize_t QryPartBrokerField_ParticipantID_len = 0;
-            
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQryPartBrokerField_BrokerID = NULL;
+	Py_ssize_t pQryPartBrokerField_BrokerID_len = 0;
+
+	//TThostFtdcParticipantIDType char[11]
+	const char *pQryPartBrokerField_ParticipantID = NULL;
+	Py_ssize_t pQryPartBrokerField_ParticipantID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#", (char **)kwlist
@@ -40,55 +38,46 @@ static int PyCThostFtdcQryPartBrokerField_init(PyCThostFtdcQryPartBrokerField *s
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#", (char **)kwlist
 #endif
 
-        , &QryPartBrokerField_ExchangeID, &QryPartBrokerField_ExchangeID_len 
-        , &QryPartBrokerField_BrokerID, &QryPartBrokerField_BrokerID_len 
-        , &QryPartBrokerField_ParticipantID, &QryPartBrokerField_ParticipantID_len 
+		, &pQryPartBrokerField_ExchangeID, &pQryPartBrokerField_ExchangeID_len
+		, &pQryPartBrokerField_BrokerID, &pQryPartBrokerField_BrokerID_len
+		, &pQryPartBrokerField_ParticipantID, &pQryPartBrokerField_ParticipantID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcExchangeIDType char[9]
+	if(pQryPartBrokerField_ExchangeID != NULL) {
+		if(pQryPartBrokerField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pQryPartBrokerField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pQryPartBrokerField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pQryPartBrokerField_ExchangeID = NULL;
+	}
 
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( QryPartBrokerField_ExchangeID != NULL ) {
-        if(QryPartBrokerField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryPartBrokerField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, QryPartBrokerField_ExchangeID, QryPartBrokerField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, QryPartBrokerField_ExchangeID, sizeof(self->data.ExchangeID) );
-        QryPartBrokerField_ExchangeID = NULL;
-    }
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QryPartBrokerField_BrokerID != NULL ) {
-        if(QryPartBrokerField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryPartBrokerField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QryPartBrokerField_BrokerID, QryPartBrokerField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QryPartBrokerField_BrokerID, sizeof(self->data.BrokerID) );
-        QryPartBrokerField_BrokerID = NULL;
-    }
-            
-    ///会员代码
-    // TThostFtdcParticipantIDType char[11]
-    if( QryPartBrokerField_ParticipantID != NULL ) {
-        if(QryPartBrokerField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
-            PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", QryPartBrokerField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
-            return -1;
-        }
-        // memset(self->data.ParticipantID, 0, sizeof(self->data.ParticipantID));
-        // memcpy(self->data.ParticipantID, QryPartBrokerField_ParticipantID, QryPartBrokerField_ParticipantID_len);        
-        strncpy(self->data.ParticipantID, QryPartBrokerField_ParticipantID, sizeof(self->data.ParticipantID) );
-        QryPartBrokerField_ParticipantID = NULL;
-    }
-            
+	//TThostFtdcBrokerIDType char[11]
+	if(pQryPartBrokerField_BrokerID != NULL) {
+		if(pQryPartBrokerField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQryPartBrokerField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQryPartBrokerField_BrokerID, sizeof(self->data.BrokerID) );
+		pQryPartBrokerField_BrokerID = NULL;
+	}
+
+	//TThostFtdcParticipantIDType char[11]
+	if(pQryPartBrokerField_ParticipantID != NULL) {
+		if(pQryPartBrokerField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+			PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", pQryPartBrokerField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
+			return -1;
+		}
+		strncpy(self->data.ParticipantID, pQryPartBrokerField_ParticipantID, sizeof(self->data.ParticipantID) );
+		pQryPartBrokerField_ParticipantID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -105,9 +94,9 @@ static PyObject *PyCThostFtdcQryPartBrokerField_repr(PyCThostFtdcQryPartBrokerFi
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s}"
 #endif
 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"ParticipantID", self->data.ParticipantID//, (Py_ssize_t)sizeof(self->data.ParticipantID) 
+		, "ExchangeID", self->data.ExchangeID 
+		, "BrokerID", self->data.BrokerID 
+		, "ParticipantID", self->data.ParticipantID 
 
 
 		);
@@ -120,93 +109,69 @@ static PyObject *PyCThostFtdcQryPartBrokerField_repr(PyCThostFtdcQryPartBrokerFi
     return PyObject_Repr(obj);
 }
 
-
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcQryPartBrokerField_get_ExchangeID(PyCThostFtdcQryPartBrokerField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcQryPartBrokerField_set_ExchangeID(PyCThostFtdcQryPartBrokerField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQryPartBrokerField_get_BrokerID(PyCThostFtdcQryPartBrokerField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQryPartBrokerField_set_BrokerID(PyCThostFtdcQryPartBrokerField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///会员代码
-// TThostFtdcParticipantIDType char[11]
 static PyObject *PyCThostFtdcQryPartBrokerField_get_ParticipantID(PyCThostFtdcQryPartBrokerField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ParticipantID, (Py_ssize_t)sizeof(self->data.ParticipantID));
-    return PyBytes_FromString(self->data.ParticipantID);
+	return PyBytes_FromString(self->data.ParticipantID);
 }
 
-///会员代码
-// TThostFtdcParticipantIDType char[11]
-static int PyCThostFtdcQryPartBrokerField_set_ParticipantID(PyCThostFtdcQryPartBrokerField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ParticipantID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
-        PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.ParticipantID, 0, sizeof(self->data.ParticipantID));
-    // memcpy(self->data.ParticipantID, buf, len);
-    strncpy(self->data.ParticipantID, buf, sizeof(self->data.ParticipantID));
-    return 0;
+static int PyCThostFtdcQryPartBrokerField_set_ExchangeID(PyCThostFtdcQryPartBrokerField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryPartBrokerField_set_BrokerID(PyCThostFtdcQryPartBrokerField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcQryPartBrokerField_set_ParticipantID(PyCThostFtdcQryPartBrokerField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ParticipantID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+		PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.ParticipantID, buf, sizeof(self->data.ParticipantID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryPartBrokerField_getset[] = {
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcQryPartBrokerField_get_ExchangeID, (setter)PyCThostFtdcQryPartBrokerField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQryPartBrokerField_get_BrokerID, (setter)PyCThostFtdcQryPartBrokerField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///会员代码 
-    {(char *)"ParticipantID", (getter)PyCThostFtdcQryPartBrokerField_get_ParticipantID, (setter)PyCThostFtdcQryPartBrokerField_set_ParticipantID, (char *)"ParticipantID", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcQryPartBrokerField_get_ExchangeID, (setter)PyCThostFtdcQryPartBrokerField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQryPartBrokerField_get_BrokerID, (setter)PyCThostFtdcQryPartBrokerField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"ParticipantID", (getter)PyCThostFtdcQryPartBrokerField_get_ParticipantID, (setter)PyCThostFtdcQryPartBrokerField_set_ParticipantID, (char *)"ParticipantID", NULL},
 
     {NULL}
 };

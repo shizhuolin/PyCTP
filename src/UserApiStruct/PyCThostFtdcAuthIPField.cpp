@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcAuthIPField.h"
 
-///用户IP绑定信息
+
 
 static PyObject *PyCThostFtdcAuthIPField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcAuthIPField *self = (PyCThostFtdcAuthIPField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcAuthIPField_new(PyTypeObject *type, PyObject *args,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,22 +18,19 @@ static int PyCThostFtdcAuthIPField_init(PyCThostFtdcAuthIPField *self, PyObject 
 
     static const char *kwlist[] = {"BrokerID", "AppID", "IPAddress",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pAuthIPField_BrokerID = NULL;
+	Py_ssize_t pAuthIPField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *AuthIPField_BrokerID = NULL;
-    Py_ssize_t AuthIPField_BrokerID_len = 0;
-            
-    ///App代码
-    // TThostFtdcAppIDType char[33]
-    const char *AuthIPField_AppID = NULL;
-    Py_ssize_t AuthIPField_AppID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcIPAddressType char[33]
-    const char *AuthIPField_IPAddress = NULL;
-    Py_ssize_t AuthIPField_IPAddress_len = 0;
-            
+	//TThostFtdcAppIDType char[33]
+	const char *pAuthIPField_AppID = NULL;
+	Py_ssize_t pAuthIPField_AppID_len = 0;
+
+	//TThostFtdcIPAddressType char[33]
+	const char *pAuthIPField_IPAddress = NULL;
+	Py_ssize_t pAuthIPField_IPAddress_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#", (char **)kwlist
@@ -40,55 +38,46 @@ static int PyCThostFtdcAuthIPField_init(PyCThostFtdcAuthIPField *self, PyObject 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#", (char **)kwlist
 #endif
 
-        , &AuthIPField_BrokerID, &AuthIPField_BrokerID_len 
-        , &AuthIPField_AppID, &AuthIPField_AppID_len 
-        , &AuthIPField_IPAddress, &AuthIPField_IPAddress_len 
+		, &pAuthIPField_BrokerID, &pAuthIPField_BrokerID_len
+		, &pAuthIPField_AppID, &pAuthIPField_AppID_len
+		, &pAuthIPField_IPAddress, &pAuthIPField_IPAddress_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pAuthIPField_BrokerID != NULL) {
+		if(pAuthIPField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pAuthIPField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pAuthIPField_BrokerID, sizeof(self->data.BrokerID) );
+		pAuthIPField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( AuthIPField_BrokerID != NULL ) {
-        if(AuthIPField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AuthIPField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, AuthIPField_BrokerID, AuthIPField_BrokerID_len);        
-        strncpy(self->data.BrokerID, AuthIPField_BrokerID, sizeof(self->data.BrokerID) );
-        AuthIPField_BrokerID = NULL;
-    }
-            
-    ///App代码
-    // TThostFtdcAppIDType char[33]
-    if( AuthIPField_AppID != NULL ) {
-        if(AuthIPField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
-            PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", AuthIPField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
-            return -1;
-        }
-        // memset(self->data.AppID, 0, sizeof(self->data.AppID));
-        // memcpy(self->data.AppID, AuthIPField_AppID, AuthIPField_AppID_len);        
-        strncpy(self->data.AppID, AuthIPField_AppID, sizeof(self->data.AppID) );
-        AuthIPField_AppID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcIPAddressType char[33]
-    if( AuthIPField_IPAddress != NULL ) {
-        if(AuthIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-            PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", AuthIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
-            return -1;
-        }
-        // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-        // memcpy(self->data.IPAddress, AuthIPField_IPAddress, AuthIPField_IPAddress_len);        
-        strncpy(self->data.IPAddress, AuthIPField_IPAddress, sizeof(self->data.IPAddress) );
-        AuthIPField_IPAddress = NULL;
-    }
-            
+	//TThostFtdcAppIDType char[33]
+	if(pAuthIPField_AppID != NULL) {
+		if(pAuthIPField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+			PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", pAuthIPField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
+			return -1;
+		}
+		strncpy(self->data.AppID, pAuthIPField_AppID, sizeof(self->data.AppID) );
+		pAuthIPField_AppID = NULL;
+	}
+
+	//TThostFtdcIPAddressType char[33]
+	if(pAuthIPField_IPAddress != NULL) {
+		if(pAuthIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+			PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", pAuthIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
+			return -1;
+		}
+		strncpy(self->data.IPAddress, pAuthIPField_IPAddress, sizeof(self->data.IPAddress) );
+		pAuthIPField_IPAddress = NULL;
+	}
+
+
 
     return 0;
 }
@@ -105,9 +94,9 @@ static PyObject *PyCThostFtdcAuthIPField_repr(PyCThostFtdcAuthIPField *self) {
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"AppID", self->data.AppID//, (Py_ssize_t)sizeof(self->data.AppID) 
-        ,"IPAddress", self->data.IPAddress//, (Py_ssize_t)sizeof(self->data.IPAddress) 
+		, "BrokerID", self->data.BrokerID 
+		, "AppID", self->data.AppID 
+		, "IPAddress", self->data.IPAddress 
 
 
 		);
@@ -120,93 +109,69 @@ static PyObject *PyCThostFtdcAuthIPField_repr(PyCThostFtdcAuthIPField *self) {
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcAuthIPField_get_BrokerID(PyCThostFtdcAuthIPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcAuthIPField_set_BrokerID(PyCThostFtdcAuthIPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///App代码
-// TThostFtdcAppIDType char[33]
 static PyObject *PyCThostFtdcAuthIPField_get_AppID(PyCThostFtdcAuthIPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.AppID, (Py_ssize_t)sizeof(self->data.AppID));
-    return PyBytes_FromString(self->data.AppID);
+	return PyBytes_FromString(self->data.AppID);
 }
 
-///App代码
-// TThostFtdcAppIDType char[33]
-static int PyCThostFtdcAuthIPField_set_AppID(PyCThostFtdcAuthIPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AppID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
-        PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.AppID, 0, sizeof(self->data.AppID));
-    // memcpy(self->data.AppID, buf, len);
-    strncpy(self->data.AppID, buf, sizeof(self->data.AppID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcIPAddressType char[33]
 static PyObject *PyCThostFtdcAuthIPField_get_IPAddress(PyCThostFtdcAuthIPField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.IPAddress, (Py_ssize_t)sizeof(self->data.IPAddress));
-    return PyBytes_FromString(self->data.IPAddress);
+	return PyBytes_FromString(self->data.IPAddress);
 }
 
-///用户代码
-// TThostFtdcIPAddressType char[33]
-static int PyCThostFtdcAuthIPField_set_IPAddress(PyCThostFtdcAuthIPField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
-        PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.IPAddress, 0, sizeof(self->data.IPAddress));
-    // memcpy(self->data.IPAddress, buf, len);
-    strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
-    return 0;
+static int PyCThostFtdcAuthIPField_set_BrokerID(PyCThostFtdcAuthIPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcAuthIPField_set_AppID(PyCThostFtdcAuthIPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "AppID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+		PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.AppID, buf, sizeof(self->data.AppID));
+	return 0;
+}
+
+static int PyCThostFtdcAuthIPField_set_IPAddress(PyCThostFtdcAuthIPField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "IPAddress Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+		PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.IPAddress, buf, sizeof(self->data.IPAddress));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcAuthIPField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcAuthIPField_get_BrokerID, (setter)PyCThostFtdcAuthIPField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///App代码 
-    {(char *)"AppID", (getter)PyCThostFtdcAuthIPField_get_AppID, (setter)PyCThostFtdcAuthIPField_set_AppID, (char *)"AppID", NULL},
-    ///用户代码 
-    {(char *)"IPAddress", (getter)PyCThostFtdcAuthIPField_get_IPAddress, (setter)PyCThostFtdcAuthIPField_set_IPAddress, (char *)"IPAddress", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcAuthIPField_get_BrokerID, (setter)PyCThostFtdcAuthIPField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"AppID", (getter)PyCThostFtdcAuthIPField_get_AppID, (setter)PyCThostFtdcAuthIPField_set_AppID, (char *)"AppID", NULL},
+	 {(char *)"IPAddress", (getter)PyCThostFtdcAuthIPField_get_IPAddress, (setter)PyCThostFtdcAuthIPField_set_IPAddress, (char *)"IPAddress", NULL},
 
     {NULL}
 };

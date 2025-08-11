@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQrySecAgentTradeInfoField.h"
 
-///查询二级代理商信息
+
 
 static PyObject *PyCThostFtdcQrySecAgentTradeInfoField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQrySecAgentTradeInfoField *self = (PyCThostFtdcQrySecAgentTradeInfoField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQrySecAgentTradeInfoField_new(PyTypeObject *type, P
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQrySecAgentTradeInfoField_init(PyCThostFtdcQrySecAgentTra
 
     static const char *kwlist[] = {"BrokerID", "BrokerSecAgentID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQrySecAgentTradeInfoField_BrokerID = NULL;
+	Py_ssize_t pQrySecAgentTradeInfoField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QrySecAgentTradeInfoField_BrokerID = NULL;
-    Py_ssize_t QrySecAgentTradeInfoField_BrokerID_len = 0;
-            
-    ///境外中介机构资金帐号
-    // TThostFtdcAccountIDType char[13]
-    const char *QrySecAgentTradeInfoField_BrokerSecAgentID = NULL;
-    Py_ssize_t QrySecAgentTradeInfoField_BrokerSecAgentID_len = 0;
-            
+	//TThostFtdcAccountIDType char[13]
+	const char *pQrySecAgentTradeInfoField_BrokerSecAgentID = NULL;
+	Py_ssize_t pQrySecAgentTradeInfoField_BrokerSecAgentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQrySecAgentTradeInfoField_init(PyCThostFtdcQrySecAgentTra
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QrySecAgentTradeInfoField_BrokerID, &QrySecAgentTradeInfoField_BrokerID_len 
-        , &QrySecAgentTradeInfoField_BrokerSecAgentID, &QrySecAgentTradeInfoField_BrokerSecAgentID_len 
+		, &pQrySecAgentTradeInfoField_BrokerID, &pQrySecAgentTradeInfoField_BrokerID_len
+		, &pQrySecAgentTradeInfoField_BrokerSecAgentID, &pQrySecAgentTradeInfoField_BrokerSecAgentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQrySecAgentTradeInfoField_BrokerID != NULL) {
+		if(pQrySecAgentTradeInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQrySecAgentTradeInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQrySecAgentTradeInfoField_BrokerID, sizeof(self->data.BrokerID) );
+		pQrySecAgentTradeInfoField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QrySecAgentTradeInfoField_BrokerID != NULL ) {
-        if(QrySecAgentTradeInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySecAgentTradeInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QrySecAgentTradeInfoField_BrokerID, QrySecAgentTradeInfoField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QrySecAgentTradeInfoField_BrokerID, sizeof(self->data.BrokerID) );
-        QrySecAgentTradeInfoField_BrokerID = NULL;
-    }
-            
-    ///境外中介机构资金帐号
-    // TThostFtdcAccountIDType char[13]
-    if( QrySecAgentTradeInfoField_BrokerSecAgentID != NULL ) {
-        if(QrySecAgentTradeInfoField_BrokerSecAgentID_len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerSecAgentID too long: length=%zd (max allowed is %zd)", QrySecAgentTradeInfoField_BrokerSecAgentID_len, (Py_ssize_t)sizeof(self->data.BrokerSecAgentID));
-            return -1;
-        }
-        // memset(self->data.BrokerSecAgentID, 0, sizeof(self->data.BrokerSecAgentID));
-        // memcpy(self->data.BrokerSecAgentID, QrySecAgentTradeInfoField_BrokerSecAgentID, QrySecAgentTradeInfoField_BrokerSecAgentID_len);        
-        strncpy(self->data.BrokerSecAgentID, QrySecAgentTradeInfoField_BrokerSecAgentID, sizeof(self->data.BrokerSecAgentID) );
-        QrySecAgentTradeInfoField_BrokerSecAgentID = NULL;
-    }
-            
+	//TThostFtdcAccountIDType char[13]
+	if(pQrySecAgentTradeInfoField_BrokerSecAgentID != NULL) {
+		if(pQrySecAgentTradeInfoField_BrokerSecAgentID_len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerSecAgentID too long: length=%zd (max allowed is %zd)", pQrySecAgentTradeInfoField_BrokerSecAgentID_len, (Py_ssize_t)sizeof(self->data.BrokerSecAgentID));
+			return -1;
+		}
+		strncpy(self->data.BrokerSecAgentID, pQrySecAgentTradeInfoField_BrokerSecAgentID, sizeof(self->data.BrokerSecAgentID) );
+		pQrySecAgentTradeInfoField_BrokerSecAgentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQrySecAgentTradeInfoField_repr(PyCThostFtdcQrySecAg
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"BrokerSecAgentID", self->data.BrokerSecAgentID//, (Py_ssize_t)sizeof(self->data.BrokerSecAgentID) 
+		, "BrokerID", self->data.BrokerID 
+		, "BrokerSecAgentID", self->data.BrokerSecAgentID 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQrySecAgentTradeInfoField_repr(PyCThostFtdcQrySecAg
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQrySecAgentTradeInfoField_get_BrokerID(PyCThostFtdcQrySecAgentTradeInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerID(PyCThostFtdcQrySecAgentTradeInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///境外中介机构资金帐号
-// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcQrySecAgentTradeInfoField_get_BrokerSecAgentID(PyCThostFtdcQrySecAgentTradeInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerSecAgentID, (Py_ssize_t)sizeof(self->data.BrokerSecAgentID));
-    return PyBytes_FromString(self->data.BrokerSecAgentID);
+	return PyBytes_FromString(self->data.BrokerSecAgentID);
 }
 
-///境外中介机构资金帐号
-// TThostFtdcAccountIDType char[13]
-static int PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerSecAgentID(PyCThostFtdcQrySecAgentTradeInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerSecAgentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerSecAgentID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerSecAgentID, 0, sizeof(self->data.BrokerSecAgentID));
-    // memcpy(self->data.BrokerSecAgentID, buf, len);
-    strncpy(self->data.BrokerSecAgentID, buf, sizeof(self->data.BrokerSecAgentID));
-    return 0;
+static int PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerID(PyCThostFtdcQrySecAgentTradeInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerSecAgentID(PyCThostFtdcQrySecAgentTradeInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerSecAgentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerSecAgentID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerSecAgentID, buf, sizeof(self->data.BrokerSecAgentID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQrySecAgentTradeInfoField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQrySecAgentTradeInfoField_get_BrokerID, (setter)PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///境外中介机构资金帐号 
-    {(char *)"BrokerSecAgentID", (getter)PyCThostFtdcQrySecAgentTradeInfoField_get_BrokerSecAgentID, (setter)PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerSecAgentID, (char *)"BrokerSecAgentID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQrySecAgentTradeInfoField_get_BrokerID, (setter)PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"BrokerSecAgentID", (getter)PyCThostFtdcQrySecAgentTradeInfoField_get_BrokerSecAgentID, (setter)PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerSecAgentID, (char *)"BrokerSecAgentID", NULL},
 
     {NULL}
 };

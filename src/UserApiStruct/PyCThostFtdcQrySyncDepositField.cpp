@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQrySyncDepositField.h"
 
-///查询出入金流水
+
 
 static PyObject *PyCThostFtdcQrySyncDepositField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQrySyncDepositField *self = (PyCThostFtdcQrySyncDepositField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQrySyncDepositField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQrySyncDepositField_init(PyCThostFtdcQrySyncDepositField 
 
     static const char *kwlist[] = {"BrokerID", "DepositSeqNo",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQrySyncDepositField_BrokerID = NULL;
+	Py_ssize_t pQrySyncDepositField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QrySyncDepositField_BrokerID = NULL;
-    Py_ssize_t QrySyncDepositField_BrokerID_len = 0;
-            
-    ///出入金流水号
-    // TThostFtdcDepositSeqNoType char[15]
-    const char *QrySyncDepositField_DepositSeqNo = NULL;
-    Py_ssize_t QrySyncDepositField_DepositSeqNo_len = 0;
-            
+	//TThostFtdcDepositSeqNoType char[15]
+	const char *pQrySyncDepositField_DepositSeqNo = NULL;
+	Py_ssize_t pQrySyncDepositField_DepositSeqNo_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQrySyncDepositField_init(PyCThostFtdcQrySyncDepositField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QrySyncDepositField_BrokerID, &QrySyncDepositField_BrokerID_len 
-        , &QrySyncDepositField_DepositSeqNo, &QrySyncDepositField_DepositSeqNo_len 
+		, &pQrySyncDepositField_BrokerID, &pQrySyncDepositField_BrokerID_len
+		, &pQrySyncDepositField_DepositSeqNo, &pQrySyncDepositField_DepositSeqNo_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQrySyncDepositField_BrokerID != NULL) {
+		if(pQrySyncDepositField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQrySyncDepositField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQrySyncDepositField_BrokerID, sizeof(self->data.BrokerID) );
+		pQrySyncDepositField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QrySyncDepositField_BrokerID != NULL ) {
-        if(QrySyncDepositField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySyncDepositField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QrySyncDepositField_BrokerID, QrySyncDepositField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QrySyncDepositField_BrokerID, sizeof(self->data.BrokerID) );
-        QrySyncDepositField_BrokerID = NULL;
-    }
-            
-    ///出入金流水号
-    // TThostFtdcDepositSeqNoType char[15]
-    if( QrySyncDepositField_DepositSeqNo != NULL ) {
-        if(QrySyncDepositField_DepositSeqNo_len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
-            PyErr_Format(PyExc_ValueError, "DepositSeqNo too long: length=%zd (max allowed is %zd)", QrySyncDepositField_DepositSeqNo_len, (Py_ssize_t)sizeof(self->data.DepositSeqNo));
-            return -1;
-        }
-        // memset(self->data.DepositSeqNo, 0, sizeof(self->data.DepositSeqNo));
-        // memcpy(self->data.DepositSeqNo, QrySyncDepositField_DepositSeqNo, QrySyncDepositField_DepositSeqNo_len);        
-        strncpy(self->data.DepositSeqNo, QrySyncDepositField_DepositSeqNo, sizeof(self->data.DepositSeqNo) );
-        QrySyncDepositField_DepositSeqNo = NULL;
-    }
-            
+	//TThostFtdcDepositSeqNoType char[15]
+	if(pQrySyncDepositField_DepositSeqNo != NULL) {
+		if(pQrySyncDepositField_DepositSeqNo_len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+			PyErr_Format(PyExc_ValueError, "DepositSeqNo too long: length=%zd (max allowed is %zd)", pQrySyncDepositField_DepositSeqNo_len, (Py_ssize_t)sizeof(self->data.DepositSeqNo));
+			return -1;
+		}
+		strncpy(self->data.DepositSeqNo, pQrySyncDepositField_DepositSeqNo, sizeof(self->data.DepositSeqNo) );
+		pQrySyncDepositField_DepositSeqNo = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQrySyncDepositField_repr(PyCThostFtdcQrySyncDeposit
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"DepositSeqNo", self->data.DepositSeqNo//, (Py_ssize_t)sizeof(self->data.DepositSeqNo) 
+		, "BrokerID", self->data.BrokerID 
+		, "DepositSeqNo", self->data.DepositSeqNo 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQrySyncDepositField_repr(PyCThostFtdcQrySyncDeposit
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQrySyncDepositField_get_BrokerID(PyCThostFtdcQrySyncDepositField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQrySyncDepositField_set_BrokerID(PyCThostFtdcQrySyncDepositField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///出入金流水号
-// TThostFtdcDepositSeqNoType char[15]
 static PyObject *PyCThostFtdcQrySyncDepositField_get_DepositSeqNo(PyCThostFtdcQrySyncDepositField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.DepositSeqNo, (Py_ssize_t)sizeof(self->data.DepositSeqNo));
-    return PyBytes_FromString(self->data.DepositSeqNo);
+	return PyBytes_FromString(self->data.DepositSeqNo);
 }
 
-///出入金流水号
-// TThostFtdcDepositSeqNoType char[15]
-static int PyCThostFtdcQrySyncDepositField_set_DepositSeqNo(PyCThostFtdcQrySyncDepositField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DepositSeqNo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
-        PyErr_SetString(PyExc_ValueError, "DepositSeqNo must be less than 15 bytes");
-        return -1;
-    }
-    // memset(self->data.DepositSeqNo, 0, sizeof(self->data.DepositSeqNo));
-    // memcpy(self->data.DepositSeqNo, buf, len);
-    strncpy(self->data.DepositSeqNo, buf, sizeof(self->data.DepositSeqNo));
-    return 0;
+static int PyCThostFtdcQrySyncDepositField_set_BrokerID(PyCThostFtdcQrySyncDepositField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQrySyncDepositField_set_DepositSeqNo(PyCThostFtdcQrySyncDepositField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "DepositSeqNo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+		PyErr_SetString(PyExc_ValueError, "DepositSeqNo must be less than 15 bytes");
+		return -1;
+	}
+	strncpy(self->data.DepositSeqNo, buf, sizeof(self->data.DepositSeqNo));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQrySyncDepositField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQrySyncDepositField_get_BrokerID, (setter)PyCThostFtdcQrySyncDepositField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///出入金流水号 
-    {(char *)"DepositSeqNo", (getter)PyCThostFtdcQrySyncDepositField_get_DepositSeqNo, (setter)PyCThostFtdcQrySyncDepositField_set_DepositSeqNo, (char *)"DepositSeqNo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQrySyncDepositField_get_BrokerID, (setter)PyCThostFtdcQrySyncDepositField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"DepositSeqNo", (getter)PyCThostFtdcQrySyncDepositField_get_DepositSeqNo, (setter)PyCThostFtdcQrySyncDepositField_set_DepositSeqNo, (char *)"DepositSeqNo", NULL},
 
     {NULL}
 };

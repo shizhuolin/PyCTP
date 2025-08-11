@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///正在同步中的合约手续费率
+
 
 typedef struct PyCThostFtdcSyncingInstrumentCommissionRateField {
     PyObject_HEAD

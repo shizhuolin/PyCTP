@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncDeltaProductStatusField.h"
 
-///风险结算追平产品信息
+
 
 static PyObject *PyCThostFtdcSyncDeltaProductStatusField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncDeltaProductStatusField *self = (PyCThostFtdcSyncDeltaProductStatusField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncDeltaProductStatusField_new(PyTypeObject *type,
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,25 +18,21 @@ static int PyCThostFtdcSyncDeltaProductStatusField_init(PyCThostFtdcSyncDeltaPro
 
     static const char *kwlist[] = {"SyncDeltaSequenceNo", "ExchangeID", "ProductID", "ProductStatus",  NULL};
 
+	//TThostFtdcSequenceNoType int
+	int pSyncDeltaProductStatusField_SyncDeltaSequenceNo = 0;
 
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    int SyncDeltaProductStatusField_SyncDeltaSequenceNo = 0;
-        
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *SyncDeltaProductStatusField_ExchangeID = NULL;
-    Py_ssize_t SyncDeltaProductStatusField_ExchangeID_len = 0;
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *SyncDeltaProductStatusField_ProductID = NULL;
-    Py_ssize_t SyncDeltaProductStatusField_ProductID_len = 0;
-            
-    ///是否允许交易
-    // TThostFtdcProductStatusType char
-    char SyncDeltaProductStatusField_ProductStatus = 0;
-            
+	//TThostFtdcExchangeIDType char[9]
+	const char *pSyncDeltaProductStatusField_ExchangeID = NULL;
+	Py_ssize_t pSyncDeltaProductStatusField_ExchangeID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pSyncDeltaProductStatusField_ProductID = NULL;
+	Py_ssize_t pSyncDeltaProductStatusField_ProductID_len = 0;
+
+	//TThostFtdcProductStatusType char
+	char pSyncDeltaProductStatusField_ProductStatus = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|iy#y#c", (char **)kwlist
@@ -43,51 +40,43 @@ static int PyCThostFtdcSyncDeltaProductStatusField_init(PyCThostFtdcSyncDeltaPro
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|is#s#c", (char **)kwlist
 #endif
 
-        , &SyncDeltaProductStatusField_SyncDeltaSequenceNo 
-        , &SyncDeltaProductStatusField_ExchangeID, &SyncDeltaProductStatusField_ExchangeID_len 
-        , &SyncDeltaProductStatusField_ProductID, &SyncDeltaProductStatusField_ProductID_len 
-        , &SyncDeltaProductStatusField_ProductStatus 
+		, &pSyncDeltaProductStatusField_SyncDeltaSequenceNo
+		, &pSyncDeltaProductStatusField_ExchangeID, &pSyncDeltaProductStatusField_ExchangeID_len
+		, &pSyncDeltaProductStatusField_ProductID, &pSyncDeltaProductStatusField_ProductID_len
+		, &pSyncDeltaProductStatusField_ProductStatus
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcSequenceNoType int
+	self->data.SyncDeltaSequenceNo = pSyncDeltaProductStatusField_SyncDeltaSequenceNo;
 
-    ///追平序号
-    // TThostFtdcSequenceNoType int
-    self->data.SyncDeltaSequenceNo = SyncDeltaProductStatusField_SyncDeltaSequenceNo;
-        
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( SyncDeltaProductStatusField_ExchangeID != NULL ) {
-        if(SyncDeltaProductStatusField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaProductStatusField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, SyncDeltaProductStatusField_ExchangeID, SyncDeltaProductStatusField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, SyncDeltaProductStatusField_ExchangeID, sizeof(self->data.ExchangeID) );
-        SyncDeltaProductStatusField_ExchangeID = NULL;
-    }
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( SyncDeltaProductStatusField_ProductID != NULL ) {
-        if(SyncDeltaProductStatusField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", SyncDeltaProductStatusField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, SyncDeltaProductStatusField_ProductID, SyncDeltaProductStatusField_ProductID_len);        
-        strncpy(self->data.ProductID, SyncDeltaProductStatusField_ProductID, sizeof(self->data.ProductID) );
-        SyncDeltaProductStatusField_ProductID = NULL;
-    }
-            
-    ///是否允许交易
-    // TThostFtdcProductStatusType char
-    self->data.ProductStatus = SyncDeltaProductStatusField_ProductStatus;
-            
+	//TThostFtdcExchangeIDType char[9]
+	if(pSyncDeltaProductStatusField_ExchangeID != NULL) {
+		if(pSyncDeltaProductStatusField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pSyncDeltaProductStatusField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pSyncDeltaProductStatusField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pSyncDeltaProductStatusField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pSyncDeltaProductStatusField_ProductID != NULL) {
+		if(pSyncDeltaProductStatusField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pSyncDeltaProductStatusField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pSyncDeltaProductStatusField_ProductID, sizeof(self->data.ProductID) );
+		pSyncDeltaProductStatusField_ProductID = NULL;
+	}
+
+	//TThostFtdcProductStatusType char
+	self->data.ProductStatus = pSyncDeltaProductStatusField_ProductStatus;
+
+
 
     return 0;
 }
@@ -104,10 +93,10 @@ static PyObject *PyCThostFtdcSyncDeltaProductStatusField_repr(PyCThostFtdcSyncDe
     PyObject *obj = Py_BuildValue("{s:i,s:s,s:s,s:c}"
 #endif
 
-        ,"SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
-        ,"ProductStatus", self->data.ProductStatus 
+		, "SyncDeltaSequenceNo", self->data.SyncDeltaSequenceNo
+		, "ExchangeID", self->data.ExchangeID 
+		, "ProductID", self->data.ProductID 
+		, "ProductStatus", self->data.ProductStatus
 
 
 		);
@@ -120,130 +109,104 @@ static PyObject *PyCThostFtdcSyncDeltaProductStatusField_repr(PyCThostFtdcSyncDe
     return PyObject_Repr(obj);
 }
 
-
-///追平序号
-// TThostFtdcSequenceNoType int
 static PyObject *PyCThostFtdcSyncDeltaProductStatusField_get_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaProductStatusField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
-#else
-    return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SyncDeltaSequenceNo);
+#else 
+	return PyInt_FromLong(self->data.SyncDeltaSequenceNo);
+#endif 
 }
 
-///追平序号
-// TThostFtdcSequenceNoType int
-static int PyCThostFtdcSyncDeltaProductStatusField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaProductStatusField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncDeltaProductStatusField_get_ExchangeID(PyCThostFtdcSyncDeltaProductStatusField *self, void *closure) {
+	return PyBytes_FromString(self->data.ExchangeID);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaProductStatusField_get_ProductID(PyCThostFtdcSyncDeltaProductStatusField *self, void *closure) {
+	return PyBytes_FromString(self->data.ProductID);
+}
+
+static PyObject *PyCThostFtdcSyncDeltaProductStatusField_get_ProductStatus(PyCThostFtdcSyncDeltaProductStatusField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.ProductStatus), 1);
+}
+
+static int PyCThostFtdcSyncDeltaProductStatusField_set_SyncDeltaSequenceNo(PyCThostFtdcSyncDeltaProductStatusField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SyncDeltaSequenceNo Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SyncDeltaSequenceNo value out of range for C int");
-        return -1;
-    }
-    self->data.SyncDeltaSequenceNo = (int)buf;
-    return 0;
-}
-        
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static PyObject *PyCThostFtdcSyncDeltaProductStatusField_get_ExchangeID(PyCThostFtdcSyncDeltaProductStatusField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SyncDeltaSequenceNo = (int)buf; 
+    return 0; 
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcSyncDeltaProductStatusField_set_ExchangeID(PyCThostFtdcSyncDeltaProductStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcSyncDeltaProductStatusField_get_ProductID(PyCThostFtdcSyncDeltaProductStatusField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+static int PyCThostFtdcSyncDeltaProductStatusField_set_ExchangeID(PyCThostFtdcSyncDeltaProductStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
 }
 
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcSyncDeltaProductStatusField_set_ProductID(PyCThostFtdcSyncDeltaProductStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
-}
-            
-///是否允许交易
-// TThostFtdcProductStatusType char
-static PyObject *PyCThostFtdcSyncDeltaProductStatusField_get_ProductStatus(PyCThostFtdcSyncDeltaProductStatusField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.ProductStatus), 1);
+static int PyCThostFtdcSyncDeltaProductStatusField_set_ProductID(PyCThostFtdcSyncDeltaProductStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
 }
 
-///是否允许交易
-// TThostFtdcProductStatusType char
-static int PyCThostFtdcSyncDeltaProductStatusField_set_ProductStatus(PyCThostFtdcSyncDeltaProductStatusField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductStatus Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductStatus)) {
-        PyErr_SetString(PyExc_ValueError, "ProductStatus must be equal 1 bytes");
-        return -1;
-    }
-    self->data.ProductStatus = *buf;
-    return 0;
+static int PyCThostFtdcSyncDeltaProductStatusField_set_ProductStatus(PyCThostFtdcSyncDeltaProductStatusField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductStatus Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductStatus)) {
+		PyErr_SetString(PyExc_ValueError, "ProductStatus must be less than 1 bytes");
+		return -1;
+	}
+	self->data.ProductStatus = *buf;
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcSyncDeltaProductStatusField_getset[] = {
-    ///追平序号 
-    {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_ExchangeID, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///产品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_ProductID, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_ProductID, (char *)"ProductID", NULL},
-    ///是否允许交易 
-    {(char *)"ProductStatus", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_ProductStatus, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_ProductStatus, (char *)"ProductStatus", NULL},
+	 {(char *)"SyncDeltaSequenceNo", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_SyncDeltaSequenceNo, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_SyncDeltaSequenceNo, (char *)"SyncDeltaSequenceNo", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_ExchangeID, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_ProductID, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"ProductStatus", (getter)PyCThostFtdcSyncDeltaProductStatusField_get_ProductStatus, (setter)PyCThostFtdcSyncDeltaProductStatusField_set_ProductStatus, (char *)"ProductStatus", NULL},
 
     {NULL}
 };

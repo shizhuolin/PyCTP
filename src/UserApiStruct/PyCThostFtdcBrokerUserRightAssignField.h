@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///经济公司是否有在本标示的交易权限
+
 
 typedef struct PyCThostFtdcBrokerUserRightAssignField {
     PyObject_HEAD

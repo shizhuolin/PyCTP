@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者品种/跨品种保证金
+
 
 typedef struct PyCThostFtdcInvestorProductGroupMarginField {
     PyObject_HEAD

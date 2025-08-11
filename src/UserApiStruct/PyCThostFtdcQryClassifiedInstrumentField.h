@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询分类合约
+
 
 typedef struct PyCThostFtdcQryClassifiedInstrumentField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询合约状态
+
 
 typedef struct PyCThostFtdcQryInstrumentStatusField {
     PyObject_HEAD

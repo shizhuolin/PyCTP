@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///正在同步中的投资者持仓
+
 
 typedef struct PyCThostFtdcSyncingInvestorPositionField {
     PyObject_HEAD

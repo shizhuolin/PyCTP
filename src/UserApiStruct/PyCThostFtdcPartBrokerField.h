@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///会员编码和经纪公司编码对照表
+
 
 typedef struct PyCThostFtdcPartBrokerField {
     PyObject_HEAD

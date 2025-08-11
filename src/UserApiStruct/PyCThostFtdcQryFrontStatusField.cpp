@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryFrontStatusField.h"
 
-///查询前置状态
+
 
 static PyObject *PyCThostFtdcQryFrontStatusField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryFrontStatusField *self = (PyCThostFtdcQryFrontStatusField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryFrontStatusField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,11 +18,10 @@ static int PyCThostFtdcQryFrontStatusField_init(PyCThostFtdcQryFrontStatusField 
 
     static const char *kwlist[] = {"FrontID",  NULL};
 
+	//TThostFtdcFrontIDType int
+	int pQryFrontStatusField_FrontID = 0;
 
-    ///前置编号
-    // TThostFtdcFrontIDType int
-    int QryFrontStatusField_FrontID = 0;
-        
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
@@ -29,18 +29,17 @@ static int PyCThostFtdcQryFrontStatusField_init(PyCThostFtdcQryFrontStatusField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|i", (char **)kwlist
 #endif
 
-        , &QryFrontStatusField_FrontID 
+		, &pQryFrontStatusField_FrontID
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcFrontIDType int
+	self->data.FrontID = pQryFrontStatusField_FrontID;
 
-    ///前置编号
-    // TThostFtdcFrontIDType int
-    self->data.FrontID = QryFrontStatusField_FrontID;
-        
+
 
     return 0;
 }
@@ -57,7 +56,7 @@ static PyObject *PyCThostFtdcQryFrontStatusField_repr(PyCThostFtdcQryFrontStatus
     PyObject *obj = Py_BuildValue("{s:i}"
 #endif
 
-        ,"FrontID", self->data.FrontID 
+		, "FrontID", self->data.FrontID
 
 
 		);
@@ -70,49 +69,44 @@ static PyObject *PyCThostFtdcQryFrontStatusField_repr(PyCThostFtdcQryFrontStatus
     return PyObject_Repr(obj);
 }
 
-
-///前置编号
-// TThostFtdcFrontIDType int
 static PyObject *PyCThostFtdcQryFrontStatusField_get_FrontID(PyCThostFtdcQryFrontStatusField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.FrontID);
-#else
-    return PyInt_FromLong(self->data.FrontID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.FrontID);
+#else 
+	return PyInt_FromLong(self->data.FrontID);
+#endif 
 }
 
-///前置编号
-// TThostFtdcFrontIDType int
-static int PyCThostFtdcQryFrontStatusField_set_FrontID(PyCThostFtdcQryFrontStatusField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcQryFrontStatusField_set_FrontID(PyCThostFtdcQryFrontStatusField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FrontID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FrontID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "FrontID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the FrontID value out of range for C int");
-        return -1;
-    }
-    self->data.FrontID = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.FrontID = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcQryFrontStatusField_getset[] = {
-    ///前置编号 
-    {(char *)"FrontID", (getter)PyCThostFtdcQryFrontStatusField_get_FrontID, (setter)PyCThostFtdcQryFrontStatusField_set_FrontID, (char *)"FrontID", NULL},
+	 {(char *)"FrontID", (getter)PyCThostFtdcQryFrontStatusField_get_FrontID, (setter)PyCThostFtdcQryFrontStatusField_set_FrontID, (char *)"FrontID", NULL},
 
     {NULL}
 };

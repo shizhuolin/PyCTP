@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///换汇可提冻结
+
 
 typedef struct PyCThostFtdcSyncDelaySwapFrozenField {
     PyObject_HEAD

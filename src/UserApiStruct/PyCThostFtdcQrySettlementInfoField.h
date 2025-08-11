@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询投资者结算结果
+
 
 typedef struct PyCThostFtdcQrySettlementInfoField {
     PyObject_HEAD

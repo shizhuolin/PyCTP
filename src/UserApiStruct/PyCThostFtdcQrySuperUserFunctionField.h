@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询管理用户功能权限
+
 
 typedef struct PyCThostFtdcQrySuperUserFunctionField {
     PyObject_HEAD

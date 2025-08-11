@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///验证客户信息
+
 
 typedef struct PyCThostFtdcVerifyCustInfoField {
     PyObject_HEAD

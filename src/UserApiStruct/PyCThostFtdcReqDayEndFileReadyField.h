@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///日终文件就绪请求
+
 
 typedef struct PyCThostFtdcReqDayEndFileReadyField {
     PyObject_HEAD

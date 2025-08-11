@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTransferHeaderField.h"
 
-///银期转帐报文头
+
 
 static PyObject *PyCThostFtdcTransferHeaderField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTransferHeaderField *self = (PyCThostFtdcTransferHeaderField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcTransferHeaderField_new(PyTypeObject *type, PyObjec
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,70 +18,57 @@ static int PyCThostFtdcTransferHeaderField_init(PyCThostFtdcTransferHeaderField 
 
     static const char *kwlist[] = {"Version", "TradeCode", "TradeDate", "TradeTime", "TradeSerial", "FutureID", "BankID", "BankBrchID", "OperNo", "DeviceID", "RecordNum", "SessionID", "RequestID",  NULL};
 
+	//TThostFtdcVersionType char[4]
+	const char *pTransferHeaderField_Version = NULL;
+	Py_ssize_t pTransferHeaderField_Version_len = 0;
 
-    ///版本号，常量，1.0
-    // TThostFtdcVersionType char[4]
-    const char *TransferHeaderField_Version = NULL;
-    Py_ssize_t TransferHeaderField_Version_len = 0;
-            
-    ///交易代码，必填
-    // TThostFtdcTradeCodeType char[7]
-    const char *TransferHeaderField_TradeCode = NULL;
-    Py_ssize_t TransferHeaderField_TradeCode_len = 0;
-            
-    ///交易日期，必填，格式：yyyymmdd
-    // TThostFtdcTradeDateType char[9]
-    const char *TransferHeaderField_TradeDate = NULL;
-    Py_ssize_t TransferHeaderField_TradeDate_len = 0;
-            
-    ///交易时间，必填，格式：hhmmss
-    // TThostFtdcTradeTimeType char[9]
-    const char *TransferHeaderField_TradeTime = NULL;
-    Py_ssize_t TransferHeaderField_TradeTime_len = 0;
-            
-    ///发起方流水号，N/A
-    // TThostFtdcTradeSerialType char[9]
-    const char *TransferHeaderField_TradeSerial = NULL;
-    Py_ssize_t TransferHeaderField_TradeSerial_len = 0;
-            
-    ///期货公司代码，必填
-    // TThostFtdcFutureIDType char[11]
-    const char *TransferHeaderField_FutureID = NULL;
-    Py_ssize_t TransferHeaderField_FutureID_len = 0;
-            
-    ///银行代码，根据查询银行得到，必填
-    // TThostFtdcBankIDType char[4]
-    const char *TransferHeaderField_BankID = NULL;
-    Py_ssize_t TransferHeaderField_BankID_len = 0;
-            
-    ///银行分中心代码，根据查询银行得到，必填
-    // TThostFtdcBankBrchIDType char[5]
-    const char *TransferHeaderField_BankBrchID = NULL;
-    Py_ssize_t TransferHeaderField_BankBrchID_len = 0;
-            
-    ///操作员，N/A
-    // TThostFtdcOperNoType char[17]
-    const char *TransferHeaderField_OperNo = NULL;
-    Py_ssize_t TransferHeaderField_OperNo_len = 0;
-            
-    ///交易设备类型，N/A
-    // TThostFtdcDeviceIDType char[3]
-    const char *TransferHeaderField_DeviceID = NULL;
-    Py_ssize_t TransferHeaderField_DeviceID_len = 0;
-            
-    ///记录数，N/A
-    // TThostFtdcRecordNumType char[7]
-    const char *TransferHeaderField_RecordNum = NULL;
-    Py_ssize_t TransferHeaderField_RecordNum_len = 0;
-            
-    ///会话编号，N/A
-    // TThostFtdcSessionIDType int
-    int TransferHeaderField_SessionID = 0;
-        
-    ///请求编号，N/A
-    // TThostFtdcRequestIDType int
-    int TransferHeaderField_RequestID = 0;
-        
+	//TThostFtdcTradeCodeType char[7]
+	const char *pTransferHeaderField_TradeCode = NULL;
+	Py_ssize_t pTransferHeaderField_TradeCode_len = 0;
+
+	//TThostFtdcTradeDateType char[9]
+	const char *pTransferHeaderField_TradeDate = NULL;
+	Py_ssize_t pTransferHeaderField_TradeDate_len = 0;
+
+	//TThostFtdcTradeTimeType char[9]
+	const char *pTransferHeaderField_TradeTime = NULL;
+	Py_ssize_t pTransferHeaderField_TradeTime_len = 0;
+
+	//TThostFtdcTradeSerialType char[9]
+	const char *pTransferHeaderField_TradeSerial = NULL;
+	Py_ssize_t pTransferHeaderField_TradeSerial_len = 0;
+
+	//TThostFtdcFutureIDType char[11]
+	const char *pTransferHeaderField_FutureID = NULL;
+	Py_ssize_t pTransferHeaderField_FutureID_len = 0;
+
+	//TThostFtdcBankIDType char[4]
+	const char *pTransferHeaderField_BankID = NULL;
+	Py_ssize_t pTransferHeaderField_BankID_len = 0;
+
+	//TThostFtdcBankBrchIDType char[5]
+	const char *pTransferHeaderField_BankBrchID = NULL;
+	Py_ssize_t pTransferHeaderField_BankBrchID_len = 0;
+
+	//TThostFtdcOperNoType char[17]
+	const char *pTransferHeaderField_OperNo = NULL;
+	Py_ssize_t pTransferHeaderField_OperNo_len = 0;
+
+	//TThostFtdcDeviceIDType char[3]
+	const char *pTransferHeaderField_DeviceID = NULL;
+	Py_ssize_t pTransferHeaderField_DeviceID_len = 0;
+
+	//TThostFtdcRecordNumType char[7]
+	const char *pTransferHeaderField_RecordNum = NULL;
+	Py_ssize_t pTransferHeaderField_RecordNum_len = 0;
+
+	//TThostFtdcSessionIDType int
+	int pTransferHeaderField_SessionID = 0;
+
+	//TThostFtdcRequestIDType int
+	int pTransferHeaderField_RequestID = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#y#y#y#y#y#y#y#ii", (char **)kwlist
@@ -88,177 +76,142 @@ static int PyCThostFtdcTransferHeaderField_init(PyCThostFtdcTransferHeaderField 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#s#s#s#s#s#s#s#ii", (char **)kwlist
 #endif
 
-        , &TransferHeaderField_Version, &TransferHeaderField_Version_len 
-        , &TransferHeaderField_TradeCode, &TransferHeaderField_TradeCode_len 
-        , &TransferHeaderField_TradeDate, &TransferHeaderField_TradeDate_len 
-        , &TransferHeaderField_TradeTime, &TransferHeaderField_TradeTime_len 
-        , &TransferHeaderField_TradeSerial, &TransferHeaderField_TradeSerial_len 
-        , &TransferHeaderField_FutureID, &TransferHeaderField_FutureID_len 
-        , &TransferHeaderField_BankID, &TransferHeaderField_BankID_len 
-        , &TransferHeaderField_BankBrchID, &TransferHeaderField_BankBrchID_len 
-        , &TransferHeaderField_OperNo, &TransferHeaderField_OperNo_len 
-        , &TransferHeaderField_DeviceID, &TransferHeaderField_DeviceID_len 
-        , &TransferHeaderField_RecordNum, &TransferHeaderField_RecordNum_len 
-        , &TransferHeaderField_SessionID 
-        , &TransferHeaderField_RequestID 
+		, &pTransferHeaderField_Version, &pTransferHeaderField_Version_len
+		, &pTransferHeaderField_TradeCode, &pTransferHeaderField_TradeCode_len
+		, &pTransferHeaderField_TradeDate, &pTransferHeaderField_TradeDate_len
+		, &pTransferHeaderField_TradeTime, &pTransferHeaderField_TradeTime_len
+		, &pTransferHeaderField_TradeSerial, &pTransferHeaderField_TradeSerial_len
+		, &pTransferHeaderField_FutureID, &pTransferHeaderField_FutureID_len
+		, &pTransferHeaderField_BankID, &pTransferHeaderField_BankID_len
+		, &pTransferHeaderField_BankBrchID, &pTransferHeaderField_BankBrchID_len
+		, &pTransferHeaderField_OperNo, &pTransferHeaderField_OperNo_len
+		, &pTransferHeaderField_DeviceID, &pTransferHeaderField_DeviceID_len
+		, &pTransferHeaderField_RecordNum, &pTransferHeaderField_RecordNum_len
+		, &pTransferHeaderField_SessionID
+		, &pTransferHeaderField_RequestID
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcVersionType char[4]
+	if(pTransferHeaderField_Version != NULL) {
+		if(pTransferHeaderField_Version_len > (Py_ssize_t)sizeof(self->data.Version)) {
+			PyErr_Format(PyExc_ValueError, "Version too long: length=%zd (max allowed is %zd)", pTransferHeaderField_Version_len, (Py_ssize_t)sizeof(self->data.Version));
+			return -1;
+		}
+		strncpy(self->data.Version, pTransferHeaderField_Version, sizeof(self->data.Version) );
+		pTransferHeaderField_Version = NULL;
+	}
 
-    ///版本号，常量，1.0
-    // TThostFtdcVersionType char[4]
-    if( TransferHeaderField_Version != NULL ) {
-        if(TransferHeaderField_Version_len > (Py_ssize_t)sizeof(self->data.Version)) {
-            PyErr_Format(PyExc_ValueError, "Version too long: length=%zd (max allowed is %zd)", TransferHeaderField_Version_len, (Py_ssize_t)sizeof(self->data.Version));
-            return -1;
-        }
-        // memset(self->data.Version, 0, sizeof(self->data.Version));
-        // memcpy(self->data.Version, TransferHeaderField_Version, TransferHeaderField_Version_len);        
-        strncpy(self->data.Version, TransferHeaderField_Version, sizeof(self->data.Version) );
-        TransferHeaderField_Version = NULL;
-    }
-            
-    ///交易代码，必填
-    // TThostFtdcTradeCodeType char[7]
-    if( TransferHeaderField_TradeCode != NULL ) {
-        if(TransferHeaderField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
-            PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", TransferHeaderField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
-            return -1;
-        }
-        // memset(self->data.TradeCode, 0, sizeof(self->data.TradeCode));
-        // memcpy(self->data.TradeCode, TransferHeaderField_TradeCode, TransferHeaderField_TradeCode_len);        
-        strncpy(self->data.TradeCode, TransferHeaderField_TradeCode, sizeof(self->data.TradeCode) );
-        TransferHeaderField_TradeCode = NULL;
-    }
-            
-    ///交易日期，必填，格式：yyyymmdd
-    // TThostFtdcTradeDateType char[9]
-    if( TransferHeaderField_TradeDate != NULL ) {
-        if(TransferHeaderField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
-            PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", TransferHeaderField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
-            return -1;
-        }
-        // memset(self->data.TradeDate, 0, sizeof(self->data.TradeDate));
-        // memcpy(self->data.TradeDate, TransferHeaderField_TradeDate, TransferHeaderField_TradeDate_len);        
-        strncpy(self->data.TradeDate, TransferHeaderField_TradeDate, sizeof(self->data.TradeDate) );
-        TransferHeaderField_TradeDate = NULL;
-    }
-            
-    ///交易时间，必填，格式：hhmmss
-    // TThostFtdcTradeTimeType char[9]
-    if( TransferHeaderField_TradeTime != NULL ) {
-        if(TransferHeaderField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
-            PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", TransferHeaderField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
-            return -1;
-        }
-        // memset(self->data.TradeTime, 0, sizeof(self->data.TradeTime));
-        // memcpy(self->data.TradeTime, TransferHeaderField_TradeTime, TransferHeaderField_TradeTime_len);        
-        strncpy(self->data.TradeTime, TransferHeaderField_TradeTime, sizeof(self->data.TradeTime) );
-        TransferHeaderField_TradeTime = NULL;
-    }
-            
-    ///发起方流水号，N/A
-    // TThostFtdcTradeSerialType char[9]
-    if( TransferHeaderField_TradeSerial != NULL ) {
-        if(TransferHeaderField_TradeSerial_len > (Py_ssize_t)sizeof(self->data.TradeSerial)) {
-            PyErr_Format(PyExc_ValueError, "TradeSerial too long: length=%zd (max allowed is %zd)", TransferHeaderField_TradeSerial_len, (Py_ssize_t)sizeof(self->data.TradeSerial));
-            return -1;
-        }
-        // memset(self->data.TradeSerial, 0, sizeof(self->data.TradeSerial));
-        // memcpy(self->data.TradeSerial, TransferHeaderField_TradeSerial, TransferHeaderField_TradeSerial_len);        
-        strncpy(self->data.TradeSerial, TransferHeaderField_TradeSerial, sizeof(self->data.TradeSerial) );
-        TransferHeaderField_TradeSerial = NULL;
-    }
-            
-    ///期货公司代码，必填
-    // TThostFtdcFutureIDType char[11]
-    if( TransferHeaderField_FutureID != NULL ) {
-        if(TransferHeaderField_FutureID_len > (Py_ssize_t)sizeof(self->data.FutureID)) {
-            PyErr_Format(PyExc_ValueError, "FutureID too long: length=%zd (max allowed is %zd)", TransferHeaderField_FutureID_len, (Py_ssize_t)sizeof(self->data.FutureID));
-            return -1;
-        }
-        // memset(self->data.FutureID, 0, sizeof(self->data.FutureID));
-        // memcpy(self->data.FutureID, TransferHeaderField_FutureID, TransferHeaderField_FutureID_len);        
-        strncpy(self->data.FutureID, TransferHeaderField_FutureID, sizeof(self->data.FutureID) );
-        TransferHeaderField_FutureID = NULL;
-    }
-            
-    ///银行代码，根据查询银行得到，必填
-    // TThostFtdcBankIDType char[4]
-    if( TransferHeaderField_BankID != NULL ) {
-        if(TransferHeaderField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
-            PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", TransferHeaderField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
-            return -1;
-        }
-        // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-        // memcpy(self->data.BankID, TransferHeaderField_BankID, TransferHeaderField_BankID_len);        
-        strncpy(self->data.BankID, TransferHeaderField_BankID, sizeof(self->data.BankID) );
-        TransferHeaderField_BankID = NULL;
-    }
-            
-    ///银行分中心代码，根据查询银行得到，必填
-    // TThostFtdcBankBrchIDType char[5]
-    if( TransferHeaderField_BankBrchID != NULL ) {
-        if(TransferHeaderField_BankBrchID_len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
-            PyErr_Format(PyExc_ValueError, "BankBrchID too long: length=%zd (max allowed is %zd)", TransferHeaderField_BankBrchID_len, (Py_ssize_t)sizeof(self->data.BankBrchID));
-            return -1;
-        }
-        // memset(self->data.BankBrchID, 0, sizeof(self->data.BankBrchID));
-        // memcpy(self->data.BankBrchID, TransferHeaderField_BankBrchID, TransferHeaderField_BankBrchID_len);        
-        strncpy(self->data.BankBrchID, TransferHeaderField_BankBrchID, sizeof(self->data.BankBrchID) );
-        TransferHeaderField_BankBrchID = NULL;
-    }
-            
-    ///操作员，N/A
-    // TThostFtdcOperNoType char[17]
-    if( TransferHeaderField_OperNo != NULL ) {
-        if(TransferHeaderField_OperNo_len > (Py_ssize_t)sizeof(self->data.OperNo)) {
-            PyErr_Format(PyExc_ValueError, "OperNo too long: length=%zd (max allowed is %zd)", TransferHeaderField_OperNo_len, (Py_ssize_t)sizeof(self->data.OperNo));
-            return -1;
-        }
-        // memset(self->data.OperNo, 0, sizeof(self->data.OperNo));
-        // memcpy(self->data.OperNo, TransferHeaderField_OperNo, TransferHeaderField_OperNo_len);        
-        strncpy(self->data.OperNo, TransferHeaderField_OperNo, sizeof(self->data.OperNo) );
-        TransferHeaderField_OperNo = NULL;
-    }
-            
-    ///交易设备类型，N/A
-    // TThostFtdcDeviceIDType char[3]
-    if( TransferHeaderField_DeviceID != NULL ) {
-        if(TransferHeaderField_DeviceID_len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
-            PyErr_Format(PyExc_ValueError, "DeviceID too long: length=%zd (max allowed is %zd)", TransferHeaderField_DeviceID_len, (Py_ssize_t)sizeof(self->data.DeviceID));
-            return -1;
-        }
-        // memset(self->data.DeviceID, 0, sizeof(self->data.DeviceID));
-        // memcpy(self->data.DeviceID, TransferHeaderField_DeviceID, TransferHeaderField_DeviceID_len);        
-        strncpy(self->data.DeviceID, TransferHeaderField_DeviceID, sizeof(self->data.DeviceID) );
-        TransferHeaderField_DeviceID = NULL;
-    }
-            
-    ///记录数，N/A
-    // TThostFtdcRecordNumType char[7]
-    if( TransferHeaderField_RecordNum != NULL ) {
-        if(TransferHeaderField_RecordNum_len > (Py_ssize_t)sizeof(self->data.RecordNum)) {
-            PyErr_Format(PyExc_ValueError, "RecordNum too long: length=%zd (max allowed is %zd)", TransferHeaderField_RecordNum_len, (Py_ssize_t)sizeof(self->data.RecordNum));
-            return -1;
-        }
-        // memset(self->data.RecordNum, 0, sizeof(self->data.RecordNum));
-        // memcpy(self->data.RecordNum, TransferHeaderField_RecordNum, TransferHeaderField_RecordNum_len);        
-        strncpy(self->data.RecordNum, TransferHeaderField_RecordNum, sizeof(self->data.RecordNum) );
-        TransferHeaderField_RecordNum = NULL;
-    }
-            
-    ///会话编号，N/A
-    // TThostFtdcSessionIDType int
-    self->data.SessionID = TransferHeaderField_SessionID;
-        
-    ///请求编号，N/A
-    // TThostFtdcRequestIDType int
-    self->data.RequestID = TransferHeaderField_RequestID;
-        
+	//TThostFtdcTradeCodeType char[7]
+	if(pTransferHeaderField_TradeCode != NULL) {
+		if(pTransferHeaderField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+			PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", pTransferHeaderField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
+			return -1;
+		}
+		strncpy(self->data.TradeCode, pTransferHeaderField_TradeCode, sizeof(self->data.TradeCode) );
+		pTransferHeaderField_TradeCode = NULL;
+	}
+
+	//TThostFtdcTradeDateType char[9]
+	if(pTransferHeaderField_TradeDate != NULL) {
+		if(pTransferHeaderField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+			PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", pTransferHeaderField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
+			return -1;
+		}
+		strncpy(self->data.TradeDate, pTransferHeaderField_TradeDate, sizeof(self->data.TradeDate) );
+		pTransferHeaderField_TradeDate = NULL;
+	}
+
+	//TThostFtdcTradeTimeType char[9]
+	if(pTransferHeaderField_TradeTime != NULL) {
+		if(pTransferHeaderField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+			PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", pTransferHeaderField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
+			return -1;
+		}
+		strncpy(self->data.TradeTime, pTransferHeaderField_TradeTime, sizeof(self->data.TradeTime) );
+		pTransferHeaderField_TradeTime = NULL;
+	}
+
+	//TThostFtdcTradeSerialType char[9]
+	if(pTransferHeaderField_TradeSerial != NULL) {
+		if(pTransferHeaderField_TradeSerial_len > (Py_ssize_t)sizeof(self->data.TradeSerial)) {
+			PyErr_Format(PyExc_ValueError, "TradeSerial too long: length=%zd (max allowed is %zd)", pTransferHeaderField_TradeSerial_len, (Py_ssize_t)sizeof(self->data.TradeSerial));
+			return -1;
+		}
+		strncpy(self->data.TradeSerial, pTransferHeaderField_TradeSerial, sizeof(self->data.TradeSerial) );
+		pTransferHeaderField_TradeSerial = NULL;
+	}
+
+	//TThostFtdcFutureIDType char[11]
+	if(pTransferHeaderField_FutureID != NULL) {
+		if(pTransferHeaderField_FutureID_len > (Py_ssize_t)sizeof(self->data.FutureID)) {
+			PyErr_Format(PyExc_ValueError, "FutureID too long: length=%zd (max allowed is %zd)", pTransferHeaderField_FutureID_len, (Py_ssize_t)sizeof(self->data.FutureID));
+			return -1;
+		}
+		strncpy(self->data.FutureID, pTransferHeaderField_FutureID, sizeof(self->data.FutureID) );
+		pTransferHeaderField_FutureID = NULL;
+	}
+
+	//TThostFtdcBankIDType char[4]
+	if(pTransferHeaderField_BankID != NULL) {
+		if(pTransferHeaderField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+			PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", pTransferHeaderField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
+			return -1;
+		}
+		strncpy(self->data.BankID, pTransferHeaderField_BankID, sizeof(self->data.BankID) );
+		pTransferHeaderField_BankID = NULL;
+	}
+
+	//TThostFtdcBankBrchIDType char[5]
+	if(pTransferHeaderField_BankBrchID != NULL) {
+		if(pTransferHeaderField_BankBrchID_len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
+			PyErr_Format(PyExc_ValueError, "BankBrchID too long: length=%zd (max allowed is %zd)", pTransferHeaderField_BankBrchID_len, (Py_ssize_t)sizeof(self->data.BankBrchID));
+			return -1;
+		}
+		strncpy(self->data.BankBrchID, pTransferHeaderField_BankBrchID, sizeof(self->data.BankBrchID) );
+		pTransferHeaderField_BankBrchID = NULL;
+	}
+
+	//TThostFtdcOperNoType char[17]
+	if(pTransferHeaderField_OperNo != NULL) {
+		if(pTransferHeaderField_OperNo_len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+			PyErr_Format(PyExc_ValueError, "OperNo too long: length=%zd (max allowed is %zd)", pTransferHeaderField_OperNo_len, (Py_ssize_t)sizeof(self->data.OperNo));
+			return -1;
+		}
+		strncpy(self->data.OperNo, pTransferHeaderField_OperNo, sizeof(self->data.OperNo) );
+		pTransferHeaderField_OperNo = NULL;
+	}
+
+	//TThostFtdcDeviceIDType char[3]
+	if(pTransferHeaderField_DeviceID != NULL) {
+		if(pTransferHeaderField_DeviceID_len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+			PyErr_Format(PyExc_ValueError, "DeviceID too long: length=%zd (max allowed is %zd)", pTransferHeaderField_DeviceID_len, (Py_ssize_t)sizeof(self->data.DeviceID));
+			return -1;
+		}
+		strncpy(self->data.DeviceID, pTransferHeaderField_DeviceID, sizeof(self->data.DeviceID) );
+		pTransferHeaderField_DeviceID = NULL;
+	}
+
+	//TThostFtdcRecordNumType char[7]
+	if(pTransferHeaderField_RecordNum != NULL) {
+		if(pTransferHeaderField_RecordNum_len > (Py_ssize_t)sizeof(self->data.RecordNum)) {
+			PyErr_Format(PyExc_ValueError, "RecordNum too long: length=%zd (max allowed is %zd)", pTransferHeaderField_RecordNum_len, (Py_ssize_t)sizeof(self->data.RecordNum));
+			return -1;
+		}
+		strncpy(self->data.RecordNum, pTransferHeaderField_RecordNum, sizeof(self->data.RecordNum) );
+		pTransferHeaderField_RecordNum = NULL;
+	}
+
+	//TThostFtdcSessionIDType int
+	self->data.SessionID = pTransferHeaderField_SessionID;
+
+	//TThostFtdcRequestIDType int
+	self->data.RequestID = pTransferHeaderField_RequestID;
+
+
 
     return 0;
 }
@@ -275,19 +228,19 @@ static PyObject *PyCThostFtdcTransferHeaderField_repr(PyCThostFtdcTransferHeader
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:i,s:i}"
 #endif
 
-        ,"Version", self->data.Version//, (Py_ssize_t)sizeof(self->data.Version) 
-        ,"TradeCode", self->data.TradeCode//, (Py_ssize_t)sizeof(self->data.TradeCode) 
-        ,"TradeDate", self->data.TradeDate//, (Py_ssize_t)sizeof(self->data.TradeDate) 
-        ,"TradeTime", self->data.TradeTime//, (Py_ssize_t)sizeof(self->data.TradeTime) 
-        ,"TradeSerial", self->data.TradeSerial//, (Py_ssize_t)sizeof(self->data.TradeSerial) 
-        ,"FutureID", self->data.FutureID//, (Py_ssize_t)sizeof(self->data.FutureID) 
-        ,"BankID", self->data.BankID//, (Py_ssize_t)sizeof(self->data.BankID) 
-        ,"BankBrchID", self->data.BankBrchID//, (Py_ssize_t)sizeof(self->data.BankBrchID) 
-        ,"OperNo", self->data.OperNo//, (Py_ssize_t)sizeof(self->data.OperNo) 
-        ,"DeviceID", self->data.DeviceID//, (Py_ssize_t)sizeof(self->data.DeviceID) 
-        ,"RecordNum", self->data.RecordNum//, (Py_ssize_t)sizeof(self->data.RecordNum) 
-        ,"SessionID", self->data.SessionID 
-        ,"RequestID", self->data.RequestID 
+		, "Version", self->data.Version 
+		, "TradeCode", self->data.TradeCode 
+		, "TradeDate", self->data.TradeDate 
+		, "TradeTime", self->data.TradeTime 
+		, "TradeSerial", self->data.TradeSerial 
+		, "FutureID", self->data.FutureID 
+		, "BankID", self->data.BankID 
+		, "BankBrchID", self->data.BankBrchID 
+		, "OperNo", self->data.OperNo 
+		, "DeviceID", self->data.DeviceID 
+		, "RecordNum", self->data.RecordNum 
+		, "SessionID", self->data.SessionID
+		, "RequestID", self->data.RequestID
 
 
 		);
@@ -300,397 +253,299 @@ static PyObject *PyCThostFtdcTransferHeaderField_repr(PyCThostFtdcTransferHeader
     return PyObject_Repr(obj);
 }
 
-
-///版本号，常量，1.0
-// TThostFtdcVersionType char[4]
 static PyObject *PyCThostFtdcTransferHeaderField_get_Version(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.Version, (Py_ssize_t)sizeof(self->data.Version));
-    return PyBytes_FromString(self->data.Version);
+	return PyBytes_FromString(self->data.Version);
 }
 
-///版本号，常量，1.0
-// TThostFtdcVersionType char[4]
-static int PyCThostFtdcTransferHeaderField_set_Version(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "Version Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Version)) {
-        PyErr_SetString(PyExc_ValueError, "Version must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.Version, 0, sizeof(self->data.Version));
-    // memcpy(self->data.Version, buf, len);
-    strncpy(self->data.Version, buf, sizeof(self->data.Version));
-    return 0;
-}
-            
-///交易代码，必填
-// TThostFtdcTradeCodeType char[7]
 static PyObject *PyCThostFtdcTransferHeaderField_get_TradeCode(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeCode, (Py_ssize_t)sizeof(self->data.TradeCode));
-    return PyBytes_FromString(self->data.TradeCode);
+	return PyBytes_FromString(self->data.TradeCode);
 }
 
-///交易代码，必填
-// TThostFtdcTradeCodeType char[7]
-static int PyCThostFtdcTransferHeaderField_set_TradeCode(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
-        PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeCode, 0, sizeof(self->data.TradeCode));
-    // memcpy(self->data.TradeCode, buf, len);
-    strncpy(self->data.TradeCode, buf, sizeof(self->data.TradeCode));
-    return 0;
-}
-            
-///交易日期，必填，格式：yyyymmdd
-// TThostFtdcTradeDateType char[9]
 static PyObject *PyCThostFtdcTransferHeaderField_get_TradeDate(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeDate, (Py_ssize_t)sizeof(self->data.TradeDate));
-    return PyBytes_FromString(self->data.TradeDate);
+	return PyBytes_FromString(self->data.TradeDate);
 }
 
-///交易日期，必填，格式：yyyymmdd
-// TThostFtdcTradeDateType char[9]
-static int PyCThostFtdcTransferHeaderField_set_TradeDate(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeDate Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
-        PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeDate, 0, sizeof(self->data.TradeDate));
-    // memcpy(self->data.TradeDate, buf, len);
-    strncpy(self->data.TradeDate, buf, sizeof(self->data.TradeDate));
-    return 0;
-}
-            
-///交易时间，必填，格式：hhmmss
-// TThostFtdcTradeTimeType char[9]
 static PyObject *PyCThostFtdcTransferHeaderField_get_TradeTime(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeTime, (Py_ssize_t)sizeof(self->data.TradeTime));
-    return PyBytes_FromString(self->data.TradeTime);
+	return PyBytes_FromString(self->data.TradeTime);
 }
 
-///交易时间，必填，格式：hhmmss
-// TThostFtdcTradeTimeType char[9]
-static int PyCThostFtdcTransferHeaderField_set_TradeTime(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeTime Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
-        PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeTime, 0, sizeof(self->data.TradeTime));
-    // memcpy(self->data.TradeTime, buf, len);
-    strncpy(self->data.TradeTime, buf, sizeof(self->data.TradeTime));
-    return 0;
-}
-            
-///发起方流水号，N/A
-// TThostFtdcTradeSerialType char[9]
 static PyObject *PyCThostFtdcTransferHeaderField_get_TradeSerial(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeSerial, (Py_ssize_t)sizeof(self->data.TradeSerial));
-    return PyBytes_FromString(self->data.TradeSerial);
+	return PyBytes_FromString(self->data.TradeSerial);
 }
 
-///发起方流水号，N/A
-// TThostFtdcTradeSerialType char[9]
-static int PyCThostFtdcTransferHeaderField_set_TradeSerial(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeSerial Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeSerial)) {
-        PyErr_SetString(PyExc_ValueError, "TradeSerial must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeSerial, 0, sizeof(self->data.TradeSerial));
-    // memcpy(self->data.TradeSerial, buf, len);
-    strncpy(self->data.TradeSerial, buf, sizeof(self->data.TradeSerial));
-    return 0;
-}
-            
-///期货公司代码，必填
-// TThostFtdcFutureIDType char[11]
 static PyObject *PyCThostFtdcTransferHeaderField_get_FutureID(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FutureID, (Py_ssize_t)sizeof(self->data.FutureID));
-    return PyBytes_FromString(self->data.FutureID);
+	return PyBytes_FromString(self->data.FutureID);
 }
 
-///期货公司代码，必填
-// TThostFtdcFutureIDType char[11]
-static int PyCThostFtdcTransferHeaderField_set_FutureID(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FutureID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureID)) {
-        PyErr_SetString(PyExc_ValueError, "FutureID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.FutureID, 0, sizeof(self->data.FutureID));
-    // memcpy(self->data.FutureID, buf, len);
-    strncpy(self->data.FutureID, buf, sizeof(self->data.FutureID));
-    return 0;
-}
-            
-///银行代码，根据查询银行得到，必填
-// TThostFtdcBankIDType char[4]
 static PyObject *PyCThostFtdcTransferHeaderField_get_BankID(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankID, (Py_ssize_t)sizeof(self->data.BankID));
-    return PyBytes_FromString(self->data.BankID);
+	return PyBytes_FromString(self->data.BankID);
 }
 
-///银行代码，根据查询银行得到，必填
-// TThostFtdcBankIDType char[4]
-static int PyCThostFtdcTransferHeaderField_set_BankID(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
-        PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-    // memcpy(self->data.BankID, buf, len);
-    strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
-    return 0;
-}
-            
-///银行分中心代码，根据查询银行得到，必填
-// TThostFtdcBankBrchIDType char[5]
 static PyObject *PyCThostFtdcTransferHeaderField_get_BankBrchID(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankBrchID, (Py_ssize_t)sizeof(self->data.BankBrchID));
-    return PyBytes_FromString(self->data.BankBrchID);
+	return PyBytes_FromString(self->data.BankBrchID);
 }
 
-///银行分中心代码，根据查询银行得到，必填
-// TThostFtdcBankBrchIDType char[5]
-static int PyCThostFtdcTransferHeaderField_set_BankBrchID(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankBrchID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
-        PyErr_SetString(PyExc_ValueError, "BankBrchID must be less than 5 bytes");
-        return -1;
-    }
-    // memset(self->data.BankBrchID, 0, sizeof(self->data.BankBrchID));
-    // memcpy(self->data.BankBrchID, buf, len);
-    strncpy(self->data.BankBrchID, buf, sizeof(self->data.BankBrchID));
-    return 0;
-}
-            
-///操作员，N/A
-// TThostFtdcOperNoType char[17]
 static PyObject *PyCThostFtdcTransferHeaderField_get_OperNo(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.OperNo, (Py_ssize_t)sizeof(self->data.OperNo));
-    return PyBytes_FromString(self->data.OperNo);
+	return PyBytes_FromString(self->data.OperNo);
 }
 
-///操作员，N/A
-// TThostFtdcOperNoType char[17]
-static int PyCThostFtdcTransferHeaderField_set_OperNo(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "OperNo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OperNo)) {
-        PyErr_SetString(PyExc_ValueError, "OperNo must be less than 17 bytes");
-        return -1;
-    }
-    // memset(self->data.OperNo, 0, sizeof(self->data.OperNo));
-    // memcpy(self->data.OperNo, buf, len);
-    strncpy(self->data.OperNo, buf, sizeof(self->data.OperNo));
-    return 0;
-}
-            
-///交易设备类型，N/A
-// TThostFtdcDeviceIDType char[3]
 static PyObject *PyCThostFtdcTransferHeaderField_get_DeviceID(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.DeviceID, (Py_ssize_t)sizeof(self->data.DeviceID));
-    return PyBytes_FromString(self->data.DeviceID);
+	return PyBytes_FromString(self->data.DeviceID);
 }
 
-///交易设备类型，N/A
-// TThostFtdcDeviceIDType char[3]
-static int PyCThostFtdcTransferHeaderField_set_DeviceID(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DeviceID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
-        PyErr_SetString(PyExc_ValueError, "DeviceID must be less than 3 bytes");
-        return -1;
-    }
-    // memset(self->data.DeviceID, 0, sizeof(self->data.DeviceID));
-    // memcpy(self->data.DeviceID, buf, len);
-    strncpy(self->data.DeviceID, buf, sizeof(self->data.DeviceID));
-    return 0;
-}
-            
-///记录数，N/A
-// TThostFtdcRecordNumType char[7]
 static PyObject *PyCThostFtdcTransferHeaderField_get_RecordNum(PyCThostFtdcTransferHeaderField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.RecordNum, (Py_ssize_t)sizeof(self->data.RecordNum));
-    return PyBytes_FromString(self->data.RecordNum);
+	return PyBytes_FromString(self->data.RecordNum);
 }
 
-///记录数，N/A
-// TThostFtdcRecordNumType char[7]
-static int PyCThostFtdcTransferHeaderField_set_RecordNum(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "RecordNum Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RecordNum)) {
-        PyErr_SetString(PyExc_ValueError, "RecordNum must be less than 7 bytes");
-        return -1;
-    }
-    // memset(self->data.RecordNum, 0, sizeof(self->data.RecordNum));
-    // memcpy(self->data.RecordNum, buf, len);
-    strncpy(self->data.RecordNum, buf, sizeof(self->data.RecordNum));
-    return 0;
-}
-            
-///会话编号，N/A
-// TThostFtdcSessionIDType int
 static PyObject *PyCThostFtdcTransferHeaderField_get_SessionID(PyCThostFtdcTransferHeaderField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SessionID);
-#else
-    return PyInt_FromLong(self->data.SessionID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SessionID);
+#else 
+	return PyInt_FromLong(self->data.SessionID);
+#endif 
 }
 
-///会话编号，N/A
-// TThostFtdcSessionIDType int
-static int PyCThostFtdcTransferHeaderField_set_SessionID(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcTransferHeaderField_get_RequestID(PyCThostFtdcTransferHeaderField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.RequestID);
+#else 
+	return PyInt_FromLong(self->data.RequestID);
+#endif 
+}
+
+static int PyCThostFtdcTransferHeaderField_set_Version(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "Version Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.Version)) {
+		PyErr_SetString(PyExc_ValueError, "Version must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.Version, buf, sizeof(self->data.Version));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_TradeCode(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+		PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeCode, buf, sizeof(self->data.TradeCode));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_TradeDate(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeDate Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+		PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeDate, buf, sizeof(self->data.TradeDate));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_TradeTime(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeTime Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+		PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeTime, buf, sizeof(self->data.TradeTime));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_TradeSerial(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeSerial Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeSerial)) {
+		PyErr_SetString(PyExc_ValueError, "TradeSerial must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeSerial, buf, sizeof(self->data.TradeSerial));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_FutureID(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FutureID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FutureID)) {
+		PyErr_SetString(PyExc_ValueError, "FutureID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.FutureID, buf, sizeof(self->data.FutureID));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_BankID(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+		PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_BankBrchID(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankBrchID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
+		PyErr_SetString(PyExc_ValueError, "BankBrchID must be less than 5 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankBrchID, buf, sizeof(self->data.BankBrchID));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_OperNo(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "OperNo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+		PyErr_SetString(PyExc_ValueError, "OperNo must be less than 17 bytes");
+		return -1;
+	}
+	strncpy(self->data.OperNo, buf, sizeof(self->data.OperNo));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_DeviceID(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "DeviceID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+		PyErr_SetString(PyExc_ValueError, "DeviceID must be less than 3 bytes");
+		return -1;
+	}
+	strncpy(self->data.DeviceID, buf, sizeof(self->data.DeviceID));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_RecordNum(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "RecordNum Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.RecordNum)) {
+		PyErr_SetString(PyExc_ValueError, "RecordNum must be less than 7 bytes");
+		return -1;
+	}
+	strncpy(self->data.RecordNum, buf, sizeof(self->data.RecordNum));
+	return 0;
+}
+
+static int PyCThostFtdcTransferHeaderField_set_SessionID(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SessionID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SessionID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SessionID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SessionID value out of range for C int");
-        return -1;
-    }
-    self->data.SessionID = (int)buf;
-    return 0;
-}
-        
-///请求编号，N/A
-// TThostFtdcRequestIDType int
-static PyObject *PyCThostFtdcTransferHeaderField_get_RequestID(PyCThostFtdcTransferHeaderField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.RequestID);
-#else
-    return PyInt_FromLong(self->data.RequestID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SessionID = (int)buf; 
+    return 0; 
 }
 
-///请求编号，N/A
-// TThostFtdcRequestIDType int
-static int PyCThostFtdcTransferHeaderField_set_RequestID(PyCThostFtdcTransferHeaderField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcTransferHeaderField_set_RequestID(PyCThostFtdcTransferHeaderField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "RequestID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "RequestID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "RequestID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the RequestID value out of range for C int");
-        return -1;
-    }
-    self->data.RequestID = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.RequestID = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcTransferHeaderField_getset[] = {
-    ///版本号，常量，1.0 
-    {(char *)"Version", (getter)PyCThostFtdcTransferHeaderField_get_Version, (setter)PyCThostFtdcTransferHeaderField_set_Version, (char *)"Version", NULL},
-    ///交易代码，必填 
-    {(char *)"TradeCode", (getter)PyCThostFtdcTransferHeaderField_get_TradeCode, (setter)PyCThostFtdcTransferHeaderField_set_TradeCode, (char *)"TradeCode", NULL},
-    ///交易日期，必填，格式：yyyymmdd 
-    {(char *)"TradeDate", (getter)PyCThostFtdcTransferHeaderField_get_TradeDate, (setter)PyCThostFtdcTransferHeaderField_set_TradeDate, (char *)"TradeDate", NULL},
-    ///交易时间，必填，格式：hhmmss 
-    {(char *)"TradeTime", (getter)PyCThostFtdcTransferHeaderField_get_TradeTime, (setter)PyCThostFtdcTransferHeaderField_set_TradeTime, (char *)"TradeTime", NULL},
-    ///发起方流水号，N/A 
-    {(char *)"TradeSerial", (getter)PyCThostFtdcTransferHeaderField_get_TradeSerial, (setter)PyCThostFtdcTransferHeaderField_set_TradeSerial, (char *)"TradeSerial", NULL},
-    ///期货公司代码，必填 
-    {(char *)"FutureID", (getter)PyCThostFtdcTransferHeaderField_get_FutureID, (setter)PyCThostFtdcTransferHeaderField_set_FutureID, (char *)"FutureID", NULL},
-    ///银行代码，根据查询银行得到，必填 
-    {(char *)"BankID", (getter)PyCThostFtdcTransferHeaderField_get_BankID, (setter)PyCThostFtdcTransferHeaderField_set_BankID, (char *)"BankID", NULL},
-    ///银行分中心代码，根据查询银行得到，必填 
-    {(char *)"BankBrchID", (getter)PyCThostFtdcTransferHeaderField_get_BankBrchID, (setter)PyCThostFtdcTransferHeaderField_set_BankBrchID, (char *)"BankBrchID", NULL},
-    ///操作员，N/A 
-    {(char *)"OperNo", (getter)PyCThostFtdcTransferHeaderField_get_OperNo, (setter)PyCThostFtdcTransferHeaderField_set_OperNo, (char *)"OperNo", NULL},
-    ///交易设备类型，N/A 
-    {(char *)"DeviceID", (getter)PyCThostFtdcTransferHeaderField_get_DeviceID, (setter)PyCThostFtdcTransferHeaderField_set_DeviceID, (char *)"DeviceID", NULL},
-    ///记录数，N/A 
-    {(char *)"RecordNum", (getter)PyCThostFtdcTransferHeaderField_get_RecordNum, (setter)PyCThostFtdcTransferHeaderField_set_RecordNum, (char *)"RecordNum", NULL},
-    ///会话编号，N/A 
-    {(char *)"SessionID", (getter)PyCThostFtdcTransferHeaderField_get_SessionID, (setter)PyCThostFtdcTransferHeaderField_set_SessionID, (char *)"SessionID", NULL},
-    ///请求编号，N/A 
-    {(char *)"RequestID", (getter)PyCThostFtdcTransferHeaderField_get_RequestID, (setter)PyCThostFtdcTransferHeaderField_set_RequestID, (char *)"RequestID", NULL},
+	 {(char *)"Version", (getter)PyCThostFtdcTransferHeaderField_get_Version, (setter)PyCThostFtdcTransferHeaderField_set_Version, (char *)"Version", NULL},
+	 {(char *)"TradeCode", (getter)PyCThostFtdcTransferHeaderField_get_TradeCode, (setter)PyCThostFtdcTransferHeaderField_set_TradeCode, (char *)"TradeCode", NULL},
+	 {(char *)"TradeDate", (getter)PyCThostFtdcTransferHeaderField_get_TradeDate, (setter)PyCThostFtdcTransferHeaderField_set_TradeDate, (char *)"TradeDate", NULL},
+	 {(char *)"TradeTime", (getter)PyCThostFtdcTransferHeaderField_get_TradeTime, (setter)PyCThostFtdcTransferHeaderField_set_TradeTime, (char *)"TradeTime", NULL},
+	 {(char *)"TradeSerial", (getter)PyCThostFtdcTransferHeaderField_get_TradeSerial, (setter)PyCThostFtdcTransferHeaderField_set_TradeSerial, (char *)"TradeSerial", NULL},
+	 {(char *)"FutureID", (getter)PyCThostFtdcTransferHeaderField_get_FutureID, (setter)PyCThostFtdcTransferHeaderField_set_FutureID, (char *)"FutureID", NULL},
+	 {(char *)"BankID", (getter)PyCThostFtdcTransferHeaderField_get_BankID, (setter)PyCThostFtdcTransferHeaderField_set_BankID, (char *)"BankID", NULL},
+	 {(char *)"BankBrchID", (getter)PyCThostFtdcTransferHeaderField_get_BankBrchID, (setter)PyCThostFtdcTransferHeaderField_set_BankBrchID, (char *)"BankBrchID", NULL},
+	 {(char *)"OperNo", (getter)PyCThostFtdcTransferHeaderField_get_OperNo, (setter)PyCThostFtdcTransferHeaderField_set_OperNo, (char *)"OperNo", NULL},
+	 {(char *)"DeviceID", (getter)PyCThostFtdcTransferHeaderField_get_DeviceID, (setter)PyCThostFtdcTransferHeaderField_set_DeviceID, (char *)"DeviceID", NULL},
+	 {(char *)"RecordNum", (getter)PyCThostFtdcTransferHeaderField_get_RecordNum, (setter)PyCThostFtdcTransferHeaderField_set_RecordNum, (char *)"RecordNum", NULL},
+	 {(char *)"SessionID", (getter)PyCThostFtdcTransferHeaderField_get_SessionID, (setter)PyCThostFtdcTransferHeaderField_set_SessionID, (char *)"SessionID", NULL},
+	 {(char *)"RequestID", (getter)PyCThostFtdcTransferHeaderField_get_RequestID, (setter)PyCThostFtdcTransferHeaderField_set_RequestID, (char *)"RequestID", NULL},
 
     {NULL}
 };

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///同步SPBM参数结束
+
 
 typedef struct PyCThostFtdcSyncSPBMParameterEndField {
     PyObject_HEAD

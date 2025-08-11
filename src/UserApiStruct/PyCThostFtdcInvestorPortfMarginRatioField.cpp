@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcInvestorPortfMarginRatioField.h"
 
-///投资者新型组合保证金系数
+
 
 static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcInvestorPortfMarginRatioField *self = (PyCThostFtdcInvestorPortfMarginRatioField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_new(PyTypeObject *typ
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,35 +18,29 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_init(PyCThostFtdcInvestorPo
 
     static const char *kwlist[] = {"InvestorRange", "BrokerID", "InvestorID", "ExchangeID", "MarginRatio", "ProductGroupID",  NULL};
 
+	//TThostFtdcInvestorRangeType char
+	char pInvestorPortfMarginRatioField_InvestorRange = 0;
 
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    char InvestorPortfMarginRatioField_InvestorRange = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *InvestorPortfMarginRatioField_BrokerID = NULL;
-    Py_ssize_t InvestorPortfMarginRatioField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *InvestorPortfMarginRatioField_InvestorID = NULL;
-    Py_ssize_t InvestorPortfMarginRatioField_InvestorID_len = 0;
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *InvestorPortfMarginRatioField_ExchangeID = NULL;
-    Py_ssize_t InvestorPortfMarginRatioField_ExchangeID_len = 0;
-            
-    ///会员对投资者收取的保证金和交易所对投资者收取的保证金的比例
-    // TThostFtdcRatioType double
-    double InvestorPortfMarginRatioField_MarginRatio = 0.0;
-        
-    ///产品群代码
-    // TThostFtdcProductIDType char[41]
-    const char *InvestorPortfMarginRatioField_ProductGroupID = NULL;
-    Py_ssize_t InvestorPortfMarginRatioField_ProductGroupID_len = 0;
-            
+	//TThostFtdcBrokerIDType char[11]
+	const char *pInvestorPortfMarginRatioField_BrokerID = NULL;
+	Py_ssize_t pInvestorPortfMarginRatioField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pInvestorPortfMarginRatioField_InvestorID = NULL;
+	Py_ssize_t pInvestorPortfMarginRatioField_InvestorID_len = 0;
+
+	//TThostFtdcExchangeIDType char[9]
+	const char *pInvestorPortfMarginRatioField_ExchangeID = NULL;
+	Py_ssize_t pInvestorPortfMarginRatioField_ExchangeID_len = 0;
+
+	//TThostFtdcRatioType double
+	double pInvestorPortfMarginRatioField_MarginRatio = 0.0;
+
+	//TThostFtdcProductIDType char[41]
+	const char *pInvestorPortfMarginRatioField_ProductGroupID = NULL;
+	Py_ssize_t pInvestorPortfMarginRatioField_ProductGroupID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|cy#y#y#dy#", (char **)kwlist
@@ -53,79 +48,64 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_init(PyCThostFtdcInvestorPo
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|cs#s#s#ds#", (char **)kwlist
 #endif
 
-        , &InvestorPortfMarginRatioField_InvestorRange 
-        , &InvestorPortfMarginRatioField_BrokerID, &InvestorPortfMarginRatioField_BrokerID_len 
-        , &InvestorPortfMarginRatioField_InvestorID, &InvestorPortfMarginRatioField_InvestorID_len 
-        , &InvestorPortfMarginRatioField_ExchangeID, &InvestorPortfMarginRatioField_ExchangeID_len 
-        , &InvestorPortfMarginRatioField_MarginRatio 
-        , &InvestorPortfMarginRatioField_ProductGroupID, &InvestorPortfMarginRatioField_ProductGroupID_len 
+		, &pInvestorPortfMarginRatioField_InvestorRange
+		, &pInvestorPortfMarginRatioField_BrokerID, &pInvestorPortfMarginRatioField_BrokerID_len
+		, &pInvestorPortfMarginRatioField_InvestorID, &pInvestorPortfMarginRatioField_InvestorID_len
+		, &pInvestorPortfMarginRatioField_ExchangeID, &pInvestorPortfMarginRatioField_ExchangeID_len
+		, &pInvestorPortfMarginRatioField_MarginRatio
+		, &pInvestorPortfMarginRatioField_ProductGroupID, &pInvestorPortfMarginRatioField_ProductGroupID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcInvestorRangeType char
+	self->data.InvestorRange = pInvestorPortfMarginRatioField_InvestorRange;
 
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    self->data.InvestorRange = InvestorPortfMarginRatioField_InvestorRange;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( InvestorPortfMarginRatioField_BrokerID != NULL ) {
-        if(InvestorPortfMarginRatioField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, InvestorPortfMarginRatioField_BrokerID, InvestorPortfMarginRatioField_BrokerID_len);        
-        strncpy(self->data.BrokerID, InvestorPortfMarginRatioField_BrokerID, sizeof(self->data.BrokerID) );
-        InvestorPortfMarginRatioField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( InvestorPortfMarginRatioField_InvestorID != NULL ) {
-        if(InvestorPortfMarginRatioField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, InvestorPortfMarginRatioField_InvestorID, InvestorPortfMarginRatioField_InvestorID_len);        
-        strncpy(self->data.InvestorID, InvestorPortfMarginRatioField_InvestorID, sizeof(self->data.InvestorID) );
-        InvestorPortfMarginRatioField_InvestorID = NULL;
-    }
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( InvestorPortfMarginRatioField_ExchangeID != NULL ) {
-        if(InvestorPortfMarginRatioField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, InvestorPortfMarginRatioField_ExchangeID, InvestorPortfMarginRatioField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, InvestorPortfMarginRatioField_ExchangeID, sizeof(self->data.ExchangeID) );
-        InvestorPortfMarginRatioField_ExchangeID = NULL;
-    }
-            
-    ///会员对投资者收取的保证金和交易所对投资者收取的保证金的比例
-    // TThostFtdcRatioType double
-    self->data.MarginRatio = InvestorPortfMarginRatioField_MarginRatio;
-        
-    ///产品群代码
-    // TThostFtdcProductIDType char[41]
-    if( InvestorPortfMarginRatioField_ProductGroupID != NULL ) {
-        if(InvestorPortfMarginRatioField_ProductGroupID_len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
-            PyErr_Format(PyExc_ValueError, "ProductGroupID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_ProductGroupID_len, (Py_ssize_t)sizeof(self->data.ProductGroupID));
-            return -1;
-        }
-        // memset(self->data.ProductGroupID, 0, sizeof(self->data.ProductGroupID));
-        // memcpy(self->data.ProductGroupID, InvestorPortfMarginRatioField_ProductGroupID, InvestorPortfMarginRatioField_ProductGroupID_len);        
-        strncpy(self->data.ProductGroupID, InvestorPortfMarginRatioField_ProductGroupID, sizeof(self->data.ProductGroupID) );
-        InvestorPortfMarginRatioField_ProductGroupID = NULL;
-    }
-            
+	//TThostFtdcBrokerIDType char[11]
+	if(pInvestorPortfMarginRatioField_BrokerID != NULL) {
+		if(pInvestorPortfMarginRatioField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pInvestorPortfMarginRatioField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pInvestorPortfMarginRatioField_BrokerID, sizeof(self->data.BrokerID) );
+		pInvestorPortfMarginRatioField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pInvestorPortfMarginRatioField_InvestorID != NULL) {
+		if(pInvestorPortfMarginRatioField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pInvestorPortfMarginRatioField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pInvestorPortfMarginRatioField_InvestorID, sizeof(self->data.InvestorID) );
+		pInvestorPortfMarginRatioField_InvestorID = NULL;
+	}
+
+	//TThostFtdcExchangeIDType char[9]
+	if(pInvestorPortfMarginRatioField_ExchangeID != NULL) {
+		if(pInvestorPortfMarginRatioField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pInvestorPortfMarginRatioField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pInvestorPortfMarginRatioField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pInvestorPortfMarginRatioField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcRatioType double
+	self->data.MarginRatio = pInvestorPortfMarginRatioField_MarginRatio;
+	//TThostFtdcProductIDType char[41]
+	if(pInvestorPortfMarginRatioField_ProductGroupID != NULL) {
+		if(pInvestorPortfMarginRatioField_ProductGroupID_len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+			PyErr_Format(PyExc_ValueError, "ProductGroupID too long: length=%zd (max allowed is %zd)", pInvestorPortfMarginRatioField_ProductGroupID_len, (Py_ssize_t)sizeof(self->data.ProductGroupID));
+			return -1;
+		}
+		strncpy(self->data.ProductGroupID, pInvestorPortfMarginRatioField_ProductGroupID, sizeof(self->data.ProductGroupID) );
+		pInvestorPortfMarginRatioField_ProductGroupID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -142,12 +122,12 @@ static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_repr(PyCThostFtdcInve
     PyObject *obj = Py_BuildValue("{s:c,s:s,s:s,s:s,s:d,s:s}"
 #endif
 
-        ,"InvestorRange", self->data.InvestorRange 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"MarginRatio", self->data.MarginRatio 
-        ,"ProductGroupID", self->data.ProductGroupID//, (Py_ssize_t)sizeof(self->data.ProductGroupID) 
+		, "InvestorRange", self->data.InvestorRange
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "ExchangeID", self->data.ExchangeID 
+		, "MarginRatio", self->data.MarginRatio
+		, "ProductGroupID", self->data.ProductGroupID 
 
 
 		);
@@ -160,117 +140,91 @@ static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_repr(PyCThostFtdcInve
     return PyObject_Repr(obj);
 }
 
-
-///投资者范围
-// TThostFtdcInvestorRangeType char
 static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_get_InvestorRange(PyCThostFtdcInvestorPortfMarginRatioField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
+	return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
 }
 
-///投资者范围
-// TThostFtdcInvestorRangeType char
-static int PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorRange(PyCThostFtdcInvestorPortfMarginRatioField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorRange must be equal 1 bytes");
-        return -1;
-    }
-    self->data.InvestorRange = *buf;
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_get_BrokerID(PyCThostFtdcInvestorPortfMarginRatioField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcInvestorPortfMarginRatioField_set_BrokerID(PyCThostFtdcInvestorPortfMarginRatioField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_get_InvestorID(PyCThostFtdcInvestorPortfMarginRatioField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorID(PyCThostFtdcInvestorPortfMarginRatioField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_get_ExchangeID(PyCThostFtdcInvestorPortfMarginRatioField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcInvestorPortfMarginRatioField_set_ExchangeID(PyCThostFtdcInvestorPortfMarginRatioField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///会员对投资者收取的保证金和交易所对投资者收取的保证金的比例
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_get_MarginRatio(PyCThostFtdcInvestorPortfMarginRatioField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.MarginRatio);
+	return PyFloat_FromDouble(self->data.MarginRatio);
 }
 
-///会员对投资者收取的保证金和交易所对投资者收取的保证金的比例
-// TThostFtdcRatioType double
-static int PyCThostFtdcInvestorPortfMarginRatioField_set_MarginRatio(PyCThostFtdcInvestorPortfMarginRatioField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_get_ProductGroupID(PyCThostFtdcInvestorPortfMarginRatioField *self, void *closure) {
+	return PyBytes_FromString(self->data.ProductGroupID);
+}
+
+static int PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorRange(PyCThostFtdcInvestorPortfMarginRatioField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorRange must be less than 1 bytes");
+		return -1;
+	}
+	self->data.InvestorRange = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcInvestorPortfMarginRatioField_set_BrokerID(PyCThostFtdcInvestorPortfMarginRatioField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorID(PyCThostFtdcInvestorPortfMarginRatioField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorPortfMarginRatioField_set_ExchangeID(PyCThostFtdcInvestorPortfMarginRatioField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcInvestorPortfMarginRatioField_set_MarginRatio(PyCThostFtdcInvestorPortfMarginRatioField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "MarginRatio Expected float");
         return -1;
@@ -282,47 +236,31 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_set_MarginRatio(PyCThostFtd
     self->data.MarginRatio = buf;
     return 0;
 }
-        
-///产品群代码
-// TThostFtdcProductIDType char[41]
-static PyObject *PyCThostFtdcInvestorPortfMarginRatioField_get_ProductGroupID(PyCThostFtdcInvestorPortfMarginRatioField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductGroupID, (Py_ssize_t)sizeof(self->data.ProductGroupID));
-    return PyBytes_FromString(self->data.ProductGroupID);
+
+static int PyCThostFtdcInvestorPortfMarginRatioField_set_ProductGroupID(PyCThostFtdcInvestorPortfMarginRatioField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductGroupID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductGroupID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductGroupID, buf, sizeof(self->data.ProductGroupID));
+	return 0;
 }
 
-///产品群代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcInvestorPortfMarginRatioField_set_ProductGroupID(PyCThostFtdcInvestorPortfMarginRatioField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductGroupID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductGroupID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductGroupID, 0, sizeof(self->data.ProductGroupID));
-    // memcpy(self->data.ProductGroupID, buf, len);
-    strncpy(self->data.ProductGroupID, buf, sizeof(self->data.ProductGroupID));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcInvestorPortfMarginRatioField_getset[] = {
-    ///投资者范围 
-    {(char *)"InvestorRange", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_InvestorRange, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorRange, (char *)"InvestorRange", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_BrokerID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_InvestorID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_ExchangeID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///会员对投资者收取的保证金和交易所对投资者收取的保证金的比例 
-    {(char *)"MarginRatio", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_MarginRatio, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_MarginRatio, (char *)"MarginRatio", NULL},
-    ///产品群代码 
-    {(char *)"ProductGroupID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_ProductGroupID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_ProductGroupID, (char *)"ProductGroupID", NULL},
+	 {(char *)"InvestorRange", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_InvestorRange, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorRange, (char *)"InvestorRange", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_BrokerID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_InvestorID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_ExchangeID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"MarginRatio", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_MarginRatio, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_MarginRatio, (char *)"MarginRatio", NULL},
+	 {(char *)"ProductGroupID", (getter)PyCThostFtdcInvestorPortfMarginRatioField_get_ProductGroupID, (setter)PyCThostFtdcInvestorPortfMarginRatioField_set_ProductGroupID, (char *)"ProductGroupID", NULL},
 
     {NULL}
 };

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者商品组SPMM记录查询
+
 
 typedef struct PyCThostFtdcQryInvestorCommoditySPMMMarginField {
     PyObject_HEAD

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///行情申买四、五属性
+
 
 typedef struct PyCThostFtdcMarketDataBid45Field {
     PyObject_HEAD

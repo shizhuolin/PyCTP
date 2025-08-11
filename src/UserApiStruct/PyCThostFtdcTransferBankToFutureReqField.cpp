@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTransferBankToFutureReqField.h"
 
-///银行资金转期货请求，TradeCode=202001
+
 
 static PyObject *PyCThostFtdcTransferBankToFutureReqField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTransferBankToFutureReqField *self = (PyCThostFtdcTransferBankToFutureReqField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcTransferBankToFutureReqField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,34 +18,28 @@ static int PyCThostFtdcTransferBankToFutureReqField_init(PyCThostFtdcTransferBan
 
     static const char *kwlist[] = {"FutureAccount", "FuturePwdFlag", "FutureAccPwd", "TradeAmt", "CustFee", "CurrencyCode",  NULL};
 
+	//TThostFtdcAccountIDType char[13]
+	const char *pTransferBankToFutureReqField_FutureAccount = NULL;
+	Py_ssize_t pTransferBankToFutureReqField_FutureAccount_len = 0;
 
-    ///期货资金账户
-    // TThostFtdcAccountIDType char[13]
-    const char *TransferBankToFutureReqField_FutureAccount = NULL;
-    Py_ssize_t TransferBankToFutureReqField_FutureAccount_len = 0;
-            
-    ///密码标志
-    // TThostFtdcFuturePwdFlagType char
-    char TransferBankToFutureReqField_FuturePwdFlag = 0;
-            
-    ///密码
-    // TThostFtdcFutureAccPwdType char[17]
-    const char *TransferBankToFutureReqField_FutureAccPwd = NULL;
-    Py_ssize_t TransferBankToFutureReqField_FutureAccPwd_len = 0;
-            
-    ///转账金额
-    // TThostFtdcMoneyType double
-    double TransferBankToFutureReqField_TradeAmt = 0.0;
-        
-    ///客户手续费
-    // TThostFtdcMoneyType double
-    double TransferBankToFutureReqField_CustFee = 0.0;
-        
-    ///币种：RMB-人民币 USD-美圆 HKD-港元
-    // TThostFtdcCurrencyCodeType char[4]
-    const char *TransferBankToFutureReqField_CurrencyCode = NULL;
-    Py_ssize_t TransferBankToFutureReqField_CurrencyCode_len = 0;
-            
+	//TThostFtdcFuturePwdFlagType char
+	char pTransferBankToFutureReqField_FuturePwdFlag = 0;
+
+	//TThostFtdcFutureAccPwdType char[17]
+	const char *pTransferBankToFutureReqField_FutureAccPwd = NULL;
+	Py_ssize_t pTransferBankToFutureReqField_FutureAccPwd_len = 0;
+
+	//TThostFtdcMoneyType double
+	double pTransferBankToFutureReqField_TradeAmt = 0.0;
+
+	//TThostFtdcMoneyType double
+	double pTransferBankToFutureReqField_CustFee = 0.0;
+
+	//TThostFtdcCurrencyCodeType char[4]
+	const char *pTransferBankToFutureReqField_CurrencyCode = NULL;
+	Py_ssize_t pTransferBankToFutureReqField_CurrencyCode_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cy#ddy#", (char **)kwlist
@@ -52,70 +47,56 @@ static int PyCThostFtdcTransferBankToFutureReqField_init(PyCThostFtdcTransferBan
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cs#dds#", (char **)kwlist
 #endif
 
-        , &TransferBankToFutureReqField_FutureAccount, &TransferBankToFutureReqField_FutureAccount_len 
-        , &TransferBankToFutureReqField_FuturePwdFlag 
-        , &TransferBankToFutureReqField_FutureAccPwd, &TransferBankToFutureReqField_FutureAccPwd_len 
-        , &TransferBankToFutureReqField_TradeAmt 
-        , &TransferBankToFutureReqField_CustFee 
-        , &TransferBankToFutureReqField_CurrencyCode, &TransferBankToFutureReqField_CurrencyCode_len 
+		, &pTransferBankToFutureReqField_FutureAccount, &pTransferBankToFutureReqField_FutureAccount_len
+		, &pTransferBankToFutureReqField_FuturePwdFlag
+		, &pTransferBankToFutureReqField_FutureAccPwd, &pTransferBankToFutureReqField_FutureAccPwd_len
+		, &pTransferBankToFutureReqField_TradeAmt
+		, &pTransferBankToFutureReqField_CustFee
+		, &pTransferBankToFutureReqField_CurrencyCode, &pTransferBankToFutureReqField_CurrencyCode_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcAccountIDType char[13]
+	if(pTransferBankToFutureReqField_FutureAccount != NULL) {
+		if(pTransferBankToFutureReqField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+			PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", pTransferBankToFutureReqField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
+			return -1;
+		}
+		strncpy(self->data.FutureAccount, pTransferBankToFutureReqField_FutureAccount, sizeof(self->data.FutureAccount) );
+		pTransferBankToFutureReqField_FutureAccount = NULL;
+	}
 
-    ///期货资金账户
-    // TThostFtdcAccountIDType char[13]
-    if( TransferBankToFutureReqField_FutureAccount != NULL ) {
-        if(TransferBankToFutureReqField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
-            PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", TransferBankToFutureReqField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
-            return -1;
-        }
-        // memset(self->data.FutureAccount, 0, sizeof(self->data.FutureAccount));
-        // memcpy(self->data.FutureAccount, TransferBankToFutureReqField_FutureAccount, TransferBankToFutureReqField_FutureAccount_len);        
-        strncpy(self->data.FutureAccount, TransferBankToFutureReqField_FutureAccount, sizeof(self->data.FutureAccount) );
-        TransferBankToFutureReqField_FutureAccount = NULL;
-    }
-            
-    ///密码标志
-    // TThostFtdcFuturePwdFlagType char
-    self->data.FuturePwdFlag = TransferBankToFutureReqField_FuturePwdFlag;
-            
-    ///密码
-    // TThostFtdcFutureAccPwdType char[17]
-    if( TransferBankToFutureReqField_FutureAccPwd != NULL ) {
-        if(TransferBankToFutureReqField_FutureAccPwd_len > (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
-            PyErr_Format(PyExc_ValueError, "FutureAccPwd too long: length=%zd (max allowed is %zd)", TransferBankToFutureReqField_FutureAccPwd_len, (Py_ssize_t)sizeof(self->data.FutureAccPwd));
-            return -1;
-        }
-        // memset(self->data.FutureAccPwd, 0, sizeof(self->data.FutureAccPwd));
-        // memcpy(self->data.FutureAccPwd, TransferBankToFutureReqField_FutureAccPwd, TransferBankToFutureReqField_FutureAccPwd_len);        
-        strncpy(self->data.FutureAccPwd, TransferBankToFutureReqField_FutureAccPwd, sizeof(self->data.FutureAccPwd) );
-        TransferBankToFutureReqField_FutureAccPwd = NULL;
-    }
-            
-    ///转账金额
-    // TThostFtdcMoneyType double
-    self->data.TradeAmt = TransferBankToFutureReqField_TradeAmt;
-        
-    ///客户手续费
-    // TThostFtdcMoneyType double
-    self->data.CustFee = TransferBankToFutureReqField_CustFee;
-        
-    ///币种：RMB-人民币 USD-美圆 HKD-港元
-    // TThostFtdcCurrencyCodeType char[4]
-    if( TransferBankToFutureReqField_CurrencyCode != NULL ) {
-        if(TransferBankToFutureReqField_CurrencyCode_len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
-            PyErr_Format(PyExc_ValueError, "CurrencyCode too long: length=%zd (max allowed is %zd)", TransferBankToFutureReqField_CurrencyCode_len, (Py_ssize_t)sizeof(self->data.CurrencyCode));
-            return -1;
-        }
-        // memset(self->data.CurrencyCode, 0, sizeof(self->data.CurrencyCode));
-        // memcpy(self->data.CurrencyCode, TransferBankToFutureReqField_CurrencyCode, TransferBankToFutureReqField_CurrencyCode_len);        
-        strncpy(self->data.CurrencyCode, TransferBankToFutureReqField_CurrencyCode, sizeof(self->data.CurrencyCode) );
-        TransferBankToFutureReqField_CurrencyCode = NULL;
-    }
-            
+	//TThostFtdcFuturePwdFlagType char
+	self->data.FuturePwdFlag = pTransferBankToFutureReqField_FuturePwdFlag;
+
+	//TThostFtdcFutureAccPwdType char[17]
+	if(pTransferBankToFutureReqField_FutureAccPwd != NULL) {
+		if(pTransferBankToFutureReqField_FutureAccPwd_len > (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
+			PyErr_Format(PyExc_ValueError, "FutureAccPwd too long: length=%zd (max allowed is %zd)", pTransferBankToFutureReqField_FutureAccPwd_len, (Py_ssize_t)sizeof(self->data.FutureAccPwd));
+			return -1;
+		}
+		strncpy(self->data.FutureAccPwd, pTransferBankToFutureReqField_FutureAccPwd, sizeof(self->data.FutureAccPwd) );
+		pTransferBankToFutureReqField_FutureAccPwd = NULL;
+	}
+
+	//TThostFtdcMoneyType double
+	self->data.TradeAmt = pTransferBankToFutureReqField_TradeAmt;
+	//TThostFtdcMoneyType double
+	self->data.CustFee = pTransferBankToFutureReqField_CustFee;
+	//TThostFtdcCurrencyCodeType char[4]
+	if(pTransferBankToFutureReqField_CurrencyCode != NULL) {
+		if(pTransferBankToFutureReqField_CurrencyCode_len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+			PyErr_Format(PyExc_ValueError, "CurrencyCode too long: length=%zd (max allowed is %zd)", pTransferBankToFutureReqField_CurrencyCode_len, (Py_ssize_t)sizeof(self->data.CurrencyCode));
+			return -1;
+		}
+		strncpy(self->data.CurrencyCode, pTransferBankToFutureReqField_CurrencyCode, sizeof(self->data.CurrencyCode) );
+		pTransferBankToFutureReqField_CurrencyCode = NULL;
+	}
+
+
 
     return 0;
 }
@@ -132,12 +113,12 @@ static PyObject *PyCThostFtdcTransferBankToFutureReqField_repr(PyCThostFtdcTrans
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:s,s:d,s:d,s:s}"
 #endif
 
-        ,"FutureAccount", self->data.FutureAccount//, (Py_ssize_t)sizeof(self->data.FutureAccount) 
-        ,"FuturePwdFlag", self->data.FuturePwdFlag 
-        ,"FutureAccPwd", self->data.FutureAccPwd//, (Py_ssize_t)sizeof(self->data.FutureAccPwd) 
-        ,"TradeAmt", self->data.TradeAmt 
-        ,"CustFee", self->data.CustFee 
-        ,"CurrencyCode", self->data.CurrencyCode//, (Py_ssize_t)sizeof(self->data.CurrencyCode) 
+		, "FutureAccount", self->data.FutureAccount 
+		, "FuturePwdFlag", self->data.FuturePwdFlag
+		, "FutureAccPwd", self->data.FutureAccPwd 
+		, "TradeAmt", self->data.TradeAmt
+		, "CustFee", self->data.CustFee
+		, "CurrencyCode", self->data.CurrencyCode 
 
 
 		);
@@ -150,91 +131,76 @@ static PyObject *PyCThostFtdcTransferBankToFutureReqField_repr(PyCThostFtdcTrans
     return PyObject_Repr(obj);
 }
 
-
-///期货资金账户
-// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_FutureAccount(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FutureAccount, (Py_ssize_t)sizeof(self->data.FutureAccount));
-    return PyBytes_FromString(self->data.FutureAccount);
+	return PyBytes_FromString(self->data.FutureAccount);
 }
 
-///期货资金账户
-// TThostFtdcAccountIDType char[13]
-static int PyCThostFtdcTransferBankToFutureReqField_set_FutureAccount(PyCThostFtdcTransferBankToFutureReqField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FutureAccount Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
-        PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.FutureAccount, 0, sizeof(self->data.FutureAccount));
-    // memcpy(self->data.FutureAccount, buf, len);
-    strncpy(self->data.FutureAccount, buf, sizeof(self->data.FutureAccount));
-    return 0;
-}
-            
-///密码标志
-// TThostFtdcFuturePwdFlagType char
 static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_FuturePwdFlag(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.FuturePwdFlag), 1);
+	return PyBytes_FromStringAndSize(&(self->data.FuturePwdFlag), 1);
 }
 
-///密码标志
-// TThostFtdcFuturePwdFlagType char
-static int PyCThostFtdcTransferBankToFutureReqField_set_FuturePwdFlag(PyCThostFtdcTransferBankToFutureReqField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FuturePwdFlag Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FuturePwdFlag)) {
-        PyErr_SetString(PyExc_ValueError, "FuturePwdFlag must be equal 1 bytes");
-        return -1;
-    }
-    self->data.FuturePwdFlag = *buf;
-    return 0;
-}
-            
-///密码
-// TThostFtdcFutureAccPwdType char[17]
 static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_FutureAccPwd(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FutureAccPwd, (Py_ssize_t)sizeof(self->data.FutureAccPwd));
-    return PyBytes_FromString(self->data.FutureAccPwd);
+	return PyBytes_FromString(self->data.FutureAccPwd);
 }
 
-///密码
-// TThostFtdcFutureAccPwdType char[17]
-static int PyCThostFtdcTransferBankToFutureReqField_set_FutureAccPwd(PyCThostFtdcTransferBankToFutureReqField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FutureAccPwd Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
-        PyErr_SetString(PyExc_ValueError, "FutureAccPwd must be less than 17 bytes");
-        return -1;
-    }
-    // memset(self->data.FutureAccPwd, 0, sizeof(self->data.FutureAccPwd));
-    // memcpy(self->data.FutureAccPwd, buf, len);
-    strncpy(self->data.FutureAccPwd, buf, sizeof(self->data.FutureAccPwd));
-    return 0;
-}
-            
-///转账金额
-// TThostFtdcMoneyType double
 static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_TradeAmt(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.TradeAmt);
+	return PyFloat_FromDouble(self->data.TradeAmt);
 }
 
-///转账金额
-// TThostFtdcMoneyType double
-static int PyCThostFtdcTransferBankToFutureReqField_set_TradeAmt(PyCThostFtdcTransferBankToFutureReqField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_CustFee(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
+	return PyFloat_FromDouble(self->data.CustFee);
+}
+
+static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_CurrencyCode(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
+	return PyBytes_FromString(self->data.CurrencyCode);
+}
+
+static int PyCThostFtdcTransferBankToFutureReqField_set_FutureAccount(PyCThostFtdcTransferBankToFutureReqField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FutureAccount Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+		PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.FutureAccount, buf, sizeof(self->data.FutureAccount));
+	return 0;
+}
+
+static int PyCThostFtdcTransferBankToFutureReqField_set_FuturePwdFlag(PyCThostFtdcTransferBankToFutureReqField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FuturePwdFlag Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FuturePwdFlag)) {
+		PyErr_SetString(PyExc_ValueError, "FuturePwdFlag must be less than 1 bytes");
+		return -1;
+	}
+	self->data.FuturePwdFlag = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcTransferBankToFutureReqField_set_FutureAccPwd(PyCThostFtdcTransferBankToFutureReqField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FutureAccPwd Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
+		PyErr_SetString(PyExc_ValueError, "FutureAccPwd must be less than 17 bytes");
+		return -1;
+	}
+	strncpy(self->data.FutureAccPwd, buf, sizeof(self->data.FutureAccPwd));
+	return 0;
+}
+
+static int PyCThostFtdcTransferBankToFutureReqField_set_TradeAmt(PyCThostFtdcTransferBankToFutureReqField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "TradeAmt Expected float");
         return -1;
@@ -246,16 +212,8 @@ static int PyCThostFtdcTransferBankToFutureReqField_set_TradeAmt(PyCThostFtdcTra
     self->data.TradeAmt = buf;
     return 0;
 }
-        
-///客户手续费
-// TThostFtdcMoneyType double
-static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_CustFee(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.CustFee);
-}
 
-///客户手续费
-// TThostFtdcMoneyType double
-static int PyCThostFtdcTransferBankToFutureReqField_set_CustFee(PyCThostFtdcTransferBankToFutureReqField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcTransferBankToFutureReqField_set_CustFee(PyCThostFtdcTransferBankToFutureReqField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CustFee Expected float");
         return -1;
@@ -267,47 +225,31 @@ static int PyCThostFtdcTransferBankToFutureReqField_set_CustFee(PyCThostFtdcTran
     self->data.CustFee = buf;
     return 0;
 }
-        
-///币种：RMB-人民币 USD-美圆 HKD-港元
-// TThostFtdcCurrencyCodeType char[4]
-static PyObject *PyCThostFtdcTransferBankToFutureReqField_get_CurrencyCode(PyCThostFtdcTransferBankToFutureReqField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrencyCode, (Py_ssize_t)sizeof(self->data.CurrencyCode));
-    return PyBytes_FromString(self->data.CurrencyCode);
+
+static int PyCThostFtdcTransferBankToFutureReqField_set_CurrencyCode(PyCThostFtdcTransferBankToFutureReqField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrencyCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+		PyErr_SetString(PyExc_ValueError, "CurrencyCode must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrencyCode, buf, sizeof(self->data.CurrencyCode));
+	return 0;
 }
 
-///币种：RMB-人民币 USD-美圆 HKD-港元
-// TThostFtdcCurrencyCodeType char[4]
-static int PyCThostFtdcTransferBankToFutureReqField_set_CurrencyCode(PyCThostFtdcTransferBankToFutureReqField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrencyCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
-        PyErr_SetString(PyExc_ValueError, "CurrencyCode must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrencyCode, 0, sizeof(self->data.CurrencyCode));
-    // memcpy(self->data.CurrencyCode, buf, len);
-    strncpy(self->data.CurrencyCode, buf, sizeof(self->data.CurrencyCode));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcTransferBankToFutureReqField_getset[] = {
-    ///期货资金账户 
-    {(char *)"FutureAccount", (getter)PyCThostFtdcTransferBankToFutureReqField_get_FutureAccount, (setter)PyCThostFtdcTransferBankToFutureReqField_set_FutureAccount, (char *)"FutureAccount", NULL},
-    ///密码标志 
-    {(char *)"FuturePwdFlag", (getter)PyCThostFtdcTransferBankToFutureReqField_get_FuturePwdFlag, (setter)PyCThostFtdcTransferBankToFutureReqField_set_FuturePwdFlag, (char *)"FuturePwdFlag", NULL},
-    ///密码 
-    {(char *)"FutureAccPwd", (getter)PyCThostFtdcTransferBankToFutureReqField_get_FutureAccPwd, (setter)PyCThostFtdcTransferBankToFutureReqField_set_FutureAccPwd, (char *)"FutureAccPwd", NULL},
-    ///转账金额 
-    {(char *)"TradeAmt", (getter)PyCThostFtdcTransferBankToFutureReqField_get_TradeAmt, (setter)PyCThostFtdcTransferBankToFutureReqField_set_TradeAmt, (char *)"TradeAmt", NULL},
-    ///客户手续费 
-    {(char *)"CustFee", (getter)PyCThostFtdcTransferBankToFutureReqField_get_CustFee, (setter)PyCThostFtdcTransferBankToFutureReqField_set_CustFee, (char *)"CustFee", NULL},
-    ///币种：RMB-人民币 USD-美圆 HKD-港元 
-    {(char *)"CurrencyCode", (getter)PyCThostFtdcTransferBankToFutureReqField_get_CurrencyCode, (setter)PyCThostFtdcTransferBankToFutureReqField_set_CurrencyCode, (char *)"CurrencyCode", NULL},
+	 {(char *)"FutureAccount", (getter)PyCThostFtdcTransferBankToFutureReqField_get_FutureAccount, (setter)PyCThostFtdcTransferBankToFutureReqField_set_FutureAccount, (char *)"FutureAccount", NULL},
+	 {(char *)"FuturePwdFlag", (getter)PyCThostFtdcTransferBankToFutureReqField_get_FuturePwdFlag, (setter)PyCThostFtdcTransferBankToFutureReqField_set_FuturePwdFlag, (char *)"FuturePwdFlag", NULL},
+	 {(char *)"FutureAccPwd", (getter)PyCThostFtdcTransferBankToFutureReqField_get_FutureAccPwd, (setter)PyCThostFtdcTransferBankToFutureReqField_set_FutureAccPwd, (char *)"FutureAccPwd", NULL},
+	 {(char *)"TradeAmt", (getter)PyCThostFtdcTransferBankToFutureReqField_get_TradeAmt, (setter)PyCThostFtdcTransferBankToFutureReqField_set_TradeAmt, (char *)"TradeAmt", NULL},
+	 {(char *)"CustFee", (getter)PyCThostFtdcTransferBankToFutureReqField_get_CustFee, (setter)PyCThostFtdcTransferBankToFutureReqField_set_CustFee, (char *)"CustFee", NULL},
+	 {(char *)"CurrencyCode", (getter)PyCThostFtdcTransferBankToFutureReqField_get_CurrencyCode, (setter)PyCThostFtdcTransferBankToFutureReqField_set_CurrencyCode, (char *)"CurrencyCode", NULL},
 
     {NULL}
 };

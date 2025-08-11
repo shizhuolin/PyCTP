@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTradeParamField.h"
 
-///交易参数
+
 
 static PyObject *PyCThostFtdcTradeParamField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTradeParamField *self = (PyCThostFtdcTradeParamField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcTradeParamField_new(PyTypeObject *type, PyObject *a
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,26 +18,22 @@ static int PyCThostFtdcTradeParamField_init(PyCThostFtdcTradeParamField *self, P
 
     static const char *kwlist[] = {"BrokerID", "TradeParamID", "TradeParamValue", "Memo",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pTradeParamField_BrokerID = NULL;
+	Py_ssize_t pTradeParamField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *TradeParamField_BrokerID = NULL;
-    Py_ssize_t TradeParamField_BrokerID_len = 0;
-            
-    ///参数代码
-    // TThostFtdcTradeParamIDType char
-    char TradeParamField_TradeParamID = 0;
-            
-    ///参数代码值
-    // TThostFtdcSettlementParamValueType char[256]
-    const char *TradeParamField_TradeParamValue = NULL;
-    Py_ssize_t TradeParamField_TradeParamValue_len = 0;
-            
-    ///备注
-    // TThostFtdcMemoType char[161]
-    const char *TradeParamField_Memo = NULL;
-    Py_ssize_t TradeParamField_Memo_len = 0;
-            
+	//TThostFtdcTradeParamIDType char
+	char pTradeParamField_TradeParamID = 0;
+
+	//TThostFtdcSettlementParamValueType char[256]
+	const char *pTradeParamField_TradeParamValue = NULL;
+	Py_ssize_t pTradeParamField_TradeParamValue_len = 0;
+
+	//TThostFtdcMemoType char[161]
+	const char *pTradeParamField_Memo = NULL;
+	Py_ssize_t pTradeParamField_Memo_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cy#y#", (char **)kwlist
@@ -44,60 +41,50 @@ static int PyCThostFtdcTradeParamField_init(PyCThostFtdcTradeParamField *self, P
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cs#s#", (char **)kwlist
 #endif
 
-        , &TradeParamField_BrokerID, &TradeParamField_BrokerID_len 
-        , &TradeParamField_TradeParamID 
-        , &TradeParamField_TradeParamValue, &TradeParamField_TradeParamValue_len 
-        , &TradeParamField_Memo, &TradeParamField_Memo_len 
+		, &pTradeParamField_BrokerID, &pTradeParamField_BrokerID_len
+		, &pTradeParamField_TradeParamID
+		, &pTradeParamField_TradeParamValue, &pTradeParamField_TradeParamValue_len
+		, &pTradeParamField_Memo, &pTradeParamField_Memo_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pTradeParamField_BrokerID != NULL) {
+		if(pTradeParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pTradeParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pTradeParamField_BrokerID, sizeof(self->data.BrokerID) );
+		pTradeParamField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( TradeParamField_BrokerID != NULL ) {
-        if(TradeParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradeParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, TradeParamField_BrokerID, TradeParamField_BrokerID_len);        
-        strncpy(self->data.BrokerID, TradeParamField_BrokerID, sizeof(self->data.BrokerID) );
-        TradeParamField_BrokerID = NULL;
-    }
-            
-    ///参数代码
-    // TThostFtdcTradeParamIDType char
-    self->data.TradeParamID = TradeParamField_TradeParamID;
-            
-    ///参数代码值
-    // TThostFtdcSettlementParamValueType char[256]
-    if( TradeParamField_TradeParamValue != NULL ) {
-        if(TradeParamField_TradeParamValue_len > (Py_ssize_t)sizeof(self->data.TradeParamValue)) {
-            PyErr_Format(PyExc_ValueError, "TradeParamValue too long: length=%zd (max allowed is %zd)", TradeParamField_TradeParamValue_len, (Py_ssize_t)sizeof(self->data.TradeParamValue));
-            return -1;
-        }
-        // memset(self->data.TradeParamValue, 0, sizeof(self->data.TradeParamValue));
-        // memcpy(self->data.TradeParamValue, TradeParamField_TradeParamValue, TradeParamField_TradeParamValue_len);        
-        strncpy(self->data.TradeParamValue, TradeParamField_TradeParamValue, sizeof(self->data.TradeParamValue) );
-        TradeParamField_TradeParamValue = NULL;
-    }
-            
-    ///备注
-    // TThostFtdcMemoType char[161]
-    if( TradeParamField_Memo != NULL ) {
-        if(TradeParamField_Memo_len > (Py_ssize_t)sizeof(self->data.Memo)) {
-            PyErr_Format(PyExc_ValueError, "Memo too long: length=%zd (max allowed is %zd)", TradeParamField_Memo_len, (Py_ssize_t)sizeof(self->data.Memo));
-            return -1;
-        }
-        // memset(self->data.Memo, 0, sizeof(self->data.Memo));
-        // memcpy(self->data.Memo, TradeParamField_Memo, TradeParamField_Memo_len);        
-        strncpy(self->data.Memo, TradeParamField_Memo, sizeof(self->data.Memo) );
-        TradeParamField_Memo = NULL;
-    }
-            
+	//TThostFtdcTradeParamIDType char
+	self->data.TradeParamID = pTradeParamField_TradeParamID;
+
+	//TThostFtdcSettlementParamValueType char[256]
+	if(pTradeParamField_TradeParamValue != NULL) {
+		if(pTradeParamField_TradeParamValue_len > (Py_ssize_t)sizeof(self->data.TradeParamValue)) {
+			PyErr_Format(PyExc_ValueError, "TradeParamValue too long: length=%zd (max allowed is %zd)", pTradeParamField_TradeParamValue_len, (Py_ssize_t)sizeof(self->data.TradeParamValue));
+			return -1;
+		}
+		strncpy(self->data.TradeParamValue, pTradeParamField_TradeParamValue, sizeof(self->data.TradeParamValue) );
+		pTradeParamField_TradeParamValue = NULL;
+	}
+
+	//TThostFtdcMemoType char[161]
+	if(pTradeParamField_Memo != NULL) {
+		if(pTradeParamField_Memo_len > (Py_ssize_t)sizeof(self->data.Memo)) {
+			PyErr_Format(PyExc_ValueError, "Memo too long: length=%zd (max allowed is %zd)", pTradeParamField_Memo_len, (Py_ssize_t)sizeof(self->data.Memo));
+			return -1;
+		}
+		strncpy(self->data.Memo, pTradeParamField_Memo, sizeof(self->data.Memo) );
+		pTradeParamField_Memo = NULL;
+	}
+
+
 
     return 0;
 }
@@ -114,10 +101,10 @@ static PyObject *PyCThostFtdcTradeParamField_repr(PyCThostFtdcTradeParamField *s
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"TradeParamID", self->data.TradeParamID 
-        ,"TradeParamValue", self->data.TradeParamValue//, (Py_ssize_t)sizeof(self->data.TradeParamValue) 
-        ,"Memo", self->data.Memo//, (Py_ssize_t)sizeof(self->data.Memo) 
+		, "BrokerID", self->data.BrokerID 
+		, "TradeParamID", self->data.TradeParamID
+		, "TradeParamValue", self->data.TradeParamValue 
+		, "Memo", self->data.Memo 
 
 
 		);
@@ -130,118 +117,89 @@ static PyObject *PyCThostFtdcTradeParamField_repr(PyCThostFtdcTradeParamField *s
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcTradeParamField_get_BrokerID(PyCThostFtdcTradeParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcTradeParamField_set_BrokerID(PyCThostFtdcTradeParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///参数代码
-// TThostFtdcTradeParamIDType char
 static PyObject *PyCThostFtdcTradeParamField_get_TradeParamID(PyCThostFtdcTradeParamField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.TradeParamID), 1);
+	return PyBytes_FromStringAndSize(&(self->data.TradeParamID), 1);
 }
 
-///参数代码
-// TThostFtdcTradeParamIDType char
-static int PyCThostFtdcTradeParamField_set_TradeParamID(PyCThostFtdcTradeParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeParamID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeParamID)) {
-        PyErr_SetString(PyExc_ValueError, "TradeParamID must be equal 1 bytes");
-        return -1;
-    }
-    self->data.TradeParamID = *buf;
-    return 0;
-}
-            
-///参数代码值
-// TThostFtdcSettlementParamValueType char[256]
 static PyObject *PyCThostFtdcTradeParamField_get_TradeParamValue(PyCThostFtdcTradeParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeParamValue, (Py_ssize_t)sizeof(self->data.TradeParamValue));
-    return PyBytes_FromString(self->data.TradeParamValue);
+	return PyBytes_FromString(self->data.TradeParamValue);
 }
 
-///参数代码值
-// TThostFtdcSettlementParamValueType char[256]
-static int PyCThostFtdcTradeParamField_set_TradeParamValue(PyCThostFtdcTradeParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeParamValue Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeParamValue)) {
-        PyErr_SetString(PyExc_ValueError, "TradeParamValue must be less than 256 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeParamValue, 0, sizeof(self->data.TradeParamValue));
-    // memcpy(self->data.TradeParamValue, buf, len);
-    strncpy(self->data.TradeParamValue, buf, sizeof(self->data.TradeParamValue));
-    return 0;
-}
-            
-///备注
-// TThostFtdcMemoType char[161]
 static PyObject *PyCThostFtdcTradeParamField_get_Memo(PyCThostFtdcTradeParamField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.Memo, (Py_ssize_t)sizeof(self->data.Memo));
-    return PyBytes_FromString(self->data.Memo);
+	return PyBytes_FromString(self->data.Memo);
 }
 
-///备注
-// TThostFtdcMemoType char[161]
-static int PyCThostFtdcTradeParamField_set_Memo(PyCThostFtdcTradeParamField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "Memo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Memo)) {
-        PyErr_SetString(PyExc_ValueError, "Memo must be less than 161 bytes");
-        return -1;
-    }
-    // memset(self->data.Memo, 0, sizeof(self->data.Memo));
-    // memcpy(self->data.Memo, buf, len);
-    strncpy(self->data.Memo, buf, sizeof(self->data.Memo));
-    return 0;
+static int PyCThostFtdcTradeParamField_set_BrokerID(PyCThostFtdcTradeParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcTradeParamField_set_TradeParamID(PyCThostFtdcTradeParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeParamID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeParamID)) {
+		PyErr_SetString(PyExc_ValueError, "TradeParamID must be less than 1 bytes");
+		return -1;
+	}
+	self->data.TradeParamID = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcTradeParamField_set_TradeParamValue(PyCThostFtdcTradeParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeParamValue Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeParamValue)) {
+		PyErr_SetString(PyExc_ValueError, "TradeParamValue must be less than 256 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeParamValue, buf, sizeof(self->data.TradeParamValue));
+	return 0;
+}
+
+static int PyCThostFtdcTradeParamField_set_Memo(PyCThostFtdcTradeParamField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "Memo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.Memo)) {
+		PyErr_SetString(PyExc_ValueError, "Memo must be less than 161 bytes");
+		return -1;
+	}
+	strncpy(self->data.Memo, buf, sizeof(self->data.Memo));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcTradeParamField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcTradeParamField_get_BrokerID, (setter)PyCThostFtdcTradeParamField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///参数代码 
-    {(char *)"TradeParamID", (getter)PyCThostFtdcTradeParamField_get_TradeParamID, (setter)PyCThostFtdcTradeParamField_set_TradeParamID, (char *)"TradeParamID", NULL},
-    ///参数代码值 
-    {(char *)"TradeParamValue", (getter)PyCThostFtdcTradeParamField_get_TradeParamValue, (setter)PyCThostFtdcTradeParamField_set_TradeParamValue, (char *)"TradeParamValue", NULL},
-    ///备注 
-    {(char *)"Memo", (getter)PyCThostFtdcTradeParamField_get_Memo, (setter)PyCThostFtdcTradeParamField_set_Memo, (char *)"Memo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcTradeParamField_get_BrokerID, (setter)PyCThostFtdcTradeParamField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"TradeParamID", (getter)PyCThostFtdcTradeParamField_get_TradeParamID, (setter)PyCThostFtdcTradeParamField_set_TradeParamID, (char *)"TradeParamID", NULL},
+	 {(char *)"TradeParamValue", (getter)PyCThostFtdcTradeParamField_get_TradeParamValue, (setter)PyCThostFtdcTradeParamField_set_TradeParamValue, (char *)"TradeParamValue", NULL},
+	 {(char *)"Memo", (getter)PyCThostFtdcTradeParamField_get_Memo, (setter)PyCThostFtdcTradeParamField_set_Memo, (char *)"Memo", NULL},
 
     {NULL}
 };

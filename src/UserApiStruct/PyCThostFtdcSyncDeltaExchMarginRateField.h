@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///风险结算追平交易所期货保证金率
+
 
 typedef struct PyCThostFtdcSyncDeltaExchMarginRateField {
     PyObject_HEAD

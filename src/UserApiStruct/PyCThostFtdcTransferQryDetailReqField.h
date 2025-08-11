@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///查询银行交易明细请求，TradeCode=204999
+
 
 typedef struct PyCThostFtdcTransferQryDetailReqField {
     PyObject_HEAD

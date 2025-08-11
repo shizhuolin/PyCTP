@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcFrontInfoField.h"
 
-///前置信息
+
 
 static PyObject *PyCThostFtdcFrontInfoField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcFrontInfoField *self = (PyCThostFtdcFrontInfoField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcFrontInfoField_new(PyTypeObject *type, PyObject *ar
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,20 +18,17 @@ static int PyCThostFtdcFrontInfoField_init(PyCThostFtdcFrontInfoField *self, PyO
 
     static const char *kwlist[] = {"FrontAddr", "QryFreq", "FTDPkgFreq",  NULL};
 
+	//TThostFtdcAddressType char[101]
+	const char *pFrontInfoField_FrontAddr = NULL;
+	Py_ssize_t pFrontInfoField_FrontAddr_len = 0;
 
-    ///前置地址
-    // TThostFtdcAddressType char[101]
-    const char *FrontInfoField_FrontAddr = NULL;
-    Py_ssize_t FrontInfoField_FrontAddr_len = 0;
-            
-    ///查询流控
-    // TThostFtdcQueryFreqType int
-    int FrontInfoField_QryFreq = 0;
-        
-    ///FTD流控
-    // TThostFtdcQueryFreqType int
-    int FrontInfoField_FTDPkgFreq = 0;
-        
+	//TThostFtdcQueryFreqType int
+	int pFrontInfoField_QryFreq = 0;
+
+	//TThostFtdcQueryFreqType int
+	int pFrontInfoField_FTDPkgFreq = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#ii", (char **)kwlist
@@ -38,37 +36,32 @@ static int PyCThostFtdcFrontInfoField_init(PyCThostFtdcFrontInfoField *self, PyO
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#ii", (char **)kwlist
 #endif
 
-        , &FrontInfoField_FrontAddr, &FrontInfoField_FrontAddr_len 
-        , &FrontInfoField_QryFreq 
-        , &FrontInfoField_FTDPkgFreq 
+		, &pFrontInfoField_FrontAddr, &pFrontInfoField_FrontAddr_len
+		, &pFrontInfoField_QryFreq
+		, &pFrontInfoField_FTDPkgFreq
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcAddressType char[101]
+	if(pFrontInfoField_FrontAddr != NULL) {
+		if(pFrontInfoField_FrontAddr_len > (Py_ssize_t)sizeof(self->data.FrontAddr)) {
+			PyErr_Format(PyExc_ValueError, "FrontAddr too long: length=%zd (max allowed is %zd)", pFrontInfoField_FrontAddr_len, (Py_ssize_t)sizeof(self->data.FrontAddr));
+			return -1;
+		}
+		strncpy(self->data.FrontAddr, pFrontInfoField_FrontAddr, sizeof(self->data.FrontAddr) );
+		pFrontInfoField_FrontAddr = NULL;
+	}
 
-    ///前置地址
-    // TThostFtdcAddressType char[101]
-    if( FrontInfoField_FrontAddr != NULL ) {
-        if(FrontInfoField_FrontAddr_len > (Py_ssize_t)sizeof(self->data.FrontAddr)) {
-            PyErr_Format(PyExc_ValueError, "FrontAddr too long: length=%zd (max allowed is %zd)", FrontInfoField_FrontAddr_len, (Py_ssize_t)sizeof(self->data.FrontAddr));
-            return -1;
-        }
-        // memset(self->data.FrontAddr, 0, sizeof(self->data.FrontAddr));
-        // memcpy(self->data.FrontAddr, FrontInfoField_FrontAddr, FrontInfoField_FrontAddr_len);        
-        strncpy(self->data.FrontAddr, FrontInfoField_FrontAddr, sizeof(self->data.FrontAddr) );
-        FrontInfoField_FrontAddr = NULL;
-    }
-            
-    ///查询流控
-    // TThostFtdcQueryFreqType int
-    self->data.QryFreq = FrontInfoField_QryFreq;
-        
-    ///FTD流控
-    // TThostFtdcQueryFreqType int
-    self->data.FTDPkgFreq = FrontInfoField_FTDPkgFreq;
-        
+	//TThostFtdcQueryFreqType int
+	self->data.QryFreq = pFrontInfoField_QryFreq;
+
+	//TThostFtdcQueryFreqType int
+	self->data.FTDPkgFreq = pFrontInfoField_FTDPkgFreq;
+
+
 
     return 0;
 }
@@ -85,9 +78,9 @@ static PyObject *PyCThostFtdcFrontInfoField_repr(PyCThostFtdcFrontInfoField *sel
     PyObject *obj = Py_BuildValue("{s:s,s:i,s:i}"
 #endif
 
-        ,"FrontAddr", self->data.FrontAddr//, (Py_ssize_t)sizeof(self->data.FrontAddr) 
-        ,"QryFreq", self->data.QryFreq 
-        ,"FTDPkgFreq", self->data.FTDPkgFreq 
+		, "FrontAddr", self->data.FrontAddr 
+		, "QryFreq", self->data.QryFreq
+		, "FTDPkgFreq", self->data.FTDPkgFreq
 
 
 		);
@@ -100,117 +93,99 @@ static PyObject *PyCThostFtdcFrontInfoField_repr(PyCThostFtdcFrontInfoField *sel
     return PyObject_Repr(obj);
 }
 
-
-///前置地址
-// TThostFtdcAddressType char[101]
 static PyObject *PyCThostFtdcFrontInfoField_get_FrontAddr(PyCThostFtdcFrontInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FrontAddr, (Py_ssize_t)sizeof(self->data.FrontAddr));
-    return PyBytes_FromString(self->data.FrontAddr);
+	return PyBytes_FromString(self->data.FrontAddr);
 }
 
-///前置地址
-// TThostFtdcAddressType char[101]
-static int PyCThostFtdcFrontInfoField_set_FrontAddr(PyCThostFtdcFrontInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FrontAddr Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FrontAddr)) {
-        PyErr_SetString(PyExc_ValueError, "FrontAddr must be less than 101 bytes");
-        return -1;
-    }
-    // memset(self->data.FrontAddr, 0, sizeof(self->data.FrontAddr));
-    // memcpy(self->data.FrontAddr, buf, len);
-    strncpy(self->data.FrontAddr, buf, sizeof(self->data.FrontAddr));
-    return 0;
-}
-            
-///查询流控
-// TThostFtdcQueryFreqType int
 static PyObject *PyCThostFtdcFrontInfoField_get_QryFreq(PyCThostFtdcFrontInfoField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.QryFreq);
-#else
-    return PyInt_FromLong(self->data.QryFreq);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.QryFreq);
+#else 
+	return PyInt_FromLong(self->data.QryFreq);
+#endif 
 }
 
-///查询流控
-// TThostFtdcQueryFreqType int
-static int PyCThostFtdcFrontInfoField_set_QryFreq(PyCThostFtdcFrontInfoField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcFrontInfoField_get_FTDPkgFreq(PyCThostFtdcFrontInfoField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.FTDPkgFreq);
+#else 
+	return PyInt_FromLong(self->data.FTDPkgFreq);
+#endif 
+}
+
+static int PyCThostFtdcFrontInfoField_set_FrontAddr(PyCThostFtdcFrontInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FrontAddr Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FrontAddr)) {
+		PyErr_SetString(PyExc_ValueError, "FrontAddr must be less than 101 bytes");
+		return -1;
+	}
+	strncpy(self->data.FrontAddr, buf, sizeof(self->data.FrontAddr));
+	return 0;
+}
+
+static int PyCThostFtdcFrontInfoField_set_QryFreq(PyCThostFtdcFrontInfoField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "QryFreq Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "QryFreq Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "QryFreq Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the QryFreq value out of range for C int");
-        return -1;
-    }
-    self->data.QryFreq = (int)buf;
-    return 0;
-}
-        
-///FTD流控
-// TThostFtdcQueryFreqType int
-static PyObject *PyCThostFtdcFrontInfoField_get_FTDPkgFreq(PyCThostFtdcFrontInfoField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.FTDPkgFreq);
-#else
-    return PyInt_FromLong(self->data.FTDPkgFreq);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.QryFreq = (int)buf; 
+    return 0; 
 }
 
-///FTD流控
-// TThostFtdcQueryFreqType int
-static int PyCThostFtdcFrontInfoField_set_FTDPkgFreq(PyCThostFtdcFrontInfoField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcFrontInfoField_set_FTDPkgFreq(PyCThostFtdcFrontInfoField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FTDPkgFreq Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FTDPkgFreq Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "FTDPkgFreq Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the FTDPkgFreq value out of range for C int");
-        return -1;
-    }
-    self->data.FTDPkgFreq = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.FTDPkgFreq = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcFrontInfoField_getset[] = {
-    ///前置地址 
-    {(char *)"FrontAddr", (getter)PyCThostFtdcFrontInfoField_get_FrontAddr, (setter)PyCThostFtdcFrontInfoField_set_FrontAddr, (char *)"FrontAddr", NULL},
-    ///查询流控 
-    {(char *)"QryFreq", (getter)PyCThostFtdcFrontInfoField_get_QryFreq, (setter)PyCThostFtdcFrontInfoField_set_QryFreq, (char *)"QryFreq", NULL},
-    ///FTD流控 
-    {(char *)"FTDPkgFreq", (getter)PyCThostFtdcFrontInfoField_get_FTDPkgFreq, (setter)PyCThostFtdcFrontInfoField_set_FTDPkgFreq, (char *)"FTDPkgFreq", NULL},
+	 {(char *)"FrontAddr", (getter)PyCThostFtdcFrontInfoField_get_FrontAddr, (setter)PyCThostFtdcFrontInfoField_set_FrontAddr, (char *)"FrontAddr", NULL},
+	 {(char *)"QryFreq", (getter)PyCThostFtdcFrontInfoField_get_QryFreq, (setter)PyCThostFtdcFrontInfoField_set_QryFreq, (char *)"QryFreq", NULL},
+	 {(char *)"FTDPkgFreq", (getter)PyCThostFtdcFrontInfoField_get_FTDPkgFreq, (setter)PyCThostFtdcFrontInfoField_set_FTDPkgFreq, (char *)"FTDPkgFreq", NULL},
 
     {NULL}
 };

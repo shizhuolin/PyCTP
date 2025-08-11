@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryCombLegField.h"
 
-///组合腿信息查询
+
 
 static PyObject *PyCThostFtdcQryCombLegField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryCombLegField *self = (PyCThostFtdcQryCombLegField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryCombLegField_new(PyTypeObject *type, PyObject *a
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,12 +18,11 @@ static int PyCThostFtdcQryCombLegField_init(PyCThostFtdcQryCombLegField *self, P
 
     static const char *kwlist[] = {"LegInstrumentID",  NULL};
 
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryCombLegField_LegInstrumentID = NULL;
+	Py_ssize_t pQryCombLegField_LegInstrumentID_len = 0;
 
-    ///单腿合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryCombLegField_LegInstrumentID = NULL;
-    Py_ssize_t QryCombLegField_LegInstrumentID_len = 0;
-            
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,27 +30,24 @@ static int PyCThostFtdcQryCombLegField_init(PyCThostFtdcQryCombLegField *self, P
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-        , &QryCombLegField_LegInstrumentID, &QryCombLegField_LegInstrumentID_len 
+		, &pQryCombLegField_LegInstrumentID, &pQryCombLegField_LegInstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryCombLegField_LegInstrumentID != NULL) {
+		if(pQryCombLegField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", pQryCombLegField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
+			return -1;
+		}
+		strncpy(self->data.LegInstrumentID, pQryCombLegField_LegInstrumentID, sizeof(self->data.LegInstrumentID) );
+		pQryCombLegField_LegInstrumentID = NULL;
+	}
 
-    ///单腿合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryCombLegField_LegInstrumentID != NULL ) {
-        if(QryCombLegField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", QryCombLegField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
-            return -1;
-        }
-        // memset(self->data.LegInstrumentID, 0, sizeof(self->data.LegInstrumentID));
-        // memcpy(self->data.LegInstrumentID, QryCombLegField_LegInstrumentID, QryCombLegField_LegInstrumentID_len);        
-        strncpy(self->data.LegInstrumentID, QryCombLegField_LegInstrumentID, sizeof(self->data.LegInstrumentID) );
-        QryCombLegField_LegInstrumentID = NULL;
-    }
-            
+
 
     return 0;
 }
@@ -67,7 +64,7 @@ static PyObject *PyCThostFtdcQryCombLegField_repr(PyCThostFtdcQryCombLegField *s
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-        ,"LegInstrumentID", self->data.LegInstrumentID//, (Py_ssize_t)sizeof(self->data.LegInstrumentID) 
+		, "LegInstrumentID", self->data.LegInstrumentID 
 
 
 		);
@@ -80,37 +77,29 @@ static PyObject *PyCThostFtdcQryCombLegField_repr(PyCThostFtdcQryCombLegField *s
     return PyObject_Repr(obj);
 }
 
-
-///单腿合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryCombLegField_get_LegInstrumentID(PyCThostFtdcQryCombLegField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.LegInstrumentID, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
-    return PyBytes_FromString(self->data.LegInstrumentID);
+	return PyBytes_FromString(self->data.LegInstrumentID);
 }
 
-///单腿合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryCombLegField_set_LegInstrumentID(PyCThostFtdcQryCombLegField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LegInstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.LegInstrumentID, 0, sizeof(self->data.LegInstrumentID));
-    // memcpy(self->data.LegInstrumentID, buf, len);
-    strncpy(self->data.LegInstrumentID, buf, sizeof(self->data.LegInstrumentID));
-    return 0;
+static int PyCThostFtdcQryCombLegField_set_LegInstrumentID(PyCThostFtdcQryCombLegField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "LegInstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.LegInstrumentID, buf, sizeof(self->data.LegInstrumentID));
+	return 0;
 }
-            
+
+
 
 static PyGetSetDef PyCThostFtdcQryCombLegField_getset[] = {
-    ///单腿合约代码 
-    {(char *)"LegInstrumentID", (getter)PyCThostFtdcQryCombLegField_get_LegInstrumentID, (setter)PyCThostFtdcQryCombLegField_set_LegInstrumentID, (char *)"LegInstrumentID", NULL},
+	 {(char *)"LegInstrumentID", (getter)PyCThostFtdcQryCombLegField_get_LegInstrumentID, (setter)PyCThostFtdcQryCombLegField_set_LegInstrumentID, (char *)"LegInstrumentID", NULL},
 
     {NULL}
 };

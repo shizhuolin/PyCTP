@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者组合持仓明细
+
 
 typedef struct PyCThostFtdcInvestorPositionCombineDetailField {
     PyObject_HEAD

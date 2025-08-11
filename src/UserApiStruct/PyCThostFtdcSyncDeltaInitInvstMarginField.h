@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者风险结算总保证金
+
 
 typedef struct PyCThostFtdcSyncDeltaInitInvstMarginField {
     PyObject_HEAD

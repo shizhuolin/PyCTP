@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///次中心发起的转帐交易回报
+
 
 typedef struct PyCThostFtdcRspTransferBySecField {
     PyObject_HEAD

@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataAsk45Field.h"
 
-///行情申卖四、五属性
+
 
 static PyObject *PyCThostFtdcMarketDataAsk45Field_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataAsk45Field *self = (PyCThostFtdcMarketDataAsk45Field *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcMarketDataAsk45Field_new(PyTypeObject *type, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,23 +18,19 @@ static int PyCThostFtdcMarketDataAsk45Field_init(PyCThostFtdcMarketDataAsk45Fiel
 
     static const char *kwlist[] = {"AskPrice4", "AskVolume4", "AskPrice5", "AskVolume5",  NULL};
 
+	//TThostFtdcPriceType double
+	double pMarketDataAsk45Field_AskPrice4 = 0.0;
 
-    ///申卖价四
-    // TThostFtdcPriceType double
-    double MarketDataAsk45Field_AskPrice4 = 0.0;
-        
-    ///申卖量四
-    // TThostFtdcVolumeType int
-    int MarketDataAsk45Field_AskVolume4 = 0;
-        
-    ///申卖价五
-    // TThostFtdcPriceType double
-    double MarketDataAsk45Field_AskPrice5 = 0.0;
-        
-    ///申卖量五
-    // TThostFtdcVolumeType int
-    int MarketDataAsk45Field_AskVolume5 = 0;
-        
+	//TThostFtdcVolumeType int
+	int pMarketDataAsk45Field_AskVolume4 = 0;
+
+	//TThostFtdcPriceType double
+	double pMarketDataAsk45Field_AskPrice5 = 0.0;
+
+	//TThostFtdcVolumeType int
+	int pMarketDataAsk45Field_AskVolume5 = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|didi", (char **)kwlist
@@ -41,33 +38,27 @@ static int PyCThostFtdcMarketDataAsk45Field_init(PyCThostFtdcMarketDataAsk45Fiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|didi", (char **)kwlist
 #endif
 
-        , &MarketDataAsk45Field_AskPrice4 
-        , &MarketDataAsk45Field_AskVolume4 
-        , &MarketDataAsk45Field_AskPrice5 
-        , &MarketDataAsk45Field_AskVolume5 
+		, &pMarketDataAsk45Field_AskPrice4
+		, &pMarketDataAsk45Field_AskVolume4
+		, &pMarketDataAsk45Field_AskPrice5
+		, &pMarketDataAsk45Field_AskVolume5
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcPriceType double
+	self->data.AskPrice4 = pMarketDataAsk45Field_AskPrice4;
+	//TThostFtdcVolumeType int
+	self->data.AskVolume4 = pMarketDataAsk45Field_AskVolume4;
 
-    ///申卖价四
-    // TThostFtdcPriceType double
-    self->data.AskPrice4 = MarketDataAsk45Field_AskPrice4;
-        
-    ///申卖量四
-    // TThostFtdcVolumeType int
-    self->data.AskVolume4 = MarketDataAsk45Field_AskVolume4;
-        
-    ///申卖价五
-    // TThostFtdcPriceType double
-    self->data.AskPrice5 = MarketDataAsk45Field_AskPrice5;
-        
-    ///申卖量五
-    // TThostFtdcVolumeType int
-    self->data.AskVolume5 = MarketDataAsk45Field_AskVolume5;
-        
+	//TThostFtdcPriceType double
+	self->data.AskPrice5 = pMarketDataAsk45Field_AskPrice5;
+	//TThostFtdcVolumeType int
+	self->data.AskVolume5 = pMarketDataAsk45Field_AskVolume5;
+
+
 
     return 0;
 }
@@ -84,10 +75,10 @@ static PyObject *PyCThostFtdcMarketDataAsk45Field_repr(PyCThostFtdcMarketDataAsk
     PyObject *obj = Py_BuildValue("{s:d,s:i,s:d,s:i}"
 #endif
 
-        ,"AskPrice4", self->data.AskPrice4 
-        ,"AskVolume4", self->data.AskVolume4 
-        ,"AskPrice5", self->data.AskPrice5 
-        ,"AskVolume5", self->data.AskVolume5 
+		, "AskPrice4", self->data.AskPrice4
+		, "AskVolume4", self->data.AskVolume4
+		, "AskPrice5", self->data.AskPrice5
+		, "AskVolume5", self->data.AskVolume5
 
 
 		);
@@ -100,16 +91,31 @@ static PyObject *PyCThostFtdcMarketDataAsk45Field_repr(PyCThostFtdcMarketDataAsk
     return PyObject_Repr(obj);
 }
 
-
-///申卖价四
-// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcMarketDataAsk45Field_get_AskPrice4(PyCThostFtdcMarketDataAsk45Field *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AskPrice4);
+	return PyFloat_FromDouble(self->data.AskPrice4);
 }
 
-///申卖价四
-// TThostFtdcPriceType double
-static int PyCThostFtdcMarketDataAsk45Field_set_AskPrice4(PyCThostFtdcMarketDataAsk45Field *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcMarketDataAsk45Field_get_AskVolume4(PyCThostFtdcMarketDataAsk45Field *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.AskVolume4);
+#else 
+	return PyInt_FromLong(self->data.AskVolume4);
+#endif 
+}
+
+static PyObject *PyCThostFtdcMarketDataAsk45Field_get_AskPrice5(PyCThostFtdcMarketDataAsk45Field *self, void *closure) {
+	return PyFloat_FromDouble(self->data.AskPrice5);
+}
+
+static PyObject *PyCThostFtdcMarketDataAsk45Field_get_AskVolume5(PyCThostFtdcMarketDataAsk45Field *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.AskVolume5);
+#else 
+	return PyInt_FromLong(self->data.AskVolume5);
+#endif 
+}
+
+static int PyCThostFtdcMarketDataAsk45Field_set_AskPrice4(PyCThostFtdcMarketDataAsk45Field* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskPrice4 Expected float");
         return -1;
@@ -121,54 +127,34 @@ static int PyCThostFtdcMarketDataAsk45Field_set_AskPrice4(PyCThostFtdcMarketData
     self->data.AskPrice4 = buf;
     return 0;
 }
-        
-///申卖量四
-// TThostFtdcVolumeType int
-static PyObject *PyCThostFtdcMarketDataAsk45Field_get_AskVolume4(PyCThostFtdcMarketDataAsk45Field *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.AskVolume4);
-#else
-    return PyInt_FromLong(self->data.AskVolume4);
-#endif
-}
 
-///申卖量四
-// TThostFtdcVolumeType int
-static int PyCThostFtdcMarketDataAsk45Field_set_AskVolume4(PyCThostFtdcMarketDataAsk45Field *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataAsk45Field_set_AskVolume4(PyCThostFtdcMarketDataAsk45Field* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskVolume4 Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AskVolume4 Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "AskVolume4 Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the AskVolume4 value out of range for C int");
-        return -1;
-    }
-    self->data.AskVolume4 = (int)buf;
-    return 0;
-}
-        
-///申卖价五
-// TThostFtdcPriceType double
-static PyObject *PyCThostFtdcMarketDataAsk45Field_get_AskPrice5(PyCThostFtdcMarketDataAsk45Field *self, void *closure) {
-    return PyFloat_FromDouble(self->data.AskPrice5);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.AskVolume4 = (int)buf; 
+    return 0; 
 }
 
-///申卖价五
-// TThostFtdcPriceType double
-static int PyCThostFtdcMarketDataAsk45Field_set_AskPrice5(PyCThostFtdcMarketDataAsk45Field *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataAsk45Field_set_AskPrice5(PyCThostFtdcMarketDataAsk45Field* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskPrice5 Expected float");
         return -1;
@@ -180,55 +166,40 @@ static int PyCThostFtdcMarketDataAsk45Field_set_AskPrice5(PyCThostFtdcMarketData
     self->data.AskPrice5 = buf;
     return 0;
 }
-        
-///申卖量五
-// TThostFtdcVolumeType int
-static PyObject *PyCThostFtdcMarketDataAsk45Field_get_AskVolume5(PyCThostFtdcMarketDataAsk45Field *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.AskVolume5);
-#else
-    return PyInt_FromLong(self->data.AskVolume5);
-#endif
-}
 
-///申卖量五
-// TThostFtdcVolumeType int
-static int PyCThostFtdcMarketDataAsk45Field_set_AskVolume5(PyCThostFtdcMarketDataAsk45Field *self, PyObject* val, void *closure) {
+static int PyCThostFtdcMarketDataAsk45Field_set_AskVolume5(PyCThostFtdcMarketDataAsk45Field* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskVolume5 Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "AskVolume5 Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "AskVolume5 Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the AskVolume5 value out of range for C int");
-        return -1;
-    }
-    self->data.AskVolume5 = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.AskVolume5 = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcMarketDataAsk45Field_getset[] = {
-    ///申卖价四 
-    {(char *)"AskPrice4", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskPrice4, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskPrice4, (char *)"AskPrice4", NULL},
-    ///申卖量四 
-    {(char *)"AskVolume4", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskVolume4, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskVolume4, (char *)"AskVolume4", NULL},
-    ///申卖价五 
-    {(char *)"AskPrice5", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskPrice5, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskPrice5, (char *)"AskPrice5", NULL},
-    ///申卖量五 
-    {(char *)"AskVolume5", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskVolume5, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskVolume5, (char *)"AskVolume5", NULL},
+	 {(char *)"AskPrice4", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskPrice4, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskPrice4, (char *)"AskPrice4", NULL},
+	 {(char *)"AskVolume4", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskVolume4, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskVolume4, (char *)"AskVolume4", NULL},
+	 {(char *)"AskPrice5", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskPrice5, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskPrice5, (char *)"AskPrice5", NULL},
+	 {(char *)"AskVolume5", (getter)PyCThostFtdcMarketDataAsk45Field_get_AskVolume5, (setter)PyCThostFtdcMarketDataAsk45Field_set_AskVolume5, (char *)"AskVolume5", NULL},
 
     {NULL}
 };

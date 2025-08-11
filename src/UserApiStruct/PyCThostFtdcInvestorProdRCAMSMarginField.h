@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///投资者品种RCAMS保证金
+
 
 typedef struct PyCThostFtdcInvestorProdRCAMSMarginField {
     PyObject_HEAD

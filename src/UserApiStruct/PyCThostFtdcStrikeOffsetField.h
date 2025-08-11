@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///当前期权合约执行偏移值的详细内容
+
 
 typedef struct PyCThostFtdcStrikeOffsetField {
     PyObject_HEAD

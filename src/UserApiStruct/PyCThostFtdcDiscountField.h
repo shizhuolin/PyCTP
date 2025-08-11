@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///会员资金折扣
+
 
 typedef struct PyCThostFtdcDiscountField {
     PyObject_HEAD

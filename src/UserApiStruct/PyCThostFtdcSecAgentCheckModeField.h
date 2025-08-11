@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///二级代理商资金校验模式
+
 
 typedef struct PyCThostFtdcSecAgentCheckModeField {
     PyObject_HEAD

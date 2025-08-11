@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryCommRateModelField.h"
 
-///请求查询投资者手续费率模板
+
 
 static PyObject *PyCThostFtdcQryCommRateModelField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryCommRateModelField *self = (PyCThostFtdcQryCommRateModelField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryCommRateModelField_new(PyTypeObject *type, PyObj
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcQryCommRateModelField_init(PyCThostFtdcQryCommRateModelFi
 
     static const char *kwlist[] = {"BrokerID", "CommModelID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQryCommRateModelField_BrokerID = NULL;
+	Py_ssize_t pQryCommRateModelField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QryCommRateModelField_BrokerID = NULL;
-    Py_ssize_t QryCommRateModelField_BrokerID_len = 0;
-            
-    ///手续费率模板代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *QryCommRateModelField_CommModelID = NULL;
-    Py_ssize_t QryCommRateModelField_CommModelID_len = 0;
-            
+	//TThostFtdcInvestorIDType char[13]
+	const char *pQryCommRateModelField_CommModelID = NULL;
+	Py_ssize_t pQryCommRateModelField_CommModelID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcQryCommRateModelField_init(PyCThostFtdcQryCommRateModelFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &QryCommRateModelField_BrokerID, &QryCommRateModelField_BrokerID_len 
-        , &QryCommRateModelField_CommModelID, &QryCommRateModelField_CommModelID_len 
+		, &pQryCommRateModelField_BrokerID, &pQryCommRateModelField_BrokerID_len
+		, &pQryCommRateModelField_CommModelID, &pQryCommRateModelField_CommModelID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQryCommRateModelField_BrokerID != NULL) {
+		if(pQryCommRateModelField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQryCommRateModelField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQryCommRateModelField_BrokerID, sizeof(self->data.BrokerID) );
+		pQryCommRateModelField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QryCommRateModelField_BrokerID != NULL ) {
-        if(QryCommRateModelField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryCommRateModelField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QryCommRateModelField_BrokerID, QryCommRateModelField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QryCommRateModelField_BrokerID, sizeof(self->data.BrokerID) );
-        QryCommRateModelField_BrokerID = NULL;
-    }
-            
-    ///手续费率模板代码
-    // TThostFtdcInvestorIDType char[13]
-    if( QryCommRateModelField_CommModelID != NULL ) {
-        if(QryCommRateModelField_CommModelID_len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
-            PyErr_Format(PyExc_ValueError, "CommModelID too long: length=%zd (max allowed is %zd)", QryCommRateModelField_CommModelID_len, (Py_ssize_t)sizeof(self->data.CommModelID));
-            return -1;
-        }
-        // memset(self->data.CommModelID, 0, sizeof(self->data.CommModelID));
-        // memcpy(self->data.CommModelID, QryCommRateModelField_CommModelID, QryCommRateModelField_CommModelID_len);        
-        strncpy(self->data.CommModelID, QryCommRateModelField_CommModelID, sizeof(self->data.CommModelID) );
-        QryCommRateModelField_CommModelID = NULL;
-    }
-            
+	//TThostFtdcInvestorIDType char[13]
+	if(pQryCommRateModelField_CommModelID != NULL) {
+		if(pQryCommRateModelField_CommModelID_len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
+			PyErr_Format(PyExc_ValueError, "CommModelID too long: length=%zd (max allowed is %zd)", pQryCommRateModelField_CommModelID_len, (Py_ssize_t)sizeof(self->data.CommModelID));
+			return -1;
+		}
+		strncpy(self->data.CommModelID, pQryCommRateModelField_CommModelID, sizeof(self->data.CommModelID) );
+		pQryCommRateModelField_CommModelID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcQryCommRateModelField_repr(PyCThostFtdcQryCommRateM
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"CommModelID", self->data.CommModelID//, (Py_ssize_t)sizeof(self->data.CommModelID) 
+		, "BrokerID", self->data.BrokerID 
+		, "CommModelID", self->data.CommModelID 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcQryCommRateModelField_repr(PyCThostFtdcQryCommRateM
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQryCommRateModelField_get_BrokerID(PyCThostFtdcQryCommRateModelField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQryCommRateModelField_set_BrokerID(PyCThostFtdcQryCommRateModelField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///手续费率模板代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcQryCommRateModelField_get_CommModelID(PyCThostFtdcQryCommRateModelField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CommModelID, (Py_ssize_t)sizeof(self->data.CommModelID));
-    return PyBytes_FromString(self->data.CommModelID);
+	return PyBytes_FromString(self->data.CommModelID);
 }
 
-///手续费率模板代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcQryCommRateModelField_set_CommModelID(PyCThostFtdcQryCommRateModelField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CommModelID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
-        PyErr_SetString(PyExc_ValueError, "CommModelID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.CommModelID, 0, sizeof(self->data.CommModelID));
-    // memcpy(self->data.CommModelID, buf, len);
-    strncpy(self->data.CommModelID, buf, sizeof(self->data.CommModelID));
-    return 0;
+static int PyCThostFtdcQryCommRateModelField_set_BrokerID(PyCThostFtdcQryCommRateModelField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryCommRateModelField_set_CommModelID(PyCThostFtdcQryCommRateModelField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CommModelID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
+		PyErr_SetString(PyExc_ValueError, "CommModelID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.CommModelID, buf, sizeof(self->data.CommModelID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryCommRateModelField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQryCommRateModelField_get_BrokerID, (setter)PyCThostFtdcQryCommRateModelField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///手续费率模板代码 
-    {(char *)"CommModelID", (getter)PyCThostFtdcQryCommRateModelField_get_CommModelID, (setter)PyCThostFtdcQryCommRateModelField_set_CommModelID, (char *)"CommModelID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQryCommRateModelField_get_BrokerID, (setter)PyCThostFtdcQryCommRateModelField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"CommModelID", (getter)PyCThostFtdcQryCommRateModelField_get_CommModelID, (setter)PyCThostFtdcQryCommRateModelField_set_CommModelID, (char *)"CommModelID", NULL},
 
     {NULL}
 };

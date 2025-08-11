@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///期商签到签退
+
 
 typedef struct PyCThostFtdcFutureSignIOField {
     PyObject_HEAD

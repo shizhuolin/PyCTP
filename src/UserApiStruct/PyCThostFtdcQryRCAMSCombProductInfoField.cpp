@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryRCAMSCombProductInfoField.h"
 
-///RCAMS产品组合信息查询
+
 
 static PyObject *PyCThostFtdcQryRCAMSCombProductInfoField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryRCAMSCombProductInfoField *self = (PyCThostFtdcQryRCAMSCombProductInfoField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryRCAMSCombProductInfoField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,22 +18,19 @@ static int PyCThostFtdcQryRCAMSCombProductInfoField_init(PyCThostFtdcQryRCAMSCom
 
     static const char *kwlist[] = {"ProductID", "CombProductID", "ProductGroupID",  NULL};
 
+	//TThostFtdcProductIDType char[41]
+	const char *pQryRCAMSCombProductInfoField_ProductID = NULL;
+	Py_ssize_t pQryRCAMSCombProductInfoField_ProductID_len = 0;
 
-    ///产品代码
-    // TThostFtdcProductIDType char[41]
-    const char *QryRCAMSCombProductInfoField_ProductID = NULL;
-    Py_ssize_t QryRCAMSCombProductInfoField_ProductID_len = 0;
-            
-    ///商品组代码
-    // TThostFtdcProductIDType char[41]
-    const char *QryRCAMSCombProductInfoField_CombProductID = NULL;
-    Py_ssize_t QryRCAMSCombProductInfoField_CombProductID_len = 0;
-            
-    ///商品群代码
-    // TThostFtdcProductIDType char[41]
-    const char *QryRCAMSCombProductInfoField_ProductGroupID = NULL;
-    Py_ssize_t QryRCAMSCombProductInfoField_ProductGroupID_len = 0;
-            
+	//TThostFtdcProductIDType char[41]
+	const char *pQryRCAMSCombProductInfoField_CombProductID = NULL;
+	Py_ssize_t pQryRCAMSCombProductInfoField_CombProductID_len = 0;
+
+	//TThostFtdcProductIDType char[41]
+	const char *pQryRCAMSCombProductInfoField_ProductGroupID = NULL;
+	Py_ssize_t pQryRCAMSCombProductInfoField_ProductGroupID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#", (char **)kwlist
@@ -40,55 +38,46 @@ static int PyCThostFtdcQryRCAMSCombProductInfoField_init(PyCThostFtdcQryRCAMSCom
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#", (char **)kwlist
 #endif
 
-        , &QryRCAMSCombProductInfoField_ProductID, &QryRCAMSCombProductInfoField_ProductID_len 
-        , &QryRCAMSCombProductInfoField_CombProductID, &QryRCAMSCombProductInfoField_CombProductID_len 
-        , &QryRCAMSCombProductInfoField_ProductGroupID, &QryRCAMSCombProductInfoField_ProductGroupID_len 
+		, &pQryRCAMSCombProductInfoField_ProductID, &pQryRCAMSCombProductInfoField_ProductID_len
+		, &pQryRCAMSCombProductInfoField_CombProductID, &pQryRCAMSCombProductInfoField_CombProductID_len
+		, &pQryRCAMSCombProductInfoField_ProductGroupID, &pQryRCAMSCombProductInfoField_ProductGroupID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcProductIDType char[41]
+	if(pQryRCAMSCombProductInfoField_ProductID != NULL) {
+		if(pQryRCAMSCombProductInfoField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pQryRCAMSCombProductInfoField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pQryRCAMSCombProductInfoField_ProductID, sizeof(self->data.ProductID) );
+		pQryRCAMSCombProductInfoField_ProductID = NULL;
+	}
 
-    ///产品代码
-    // TThostFtdcProductIDType char[41]
-    if( QryRCAMSCombProductInfoField_ProductID != NULL ) {
-        if(QryRCAMSCombProductInfoField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryRCAMSCombProductInfoField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, QryRCAMSCombProductInfoField_ProductID, QryRCAMSCombProductInfoField_ProductID_len);        
-        strncpy(self->data.ProductID, QryRCAMSCombProductInfoField_ProductID, sizeof(self->data.ProductID) );
-        QryRCAMSCombProductInfoField_ProductID = NULL;
-    }
-            
-    ///商品组代码
-    // TThostFtdcProductIDType char[41]
-    if( QryRCAMSCombProductInfoField_CombProductID != NULL ) {
-        if(QryRCAMSCombProductInfoField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
-            PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", QryRCAMSCombProductInfoField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
-            return -1;
-        }
-        // memset(self->data.CombProductID, 0, sizeof(self->data.CombProductID));
-        // memcpy(self->data.CombProductID, QryRCAMSCombProductInfoField_CombProductID, QryRCAMSCombProductInfoField_CombProductID_len);        
-        strncpy(self->data.CombProductID, QryRCAMSCombProductInfoField_CombProductID, sizeof(self->data.CombProductID) );
-        QryRCAMSCombProductInfoField_CombProductID = NULL;
-    }
-            
-    ///商品群代码
-    // TThostFtdcProductIDType char[41]
-    if( QryRCAMSCombProductInfoField_ProductGroupID != NULL ) {
-        if(QryRCAMSCombProductInfoField_ProductGroupID_len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
-            PyErr_Format(PyExc_ValueError, "ProductGroupID too long: length=%zd (max allowed is %zd)", QryRCAMSCombProductInfoField_ProductGroupID_len, (Py_ssize_t)sizeof(self->data.ProductGroupID));
-            return -1;
-        }
-        // memset(self->data.ProductGroupID, 0, sizeof(self->data.ProductGroupID));
-        // memcpy(self->data.ProductGroupID, QryRCAMSCombProductInfoField_ProductGroupID, QryRCAMSCombProductInfoField_ProductGroupID_len);        
-        strncpy(self->data.ProductGroupID, QryRCAMSCombProductInfoField_ProductGroupID, sizeof(self->data.ProductGroupID) );
-        QryRCAMSCombProductInfoField_ProductGroupID = NULL;
-    }
-            
+	//TThostFtdcProductIDType char[41]
+	if(pQryRCAMSCombProductInfoField_CombProductID != NULL) {
+		if(pQryRCAMSCombProductInfoField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+			PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", pQryRCAMSCombProductInfoField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
+			return -1;
+		}
+		strncpy(self->data.CombProductID, pQryRCAMSCombProductInfoField_CombProductID, sizeof(self->data.CombProductID) );
+		pQryRCAMSCombProductInfoField_CombProductID = NULL;
+	}
+
+	//TThostFtdcProductIDType char[41]
+	if(pQryRCAMSCombProductInfoField_ProductGroupID != NULL) {
+		if(pQryRCAMSCombProductInfoField_ProductGroupID_len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+			PyErr_Format(PyExc_ValueError, "ProductGroupID too long: length=%zd (max allowed is %zd)", pQryRCAMSCombProductInfoField_ProductGroupID_len, (Py_ssize_t)sizeof(self->data.ProductGroupID));
+			return -1;
+		}
+		strncpy(self->data.ProductGroupID, pQryRCAMSCombProductInfoField_ProductGroupID, sizeof(self->data.ProductGroupID) );
+		pQryRCAMSCombProductInfoField_ProductGroupID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -105,9 +94,9 @@ static PyObject *PyCThostFtdcQryRCAMSCombProductInfoField_repr(PyCThostFtdcQryRC
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s}"
 #endif
 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
-        ,"CombProductID", self->data.CombProductID//, (Py_ssize_t)sizeof(self->data.CombProductID) 
-        ,"ProductGroupID", self->data.ProductGroupID//, (Py_ssize_t)sizeof(self->data.ProductGroupID) 
+		, "ProductID", self->data.ProductID 
+		, "CombProductID", self->data.CombProductID 
+		, "ProductGroupID", self->data.ProductGroupID 
 
 
 		);
@@ -120,93 +109,69 @@ static PyObject *PyCThostFtdcQryRCAMSCombProductInfoField_repr(PyCThostFtdcQryRC
     return PyObject_Repr(obj);
 }
 
-
-///产品代码
-// TThostFtdcProductIDType char[41]
 static PyObject *PyCThostFtdcQryRCAMSCombProductInfoField_get_ProductID(PyCThostFtdcQryRCAMSCombProductInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+	return PyBytes_FromString(self->data.ProductID);
 }
 
-///产品代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductID(PyCThostFtdcQryRCAMSCombProductInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
-}
-            
-///商品组代码
-// TThostFtdcProductIDType char[41]
 static PyObject *PyCThostFtdcQryRCAMSCombProductInfoField_get_CombProductID(PyCThostFtdcQryRCAMSCombProductInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CombProductID, (Py_ssize_t)sizeof(self->data.CombProductID));
-    return PyBytes_FromString(self->data.CombProductID);
+	return PyBytes_FromString(self->data.CombProductID);
 }
 
-///商品组代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcQryRCAMSCombProductInfoField_set_CombProductID(PyCThostFtdcQryRCAMSCombProductInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CombProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
-        PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.CombProductID, 0, sizeof(self->data.CombProductID));
-    // memcpy(self->data.CombProductID, buf, len);
-    strncpy(self->data.CombProductID, buf, sizeof(self->data.CombProductID));
-    return 0;
-}
-            
-///商品群代码
-// TThostFtdcProductIDType char[41]
 static PyObject *PyCThostFtdcQryRCAMSCombProductInfoField_get_ProductGroupID(PyCThostFtdcQryRCAMSCombProductInfoField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductGroupID, (Py_ssize_t)sizeof(self->data.ProductGroupID));
-    return PyBytes_FromString(self->data.ProductGroupID);
+	return PyBytes_FromString(self->data.ProductGroupID);
 }
 
-///商品群代码
-// TThostFtdcProductIDType char[41]
-static int PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductGroupID(PyCThostFtdcQryRCAMSCombProductInfoField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductGroupID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductGroupID must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductGroupID, 0, sizeof(self->data.ProductGroupID));
-    // memcpy(self->data.ProductGroupID, buf, len);
-    strncpy(self->data.ProductGroupID, buf, sizeof(self->data.ProductGroupID));
-    return 0;
+static int PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductID(PyCThostFtdcQryRCAMSCombProductInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryRCAMSCombProductInfoField_set_CombProductID(PyCThostFtdcQryRCAMSCombProductInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CombProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+		PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.CombProductID, buf, sizeof(self->data.CombProductID));
+	return 0;
+}
+
+static int PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductGroupID(PyCThostFtdcQryRCAMSCombProductInfoField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductGroupID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductGroupID must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductGroupID, buf, sizeof(self->data.ProductGroupID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryRCAMSCombProductInfoField_getset[] = {
-    ///产品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcQryRCAMSCombProductInfoField_get_ProductID, (setter)PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductID, (char *)"ProductID", NULL},
-    ///商品组代码 
-    {(char *)"CombProductID", (getter)PyCThostFtdcQryRCAMSCombProductInfoField_get_CombProductID, (setter)PyCThostFtdcQryRCAMSCombProductInfoField_set_CombProductID, (char *)"CombProductID", NULL},
-    ///商品群代码 
-    {(char *)"ProductGroupID", (getter)PyCThostFtdcQryRCAMSCombProductInfoField_get_ProductGroupID, (setter)PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductGroupID, (char *)"ProductGroupID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcQryRCAMSCombProductInfoField_get_ProductID, (setter)PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"CombProductID", (getter)PyCThostFtdcQryRCAMSCombProductInfoField_get_CombProductID, (setter)PyCThostFtdcQryRCAMSCombProductInfoField_set_CombProductID, (char *)"CombProductID", NULL},
+	 {(char *)"ProductGroupID", (getter)PyCThostFtdcQryRCAMSCombProductInfoField_get_ProductGroupID, (setter)PyCThostFtdcQryRCAMSCombProductInfoField_set_ProductGroupID, (char *)"ProductGroupID", NULL},
 
     {NULL}
 };

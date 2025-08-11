@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcReturnResultField.h"
 
-///返回结果
+
 
 static PyObject *PyCThostFtdcReturnResultField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcReturnResultField *self = (PyCThostFtdcReturnResultField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcReturnResultField_new(PyTypeObject *type, PyObject 
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,17 +18,15 @@ static int PyCThostFtdcReturnResultField_init(PyCThostFtdcReturnResultField *sel
 
     static const char *kwlist[] = {"ReturnCode", "DescrInfoForReturnCode",  NULL};
 
+	//TThostFtdcReturnCodeType char[7]
+	const char *pReturnResultField_ReturnCode = NULL;
+	Py_ssize_t pReturnResultField_ReturnCode_len = 0;
 
-    ///返回代码
-    // TThostFtdcReturnCodeType char[7]
-    const char *ReturnResultField_ReturnCode = NULL;
-    Py_ssize_t ReturnResultField_ReturnCode_len = 0;
-            
-    ///返回码描述
-    // TThostFtdcDescrInfoForReturnCodeType char[129]
-    const char *ReturnResultField_DescrInfoForReturnCode = NULL;
-    Py_ssize_t ReturnResultField_DescrInfoForReturnCode_len = 0;
-            
+	//TThostFtdcDescrInfoForReturnCodeType char[129]
+	const char *pReturnResultField_DescrInfoForReturnCode = NULL;
+	Py_ssize_t pReturnResultField_DescrInfoForReturnCode_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -35,41 +34,35 @@ static int PyCThostFtdcReturnResultField_init(PyCThostFtdcReturnResultField *sel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-        , &ReturnResultField_ReturnCode, &ReturnResultField_ReturnCode_len 
-        , &ReturnResultField_DescrInfoForReturnCode, &ReturnResultField_DescrInfoForReturnCode_len 
+		, &pReturnResultField_ReturnCode, &pReturnResultField_ReturnCode_len
+		, &pReturnResultField_DescrInfoForReturnCode, &pReturnResultField_DescrInfoForReturnCode_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcReturnCodeType char[7]
+	if(pReturnResultField_ReturnCode != NULL) {
+		if(pReturnResultField_ReturnCode_len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
+			PyErr_Format(PyExc_ValueError, "ReturnCode too long: length=%zd (max allowed is %zd)", pReturnResultField_ReturnCode_len, (Py_ssize_t)sizeof(self->data.ReturnCode));
+			return -1;
+		}
+		strncpy(self->data.ReturnCode, pReturnResultField_ReturnCode, sizeof(self->data.ReturnCode) );
+		pReturnResultField_ReturnCode = NULL;
+	}
 
-    ///返回代码
-    // TThostFtdcReturnCodeType char[7]
-    if( ReturnResultField_ReturnCode != NULL ) {
-        if(ReturnResultField_ReturnCode_len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
-            PyErr_Format(PyExc_ValueError, "ReturnCode too long: length=%zd (max allowed is %zd)", ReturnResultField_ReturnCode_len, (Py_ssize_t)sizeof(self->data.ReturnCode));
-            return -1;
-        }
-        // memset(self->data.ReturnCode, 0, sizeof(self->data.ReturnCode));
-        // memcpy(self->data.ReturnCode, ReturnResultField_ReturnCode, ReturnResultField_ReturnCode_len);        
-        strncpy(self->data.ReturnCode, ReturnResultField_ReturnCode, sizeof(self->data.ReturnCode) );
-        ReturnResultField_ReturnCode = NULL;
-    }
-            
-    ///返回码描述
-    // TThostFtdcDescrInfoForReturnCodeType char[129]
-    if( ReturnResultField_DescrInfoForReturnCode != NULL ) {
-        if(ReturnResultField_DescrInfoForReturnCode_len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
-            PyErr_Format(PyExc_ValueError, "DescrInfoForReturnCode too long: length=%zd (max allowed is %zd)", ReturnResultField_DescrInfoForReturnCode_len, (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode));
-            return -1;
-        }
-        // memset(self->data.DescrInfoForReturnCode, 0, sizeof(self->data.DescrInfoForReturnCode));
-        // memcpy(self->data.DescrInfoForReturnCode, ReturnResultField_DescrInfoForReturnCode, ReturnResultField_DescrInfoForReturnCode_len);        
-        strncpy(self->data.DescrInfoForReturnCode, ReturnResultField_DescrInfoForReturnCode, sizeof(self->data.DescrInfoForReturnCode) );
-        ReturnResultField_DescrInfoForReturnCode = NULL;
-    }
-            
+	//TThostFtdcDescrInfoForReturnCodeType char[129]
+	if(pReturnResultField_DescrInfoForReturnCode != NULL) {
+		if(pReturnResultField_DescrInfoForReturnCode_len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
+			PyErr_Format(PyExc_ValueError, "DescrInfoForReturnCode too long: length=%zd (max allowed is %zd)", pReturnResultField_DescrInfoForReturnCode_len, (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode));
+			return -1;
+		}
+		strncpy(self->data.DescrInfoForReturnCode, pReturnResultField_DescrInfoForReturnCode, sizeof(self->data.DescrInfoForReturnCode) );
+		pReturnResultField_DescrInfoForReturnCode = NULL;
+	}
+
+
 
     return 0;
 }
@@ -86,8 +79,8 @@ static PyObject *PyCThostFtdcReturnResultField_repr(PyCThostFtdcReturnResultFiel
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-        ,"ReturnCode", self->data.ReturnCode//, (Py_ssize_t)sizeof(self->data.ReturnCode) 
-        ,"DescrInfoForReturnCode", self->data.DescrInfoForReturnCode//, (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode) 
+		, "ReturnCode", self->data.ReturnCode 
+		, "DescrInfoForReturnCode", self->data.DescrInfoForReturnCode 
 
 
 		);
@@ -100,65 +93,49 @@ static PyObject *PyCThostFtdcReturnResultField_repr(PyCThostFtdcReturnResultFiel
     return PyObject_Repr(obj);
 }
 
-
-///返回代码
-// TThostFtdcReturnCodeType char[7]
 static PyObject *PyCThostFtdcReturnResultField_get_ReturnCode(PyCThostFtdcReturnResultField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ReturnCode, (Py_ssize_t)sizeof(self->data.ReturnCode));
-    return PyBytes_FromString(self->data.ReturnCode);
+	return PyBytes_FromString(self->data.ReturnCode);
 }
 
-///返回代码
-// TThostFtdcReturnCodeType char[7]
-static int PyCThostFtdcReturnResultField_set_ReturnCode(PyCThostFtdcReturnResultField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ReturnCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
-        PyErr_SetString(PyExc_ValueError, "ReturnCode must be less than 7 bytes");
-        return -1;
-    }
-    // memset(self->data.ReturnCode, 0, sizeof(self->data.ReturnCode));
-    // memcpy(self->data.ReturnCode, buf, len);
-    strncpy(self->data.ReturnCode, buf, sizeof(self->data.ReturnCode));
-    return 0;
-}
-            
-///返回码描述
-// TThostFtdcDescrInfoForReturnCodeType char[129]
 static PyObject *PyCThostFtdcReturnResultField_get_DescrInfoForReturnCode(PyCThostFtdcReturnResultField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.DescrInfoForReturnCode, (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode));
-    return PyBytes_FromString(self->data.DescrInfoForReturnCode);
+	return PyBytes_FromString(self->data.DescrInfoForReturnCode);
 }
 
-///返回码描述
-// TThostFtdcDescrInfoForReturnCodeType char[129]
-static int PyCThostFtdcReturnResultField_set_DescrInfoForReturnCode(PyCThostFtdcReturnResultField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DescrInfoForReturnCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
-        PyErr_SetString(PyExc_ValueError, "DescrInfoForReturnCode must be less than 129 bytes");
-        return -1;
-    }
-    // memset(self->data.DescrInfoForReturnCode, 0, sizeof(self->data.DescrInfoForReturnCode));
-    // memcpy(self->data.DescrInfoForReturnCode, buf, len);
-    strncpy(self->data.DescrInfoForReturnCode, buf, sizeof(self->data.DescrInfoForReturnCode));
-    return 0;
+static int PyCThostFtdcReturnResultField_set_ReturnCode(PyCThostFtdcReturnResultField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ReturnCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
+		PyErr_SetString(PyExc_ValueError, "ReturnCode must be less than 7 bytes");
+		return -1;
+	}
+	strncpy(self->data.ReturnCode, buf, sizeof(self->data.ReturnCode));
+	return 0;
 }
-            
+
+static int PyCThostFtdcReturnResultField_set_DescrInfoForReturnCode(PyCThostFtdcReturnResultField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "DescrInfoForReturnCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
+		PyErr_SetString(PyExc_ValueError, "DescrInfoForReturnCode must be less than 129 bytes");
+		return -1;
+	}
+	strncpy(self->data.DescrInfoForReturnCode, buf, sizeof(self->data.DescrInfoForReturnCode));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcReturnResultField_getset[] = {
-    ///返回代码 
-    {(char *)"ReturnCode", (getter)PyCThostFtdcReturnResultField_get_ReturnCode, (setter)PyCThostFtdcReturnResultField_set_ReturnCode, (char *)"ReturnCode", NULL},
-    ///返回码描述 
-    {(char *)"DescrInfoForReturnCode", (getter)PyCThostFtdcReturnResultField_get_DescrInfoForReturnCode, (setter)PyCThostFtdcReturnResultField_set_DescrInfoForReturnCode, (char *)"DescrInfoForReturnCode", NULL},
+	 {(char *)"ReturnCode", (getter)PyCThostFtdcReturnResultField_get_ReturnCode, (setter)PyCThostFtdcReturnResultField_set_ReturnCode, (char *)"ReturnCode", NULL},
+	 {(char *)"DescrInfoForReturnCode", (getter)PyCThostFtdcReturnResultField_get_DescrInfoForReturnCode, (setter)PyCThostFtdcReturnResultField_set_DescrInfoForReturnCode, (char *)"DescrInfoForReturnCode", NULL},
 
     {NULL}
 };

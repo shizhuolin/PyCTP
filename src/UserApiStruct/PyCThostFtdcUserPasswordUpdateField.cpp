@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcUserPasswordUpdateField.h"
 
-///用户口令变更
+
 
 static PyObject *PyCThostFtdcUserPasswordUpdateField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcUserPasswordUpdateField *self = (PyCThostFtdcUserPasswordUpdateField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcUserPasswordUpdateField_new(PyTypeObject *type, PyO
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,27 +18,23 @@ static int PyCThostFtdcUserPasswordUpdateField_init(PyCThostFtdcUserPasswordUpda
 
     static const char *kwlist[] = {"BrokerID", "UserID", "OldPassword", "NewPassword",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pUserPasswordUpdateField_BrokerID = NULL;
+	Py_ssize_t pUserPasswordUpdateField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *UserPasswordUpdateField_BrokerID = NULL;
-    Py_ssize_t UserPasswordUpdateField_BrokerID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *UserPasswordUpdateField_UserID = NULL;
-    Py_ssize_t UserPasswordUpdateField_UserID_len = 0;
-            
-    ///原来的口令
-    // TThostFtdcPasswordType char[41]
-    const char *UserPasswordUpdateField_OldPassword = NULL;
-    Py_ssize_t UserPasswordUpdateField_OldPassword_len = 0;
-            
-    ///新的口令
-    // TThostFtdcPasswordType char[41]
-    const char *UserPasswordUpdateField_NewPassword = NULL;
-    Py_ssize_t UserPasswordUpdateField_NewPassword_len = 0;
-            
+	//TThostFtdcUserIDType char[16]
+	const char *pUserPasswordUpdateField_UserID = NULL;
+	Py_ssize_t pUserPasswordUpdateField_UserID_len = 0;
+
+	//TThostFtdcPasswordType char[41]
+	const char *pUserPasswordUpdateField_OldPassword = NULL;
+	Py_ssize_t pUserPasswordUpdateField_OldPassword_len = 0;
+
+	//TThostFtdcPasswordType char[41]
+	const char *pUserPasswordUpdateField_NewPassword = NULL;
+	Py_ssize_t pUserPasswordUpdateField_NewPassword_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#", (char **)kwlist
@@ -45,69 +42,57 @@ static int PyCThostFtdcUserPasswordUpdateField_init(PyCThostFtdcUserPasswordUpda
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#", (char **)kwlist
 #endif
 
-        , &UserPasswordUpdateField_BrokerID, &UserPasswordUpdateField_BrokerID_len 
-        , &UserPasswordUpdateField_UserID, &UserPasswordUpdateField_UserID_len 
-        , &UserPasswordUpdateField_OldPassword, &UserPasswordUpdateField_OldPassword_len 
-        , &UserPasswordUpdateField_NewPassword, &UserPasswordUpdateField_NewPassword_len 
+		, &pUserPasswordUpdateField_BrokerID, &pUserPasswordUpdateField_BrokerID_len
+		, &pUserPasswordUpdateField_UserID, &pUserPasswordUpdateField_UserID_len
+		, &pUserPasswordUpdateField_OldPassword, &pUserPasswordUpdateField_OldPassword_len
+		, &pUserPasswordUpdateField_NewPassword, &pUserPasswordUpdateField_NewPassword_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pUserPasswordUpdateField_BrokerID != NULL) {
+		if(pUserPasswordUpdateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pUserPasswordUpdateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pUserPasswordUpdateField_BrokerID, sizeof(self->data.BrokerID) );
+		pUserPasswordUpdateField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( UserPasswordUpdateField_BrokerID != NULL ) {
-        if(UserPasswordUpdateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, UserPasswordUpdateField_BrokerID, UserPasswordUpdateField_BrokerID_len);        
-        strncpy(self->data.BrokerID, UserPasswordUpdateField_BrokerID, sizeof(self->data.BrokerID) );
-        UserPasswordUpdateField_BrokerID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( UserPasswordUpdateField_UserID != NULL ) {
-        if(UserPasswordUpdateField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, UserPasswordUpdateField_UserID, UserPasswordUpdateField_UserID_len);        
-        strncpy(self->data.UserID, UserPasswordUpdateField_UserID, sizeof(self->data.UserID) );
-        UserPasswordUpdateField_UserID = NULL;
-    }
-            
-    ///原来的口令
-    // TThostFtdcPasswordType char[41]
-    if( UserPasswordUpdateField_OldPassword != NULL ) {
-        if(UserPasswordUpdateField_OldPassword_len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
-            PyErr_Format(PyExc_ValueError, "OldPassword too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_OldPassword_len, (Py_ssize_t)sizeof(self->data.OldPassword));
-            return -1;
-        }
-        // memset(self->data.OldPassword, 0, sizeof(self->data.OldPassword));
-        // memcpy(self->data.OldPassword, UserPasswordUpdateField_OldPassword, UserPasswordUpdateField_OldPassword_len);        
-        strncpy(self->data.OldPassword, UserPasswordUpdateField_OldPassword, sizeof(self->data.OldPassword) );
-        UserPasswordUpdateField_OldPassword = NULL;
-    }
-            
-    ///新的口令
-    // TThostFtdcPasswordType char[41]
-    if( UserPasswordUpdateField_NewPassword != NULL ) {
-        if(UserPasswordUpdateField_NewPassword_len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
-            PyErr_Format(PyExc_ValueError, "NewPassword too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_NewPassword_len, (Py_ssize_t)sizeof(self->data.NewPassword));
-            return -1;
-        }
-        // memset(self->data.NewPassword, 0, sizeof(self->data.NewPassword));
-        // memcpy(self->data.NewPassword, UserPasswordUpdateField_NewPassword, UserPasswordUpdateField_NewPassword_len);        
-        strncpy(self->data.NewPassword, UserPasswordUpdateField_NewPassword, sizeof(self->data.NewPassword) );
-        UserPasswordUpdateField_NewPassword = NULL;
-    }
-            
+	//TThostFtdcUserIDType char[16]
+	if(pUserPasswordUpdateField_UserID != NULL) {
+		if(pUserPasswordUpdateField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pUserPasswordUpdateField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pUserPasswordUpdateField_UserID, sizeof(self->data.UserID) );
+		pUserPasswordUpdateField_UserID = NULL;
+	}
+
+	//TThostFtdcPasswordType char[41]
+	if(pUserPasswordUpdateField_OldPassword != NULL) {
+		if(pUserPasswordUpdateField_OldPassword_len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+			PyErr_Format(PyExc_ValueError, "OldPassword too long: length=%zd (max allowed is %zd)", pUserPasswordUpdateField_OldPassword_len, (Py_ssize_t)sizeof(self->data.OldPassword));
+			return -1;
+		}
+		strncpy(self->data.OldPassword, pUserPasswordUpdateField_OldPassword, sizeof(self->data.OldPassword) );
+		pUserPasswordUpdateField_OldPassword = NULL;
+	}
+
+	//TThostFtdcPasswordType char[41]
+	if(pUserPasswordUpdateField_NewPassword != NULL) {
+		if(pUserPasswordUpdateField_NewPassword_len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+			PyErr_Format(PyExc_ValueError, "NewPassword too long: length=%zd (max allowed is %zd)", pUserPasswordUpdateField_NewPassword_len, (Py_ssize_t)sizeof(self->data.NewPassword));
+			return -1;
+		}
+		strncpy(self->data.NewPassword, pUserPasswordUpdateField_NewPassword, sizeof(self->data.NewPassword) );
+		pUserPasswordUpdateField_NewPassword = NULL;
+	}
+
+
 
     return 0;
 }
@@ -124,10 +109,10 @@ static PyObject *PyCThostFtdcUserPasswordUpdateField_repr(PyCThostFtdcUserPasswo
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
-        ,"OldPassword", self->data.OldPassword//, (Py_ssize_t)sizeof(self->data.OldPassword) 
-        ,"NewPassword", self->data.NewPassword//, (Py_ssize_t)sizeof(self->data.NewPassword) 
+		, "BrokerID", self->data.BrokerID 
+		, "UserID", self->data.UserID 
+		, "OldPassword", self->data.OldPassword 
+		, "NewPassword", self->data.NewPassword 
 
 
 		);
@@ -140,121 +125,89 @@ static PyObject *PyCThostFtdcUserPasswordUpdateField_repr(PyCThostFtdcUserPasswo
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcUserPasswordUpdateField_get_BrokerID(PyCThostFtdcUserPasswordUpdateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcUserPasswordUpdateField_set_BrokerID(PyCThostFtdcUserPasswordUpdateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcUserPasswordUpdateField_get_UserID(PyCThostFtdcUserPasswordUpdateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcUserPasswordUpdateField_set_UserID(PyCThostFtdcUserPasswordUpdateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
-}
-            
-///原来的口令
-// TThostFtdcPasswordType char[41]
 static PyObject *PyCThostFtdcUserPasswordUpdateField_get_OldPassword(PyCThostFtdcUserPasswordUpdateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.OldPassword, (Py_ssize_t)sizeof(self->data.OldPassword));
-    return PyBytes_FromString(self->data.OldPassword);
+	return PyBytes_FromString(self->data.OldPassword);
 }
 
-///原来的口令
-// TThostFtdcPasswordType char[41]
-static int PyCThostFtdcUserPasswordUpdateField_set_OldPassword(PyCThostFtdcUserPasswordUpdateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "OldPassword Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
-        PyErr_SetString(PyExc_ValueError, "OldPassword must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.OldPassword, 0, sizeof(self->data.OldPassword));
-    // memcpy(self->data.OldPassword, buf, len);
-    strncpy(self->data.OldPassword, buf, sizeof(self->data.OldPassword));
-    return 0;
-}
-            
-///新的口令
-// TThostFtdcPasswordType char[41]
 static PyObject *PyCThostFtdcUserPasswordUpdateField_get_NewPassword(PyCThostFtdcUserPasswordUpdateField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.NewPassword, (Py_ssize_t)sizeof(self->data.NewPassword));
-    return PyBytes_FromString(self->data.NewPassword);
+	return PyBytes_FromString(self->data.NewPassword);
 }
 
-///新的口令
-// TThostFtdcPasswordType char[41]
-static int PyCThostFtdcUserPasswordUpdateField_set_NewPassword(PyCThostFtdcUserPasswordUpdateField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "NewPassword Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
-        PyErr_SetString(PyExc_ValueError, "NewPassword must be less than 41 bytes");
-        return -1;
-    }
-    // memset(self->data.NewPassword, 0, sizeof(self->data.NewPassword));
-    // memcpy(self->data.NewPassword, buf, len);
-    strncpy(self->data.NewPassword, buf, sizeof(self->data.NewPassword));
-    return 0;
+static int PyCThostFtdcUserPasswordUpdateField_set_BrokerID(PyCThostFtdcUserPasswordUpdateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcUserPasswordUpdateField_set_UserID(PyCThostFtdcUserPasswordUpdateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
+}
+
+static int PyCThostFtdcUserPasswordUpdateField_set_OldPassword(PyCThostFtdcUserPasswordUpdateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "OldPassword Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+		PyErr_SetString(PyExc_ValueError, "OldPassword must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.OldPassword, buf, sizeof(self->data.OldPassword));
+	return 0;
+}
+
+static int PyCThostFtdcUserPasswordUpdateField_set_NewPassword(PyCThostFtdcUserPasswordUpdateField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "NewPassword Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+		PyErr_SetString(PyExc_ValueError, "NewPassword must be less than 41 bytes");
+		return -1;
+	}
+	strncpy(self->data.NewPassword, buf, sizeof(self->data.NewPassword));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcUserPasswordUpdateField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcUserPasswordUpdateField_get_BrokerID, (setter)PyCThostFtdcUserPasswordUpdateField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcUserPasswordUpdateField_get_UserID, (setter)PyCThostFtdcUserPasswordUpdateField_set_UserID, (char *)"UserID", NULL},
-    ///原来的口令 
-    {(char *)"OldPassword", (getter)PyCThostFtdcUserPasswordUpdateField_get_OldPassword, (setter)PyCThostFtdcUserPasswordUpdateField_set_OldPassword, (char *)"OldPassword", NULL},
-    ///新的口令 
-    {(char *)"NewPassword", (getter)PyCThostFtdcUserPasswordUpdateField_get_NewPassword, (setter)PyCThostFtdcUserPasswordUpdateField_set_NewPassword, (char *)"NewPassword", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcUserPasswordUpdateField_get_BrokerID, (setter)PyCThostFtdcUserPasswordUpdateField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcUserPasswordUpdateField_get_UserID, (setter)PyCThostFtdcUserPasswordUpdateField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"OldPassword", (getter)PyCThostFtdcUserPasswordUpdateField_get_OldPassword, (setter)PyCThostFtdcUserPasswordUpdateField_set_OldPassword, (char *)"OldPassword", NULL},
+	 {(char *)"NewPassword", (getter)PyCThostFtdcUserPasswordUpdateField_get_NewPassword, (setter)PyCThostFtdcUserPasswordUpdateField_set_NewPassword, (char *)"NewPassword", NULL},
 
     {NULL}
 };

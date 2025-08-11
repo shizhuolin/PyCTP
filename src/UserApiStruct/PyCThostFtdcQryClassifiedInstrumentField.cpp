@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryClassifiedInstrumentField.h"
 
-///查询分类合约
+
 
 static PyObject *PyCThostFtdcQryClassifiedInstrumentField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryClassifiedInstrumentField *self = (PyCThostFtdcQryClassifiedInstrumentField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryClassifiedInstrumentField_new(PyTypeObject *type
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,35 +18,29 @@ static int PyCThostFtdcQryClassifiedInstrumentField_init(PyCThostFtdcQryClassifi
 
     static const char *kwlist[] = {"InstrumentID", "ExchangeID", "ExchangeInstID", "ProductID", "TradingType", "ClassType",  NULL};
 
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryClassifiedInstrumentField_InstrumentID = NULL;
+	Py_ssize_t pQryClassifiedInstrumentField_InstrumentID_len = 0;
 
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryClassifiedInstrumentField_InstrumentID = NULL;
-    Py_ssize_t QryClassifiedInstrumentField_InstrumentID_len = 0;
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *QryClassifiedInstrumentField_ExchangeID = NULL;
-    Py_ssize_t QryClassifiedInstrumentField_ExchangeID_len = 0;
-            
-    ///合约在交易所的代码
-    // TThostFtdcExchangeInstIDType char[81]
-    const char *QryClassifiedInstrumentField_ExchangeInstID = NULL;
-    Py_ssize_t QryClassifiedInstrumentField_ExchangeInstID_len = 0;
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryClassifiedInstrumentField_ProductID = NULL;
-    Py_ssize_t QryClassifiedInstrumentField_ProductID_len = 0;
-            
-    ///合约交易状态
-    // TThostFtdcTradingTypeType char
-    char QryClassifiedInstrumentField_TradingType = 0;
-            
-    ///合约分类类型
-    // TThostFtdcClassTypeType char
-    char QryClassifiedInstrumentField_ClassType = 0;
-            
+	//TThostFtdcExchangeIDType char[9]
+	const char *pQryClassifiedInstrumentField_ExchangeID = NULL;
+	Py_ssize_t pQryClassifiedInstrumentField_ExchangeID_len = 0;
+
+	//TThostFtdcExchangeInstIDType char[81]
+	const char *pQryClassifiedInstrumentField_ExchangeInstID = NULL;
+	Py_ssize_t pQryClassifiedInstrumentField_ExchangeInstID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryClassifiedInstrumentField_ProductID = NULL;
+	Py_ssize_t pQryClassifiedInstrumentField_ProductID_len = 0;
+
+	//TThostFtdcTradingTypeType char
+	char pQryClassifiedInstrumentField_TradingType = 0;
+
+	//TThostFtdcClassTypeType char
+	char pQryClassifiedInstrumentField_ClassType = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#cc", (char **)kwlist
@@ -53,79 +48,65 @@ static int PyCThostFtdcQryClassifiedInstrumentField_init(PyCThostFtdcQryClassifi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#cc", (char **)kwlist
 #endif
 
-        , &QryClassifiedInstrumentField_InstrumentID, &QryClassifiedInstrumentField_InstrumentID_len 
-        , &QryClassifiedInstrumentField_ExchangeID, &QryClassifiedInstrumentField_ExchangeID_len 
-        , &QryClassifiedInstrumentField_ExchangeInstID, &QryClassifiedInstrumentField_ExchangeInstID_len 
-        , &QryClassifiedInstrumentField_ProductID, &QryClassifiedInstrumentField_ProductID_len 
-        , &QryClassifiedInstrumentField_TradingType 
-        , &QryClassifiedInstrumentField_ClassType 
+		, &pQryClassifiedInstrumentField_InstrumentID, &pQryClassifiedInstrumentField_InstrumentID_len
+		, &pQryClassifiedInstrumentField_ExchangeID, &pQryClassifiedInstrumentField_ExchangeID_len
+		, &pQryClassifiedInstrumentField_ExchangeInstID, &pQryClassifiedInstrumentField_ExchangeInstID_len
+		, &pQryClassifiedInstrumentField_ProductID, &pQryClassifiedInstrumentField_ProductID_len
+		, &pQryClassifiedInstrumentField_TradingType
+		, &pQryClassifiedInstrumentField_ClassType
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryClassifiedInstrumentField_InstrumentID != NULL) {
+		if(pQryClassifiedInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pQryClassifiedInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pQryClassifiedInstrumentField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pQryClassifiedInstrumentField_InstrumentID = NULL;
+	}
 
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryClassifiedInstrumentField_InstrumentID != NULL ) {
-        if(QryClassifiedInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, QryClassifiedInstrumentField_InstrumentID, QryClassifiedInstrumentField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, QryClassifiedInstrumentField_InstrumentID, sizeof(self->data.InstrumentID) );
-        QryClassifiedInstrumentField_InstrumentID = NULL;
-    }
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( QryClassifiedInstrumentField_ExchangeID != NULL ) {
-        if(QryClassifiedInstrumentField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, QryClassifiedInstrumentField_ExchangeID, QryClassifiedInstrumentField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, QryClassifiedInstrumentField_ExchangeID, sizeof(self->data.ExchangeID) );
-        QryClassifiedInstrumentField_ExchangeID = NULL;
-    }
-            
-    ///合约在交易所的代码
-    // TThostFtdcExchangeInstIDType char[81]
-    if( QryClassifiedInstrumentField_ExchangeInstID != NULL ) {
-        if(QryClassifiedInstrumentField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
-            return -1;
-        }
-        // memset(self->data.ExchangeInstID, 0, sizeof(self->data.ExchangeInstID));
-        // memcpy(self->data.ExchangeInstID, QryClassifiedInstrumentField_ExchangeInstID, QryClassifiedInstrumentField_ExchangeInstID_len);        
-        strncpy(self->data.ExchangeInstID, QryClassifiedInstrumentField_ExchangeInstID, sizeof(self->data.ExchangeInstID) );
-        QryClassifiedInstrumentField_ExchangeInstID = NULL;
-    }
-            
-    ///产品代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryClassifiedInstrumentField_ProductID != NULL ) {
-        if(QryClassifiedInstrumentField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-            return -1;
-        }
-        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-        // memcpy(self->data.ProductID, QryClassifiedInstrumentField_ProductID, QryClassifiedInstrumentField_ProductID_len);        
-        strncpy(self->data.ProductID, QryClassifiedInstrumentField_ProductID, sizeof(self->data.ProductID) );
-        QryClassifiedInstrumentField_ProductID = NULL;
-    }
-            
-    ///合约交易状态
-    // TThostFtdcTradingTypeType char
-    self->data.TradingType = QryClassifiedInstrumentField_TradingType;
-            
-    ///合约分类类型
-    // TThostFtdcClassTypeType char
-    self->data.ClassType = QryClassifiedInstrumentField_ClassType;
-            
+	//TThostFtdcExchangeIDType char[9]
+	if(pQryClassifiedInstrumentField_ExchangeID != NULL) {
+		if(pQryClassifiedInstrumentField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pQryClassifiedInstrumentField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pQryClassifiedInstrumentField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pQryClassifiedInstrumentField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcExchangeInstIDType char[81]
+	if(pQryClassifiedInstrumentField_ExchangeInstID != NULL) {
+		if(pQryClassifiedInstrumentField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", pQryClassifiedInstrumentField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeInstID, pQryClassifiedInstrumentField_ExchangeInstID, sizeof(self->data.ExchangeInstID) );
+		pQryClassifiedInstrumentField_ExchangeInstID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryClassifiedInstrumentField_ProductID != NULL) {
+		if(pQryClassifiedInstrumentField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pQryClassifiedInstrumentField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+			return -1;
+		}
+		strncpy(self->data.ProductID, pQryClassifiedInstrumentField_ProductID, sizeof(self->data.ProductID) );
+		pQryClassifiedInstrumentField_ProductID = NULL;
+	}
+
+	//TThostFtdcTradingTypeType char
+	self->data.TradingType = pQryClassifiedInstrumentField_TradingType;
+
+	//TThostFtdcClassTypeType char
+	self->data.ClassType = pQryClassifiedInstrumentField_ClassType;
+
+
 
     return 0;
 }
@@ -142,12 +123,12 @@ static PyObject *PyCThostFtdcQryClassifiedInstrumentField_repr(PyCThostFtdcQryCl
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:c,s:c}"
 #endif
 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"ExchangeInstID", self->data.ExchangeInstID//, (Py_ssize_t)sizeof(self->data.ExchangeInstID) 
-        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
-        ,"TradingType", self->data.TradingType 
-        ,"ClassType", self->data.ClassType 
+		, "InstrumentID", self->data.InstrumentID 
+		, "ExchangeID", self->data.ExchangeID 
+		, "ExchangeInstID", self->data.ExchangeInstID 
+		, "ProductID", self->data.ProductID 
+		, "TradingType", self->data.TradingType
+		, "ClassType", self->data.ClassType
 
 
 		);
@@ -160,171 +141,129 @@ static PyObject *PyCThostFtdcQryClassifiedInstrumentField_repr(PyCThostFtdcQryCl
     return PyObject_Repr(obj);
 }
 
-
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryClassifiedInstrumentField_get_InstrumentID(PyCThostFtdcQryClassifiedInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryClassifiedInstrumentField_set_InstrumentID(PyCThostFtdcQryClassifiedInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcQryClassifiedInstrumentField_get_ExchangeID(PyCThostFtdcQryClassifiedInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeID(PyCThostFtdcQryClassifiedInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///合约在交易所的代码
-// TThostFtdcExchangeInstIDType char[81]
 static PyObject *PyCThostFtdcQryClassifiedInstrumentField_get_ExchangeInstID(PyCThostFtdcQryClassifiedInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeInstID, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
-    return PyBytes_FromString(self->data.ExchangeInstID);
+	return PyBytes_FromString(self->data.ExchangeInstID);
 }
 
-///合约在交易所的代码
-// TThostFtdcExchangeInstIDType char[81]
-static int PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeInstID(PyCThostFtdcQryClassifiedInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeInstID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeInstID, 0, sizeof(self->data.ExchangeInstID));
-    // memcpy(self->data.ExchangeInstID, buf, len);
-    strncpy(self->data.ExchangeInstID, buf, sizeof(self->data.ExchangeInstID));
-    return 0;
-}
-            
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryClassifiedInstrumentField_get_ProductID(PyCThostFtdcQryClassifiedInstrumentField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
-    return PyBytes_FromString(self->data.ProductID);
+	return PyBytes_FromString(self->data.ProductID);
 }
 
-///产品代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryClassifiedInstrumentField_set_ProductID(PyCThostFtdcQryClassifiedInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
-    // memcpy(self->data.ProductID, buf, len);
-    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-    return 0;
-}
-            
-///合约交易状态
-// TThostFtdcTradingTypeType char
 static PyObject *PyCThostFtdcQryClassifiedInstrumentField_get_TradingType(PyCThostFtdcQryClassifiedInstrumentField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.TradingType), 1);
+	return PyBytes_FromStringAndSize(&(self->data.TradingType), 1);
 }
 
-///合约交易状态
-// TThostFtdcTradingTypeType char
-static int PyCThostFtdcQryClassifiedInstrumentField_set_TradingType(PyCThostFtdcQryClassifiedInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingType Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingType)) {
-        PyErr_SetString(PyExc_ValueError, "TradingType must be equal 1 bytes");
-        return -1;
-    }
-    self->data.TradingType = *buf;
-    return 0;
-}
-            
-///合约分类类型
-// TThostFtdcClassTypeType char
 static PyObject *PyCThostFtdcQryClassifiedInstrumentField_get_ClassType(PyCThostFtdcQryClassifiedInstrumentField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.ClassType), 1);
+	return PyBytes_FromStringAndSize(&(self->data.ClassType), 1);
 }
 
-///合约分类类型
-// TThostFtdcClassTypeType char
-static int PyCThostFtdcQryClassifiedInstrumentField_set_ClassType(PyCThostFtdcQryClassifiedInstrumentField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ClassType Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClassType)) {
-        PyErr_SetString(PyExc_ValueError, "ClassType must be equal 1 bytes");
-        return -1;
-    }
-    self->data.ClassType = *buf;
-    return 0;
+static int PyCThostFtdcQryClassifiedInstrumentField_set_InstrumentID(PyCThostFtdcQryClassifiedInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeID(PyCThostFtdcQryClassifiedInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeInstID(PyCThostFtdcQryClassifiedInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeInstID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeInstID, buf, sizeof(self->data.ExchangeInstID));
+	return 0;
+}
+
+static int PyCThostFtdcQryClassifiedInstrumentField_set_ProductID(PyCThostFtdcQryClassifiedInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+	return 0;
+}
+
+static int PyCThostFtdcQryClassifiedInstrumentField_set_TradingType(PyCThostFtdcQryClassifiedInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingType Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingType)) {
+		PyErr_SetString(PyExc_ValueError, "TradingType must be less than 1 bytes");
+		return -1;
+	}
+	self->data.TradingType = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcQryClassifiedInstrumentField_set_ClassType(PyCThostFtdcQryClassifiedInstrumentField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ClassType Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ClassType)) {
+		PyErr_SetString(PyExc_ValueError, "ClassType must be less than 1 bytes");
+		return -1;
+	}
+	self->data.ClassType = *buf;
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryClassifiedInstrumentField_getset[] = {
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_InstrumentID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_InstrumentID, (char *)"InstrumentID", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ExchangeID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///合约在交易所的代码 
-    {(char *)"ExchangeInstID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ExchangeInstID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeInstID, (char *)"ExchangeInstID", NULL},
-    ///产品代码 
-    {(char *)"ProductID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ProductID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ProductID, (char *)"ProductID", NULL},
-    ///合约交易状态 
-    {(char *)"TradingType", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_TradingType, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_TradingType, (char *)"TradingType", NULL},
-    ///合约分类类型 
-    {(char *)"ClassType", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ClassType, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ClassType, (char *)"ClassType", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_InstrumentID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ExchangeID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"ExchangeInstID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ExchangeInstID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeInstID, (char *)"ExchangeInstID", NULL},
+	 {(char *)"ProductID", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ProductID, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ProductID, (char *)"ProductID", NULL},
+	 {(char *)"TradingType", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_TradingType, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_TradingType, (char *)"TradingType", NULL},
+	 {(char *)"ClassType", (getter)PyCThostFtdcQryClassifiedInstrumentField_get_ClassType, (setter)PyCThostFtdcQryClassifiedInstrumentField_set_ClassType, (char *)"ClassType", NULL},
 
     {NULL}
 };

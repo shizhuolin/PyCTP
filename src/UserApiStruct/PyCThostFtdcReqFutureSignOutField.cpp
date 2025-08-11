@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcReqFutureSignOutField.h"
 
-///期商签退请求
+
 
 static PyObject *PyCThostFtdcReqFutureSignOutField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcReqFutureSignOutField *self = (PyCThostFtdcReqFutureSignOutField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcReqFutureSignOutField_new(PyTypeObject *type, PyObj
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,106 +18,85 @@ static int PyCThostFtdcReqFutureSignOutField_init(PyCThostFtdcReqFutureSignOutFi
 
     static const char *kwlist[] = {"TradeCode", "BankID", "BankBranchID", "BrokerID", "BrokerBranchID", "TradeDate", "TradeTime", "BankSerial", "TradingDay", "PlateSerial", "LastFragment", "SessionID", "InstallID", "UserID", "Digest", "CurrencyID", "DeviceID", "BrokerIDByBank", "OperNo", "RequestID", "TID",  NULL};
 
+	//TThostFtdcTradeCodeType char[7]
+	const char *pReqFutureSignOutField_TradeCode = NULL;
+	Py_ssize_t pReqFutureSignOutField_TradeCode_len = 0;
 
-    ///业务功能码
-    // TThostFtdcTradeCodeType char[7]
-    const char *ReqFutureSignOutField_TradeCode = NULL;
-    Py_ssize_t ReqFutureSignOutField_TradeCode_len = 0;
-            
-    ///银行代码
-    // TThostFtdcBankIDType char[4]
-    const char *ReqFutureSignOutField_BankID = NULL;
-    Py_ssize_t ReqFutureSignOutField_BankID_len = 0;
-            
-    ///银行分支机构代码
-    // TThostFtdcBankBrchIDType char[5]
-    const char *ReqFutureSignOutField_BankBranchID = NULL;
-    Py_ssize_t ReqFutureSignOutField_BankBranchID_len = 0;
-            
-    ///期商代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *ReqFutureSignOutField_BrokerID = NULL;
-    Py_ssize_t ReqFutureSignOutField_BrokerID_len = 0;
-            
-    ///期商分支机构代码
-    // TThostFtdcFutureBranchIDType char[31]
-    const char *ReqFutureSignOutField_BrokerBranchID = NULL;
-    Py_ssize_t ReqFutureSignOutField_BrokerBranchID_len = 0;
-            
-    ///交易日期
-    // TThostFtdcTradeDateType char[9]
-    const char *ReqFutureSignOutField_TradeDate = NULL;
-    Py_ssize_t ReqFutureSignOutField_TradeDate_len = 0;
-            
-    ///交易时间
-    // TThostFtdcTradeTimeType char[9]
-    const char *ReqFutureSignOutField_TradeTime = NULL;
-    Py_ssize_t ReqFutureSignOutField_TradeTime_len = 0;
-            
-    ///银行流水号
-    // TThostFtdcBankSerialType char[13]
-    const char *ReqFutureSignOutField_BankSerial = NULL;
-    Py_ssize_t ReqFutureSignOutField_BankSerial_len = 0;
-            
-    ///交易系统日期
-    // TThostFtdcTradeDateType char[9]
-    const char *ReqFutureSignOutField_TradingDay = NULL;
-    Py_ssize_t ReqFutureSignOutField_TradingDay_len = 0;
-            
-    ///银期平台消息流水号
-    // TThostFtdcSerialType int
-    int ReqFutureSignOutField_PlateSerial = 0;
-        
-    ///最后分片标志
-    // TThostFtdcLastFragmentType char
-    char ReqFutureSignOutField_LastFragment = 0;
-            
-    ///会话号
-    // TThostFtdcSessionIDType int
-    int ReqFutureSignOutField_SessionID = 0;
-        
-    ///安装编号
-    // TThostFtdcInstallIDType int
-    int ReqFutureSignOutField_InstallID = 0;
-        
-    ///用户标识
-    // TThostFtdcUserIDType char[16]
-    const char *ReqFutureSignOutField_UserID = NULL;
-    Py_ssize_t ReqFutureSignOutField_UserID_len = 0;
-            
-    ///摘要
-    // TThostFtdcDigestType char[36]
-    const char *ReqFutureSignOutField_Digest = NULL;
-    Py_ssize_t ReqFutureSignOutField_Digest_len = 0;
-            
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    const char *ReqFutureSignOutField_CurrencyID = NULL;
-    Py_ssize_t ReqFutureSignOutField_CurrencyID_len = 0;
-            
-    ///渠道标志
-    // TThostFtdcDeviceIDType char[3]
-    const char *ReqFutureSignOutField_DeviceID = NULL;
-    Py_ssize_t ReqFutureSignOutField_DeviceID_len = 0;
-            
-    ///期货公司银行编码
-    // TThostFtdcBankCodingForFutureType char[33]
-    const char *ReqFutureSignOutField_BrokerIDByBank = NULL;
-    Py_ssize_t ReqFutureSignOutField_BrokerIDByBank_len = 0;
-            
-    ///交易柜员
-    // TThostFtdcOperNoType char[17]
-    const char *ReqFutureSignOutField_OperNo = NULL;
-    Py_ssize_t ReqFutureSignOutField_OperNo_len = 0;
-            
-    ///请求编号
-    // TThostFtdcRequestIDType int
-    int ReqFutureSignOutField_RequestID = 0;
-        
-    ///交易ID
-    // TThostFtdcTIDType int
-    int ReqFutureSignOutField_TID = 0;
-        
+	//TThostFtdcBankIDType char[4]
+	const char *pReqFutureSignOutField_BankID = NULL;
+	Py_ssize_t pReqFutureSignOutField_BankID_len = 0;
+
+	//TThostFtdcBankBrchIDType char[5]
+	const char *pReqFutureSignOutField_BankBranchID = NULL;
+	Py_ssize_t pReqFutureSignOutField_BankBranchID_len = 0;
+
+	//TThostFtdcBrokerIDType char[11]
+	const char *pReqFutureSignOutField_BrokerID = NULL;
+	Py_ssize_t pReqFutureSignOutField_BrokerID_len = 0;
+
+	//TThostFtdcFutureBranchIDType char[31]
+	const char *pReqFutureSignOutField_BrokerBranchID = NULL;
+	Py_ssize_t pReqFutureSignOutField_BrokerBranchID_len = 0;
+
+	//TThostFtdcTradeDateType char[9]
+	const char *pReqFutureSignOutField_TradeDate = NULL;
+	Py_ssize_t pReqFutureSignOutField_TradeDate_len = 0;
+
+	//TThostFtdcTradeTimeType char[9]
+	const char *pReqFutureSignOutField_TradeTime = NULL;
+	Py_ssize_t pReqFutureSignOutField_TradeTime_len = 0;
+
+	//TThostFtdcBankSerialType char[13]
+	const char *pReqFutureSignOutField_BankSerial = NULL;
+	Py_ssize_t pReqFutureSignOutField_BankSerial_len = 0;
+
+	//TThostFtdcTradeDateType char[9]
+	const char *pReqFutureSignOutField_TradingDay = NULL;
+	Py_ssize_t pReqFutureSignOutField_TradingDay_len = 0;
+
+	//TThostFtdcSerialType int
+	int pReqFutureSignOutField_PlateSerial = 0;
+
+	//TThostFtdcLastFragmentType char
+	char pReqFutureSignOutField_LastFragment = 0;
+
+	//TThostFtdcSessionIDType int
+	int pReqFutureSignOutField_SessionID = 0;
+
+	//TThostFtdcInstallIDType int
+	int pReqFutureSignOutField_InstallID = 0;
+
+	//TThostFtdcUserIDType char[16]
+	const char *pReqFutureSignOutField_UserID = NULL;
+	Py_ssize_t pReqFutureSignOutField_UserID_len = 0;
+
+	//TThostFtdcDigestType char[36]
+	const char *pReqFutureSignOutField_Digest = NULL;
+	Py_ssize_t pReqFutureSignOutField_Digest_len = 0;
+
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pReqFutureSignOutField_CurrencyID = NULL;
+	Py_ssize_t pReqFutureSignOutField_CurrencyID_len = 0;
+
+	//TThostFtdcDeviceIDType char[3]
+	const char *pReqFutureSignOutField_DeviceID = NULL;
+	Py_ssize_t pReqFutureSignOutField_DeviceID_len = 0;
+
+	//TThostFtdcBankCodingForFutureType char[33]
+	const char *pReqFutureSignOutField_BrokerIDByBank = NULL;
+	Py_ssize_t pReqFutureSignOutField_BrokerIDByBank_len = 0;
+
+	//TThostFtdcOperNoType char[17]
+	const char *pReqFutureSignOutField_OperNo = NULL;
+	Py_ssize_t pReqFutureSignOutField_OperNo_len = 0;
+
+	//TThostFtdcRequestIDType int
+	int pReqFutureSignOutField_RequestID = 0;
+
+	//TThostFtdcTIDType int
+	int pReqFutureSignOutField_TID = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#y#y#y#y#y#iciiy#y#y#y#y#y#ii", (char **)kwlist
@@ -124,253 +104,202 @@ static int PyCThostFtdcReqFutureSignOutField_init(PyCThostFtdcReqFutureSignOutFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#s#s#s#s#s#iciis#s#s#s#s#s#ii", (char **)kwlist
 #endif
 
-        , &ReqFutureSignOutField_TradeCode, &ReqFutureSignOutField_TradeCode_len 
-        , &ReqFutureSignOutField_BankID, &ReqFutureSignOutField_BankID_len 
-        , &ReqFutureSignOutField_BankBranchID, &ReqFutureSignOutField_BankBranchID_len 
-        , &ReqFutureSignOutField_BrokerID, &ReqFutureSignOutField_BrokerID_len 
-        , &ReqFutureSignOutField_BrokerBranchID, &ReqFutureSignOutField_BrokerBranchID_len 
-        , &ReqFutureSignOutField_TradeDate, &ReqFutureSignOutField_TradeDate_len 
-        , &ReqFutureSignOutField_TradeTime, &ReqFutureSignOutField_TradeTime_len 
-        , &ReqFutureSignOutField_BankSerial, &ReqFutureSignOutField_BankSerial_len 
-        , &ReqFutureSignOutField_TradingDay, &ReqFutureSignOutField_TradingDay_len 
-        , &ReqFutureSignOutField_PlateSerial 
-        , &ReqFutureSignOutField_LastFragment 
-        , &ReqFutureSignOutField_SessionID 
-        , &ReqFutureSignOutField_InstallID 
-        , &ReqFutureSignOutField_UserID, &ReqFutureSignOutField_UserID_len 
-        , &ReqFutureSignOutField_Digest, &ReqFutureSignOutField_Digest_len 
-        , &ReqFutureSignOutField_CurrencyID, &ReqFutureSignOutField_CurrencyID_len 
-        , &ReqFutureSignOutField_DeviceID, &ReqFutureSignOutField_DeviceID_len 
-        , &ReqFutureSignOutField_BrokerIDByBank, &ReqFutureSignOutField_BrokerIDByBank_len 
-        , &ReqFutureSignOutField_OperNo, &ReqFutureSignOutField_OperNo_len 
-        , &ReqFutureSignOutField_RequestID 
-        , &ReqFutureSignOutField_TID 
+		, &pReqFutureSignOutField_TradeCode, &pReqFutureSignOutField_TradeCode_len
+		, &pReqFutureSignOutField_BankID, &pReqFutureSignOutField_BankID_len
+		, &pReqFutureSignOutField_BankBranchID, &pReqFutureSignOutField_BankBranchID_len
+		, &pReqFutureSignOutField_BrokerID, &pReqFutureSignOutField_BrokerID_len
+		, &pReqFutureSignOutField_BrokerBranchID, &pReqFutureSignOutField_BrokerBranchID_len
+		, &pReqFutureSignOutField_TradeDate, &pReqFutureSignOutField_TradeDate_len
+		, &pReqFutureSignOutField_TradeTime, &pReqFutureSignOutField_TradeTime_len
+		, &pReqFutureSignOutField_BankSerial, &pReqFutureSignOutField_BankSerial_len
+		, &pReqFutureSignOutField_TradingDay, &pReqFutureSignOutField_TradingDay_len
+		, &pReqFutureSignOutField_PlateSerial
+		, &pReqFutureSignOutField_LastFragment
+		, &pReqFutureSignOutField_SessionID
+		, &pReqFutureSignOutField_InstallID
+		, &pReqFutureSignOutField_UserID, &pReqFutureSignOutField_UserID_len
+		, &pReqFutureSignOutField_Digest, &pReqFutureSignOutField_Digest_len
+		, &pReqFutureSignOutField_CurrencyID, &pReqFutureSignOutField_CurrencyID_len
+		, &pReqFutureSignOutField_DeviceID, &pReqFutureSignOutField_DeviceID_len
+		, &pReqFutureSignOutField_BrokerIDByBank, &pReqFutureSignOutField_BrokerIDByBank_len
+		, &pReqFutureSignOutField_OperNo, &pReqFutureSignOutField_OperNo_len
+		, &pReqFutureSignOutField_RequestID
+		, &pReqFutureSignOutField_TID
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcTradeCodeType char[7]
+	if(pReqFutureSignOutField_TradeCode != NULL) {
+		if(pReqFutureSignOutField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+			PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
+			return -1;
+		}
+		strncpy(self->data.TradeCode, pReqFutureSignOutField_TradeCode, sizeof(self->data.TradeCode) );
+		pReqFutureSignOutField_TradeCode = NULL;
+	}
 
-    ///业务功能码
-    // TThostFtdcTradeCodeType char[7]
-    if( ReqFutureSignOutField_TradeCode != NULL ) {
-        if(ReqFutureSignOutField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
-            PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
-            return -1;
-        }
-        // memset(self->data.TradeCode, 0, sizeof(self->data.TradeCode));
-        // memcpy(self->data.TradeCode, ReqFutureSignOutField_TradeCode, ReqFutureSignOutField_TradeCode_len);        
-        strncpy(self->data.TradeCode, ReqFutureSignOutField_TradeCode, sizeof(self->data.TradeCode) );
-        ReqFutureSignOutField_TradeCode = NULL;
-    }
-            
-    ///银行代码
-    // TThostFtdcBankIDType char[4]
-    if( ReqFutureSignOutField_BankID != NULL ) {
-        if(ReqFutureSignOutField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
-            PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
-            return -1;
-        }
-        // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-        // memcpy(self->data.BankID, ReqFutureSignOutField_BankID, ReqFutureSignOutField_BankID_len);        
-        strncpy(self->data.BankID, ReqFutureSignOutField_BankID, sizeof(self->data.BankID) );
-        ReqFutureSignOutField_BankID = NULL;
-    }
-            
-    ///银行分支机构代码
-    // TThostFtdcBankBrchIDType char[5]
-    if( ReqFutureSignOutField_BankBranchID != NULL ) {
-        if(ReqFutureSignOutField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
-            PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
-            return -1;
-        }
-        // memset(self->data.BankBranchID, 0, sizeof(self->data.BankBranchID));
-        // memcpy(self->data.BankBranchID, ReqFutureSignOutField_BankBranchID, ReqFutureSignOutField_BankBranchID_len);        
-        strncpy(self->data.BankBranchID, ReqFutureSignOutField_BankBranchID, sizeof(self->data.BankBranchID) );
-        ReqFutureSignOutField_BankBranchID = NULL;
-    }
-            
-    ///期商代码
-    // TThostFtdcBrokerIDType char[11]
-    if( ReqFutureSignOutField_BrokerID != NULL ) {
-        if(ReqFutureSignOutField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, ReqFutureSignOutField_BrokerID, ReqFutureSignOutField_BrokerID_len);        
-        strncpy(self->data.BrokerID, ReqFutureSignOutField_BrokerID, sizeof(self->data.BrokerID) );
-        ReqFutureSignOutField_BrokerID = NULL;
-    }
-            
-    ///期商分支机构代码
-    // TThostFtdcFutureBranchIDType char[31]
-    if( ReqFutureSignOutField_BrokerBranchID != NULL ) {
-        if(ReqFutureSignOutField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
-            return -1;
-        }
-        // memset(self->data.BrokerBranchID, 0, sizeof(self->data.BrokerBranchID));
-        // memcpy(self->data.BrokerBranchID, ReqFutureSignOutField_BrokerBranchID, ReqFutureSignOutField_BrokerBranchID_len);        
-        strncpy(self->data.BrokerBranchID, ReqFutureSignOutField_BrokerBranchID, sizeof(self->data.BrokerBranchID) );
-        ReqFutureSignOutField_BrokerBranchID = NULL;
-    }
-            
-    ///交易日期
-    // TThostFtdcTradeDateType char[9]
-    if( ReqFutureSignOutField_TradeDate != NULL ) {
-        if(ReqFutureSignOutField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
-            PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
-            return -1;
-        }
-        // memset(self->data.TradeDate, 0, sizeof(self->data.TradeDate));
-        // memcpy(self->data.TradeDate, ReqFutureSignOutField_TradeDate, ReqFutureSignOutField_TradeDate_len);        
-        strncpy(self->data.TradeDate, ReqFutureSignOutField_TradeDate, sizeof(self->data.TradeDate) );
-        ReqFutureSignOutField_TradeDate = NULL;
-    }
-            
-    ///交易时间
-    // TThostFtdcTradeTimeType char[9]
-    if( ReqFutureSignOutField_TradeTime != NULL ) {
-        if(ReqFutureSignOutField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
-            PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
-            return -1;
-        }
-        // memset(self->data.TradeTime, 0, sizeof(self->data.TradeTime));
-        // memcpy(self->data.TradeTime, ReqFutureSignOutField_TradeTime, ReqFutureSignOutField_TradeTime_len);        
-        strncpy(self->data.TradeTime, ReqFutureSignOutField_TradeTime, sizeof(self->data.TradeTime) );
-        ReqFutureSignOutField_TradeTime = NULL;
-    }
-            
-    ///银行流水号
-    // TThostFtdcBankSerialType char[13]
-    if( ReqFutureSignOutField_BankSerial != NULL ) {
-        if(ReqFutureSignOutField_BankSerial_len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
-            PyErr_Format(PyExc_ValueError, "BankSerial too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_BankSerial_len, (Py_ssize_t)sizeof(self->data.BankSerial));
-            return -1;
-        }
-        // memset(self->data.BankSerial, 0, sizeof(self->data.BankSerial));
-        // memcpy(self->data.BankSerial, ReqFutureSignOutField_BankSerial, ReqFutureSignOutField_BankSerial_len);        
-        strncpy(self->data.BankSerial, ReqFutureSignOutField_BankSerial, sizeof(self->data.BankSerial) );
-        ReqFutureSignOutField_BankSerial = NULL;
-    }
-            
-    ///交易系统日期
-    // TThostFtdcTradeDateType char[9]
-    if( ReqFutureSignOutField_TradingDay != NULL ) {
-        if(ReqFutureSignOutField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-            PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
-            return -1;
-        }
-        // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-        // memcpy(self->data.TradingDay, ReqFutureSignOutField_TradingDay, ReqFutureSignOutField_TradingDay_len);        
-        strncpy(self->data.TradingDay, ReqFutureSignOutField_TradingDay, sizeof(self->data.TradingDay) );
-        ReqFutureSignOutField_TradingDay = NULL;
-    }
-            
-    ///银期平台消息流水号
-    // TThostFtdcSerialType int
-    self->data.PlateSerial = ReqFutureSignOutField_PlateSerial;
-        
-    ///最后分片标志
-    // TThostFtdcLastFragmentType char
-    self->data.LastFragment = ReqFutureSignOutField_LastFragment;
-            
-    ///会话号
-    // TThostFtdcSessionIDType int
-    self->data.SessionID = ReqFutureSignOutField_SessionID;
-        
-    ///安装编号
-    // TThostFtdcInstallIDType int
-    self->data.InstallID = ReqFutureSignOutField_InstallID;
-        
-    ///用户标识
-    // TThostFtdcUserIDType char[16]
-    if( ReqFutureSignOutField_UserID != NULL ) {
-        if(ReqFutureSignOutField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, ReqFutureSignOutField_UserID, ReqFutureSignOutField_UserID_len);        
-        strncpy(self->data.UserID, ReqFutureSignOutField_UserID, sizeof(self->data.UserID) );
-        ReqFutureSignOutField_UserID = NULL;
-    }
-            
-    ///摘要
-    // TThostFtdcDigestType char[36]
-    if( ReqFutureSignOutField_Digest != NULL ) {
-        if(ReqFutureSignOutField_Digest_len > (Py_ssize_t)sizeof(self->data.Digest)) {
-            PyErr_Format(PyExc_ValueError, "Digest too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_Digest_len, (Py_ssize_t)sizeof(self->data.Digest));
-            return -1;
-        }
-        // memset(self->data.Digest, 0, sizeof(self->data.Digest));
-        // memcpy(self->data.Digest, ReqFutureSignOutField_Digest, ReqFutureSignOutField_Digest_len);        
-        strncpy(self->data.Digest, ReqFutureSignOutField_Digest, sizeof(self->data.Digest) );
-        ReqFutureSignOutField_Digest = NULL;
-    }
-            
-    ///币种代码
-    // TThostFtdcCurrencyIDType char[4]
-    if( ReqFutureSignOutField_CurrencyID != NULL ) {
-        if(ReqFutureSignOutField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
-            return -1;
-        }
-        // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-        // memcpy(self->data.CurrencyID, ReqFutureSignOutField_CurrencyID, ReqFutureSignOutField_CurrencyID_len);        
-        strncpy(self->data.CurrencyID, ReqFutureSignOutField_CurrencyID, sizeof(self->data.CurrencyID) );
-        ReqFutureSignOutField_CurrencyID = NULL;
-    }
-            
-    ///渠道标志
-    // TThostFtdcDeviceIDType char[3]
-    if( ReqFutureSignOutField_DeviceID != NULL ) {
-        if(ReqFutureSignOutField_DeviceID_len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
-            PyErr_Format(PyExc_ValueError, "DeviceID too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_DeviceID_len, (Py_ssize_t)sizeof(self->data.DeviceID));
-            return -1;
-        }
-        // memset(self->data.DeviceID, 0, sizeof(self->data.DeviceID));
-        // memcpy(self->data.DeviceID, ReqFutureSignOutField_DeviceID, ReqFutureSignOutField_DeviceID_len);        
-        strncpy(self->data.DeviceID, ReqFutureSignOutField_DeviceID, sizeof(self->data.DeviceID) );
-        ReqFutureSignOutField_DeviceID = NULL;
-    }
-            
-    ///期货公司银行编码
-    // TThostFtdcBankCodingForFutureType char[33]
-    if( ReqFutureSignOutField_BrokerIDByBank != NULL ) {
-        if(ReqFutureSignOutField_BrokerIDByBank_len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
-            PyErr_Format(PyExc_ValueError, "BrokerIDByBank too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_BrokerIDByBank_len, (Py_ssize_t)sizeof(self->data.BrokerIDByBank));
-            return -1;
-        }
-        // memset(self->data.BrokerIDByBank, 0, sizeof(self->data.BrokerIDByBank));
-        // memcpy(self->data.BrokerIDByBank, ReqFutureSignOutField_BrokerIDByBank, ReqFutureSignOutField_BrokerIDByBank_len);        
-        strncpy(self->data.BrokerIDByBank, ReqFutureSignOutField_BrokerIDByBank, sizeof(self->data.BrokerIDByBank) );
-        ReqFutureSignOutField_BrokerIDByBank = NULL;
-    }
-            
-    ///交易柜员
-    // TThostFtdcOperNoType char[17]
-    if( ReqFutureSignOutField_OperNo != NULL ) {
-        if(ReqFutureSignOutField_OperNo_len > (Py_ssize_t)sizeof(self->data.OperNo)) {
-            PyErr_Format(PyExc_ValueError, "OperNo too long: length=%zd (max allowed is %zd)", ReqFutureSignOutField_OperNo_len, (Py_ssize_t)sizeof(self->data.OperNo));
-            return -1;
-        }
-        // memset(self->data.OperNo, 0, sizeof(self->data.OperNo));
-        // memcpy(self->data.OperNo, ReqFutureSignOutField_OperNo, ReqFutureSignOutField_OperNo_len);        
-        strncpy(self->data.OperNo, ReqFutureSignOutField_OperNo, sizeof(self->data.OperNo) );
-        ReqFutureSignOutField_OperNo = NULL;
-    }
-            
-    ///请求编号
-    // TThostFtdcRequestIDType int
-    self->data.RequestID = ReqFutureSignOutField_RequestID;
-        
-    ///交易ID
-    // TThostFtdcTIDType int
-    self->data.TID = ReqFutureSignOutField_TID;
-        
+	//TThostFtdcBankIDType char[4]
+	if(pReqFutureSignOutField_BankID != NULL) {
+		if(pReqFutureSignOutField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+			PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
+			return -1;
+		}
+		strncpy(self->data.BankID, pReqFutureSignOutField_BankID, sizeof(self->data.BankID) );
+		pReqFutureSignOutField_BankID = NULL;
+	}
+
+	//TThostFtdcBankBrchIDType char[5]
+	if(pReqFutureSignOutField_BankBranchID != NULL) {
+		if(pReqFutureSignOutField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+			PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
+			return -1;
+		}
+		strncpy(self->data.BankBranchID, pReqFutureSignOutField_BankBranchID, sizeof(self->data.BankBranchID) );
+		pReqFutureSignOutField_BankBranchID = NULL;
+	}
+
+	//TThostFtdcBrokerIDType char[11]
+	if(pReqFutureSignOutField_BrokerID != NULL) {
+		if(pReqFutureSignOutField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pReqFutureSignOutField_BrokerID, sizeof(self->data.BrokerID) );
+		pReqFutureSignOutField_BrokerID = NULL;
+	}
+
+	//TThostFtdcFutureBranchIDType char[31]
+	if(pReqFutureSignOutField_BrokerBranchID != NULL) {
+		if(pReqFutureSignOutField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
+			return -1;
+		}
+		strncpy(self->data.BrokerBranchID, pReqFutureSignOutField_BrokerBranchID, sizeof(self->data.BrokerBranchID) );
+		pReqFutureSignOutField_BrokerBranchID = NULL;
+	}
+
+	//TThostFtdcTradeDateType char[9]
+	if(pReqFutureSignOutField_TradeDate != NULL) {
+		if(pReqFutureSignOutField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+			PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
+			return -1;
+		}
+		strncpy(self->data.TradeDate, pReqFutureSignOutField_TradeDate, sizeof(self->data.TradeDate) );
+		pReqFutureSignOutField_TradeDate = NULL;
+	}
+
+	//TThostFtdcTradeTimeType char[9]
+	if(pReqFutureSignOutField_TradeTime != NULL) {
+		if(pReqFutureSignOutField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+			PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
+			return -1;
+		}
+		strncpy(self->data.TradeTime, pReqFutureSignOutField_TradeTime, sizeof(self->data.TradeTime) );
+		pReqFutureSignOutField_TradeTime = NULL;
+	}
+
+	//TThostFtdcBankSerialType char[13]
+	if(pReqFutureSignOutField_BankSerial != NULL) {
+		if(pReqFutureSignOutField_BankSerial_len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+			PyErr_Format(PyExc_ValueError, "BankSerial too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_BankSerial_len, (Py_ssize_t)sizeof(self->data.BankSerial));
+			return -1;
+		}
+		strncpy(self->data.BankSerial, pReqFutureSignOutField_BankSerial, sizeof(self->data.BankSerial) );
+		pReqFutureSignOutField_BankSerial = NULL;
+	}
+
+	//TThostFtdcTradeDateType char[9]
+	if(pReqFutureSignOutField_TradingDay != NULL) {
+		if(pReqFutureSignOutField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+			PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
+			return -1;
+		}
+		strncpy(self->data.TradingDay, pReqFutureSignOutField_TradingDay, sizeof(self->data.TradingDay) );
+		pReqFutureSignOutField_TradingDay = NULL;
+	}
+
+	//TThostFtdcSerialType int
+	self->data.PlateSerial = pReqFutureSignOutField_PlateSerial;
+
+	//TThostFtdcLastFragmentType char
+	self->data.LastFragment = pReqFutureSignOutField_LastFragment;
+
+	//TThostFtdcSessionIDType int
+	self->data.SessionID = pReqFutureSignOutField_SessionID;
+
+	//TThostFtdcInstallIDType int
+	self->data.InstallID = pReqFutureSignOutField_InstallID;
+
+	//TThostFtdcUserIDType char[16]
+	if(pReqFutureSignOutField_UserID != NULL) {
+		if(pReqFutureSignOutField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pReqFutureSignOutField_UserID, sizeof(self->data.UserID) );
+		pReqFutureSignOutField_UserID = NULL;
+	}
+
+	//TThostFtdcDigestType char[36]
+	if(pReqFutureSignOutField_Digest != NULL) {
+		if(pReqFutureSignOutField_Digest_len > (Py_ssize_t)sizeof(self->data.Digest)) {
+			PyErr_Format(PyExc_ValueError, "Digest too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_Digest_len, (Py_ssize_t)sizeof(self->data.Digest));
+			return -1;
+		}
+		strncpy(self->data.Digest, pReqFutureSignOutField_Digest, sizeof(self->data.Digest) );
+		pReqFutureSignOutField_Digest = NULL;
+	}
+
+	//TThostFtdcCurrencyIDType char[4]
+	if(pReqFutureSignOutField_CurrencyID != NULL) {
+		if(pReqFutureSignOutField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
+			return -1;
+		}
+		strncpy(self->data.CurrencyID, pReqFutureSignOutField_CurrencyID, sizeof(self->data.CurrencyID) );
+		pReqFutureSignOutField_CurrencyID = NULL;
+	}
+
+	//TThostFtdcDeviceIDType char[3]
+	if(pReqFutureSignOutField_DeviceID != NULL) {
+		if(pReqFutureSignOutField_DeviceID_len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+			PyErr_Format(PyExc_ValueError, "DeviceID too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_DeviceID_len, (Py_ssize_t)sizeof(self->data.DeviceID));
+			return -1;
+		}
+		strncpy(self->data.DeviceID, pReqFutureSignOutField_DeviceID, sizeof(self->data.DeviceID) );
+		pReqFutureSignOutField_DeviceID = NULL;
+	}
+
+	//TThostFtdcBankCodingForFutureType char[33]
+	if(pReqFutureSignOutField_BrokerIDByBank != NULL) {
+		if(pReqFutureSignOutField_BrokerIDByBank_len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+			PyErr_Format(PyExc_ValueError, "BrokerIDByBank too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_BrokerIDByBank_len, (Py_ssize_t)sizeof(self->data.BrokerIDByBank));
+			return -1;
+		}
+		strncpy(self->data.BrokerIDByBank, pReqFutureSignOutField_BrokerIDByBank, sizeof(self->data.BrokerIDByBank) );
+		pReqFutureSignOutField_BrokerIDByBank = NULL;
+	}
+
+	//TThostFtdcOperNoType char[17]
+	if(pReqFutureSignOutField_OperNo != NULL) {
+		if(pReqFutureSignOutField_OperNo_len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+			PyErr_Format(PyExc_ValueError, "OperNo too long: length=%zd (max allowed is %zd)", pReqFutureSignOutField_OperNo_len, (Py_ssize_t)sizeof(self->data.OperNo));
+			return -1;
+		}
+		strncpy(self->data.OperNo, pReqFutureSignOutField_OperNo, sizeof(self->data.OperNo) );
+		pReqFutureSignOutField_OperNo = NULL;
+	}
+
+	//TThostFtdcRequestIDType int
+	self->data.RequestID = pReqFutureSignOutField_RequestID;
+
+	//TThostFtdcTIDType int
+	self->data.TID = pReqFutureSignOutField_TID;
+
+
 
     return 0;
 }
@@ -387,27 +316,27 @@ static PyObject *PyCThostFtdcReqFutureSignOutField_repr(PyCThostFtdcReqFutureSig
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:s,s:i,s:c,s:i,s:i,s:s,s:s,s:s,s:s,s:s,s:s,s:i,s:i}"
 #endif
 
-        ,"TradeCode", self->data.TradeCode//, (Py_ssize_t)sizeof(self->data.TradeCode) 
-        ,"BankID", self->data.BankID//, (Py_ssize_t)sizeof(self->data.BankID) 
-        ,"BankBranchID", self->data.BankBranchID//, (Py_ssize_t)sizeof(self->data.BankBranchID) 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"BrokerBranchID", self->data.BrokerBranchID//, (Py_ssize_t)sizeof(self->data.BrokerBranchID) 
-        ,"TradeDate", self->data.TradeDate//, (Py_ssize_t)sizeof(self->data.TradeDate) 
-        ,"TradeTime", self->data.TradeTime//, (Py_ssize_t)sizeof(self->data.TradeTime) 
-        ,"BankSerial", self->data.BankSerial//, (Py_ssize_t)sizeof(self->data.BankSerial) 
-        ,"TradingDay", self->data.TradingDay//, (Py_ssize_t)sizeof(self->data.TradingDay) 
-        ,"PlateSerial", self->data.PlateSerial 
-        ,"LastFragment", self->data.LastFragment 
-        ,"SessionID", self->data.SessionID 
-        ,"InstallID", self->data.InstallID 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
-        ,"Digest", self->data.Digest//, (Py_ssize_t)sizeof(self->data.Digest) 
-        ,"CurrencyID", self->data.CurrencyID//, (Py_ssize_t)sizeof(self->data.CurrencyID) 
-        ,"DeviceID", self->data.DeviceID//, (Py_ssize_t)sizeof(self->data.DeviceID) 
-        ,"BrokerIDByBank", self->data.BrokerIDByBank//, (Py_ssize_t)sizeof(self->data.BrokerIDByBank) 
-        ,"OperNo", self->data.OperNo//, (Py_ssize_t)sizeof(self->data.OperNo) 
-        ,"RequestID", self->data.RequestID 
-        ,"TID", self->data.TID 
+		, "TradeCode", self->data.TradeCode 
+		, "BankID", self->data.BankID 
+		, "BankBranchID", self->data.BankBranchID 
+		, "BrokerID", self->data.BrokerID 
+		, "BrokerBranchID", self->data.BrokerBranchID 
+		, "TradeDate", self->data.TradeDate 
+		, "TradeTime", self->data.TradeTime 
+		, "BankSerial", self->data.BankSerial 
+		, "TradingDay", self->data.TradingDay 
+		, "PlateSerial", self->data.PlateSerial
+		, "LastFragment", self->data.LastFragment
+		, "SessionID", self->data.SessionID
+		, "InstallID", self->data.InstallID
+		, "UserID", self->data.UserID 
+		, "Digest", self->data.Digest 
+		, "CurrencyID", self->data.CurrencyID 
+		, "DeviceID", self->data.DeviceID 
+		, "BrokerIDByBank", self->data.BrokerIDByBank 
+		, "OperNo", self->data.OperNo 
+		, "RequestID", self->data.RequestID
+		, "TID", self->data.TID
 
 
 		);
@@ -420,654 +349,504 @@ static PyObject *PyCThostFtdcReqFutureSignOutField_repr(PyCThostFtdcReqFutureSig
     return PyObject_Repr(obj);
 }
 
-
-///业务功能码
-// TThostFtdcTradeCodeType char[7]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_TradeCode(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeCode, (Py_ssize_t)sizeof(self->data.TradeCode));
-    return PyBytes_FromString(self->data.TradeCode);
+	return PyBytes_FromString(self->data.TradeCode);
 }
 
-///业务功能码
-// TThostFtdcTradeCodeType char[7]
-static int PyCThostFtdcReqFutureSignOutField_set_TradeCode(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeCode Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
-        PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeCode, 0, sizeof(self->data.TradeCode));
-    // memcpy(self->data.TradeCode, buf, len);
-    strncpy(self->data.TradeCode, buf, sizeof(self->data.TradeCode));
-    return 0;
-}
-            
-///银行代码
-// TThostFtdcBankIDType char[4]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_BankID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankID, (Py_ssize_t)sizeof(self->data.BankID));
-    return PyBytes_FromString(self->data.BankID);
+	return PyBytes_FromString(self->data.BankID);
 }
 
-///银行代码
-// TThostFtdcBankIDType char[4]
-static int PyCThostFtdcReqFutureSignOutField_set_BankID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
-        PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-    // memcpy(self->data.BankID, buf, len);
-    strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
-    return 0;
-}
-            
-///银行分支机构代码
-// TThostFtdcBankBrchIDType char[5]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_BankBranchID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankBranchID, (Py_ssize_t)sizeof(self->data.BankBranchID));
-    return PyBytes_FromString(self->data.BankBranchID);
+	return PyBytes_FromString(self->data.BankBranchID);
 }
 
-///银行分支机构代码
-// TThostFtdcBankBrchIDType char[5]
-static int PyCThostFtdcReqFutureSignOutField_set_BankBranchID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankBranchID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
-        PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
-        return -1;
-    }
-    // memset(self->data.BankBranchID, 0, sizeof(self->data.BankBranchID));
-    // memcpy(self->data.BankBranchID, buf, len);
-    strncpy(self->data.BankBranchID, buf, sizeof(self->data.BankBranchID));
-    return 0;
-}
-            
-///期商代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_BrokerID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///期商代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcReqFutureSignOutField_set_BrokerID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///期商分支机构代码
-// TThostFtdcFutureBranchIDType char[31]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_BrokerBranchID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerBranchID, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
-    return PyBytes_FromString(self->data.BrokerBranchID);
+	return PyBytes_FromString(self->data.BrokerBranchID);
 }
 
-///期商分支机构代码
-// TThostFtdcFutureBranchIDType char[31]
-static int PyCThostFtdcReqFutureSignOutField_set_BrokerBranchID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerBranchID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerBranchID, 0, sizeof(self->data.BrokerBranchID));
-    // memcpy(self->data.BrokerBranchID, buf, len);
-    strncpy(self->data.BrokerBranchID, buf, sizeof(self->data.BrokerBranchID));
-    return 0;
-}
-            
-///交易日期
-// TThostFtdcTradeDateType char[9]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_TradeDate(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeDate, (Py_ssize_t)sizeof(self->data.TradeDate));
-    return PyBytes_FromString(self->data.TradeDate);
+	return PyBytes_FromString(self->data.TradeDate);
 }
 
-///交易日期
-// TThostFtdcTradeDateType char[9]
-static int PyCThostFtdcReqFutureSignOutField_set_TradeDate(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeDate Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
-        PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeDate, 0, sizeof(self->data.TradeDate));
-    // memcpy(self->data.TradeDate, buf, len);
-    strncpy(self->data.TradeDate, buf, sizeof(self->data.TradeDate));
-    return 0;
-}
-            
-///交易时间
-// TThostFtdcTradeTimeType char[9]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_TradeTime(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradeTime, (Py_ssize_t)sizeof(self->data.TradeTime));
-    return PyBytes_FromString(self->data.TradeTime);
+	return PyBytes_FromString(self->data.TradeTime);
 }
 
-///交易时间
-// TThostFtdcTradeTimeType char[9]
-static int PyCThostFtdcReqFutureSignOutField_set_TradeTime(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradeTime Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
-        PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradeTime, 0, sizeof(self->data.TradeTime));
-    // memcpy(self->data.TradeTime, buf, len);
-    strncpy(self->data.TradeTime, buf, sizeof(self->data.TradeTime));
-    return 0;
-}
-            
-///银行流水号
-// TThostFtdcBankSerialType char[13]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_BankSerial(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankSerial, (Py_ssize_t)sizeof(self->data.BankSerial));
-    return PyBytes_FromString(self->data.BankSerial);
+	return PyBytes_FromString(self->data.BankSerial);
 }
 
-///银行流水号
-// TThostFtdcBankSerialType char[13]
-static int PyCThostFtdcReqFutureSignOutField_set_BankSerial(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankSerial Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
-        PyErr_SetString(PyExc_ValueError, "BankSerial must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.BankSerial, 0, sizeof(self->data.BankSerial));
-    // memcpy(self->data.BankSerial, buf, len);
-    strncpy(self->data.BankSerial, buf, sizeof(self->data.BankSerial));
-    return 0;
-}
-            
-///交易系统日期
-// TThostFtdcTradeDateType char[9]
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_TradingDay(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.TradingDay, (Py_ssize_t)sizeof(self->data.TradingDay));
-    return PyBytes_FromString(self->data.TradingDay);
+	return PyBytes_FromString(self->data.TradingDay);
 }
 
-///交易系统日期
-// TThostFtdcTradeDateType char[9]
-static int PyCThostFtdcReqFutureSignOutField_set_TradingDay(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
-        PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.TradingDay, 0, sizeof(self->data.TradingDay));
-    // memcpy(self->data.TradingDay, buf, len);
-    strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
-    return 0;
-}
-            
-///银期平台消息流水号
-// TThostFtdcSerialType int
 static PyObject *PyCThostFtdcReqFutureSignOutField_get_PlateSerial(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.PlateSerial);
-#else
-    return PyInt_FromLong(self->data.PlateSerial);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.PlateSerial);
+#else 
+	return PyInt_FromLong(self->data.PlateSerial);
+#endif 
 }
 
-///银期平台消息流水号
-// TThostFtdcSerialType int
-static int PyCThostFtdcReqFutureSignOutField_set_PlateSerial(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_LastFragment(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+	return PyBytes_FromStringAndSize(&(self->data.LastFragment), 1);
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_SessionID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.SessionID);
+#else 
+	return PyInt_FromLong(self->data.SessionID);
+#endif 
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_InstallID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.InstallID);
+#else 
+	return PyInt_FromLong(self->data.InstallID);
+#endif 
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_UserID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+	return PyBytes_FromString(self->data.UserID);
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_Digest(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+	return PyBytes_FromString(self->data.Digest);
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_CurrencyID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+	return PyBytes_FromString(self->data.CurrencyID);
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_DeviceID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+	return PyBytes_FromString(self->data.DeviceID);
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_BrokerIDByBank(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+	return PyBytes_FromString(self->data.BrokerIDByBank);
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_OperNo(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+	return PyBytes_FromString(self->data.OperNo);
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_RequestID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.RequestID);
+#else 
+	return PyInt_FromLong(self->data.RequestID);
+#endif 
+}
+
+static PyObject *PyCThostFtdcReqFutureSignOutField_get_TID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.TID);
+#else 
+	return PyInt_FromLong(self->data.TID);
+#endif 
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_TradeCode(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeCode Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+		PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeCode, buf, sizeof(self->data.TradeCode));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_BankID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+		PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_BankBranchID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankBranchID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+		PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankBranchID, buf, sizeof(self->data.BankBranchID));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_BrokerID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_BrokerBranchID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerBranchID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerBranchID, buf, sizeof(self->data.BrokerBranchID));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_TradeDate(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeDate Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+		PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeDate, buf, sizeof(self->data.TradeDate));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_TradeTime(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradeTime Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+		PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradeTime, buf, sizeof(self->data.TradeTime));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_BankSerial(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankSerial Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+		PyErr_SetString(PyExc_ValueError, "BankSerial must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankSerial, buf, sizeof(self->data.BankSerial));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_TradingDay(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "TradingDay Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+		PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.TradingDay, buf, sizeof(self->data.TradingDay));
+	return 0;
+}
+
+static int PyCThostFtdcReqFutureSignOutField_set_PlateSerial(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "PlateSerial Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "PlateSerial Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "PlateSerial Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the PlateSerial value out of range for C int");
-        return -1;
-    }
-    self->data.PlateSerial = (int)buf;
-    return 0;
-}
-        
-///最后分片标志
-// TThostFtdcLastFragmentType char
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_LastFragment(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.LastFragment), 1);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.PlateSerial = (int)buf; 
+    return 0; 
 }
 
-///最后分片标志
-// TThostFtdcLastFragmentType char
-static int PyCThostFtdcReqFutureSignOutField_set_LastFragment(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "LastFragment Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastFragment)) {
-        PyErr_SetString(PyExc_ValueError, "LastFragment must be equal 1 bytes");
-        return -1;
-    }
-    self->data.LastFragment = *buf;
-    return 0;
-}
-            
-///会话号
-// TThostFtdcSessionIDType int
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_SessionID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.SessionID);
-#else
-    return PyInt_FromLong(self->data.SessionID);
-#endif
+static int PyCThostFtdcReqFutureSignOutField_set_LastFragment(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "LastFragment Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.LastFragment)) {
+		PyErr_SetString(PyExc_ValueError, "LastFragment must be less than 1 bytes");
+		return -1;
+	}
+	self->data.LastFragment = *buf;
+	return 0;
 }
 
-///会话号
-// TThostFtdcSessionIDType int
-static int PyCThostFtdcReqFutureSignOutField_set_SessionID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcReqFutureSignOutField_set_SessionID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SessionID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "SessionID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "SessionID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the SessionID value out of range for C int");
-        return -1;
-    }
-    self->data.SessionID = (int)buf;
-    return 0;
-}
-        
-///安装编号
-// TThostFtdcInstallIDType int
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_InstallID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.InstallID);
-#else
-    return PyInt_FromLong(self->data.InstallID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.SessionID = (int)buf; 
+    return 0; 
 }
 
-///安装编号
-// TThostFtdcInstallIDType int
-static int PyCThostFtdcReqFutureSignOutField_set_InstallID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcReqFutureSignOutField_set_InstallID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "InstallID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstallID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "InstallID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the InstallID value out of range for C int");
-        return -1;
-    }
-    self->data.InstallID = (int)buf;
-    return 0;
-}
-        
-///用户标识
-// TThostFtdcUserIDType char[16]
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_UserID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.InstallID = (int)buf; 
+    return 0; 
 }
 
-///用户标识
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcReqFutureSignOutField_set_UserID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
-}
-            
-///摘要
-// TThostFtdcDigestType char[36]
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_Digest(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.Digest, (Py_ssize_t)sizeof(self->data.Digest));
-    return PyBytes_FromString(self->data.Digest);
+static int PyCThostFtdcReqFutureSignOutField_set_UserID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
 }
 
-///摘要
-// TThostFtdcDigestType char[36]
-static int PyCThostFtdcReqFutureSignOutField_set_Digest(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "Digest Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Digest)) {
-        PyErr_SetString(PyExc_ValueError, "Digest must be less than 36 bytes");
-        return -1;
-    }
-    // memset(self->data.Digest, 0, sizeof(self->data.Digest));
-    // memcpy(self->data.Digest, buf, len);
-    strncpy(self->data.Digest, buf, sizeof(self->data.Digest));
-    return 0;
-}
-            
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_CurrencyID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.CurrencyID, (Py_ssize_t)sizeof(self->data.CurrencyID));
-    return PyBytes_FromString(self->data.CurrencyID);
+static int PyCThostFtdcReqFutureSignOutField_set_Digest(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "Digest Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.Digest)) {
+		PyErr_SetString(PyExc_ValueError, "Digest must be less than 36 bytes");
+		return -1;
+	}
+	strncpy(self->data.Digest, buf, sizeof(self->data.Digest));
+	return 0;
 }
 
-///币种代码
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcReqFutureSignOutField_set_CurrencyID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.CurrencyID, 0, sizeof(self->data.CurrencyID));
-    // memcpy(self->data.CurrencyID, buf, len);
-    strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
-    return 0;
-}
-            
-///渠道标志
-// TThostFtdcDeviceIDType char[3]
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_DeviceID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.DeviceID, (Py_ssize_t)sizeof(self->data.DeviceID));
-    return PyBytes_FromString(self->data.DeviceID);
+static int PyCThostFtdcReqFutureSignOutField_set_CurrencyID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "CurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.CurrencyID, buf, sizeof(self->data.CurrencyID));
+	return 0;
 }
 
-///渠道标志
-// TThostFtdcDeviceIDType char[3]
-static int PyCThostFtdcReqFutureSignOutField_set_DeviceID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DeviceID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
-        PyErr_SetString(PyExc_ValueError, "DeviceID must be less than 3 bytes");
-        return -1;
-    }
-    // memset(self->data.DeviceID, 0, sizeof(self->data.DeviceID));
-    // memcpy(self->data.DeviceID, buf, len);
-    strncpy(self->data.DeviceID, buf, sizeof(self->data.DeviceID));
-    return 0;
-}
-            
-///期货公司银行编码
-// TThostFtdcBankCodingForFutureType char[33]
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_BrokerIDByBank(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerIDByBank, (Py_ssize_t)sizeof(self->data.BrokerIDByBank));
-    return PyBytes_FromString(self->data.BrokerIDByBank);
+static int PyCThostFtdcReqFutureSignOutField_set_DeviceID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "DeviceID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+		PyErr_SetString(PyExc_ValueError, "DeviceID must be less than 3 bytes");
+		return -1;
+	}
+	strncpy(self->data.DeviceID, buf, sizeof(self->data.DeviceID));
+	return 0;
 }
 
-///期货公司银行编码
-// TThostFtdcBankCodingForFutureType char[33]
-static int PyCThostFtdcReqFutureSignOutField_set_BrokerIDByBank(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerIDByBank Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerIDByBank must be less than 33 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerIDByBank, 0, sizeof(self->data.BrokerIDByBank));
-    // memcpy(self->data.BrokerIDByBank, buf, len);
-    strncpy(self->data.BrokerIDByBank, buf, sizeof(self->data.BrokerIDByBank));
-    return 0;
-}
-            
-///交易柜员
-// TThostFtdcOperNoType char[17]
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_OperNo(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.OperNo, (Py_ssize_t)sizeof(self->data.OperNo));
-    return PyBytes_FromString(self->data.OperNo);
+static int PyCThostFtdcReqFutureSignOutField_set_BrokerIDByBank(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerIDByBank Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerIDByBank must be less than 33 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerIDByBank, buf, sizeof(self->data.BrokerIDByBank));
+	return 0;
 }
 
-///交易柜员
-// TThostFtdcOperNoType char[17]
-static int PyCThostFtdcReqFutureSignOutField_set_OperNo(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "OperNo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OperNo)) {
-        PyErr_SetString(PyExc_ValueError, "OperNo must be less than 17 bytes");
-        return -1;
-    }
-    // memset(self->data.OperNo, 0, sizeof(self->data.OperNo));
-    // memcpy(self->data.OperNo, buf, len);
-    strncpy(self->data.OperNo, buf, sizeof(self->data.OperNo));
-    return 0;
-}
-            
-///请求编号
-// TThostFtdcRequestIDType int
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_RequestID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.RequestID);
-#else
-    return PyInt_FromLong(self->data.RequestID);
-#endif
+static int PyCThostFtdcReqFutureSignOutField_set_OperNo(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "OperNo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+		PyErr_SetString(PyExc_ValueError, "OperNo must be less than 17 bytes");
+		return -1;
+	}
+	strncpy(self->data.OperNo, buf, sizeof(self->data.OperNo));
+	return 0;
 }
 
-///请求编号
-// TThostFtdcRequestIDType int
-static int PyCThostFtdcReqFutureSignOutField_set_RequestID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcReqFutureSignOutField_set_RequestID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "RequestID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "RequestID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "RequestID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the RequestID value out of range for C int");
-        return -1;
-    }
-    self->data.RequestID = (int)buf;
-    return 0;
-}
-        
-///交易ID
-// TThostFtdcTIDType int
-static PyObject *PyCThostFtdcReqFutureSignOutField_get_TID(PyCThostFtdcReqFutureSignOutField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.TID);
-#else
-    return PyInt_FromLong(self->data.TID);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.RequestID = (int)buf; 
+    return 0; 
 }
 
-///交易ID
-// TThostFtdcTIDType int
-static int PyCThostFtdcReqFutureSignOutField_set_TID(PyCThostFtdcReqFutureSignOutField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcReqFutureSignOutField_set_TID(PyCThostFtdcReqFutureSignOutField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "TID Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "TID Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "TID Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the TID value out of range for C int");
-        return -1;
-    }
-    self->data.TID = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.TID = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcReqFutureSignOutField_getset[] = {
-    ///业务功能码 
-    {(char *)"TradeCode", (getter)PyCThostFtdcReqFutureSignOutField_get_TradeCode, (setter)PyCThostFtdcReqFutureSignOutField_set_TradeCode, (char *)"TradeCode", NULL},
-    ///银行代码 
-    {(char *)"BankID", (getter)PyCThostFtdcReqFutureSignOutField_get_BankID, (setter)PyCThostFtdcReqFutureSignOutField_set_BankID, (char *)"BankID", NULL},
-    ///银行分支机构代码 
-    {(char *)"BankBranchID", (getter)PyCThostFtdcReqFutureSignOutField_get_BankBranchID, (setter)PyCThostFtdcReqFutureSignOutField_set_BankBranchID, (char *)"BankBranchID", NULL},
-    ///期商代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcReqFutureSignOutField_get_BrokerID, (setter)PyCThostFtdcReqFutureSignOutField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///期商分支机构代码 
-    {(char *)"BrokerBranchID", (getter)PyCThostFtdcReqFutureSignOutField_get_BrokerBranchID, (setter)PyCThostFtdcReqFutureSignOutField_set_BrokerBranchID, (char *)"BrokerBranchID", NULL},
-    ///交易日期 
-    {(char *)"TradeDate", (getter)PyCThostFtdcReqFutureSignOutField_get_TradeDate, (setter)PyCThostFtdcReqFutureSignOutField_set_TradeDate, (char *)"TradeDate", NULL},
-    ///交易时间 
-    {(char *)"TradeTime", (getter)PyCThostFtdcReqFutureSignOutField_get_TradeTime, (setter)PyCThostFtdcReqFutureSignOutField_set_TradeTime, (char *)"TradeTime", NULL},
-    ///银行流水号 
-    {(char *)"BankSerial", (getter)PyCThostFtdcReqFutureSignOutField_get_BankSerial, (setter)PyCThostFtdcReqFutureSignOutField_set_BankSerial, (char *)"BankSerial", NULL},
-    ///交易系统日期 
-    {(char *)"TradingDay", (getter)PyCThostFtdcReqFutureSignOutField_get_TradingDay, (setter)PyCThostFtdcReqFutureSignOutField_set_TradingDay, (char *)"TradingDay", NULL},
-    ///银期平台消息流水号 
-    {(char *)"PlateSerial", (getter)PyCThostFtdcReqFutureSignOutField_get_PlateSerial, (setter)PyCThostFtdcReqFutureSignOutField_set_PlateSerial, (char *)"PlateSerial", NULL},
-    ///最后分片标志 
-    {(char *)"LastFragment", (getter)PyCThostFtdcReqFutureSignOutField_get_LastFragment, (setter)PyCThostFtdcReqFutureSignOutField_set_LastFragment, (char *)"LastFragment", NULL},
-    ///会话号 
-    {(char *)"SessionID", (getter)PyCThostFtdcReqFutureSignOutField_get_SessionID, (setter)PyCThostFtdcReqFutureSignOutField_set_SessionID, (char *)"SessionID", NULL},
-    ///安装编号 
-    {(char *)"InstallID", (getter)PyCThostFtdcReqFutureSignOutField_get_InstallID, (setter)PyCThostFtdcReqFutureSignOutField_set_InstallID, (char *)"InstallID", NULL},
-    ///用户标识 
-    {(char *)"UserID", (getter)PyCThostFtdcReqFutureSignOutField_get_UserID, (setter)PyCThostFtdcReqFutureSignOutField_set_UserID, (char *)"UserID", NULL},
-    ///摘要 
-    {(char *)"Digest", (getter)PyCThostFtdcReqFutureSignOutField_get_Digest, (setter)PyCThostFtdcReqFutureSignOutField_set_Digest, (char *)"Digest", NULL},
-    ///币种代码 
-    {(char *)"CurrencyID", (getter)PyCThostFtdcReqFutureSignOutField_get_CurrencyID, (setter)PyCThostFtdcReqFutureSignOutField_set_CurrencyID, (char *)"CurrencyID", NULL},
-    ///渠道标志 
-    {(char *)"DeviceID", (getter)PyCThostFtdcReqFutureSignOutField_get_DeviceID, (setter)PyCThostFtdcReqFutureSignOutField_set_DeviceID, (char *)"DeviceID", NULL},
-    ///期货公司银行编码 
-    {(char *)"BrokerIDByBank", (getter)PyCThostFtdcReqFutureSignOutField_get_BrokerIDByBank, (setter)PyCThostFtdcReqFutureSignOutField_set_BrokerIDByBank, (char *)"BrokerIDByBank", NULL},
-    ///交易柜员 
-    {(char *)"OperNo", (getter)PyCThostFtdcReqFutureSignOutField_get_OperNo, (setter)PyCThostFtdcReqFutureSignOutField_set_OperNo, (char *)"OperNo", NULL},
-    ///请求编号 
-    {(char *)"RequestID", (getter)PyCThostFtdcReqFutureSignOutField_get_RequestID, (setter)PyCThostFtdcReqFutureSignOutField_set_RequestID, (char *)"RequestID", NULL},
-    ///交易ID 
-    {(char *)"TID", (getter)PyCThostFtdcReqFutureSignOutField_get_TID, (setter)PyCThostFtdcReqFutureSignOutField_set_TID, (char *)"TID", NULL},
+	 {(char *)"TradeCode", (getter)PyCThostFtdcReqFutureSignOutField_get_TradeCode, (setter)PyCThostFtdcReqFutureSignOutField_set_TradeCode, (char *)"TradeCode", NULL},
+	 {(char *)"BankID", (getter)PyCThostFtdcReqFutureSignOutField_get_BankID, (setter)PyCThostFtdcReqFutureSignOutField_set_BankID, (char *)"BankID", NULL},
+	 {(char *)"BankBranchID", (getter)PyCThostFtdcReqFutureSignOutField_get_BankBranchID, (setter)PyCThostFtdcReqFutureSignOutField_set_BankBranchID, (char *)"BankBranchID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcReqFutureSignOutField_get_BrokerID, (setter)PyCThostFtdcReqFutureSignOutField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"BrokerBranchID", (getter)PyCThostFtdcReqFutureSignOutField_get_BrokerBranchID, (setter)PyCThostFtdcReqFutureSignOutField_set_BrokerBranchID, (char *)"BrokerBranchID", NULL},
+	 {(char *)"TradeDate", (getter)PyCThostFtdcReqFutureSignOutField_get_TradeDate, (setter)PyCThostFtdcReqFutureSignOutField_set_TradeDate, (char *)"TradeDate", NULL},
+	 {(char *)"TradeTime", (getter)PyCThostFtdcReqFutureSignOutField_get_TradeTime, (setter)PyCThostFtdcReqFutureSignOutField_set_TradeTime, (char *)"TradeTime", NULL},
+	 {(char *)"BankSerial", (getter)PyCThostFtdcReqFutureSignOutField_get_BankSerial, (setter)PyCThostFtdcReqFutureSignOutField_set_BankSerial, (char *)"BankSerial", NULL},
+	 {(char *)"TradingDay", (getter)PyCThostFtdcReqFutureSignOutField_get_TradingDay, (setter)PyCThostFtdcReqFutureSignOutField_set_TradingDay, (char *)"TradingDay", NULL},
+	 {(char *)"PlateSerial", (getter)PyCThostFtdcReqFutureSignOutField_get_PlateSerial, (setter)PyCThostFtdcReqFutureSignOutField_set_PlateSerial, (char *)"PlateSerial", NULL},
+	 {(char *)"LastFragment", (getter)PyCThostFtdcReqFutureSignOutField_get_LastFragment, (setter)PyCThostFtdcReqFutureSignOutField_set_LastFragment, (char *)"LastFragment", NULL},
+	 {(char *)"SessionID", (getter)PyCThostFtdcReqFutureSignOutField_get_SessionID, (setter)PyCThostFtdcReqFutureSignOutField_set_SessionID, (char *)"SessionID", NULL},
+	 {(char *)"InstallID", (getter)PyCThostFtdcReqFutureSignOutField_get_InstallID, (setter)PyCThostFtdcReqFutureSignOutField_set_InstallID, (char *)"InstallID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcReqFutureSignOutField_get_UserID, (setter)PyCThostFtdcReqFutureSignOutField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"Digest", (getter)PyCThostFtdcReqFutureSignOutField_get_Digest, (setter)PyCThostFtdcReqFutureSignOutField_set_Digest, (char *)"Digest", NULL},
+	 {(char *)"CurrencyID", (getter)PyCThostFtdcReqFutureSignOutField_get_CurrencyID, (setter)PyCThostFtdcReqFutureSignOutField_set_CurrencyID, (char *)"CurrencyID", NULL},
+	 {(char *)"DeviceID", (getter)PyCThostFtdcReqFutureSignOutField_get_DeviceID, (setter)PyCThostFtdcReqFutureSignOutField_set_DeviceID, (char *)"DeviceID", NULL},
+	 {(char *)"BrokerIDByBank", (getter)PyCThostFtdcReqFutureSignOutField_get_BrokerIDByBank, (setter)PyCThostFtdcReqFutureSignOutField_set_BrokerIDByBank, (char *)"BrokerIDByBank", NULL},
+	 {(char *)"OperNo", (getter)PyCThostFtdcReqFutureSignOutField_get_OperNo, (setter)PyCThostFtdcReqFutureSignOutField_set_OperNo, (char *)"OperNo", NULL},
+	 {(char *)"RequestID", (getter)PyCThostFtdcReqFutureSignOutField_get_RequestID, (setter)PyCThostFtdcReqFutureSignOutField_set_RequestID, (char *)"RequestID", NULL},
+	 {(char *)"TID", (getter)PyCThostFtdcReqFutureSignOutField_get_TID, (setter)PyCThostFtdcReqFutureSignOutField_set_TID, (char *)"TID", NULL},
 
     {NULL}
 };

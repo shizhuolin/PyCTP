@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///次席查询银行资金帐户信息回报
+
 
 typedef struct PyCThostFtdcRspQueryBankAccountBySecField {
     PyObject_HEAD

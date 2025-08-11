@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryDepthMarketDataField.h"
 
-///查询行情
+
 
 static PyObject *PyCThostFtdcQryDepthMarketDataField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryDepthMarketDataField *self = (PyCThostFtdcQryDepthMarketDataField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryDepthMarketDataField_new(PyTypeObject *type, PyO
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,26 +18,22 @@ static int PyCThostFtdcQryDepthMarketDataField_init(PyCThostFtdcQryDepthMarketDa
 
     static const char *kwlist[] = {"reserve1", "ExchangeID", "InstrumentID", "ProductClass",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pQryDepthMarketDataField_reserve1 = NULL;
+	Py_ssize_t pQryDepthMarketDataField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *QryDepthMarketDataField_reserve1 = NULL;
-    Py_ssize_t QryDepthMarketDataField_reserve1_len = 0;
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    const char *QryDepthMarketDataField_ExchangeID = NULL;
-    Py_ssize_t QryDepthMarketDataField_ExchangeID_len = 0;
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *QryDepthMarketDataField_InstrumentID = NULL;
-    Py_ssize_t QryDepthMarketDataField_InstrumentID_len = 0;
-            
-    ///产品类型
-    // TThostFtdcProductClassType char
-    char QryDepthMarketDataField_ProductClass = 0;
-            
+	//TThostFtdcExchangeIDType char[9]
+	const char *pQryDepthMarketDataField_ExchangeID = NULL;
+	Py_ssize_t pQryDepthMarketDataField_ExchangeID_len = 0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pQryDepthMarketDataField_InstrumentID = NULL;
+	Py_ssize_t pQryDepthMarketDataField_InstrumentID_len = 0;
+
+	//TThostFtdcProductClassType char
+	char pQryDepthMarketDataField_ProductClass = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#c", (char **)kwlist
@@ -44,60 +41,50 @@ static int PyCThostFtdcQryDepthMarketDataField_init(PyCThostFtdcQryDepthMarketDa
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#c", (char **)kwlist
 #endif
 
-        , &QryDepthMarketDataField_reserve1, &QryDepthMarketDataField_reserve1_len 
-        , &QryDepthMarketDataField_ExchangeID, &QryDepthMarketDataField_ExchangeID_len 
-        , &QryDepthMarketDataField_InstrumentID, &QryDepthMarketDataField_InstrumentID_len 
-        , &QryDepthMarketDataField_ProductClass 
+		, &pQryDepthMarketDataField_reserve1, &pQryDepthMarketDataField_reserve1_len
+		, &pQryDepthMarketDataField_ExchangeID, &pQryDepthMarketDataField_ExchangeID_len
+		, &pQryDepthMarketDataField_InstrumentID, &pQryDepthMarketDataField_InstrumentID_len
+		, &pQryDepthMarketDataField_ProductClass
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pQryDepthMarketDataField_reserve1 != NULL) {
+		if(pQryDepthMarketDataField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pQryDepthMarketDataField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pQryDepthMarketDataField_reserve1, sizeof(self->data.reserve1) );
+		pQryDepthMarketDataField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( QryDepthMarketDataField_reserve1 != NULL ) {
-        if(QryDepthMarketDataField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryDepthMarketDataField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, QryDepthMarketDataField_reserve1, QryDepthMarketDataField_reserve1_len);        
-        strncpy(self->data.reserve1, QryDepthMarketDataField_reserve1, sizeof(self->data.reserve1) );
-        QryDepthMarketDataField_reserve1 = NULL;
-    }
-            
-    ///交易所代码
-    // TThostFtdcExchangeIDType char[9]
-    if( QryDepthMarketDataField_ExchangeID != NULL ) {
-        if(QryDepthMarketDataField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryDepthMarketDataField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-            return -1;
-        }
-        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-        // memcpy(self->data.ExchangeID, QryDepthMarketDataField_ExchangeID, QryDepthMarketDataField_ExchangeID_len);        
-        strncpy(self->data.ExchangeID, QryDepthMarketDataField_ExchangeID, sizeof(self->data.ExchangeID) );
-        QryDepthMarketDataField_ExchangeID = NULL;
-    }
-            
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( QryDepthMarketDataField_InstrumentID != NULL ) {
-        if(QryDepthMarketDataField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryDepthMarketDataField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, QryDepthMarketDataField_InstrumentID, QryDepthMarketDataField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, QryDepthMarketDataField_InstrumentID, sizeof(self->data.InstrumentID) );
-        QryDepthMarketDataField_InstrumentID = NULL;
-    }
-            
-    ///产品类型
-    // TThostFtdcProductClassType char
-    self->data.ProductClass = QryDepthMarketDataField_ProductClass;
-            
+	//TThostFtdcExchangeIDType char[9]
+	if(pQryDepthMarketDataField_ExchangeID != NULL) {
+		if(pQryDepthMarketDataField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pQryDepthMarketDataField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+			return -1;
+		}
+		strncpy(self->data.ExchangeID, pQryDepthMarketDataField_ExchangeID, sizeof(self->data.ExchangeID) );
+		pQryDepthMarketDataField_ExchangeID = NULL;
+	}
+
+	//TThostFtdcInstrumentIDType char[81]
+	if(pQryDepthMarketDataField_InstrumentID != NULL) {
+		if(pQryDepthMarketDataField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pQryDepthMarketDataField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pQryDepthMarketDataField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pQryDepthMarketDataField_InstrumentID = NULL;
+	}
+
+	//TThostFtdcProductClassType char
+	self->data.ProductClass = pQryDepthMarketDataField_ProductClass;
+
+
 
     return 0;
 }
@@ -114,10 +101,10 @@ static PyObject *PyCThostFtdcQryDepthMarketDataField_repr(PyCThostFtdcQryDepthMa
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:c}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
-        ,"ProductClass", self->data.ProductClass 
+		, "reserve1", self->data.reserve1 
+		, "ExchangeID", self->data.ExchangeID 
+		, "InstrumentID", self->data.InstrumentID 
+		, "ProductClass", self->data.ProductClass
 
 
 		);
@@ -130,118 +117,89 @@ static PyObject *PyCThostFtdcQryDepthMarketDataField_repr(PyCThostFtdcQryDepthMa
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcQryDepthMarketDataField_get_reserve1(PyCThostFtdcQryDepthMarketDataField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcQryDepthMarketDataField_set_reserve1(PyCThostFtdcQryDepthMarketDataField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcQryDepthMarketDataField_get_ExchangeID(PyCThostFtdcQryDepthMarketDataField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
-    return PyBytes_FromString(self->data.ExchangeID);
+	return PyBytes_FromString(self->data.ExchangeID);
 }
 
-///交易所代码
-// TThostFtdcExchangeIDType char[9]
-static int PyCThostFtdcQryDepthMarketDataField_set_ExchangeID(PyCThostFtdcQryDepthMarketDataField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-        return -1;
-    }
-    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
-    // memcpy(self->data.ExchangeID, buf, len);
-    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-    return 0;
-}
-            
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryDepthMarketDataField_get_InstrumentID(PyCThostFtdcQryDepthMarketDataField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+	return PyBytes_FromString(self->data.InstrumentID);
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcQryDepthMarketDataField_set_InstrumentID(PyCThostFtdcQryDepthMarketDataField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
-///产品类型
-// TThostFtdcProductClassType char
 static PyObject *PyCThostFtdcQryDepthMarketDataField_get_ProductClass(PyCThostFtdcQryDepthMarketDataField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.ProductClass), 1);
+	return PyBytes_FromStringAndSize(&(self->data.ProductClass), 1);
 }
 
-///产品类型
-// TThostFtdcProductClassType char
-static int PyCThostFtdcQryDepthMarketDataField_set_ProductClass(PyCThostFtdcQryDepthMarketDataField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ProductClass Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductClass)) {
-        PyErr_SetString(PyExc_ValueError, "ProductClass must be equal 1 bytes");
-        return -1;
-    }
-    self->data.ProductClass = *buf;
-    return 0;
+static int PyCThostFtdcQryDepthMarketDataField_set_reserve1(PyCThostFtdcQryDepthMarketDataField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryDepthMarketDataField_set_ExchangeID(PyCThostFtdcQryDepthMarketDataField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+		return -1;
+	}
+	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+	return 0;
+}
+
+static int PyCThostFtdcQryDepthMarketDataField_set_InstrumentID(PyCThostFtdcQryDepthMarketDataField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
+}
+
+static int PyCThostFtdcQryDepthMarketDataField_set_ProductClass(PyCThostFtdcQryDepthMarketDataField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "ProductClass Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.ProductClass)) {
+		PyErr_SetString(PyExc_ValueError, "ProductClass must be less than 1 bytes");
+		return -1;
+	}
+	self->data.ProductClass = *buf;
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryDepthMarketDataField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcQryDepthMarketDataField_get_reserve1, (setter)PyCThostFtdcQryDepthMarketDataField_set_reserve1, (char *)"reserve1", NULL},
-    ///交易所代码 
-    {(char *)"ExchangeID", (getter)PyCThostFtdcQryDepthMarketDataField_get_ExchangeID, (setter)PyCThostFtdcQryDepthMarketDataField_set_ExchangeID, (char *)"ExchangeID", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcQryDepthMarketDataField_get_InstrumentID, (setter)PyCThostFtdcQryDepthMarketDataField_set_InstrumentID, (char *)"InstrumentID", NULL},
-    ///产品类型 
-    {(char *)"ProductClass", (getter)PyCThostFtdcQryDepthMarketDataField_get_ProductClass, (setter)PyCThostFtdcQryDepthMarketDataField_set_ProductClass, (char *)"ProductClass", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcQryDepthMarketDataField_get_reserve1, (setter)PyCThostFtdcQryDepthMarketDataField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"ExchangeID", (getter)PyCThostFtdcQryDepthMarketDataField_get_ExchangeID, (setter)PyCThostFtdcQryDepthMarketDataField_set_ExchangeID, (char *)"ExchangeID", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcQryDepthMarketDataField_get_InstrumentID, (setter)PyCThostFtdcQryDepthMarketDataField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"ProductClass", (getter)PyCThostFtdcQryDepthMarketDataField_get_ProductClass, (setter)PyCThostFtdcQryDepthMarketDataField_set_ProductClass, (char *)"ProductClass", NULL},
 
     {NULL}
 };

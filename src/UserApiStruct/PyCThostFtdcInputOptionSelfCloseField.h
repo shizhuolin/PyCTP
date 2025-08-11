@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///输入的期权自对冲
+
 
 typedef struct PyCThostFtdcInputOptionSelfCloseField {
     PyObject_HEAD

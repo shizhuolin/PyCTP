@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcSyncDelaySwapFrozenField.h"
 
-///换汇可提冻结
+
 
 static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcSyncDelaySwapFrozenField *self = (PyCThostFtdcSyncDelaySwapFrozenField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_new(PyTypeObject *type, Py
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,35 +18,29 @@ static int PyCThostFtdcSyncDelaySwapFrozenField_init(PyCThostFtdcSyncDelaySwapFr
 
     static const char *kwlist[] = {"DelaySwapSeqNo", "BrokerID", "InvestorID", "FromCurrencyID", "FromRemainSwap", "IsManualSwap",  NULL};
 
+	//TThostFtdcDepositSeqNoType char[15]
+	const char *pSyncDelaySwapFrozenField_DelaySwapSeqNo = NULL;
+	Py_ssize_t pSyncDelaySwapFrozenField_DelaySwapSeqNo_len = 0;
 
-    ///换汇流水号
-    // TThostFtdcDepositSeqNoType char[15]
-    const char *SyncDelaySwapFrozenField_DelaySwapSeqNo = NULL;
-    Py_ssize_t SyncDelaySwapFrozenField_DelaySwapSeqNo_len = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *SyncDelaySwapFrozenField_BrokerID = NULL;
-    Py_ssize_t SyncDelaySwapFrozenField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *SyncDelaySwapFrozenField_InvestorID = NULL;
-    Py_ssize_t SyncDelaySwapFrozenField_InvestorID_len = 0;
-            
-    ///源币种
-    // TThostFtdcCurrencyIDType char[4]
-    const char *SyncDelaySwapFrozenField_FromCurrencyID = NULL;
-    Py_ssize_t SyncDelaySwapFrozenField_FromCurrencyID_len = 0;
-            
-    ///源剩余换汇额度(可提冻结)
-    // TThostFtdcMoneyType double
-    double SyncDelaySwapFrozenField_FromRemainSwap = 0.0;
-        
-    ///是否手工换汇
-    // TThostFtdcBoolType int
-    int SyncDelaySwapFrozenField_IsManualSwap = 0;
-        
+	//TThostFtdcBrokerIDType char[11]
+	const char *pSyncDelaySwapFrozenField_BrokerID = NULL;
+	Py_ssize_t pSyncDelaySwapFrozenField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pSyncDelaySwapFrozenField_InvestorID = NULL;
+	Py_ssize_t pSyncDelaySwapFrozenField_InvestorID_len = 0;
+
+	//TThostFtdcCurrencyIDType char[4]
+	const char *pSyncDelaySwapFrozenField_FromCurrencyID = NULL;
+	Py_ssize_t pSyncDelaySwapFrozenField_FromCurrencyID_len = 0;
+
+	//TThostFtdcMoneyType double
+	double pSyncDelaySwapFrozenField_FromRemainSwap = 0.0;
+
+	//TThostFtdcBoolType int
+	int pSyncDelaySwapFrozenField_IsManualSwap = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#y#di", (char **)kwlist
@@ -53,79 +48,64 @@ static int PyCThostFtdcSyncDelaySwapFrozenField_init(PyCThostFtdcSyncDelaySwapFr
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#s#di", (char **)kwlist
 #endif
 
-        , &SyncDelaySwapFrozenField_DelaySwapSeqNo, &SyncDelaySwapFrozenField_DelaySwapSeqNo_len 
-        , &SyncDelaySwapFrozenField_BrokerID, &SyncDelaySwapFrozenField_BrokerID_len 
-        , &SyncDelaySwapFrozenField_InvestorID, &SyncDelaySwapFrozenField_InvestorID_len 
-        , &SyncDelaySwapFrozenField_FromCurrencyID, &SyncDelaySwapFrozenField_FromCurrencyID_len 
-        , &SyncDelaySwapFrozenField_FromRemainSwap 
-        , &SyncDelaySwapFrozenField_IsManualSwap 
+		, &pSyncDelaySwapFrozenField_DelaySwapSeqNo, &pSyncDelaySwapFrozenField_DelaySwapSeqNo_len
+		, &pSyncDelaySwapFrozenField_BrokerID, &pSyncDelaySwapFrozenField_BrokerID_len
+		, &pSyncDelaySwapFrozenField_InvestorID, &pSyncDelaySwapFrozenField_InvestorID_len
+		, &pSyncDelaySwapFrozenField_FromCurrencyID, &pSyncDelaySwapFrozenField_FromCurrencyID_len
+		, &pSyncDelaySwapFrozenField_FromRemainSwap
+		, &pSyncDelaySwapFrozenField_IsManualSwap
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcDepositSeqNoType char[15]
+	if(pSyncDelaySwapFrozenField_DelaySwapSeqNo != NULL) {
+		if(pSyncDelaySwapFrozenField_DelaySwapSeqNo_len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
+			PyErr_Format(PyExc_ValueError, "DelaySwapSeqNo too long: length=%zd (max allowed is %zd)", pSyncDelaySwapFrozenField_DelaySwapSeqNo_len, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo));
+			return -1;
+		}
+		strncpy(self->data.DelaySwapSeqNo, pSyncDelaySwapFrozenField_DelaySwapSeqNo, sizeof(self->data.DelaySwapSeqNo) );
+		pSyncDelaySwapFrozenField_DelaySwapSeqNo = NULL;
+	}
 
-    ///换汇流水号
-    // TThostFtdcDepositSeqNoType char[15]
-    if( SyncDelaySwapFrozenField_DelaySwapSeqNo != NULL ) {
-        if(SyncDelaySwapFrozenField_DelaySwapSeqNo_len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
-            PyErr_Format(PyExc_ValueError, "DelaySwapSeqNo too long: length=%zd (max allowed is %zd)", SyncDelaySwapFrozenField_DelaySwapSeqNo_len, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo));
-            return -1;
-        }
-        // memset(self->data.DelaySwapSeqNo, 0, sizeof(self->data.DelaySwapSeqNo));
-        // memcpy(self->data.DelaySwapSeqNo, SyncDelaySwapFrozenField_DelaySwapSeqNo, SyncDelaySwapFrozenField_DelaySwapSeqNo_len);        
-        strncpy(self->data.DelaySwapSeqNo, SyncDelaySwapFrozenField_DelaySwapSeqNo, sizeof(self->data.DelaySwapSeqNo) );
-        SyncDelaySwapFrozenField_DelaySwapSeqNo = NULL;
-    }
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( SyncDelaySwapFrozenField_BrokerID != NULL ) {
-        if(SyncDelaySwapFrozenField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDelaySwapFrozenField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, SyncDelaySwapFrozenField_BrokerID, SyncDelaySwapFrozenField_BrokerID_len);        
-        strncpy(self->data.BrokerID, SyncDelaySwapFrozenField_BrokerID, sizeof(self->data.BrokerID) );
-        SyncDelaySwapFrozenField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( SyncDelaySwapFrozenField_InvestorID != NULL ) {
-        if(SyncDelaySwapFrozenField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SyncDelaySwapFrozenField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, SyncDelaySwapFrozenField_InvestorID, SyncDelaySwapFrozenField_InvestorID_len);        
-        strncpy(self->data.InvestorID, SyncDelaySwapFrozenField_InvestorID, sizeof(self->data.InvestorID) );
-        SyncDelaySwapFrozenField_InvestorID = NULL;
-    }
-            
-    ///源币种
-    // TThostFtdcCurrencyIDType char[4]
-    if( SyncDelaySwapFrozenField_FromCurrencyID != NULL ) {
-        if(SyncDelaySwapFrozenField_FromCurrencyID_len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
-            PyErr_Format(PyExc_ValueError, "FromCurrencyID too long: length=%zd (max allowed is %zd)", SyncDelaySwapFrozenField_FromCurrencyID_len, (Py_ssize_t)sizeof(self->data.FromCurrencyID));
-            return -1;
-        }
-        // memset(self->data.FromCurrencyID, 0, sizeof(self->data.FromCurrencyID));
-        // memcpy(self->data.FromCurrencyID, SyncDelaySwapFrozenField_FromCurrencyID, SyncDelaySwapFrozenField_FromCurrencyID_len);        
-        strncpy(self->data.FromCurrencyID, SyncDelaySwapFrozenField_FromCurrencyID, sizeof(self->data.FromCurrencyID) );
-        SyncDelaySwapFrozenField_FromCurrencyID = NULL;
-    }
-            
-    ///源剩余换汇额度(可提冻结)
-    // TThostFtdcMoneyType double
-    self->data.FromRemainSwap = SyncDelaySwapFrozenField_FromRemainSwap;
-        
-    ///是否手工换汇
-    // TThostFtdcBoolType int
-    self->data.IsManualSwap = SyncDelaySwapFrozenField_IsManualSwap;
-        
+	//TThostFtdcBrokerIDType char[11]
+	if(pSyncDelaySwapFrozenField_BrokerID != NULL) {
+		if(pSyncDelaySwapFrozenField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pSyncDelaySwapFrozenField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pSyncDelaySwapFrozenField_BrokerID, sizeof(self->data.BrokerID) );
+		pSyncDelaySwapFrozenField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pSyncDelaySwapFrozenField_InvestorID != NULL) {
+		if(pSyncDelaySwapFrozenField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pSyncDelaySwapFrozenField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pSyncDelaySwapFrozenField_InvestorID, sizeof(self->data.InvestorID) );
+		pSyncDelaySwapFrozenField_InvestorID = NULL;
+	}
+
+	//TThostFtdcCurrencyIDType char[4]
+	if(pSyncDelaySwapFrozenField_FromCurrencyID != NULL) {
+		if(pSyncDelaySwapFrozenField_FromCurrencyID_len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
+			PyErr_Format(PyExc_ValueError, "FromCurrencyID too long: length=%zd (max allowed is %zd)", pSyncDelaySwapFrozenField_FromCurrencyID_len, (Py_ssize_t)sizeof(self->data.FromCurrencyID));
+			return -1;
+		}
+		strncpy(self->data.FromCurrencyID, pSyncDelaySwapFrozenField_FromCurrencyID, sizeof(self->data.FromCurrencyID) );
+		pSyncDelaySwapFrozenField_FromCurrencyID = NULL;
+	}
+
+	//TThostFtdcMoneyType double
+	self->data.FromRemainSwap = pSyncDelaySwapFrozenField_FromRemainSwap;
+	//TThostFtdcBoolType int
+	self->data.IsManualSwap = pSyncDelaySwapFrozenField_IsManualSwap;
+
+
 
     return 0;
 }
@@ -142,12 +122,12 @@ static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_repr(PyCThostFtdcSyncDelay
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s,s:s,s:d,s:i}"
 #endif
 
-        ,"DelaySwapSeqNo", self->data.DelaySwapSeqNo//, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo) 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"FromCurrencyID", self->data.FromCurrencyID//, (Py_ssize_t)sizeof(self->data.FromCurrencyID) 
-        ,"FromRemainSwap", self->data.FromRemainSwap 
-        ,"IsManualSwap", self->data.IsManualSwap 
+		, "DelaySwapSeqNo", self->data.DelaySwapSeqNo 
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "FromCurrencyID", self->data.FromCurrencyID 
+		, "FromRemainSwap", self->data.FromRemainSwap
+		, "IsManualSwap", self->data.IsManualSwap
 
 
 		);
@@ -160,120 +140,95 @@ static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_repr(PyCThostFtdcSyncDelay
     return PyObject_Repr(obj);
 }
 
-
-///换汇流水号
-// TThostFtdcDepositSeqNoType char[15]
 static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_get_DelaySwapSeqNo(PyCThostFtdcSyncDelaySwapFrozenField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.DelaySwapSeqNo, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo));
-    return PyBytes_FromString(self->data.DelaySwapSeqNo);
+	return PyBytes_FromString(self->data.DelaySwapSeqNo);
 }
 
-///换汇流水号
-// TThostFtdcDepositSeqNoType char[15]
-static int PyCThostFtdcSyncDelaySwapFrozenField_set_DelaySwapSeqNo(PyCThostFtdcSyncDelaySwapFrozenField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "DelaySwapSeqNo Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
-        PyErr_SetString(PyExc_ValueError, "DelaySwapSeqNo must be less than 15 bytes");
-        return -1;
-    }
-    // memset(self->data.DelaySwapSeqNo, 0, sizeof(self->data.DelaySwapSeqNo));
-    // memcpy(self->data.DelaySwapSeqNo, buf, len);
-    strncpy(self->data.DelaySwapSeqNo, buf, sizeof(self->data.DelaySwapSeqNo));
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_get_BrokerID(PyCThostFtdcSyncDelaySwapFrozenField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcSyncDelaySwapFrozenField_set_BrokerID(PyCThostFtdcSyncDelaySwapFrozenField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_get_InvestorID(PyCThostFtdcSyncDelaySwapFrozenField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcSyncDelaySwapFrozenField_set_InvestorID(PyCThostFtdcSyncDelaySwapFrozenField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///源币种
-// TThostFtdcCurrencyIDType char[4]
 static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_get_FromCurrencyID(PyCThostFtdcSyncDelaySwapFrozenField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.FromCurrencyID, (Py_ssize_t)sizeof(self->data.FromCurrencyID));
-    return PyBytes_FromString(self->data.FromCurrencyID);
+	return PyBytes_FromString(self->data.FromCurrencyID);
 }
 
-///源币种
-// TThostFtdcCurrencyIDType char[4]
-static int PyCThostFtdcSyncDelaySwapFrozenField_set_FromCurrencyID(PyCThostFtdcSyncDelaySwapFrozenField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "FromCurrencyID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
-        PyErr_SetString(PyExc_ValueError, "FromCurrencyID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.FromCurrencyID, 0, sizeof(self->data.FromCurrencyID));
-    // memcpy(self->data.FromCurrencyID, buf, len);
-    strncpy(self->data.FromCurrencyID, buf, sizeof(self->data.FromCurrencyID));
-    return 0;
-}
-            
-///源剩余换汇额度(可提冻结)
-// TThostFtdcMoneyType double
 static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_get_FromRemainSwap(PyCThostFtdcSyncDelaySwapFrozenField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.FromRemainSwap);
+	return PyFloat_FromDouble(self->data.FromRemainSwap);
 }
 
-///源剩余换汇额度(可提冻结)
-// TThostFtdcMoneyType double
-static int PyCThostFtdcSyncDelaySwapFrozenField_set_FromRemainSwap(PyCThostFtdcSyncDelaySwapFrozenField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_get_IsManualSwap(PyCThostFtdcSyncDelaySwapFrozenField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.IsManualSwap);
+#else 
+	return PyInt_FromLong(self->data.IsManualSwap);
+#endif 
+}
+
+static int PyCThostFtdcSyncDelaySwapFrozenField_set_DelaySwapSeqNo(PyCThostFtdcSyncDelaySwapFrozenField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "DelaySwapSeqNo Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
+		PyErr_SetString(PyExc_ValueError, "DelaySwapSeqNo must be less than 15 bytes");
+		return -1;
+	}
+	strncpy(self->data.DelaySwapSeqNo, buf, sizeof(self->data.DelaySwapSeqNo));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDelaySwapFrozenField_set_BrokerID(PyCThostFtdcSyncDelaySwapFrozenField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDelaySwapFrozenField_set_InvestorID(PyCThostFtdcSyncDelaySwapFrozenField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDelaySwapFrozenField_set_FromCurrencyID(PyCThostFtdcSyncDelaySwapFrozenField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "FromCurrencyID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
+		PyErr_SetString(PyExc_ValueError, "FromCurrencyID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.FromCurrencyID, buf, sizeof(self->data.FromCurrencyID));
+	return 0;
+}
+
+static int PyCThostFtdcSyncDelaySwapFrozenField_set_FromRemainSwap(PyCThostFtdcSyncDelaySwapFrozenField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FromRemainSwap Expected float");
         return -1;
@@ -285,59 +240,42 @@ static int PyCThostFtdcSyncDelaySwapFrozenField_set_FromRemainSwap(PyCThostFtdcS
     self->data.FromRemainSwap = buf;
     return 0;
 }
-        
-///是否手工换汇
-// TThostFtdcBoolType int
-static PyObject *PyCThostFtdcSyncDelaySwapFrozenField_get_IsManualSwap(PyCThostFtdcSyncDelaySwapFrozenField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.IsManualSwap);
-#else
-    return PyInt_FromLong(self->data.IsManualSwap);
-#endif
-}
 
-///是否手工换汇
-// TThostFtdcBoolType int
-static int PyCThostFtdcSyncDelaySwapFrozenField_set_IsManualSwap(PyCThostFtdcSyncDelaySwapFrozenField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcSyncDelaySwapFrozenField_set_IsManualSwap(PyCThostFtdcSyncDelaySwapFrozenField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "IsManualSwap Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "IsManualSwap Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "IsManualSwap Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the IsManualSwap value out of range for C int");
-        return -1;
-    }
-    self->data.IsManualSwap = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.IsManualSwap = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcSyncDelaySwapFrozenField_getset[] = {
-    ///换汇流水号 
-    {(char *)"DelaySwapSeqNo", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_DelaySwapSeqNo, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_DelaySwapSeqNo, (char *)"DelaySwapSeqNo", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_BrokerID, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_InvestorID, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///源币种 
-    {(char *)"FromCurrencyID", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_FromCurrencyID, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_FromCurrencyID, (char *)"FromCurrencyID", NULL},
-    ///源剩余换汇额度(可提冻结) 
-    {(char *)"FromRemainSwap", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_FromRemainSwap, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_FromRemainSwap, (char *)"FromRemainSwap", NULL},
-    ///是否手工换汇 
-    {(char *)"IsManualSwap", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_IsManualSwap, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_IsManualSwap, (char *)"IsManualSwap", NULL},
+	 {(char *)"DelaySwapSeqNo", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_DelaySwapSeqNo, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_DelaySwapSeqNo, (char *)"DelaySwapSeqNo", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_BrokerID, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_InvestorID, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"FromCurrencyID", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_FromCurrencyID, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_FromCurrencyID, (char *)"FromCurrencyID", NULL},
+	 {(char *)"FromRemainSwap", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_FromRemainSwap, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_FromRemainSwap, (char *)"FromRemainSwap", NULL},
+	 {(char *)"IsManualSwap", (getter)PyCThostFtdcSyncDelaySwapFrozenField_get_IsManualSwap, (setter)PyCThostFtdcSyncDelaySwapFrozenField_set_IsManualSwap, (char *)"IsManualSwap", NULL},
 
     {NULL}
 };

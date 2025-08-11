@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryContractBankField.h"
 
-///查询签约银行请求
+
 
 static PyObject *PyCThostFtdcQryContractBankField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryContractBankField *self = (PyCThostFtdcQryContractBankField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcQryContractBankField_new(PyTypeObject *type, PyObje
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,22 +18,19 @@ static int PyCThostFtdcQryContractBankField_init(PyCThostFtdcQryContractBankFiel
 
     static const char *kwlist[] = {"BrokerID", "BankID", "BankBrchID",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pQryContractBankField_BrokerID = NULL;
+	Py_ssize_t pQryContractBankField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *QryContractBankField_BrokerID = NULL;
-    Py_ssize_t QryContractBankField_BrokerID_len = 0;
-            
-    ///银行代码
-    // TThostFtdcBankIDType char[4]
-    const char *QryContractBankField_BankID = NULL;
-    Py_ssize_t QryContractBankField_BankID_len = 0;
-            
-    ///银行分中心代码
-    // TThostFtdcBankBrchIDType char[5]
-    const char *QryContractBankField_BankBrchID = NULL;
-    Py_ssize_t QryContractBankField_BankBrchID_len = 0;
-            
+	//TThostFtdcBankIDType char[4]
+	const char *pQryContractBankField_BankID = NULL;
+	Py_ssize_t pQryContractBankField_BankID_len = 0;
+
+	//TThostFtdcBankBrchIDType char[5]
+	const char *pQryContractBankField_BankBrchID = NULL;
+	Py_ssize_t pQryContractBankField_BankBrchID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#y#", (char **)kwlist
@@ -40,55 +38,46 @@ static int PyCThostFtdcQryContractBankField_init(PyCThostFtdcQryContractBankFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#s#", (char **)kwlist
 #endif
 
-        , &QryContractBankField_BrokerID, &QryContractBankField_BrokerID_len 
-        , &QryContractBankField_BankID, &QryContractBankField_BankID_len 
-        , &QryContractBankField_BankBrchID, &QryContractBankField_BankBrchID_len 
+		, &pQryContractBankField_BrokerID, &pQryContractBankField_BrokerID_len
+		, &pQryContractBankField_BankID, &pQryContractBankField_BankID_len
+		, &pQryContractBankField_BankBrchID, &pQryContractBankField_BankBrchID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pQryContractBankField_BrokerID != NULL) {
+		if(pQryContractBankField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pQryContractBankField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pQryContractBankField_BrokerID, sizeof(self->data.BrokerID) );
+		pQryContractBankField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( QryContractBankField_BrokerID != NULL ) {
-        if(QryContractBankField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryContractBankField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, QryContractBankField_BrokerID, QryContractBankField_BrokerID_len);        
-        strncpy(self->data.BrokerID, QryContractBankField_BrokerID, sizeof(self->data.BrokerID) );
-        QryContractBankField_BrokerID = NULL;
-    }
-            
-    ///银行代码
-    // TThostFtdcBankIDType char[4]
-    if( QryContractBankField_BankID != NULL ) {
-        if(QryContractBankField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
-            PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", QryContractBankField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
-            return -1;
-        }
-        // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-        // memcpy(self->data.BankID, QryContractBankField_BankID, QryContractBankField_BankID_len);        
-        strncpy(self->data.BankID, QryContractBankField_BankID, sizeof(self->data.BankID) );
-        QryContractBankField_BankID = NULL;
-    }
-            
-    ///银行分中心代码
-    // TThostFtdcBankBrchIDType char[5]
-    if( QryContractBankField_BankBrchID != NULL ) {
-        if(QryContractBankField_BankBrchID_len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
-            PyErr_Format(PyExc_ValueError, "BankBrchID too long: length=%zd (max allowed is %zd)", QryContractBankField_BankBrchID_len, (Py_ssize_t)sizeof(self->data.BankBrchID));
-            return -1;
-        }
-        // memset(self->data.BankBrchID, 0, sizeof(self->data.BankBrchID));
-        // memcpy(self->data.BankBrchID, QryContractBankField_BankBrchID, QryContractBankField_BankBrchID_len);        
-        strncpy(self->data.BankBrchID, QryContractBankField_BankBrchID, sizeof(self->data.BankBrchID) );
-        QryContractBankField_BankBrchID = NULL;
-    }
-            
+	//TThostFtdcBankIDType char[4]
+	if(pQryContractBankField_BankID != NULL) {
+		if(pQryContractBankField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+			PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", pQryContractBankField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
+			return -1;
+		}
+		strncpy(self->data.BankID, pQryContractBankField_BankID, sizeof(self->data.BankID) );
+		pQryContractBankField_BankID = NULL;
+	}
+
+	//TThostFtdcBankBrchIDType char[5]
+	if(pQryContractBankField_BankBrchID != NULL) {
+		if(pQryContractBankField_BankBrchID_len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
+			PyErr_Format(PyExc_ValueError, "BankBrchID too long: length=%zd (max allowed is %zd)", pQryContractBankField_BankBrchID_len, (Py_ssize_t)sizeof(self->data.BankBrchID));
+			return -1;
+		}
+		strncpy(self->data.BankBrchID, pQryContractBankField_BankBrchID, sizeof(self->data.BankBrchID) );
+		pQryContractBankField_BankBrchID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -105,9 +94,9 @@ static PyObject *PyCThostFtdcQryContractBankField_repr(PyCThostFtdcQryContractBa
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:s}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"BankID", self->data.BankID//, (Py_ssize_t)sizeof(self->data.BankID) 
-        ,"BankBrchID", self->data.BankBrchID//, (Py_ssize_t)sizeof(self->data.BankBrchID) 
+		, "BrokerID", self->data.BrokerID 
+		, "BankID", self->data.BankID 
+		, "BankBrchID", self->data.BankBrchID 
 
 
 		);
@@ -120,93 +109,69 @@ static PyObject *PyCThostFtdcQryContractBankField_repr(PyCThostFtdcQryContractBa
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcQryContractBankField_get_BrokerID(PyCThostFtdcQryContractBankField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcQryContractBankField_set_BrokerID(PyCThostFtdcQryContractBankField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///银行代码
-// TThostFtdcBankIDType char[4]
 static PyObject *PyCThostFtdcQryContractBankField_get_BankID(PyCThostFtdcQryContractBankField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankID, (Py_ssize_t)sizeof(self->data.BankID));
-    return PyBytes_FromString(self->data.BankID);
+	return PyBytes_FromString(self->data.BankID);
 }
 
-///银行代码
-// TThostFtdcBankIDType char[4]
-static int PyCThostFtdcQryContractBankField_set_BankID(PyCThostFtdcQryContractBankField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
-        PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
-        return -1;
-    }
-    // memset(self->data.BankID, 0, sizeof(self->data.BankID));
-    // memcpy(self->data.BankID, buf, len);
-    strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
-    return 0;
-}
-            
-///银行分中心代码
-// TThostFtdcBankBrchIDType char[5]
 static PyObject *PyCThostFtdcQryContractBankField_get_BankBrchID(PyCThostFtdcQryContractBankField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BankBrchID, (Py_ssize_t)sizeof(self->data.BankBrchID));
-    return PyBytes_FromString(self->data.BankBrchID);
+	return PyBytes_FromString(self->data.BankBrchID);
 }
 
-///银行分中心代码
-// TThostFtdcBankBrchIDType char[5]
-static int PyCThostFtdcQryContractBankField_set_BankBrchID(PyCThostFtdcQryContractBankField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BankBrchID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
-        PyErr_SetString(PyExc_ValueError, "BankBrchID must be less than 5 bytes");
-        return -1;
-    }
-    // memset(self->data.BankBrchID, 0, sizeof(self->data.BankBrchID));
-    // memcpy(self->data.BankBrchID, buf, len);
-    strncpy(self->data.BankBrchID, buf, sizeof(self->data.BankBrchID));
-    return 0;
+static int PyCThostFtdcQryContractBankField_set_BrokerID(PyCThostFtdcQryContractBankField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
 }
-            
+
+static int PyCThostFtdcQryContractBankField_set_BankID(PyCThostFtdcQryContractBankField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+		PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankID, buf, sizeof(self->data.BankID));
+	return 0;
+}
+
+static int PyCThostFtdcQryContractBankField_set_BankBrchID(PyCThostFtdcQryContractBankField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BankBrchID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
+		PyErr_SetString(PyExc_ValueError, "BankBrchID must be less than 5 bytes");
+		return -1;
+	}
+	strncpy(self->data.BankBrchID, buf, sizeof(self->data.BankBrchID));
+	return 0;
+}
+
+
 
 static PyGetSetDef PyCThostFtdcQryContractBankField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcQryContractBankField_get_BrokerID, (setter)PyCThostFtdcQryContractBankField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///银行代码 
-    {(char *)"BankID", (getter)PyCThostFtdcQryContractBankField_get_BankID, (setter)PyCThostFtdcQryContractBankField_set_BankID, (char *)"BankID", NULL},
-    ///银行分中心代码 
-    {(char *)"BankBrchID", (getter)PyCThostFtdcQryContractBankField_get_BankBrchID, (setter)PyCThostFtdcQryContractBankField_set_BankBrchID, (char *)"BankBrchID", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcQryContractBankField_get_BrokerID, (setter)PyCThostFtdcQryContractBankField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"BankID", (getter)PyCThostFtdcQryContractBankField_get_BankID, (setter)PyCThostFtdcQryContractBankField_set_BankID, (char *)"BankID", NULL},
+	 {(char *)"BankBrchID", (getter)PyCThostFtdcQryContractBankField_get_BankBrchID, (setter)PyCThostFtdcQryContractBankField_set_BankBrchID, (char *)"BankBrchID", NULL},
 
     {NULL}
 };

@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-///行情最新成交属性
+
 
 typedef struct PyCThostFtdcMarketDataLastMatchField {
     PyObject_HEAD

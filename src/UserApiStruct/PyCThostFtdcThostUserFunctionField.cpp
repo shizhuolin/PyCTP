@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcThostUserFunctionField.h"
 
-///Thost终端用户功能权限
+
 
 static PyObject *PyCThostFtdcThostUserFunctionField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcThostUserFunctionField *self = (PyCThostFtdcThostUserFunctionField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcThostUserFunctionField_new(PyTypeObject *type, PyOb
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,21 +18,18 @@ static int PyCThostFtdcThostUserFunctionField_init(PyCThostFtdcThostUserFunction
 
     static const char *kwlist[] = {"BrokerID", "UserID", "ThostFunctionCode",  NULL};
 
+	//TThostFtdcBrokerIDType char[11]
+	const char *pThostUserFunctionField_BrokerID = NULL;
+	Py_ssize_t pThostUserFunctionField_BrokerID_len = 0;
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *ThostUserFunctionField_BrokerID = NULL;
-    Py_ssize_t ThostUserFunctionField_BrokerID_len = 0;
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    const char *ThostUserFunctionField_UserID = NULL;
-    Py_ssize_t ThostUserFunctionField_UserID_len = 0;
-            
-    ///Thost终端功能代码
-    // TThostFtdcThostFunctionCodeType int
-    int ThostUserFunctionField_ThostFunctionCode = 0;
-        
+	//TThostFtdcUserIDType char[16]
+	const char *pThostUserFunctionField_UserID = NULL;
+	Py_ssize_t pThostUserFunctionField_UserID_len = 0;
+
+	//TThostFtdcThostFunctionCodeType int
+	int pThostUserFunctionField_ThostFunctionCode = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#i", (char **)kwlist
@@ -39,46 +37,39 @@ static int PyCThostFtdcThostUserFunctionField_init(PyCThostFtdcThostUserFunction
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#i", (char **)kwlist
 #endif
 
-        , &ThostUserFunctionField_BrokerID, &ThostUserFunctionField_BrokerID_len 
-        , &ThostUserFunctionField_UserID, &ThostUserFunctionField_UserID_len 
-        , &ThostUserFunctionField_ThostFunctionCode 
+		, &pThostUserFunctionField_BrokerID, &pThostUserFunctionField_BrokerID_len
+		, &pThostUserFunctionField_UserID, &pThostUserFunctionField_UserID_len
+		, &pThostUserFunctionField_ThostFunctionCode
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcBrokerIDType char[11]
+	if(pThostUserFunctionField_BrokerID != NULL) {
+		if(pThostUserFunctionField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pThostUserFunctionField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pThostUserFunctionField_BrokerID, sizeof(self->data.BrokerID) );
+		pThostUserFunctionField_BrokerID = NULL;
+	}
 
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( ThostUserFunctionField_BrokerID != NULL ) {
-        if(ThostUserFunctionField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ThostUserFunctionField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, ThostUserFunctionField_BrokerID, ThostUserFunctionField_BrokerID_len);        
-        strncpy(self->data.BrokerID, ThostUserFunctionField_BrokerID, sizeof(self->data.BrokerID) );
-        ThostUserFunctionField_BrokerID = NULL;
-    }
-            
-    ///用户代码
-    // TThostFtdcUserIDType char[16]
-    if( ThostUserFunctionField_UserID != NULL ) {
-        if(ThostUserFunctionField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ThostUserFunctionField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-            return -1;
-        }
-        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-        // memcpy(self->data.UserID, ThostUserFunctionField_UserID, ThostUserFunctionField_UserID_len);        
-        strncpy(self->data.UserID, ThostUserFunctionField_UserID, sizeof(self->data.UserID) );
-        ThostUserFunctionField_UserID = NULL;
-    }
-            
-    ///Thost终端功能代码
-    // TThostFtdcThostFunctionCodeType int
-    self->data.ThostFunctionCode = ThostUserFunctionField_ThostFunctionCode;
-        
+	//TThostFtdcUserIDType char[16]
+	if(pThostUserFunctionField_UserID != NULL) {
+		if(pThostUserFunctionField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pThostUserFunctionField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+			return -1;
+		}
+		strncpy(self->data.UserID, pThostUserFunctionField_UserID, sizeof(self->data.UserID) );
+		pThostUserFunctionField_UserID = NULL;
+	}
+
+	//TThostFtdcThostFunctionCodeType int
+	self->data.ThostFunctionCode = pThostUserFunctionField_ThostFunctionCode;
+
+
 
     return 0;
 }
@@ -95,9 +86,9 @@ static PyObject *PyCThostFtdcThostUserFunctionField_repr(PyCThostFtdcThostUserFu
     PyObject *obj = Py_BuildValue("{s:s,s:s,s:i}"
 #endif
 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
-        ,"ThostFunctionCode", self->data.ThostFunctionCode 
+		, "BrokerID", self->data.BrokerID 
+		, "UserID", self->data.UserID 
+		, "ThostFunctionCode", self->data.ThostFunctionCode
 
 
 		);
@@ -110,105 +101,84 @@ static PyObject *PyCThostFtdcThostUserFunctionField_repr(PyCThostFtdcThostUserFu
     return PyObject_Repr(obj);
 }
 
-
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcThostUserFunctionField_get_BrokerID(PyCThostFtdcThostUserFunctionField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcThostUserFunctionField_set_BrokerID(PyCThostFtdcThostUserFunctionField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///用户代码
-// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcThostUserFunctionField_get_UserID(PyCThostFtdcThostUserFunctionField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
-    return PyBytes_FromString(self->data.UserID);
+	return PyBytes_FromString(self->data.UserID);
 }
 
-///用户代码
-// TThostFtdcUserIDType char[16]
-static int PyCThostFtdcThostUserFunctionField_set_UserID(PyCThostFtdcThostUserFunctionField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-        return -1;
-    }
-    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
-    // memcpy(self->data.UserID, buf, len);
-    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-    return 0;
-}
-            
-///Thost终端功能代码
-// TThostFtdcThostFunctionCodeType int
 static PyObject *PyCThostFtdcThostUserFunctionField_get_ThostFunctionCode(PyCThostFtdcThostUserFunctionField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.ThostFunctionCode);
-#else
-    return PyInt_FromLong(self->data.ThostFunctionCode);
-#endif
+#if PY_MAJOR_VERSION >= 3 
+	return PyLong_FromLong(self->data.ThostFunctionCode);
+#else 
+	return PyInt_FromLong(self->data.ThostFunctionCode);
+#endif 
 }
 
-///Thost终端功能代码
-// TThostFtdcThostFunctionCodeType int
-static int PyCThostFtdcThostUserFunctionField_set_ThostFunctionCode(PyCThostFtdcThostUserFunctionField *self, PyObject* val, void *closure) {
+static int PyCThostFtdcThostUserFunctionField_set_BrokerID(PyCThostFtdcThostUserFunctionField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcThostUserFunctionField_set_UserID(PyCThostFtdcThostUserFunctionField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+		return -1;
+	}
+	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+	return 0;
+}
+
+static int PyCThostFtdcThostUserFunctionField_set_ThostFunctionCode(PyCThostFtdcThostUserFunctionField* self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ThostFunctionCode Expected long");
-#else
-    if (!PyInt_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "ThostFunctionCode Expected int");
-#endif
+#else 
+    if (!PyInt_Check(val)) { 
+        PyErr_SetString(PyExc_TypeError, "ThostFunctionCode Expected int"); 
+#endif 
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {
-        return -1;
-    }
-    if (buf < INT_MIN || buf > INT_MAX) {
-        PyErr_SetString(PyExc_OverflowError, "the ThostFunctionCode value out of range for C int");
-        return -1;
-    }
-    self->data.ThostFunctionCode = (int)buf;
-    return 0;
+#if PY_MAJOR_VERSION >= 3 
+    const long buf = PyLong_AsLong(val); 
+#else 
+    const long buf = PyInt_AsLong(val); 
+#endif 
+    if (buf == -1 && PyErr_Occurred()) { 
+        return -1; 
+    } 
+    if (buf < INT_MIN || buf > INT_MAX) { 
+        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
+        return -1; 
+    } 
+    self->data.ThostFunctionCode = (int)buf; 
+    return 0; 
 }
-        
+
+
 
 static PyGetSetDef PyCThostFtdcThostUserFunctionField_getset[] = {
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcThostUserFunctionField_get_BrokerID, (setter)PyCThostFtdcThostUserFunctionField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///用户代码 
-    {(char *)"UserID", (getter)PyCThostFtdcThostUserFunctionField_get_UserID, (setter)PyCThostFtdcThostUserFunctionField_set_UserID, (char *)"UserID", NULL},
-    ///Thost终端功能代码 
-    {(char *)"ThostFunctionCode", (getter)PyCThostFtdcThostUserFunctionField_get_ThostFunctionCode, (setter)PyCThostFtdcThostUserFunctionField_set_ThostFunctionCode, (char *)"ThostFunctionCode", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcThostUserFunctionField_get_BrokerID, (setter)PyCThostFtdcThostUserFunctionField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"UserID", (getter)PyCThostFtdcThostUserFunctionField_get_UserID, (setter)PyCThostFtdcThostUserFunctionField_set_UserID, (char *)"UserID", NULL},
+	 {(char *)"ThostFunctionCode", (getter)PyCThostFtdcThostUserFunctionField_get_ThostFunctionCode, (setter)PyCThostFtdcThostUserFunctionField_set_ThostFunctionCode, (char *)"ThostFunctionCode", NULL},
 
     {NULL}
 };

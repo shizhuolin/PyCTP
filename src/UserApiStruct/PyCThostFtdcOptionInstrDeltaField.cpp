@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcOptionInstrDeltaField.h"
 
-///期权合约delta值
+
 
 static PyObject *PyCThostFtdcOptionInstrDeltaField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcOptionInstrDeltaField *self = (PyCThostFtdcOptionInstrDeltaField *)type->tp_alloc(type, 0);
@@ -9,7 +9,8 @@ static PyObject *PyCThostFtdcOptionInstrDeltaField_new(PyTypeObject *type, PyObj
         PyErr_NoMemory();
         return NULL;
     }
-	self->data = { 0 };
+	// self->data = { 0 };
+	memset(&(self->data), 0, sizeof(self->data));
     return (PyObject *)self;
 }
 
@@ -17,35 +18,29 @@ static int PyCThostFtdcOptionInstrDeltaField_init(PyCThostFtdcOptionInstrDeltaFi
 
     static const char *kwlist[] = {"reserve1", "InvestorRange", "BrokerID", "InvestorID", "Delta", "InstrumentID",  NULL};
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	const char *pOptionInstrDeltaField_reserve1 = NULL;
+	Py_ssize_t pOptionInstrDeltaField_reserve1_len = 0;
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    const char *OptionInstrDeltaField_reserve1 = NULL;
-    Py_ssize_t OptionInstrDeltaField_reserve1_len = 0;
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    char OptionInstrDeltaField_InvestorRange = 0;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    const char *OptionInstrDeltaField_BrokerID = NULL;
-    Py_ssize_t OptionInstrDeltaField_BrokerID_len = 0;
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    const char *OptionInstrDeltaField_InvestorID = NULL;
-    Py_ssize_t OptionInstrDeltaField_InvestorID_len = 0;
-            
-    ///Delta值
-    // TThostFtdcRatioType double
-    double OptionInstrDeltaField_Delta = 0.0;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    const char *OptionInstrDeltaField_InstrumentID = NULL;
-    Py_ssize_t OptionInstrDeltaField_InstrumentID_len = 0;
-            
+	//TThostFtdcInvestorRangeType char
+	char pOptionInstrDeltaField_InvestorRange = 0;
+
+	//TThostFtdcBrokerIDType char[11]
+	const char *pOptionInstrDeltaField_BrokerID = NULL;
+	Py_ssize_t pOptionInstrDeltaField_BrokerID_len = 0;
+
+	//TThostFtdcInvestorIDType char[13]
+	const char *pOptionInstrDeltaField_InvestorID = NULL;
+	Py_ssize_t pOptionInstrDeltaField_InvestorID_len = 0;
+
+	//TThostFtdcRatioType double
+	double pOptionInstrDeltaField_Delta = 0.0;
+
+	//TThostFtdcInstrumentIDType char[81]
+	const char *pOptionInstrDeltaField_InstrumentID = NULL;
+	Py_ssize_t pOptionInstrDeltaField_InstrumentID_len = 0;
+
+
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#cy#y#dy#", (char **)kwlist
@@ -53,79 +48,64 @@ static int PyCThostFtdcOptionInstrDeltaField_init(PyCThostFtdcOptionInstrDeltaFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#cs#s#ds#", (char **)kwlist
 #endif
 
-        , &OptionInstrDeltaField_reserve1, &OptionInstrDeltaField_reserve1_len 
-        , &OptionInstrDeltaField_InvestorRange 
-        , &OptionInstrDeltaField_BrokerID, &OptionInstrDeltaField_BrokerID_len 
-        , &OptionInstrDeltaField_InvestorID, &OptionInstrDeltaField_InvestorID_len 
-        , &OptionInstrDeltaField_Delta 
-        , &OptionInstrDeltaField_InstrumentID, &OptionInstrDeltaField_InstrumentID_len 
+		, &pOptionInstrDeltaField_reserve1, &pOptionInstrDeltaField_reserve1_len
+		, &pOptionInstrDeltaField_InvestorRange
+		, &pOptionInstrDeltaField_BrokerID, &pOptionInstrDeltaField_BrokerID_len
+		, &pOptionInstrDeltaField_InvestorID, &pOptionInstrDeltaField_InvestorID_len
+		, &pOptionInstrDeltaField_Delta
+		, &pOptionInstrDeltaField_InstrumentID, &pOptionInstrDeltaField_InstrumentID_len
 
 
     )) {
         return -1;
     }
 
+	//TThostFtdcOldInstrumentIDType char[31]
+	if(pOptionInstrDeltaField_reserve1 != NULL) {
+		if(pOptionInstrDeltaField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+			PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", pOptionInstrDeltaField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
+			return -1;
+		}
+		strncpy(self->data.reserve1, pOptionInstrDeltaField_reserve1, sizeof(self->data.reserve1) );
+		pOptionInstrDeltaField_reserve1 = NULL;
+	}
 
-    ///保留的无效字段
-    // TThostFtdcOldInstrumentIDType char[31]
-    if( OptionInstrDeltaField_reserve1 != NULL ) {
-        if(OptionInstrDeltaField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-            PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
-            return -1;
-        }
-        // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-        // memcpy(self->data.reserve1, OptionInstrDeltaField_reserve1, OptionInstrDeltaField_reserve1_len);        
-        strncpy(self->data.reserve1, OptionInstrDeltaField_reserve1, sizeof(self->data.reserve1) );
-        OptionInstrDeltaField_reserve1 = NULL;
-    }
-            
-    ///投资者范围
-    // TThostFtdcInvestorRangeType char
-    self->data.InvestorRange = OptionInstrDeltaField_InvestorRange;
-            
-    ///经纪公司代码
-    // TThostFtdcBrokerIDType char[11]
-    if( OptionInstrDeltaField_BrokerID != NULL ) {
-        if(OptionInstrDeltaField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-            return -1;
-        }
-        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-        // memcpy(self->data.BrokerID, OptionInstrDeltaField_BrokerID, OptionInstrDeltaField_BrokerID_len);        
-        strncpy(self->data.BrokerID, OptionInstrDeltaField_BrokerID, sizeof(self->data.BrokerID) );
-        OptionInstrDeltaField_BrokerID = NULL;
-    }
-            
-    ///投资者代码
-    // TThostFtdcInvestorIDType char[13]
-    if( OptionInstrDeltaField_InvestorID != NULL ) {
-        if(OptionInstrDeltaField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-            PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
-            return -1;
-        }
-        // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-        // memcpy(self->data.InvestorID, OptionInstrDeltaField_InvestorID, OptionInstrDeltaField_InvestorID_len);        
-        strncpy(self->data.InvestorID, OptionInstrDeltaField_InvestorID, sizeof(self->data.InvestorID) );
-        OptionInstrDeltaField_InvestorID = NULL;
-    }
-            
-    ///Delta值
-    // TThostFtdcRatioType double
-    self->data.Delta = OptionInstrDeltaField_Delta;
-        
-    ///合约代码
-    // TThostFtdcInstrumentIDType char[81]
-    if( OptionInstrDeltaField_InstrumentID != NULL ) {
-        if(OptionInstrDeltaField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-            PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
-            return -1;
-        }
-        // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-        // memcpy(self->data.InstrumentID, OptionInstrDeltaField_InstrumentID, OptionInstrDeltaField_InstrumentID_len);        
-        strncpy(self->data.InstrumentID, OptionInstrDeltaField_InstrumentID, sizeof(self->data.InstrumentID) );
-        OptionInstrDeltaField_InstrumentID = NULL;
-    }
-            
+	//TThostFtdcInvestorRangeType char
+	self->data.InvestorRange = pOptionInstrDeltaField_InvestorRange;
+
+	//TThostFtdcBrokerIDType char[11]
+	if(pOptionInstrDeltaField_BrokerID != NULL) {
+		if(pOptionInstrDeltaField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pOptionInstrDeltaField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+			return -1;
+		}
+		strncpy(self->data.BrokerID, pOptionInstrDeltaField_BrokerID, sizeof(self->data.BrokerID) );
+		pOptionInstrDeltaField_BrokerID = NULL;
+	}
+
+	//TThostFtdcInvestorIDType char[13]
+	if(pOptionInstrDeltaField_InvestorID != NULL) {
+		if(pOptionInstrDeltaField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+			PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", pOptionInstrDeltaField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
+			return -1;
+		}
+		strncpy(self->data.InvestorID, pOptionInstrDeltaField_InvestorID, sizeof(self->data.InvestorID) );
+		pOptionInstrDeltaField_InvestorID = NULL;
+	}
+
+	//TThostFtdcRatioType double
+	self->data.Delta = pOptionInstrDeltaField_Delta;
+	//TThostFtdcInstrumentIDType char[81]
+	if(pOptionInstrDeltaField_InstrumentID != NULL) {
+		if(pOptionInstrDeltaField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+			PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", pOptionInstrDeltaField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
+			return -1;
+		}
+		strncpy(self->data.InstrumentID, pOptionInstrDeltaField_InstrumentID, sizeof(self->data.InstrumentID) );
+		pOptionInstrDeltaField_InstrumentID = NULL;
+	}
+
+
 
     return 0;
 }
@@ -142,12 +122,12 @@ static PyObject *PyCThostFtdcOptionInstrDeltaField_repr(PyCThostFtdcOptionInstrD
     PyObject *obj = Py_BuildValue("{s:s,s:c,s:s,s:s,s:d,s:s}"
 #endif
 
-        ,"reserve1", self->data.reserve1//, (Py_ssize_t)sizeof(self->data.reserve1) 
-        ,"InvestorRange", self->data.InvestorRange 
-        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
-        ,"InvestorID", self->data.InvestorID//, (Py_ssize_t)sizeof(self->data.InvestorID) 
-        ,"Delta", self->data.Delta 
-        ,"InstrumentID", self->data.InstrumentID//, (Py_ssize_t)sizeof(self->data.InstrumentID) 
+		, "reserve1", self->data.reserve1 
+		, "InvestorRange", self->data.InvestorRange
+		, "BrokerID", self->data.BrokerID 
+		, "InvestorID", self->data.InvestorID 
+		, "Delta", self->data.Delta
+		, "InstrumentID", self->data.InstrumentID 
 
 
 		);
@@ -160,117 +140,91 @@ static PyObject *PyCThostFtdcOptionInstrDeltaField_repr(PyCThostFtdcOptionInstrD
     return PyObject_Repr(obj);
 }
 
-
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
 static PyObject *PyCThostFtdcOptionInstrDeltaField_get_reserve1(PyCThostFtdcOptionInstrDeltaField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.reserve1, (Py_ssize_t)sizeof(self->data.reserve1));
-    return PyBytes_FromString(self->data.reserve1);
+	return PyBytes_FromString(self->data.reserve1);
 }
 
-///保留的无效字段
-// TThostFtdcOldInstrumentIDType char[31]
-static int PyCThostFtdcOptionInstrDeltaField_set_reserve1(PyCThostFtdcOptionInstrDeltaField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
-        PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
-        return -1;
-    }
-    // memset(self->data.reserve1, 0, sizeof(self->data.reserve1));
-    // memcpy(self->data.reserve1, buf, len);
-    strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
-    return 0;
-}
-            
-///投资者范围
-// TThostFtdcInvestorRangeType char
 static PyObject *PyCThostFtdcOptionInstrDeltaField_get_InvestorRange(PyCThostFtdcOptionInstrDeltaField *self, void *closure) {
-    return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
+	return PyBytes_FromStringAndSize(&(self->data.InvestorRange), 1);
 }
 
-///投资者范围
-// TThostFtdcInvestorRangeType char
-static int PyCThostFtdcOptionInstrDeltaField_set_InvestorRange(PyCThostFtdcOptionInstrDeltaField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorRange must be equal 1 bytes");
-        return -1;
-    }
-    self->data.InvestorRange = *buf;
-    return 0;
-}
-            
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcOptionInstrDeltaField_get_BrokerID(PyCThostFtdcOptionInstrDeltaField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
-    return PyBytes_FromString(self->data.BrokerID);
+	return PyBytes_FromString(self->data.BrokerID);
 }
 
-///经纪公司代码
-// TThostFtdcBrokerIDType char[11]
-static int PyCThostFtdcOptionInstrDeltaField_set_BrokerID(PyCThostFtdcOptionInstrDeltaField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-        return -1;
-    }
-    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
-    // memcpy(self->data.BrokerID, buf, len);
-    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-    return 0;
-}
-            
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
 static PyObject *PyCThostFtdcOptionInstrDeltaField_get_InvestorID(PyCThostFtdcOptionInstrDeltaField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InvestorID, (Py_ssize_t)sizeof(self->data.InvestorID));
-    return PyBytes_FromString(self->data.InvestorID);
+	return PyBytes_FromString(self->data.InvestorID);
 }
 
-///投资者代码
-// TThostFtdcInvestorIDType char[13]
-static int PyCThostFtdcOptionInstrDeltaField_set_InvestorID(PyCThostFtdcOptionInstrDeltaField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
-        PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
-        return -1;
-    }
-    // memset(self->data.InvestorID, 0, sizeof(self->data.InvestorID));
-    // memcpy(self->data.InvestorID, buf, len);
-    strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
-    return 0;
-}
-            
-///Delta值
-// TThostFtdcRatioType double
 static PyObject *PyCThostFtdcOptionInstrDeltaField_get_Delta(PyCThostFtdcOptionInstrDeltaField *self, void *closure) {
-    return PyFloat_FromDouble(self->data.Delta);
+	return PyFloat_FromDouble(self->data.Delta);
 }
 
-///Delta值
-// TThostFtdcRatioType double
-static int PyCThostFtdcOptionInstrDeltaField_set_Delta(PyCThostFtdcOptionInstrDeltaField *self, PyObject* val, void *closure) {
+static PyObject *PyCThostFtdcOptionInstrDeltaField_get_InstrumentID(PyCThostFtdcOptionInstrDeltaField *self, void *closure) {
+	return PyBytes_FromString(self->data.InstrumentID);
+}
+
+static int PyCThostFtdcOptionInstrDeltaField_set_reserve1(PyCThostFtdcOptionInstrDeltaField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "reserve1 Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+		PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
+		return -1;
+	}
+	strncpy(self->data.reserve1, buf, sizeof(self->data.reserve1));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrDeltaField_set_InvestorRange(PyCThostFtdcOptionInstrDeltaField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorRange Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorRange)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorRange must be less than 1 bytes");
+		return -1;
+	}
+	self->data.InvestorRange = *buf;
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrDeltaField_set_BrokerID(PyCThostFtdcOptionInstrDeltaField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+		return -1;
+	}
+	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrDeltaField_set_InvestorID(PyCThostFtdcOptionInstrDeltaField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InvestorID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+		PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
+		return -1;
+	}
+	strncpy(self->data.InvestorID, buf, sizeof(self->data.InvestorID));
+	return 0;
+}
+
+static int PyCThostFtdcOptionInstrDeltaField_set_Delta(PyCThostFtdcOptionInstrDeltaField* self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "Delta Expected float");
         return -1;
@@ -282,47 +236,31 @@ static int PyCThostFtdcOptionInstrDeltaField_set_Delta(PyCThostFtdcOptionInstrDe
     self->data.Delta = buf;
     return 0;
 }
-        
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static PyObject *PyCThostFtdcOptionInstrDeltaField_get_InstrumentID(PyCThostFtdcOptionInstrDeltaField *self, void *closure) {
-    //return PyBytes_FromStringAndSize(self->data.InstrumentID, (Py_ssize_t)sizeof(self->data.InstrumentID));
-    return PyBytes_FromString(self->data.InstrumentID);
+
+static int PyCThostFtdcOptionInstrDeltaField_set_InstrumentID(PyCThostFtdcOptionInstrDeltaField* self, PyObject* val, void *closure) {
+	if (!PyBytes_Check(val)) {
+		PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
+		return -1;
+	}
+	const char *buf = PyBytes_AsString(val);
+	Py_ssize_t len = PyBytes_Size(val);
+	if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+		PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
+		return -1;
+	}
+	strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
+	return 0;
 }
 
-///合约代码
-// TThostFtdcInstrumentIDType char[81]
-static int PyCThostFtdcOptionInstrDeltaField_set_InstrumentID(PyCThostFtdcOptionInstrDeltaField *self, PyObject* val, void *closure) {
-    if (!PyBytes_Check(val)) {
-        PyErr_SetString(PyExc_TypeError, "InstrumentID Expected bytes");
-        return -1;
-    }
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
-        PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
-        return -1;
-    }
-    // memset(self->data.InstrumentID, 0, sizeof(self->data.InstrumentID));
-    // memcpy(self->data.InstrumentID, buf, len);
-    strncpy(self->data.InstrumentID, buf, sizeof(self->data.InstrumentID));
-    return 0;
-}
-            
+
 
 static PyGetSetDef PyCThostFtdcOptionInstrDeltaField_getset[] = {
-    ///保留的无效字段 
-    {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrDeltaField_get_reserve1, (setter)PyCThostFtdcOptionInstrDeltaField_set_reserve1, (char *)"reserve1", NULL},
-    ///投资者范围 
-    {(char *)"InvestorRange", (getter)PyCThostFtdcOptionInstrDeltaField_get_InvestorRange, (setter)PyCThostFtdcOptionInstrDeltaField_set_InvestorRange, (char *)"InvestorRange", NULL},
-    ///经纪公司代码 
-    {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrDeltaField_get_BrokerID, (setter)PyCThostFtdcOptionInstrDeltaField_set_BrokerID, (char *)"BrokerID", NULL},
-    ///投资者代码 
-    {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrDeltaField_get_InvestorID, (setter)PyCThostFtdcOptionInstrDeltaField_set_InvestorID, (char *)"InvestorID", NULL},
-    ///Delta值 
-    {(char *)"Delta", (getter)PyCThostFtdcOptionInstrDeltaField_get_Delta, (setter)PyCThostFtdcOptionInstrDeltaField_set_Delta, (char *)"Delta", NULL},
-    ///合约代码 
-    {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrDeltaField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrDeltaField_set_InstrumentID, (char *)"InstrumentID", NULL},
+	 {(char *)"reserve1", (getter)PyCThostFtdcOptionInstrDeltaField_get_reserve1, (setter)PyCThostFtdcOptionInstrDeltaField_set_reserve1, (char *)"reserve1", NULL},
+	 {(char *)"InvestorRange", (getter)PyCThostFtdcOptionInstrDeltaField_get_InvestorRange, (setter)PyCThostFtdcOptionInstrDeltaField_set_InvestorRange, (char *)"InvestorRange", NULL},
+	 {(char *)"BrokerID", (getter)PyCThostFtdcOptionInstrDeltaField_get_BrokerID, (setter)PyCThostFtdcOptionInstrDeltaField_set_BrokerID, (char *)"BrokerID", NULL},
+	 {(char *)"InvestorID", (getter)PyCThostFtdcOptionInstrDeltaField_get_InvestorID, (setter)PyCThostFtdcOptionInstrDeltaField_set_InvestorID, (char *)"InvestorID", NULL},
+	 {(char *)"Delta", (getter)PyCThostFtdcOptionInstrDeltaField_get_Delta, (setter)PyCThostFtdcOptionInstrDeltaField_set_Delta, (char *)"Delta", NULL},
+	 {(char *)"InstrumentID", (getter)PyCThostFtdcOptionInstrDeltaField_get_InstrumentID, (setter)PyCThostFtdcOptionInstrDeltaField_set_InstrumentID, (char *)"InstrumentID", NULL},
 
     {NULL}
 };

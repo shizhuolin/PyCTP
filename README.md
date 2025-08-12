@@ -9,8 +9,8 @@
 
 ### 环境:
 
-* Linux: gcc，Python 3.6, 3.9
-* Windows 11: Visual Studio 2022，Python 3.13
+* Linux: gcc，Python 2.7, 3.6, 3.8, 3.9
+* Windows 11: Visual Studio 2022，Python 3,10, 3.13
 
 ### 编译及构建:
 

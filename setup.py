@@ -5,7 +5,7 @@ Created on Sun Aug 10 12:39:25 CST 2025
 @author: zhuolin
 """
 import platform, sys, os, shutil, tempfile
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext as _build_ext
 
 linux_ctp = ['./ctp/v6.7.11_20250617/v6.7.11_20250617_api_traderapi_se_linux64'
@@ -58,9 +58,9 @@ def get_extra_link_args():
     else:
         return []
 
-class build_ext(_build_ext):
+class build_ext(_build_ext, object):
     def run(self):
-        super().run()
+        super(build_ext, self).run()
         for ext in self.extensions:
             build_dir = os.path.dirname(self.get_ext_fullpath(ext.name))
             extra_files = set()
@@ -88,7 +88,7 @@ class build_ext(_build_ext):
                     cmd = [cmd[0], "@" + rsp_path]
                 return orig_spawn(cmd, *args, **kwargs)
             self.compiler.spawn = spawn
-        super().build_extension(ext)
+        super(build_ext, self).build_extension(ext)
     
 headers, sources, others = list_all_files(src_dir)
 

@@ -44,6 +44,11 @@ def get_runtime_dirs():
         return ["@loader_path"]
     else:
         return []  # Windows 不用 rpath
+    
+def get_extra_compile_args():
+    if sys.platform == "win32":
+        return ['/utf-8']
+    return []
 
 def get_extra_link_args():
     if sys.platform.startswith("linux"):
@@ -117,6 +122,7 @@ argments = dict( name = 'PyCTP'
                 ,sources = sources
                 ,language='c++'
                 ,runtime_library_dirs = get_runtime_dirs()
+                ,extra_compile_args = get_extra_compile_args()
                 ,extra_link_args = get_extra_link_args()
                 ,libraries=[ 'thostmduserapi_se', 'thosttraderapi_se', 'FixLinuxDataCollect' if platform.system() == 'Linux' else 'FixWinDataCollect'])
 argments.update(optional)

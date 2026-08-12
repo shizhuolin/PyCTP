@@ -1,4 +1,4 @@
-﻿
+
 #include "stdafx.h"
 #include "TraderApi.h"
 #include "UserApiStruct.h"
@@ -65,10 +65,11 @@ static PyObject *CTP_THOST_FTDC_TRADER_API_SubscribePublicTopic(PyObject *self, 
 static PyObject *CTP_THOST_FTDC_TRADER_API_CreateFtdcTraderApi(PyTypeObject *type, PyObject *args)
 {
 	char *pszFlowPath = NULL;
+	int bIsProductionMode = true;
 #if PY_MAJOR_VERSION >= 3
-	if (!PyArg_ParseTuple(args, "|y", &pszFlowPath))
+	if (!PyArg_ParseTuple(args, "|yp", &pszFlowPath, &bIsProductionMode))
 #else
-    if (!PyArg_ParseTuple(args, "|s", &pszFlowPath))
+    if (!PyArg_ParseTuple(args, "|si", &pszFlowPath, &bIsProductionMode))
 #endif
 	{
 		PyErr_SetString(PyExc_ValueError, "parameter invalid.");
@@ -85,7 +86,7 @@ static PyObject *CTP_THOST_FTDC_TRADER_API_CreateFtdcTraderApi(PyTypeObject *typ
 	}
 
 	/* 创建ctpapi实例 */
-	self->api = CThostFtdcTraderApi::CreateFtdcTraderApi(pszFlowPath == NULL? "" : pszFlowPath);
+	self->api = CThostFtdcTraderApi::CreateFtdcTraderApi(pszFlowPath == NULL? "" : pszFlowPath, bIsProductionMode);
 	if(self->api == NULL)
 	{
 		PyErr_SetString(PyExc_RuntimeError, "CThostFtdcTraderApi::CreateFtdcTraderApi error.");

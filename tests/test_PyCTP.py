@@ -879,6 +879,7 @@ class PyCTP_Market(PyCTP_Market_API):
 def __main__():
     import os
     import time
+    IsProductionMode = True
     BrokerID = unicode2bytes(os.getenv('TEST_BROKERID', 'Your BrokerID'))
     UserID = unicode2bytes(os.getenv('TEST_USERID', 'Your UserID'))
     Password = unicode2bytes(os.getenv('TEST_PASSWORD', 'Your Password'))
@@ -886,7 +887,7 @@ def __main__():
     AppID = b'simnow_client_test'
     ProductInfo = b''
     ExchangeID = b'SHFE'
-    InstrumentID = b'cu2509'
+    InstrumentID = b'cu2608'
     FrontAddr = [{'name':'第一套环境 - 第一组', 'tFrontAddr':b'tcp://182.254.243.31:30001', 'mFrontAddr':b'tcp://182.254.243.31:30011'}
                  ,{'name':'第一套环境 - 第二组', 'tFrontAddr':b'tcp://182.254.243.31:30002', 'mFrontAddr':b'tcp://182.254.243.31:30012'}
                  ,{'name':'第一套环境 - 第三组', 'tFrontAddr':b'tcp://182.254.243.31:30003', 'mFrontAddr':b'tcp://182.254.243.31:30013'}
@@ -921,7 +922,7 @@ def __main__():
         try: trade_md = int(user_input())
         except ValueError: continue
         if trade_md == 1:
-            trader = PyCTP_Trader.CreateFtdcTraderApi(flowPath)
+            trader = PyCTP_Trader.CreateFtdcTraderApi(flowPath, IsProductionMode)
             print('Api版本:', PyCTP_Trader.GetApiVersion())
             print('采集库版本：', PyCTP.CTP_GetDataCollectApiVersion())
             print('连接前置:', trader.Connect(tFrontAddr))
@@ -1025,7 +1026,7 @@ def __main__():
             print('删除接口:', trader.Release())
             break
         elif trade_md == 2:
-            market = PyCTP_Market.CreateFtdcMdApi(flowPath)
+            market = PyCTP_Market.CreateFtdcMdApi(flowPath, False, False, IsProductionMode)
             print('Api版本:', PyCTP_Market.GetApiVersion())
             print('连接前置:', market.Connect(mFrontAddr))
             print('账号登陆:', market.Login(BrokerID, UserID, Password))

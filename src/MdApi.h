@@ -1,4 +1,4 @@
-﻿//行情API转PyCTP
+//行情API转PyCTP
 
 #ifndef PYCTP_MDAPI_H
 #define PYCTP_MDAPI_H

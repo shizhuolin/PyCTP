@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcReqApiHandshakeField.h"
 
-
+///api握手请求
 
 static PyObject *PyCThostFtdcReqApiHandshakeField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcReqApiHandshakeField *self = (PyCThostFtdcReqApiHandshakeField *)type->tp_alloc(type, 0);
@@ -18,11 +18,12 @@ static int PyCThostFtdcReqApiHandshakeField_init(PyCThostFtdcReqApiHandshakeFiel
 
     static const char *kwlist[] = {"CryptoKeyVersion",  NULL};
 
-	//TThostFtdcCryptoKeyVersionType char[31]
-	const char *pReqApiHandshakeField_CryptoKeyVersion = NULL;
-	Py_ssize_t pReqApiHandshakeField_CryptoKeyVersion_len = 0;
 
-
+    ///api与front通信密钥版本号
+    // TThostFtdcCryptoKeyVersionType char[31]
+    const char *ReqApiHandshakeField_CryptoKeyVersion = NULL;
+    Py_ssize_t ReqApiHandshakeField_CryptoKeyVersion_len = 0;
+            
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,24 +31,27 @@ static int PyCThostFtdcReqApiHandshakeField_init(PyCThostFtdcReqApiHandshakeFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-		, &pReqApiHandshakeField_CryptoKeyVersion, &pReqApiHandshakeField_CryptoKeyVersion_len
+        , &ReqApiHandshakeField_CryptoKeyVersion, &ReqApiHandshakeField_CryptoKeyVersion_len 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcCryptoKeyVersionType char[31]
-	if(pReqApiHandshakeField_CryptoKeyVersion != NULL) {
-		if(pReqApiHandshakeField_CryptoKeyVersion_len > (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
-			PyErr_Format(PyExc_ValueError, "CryptoKeyVersion too long: length=%zd (max allowed is %zd)", pReqApiHandshakeField_CryptoKeyVersion_len, (Py_ssize_t)sizeof(self->data.CryptoKeyVersion));
-			return -1;
-		}
-		strncpy(self->data.CryptoKeyVersion, pReqApiHandshakeField_CryptoKeyVersion, sizeof(self->data.CryptoKeyVersion) );
-		pReqApiHandshakeField_CryptoKeyVersion = NULL;
-	}
 
-
+    ///api与front通信密钥版本号
+    // TThostFtdcCryptoKeyVersionType char[31]
+    if( ReqApiHandshakeField_CryptoKeyVersion != NULL ) {
+        if(ReqApiHandshakeField_CryptoKeyVersion_len > (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
+            PyErr_Format(PyExc_ValueError, "CryptoKeyVersion too long: length=%zd (max allowed is %zd)", ReqApiHandshakeField_CryptoKeyVersion_len, (Py_ssize_t)sizeof(self->data.CryptoKeyVersion));
+            return -1;
+        }
+        // memset(self->data.CryptoKeyVersion, 0, sizeof(self->data.CryptoKeyVersion));
+        // memcpy(self->data.CryptoKeyVersion, ReqApiHandshakeField_CryptoKeyVersion, ReqApiHandshakeField_CryptoKeyVersion_len);        
+        strncpy(self->data.CryptoKeyVersion, ReqApiHandshakeField_CryptoKeyVersion, sizeof(self->data.CryptoKeyVersion) );
+        ReqApiHandshakeField_CryptoKeyVersion = NULL;
+    }
+            
 
     return 0;
 }
@@ -64,7 +68,7 @@ static PyObject *PyCThostFtdcReqApiHandshakeField_repr(PyCThostFtdcReqApiHandsha
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-		, "CryptoKeyVersion", self->data.CryptoKeyVersion 
+        ,"CryptoKeyVersion", self->data.CryptoKeyVersion//, (Py_ssize_t)sizeof(self->data.CryptoKeyVersion) 
 
 
 		);
@@ -77,29 +81,37 @@ static PyObject *PyCThostFtdcReqApiHandshakeField_repr(PyCThostFtdcReqApiHandsha
     return PyObject_Repr(obj);
 }
 
+
+///api与front通信密钥版本号
+// TThostFtdcCryptoKeyVersionType char[31]
 static PyObject *PyCThostFtdcReqApiHandshakeField_get_CryptoKeyVersion(PyCThostFtdcReqApiHandshakeField *self, void *closure) {
-	return PyBytes_FromString(self->data.CryptoKeyVersion);
+    //return PyBytes_FromStringAndSize(self->data.CryptoKeyVersion, (Py_ssize_t)sizeof(self->data.CryptoKeyVersion));
+    return PyBytes_FromString(self->data.CryptoKeyVersion);
 }
 
-static int PyCThostFtdcReqApiHandshakeField_set_CryptoKeyVersion(PyCThostFtdcReqApiHandshakeField* self, PyObject* val, void *closure) {
-	if (!PyBytes_Check(val)) {
-		PyErr_SetString(PyExc_TypeError, "CryptoKeyVersion Expected bytes");
-		return -1;
-	}
-	const char *buf = PyBytes_AsString(val);
-	Py_ssize_t len = PyBytes_Size(val);
-	if (len > (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
-		PyErr_SetString(PyExc_ValueError, "CryptoKeyVersion must be less than 31 bytes");
-		return -1;
-	}
-	strncpy(self->data.CryptoKeyVersion, buf, sizeof(self->data.CryptoKeyVersion));
-	return 0;
+///api与front通信密钥版本号
+// TThostFtdcCryptoKeyVersionType char[31]
+static int PyCThostFtdcReqApiHandshakeField_set_CryptoKeyVersion(PyCThostFtdcReqApiHandshakeField *self, PyObject* val, void *closure) {
+    if (!PyBytes_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "CryptoKeyVersion Expected bytes");
+        return -1;
+    }
+    const char *buf = PyBytes_AsString(val);
+    Py_ssize_t len = PyBytes_Size(val);
+    if (len > (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
+        PyErr_SetString(PyExc_ValueError, "CryptoKeyVersion must be less than 31 bytes");
+        return -1;
+    }
+    // memset(self->data.CryptoKeyVersion, 0, sizeof(self->data.CryptoKeyVersion));
+    // memcpy(self->data.CryptoKeyVersion, buf, len);
+    strncpy(self->data.CryptoKeyVersion, buf, sizeof(self->data.CryptoKeyVersion));
+    return 0;
 }
-
-
+            
 
 static PyGetSetDef PyCThostFtdcReqApiHandshakeField_getset[] = {
-	 {(char *)"CryptoKeyVersion", (getter)PyCThostFtdcReqApiHandshakeField_get_CryptoKeyVersion, (setter)PyCThostFtdcReqApiHandshakeField_set_CryptoKeyVersion, (char *)"CryptoKeyVersion", NULL},
+    ///api与front通信密钥版本号 
+    {(char *)"CryptoKeyVersion", (getter)PyCThostFtdcReqApiHandshakeField_get_CryptoKeyVersion, (setter)PyCThostFtdcReqApiHandshakeField_set_CryptoKeyVersion, (char *)"CryptoKeyVersion", NULL},
 
     {NULL}
 };

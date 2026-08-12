@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQryRiskSettleProductStatusField.h"
 
-
+///风险结算产品查询
 
 static PyObject *PyCThostFtdcQryRiskSettleProductStatusField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQryRiskSettleProductStatusField *self = (PyCThostFtdcQryRiskSettleProductStatusField *)type->tp_alloc(type, 0);
@@ -18,11 +18,12 @@ static int PyCThostFtdcQryRiskSettleProductStatusField_init(PyCThostFtdcQryRiskS
 
     static const char *kwlist[] = {"ProductID",  NULL};
 
-	//TThostFtdcInstrumentIDType char[81]
-	const char *pQryRiskSettleProductStatusField_ProductID = NULL;
-	Py_ssize_t pQryRiskSettleProductStatusField_ProductID_len = 0;
 
-
+    ///产品代码
+    // TThostFtdcInstrumentIDType char[81]
+    const char *QryRiskSettleProductStatusField_ProductID = NULL;
+    Py_ssize_t QryRiskSettleProductStatusField_ProductID_len = 0;
+            
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,24 +31,27 @@ static int PyCThostFtdcQryRiskSettleProductStatusField_init(PyCThostFtdcQryRiskS
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-		, &pQryRiskSettleProductStatusField_ProductID, &pQryRiskSettleProductStatusField_ProductID_len
+        , &QryRiskSettleProductStatusField_ProductID, &QryRiskSettleProductStatusField_ProductID_len 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcInstrumentIDType char[81]
-	if(pQryRiskSettleProductStatusField_ProductID != NULL) {
-		if(pQryRiskSettleProductStatusField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-			PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", pQryRiskSettleProductStatusField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
-			return -1;
-		}
-		strncpy(self->data.ProductID, pQryRiskSettleProductStatusField_ProductID, sizeof(self->data.ProductID) );
-		pQryRiskSettleProductStatusField_ProductID = NULL;
-	}
 
-
+    ///产品代码
+    // TThostFtdcInstrumentIDType char[81]
+    if( QryRiskSettleProductStatusField_ProductID != NULL ) {
+        if(QryRiskSettleProductStatusField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+            PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryRiskSettleProductStatusField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
+            return -1;
+        }
+        // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
+        // memcpy(self->data.ProductID, QryRiskSettleProductStatusField_ProductID, QryRiskSettleProductStatusField_ProductID_len);        
+        strncpy(self->data.ProductID, QryRiskSettleProductStatusField_ProductID, sizeof(self->data.ProductID) );
+        QryRiskSettleProductStatusField_ProductID = NULL;
+    }
+            
 
     return 0;
 }
@@ -64,7 +68,7 @@ static PyObject *PyCThostFtdcQryRiskSettleProductStatusField_repr(PyCThostFtdcQr
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-		, "ProductID", self->data.ProductID 
+        ,"ProductID", self->data.ProductID//, (Py_ssize_t)sizeof(self->data.ProductID) 
 
 
 		);
@@ -77,29 +81,37 @@ static PyObject *PyCThostFtdcQryRiskSettleProductStatusField_repr(PyCThostFtdcQr
     return PyObject_Repr(obj);
 }
 
+
+///产品代码
+// TThostFtdcInstrumentIDType char[81]
 static PyObject *PyCThostFtdcQryRiskSettleProductStatusField_get_ProductID(PyCThostFtdcQryRiskSettleProductStatusField *self, void *closure) {
-	return PyBytes_FromString(self->data.ProductID);
+    //return PyBytes_FromStringAndSize(self->data.ProductID, (Py_ssize_t)sizeof(self->data.ProductID));
+    return PyBytes_FromString(self->data.ProductID);
 }
 
-static int PyCThostFtdcQryRiskSettleProductStatusField_set_ProductID(PyCThostFtdcQryRiskSettleProductStatusField* self, PyObject* val, void *closure) {
-	if (!PyBytes_Check(val)) {
-		PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
-		return -1;
-	}
-	const char *buf = PyBytes_AsString(val);
-	Py_ssize_t len = PyBytes_Size(val);
-	if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
-		PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
-		return -1;
-	}
-	strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
-	return 0;
+///产品代码
+// TThostFtdcInstrumentIDType char[81]
+static int PyCThostFtdcQryRiskSettleProductStatusField_set_ProductID(PyCThostFtdcQryRiskSettleProductStatusField *self, PyObject* val, void *closure) {
+    if (!PyBytes_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "ProductID Expected bytes");
+        return -1;
+    }
+    const char *buf = PyBytes_AsString(val);
+    Py_ssize_t len = PyBytes_Size(val);
+    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
+        return -1;
+    }
+    // memset(self->data.ProductID, 0, sizeof(self->data.ProductID));
+    // memcpy(self->data.ProductID, buf, len);
+    strncpy(self->data.ProductID, buf, sizeof(self->data.ProductID));
+    return 0;
 }
-
-
+            
 
 static PyGetSetDef PyCThostFtdcQryRiskSettleProductStatusField_getset[] = {
-	 {(char *)"ProductID", (getter)PyCThostFtdcQryRiskSettleProductStatusField_get_ProductID, (setter)PyCThostFtdcQryRiskSettleProductStatusField_set_ProductID, (char *)"ProductID", NULL},
+    ///产品代码 
+    {(char *)"ProductID", (getter)PyCThostFtdcQryRiskSettleProductStatusField_get_ProductID, (setter)PyCThostFtdcQryRiskSettleProductStatusField_set_ProductID, (char *)"ProductID", NULL},
 
     {NULL}
 };

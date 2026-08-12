@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataAsk23Field.h"
 
-
+///行情申卖二、三属性
 
 static PyObject *PyCThostFtdcMarketDataAsk23Field_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataAsk23Field *self = (PyCThostFtdcMarketDataAsk23Field *)type->tp_alloc(type, 0);
@@ -18,19 +18,23 @@ static int PyCThostFtdcMarketDataAsk23Field_init(PyCThostFtdcMarketDataAsk23Fiel
 
     static const char *kwlist[] = {"AskPrice2", "AskVolume2", "AskPrice3", "AskVolume3",  NULL};
 
-	//TThostFtdcPriceType double
-	double pMarketDataAsk23Field_AskPrice2 = 0.0;
 
-	//TThostFtdcVolumeType int
-	int pMarketDataAsk23Field_AskVolume2 = 0;
-
-	//TThostFtdcPriceType double
-	double pMarketDataAsk23Field_AskPrice3 = 0.0;
-
-	//TThostFtdcVolumeType int
-	int pMarketDataAsk23Field_AskVolume3 = 0;
-
-
+    ///申卖价二
+    // TThostFtdcPriceType double
+    double MarketDataAsk23Field_AskPrice2 = 0.0;
+        
+    ///申卖量二
+    // TThostFtdcVolumeType int
+    int MarketDataAsk23Field_AskVolume2 = 0;
+        
+    ///申卖价三
+    // TThostFtdcPriceType double
+    double MarketDataAsk23Field_AskPrice3 = 0.0;
+        
+    ///申卖量三
+    // TThostFtdcVolumeType int
+    int MarketDataAsk23Field_AskVolume3 = 0;
+        
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|didi", (char **)kwlist
@@ -38,27 +42,33 @@ static int PyCThostFtdcMarketDataAsk23Field_init(PyCThostFtdcMarketDataAsk23Fiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|didi", (char **)kwlist
 #endif
 
-		, &pMarketDataAsk23Field_AskPrice2
-		, &pMarketDataAsk23Field_AskVolume2
-		, &pMarketDataAsk23Field_AskPrice3
-		, &pMarketDataAsk23Field_AskVolume3
+        , &MarketDataAsk23Field_AskPrice2 
+        , &MarketDataAsk23Field_AskVolume2 
+        , &MarketDataAsk23Field_AskPrice3 
+        , &MarketDataAsk23Field_AskVolume3 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcPriceType double
-	self->data.AskPrice2 = pMarketDataAsk23Field_AskPrice2;
-	//TThostFtdcVolumeType int
-	self->data.AskVolume2 = pMarketDataAsk23Field_AskVolume2;
 
-	//TThostFtdcPriceType double
-	self->data.AskPrice3 = pMarketDataAsk23Field_AskPrice3;
-	//TThostFtdcVolumeType int
-	self->data.AskVolume3 = pMarketDataAsk23Field_AskVolume3;
-
-
+    ///申卖价二
+    // TThostFtdcPriceType double
+    self->data.AskPrice2 = MarketDataAsk23Field_AskPrice2;
+        
+    ///申卖量二
+    // TThostFtdcVolumeType int
+    self->data.AskVolume2 = MarketDataAsk23Field_AskVolume2;
+        
+    ///申卖价三
+    // TThostFtdcPriceType double
+    self->data.AskPrice3 = MarketDataAsk23Field_AskPrice3;
+        
+    ///申卖量三
+    // TThostFtdcVolumeType int
+    self->data.AskVolume3 = MarketDataAsk23Field_AskVolume3;
+        
 
     return 0;
 }
@@ -75,10 +85,10 @@ static PyObject *PyCThostFtdcMarketDataAsk23Field_repr(PyCThostFtdcMarketDataAsk
     PyObject *obj = Py_BuildValue("{s:d,s:i,s:d,s:i}"
 #endif
 
-		, "AskPrice2", self->data.AskPrice2
-		, "AskVolume2", self->data.AskVolume2
-		, "AskPrice3", self->data.AskPrice3
-		, "AskVolume3", self->data.AskVolume3
+        ,"AskPrice2", self->data.AskPrice2 
+        ,"AskVolume2", self->data.AskVolume2 
+        ,"AskPrice3", self->data.AskPrice3 
+        ,"AskVolume3", self->data.AskVolume3 
 
 
 		);
@@ -91,31 +101,16 @@ static PyObject *PyCThostFtdcMarketDataAsk23Field_repr(PyCThostFtdcMarketDataAsk
     return PyObject_Repr(obj);
 }
 
+
+///申卖价二
+// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcMarketDataAsk23Field_get_AskPrice2(PyCThostFtdcMarketDataAsk23Field *self, void *closure) {
-	return PyFloat_FromDouble(self->data.AskPrice2);
+    return PyFloat_FromDouble(self->data.AskPrice2);
 }
 
-static PyObject *PyCThostFtdcMarketDataAsk23Field_get_AskVolume2(PyCThostFtdcMarketDataAsk23Field *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3 
-	return PyLong_FromLong(self->data.AskVolume2);
-#else 
-	return PyInt_FromLong(self->data.AskVolume2);
-#endif 
-}
-
-static PyObject *PyCThostFtdcMarketDataAsk23Field_get_AskPrice3(PyCThostFtdcMarketDataAsk23Field *self, void *closure) {
-	return PyFloat_FromDouble(self->data.AskPrice3);
-}
-
-static PyObject *PyCThostFtdcMarketDataAsk23Field_get_AskVolume3(PyCThostFtdcMarketDataAsk23Field *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3 
-	return PyLong_FromLong(self->data.AskVolume3);
-#else 
-	return PyInt_FromLong(self->data.AskVolume3);
-#endif 
-}
-
-static int PyCThostFtdcMarketDataAsk23Field_set_AskPrice2(PyCThostFtdcMarketDataAsk23Field* self, PyObject* val, void *closure) {
+///申卖价二
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataAsk23Field_set_AskPrice2(PyCThostFtdcMarketDataAsk23Field *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskPrice2 Expected float");
         return -1;
@@ -127,34 +122,54 @@ static int PyCThostFtdcMarketDataAsk23Field_set_AskPrice2(PyCThostFtdcMarketData
     self->data.AskPrice2 = buf;
     return 0;
 }
+        
+///申卖量二
+// TThostFtdcVolumeType int
+static PyObject *PyCThostFtdcMarketDataAsk23Field_get_AskVolume2(PyCThostFtdcMarketDataAsk23Field *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3
+    return PyLong_FromLong(self->data.AskVolume2);
+#else
+    return PyInt_FromLong(self->data.AskVolume2);
+#endif
+}
 
-static int PyCThostFtdcMarketDataAsk23Field_set_AskVolume2(PyCThostFtdcMarketDataAsk23Field* self, PyObject* val, void *closure) {
+///申卖量二
+// TThostFtdcVolumeType int
+static int PyCThostFtdcMarketDataAsk23Field_set_AskVolume2(PyCThostFtdcMarketDataAsk23Field *self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskVolume2 Expected long");
-#else 
-    if (!PyInt_Check(val)) { 
-        PyErr_SetString(PyExc_TypeError, "AskVolume2 Expected int"); 
-#endif 
+#else
+    if (!PyInt_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "AskVolume2 Expected int");
+#endif
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3 
-    const long buf = PyLong_AsLong(val); 
-#else 
-    const long buf = PyInt_AsLong(val); 
-#endif 
-    if (buf == -1 && PyErr_Occurred()) { 
-        return -1; 
-    } 
-    if (buf < INT_MIN || buf > INT_MAX) { 
-        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
-        return -1; 
-    } 
-    self->data.AskVolume2 = (int)buf; 
-    return 0; 
+#if PY_MAJOR_VERSION >= 3
+    const long buf = PyLong_AsLong(val);
+#else
+    const long buf = PyInt_AsLong(val);
+#endif
+    if (buf == -1 && PyErr_Occurred()) {
+        return -1;
+    }
+    if (buf < INT_MIN || buf > INT_MAX) {
+        PyErr_SetString(PyExc_OverflowError, "the AskVolume2 value out of range for C int");
+        return -1;
+    }
+    self->data.AskVolume2 = (int)buf;
+    return 0;
+}
+        
+///申卖价三
+// TThostFtdcPriceType double
+static PyObject *PyCThostFtdcMarketDataAsk23Field_get_AskPrice3(PyCThostFtdcMarketDataAsk23Field *self, void *closure) {
+    return PyFloat_FromDouble(self->data.AskPrice3);
 }
 
-static int PyCThostFtdcMarketDataAsk23Field_set_AskPrice3(PyCThostFtdcMarketDataAsk23Field* self, PyObject* val, void *closure) {
+///申卖价三
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataAsk23Field_set_AskPrice3(PyCThostFtdcMarketDataAsk23Field *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskPrice3 Expected float");
         return -1;
@@ -166,40 +181,55 @@ static int PyCThostFtdcMarketDataAsk23Field_set_AskPrice3(PyCThostFtdcMarketData
     self->data.AskPrice3 = buf;
     return 0;
 }
+        
+///申卖量三
+// TThostFtdcVolumeType int
+static PyObject *PyCThostFtdcMarketDataAsk23Field_get_AskVolume3(PyCThostFtdcMarketDataAsk23Field *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3
+    return PyLong_FromLong(self->data.AskVolume3);
+#else
+    return PyInt_FromLong(self->data.AskVolume3);
+#endif
+}
 
-static int PyCThostFtdcMarketDataAsk23Field_set_AskVolume3(PyCThostFtdcMarketDataAsk23Field* self, PyObject* val, void *closure) {
+///申卖量三
+// TThostFtdcVolumeType int
+static int PyCThostFtdcMarketDataAsk23Field_set_AskVolume3(PyCThostFtdcMarketDataAsk23Field *self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AskVolume3 Expected long");
-#else 
-    if (!PyInt_Check(val)) { 
-        PyErr_SetString(PyExc_TypeError, "AskVolume3 Expected int"); 
-#endif 
+#else
+    if (!PyInt_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "AskVolume3 Expected int");
+#endif
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3 
-    const long buf = PyLong_AsLong(val); 
-#else 
-    const long buf = PyInt_AsLong(val); 
-#endif 
-    if (buf == -1 && PyErr_Occurred()) { 
-        return -1; 
-    } 
-    if (buf < INT_MIN || buf > INT_MAX) { 
-        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
-        return -1; 
-    } 
-    self->data.AskVolume3 = (int)buf; 
-    return 0; 
+#if PY_MAJOR_VERSION >= 3
+    const long buf = PyLong_AsLong(val);
+#else
+    const long buf = PyInt_AsLong(val);
+#endif
+    if (buf == -1 && PyErr_Occurred()) {
+        return -1;
+    }
+    if (buf < INT_MIN || buf > INT_MAX) {
+        PyErr_SetString(PyExc_OverflowError, "the AskVolume3 value out of range for C int");
+        return -1;
+    }
+    self->data.AskVolume3 = (int)buf;
+    return 0;
 }
-
-
+        
 
 static PyGetSetDef PyCThostFtdcMarketDataAsk23Field_getset[] = {
-	 {(char *)"AskPrice2", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskPrice2, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskPrice2, (char *)"AskPrice2", NULL},
-	 {(char *)"AskVolume2", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskVolume2, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskVolume2, (char *)"AskVolume2", NULL},
-	 {(char *)"AskPrice3", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskPrice3, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskPrice3, (char *)"AskPrice3", NULL},
-	 {(char *)"AskVolume3", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskVolume3, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskVolume3, (char *)"AskVolume3", NULL},
+    ///申卖价二 
+    {(char *)"AskPrice2", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskPrice2, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskPrice2, (char *)"AskPrice2", NULL},
+    ///申卖量二 
+    {(char *)"AskVolume2", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskVolume2, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskVolume2, (char *)"AskVolume2", NULL},
+    ///申卖价三 
+    {(char *)"AskPrice3", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskPrice3, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskPrice3, (char *)"AskPrice3", NULL},
+    ///申卖量三 
+    {(char *)"AskVolume3", (getter)PyCThostFtdcMarketDataAsk23Field_get_AskVolume3, (setter)PyCThostFtdcMarketDataAsk23Field_set_AskVolume3, (char *)"AskVolume3", NULL},
 
     {NULL}
 };

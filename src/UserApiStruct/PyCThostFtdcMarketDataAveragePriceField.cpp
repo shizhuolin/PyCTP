@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataAveragePriceField.h"
 
-
+///成交均价
 
 static PyObject *PyCThostFtdcMarketDataAveragePriceField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataAveragePriceField *self = (PyCThostFtdcMarketDataAveragePriceField *)type->tp_alloc(type, 0);
@@ -18,10 +18,11 @@ static int PyCThostFtdcMarketDataAveragePriceField_init(PyCThostFtdcMarketDataAv
 
     static const char *kwlist[] = {"AveragePrice",  NULL};
 
-	//TThostFtdcPriceType double
-	double pMarketDataAveragePriceField_AveragePrice = 0.0;
 
-
+    ///当日均价
+    // TThostFtdcPriceType double
+    double MarketDataAveragePriceField_AveragePrice = 0.0;
+        
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|d", (char **)kwlist
@@ -29,16 +30,18 @@ static int PyCThostFtdcMarketDataAveragePriceField_init(PyCThostFtdcMarketDataAv
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|d", (char **)kwlist
 #endif
 
-		, &pMarketDataAveragePriceField_AveragePrice
+        , &MarketDataAveragePriceField_AveragePrice 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcPriceType double
-	self->data.AveragePrice = pMarketDataAveragePriceField_AveragePrice;
 
+    ///当日均价
+    // TThostFtdcPriceType double
+    self->data.AveragePrice = MarketDataAveragePriceField_AveragePrice;
+        
 
     return 0;
 }
@@ -55,7 +58,7 @@ static PyObject *PyCThostFtdcMarketDataAveragePriceField_repr(PyCThostFtdcMarket
     PyObject *obj = Py_BuildValue("{s:d}"
 #endif
 
-		, "AveragePrice", self->data.AveragePrice
+        ,"AveragePrice", self->data.AveragePrice 
 
 
 		);
@@ -68,11 +71,16 @@ static PyObject *PyCThostFtdcMarketDataAveragePriceField_repr(PyCThostFtdcMarket
     return PyObject_Repr(obj);
 }
 
+
+///当日均价
+// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcMarketDataAveragePriceField_get_AveragePrice(PyCThostFtdcMarketDataAveragePriceField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.AveragePrice);
+    return PyFloat_FromDouble(self->data.AveragePrice);
 }
 
-static int PyCThostFtdcMarketDataAveragePriceField_set_AveragePrice(PyCThostFtdcMarketDataAveragePriceField* self, PyObject* val, void *closure) {
+///当日均价
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataAveragePriceField_set_AveragePrice(PyCThostFtdcMarketDataAveragePriceField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "AveragePrice Expected float");
         return -1;
@@ -84,11 +92,11 @@ static int PyCThostFtdcMarketDataAveragePriceField_set_AveragePrice(PyCThostFtdc
     self->data.AveragePrice = buf;
     return 0;
 }
-
-
+        
 
 static PyGetSetDef PyCThostFtdcMarketDataAveragePriceField_getset[] = {
-	 {(char *)"AveragePrice", (getter)PyCThostFtdcMarketDataAveragePriceField_get_AveragePrice, (setter)PyCThostFtdcMarketDataAveragePriceField_set_AveragePrice, (char *)"AveragePrice", NULL},
+    ///当日均价 
+    {(char *)"AveragePrice", (getter)PyCThostFtdcMarketDataAveragePriceField_get_AveragePrice, (setter)PyCThostFtdcMarketDataAveragePriceField_set_AveragePrice, (char *)"AveragePrice", NULL},
 
     {NULL}
 };

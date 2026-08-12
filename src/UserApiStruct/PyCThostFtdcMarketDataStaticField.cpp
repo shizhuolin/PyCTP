@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataStaticField.h"
 
-
+///行情静态属性
 
 static PyObject *PyCThostFtdcMarketDataStaticField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataStaticField *self = (PyCThostFtdcMarketDataStaticField *)type->tp_alloc(type, 0);
@@ -18,31 +18,39 @@ static int PyCThostFtdcMarketDataStaticField_init(PyCThostFtdcMarketDataStaticFi
 
     static const char *kwlist[] = {"OpenPrice", "HighestPrice", "LowestPrice", "ClosePrice", "UpperLimitPrice", "LowerLimitPrice", "SettlementPrice", "CurrDelta",  NULL};
 
-	//TThostFtdcPriceType double
-	double pMarketDataStaticField_OpenPrice = 0.0;
 
-	//TThostFtdcPriceType double
-	double pMarketDataStaticField_HighestPrice = 0.0;
-
-	//TThostFtdcPriceType double
-	double pMarketDataStaticField_LowestPrice = 0.0;
-
-	//TThostFtdcPriceType double
-	double pMarketDataStaticField_ClosePrice = 0.0;
-
-	//TThostFtdcPriceType double
-	double pMarketDataStaticField_UpperLimitPrice = 0.0;
-
-	//TThostFtdcPriceType double
-	double pMarketDataStaticField_LowerLimitPrice = 0.0;
-
-	//TThostFtdcPriceType double
-	double pMarketDataStaticField_SettlementPrice = 0.0;
-
-	//TThostFtdcRatioType double
-	double pMarketDataStaticField_CurrDelta = 0.0;
-
-
+    ///今开盘
+    // TThostFtdcPriceType double
+    double MarketDataStaticField_OpenPrice = 0.0;
+        
+    ///最高价
+    // TThostFtdcPriceType double
+    double MarketDataStaticField_HighestPrice = 0.0;
+        
+    ///最低价
+    // TThostFtdcPriceType double
+    double MarketDataStaticField_LowestPrice = 0.0;
+        
+    ///今收盘
+    // TThostFtdcPriceType double
+    double MarketDataStaticField_ClosePrice = 0.0;
+        
+    ///涨停板价
+    // TThostFtdcPriceType double
+    double MarketDataStaticField_UpperLimitPrice = 0.0;
+        
+    ///跌停板价
+    // TThostFtdcPriceType double
+    double MarketDataStaticField_LowerLimitPrice = 0.0;
+        
+    ///本次结算价
+    // TThostFtdcPriceType double
+    double MarketDataStaticField_SettlementPrice = 0.0;
+        
+    ///今虚实度
+    // TThostFtdcRatioType double
+    double MarketDataStaticField_CurrDelta = 0.0;
+        
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|dddddddd", (char **)kwlist
@@ -50,37 +58,53 @@ static int PyCThostFtdcMarketDataStaticField_init(PyCThostFtdcMarketDataStaticFi
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|dddddddd", (char **)kwlist
 #endif
 
-		, &pMarketDataStaticField_OpenPrice
-		, &pMarketDataStaticField_HighestPrice
-		, &pMarketDataStaticField_LowestPrice
-		, &pMarketDataStaticField_ClosePrice
-		, &pMarketDataStaticField_UpperLimitPrice
-		, &pMarketDataStaticField_LowerLimitPrice
-		, &pMarketDataStaticField_SettlementPrice
-		, &pMarketDataStaticField_CurrDelta
+        , &MarketDataStaticField_OpenPrice 
+        , &MarketDataStaticField_HighestPrice 
+        , &MarketDataStaticField_LowestPrice 
+        , &MarketDataStaticField_ClosePrice 
+        , &MarketDataStaticField_UpperLimitPrice 
+        , &MarketDataStaticField_LowerLimitPrice 
+        , &MarketDataStaticField_SettlementPrice 
+        , &MarketDataStaticField_CurrDelta 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcPriceType double
-	self->data.OpenPrice = pMarketDataStaticField_OpenPrice;
-	//TThostFtdcPriceType double
-	self->data.HighestPrice = pMarketDataStaticField_HighestPrice;
-	//TThostFtdcPriceType double
-	self->data.LowestPrice = pMarketDataStaticField_LowestPrice;
-	//TThostFtdcPriceType double
-	self->data.ClosePrice = pMarketDataStaticField_ClosePrice;
-	//TThostFtdcPriceType double
-	self->data.UpperLimitPrice = pMarketDataStaticField_UpperLimitPrice;
-	//TThostFtdcPriceType double
-	self->data.LowerLimitPrice = pMarketDataStaticField_LowerLimitPrice;
-	//TThostFtdcPriceType double
-	self->data.SettlementPrice = pMarketDataStaticField_SettlementPrice;
-	//TThostFtdcRatioType double
-	self->data.CurrDelta = pMarketDataStaticField_CurrDelta;
 
+    ///今开盘
+    // TThostFtdcPriceType double
+    self->data.OpenPrice = MarketDataStaticField_OpenPrice;
+        
+    ///最高价
+    // TThostFtdcPriceType double
+    self->data.HighestPrice = MarketDataStaticField_HighestPrice;
+        
+    ///最低价
+    // TThostFtdcPriceType double
+    self->data.LowestPrice = MarketDataStaticField_LowestPrice;
+        
+    ///今收盘
+    // TThostFtdcPriceType double
+    self->data.ClosePrice = MarketDataStaticField_ClosePrice;
+        
+    ///涨停板价
+    // TThostFtdcPriceType double
+    self->data.UpperLimitPrice = MarketDataStaticField_UpperLimitPrice;
+        
+    ///跌停板价
+    // TThostFtdcPriceType double
+    self->data.LowerLimitPrice = MarketDataStaticField_LowerLimitPrice;
+        
+    ///本次结算价
+    // TThostFtdcPriceType double
+    self->data.SettlementPrice = MarketDataStaticField_SettlementPrice;
+        
+    ///今虚实度
+    // TThostFtdcRatioType double
+    self->data.CurrDelta = MarketDataStaticField_CurrDelta;
+        
 
     return 0;
 }
@@ -97,14 +121,14 @@ static PyObject *PyCThostFtdcMarketDataStaticField_repr(PyCThostFtdcMarketDataSt
     PyObject *obj = Py_BuildValue("{s:d,s:d,s:d,s:d,s:d,s:d,s:d,s:d}"
 #endif
 
-		, "OpenPrice", self->data.OpenPrice
-		, "HighestPrice", self->data.HighestPrice
-		, "LowestPrice", self->data.LowestPrice
-		, "ClosePrice", self->data.ClosePrice
-		, "UpperLimitPrice", self->data.UpperLimitPrice
-		, "LowerLimitPrice", self->data.LowerLimitPrice
-		, "SettlementPrice", self->data.SettlementPrice
-		, "CurrDelta", self->data.CurrDelta
+        ,"OpenPrice", self->data.OpenPrice 
+        ,"HighestPrice", self->data.HighestPrice 
+        ,"LowestPrice", self->data.LowestPrice 
+        ,"ClosePrice", self->data.ClosePrice 
+        ,"UpperLimitPrice", self->data.UpperLimitPrice 
+        ,"LowerLimitPrice", self->data.LowerLimitPrice 
+        ,"SettlementPrice", self->data.SettlementPrice 
+        ,"CurrDelta", self->data.CurrDelta 
 
 
 		);
@@ -117,39 +141,16 @@ static PyObject *PyCThostFtdcMarketDataStaticField_repr(PyCThostFtdcMarketDataSt
     return PyObject_Repr(obj);
 }
 
+
+///今开盘
+// TThostFtdcPriceType double
 static PyObject *PyCThostFtdcMarketDataStaticField_get_OpenPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.OpenPrice);
+    return PyFloat_FromDouble(self->data.OpenPrice);
 }
 
-static PyObject *PyCThostFtdcMarketDataStaticField_get_HighestPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.HighestPrice);
-}
-
-static PyObject *PyCThostFtdcMarketDataStaticField_get_LowestPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.LowestPrice);
-}
-
-static PyObject *PyCThostFtdcMarketDataStaticField_get_ClosePrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.ClosePrice);
-}
-
-static PyObject *PyCThostFtdcMarketDataStaticField_get_UpperLimitPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.UpperLimitPrice);
-}
-
-static PyObject *PyCThostFtdcMarketDataStaticField_get_LowerLimitPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.LowerLimitPrice);
-}
-
-static PyObject *PyCThostFtdcMarketDataStaticField_get_SettlementPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.SettlementPrice);
-}
-
-static PyObject *PyCThostFtdcMarketDataStaticField_get_CurrDelta(PyCThostFtdcMarketDataStaticField *self, void *closure) {
-	return PyFloat_FromDouble(self->data.CurrDelta);
-}
-
-static int PyCThostFtdcMarketDataStaticField_set_OpenPrice(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///今开盘
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataStaticField_set_OpenPrice(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "OpenPrice Expected float");
         return -1;
@@ -161,8 +162,16 @@ static int PyCThostFtdcMarketDataStaticField_set_OpenPrice(PyCThostFtdcMarketDat
     self->data.OpenPrice = buf;
     return 0;
 }
+        
+///最高价
+// TThostFtdcPriceType double
+static PyObject *PyCThostFtdcMarketDataStaticField_get_HighestPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
+    return PyFloat_FromDouble(self->data.HighestPrice);
+}
 
-static int PyCThostFtdcMarketDataStaticField_set_HighestPrice(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///最高价
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataStaticField_set_HighestPrice(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "HighestPrice Expected float");
         return -1;
@@ -174,8 +183,16 @@ static int PyCThostFtdcMarketDataStaticField_set_HighestPrice(PyCThostFtdcMarket
     self->data.HighestPrice = buf;
     return 0;
 }
+        
+///最低价
+// TThostFtdcPriceType double
+static PyObject *PyCThostFtdcMarketDataStaticField_get_LowestPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
+    return PyFloat_FromDouble(self->data.LowestPrice);
+}
 
-static int PyCThostFtdcMarketDataStaticField_set_LowestPrice(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///最低价
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataStaticField_set_LowestPrice(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LowestPrice Expected float");
         return -1;
@@ -187,8 +204,16 @@ static int PyCThostFtdcMarketDataStaticField_set_LowestPrice(PyCThostFtdcMarketD
     self->data.LowestPrice = buf;
     return 0;
 }
+        
+///今收盘
+// TThostFtdcPriceType double
+static PyObject *PyCThostFtdcMarketDataStaticField_get_ClosePrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
+    return PyFloat_FromDouble(self->data.ClosePrice);
+}
 
-static int PyCThostFtdcMarketDataStaticField_set_ClosePrice(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///今收盘
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataStaticField_set_ClosePrice(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "ClosePrice Expected float");
         return -1;
@@ -200,8 +225,16 @@ static int PyCThostFtdcMarketDataStaticField_set_ClosePrice(PyCThostFtdcMarketDa
     self->data.ClosePrice = buf;
     return 0;
 }
+        
+///涨停板价
+// TThostFtdcPriceType double
+static PyObject *PyCThostFtdcMarketDataStaticField_get_UpperLimitPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
+    return PyFloat_FromDouble(self->data.UpperLimitPrice);
+}
 
-static int PyCThostFtdcMarketDataStaticField_set_UpperLimitPrice(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///涨停板价
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataStaticField_set_UpperLimitPrice(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "UpperLimitPrice Expected float");
         return -1;
@@ -213,8 +246,16 @@ static int PyCThostFtdcMarketDataStaticField_set_UpperLimitPrice(PyCThostFtdcMar
     self->data.UpperLimitPrice = buf;
     return 0;
 }
+        
+///跌停板价
+// TThostFtdcPriceType double
+static PyObject *PyCThostFtdcMarketDataStaticField_get_LowerLimitPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
+    return PyFloat_FromDouble(self->data.LowerLimitPrice);
+}
 
-static int PyCThostFtdcMarketDataStaticField_set_LowerLimitPrice(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///跌停板价
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataStaticField_set_LowerLimitPrice(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "LowerLimitPrice Expected float");
         return -1;
@@ -226,8 +267,16 @@ static int PyCThostFtdcMarketDataStaticField_set_LowerLimitPrice(PyCThostFtdcMar
     self->data.LowerLimitPrice = buf;
     return 0;
 }
+        
+///本次结算价
+// TThostFtdcPriceType double
+static PyObject *PyCThostFtdcMarketDataStaticField_get_SettlementPrice(PyCThostFtdcMarketDataStaticField *self, void *closure) {
+    return PyFloat_FromDouble(self->data.SettlementPrice);
+}
 
-static int PyCThostFtdcMarketDataStaticField_set_SettlementPrice(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///本次结算价
+// TThostFtdcPriceType double
+static int PyCThostFtdcMarketDataStaticField_set_SettlementPrice(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "SettlementPrice Expected float");
         return -1;
@@ -239,8 +288,16 @@ static int PyCThostFtdcMarketDataStaticField_set_SettlementPrice(PyCThostFtdcMar
     self->data.SettlementPrice = buf;
     return 0;
 }
+        
+///今虚实度
+// TThostFtdcRatioType double
+static PyObject *PyCThostFtdcMarketDataStaticField_get_CurrDelta(PyCThostFtdcMarketDataStaticField *self, void *closure) {
+    return PyFloat_FromDouble(self->data.CurrDelta);
+}
 
-static int PyCThostFtdcMarketDataStaticField_set_CurrDelta(PyCThostFtdcMarketDataStaticField* self, PyObject* val, void *closure) {
+///今虚实度
+// TThostFtdcRatioType double
+static int PyCThostFtdcMarketDataStaticField_set_CurrDelta(PyCThostFtdcMarketDataStaticField *self, PyObject* val, void *closure) {
     if (!PyFloat_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "CurrDelta Expected float");
         return -1;
@@ -252,18 +309,25 @@ static int PyCThostFtdcMarketDataStaticField_set_CurrDelta(PyCThostFtdcMarketDat
     self->data.CurrDelta = buf;
     return 0;
 }
-
-
+        
 
 static PyGetSetDef PyCThostFtdcMarketDataStaticField_getset[] = {
-	 {(char *)"OpenPrice", (getter)PyCThostFtdcMarketDataStaticField_get_OpenPrice, (setter)PyCThostFtdcMarketDataStaticField_set_OpenPrice, (char *)"OpenPrice", NULL},
-	 {(char *)"HighestPrice", (getter)PyCThostFtdcMarketDataStaticField_get_HighestPrice, (setter)PyCThostFtdcMarketDataStaticField_set_HighestPrice, (char *)"HighestPrice", NULL},
-	 {(char *)"LowestPrice", (getter)PyCThostFtdcMarketDataStaticField_get_LowestPrice, (setter)PyCThostFtdcMarketDataStaticField_set_LowestPrice, (char *)"LowestPrice", NULL},
-	 {(char *)"ClosePrice", (getter)PyCThostFtdcMarketDataStaticField_get_ClosePrice, (setter)PyCThostFtdcMarketDataStaticField_set_ClosePrice, (char *)"ClosePrice", NULL},
-	 {(char *)"UpperLimitPrice", (getter)PyCThostFtdcMarketDataStaticField_get_UpperLimitPrice, (setter)PyCThostFtdcMarketDataStaticField_set_UpperLimitPrice, (char *)"UpperLimitPrice", NULL},
-	 {(char *)"LowerLimitPrice", (getter)PyCThostFtdcMarketDataStaticField_get_LowerLimitPrice, (setter)PyCThostFtdcMarketDataStaticField_set_LowerLimitPrice, (char *)"LowerLimitPrice", NULL},
-	 {(char *)"SettlementPrice", (getter)PyCThostFtdcMarketDataStaticField_get_SettlementPrice, (setter)PyCThostFtdcMarketDataStaticField_set_SettlementPrice, (char *)"SettlementPrice", NULL},
-	 {(char *)"CurrDelta", (getter)PyCThostFtdcMarketDataStaticField_get_CurrDelta, (setter)PyCThostFtdcMarketDataStaticField_set_CurrDelta, (char *)"CurrDelta", NULL},
+    ///今开盘 
+    {(char *)"OpenPrice", (getter)PyCThostFtdcMarketDataStaticField_get_OpenPrice, (setter)PyCThostFtdcMarketDataStaticField_set_OpenPrice, (char *)"OpenPrice", NULL},
+    ///最高价 
+    {(char *)"HighestPrice", (getter)PyCThostFtdcMarketDataStaticField_get_HighestPrice, (setter)PyCThostFtdcMarketDataStaticField_set_HighestPrice, (char *)"HighestPrice", NULL},
+    ///最低价 
+    {(char *)"LowestPrice", (getter)PyCThostFtdcMarketDataStaticField_get_LowestPrice, (setter)PyCThostFtdcMarketDataStaticField_set_LowestPrice, (char *)"LowestPrice", NULL},
+    ///今收盘 
+    {(char *)"ClosePrice", (getter)PyCThostFtdcMarketDataStaticField_get_ClosePrice, (setter)PyCThostFtdcMarketDataStaticField_set_ClosePrice, (char *)"ClosePrice", NULL},
+    ///涨停板价 
+    {(char *)"UpperLimitPrice", (getter)PyCThostFtdcMarketDataStaticField_get_UpperLimitPrice, (setter)PyCThostFtdcMarketDataStaticField_set_UpperLimitPrice, (char *)"UpperLimitPrice", NULL},
+    ///跌停板价 
+    {(char *)"LowerLimitPrice", (getter)PyCThostFtdcMarketDataStaticField_get_LowerLimitPrice, (setter)PyCThostFtdcMarketDataStaticField_set_LowerLimitPrice, (char *)"LowerLimitPrice", NULL},
+    ///本次结算价 
+    {(char *)"SettlementPrice", (getter)PyCThostFtdcMarketDataStaticField_get_SettlementPrice, (setter)PyCThostFtdcMarketDataStaticField_set_SettlementPrice, (char *)"SettlementPrice", NULL},
+    ///今虚实度 
+    {(char *)"CurrDelta", (getter)PyCThostFtdcMarketDataStaticField_get_CurrDelta, (setter)PyCThostFtdcMarketDataStaticField_set_CurrDelta, (char *)"CurrDelta", NULL},
 
     {NULL}
 };

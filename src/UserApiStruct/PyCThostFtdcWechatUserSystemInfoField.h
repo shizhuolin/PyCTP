@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-
+///微信小程序等用户系统信息
 
 typedef struct PyCThostFtdcWechatUserSystemInfoField {
     PyObject_HEAD

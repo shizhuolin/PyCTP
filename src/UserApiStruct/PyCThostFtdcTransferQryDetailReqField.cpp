@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcTransferQryDetailReqField.h"
 
-
+///查询银行交易明细请求，TradeCode=204999
 
 static PyObject *PyCThostFtdcTransferQryDetailReqField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcTransferQryDetailReqField *self = (PyCThostFtdcTransferQryDetailReqField *)type->tp_alloc(type, 0);
@@ -18,11 +18,12 @@ static int PyCThostFtdcTransferQryDetailReqField_init(PyCThostFtdcTransferQryDet
 
     static const char *kwlist[] = {"FutureAccount",  NULL};
 
-	//TThostFtdcAccountIDType char[13]
-	const char *pTransferQryDetailReqField_FutureAccount = NULL;
-	Py_ssize_t pTransferQryDetailReqField_FutureAccount_len = 0;
 
-
+    ///期货资金账户
+    // TThostFtdcAccountIDType char[13]
+    const char *TransferQryDetailReqField_FutureAccount = NULL;
+    Py_ssize_t TransferQryDetailReqField_FutureAccount_len = 0;
+            
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,24 +31,27 @@ static int PyCThostFtdcTransferQryDetailReqField_init(PyCThostFtdcTransferQryDet
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-		, &pTransferQryDetailReqField_FutureAccount, &pTransferQryDetailReqField_FutureAccount_len
+        , &TransferQryDetailReqField_FutureAccount, &TransferQryDetailReqField_FutureAccount_len 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcAccountIDType char[13]
-	if(pTransferQryDetailReqField_FutureAccount != NULL) {
-		if(pTransferQryDetailReqField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
-			PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", pTransferQryDetailReqField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
-			return -1;
-		}
-		strncpy(self->data.FutureAccount, pTransferQryDetailReqField_FutureAccount, sizeof(self->data.FutureAccount) );
-		pTransferQryDetailReqField_FutureAccount = NULL;
-	}
 
-
+    ///期货资金账户
+    // TThostFtdcAccountIDType char[13]
+    if( TransferQryDetailReqField_FutureAccount != NULL ) {
+        if(TransferQryDetailReqField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+            PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", TransferQryDetailReqField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
+            return -1;
+        }
+        // memset(self->data.FutureAccount, 0, sizeof(self->data.FutureAccount));
+        // memcpy(self->data.FutureAccount, TransferQryDetailReqField_FutureAccount, TransferQryDetailReqField_FutureAccount_len);        
+        strncpy(self->data.FutureAccount, TransferQryDetailReqField_FutureAccount, sizeof(self->data.FutureAccount) );
+        TransferQryDetailReqField_FutureAccount = NULL;
+    }
+            
 
     return 0;
 }
@@ -64,7 +68,7 @@ static PyObject *PyCThostFtdcTransferQryDetailReqField_repr(PyCThostFtdcTransfer
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-		, "FutureAccount", self->data.FutureAccount 
+        ,"FutureAccount", self->data.FutureAccount//, (Py_ssize_t)sizeof(self->data.FutureAccount) 
 
 
 		);
@@ -77,29 +81,37 @@ static PyObject *PyCThostFtdcTransferQryDetailReqField_repr(PyCThostFtdcTransfer
     return PyObject_Repr(obj);
 }
 
+
+///期货资金账户
+// TThostFtdcAccountIDType char[13]
 static PyObject *PyCThostFtdcTransferQryDetailReqField_get_FutureAccount(PyCThostFtdcTransferQryDetailReqField *self, void *closure) {
-	return PyBytes_FromString(self->data.FutureAccount);
+    //return PyBytes_FromStringAndSize(self->data.FutureAccount, (Py_ssize_t)sizeof(self->data.FutureAccount));
+    return PyBytes_FromString(self->data.FutureAccount);
 }
 
-static int PyCThostFtdcTransferQryDetailReqField_set_FutureAccount(PyCThostFtdcTransferQryDetailReqField* self, PyObject* val, void *closure) {
-	if (!PyBytes_Check(val)) {
-		PyErr_SetString(PyExc_TypeError, "FutureAccount Expected bytes");
-		return -1;
-	}
-	const char *buf = PyBytes_AsString(val);
-	Py_ssize_t len = PyBytes_Size(val);
-	if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
-		PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
-		return -1;
-	}
-	strncpy(self->data.FutureAccount, buf, sizeof(self->data.FutureAccount));
-	return 0;
+///期货资金账户
+// TThostFtdcAccountIDType char[13]
+static int PyCThostFtdcTransferQryDetailReqField_set_FutureAccount(PyCThostFtdcTransferQryDetailReqField *self, PyObject* val, void *closure) {
+    if (!PyBytes_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "FutureAccount Expected bytes");
+        return -1;
+    }
+    const char *buf = PyBytes_AsString(val);
+    Py_ssize_t len = PyBytes_Size(val);
+    if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+        PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
+        return -1;
+    }
+    // memset(self->data.FutureAccount, 0, sizeof(self->data.FutureAccount));
+    // memcpy(self->data.FutureAccount, buf, len);
+    strncpy(self->data.FutureAccount, buf, sizeof(self->data.FutureAccount));
+    return 0;
 }
-
-
+            
 
 static PyGetSetDef PyCThostFtdcTransferQryDetailReqField_getset[] = {
-	 {(char *)"FutureAccount", (getter)PyCThostFtdcTransferQryDetailReqField_get_FutureAccount, (setter)PyCThostFtdcTransferQryDetailReqField_set_FutureAccount, (char *)"FutureAccount", NULL},
+    ///期货资金账户 
+    {(char *)"FutureAccount", (getter)PyCThostFtdcTransferQryDetailReqField_get_FutureAccount, (setter)PyCThostFtdcTransferQryDetailReqField_set_FutureAccount, (char *)"FutureAccount", NULL},
 
     {NULL}
 };

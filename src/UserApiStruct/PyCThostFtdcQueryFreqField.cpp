@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcQueryFreqField.h"
 
-
+///查询频率，每秒查询比数
 
 static PyObject *PyCThostFtdcQueryFreqField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcQueryFreqField *self = (PyCThostFtdcQueryFreqField *)type->tp_alloc(type, 0);
@@ -18,13 +18,15 @@ static int PyCThostFtdcQueryFreqField_init(PyCThostFtdcQueryFreqField *self, PyO
 
     static const char *kwlist[] = {"QueryFreq", "FTDPkgFreq",  NULL};
 
-	//TThostFtdcQueryFreqType int
-	int pQueryFreqField_QueryFreq = 0;
 
-	//TThostFtdcQueryFreqType int
-	int pQueryFreqField_FTDPkgFreq = 0;
-
-
+    ///查询频率
+    // TThostFtdcQueryFreqType int
+    int QueryFreqField_QueryFreq = 0;
+        
+    ///FTD频率
+    // TThostFtdcQueryFreqType int
+    int QueryFreqField_FTDPkgFreq = 0;
+        
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|ii", (char **)kwlist
@@ -32,21 +34,23 @@ static int PyCThostFtdcQueryFreqField_init(PyCThostFtdcQueryFreqField *self, PyO
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|ii", (char **)kwlist
 #endif
 
-		, &pQueryFreqField_QueryFreq
-		, &pQueryFreqField_FTDPkgFreq
+        , &QueryFreqField_QueryFreq 
+        , &QueryFreqField_FTDPkgFreq 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcQueryFreqType int
-	self->data.QueryFreq = pQueryFreqField_QueryFreq;
 
-	//TThostFtdcQueryFreqType int
-	self->data.FTDPkgFreq = pQueryFreqField_FTDPkgFreq;
-
-
+    ///查询频率
+    // TThostFtdcQueryFreqType int
+    self->data.QueryFreq = QueryFreqField_QueryFreq;
+        
+    ///FTD频率
+    // TThostFtdcQueryFreqType int
+    self->data.FTDPkgFreq = QueryFreqField_FTDPkgFreq;
+        
 
     return 0;
 }
@@ -63,8 +67,8 @@ static PyObject *PyCThostFtdcQueryFreqField_repr(PyCThostFtdcQueryFreqField *sel
     PyObject *obj = Py_BuildValue("{s:i,s:i}"
 #endif
 
-		, "QueryFreq", self->data.QueryFreq
-		, "FTDPkgFreq", self->data.FTDPkgFreq
+        ,"QueryFreq", self->data.QueryFreq 
+        ,"FTDPkgFreq", self->data.FTDPkgFreq 
 
 
 		);
@@ -77,79 +81,89 @@ static PyObject *PyCThostFtdcQueryFreqField_repr(PyCThostFtdcQueryFreqField *sel
     return PyObject_Repr(obj);
 }
 
+
+///查询频率
+// TThostFtdcQueryFreqType int
 static PyObject *PyCThostFtdcQueryFreqField_get_QueryFreq(PyCThostFtdcQueryFreqField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3 
-	return PyLong_FromLong(self->data.QueryFreq);
-#else 
-	return PyInt_FromLong(self->data.QueryFreq);
-#endif 
+#if PY_MAJOR_VERSION >= 3
+    return PyLong_FromLong(self->data.QueryFreq);
+#else
+    return PyInt_FromLong(self->data.QueryFreq);
+#endif
 }
 
-static PyObject *PyCThostFtdcQueryFreqField_get_FTDPkgFreq(PyCThostFtdcQueryFreqField *self, void *closure) {
-#if PY_MAJOR_VERSION >= 3 
-	return PyLong_FromLong(self->data.FTDPkgFreq);
-#else 
-	return PyInt_FromLong(self->data.FTDPkgFreq);
-#endif 
-}
-
-static int PyCThostFtdcQueryFreqField_set_QueryFreq(PyCThostFtdcQueryFreqField* self, PyObject* val, void *closure) {
+///查询频率
+// TThostFtdcQueryFreqType int
+static int PyCThostFtdcQueryFreqField_set_QueryFreq(PyCThostFtdcQueryFreqField *self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "QueryFreq Expected long");
-#else 
-    if (!PyInt_Check(val)) { 
-        PyErr_SetString(PyExc_TypeError, "QueryFreq Expected int"); 
-#endif 
+#else
+    if (!PyInt_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "QueryFreq Expected int");
+#endif
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3 
-    const long buf = PyLong_AsLong(val); 
-#else 
-    const long buf = PyInt_AsLong(val); 
-#endif 
-    if (buf == -1 && PyErr_Occurred()) { 
-        return -1; 
-    } 
-    if (buf < INT_MIN || buf > INT_MAX) { 
-        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
-        return -1; 
-    } 
-    self->data.QueryFreq = (int)buf; 
-    return 0; 
+#if PY_MAJOR_VERSION >= 3
+    const long buf = PyLong_AsLong(val);
+#else
+    const long buf = PyInt_AsLong(val);
+#endif
+    if (buf == -1 && PyErr_Occurred()) {
+        return -1;
+    }
+    if (buf < INT_MIN || buf > INT_MAX) {
+        PyErr_SetString(PyExc_OverflowError, "the QueryFreq value out of range for C int");
+        return -1;
+    }
+    self->data.QueryFreq = (int)buf;
+    return 0;
+}
+        
+///FTD频率
+// TThostFtdcQueryFreqType int
+static PyObject *PyCThostFtdcQueryFreqField_get_FTDPkgFreq(PyCThostFtdcQueryFreqField *self, void *closure) {
+#if PY_MAJOR_VERSION >= 3
+    return PyLong_FromLong(self->data.FTDPkgFreq);
+#else
+    return PyInt_FromLong(self->data.FTDPkgFreq);
+#endif
 }
 
-static int PyCThostFtdcQueryFreqField_set_FTDPkgFreq(PyCThostFtdcQueryFreqField* self, PyObject* val, void *closure) {
+///FTD频率
+// TThostFtdcQueryFreqType int
+static int PyCThostFtdcQueryFreqField_set_FTDPkgFreq(PyCThostFtdcQueryFreqField *self, PyObject* val, void *closure) {
 #if PY_MAJOR_VERSION >= 3
     if (!PyLong_Check(val)) {
         PyErr_SetString(PyExc_TypeError, "FTDPkgFreq Expected long");
-#else 
-    if (!PyInt_Check(val)) { 
-        PyErr_SetString(PyExc_TypeError, "FTDPkgFreq Expected int"); 
-#endif 
+#else
+    if (!PyInt_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "FTDPkgFreq Expected int");
+#endif
         return -1;
     }
-#if PY_MAJOR_VERSION >= 3 
-    const long buf = PyLong_AsLong(val); 
-#else 
-    const long buf = PyInt_AsLong(val); 
-#endif 
-    if (buf == -1 && PyErr_Occurred()) { 
-        return -1; 
-    } 
-    if (buf < INT_MIN || buf > INT_MAX) { 
-        PyErr_SetString(PyExc_OverflowError, "the value out of range for C int"); 
-        return -1; 
-    } 
-    self->data.FTDPkgFreq = (int)buf; 
-    return 0; 
+#if PY_MAJOR_VERSION >= 3
+    const long buf = PyLong_AsLong(val);
+#else
+    const long buf = PyInt_AsLong(val);
+#endif
+    if (buf == -1 && PyErr_Occurred()) {
+        return -1;
+    }
+    if (buf < INT_MIN || buf > INT_MAX) {
+        PyErr_SetString(PyExc_OverflowError, "the FTDPkgFreq value out of range for C int");
+        return -1;
+    }
+    self->data.FTDPkgFreq = (int)buf;
+    return 0;
 }
-
-
+        
 
 static PyGetSetDef PyCThostFtdcQueryFreqField_getset[] = {
-	 {(char *)"QueryFreq", (getter)PyCThostFtdcQueryFreqField_get_QueryFreq, (setter)PyCThostFtdcQueryFreqField_set_QueryFreq, (char *)"QueryFreq", NULL},
-	 {(char *)"FTDPkgFreq", (getter)PyCThostFtdcQueryFreqField_get_FTDPkgFreq, (setter)PyCThostFtdcQueryFreqField_set_FTDPkgFreq, (char *)"FTDPkgFreq", NULL},
+    ///查询频率 
+    {(char *)"QueryFreq", (getter)PyCThostFtdcQueryFreqField_get_QueryFreq, (setter)PyCThostFtdcQueryFreqField_set_QueryFreq, (char *)"QueryFreq", NULL},
+    ///FTD频率 
+    {(char *)"FTDPkgFreq", (getter)PyCThostFtdcQueryFreqField_get_FTDPkgFreq, (setter)PyCThostFtdcQueryFreqField_set_FTDPkgFreq, (char *)"FTDPkgFreq", NULL},
 
     {NULL}
 };

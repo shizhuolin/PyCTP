@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcForceUserLogoutField.h"
 
-
+///强制交易员退出
 
 static PyObject *PyCThostFtdcForceUserLogoutField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcForceUserLogoutField *self = (PyCThostFtdcForceUserLogoutField *)type->tp_alloc(type, 0);
@@ -18,15 +18,17 @@ static int PyCThostFtdcForceUserLogoutField_init(PyCThostFtdcForceUserLogoutFiel
 
     static const char *kwlist[] = {"BrokerID", "UserID",  NULL};
 
-	//TThostFtdcBrokerIDType char[11]
-	const char *pForceUserLogoutField_BrokerID = NULL;
-	Py_ssize_t pForceUserLogoutField_BrokerID_len = 0;
 
-	//TThostFtdcUserIDType char[16]
-	const char *pForceUserLogoutField_UserID = NULL;
-	Py_ssize_t pForceUserLogoutField_UserID_len = 0;
-
-
+    ///经纪公司代码
+    // TThostFtdcBrokerIDType char[11]
+    const char *ForceUserLogoutField_BrokerID = NULL;
+    Py_ssize_t ForceUserLogoutField_BrokerID_len = 0;
+            
+    ///用户代码
+    // TThostFtdcUserIDType char[16]
+    const char *ForceUserLogoutField_UserID = NULL;
+    Py_ssize_t ForceUserLogoutField_UserID_len = 0;
+            
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#y#", (char **)kwlist
@@ -34,35 +36,41 @@ static int PyCThostFtdcForceUserLogoutField_init(PyCThostFtdcForceUserLogoutFiel
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#s#", (char **)kwlist
 #endif
 
-		, &pForceUserLogoutField_BrokerID, &pForceUserLogoutField_BrokerID_len
-		, &pForceUserLogoutField_UserID, &pForceUserLogoutField_UserID_len
+        , &ForceUserLogoutField_BrokerID, &ForceUserLogoutField_BrokerID_len 
+        , &ForceUserLogoutField_UserID, &ForceUserLogoutField_UserID_len 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcBrokerIDType char[11]
-	if(pForceUserLogoutField_BrokerID != NULL) {
-		if(pForceUserLogoutField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-			PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", pForceUserLogoutField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
-			return -1;
-		}
-		strncpy(self->data.BrokerID, pForceUserLogoutField_BrokerID, sizeof(self->data.BrokerID) );
-		pForceUserLogoutField_BrokerID = NULL;
-	}
 
-	//TThostFtdcUserIDType char[16]
-	if(pForceUserLogoutField_UserID != NULL) {
-		if(pForceUserLogoutField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
-			PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", pForceUserLogoutField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
-			return -1;
-		}
-		strncpy(self->data.UserID, pForceUserLogoutField_UserID, sizeof(self->data.UserID) );
-		pForceUserLogoutField_UserID = NULL;
-	}
-
-
+    ///经纪公司代码
+    // TThostFtdcBrokerIDType char[11]
+    if( ForceUserLogoutField_BrokerID != NULL ) {
+        if(ForceUserLogoutField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+            PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ForceUserLogoutField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
+            return -1;
+        }
+        // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
+        // memcpy(self->data.BrokerID, ForceUserLogoutField_BrokerID, ForceUserLogoutField_BrokerID_len);        
+        strncpy(self->data.BrokerID, ForceUserLogoutField_BrokerID, sizeof(self->data.BrokerID) );
+        ForceUserLogoutField_BrokerID = NULL;
+    }
+            
+    ///用户代码
+    // TThostFtdcUserIDType char[16]
+    if( ForceUserLogoutField_UserID != NULL ) {
+        if(ForceUserLogoutField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+            PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ForceUserLogoutField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
+            return -1;
+        }
+        // memset(self->data.UserID, 0, sizeof(self->data.UserID));
+        // memcpy(self->data.UserID, ForceUserLogoutField_UserID, ForceUserLogoutField_UserID_len);        
+        strncpy(self->data.UserID, ForceUserLogoutField_UserID, sizeof(self->data.UserID) );
+        ForceUserLogoutField_UserID = NULL;
+    }
+            
 
     return 0;
 }
@@ -79,8 +87,8 @@ static PyObject *PyCThostFtdcForceUserLogoutField_repr(PyCThostFtdcForceUserLogo
     PyObject *obj = Py_BuildValue("{s:s,s:s}"
 #endif
 
-		, "BrokerID", self->data.BrokerID 
-		, "UserID", self->data.UserID 
+        ,"BrokerID", self->data.BrokerID//, (Py_ssize_t)sizeof(self->data.BrokerID) 
+        ,"UserID", self->data.UserID//, (Py_ssize_t)sizeof(self->data.UserID) 
 
 
 		);
@@ -93,49 +101,65 @@ static PyObject *PyCThostFtdcForceUserLogoutField_repr(PyCThostFtdcForceUserLogo
     return PyObject_Repr(obj);
 }
 
+
+///经纪公司代码
+// TThostFtdcBrokerIDType char[11]
 static PyObject *PyCThostFtdcForceUserLogoutField_get_BrokerID(PyCThostFtdcForceUserLogoutField *self, void *closure) {
-	return PyBytes_FromString(self->data.BrokerID);
+    //return PyBytes_FromStringAndSize(self->data.BrokerID, (Py_ssize_t)sizeof(self->data.BrokerID));
+    return PyBytes_FromString(self->data.BrokerID);
 }
 
+///经纪公司代码
+// TThostFtdcBrokerIDType char[11]
+static int PyCThostFtdcForceUserLogoutField_set_BrokerID(PyCThostFtdcForceUserLogoutField *self, PyObject* val, void *closure) {
+    if (!PyBytes_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
+        return -1;
+    }
+    const char *buf = PyBytes_AsString(val);
+    Py_ssize_t len = PyBytes_Size(val);
+    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
+        return -1;
+    }
+    // memset(self->data.BrokerID, 0, sizeof(self->data.BrokerID));
+    // memcpy(self->data.BrokerID, buf, len);
+    strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
+    return 0;
+}
+            
+///用户代码
+// TThostFtdcUserIDType char[16]
 static PyObject *PyCThostFtdcForceUserLogoutField_get_UserID(PyCThostFtdcForceUserLogoutField *self, void *closure) {
-	return PyBytes_FromString(self->data.UserID);
+    //return PyBytes_FromStringAndSize(self->data.UserID, (Py_ssize_t)sizeof(self->data.UserID));
+    return PyBytes_FromString(self->data.UserID);
 }
 
-static int PyCThostFtdcForceUserLogoutField_set_BrokerID(PyCThostFtdcForceUserLogoutField* self, PyObject* val, void *closure) {
-	if (!PyBytes_Check(val)) {
-		PyErr_SetString(PyExc_TypeError, "BrokerID Expected bytes");
-		return -1;
-	}
-	const char *buf = PyBytes_AsString(val);
-	Py_ssize_t len = PyBytes_Size(val);
-	if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
-		PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
-		return -1;
-	}
-	strncpy(self->data.BrokerID, buf, sizeof(self->data.BrokerID));
-	return 0;
+///用户代码
+// TThostFtdcUserIDType char[16]
+static int PyCThostFtdcForceUserLogoutField_set_UserID(PyCThostFtdcForceUserLogoutField *self, PyObject* val, void *closure) {
+    if (!PyBytes_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
+        return -1;
+    }
+    const char *buf = PyBytes_AsString(val);
+    Py_ssize_t len = PyBytes_Size(val);
+    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
+        return -1;
+    }
+    // memset(self->data.UserID, 0, sizeof(self->data.UserID));
+    // memcpy(self->data.UserID, buf, len);
+    strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
+    return 0;
 }
-
-static int PyCThostFtdcForceUserLogoutField_set_UserID(PyCThostFtdcForceUserLogoutField* self, PyObject* val, void *closure) {
-	if (!PyBytes_Check(val)) {
-		PyErr_SetString(PyExc_TypeError, "UserID Expected bytes");
-		return -1;
-	}
-	const char *buf = PyBytes_AsString(val);
-	Py_ssize_t len = PyBytes_Size(val);
-	if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
-		PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
-		return -1;
-	}
-	strncpy(self->data.UserID, buf, sizeof(self->data.UserID));
-	return 0;
-}
-
-
+            
 
 static PyGetSetDef PyCThostFtdcForceUserLogoutField_getset[] = {
-	 {(char *)"BrokerID", (getter)PyCThostFtdcForceUserLogoutField_get_BrokerID, (setter)PyCThostFtdcForceUserLogoutField_set_BrokerID, (char *)"BrokerID", NULL},
-	 {(char *)"UserID", (getter)PyCThostFtdcForceUserLogoutField_get_UserID, (setter)PyCThostFtdcForceUserLogoutField_set_UserID, (char *)"UserID", NULL},
+    ///经纪公司代码 
+    {(char *)"BrokerID", (getter)PyCThostFtdcForceUserLogoutField_get_BrokerID, (setter)PyCThostFtdcForceUserLogoutField_set_BrokerID, (char *)"BrokerID", NULL},
+    ///用户代码 
+    {(char *)"UserID", (getter)PyCThostFtdcForceUserLogoutField_get_UserID, (setter)PyCThostFtdcForceUserLogoutField_set_UserID, (char *)"UserID", NULL},
 
     {NULL}
 };

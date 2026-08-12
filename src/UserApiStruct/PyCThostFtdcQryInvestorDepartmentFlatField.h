@@ -4,7 +4,7 @@
 #include "../stdafx.h"
 #include <ThostFtdcUserApiStruct.h>
 
-
+///查询组织架构投资者对应关系
 
 typedef struct PyCThostFtdcQryInvestorDepartmentFlatField {
     PyObject_HEAD

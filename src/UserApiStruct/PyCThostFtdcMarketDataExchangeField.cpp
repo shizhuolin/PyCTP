@@ -1,7 +1,7 @@
 
 #include "PyCThostFtdcMarketDataExchangeField.h"
 
-
+///行情交易所代码属性
 
 static PyObject *PyCThostFtdcMarketDataExchangeField_new(PyTypeObject *type, PyObject *args, PyObject *kwds) {
     PyCThostFtdcMarketDataExchangeField *self = (PyCThostFtdcMarketDataExchangeField *)type->tp_alloc(type, 0);
@@ -18,11 +18,12 @@ static int PyCThostFtdcMarketDataExchangeField_init(PyCThostFtdcMarketDataExchan
 
     static const char *kwlist[] = {"ExchangeID",  NULL};
 
-	//TThostFtdcExchangeIDType char[9]
-	const char *pMarketDataExchangeField_ExchangeID = NULL;
-	Py_ssize_t pMarketDataExchangeField_ExchangeID_len = 0;
 
-
+    ///交易所代码
+    // TThostFtdcExchangeIDType char[9]
+    const char *MarketDataExchangeField_ExchangeID = NULL;
+    Py_ssize_t MarketDataExchangeField_ExchangeID_len = 0;
+            
 
 #if PY_MAJOR_VERSION >= 3
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|y#", (char **)kwlist
@@ -30,24 +31,27 @@ static int PyCThostFtdcMarketDataExchangeField_init(PyCThostFtdcMarketDataExchan
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|s#", (char **)kwlist
 #endif
 
-		, &pMarketDataExchangeField_ExchangeID, &pMarketDataExchangeField_ExchangeID_len
+        , &MarketDataExchangeField_ExchangeID, &MarketDataExchangeField_ExchangeID_len 
 
 
     )) {
         return -1;
     }
 
-	//TThostFtdcExchangeIDType char[9]
-	if(pMarketDataExchangeField_ExchangeID != NULL) {
-		if(pMarketDataExchangeField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-			PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", pMarketDataExchangeField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
-			return -1;
-		}
-		strncpy(self->data.ExchangeID, pMarketDataExchangeField_ExchangeID, sizeof(self->data.ExchangeID) );
-		pMarketDataExchangeField_ExchangeID = NULL;
-	}
 
-
+    ///交易所代码
+    // TThostFtdcExchangeIDType char[9]
+    if( MarketDataExchangeField_ExchangeID != NULL ) {
+        if(MarketDataExchangeField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+            PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", MarketDataExchangeField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
+            return -1;
+        }
+        // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
+        // memcpy(self->data.ExchangeID, MarketDataExchangeField_ExchangeID, MarketDataExchangeField_ExchangeID_len);        
+        strncpy(self->data.ExchangeID, MarketDataExchangeField_ExchangeID, sizeof(self->data.ExchangeID) );
+        MarketDataExchangeField_ExchangeID = NULL;
+    }
+            
 
     return 0;
 }
@@ -64,7 +68,7 @@ static PyObject *PyCThostFtdcMarketDataExchangeField_repr(PyCThostFtdcMarketData
     PyObject *obj = Py_BuildValue("{s:s}"
 #endif
 
-		, "ExchangeID", self->data.ExchangeID 
+        ,"ExchangeID", self->data.ExchangeID//, (Py_ssize_t)sizeof(self->data.ExchangeID) 
 
 
 		);
@@ -77,29 +81,37 @@ static PyObject *PyCThostFtdcMarketDataExchangeField_repr(PyCThostFtdcMarketData
     return PyObject_Repr(obj);
 }
 
+
+///交易所代码
+// TThostFtdcExchangeIDType char[9]
 static PyObject *PyCThostFtdcMarketDataExchangeField_get_ExchangeID(PyCThostFtdcMarketDataExchangeField *self, void *closure) {
-	return PyBytes_FromString(self->data.ExchangeID);
+    //return PyBytes_FromStringAndSize(self->data.ExchangeID, (Py_ssize_t)sizeof(self->data.ExchangeID));
+    return PyBytes_FromString(self->data.ExchangeID);
 }
 
-static int PyCThostFtdcMarketDataExchangeField_set_ExchangeID(PyCThostFtdcMarketDataExchangeField* self, PyObject* val, void *closure) {
-	if (!PyBytes_Check(val)) {
-		PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
-		return -1;
-	}
-	const char *buf = PyBytes_AsString(val);
-	Py_ssize_t len = PyBytes_Size(val);
-	if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
-		PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
-		return -1;
-	}
-	strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
-	return 0;
+///交易所代码
+// TThostFtdcExchangeIDType char[9]
+static int PyCThostFtdcMarketDataExchangeField_set_ExchangeID(PyCThostFtdcMarketDataExchangeField *self, PyObject* val, void *closure) {
+    if (!PyBytes_Check(val)) {
+        PyErr_SetString(PyExc_TypeError, "ExchangeID Expected bytes");
+        return -1;
+    }
+    const char *buf = PyBytes_AsString(val);
+    Py_ssize_t len = PyBytes_Size(val);
+    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
+        return -1;
+    }
+    // memset(self->data.ExchangeID, 0, sizeof(self->data.ExchangeID));
+    // memcpy(self->data.ExchangeID, buf, len);
+    strncpy(self->data.ExchangeID, buf, sizeof(self->data.ExchangeID));
+    return 0;
 }
-
-
+            
 
 static PyGetSetDef PyCThostFtdcMarketDataExchangeField_getset[] = {
-	 {(char *)"ExchangeID", (getter)PyCThostFtdcMarketDataExchangeField_get_ExchangeID, (setter)PyCThostFtdcMarketDataExchangeField_set_ExchangeID, (char *)"ExchangeID", NULL},
+    ///交易所代码 
+    {(char *)"ExchangeID", (getter)PyCThostFtdcMarketDataExchangeField_get_ExchangeID, (setter)PyCThostFtdcMarketDataExchangeField_set_ExchangeID, (char *)"ExchangeID", NULL},
 
     {NULL}
 };

@@ -15,7 +15,7 @@ def file_read(filename):
     return sourcecode
 
 def file_save(filename, content):
-    with open(filename, 'wt') as f:
+    with open(filename, 'wt', encoding='utf-8', newline='\n') as f:
         f.write(content)
     print('save:', filename)
     
@@ -601,6 +601,8 @@ def generate_api_cppsource_code(AST_Api, cpython_path, template_filename, genera
                 apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_INT({method_name}) \n'
             elif (not method_IsStatic and method_IsVirtual and method_return_type == 'const char *' and len(method_param) == 0):
                 apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_STRING({method_name}) \n'
+            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'char *' and len(method_param) == 0):
+                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_STRING({method_name}) \n'
             elif (not method_IsStatic and method_IsVirtual and method_return_type == 'void' and len(method_param)==1 
                   and method_param[0].IsPointer and method_param[0].Type=='char'):
                 apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_VOID_STRING({method_name}) \n'
@@ -642,12 +644,33 @@ def generate_api_cppsource_code(AST_Api, cpython_path, template_filename, genera
     generate_filename = os.path.join(cpython_path, generate_filename)
     gencode_from_template(template_filename, {'spibody': spibody, 'apibody': apibody, 'apilist': apilist}, generate_filename)
     
-def generate_cpp_from_ctp(cpp_path, cpython_path):
+def find_h_files(root_dir, endswith=['.h'], exclude_endswith=['SMCertApi.h']):
     import os
-    AST_ApiDataType = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcUserApiDataType.h'))
-    AST_ApiStruct = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcUserApiStruct.h'))
-    AST_MdApi = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcMdApi.h'))
-    AST_TraderApi = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcTraderApi.h'))
+    h_files = []
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        for filename in filenames:
+            if any([filename.endswith(k) for k in endswith]) and not any([filename.endswith(k) for k in exclude_endswith]):
+                full_path = os.path.join(dirpath, filename)
+                h_files.append(full_path)
+    return h_files
+    
+def generate_cpp_from_ctp(cpp_path, cpython_path):
+    h_files = find_h_files(cpp_path)
+    AST_ApiDataType, AST_ApiStruct, AST_MdApi, AST_TraderApi = None, None, None, None
+    for file in h_files:
+        if not AST_ApiDataType and file.endswith('ThostFtdcUserApiDataType.h'):
+            AST_ApiDataType = cpp_file_parse(file)
+        if not AST_ApiStruct and file.endswith('ThostFtdcUserApiStruct.h'):
+            AST_ApiStruct = cpp_file_parse(file)
+        if not AST_MdApi and file.endswith('ThostFtdcMdApi.h'):
+            AST_MdApi = cpp_file_parse(file)
+        if not AST_TraderApi and file.endswith('ThostFtdcTraderApi.h'):
+            AST_TraderApi = cpp_file_parse(file)
+            
+    # AST_ApiDataType = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcUserApiDataType.h'))
+    # AST_ApiStruct = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcUserApiStruct.h'))
+    # AST_MdApi = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcMdApi.h'))
+    # AST_TraderApi = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcTraderApi.h'))
     
     # from UserApiDataType.cpp.template to UserApiDataType.cpp.template
     generate_macro_code(AST_ApiDataType, cpython_path)
@@ -663,11 +686,11 @@ def generate_cpp_from_ctp(cpp_path, cpython_path):
     
     # from ./src/TraderApi.cpp.template
     generate_api_cppsource_code(AST_TraderApi, cpython_path, 'TraderApi.cpp.template', 'TraderApi.cpp', 'CThostFtdcTraderSpi', 'CThostFtdcTraderApi', ['CreateFtdcTraderApi', 'GetApiVersion', 'RegisterSpi', 'Release', '~CThostFtdcTraderApi', 'SubscribePrivateTopic', 'SubscribePublicTopic'])
-    
+
+import os
 ###################################################################################################################################
-ctp_cpp_path = './ctp/v6.7.11_20250617/v6.7.11_20250617_api_traderapi_se_linux64'
-# ctp_cpp_path = './ctp/v6.7.9_P1_20250319/20250319_traderapi_se_windows'
-# ctp_cpp_path = './ctp/v6.7.9_P1_20250319/20250319_traderapi64_se_windows'
+ctp_cpp_path = './ctp/v6.7.13_20260225_trader'
+ctp_cpp_path = os.environ.get('ctp_cpp_path', ctp_cpp_path)
 ###################################################################################################################################
 ctp_cpython_path = './src'
 generate_cpp_from_ctp(ctp_cpp_path, ctp_cpython_path)

@@ -4,13 +4,13 @@
 
 ### 版本信息
 
-* 当前版本：v6.7.11_20250617 + sfit_pro_1.0_20220124_1468_FIX
-* 更新日期：2025-08-11
+* 当前版本：v6.7.13_20260225_trader, v6.7.13_20260408_clientdatacollectdll, v6.7.13_20260225_traderSM, v6.7.13_CP_20260408_clientdatacollectdll
+* 更新日期：2026-08-11
 
 ### 环境:
 
-* Linux: gcc，Python 2.7, 3.6, 3.8, 3.9
-* Windows 11: Visual Studio 2022，Python 3,10, 3.13
+* Linux: gcc，Python 2.7, 3.10
+* Windows 11: Visual Studio 2026，Python 3.10 bit64
 
 ### 编译及构建:
 

@@ -8,19 +8,35 @@ import platform, sys, os, shutil, tempfile
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext as _build_ext
 
-linux_ctp = ['./ctp/v6.7.11_20250617/v6.7.11_20250617_api_traderapi_se_linux64'
-             , './ctp/sfit_pro_1.0_20220124_1468_FIX'
-             , './ctp/sfit_pro_1.0_20220124_1468_FIX/linux']
+def find_include_lib_path(root_dir, linux_ctp, win32_ctp, win64_ctp, libraries):
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        for filename in filenames:
+            if filename.endswith('.so'):
+                linux_ctp.append(dirpath)
+                libraries.append(filename)
+            if filename.endswith('.dll'):
+                if all(k in dirpath for k in ['64_', 'windows']):
+                    win64_ctp.append(dirpath)
+                else:
+                    win32_ctp.append(dirpath)
+                libraries.append(filename)
+    return linux_ctp, win32_ctp, win64_ctp, libraries
 
-win32_ctp = ['./ctp/v6.7.11_20250617/20250617_traderapi_se_windows'
-             , './ctp/sfit_pro_1.0_20220124_1468_FIX'
-             , './ctp/sfit_pro_1.0_20220124_1468_FIX/windows/32']
+ctp_cpp_path = './ctp/v6.7.13_20260225_trader'
+clientdatacollectdll = './ctp/v6.7.13_20260408_clientdatacollectdll'
 
-win64_ctp = ['./ctp/v6.7.11_20250617/20250617_traderapi64_se_windows'
-             , './ctp/sfit_pro_1.0_20220124_1468_FIX'
-             , './ctp/sfit_pro_1.0_20220124_1468_FIX/windows/64']
+ctp_cpp_path = os.environ.get('ctp_cpp_path', ctp_cpp_path)
+clientdatacollectdll = os.environ.get('clientdatacollectdll', clientdatacollectdll)
 
 src_dir ='./src'
+
+linux_ctp, win32_ctp, win64_ctp, libraries = [], [], [], []
+linux_ctp, win32_ctp, win64_ctp, libraries = find_include_lib_path(ctp_cpp_path, linux_ctp, win32_ctp, win64_ctp, libraries)
+linux_ctp, win32_ctp, win64_ctp, libraries = find_include_lib_path(clientdatacollectdll, linux_ctp, win32_ctp, win64_ctp, libraries)
+linux_ctp = list(set(linux_ctp))
+win32_ctp = list(set(win32_ctp))
+win64_ctp = list(set(win64_ctp))
+libraries = list(set(libraries))
 
 def list_all_files(src_dir):
     header_list, source_list, other_list = [], [], []
@@ -107,6 +123,7 @@ if platform.system() == 'Linux':
     optional['library_dirs'] = linux_ctp
     package_data.extend([os.path.join(path, '*.h') for path in linux_ctp])
     package_data.extend([os.path.join(path, '*.so') for path in linux_ctp])
+    libraries = [lib.replace('lib', '').replace('.so', '') for lib in libraries if lib.endswith('.so')]
 if platform.system() == 'Windows':
     optional['include_dirs'] = win32_ctp
     optional['library_dirs'] = win32_ctp
@@ -117,6 +134,7 @@ if platform.system() == 'Windows':
         optional['library_dirs'] = win64_ctp
         package_data.extend([os.path.join(path, '*.h') for path in win64_ctp])
         package_data.extend([os.path.join(path, '*.dll') for path in win64_ctp])
+    libraries = [lib.replace('.dll', '') for lib in libraries if lib.endswith('.dll')]
         
 argments = dict( name = 'PyCTP'
                 ,sources = sources
@@ -124,11 +142,11 @@ argments = dict( name = 'PyCTP'
                 ,runtime_library_dirs = get_runtime_dirs()
                 ,extra_compile_args = get_extra_compile_args()
                 ,extra_link_args = get_extra_link_args()
-                ,libraries=[ 'thostmduserapi_se', 'thosttraderapi_se', 'FixLinuxDataCollect' if platform.system() == 'Linux' else 'FixWinDataCollect'])
+                ,libraries = libraries)
 argments.update(optional)
 
 setup( name = 'PyCTP'
-      ,version = '2.0.0'
+      ,version = '2.0.1'
       ,description = 'CTP for Python (' + long_description + ')'
       ,long_description = 'CTP for Python (' + long_description + ')'
       ,author = 'Shi Zhuolin'

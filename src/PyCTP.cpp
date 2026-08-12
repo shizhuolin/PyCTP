@@ -1,4 +1,4 @@
-﻿// PyCTP.cpp : Defines the exported functions for the DLL application.
+// PyCTP.cpp : Defines the exported functions for the DLL application.
 //
 
 // CTP 转 python
@@ -14,7 +14,7 @@
 #include "UserApiStruct.h"
 #include "MdApi.h"
 #include "TraderApi.h"
-#include <FixDataCollect.h>
+#include <DataCollect.h>
 
 #define MODULE_NAME "PyCTP"
 #define MODULE_DOC "CTP for Python author:http://www.shizhuolin.com shizhuolin@hotmail.com qq:383193853"

@@ -1,0 +1,132 @@
+版本号：v6.7.13_20260225 14:16:30.12079
+后台版本：V6.7.13
+说明：（1）兼容性：默认高版本后台兼容低版本API；（2）请各终端厂商根据自身情况进行开发。
+
+变更说明：
+1、后台V6.7.12版本优化，不涉及API修改，但对API有影响的变更（因V6.7.12没发API版本，故在此文档中进行补充说明）：
+（1）优化查询经纪公司交易参数接口ReqQryBrokerTradingParams返回的盈亏算法Algorithm参数值；
+（2）对于本就不支持的组合合约的条件单、预埋单、预埋撤单业务，返回明确报错信息如下（详见 error.xml）：
+   <error id="COMB_PARKED_ORDER_INSERT" value="6011" prompt="CTP:不允许报入组合合约预埋单"/>
+   <error id="COMB_PARKED_ORDER_ACTION" value="6012" prompt="CTP:不允许报入组合合约预埋撤单"/>
+   <error id="COMB_CONDITION_ORDER_INSERT" value="6013" prompt="CTP:不允许报入组合合约条件单"/>
+
+ 2、投资者账户登录支持双因素认证功能：
+（1）新增 申请短信验证码请求接口 ReqGenSMSCode，请求中的 BrokerID、UserlD、Mobile 必填。
+	///申请短信验证码请求
+	ReqGenSMSCode
+	///申请短信验证码响应
+	OnRspGenSMSCode
+（2）修改ReqUserLogin登录请求接口的CThostFtdcReqUserLoginField，增加短信验证码字段。
+	///短信验证码
+	TThostFtdcSMSCodeType	SMSCode;
+（3）后台校验后，给API返回的报错信息有（详见 error.xml）：
+   <error id="MOBILE_NOT_MATCH" value="6014" prompt="CTP:非预留手机号"/>
+	<error id="SMSVERIFY_NOT_CONFIG" value="6015" prompt="CTP:该用户没有开启短信验证"/>
+	<error id="DUP_SMSCODE_GEN_REQ" value="6016" prompt="CTP:重复的申请验证码请求"/>
+	<error id="SMSCODE_MISMATCH" value="6017" prompt="CTP:验证码不匹配"/>
+	<error id="SMSCODE_USED" value="6018" prompt="CTP:验证码已经使用过"/>
+	<error id="SMSCODE_OUTOFTIME" value="6019" prompt="CTP:验证码已过期"/>
+	<error id="SMSCODE_NEEDED" value="6020" prompt="CTP:您已开启短信认证，请填写短信验证码"/>
+	<error id="DR_SMSVERIFY_NOT_CONFIG" value="6021" prompt="CTP:该中心未配置短信验证功能"/>
+	<error id="AFTER_LOGIN" value="6023" prompt="CTP:您已登录成功，不允许申请验证码"/>
+	
+3、订阅私有流接口 新增 THOST_TERT_RESUME_FROM_SEQ_NO 私有流订阅模式，支持从指定序号开始重传，若未填写序号则默认从序号1开始重传：
+	（1）SubscribePrivateTopic 接口，入参增加 int nSeqNo，不填默认为1；
+	（2）THOST_TE_RESUME_TYPE 新增枚举值：THOST_TERT_RESUME_FROM_SEQ_NO
+
+4、增加私有流序号回调接口OnRtnPrivateSeqNo：
+	///@param nSeqNo 即将被处理的私有流的序号
+	virtual void OnRtnPrivateSeqNo(int nSeqNo) {};	
+
+5、优化中继上报用户信息接口 RegisterUserSystemInfo，新增 MAC 字段。
+	特别说明：应期货公司按监管要求清洗数据要求，监管字段在此接口均已独立出来。请中继终端规范填写此接口的 ClientPublicIP、ClientAppID、MAC字段，另外ClientLoginRemark 字段建议填写格式为“UUID|手机号..”，注意均填写终端投资者的信息。另外，考虑到监管趋势日趋严厉，CTP后续可能会考虑将这三个字段由非必填改为必填，请提前规范填写。
+		///客户终端的MAC等标识
+		TThostFtdcDeviceTagType	MAC;
+
+6、新增支持郑商所套利确认和套保确认指令的接口（注意，交易所仍在盘后结算才能确认）：
+说明：（1）套利确认请求、套保确认请求，若CTP校验通过后给 Rtn通知 / CTP校验未通过 则给 Rsp响应和ErrRtn —> 从交易所回来收到回报后给Rtn通知（若交易所校验未通过是没有ErrRtn的）。
+        （2）套利确认撤销请求、套保确认撤销请求，若CTP校验通过后给 Rtn通知 / CTP校验未通过 则给 Rsp响应和ErrRtn —> 从交易所回来收到回报后给Rtn通知（若交易所校验未通过会有ErrRtn的）。
+（6.1）套利确认指令：
+	（1）套利确认申请
+			///套利确认请求  
+			ReqSpdApply
+			///套利确认回复
+			OnRspSpdApply
+			///套利确认通知
+			OnRtnSpdApply
+			///套利申请录入错误回报
+			OnErrRtnSpdApply
+	（2）套利确认查询
+			///套利确认查询请求
+			ReqQrySpdApply
+			///套利确认查询回复
+			OnRspQrySpdApply
+	（3）套利确认撤销
+			///套利确认撤销请求
+			ReqSpdApplyAction
+			///套利确认撤销回复
+			OnRspSpdApplyAction
+			///套利确认撤销通知
+			OnErrRtnSpdApplyAction
+（6.2）套保确认指令：
+	（1）套保确认申请
+			///套保确认请求
+			ReqHedgeCfm
+			///套保确认回复
+			OnRspHedgeCfm
+			///套保确认通知
+			OnRtnHedgeCfm
+			///套保额度录入错误回报
+			OnErrRtnHedgeCfm
+	（2）套保确认查询	
+			///套保确认查询请求
+			ReqQryHedgeCfm
+			///套保确认查询回复
+			OnRspQryHedgeCfm
+	（3）套保确认撤销	
+			///套保确认撤销请求
+			ReqHedgeCfmAction
+			///套保确认撤销回复
+			OnRspHedgeCfmAction
+			///套保确认撤销通知
+			OnErrRtnHedgeCfmAction
+（6.3）后台校验后，给API返回的报错信息有（详见 error.xml）：
+	<error id="SPD_APPLY_ORDER_REF_NOT_FOUND" value="6007" prompt="CTP:未找到套利申请记录"/>
+	<error id="SPD_APPLY_STATUS_ERR" value="6008" prompt="CTP:套利申请已撤销，不能重复撤销"/>
+	<error id="HEDGE_CFM_ORDER_REF_NOT_FOUND" value="6009" prompt="CTP:未找到套保申请记录"/>
+	<error id="HEDGE_CFM_STATUS_ERR" value="6010" prompt="CTP:套保申请已撤销，不能重复撤销"/>
+
+7、柜台支持期权到期日盘后禁止终端行权及做期权自对冲的时间设置，增加返回API的报错信息（详见 error.xml）：
+	<error id="OFFSET_TIME_FORBIDDEN" value="6022" prompt="CTP:该时间为到期日盘后禁止客户端自对冲时间，禁止申报"/>
+	
+8、采集库修改：
+（1）增加blkid指令补充采集云服务器的硬盘序列号；
+（2）windows版本采集库增加Get-CimInstance命令补充采集cpu序列号、bios序列号、磁盘序列号等信息，以解决高版本windows操作系统不再支持wmic命令的问题。
+
+9、请求查询签约银行接口的响应 OnRspQryContractBank 增加csrcBankID字段：
+	///上报csrc的银行代码
+	TThostFtdcBankIDType	csrcBankID;
+
+10、后台V6.7.13版本优化，不涉及API修改，但对API有影响的变更：
+（1）支持上期能源套利和市价指令业务，API使用方式有变化，具体如下：
+	（1.1）上期能源市价指令：
+		价格TThostFtdcPriceType LimitPrice字段填“保护价”；
+		报单价格条件 TThostFtdcOrderPriceTypeType OrderPriceType字段填 “任意价”
+	（1.2）上期能源套利指令：
+		组合开平标志CombOffsetFlag字段 和 组合投机套保标志CombHedgeflag字段需要输入两位。
+		示例：CombOffsetFlag=‘04’(表示左腿开，右腿平昨仓)，CombHedgeFlag=‘13’(表示左腿投机，右腿套保)；
+		其他说明：CombOffsetFlag=‘01’的1平仓也会自动转成4平昨；互换单标志 IsSwapOrder字段对上期所无效，也就是说 即便两腿开平标志不同，lsSwapOrder也填false，无需填true
+	（1.3）可开可平手数计算：
+		市价指令，采用保护价计算保证金；
+		套利指令，traderapi最大可下单手数中开平标志暂不支持输入两位，请用户分别查单腿的再取最小值作为套利合约的可开可平手数。
+	（1.4）其他说明-交易所规则：
+		上期能源的市价、套利指令报单，交易所仅允许在合约处于“连续交易”状态时报入；
+		集合竞价报单阶段仅允许撤销转限价后的市价报单或套利合约报单，不允许报入市价、套利指令报单。
+
+（2）支持不指定合约申报广期所的履约对冲业务（即合约代码可不填）。
+
+
+
+
+
+

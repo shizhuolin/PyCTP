@@ -84,7 +84,7 @@ class build_ext(_build_ext, object):
                 for filename in os.listdir(library_dir):
                     if filename.lower().endswith(('so','dll')):
                         extra_files.add( os.path.join(library_dir, filename) )
-            extra_files.add('./tests/test_PyCTP.py')
+            extra_files.add('./tests/test_pyctp.py')
             for f in extra_files:
                 if os.path.exists(f):
                     shutil.copy(f, build_dir)

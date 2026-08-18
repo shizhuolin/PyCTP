@@ -27,10 +27,6 @@ import logging
 import threading
 import PyCTP
 
-logging.basicConfig(
-    level=logging.NOTSET,
-    format=('%(levelname)s - [%(filename)s:%(lineno)d - %(funcName)s()] - '
-            '%(message)s'))
 
 logger = logging.getLogger(__name__)
 
@@ -1276,13 +1272,13 @@ class CTPTraderAPI(object):
             False,后续还有数据.
         """
         logger.info(('CThostFtdcTraderApi::OnRspOrderInsert'
-                      '({InstrumentID:%s, OrderRef:%s}'
-                      ', {ErrorID:%d, ErrorMsg:%s}, RequestID:%d, IsLast:%s)'),
-                     input_order.InstrumentID,
-                     input_order.OrderRef,
-                     rsp_info.ErrorID,
-                     bytes_to_text(rsp_info.ErrorMsg),
-                     request_id, is_last)
+                     '({InstrumentID:%s, OrderRef:%s}'
+                     ', {ErrorID:%d, ErrorMsg:%s}, RequestID:%d, IsLast:%s)'),
+                    input_order.InstrumentID,
+                    input_order.OrderRef,
+                    rsp_info.ErrorID,
+                    bytes_to_text(rsp_info.ErrorMsg),
+                    request_id, is_last)
 
 
 class CTPMarket(CTPMarketAPI):
@@ -1575,6 +1571,11 @@ def get_int_in_range(prompt, min_val, max_val):
 
 def main():
     """Entry."""
+    logging.basicConfig(
+        level=logging.NOTSET,
+        format=('%(levelname)s - [%(filename)s:%(lineno)d - %(funcName)s()] - '
+                '%(message)s'))
+
     t_front_addr, m_front_addr = select_front_server()
     mode = get_int_in_range('请选择模式 (1=生产, 2=评测)： ', 1, 2)
     is_production_mode = mode == 1

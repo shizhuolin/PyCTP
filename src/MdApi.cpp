@@ -88,22 +88,26 @@ namespace {
 			virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcRspUserLoginField *PypRspUserLogin = NULL; 
-			    PyObject *PypRspUserLogin_callarg = NULL; 
+			    PyObject *PypRspUserLogin_callarg = Py_None; 
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypRspUserLogin = PyObject_New(PyCThostFtdcRspUserLoginField, &PyCThostFtdcRspUserLoginFieldType);
-                if (!PypRspUserLogin) goto cleanup;
-                PypRspUserLogin_callarg = (PyObject *)PypRspUserLogin;
-                if (pRspUserLogin) { PypRspUserLogin->data = *pRspUserLogin; } else { PypRspUserLogin_callarg = Py_None; }
+                if (pRspUserLogin) {
+                    PypRspUserLogin = PyObject_New(PyCThostFtdcRspUserLoginField, &PyCThostFtdcRspUserLoginFieldType);
+                    if (!PypRspUserLogin) goto cleanup;
+                    PypRspUserLogin->data = *pRspUserLogin;
+                    PypRspUserLogin_callarg = (PyObject *)PypRspUserLogin;
+                }
                     
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -128,22 +132,26 @@ namespace {
 			virtual void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcUserLogoutField *PypUserLogout = NULL; 
-			    PyObject *PypUserLogout_callarg = NULL; 
+			    PyObject *PypUserLogout_callarg = Py_None; 
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypUserLogout = PyObject_New(PyCThostFtdcUserLogoutField, &PyCThostFtdcUserLogoutFieldType);
-                if (!PypUserLogout) goto cleanup;
-                PypUserLogout_callarg = (PyObject *)PypUserLogout;
-                if (pUserLogout) { PypUserLogout->data = *pUserLogout; } else { PypUserLogout_callarg = Py_None; }
+                if (pUserLogout) {
+                    PypUserLogout = PyObject_New(PyCThostFtdcUserLogoutField, &PyCThostFtdcUserLogoutFieldType);
+                    if (!PypUserLogout) goto cleanup;
+                    PypUserLogout->data = *pUserLogout;
+                    PypUserLogout_callarg = (PyObject *)PypUserLogout;
+                }
                     
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -168,22 +176,26 @@ namespace {
 			virtual void OnRspQryMulticastInstrument(CThostFtdcMulticastInstrumentField *pMulticastInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcMulticastInstrumentField *PypMulticastInstrument = NULL; 
-			    PyObject *PypMulticastInstrument_callarg = NULL; 
+			    PyObject *PypMulticastInstrument_callarg = Py_None; 
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypMulticastInstrument = PyObject_New(PyCThostFtdcMulticastInstrumentField, &PyCThostFtdcMulticastInstrumentFieldType);
-                if (!PypMulticastInstrument) goto cleanup;
-                PypMulticastInstrument_callarg = (PyObject *)PypMulticastInstrument;
-                if (pMulticastInstrument) { PypMulticastInstrument->data = *pMulticastInstrument; } else { PypMulticastInstrument_callarg = Py_None; }
+                if (pMulticastInstrument) {
+                    PypMulticastInstrument = PyObject_New(PyCThostFtdcMulticastInstrumentField, &PyCThostFtdcMulticastInstrumentFieldType);
+                    if (!PypMulticastInstrument) goto cleanup;
+                    PypMulticastInstrument->data = *pMulticastInstrument;
+                    PypMulticastInstrument_callarg = (PyObject *)PypMulticastInstrument;
+                }
                     
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -208,15 +220,17 @@ namespace {
 			virtual void OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -240,22 +254,26 @@ namespace {
 			virtual void OnRspSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcSpecificInstrumentField *PypSpecificInstrument = NULL; 
-			    PyObject *PypSpecificInstrument_callarg = NULL; 
+			    PyObject *PypSpecificInstrument_callarg = Py_None; 
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
-                if (!PypSpecificInstrument) goto cleanup;
-                PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
-                if (pSpecificInstrument) { PypSpecificInstrument->data = *pSpecificInstrument; } else { PypSpecificInstrument_callarg = Py_None; }
+                if (pSpecificInstrument) {
+                    PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
+                    if (!PypSpecificInstrument) goto cleanup;
+                    PypSpecificInstrument->data = *pSpecificInstrument;
+                    PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
+                }
                     
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -280,22 +298,26 @@ namespace {
 			virtual void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcSpecificInstrumentField *PypSpecificInstrument = NULL; 
-			    PyObject *PypSpecificInstrument_callarg = NULL; 
+			    PyObject *PypSpecificInstrument_callarg = Py_None; 
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
-                if (!PypSpecificInstrument) goto cleanup;
-                PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
-                if (pSpecificInstrument) { PypSpecificInstrument->data = *pSpecificInstrument; } else { PypSpecificInstrument_callarg = Py_None; }
+                if (pSpecificInstrument) {
+                    PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
+                    if (!PypSpecificInstrument) goto cleanup;
+                    PypSpecificInstrument->data = *pSpecificInstrument;
+                    PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
+                }
                     
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -320,22 +342,26 @@ namespace {
 			virtual void OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcSpecificInstrumentField *PypSpecificInstrument = NULL; 
-			    PyObject *PypSpecificInstrument_callarg = NULL; 
+			    PyObject *PypSpecificInstrument_callarg = Py_None; 
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
-                if (!PypSpecificInstrument) goto cleanup;
-                PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
-                if (pSpecificInstrument) { PypSpecificInstrument->data = *pSpecificInstrument; } else { PypSpecificInstrument_callarg = Py_None; }
+                if (pSpecificInstrument) {
+                    PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
+                    if (!PypSpecificInstrument) goto cleanup;
+                    PypSpecificInstrument->data = *pSpecificInstrument;
+                    PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
+                }
                     
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -360,22 +386,26 @@ namespace {
 			virtual void OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcSpecificInstrumentField *PypSpecificInstrument = NULL; 
-			    PyObject *PypSpecificInstrument_callarg = NULL; 
+			    PyObject *PypSpecificInstrument_callarg = Py_None; 
 			    PyCThostFtdcRspInfoField *PypRspInfo = NULL; 
-			    PyObject *PypRspInfo_callarg = NULL; 
+			    PyObject *PypRspInfo_callarg = Py_None; 
 			    PyObject *PynRequestID = NULL; 
 			    PyObject *PybIsLast = NULL; 
 			    PyObject *result = NULL; 
 
-                PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
-                if (!PypSpecificInstrument) goto cleanup;
-                PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
-                if (pSpecificInstrument) { PypSpecificInstrument->data = *pSpecificInstrument; } else { PypSpecificInstrument_callarg = Py_None; }
+                if (pSpecificInstrument) {
+                    PypSpecificInstrument = PyObject_New(PyCThostFtdcSpecificInstrumentField, &PyCThostFtdcSpecificInstrumentFieldType);
+                    if (!PypSpecificInstrument) goto cleanup;
+                    PypSpecificInstrument->data = *pSpecificInstrument;
+                    PypSpecificInstrument_callarg = (PyObject *)PypSpecificInstrument;
+                }
                     
-                PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
-                if (!PypRspInfo) goto cleanup;
-                PypRspInfo_callarg = (PyObject *)PypRspInfo;
-                if (pRspInfo) { PypRspInfo->data = *pRspInfo; } else { PypRspInfo_callarg = Py_None; }
+                if (pRspInfo) {
+                    PypRspInfo = PyObject_New(PyCThostFtdcRspInfoField, &PyCThostFtdcRspInfoFieldType);
+                    if (!PypRspInfo) goto cleanup;
+                    PypRspInfo->data = *pRspInfo;
+                    PypRspInfo_callarg = (PyObject *)PypRspInfo;
+                }
                     
                 PynRequestID = PyLong_FromLong(nRequestID);
                 if(!PynRequestID) goto cleanup;
@@ -400,13 +430,15 @@ namespace {
 			virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcDepthMarketDataField *PypDepthMarketData = NULL; 
-			    PyObject *PypDepthMarketData_callarg = NULL; 
+			    PyObject *PypDepthMarketData_callarg = Py_None; 
 			    PyObject *result = NULL; 
 
-                PypDepthMarketData = PyObject_New(PyCThostFtdcDepthMarketDataField, &PyCThostFtdcDepthMarketDataFieldType);
-                if (!PypDepthMarketData) goto cleanup;
-                PypDepthMarketData_callarg = (PyObject *)PypDepthMarketData;
-                if (pDepthMarketData) { PypDepthMarketData->data = *pDepthMarketData; } else { PypDepthMarketData_callarg = Py_None; }
+                if (pDepthMarketData) {
+                    PypDepthMarketData = PyObject_New(PyCThostFtdcDepthMarketDataField, &PyCThostFtdcDepthMarketDataFieldType);
+                    if (!PypDepthMarketData) goto cleanup;
+                    PypDepthMarketData->data = *pDepthMarketData;
+                    PypDepthMarketData_callarg = (PyObject *)PypDepthMarketData;
+                }
                     
                 // result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(__FUNCTION__), const_cast<char *>("O"), PypDepthMarketData_callarg);
                 result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRtnDepthMarketData"), const_cast<char *>("O"), PypDepthMarketData_callarg);
@@ -422,13 +454,15 @@ namespace {
 			virtual void OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp) {
                 PyGILState_STATE gstate = PyGILState_Ensure();
 			    PyCThostFtdcForQuoteRspField *PypForQuoteRsp = NULL; 
-			    PyObject *PypForQuoteRsp_callarg = NULL; 
+			    PyObject *PypForQuoteRsp_callarg = Py_None; 
 			    PyObject *result = NULL; 
 
-                PypForQuoteRsp = PyObject_New(PyCThostFtdcForQuoteRspField, &PyCThostFtdcForQuoteRspFieldType);
-                if (!PypForQuoteRsp) goto cleanup;
-                PypForQuoteRsp_callarg = (PyObject *)PypForQuoteRsp;
-                if (pForQuoteRsp) { PypForQuoteRsp->data = *pForQuoteRsp; } else { PypForQuoteRsp_callarg = Py_None; }
+                if (pForQuoteRsp) {
+                    PypForQuoteRsp = PyObject_New(PyCThostFtdcForQuoteRspField, &PyCThostFtdcForQuoteRspFieldType);
+                    if (!PypForQuoteRsp) goto cleanup;
+                    PypForQuoteRsp->data = *pForQuoteRsp;
+                    PypForQuoteRsp_callarg = (PyObject *)PypForQuoteRsp;
+                }
                     
                 // result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(__FUNCTION__), const_cast<char *>("O"), PypForQuoteRsp_callarg);
                 result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("OnRtnForQuoteRsp"), const_cast<char *>("O"), PypForQuoteRsp_callarg);

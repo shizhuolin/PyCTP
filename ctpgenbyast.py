@@ -539,7 +539,7 @@ def generate_api_cppsource_code(AST_Api, cpython_path, template_filename, genera
             for param in method_param:
                 if param.IsPointer:
                     spibody += f'			    Py{param.Type} *Py{param.Name} = NULL; \n'
-                    spibody += f'			    PyObject *Py{param.Name}_callarg = NULL; \n'
+                    spibody += f'			    PyObject *Py{param.Name}_callarg = Py_None; \n'
                 else:
                     spibody += f'			    PyObject *Py{param.Name} = NULL; \n'
             spibody += '			    PyObject *result = NULL; \n'
@@ -556,10 +556,12 @@ def generate_api_cppsource_code(AST_Api, cpython_path, template_filename, genera
                     '''
                 elif param.IsPointer:
                     spibody += f'''
-                Py{param.Name} = PyObject_New(Py{param.Type}, &Py{param.Type}Type);
-                if (!Py{param.Name}) goto cleanup;
-                Py{param.Name}_callarg = (PyObject *)Py{param.Name};
-                if ({param.Name}) {{ Py{param.Name}->data = *{param.Name}; }} else {{ Py{param.Name}_callarg = Py_None; }}
+                if ({param.Name}) {{
+                    Py{param.Name} = PyObject_New(Py{param.Type}, &Py{param.Type}Type);
+                    if (!Py{param.Name}) goto cleanup;
+                    Py{param.Name}->data = *{param.Name};
+                    Py{param.Name}_callarg = (PyObject *)Py{param.Name};
+                }}
                     '''
             if method_param:
                 callback_param_format = 'O' * len(method_param)

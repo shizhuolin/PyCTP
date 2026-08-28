@@ -8,6 +8,7 @@
 
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
+#include <new>
 
 #define PyCTP_FUNCTION_MAGIC(_in_class, _in_fun) \
 	static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
@@ -66,14 +67,15 @@
 
 #define PyCTP_FUNCTION_MAGIC_INT_SUBSCRIBE(_in_class, _in_fun) \
 	static PyObject* _in_class##_##_in_fun(PyObject *self, PyObject *args) { \
-	PyListObject *py_ppInstrumentID = NULL; int nCount, ret; char **ppInstrumentID; \
+	PyListObject *py_ppInstrumentID = NULL; int nCount, ret; char **ppInstrumentID = NULL; \
 	if ( !PyArg_ParseTuple(args, "Oi", &py_ppInstrumentID, &nCount) ) { PyErr_SetString(PyExc_ValueError, "parameter invalid."); return NULL; } \
 	if( !PyList_Check((PyObject *) py_ppInstrumentID) ) { PyErr_SetString(PyExc_TypeError, "first parameter must is PyList."); return NULL; } \
 	if( PyList_Size((PyObject *) py_ppInstrumentID) != nCount ) { PyErr_SetString(PyExc_ValueError, "nCount invalid."); return NULL; } \
-	ppInstrumentID = new char*[nCount]; \
+	ppInstrumentID = new(std::nothrow) char*[nCount]; \
+	if(!ppInstrumentID) { PyErr_NoMemory(); return NULL; } \
 	for(int i=0; i < nCount; i++) { \
 	PyObject* item = PyList_GetItem((PyObject *) py_ppInstrumentID, i); \
-	if( !PyBytes_Check(item) ) { PyErr_SetString(PyExc_TypeError, "Instrument ID must is bytes"); return NULL; } \
+	if( !PyBytes_Check(item) ) { PyErr_SetString(PyExc_TypeError, "Instrument ID must is bytes"); delete[] ppInstrumentID; return NULL; } \
 	ppInstrumentID[i] = PyBytes_AsString(item); } \
 	ret = ((_in_class *) self)->api->_in_fun(ppInstrumentID, nCount); \
 	delete[] ppInstrumentID; return PyLong_FromLong(ret); }

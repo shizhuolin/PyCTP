@@ -59,7 +59,7 @@ static int PyCThostFtdcSuperUserField_init(PyCThostFtdcSuperUserField *self, PyO
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( SuperUserField_UserID != NULL ) {
-        if(SuperUserField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(SuperUserField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", SuperUserField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcSuperUserField_init(PyCThostFtdcSuperUserField *self, PyO
     ///用户名称
     // TThostFtdcUserNameType char[81]
     if( SuperUserField_UserName != NULL ) {
-        if(SuperUserField_UserName_len > (Py_ssize_t)sizeof(self->data.UserName)) {
+        if(SuperUserField_UserName_len >= (Py_ssize_t)sizeof(self->data.UserName)) {
             PyErr_Format(PyExc_ValueError, "UserName too long: length=%zd (max allowed is %zd)", SuperUserField_UserName_len, (Py_ssize_t)sizeof(self->data.UserName));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcSuperUserField_init(PyCThostFtdcSuperUserField *self, PyO
     ///密码
     // TThostFtdcPasswordType char[41]
     if( SuperUserField_Password != NULL ) {
-        if(SuperUserField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(SuperUserField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", SuperUserField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcSuperUserField_set_UserID(PyCThostFtdcSuperUserField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcSuperUserField_set_UserName(PyCThostFtdcSuperUserField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserName)) {
         PyErr_SetString(PyExc_ValueError, "UserName must be less than 81 bytes");
         return -1;
     }
@@ -200,7 +200,7 @@ static int PyCThostFtdcSuperUserField_set_Password(PyCThostFtdcSuperUserField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }

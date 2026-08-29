@@ -143,7 +143,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///交易日
     // TThostFtdcDateType char[9]
     if( ReqUserLoginSMField_TradingDay != NULL ) {
-        if(ReqUserLoginSMField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(ReqUserLoginSMField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -156,7 +156,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( ReqUserLoginSMField_BrokerID != NULL ) {
-        if(ReqUserLoginSMField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ReqUserLoginSMField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -169,7 +169,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( ReqUserLoginSMField_UserID != NULL ) {
-        if(ReqUserLoginSMField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(ReqUserLoginSMField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -182,7 +182,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///密码
     // TThostFtdcPasswordType char[41]
     if( ReqUserLoginSMField_Password != NULL ) {
-        if(ReqUserLoginSMField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(ReqUserLoginSMField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -195,7 +195,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///用户端产品信息
     // TThostFtdcProductInfoType char[11]
     if( ReqUserLoginSMField_UserProductInfo != NULL ) {
-        if(ReqUserLoginSMField_UserProductInfo_len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+        if(ReqUserLoginSMField_UserProductInfo_len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
             PyErr_Format(PyExc_ValueError, "UserProductInfo too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_UserProductInfo_len, (Py_ssize_t)sizeof(self->data.UserProductInfo));
             return -1;
         }
@@ -208,7 +208,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///接口端产品信息
     // TThostFtdcProductInfoType char[11]
     if( ReqUserLoginSMField_InterfaceProductInfo != NULL ) {
-        if(ReqUserLoginSMField_InterfaceProductInfo_len > (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
+        if(ReqUserLoginSMField_InterfaceProductInfo_len >= (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
             PyErr_Format(PyExc_ValueError, "InterfaceProductInfo too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_InterfaceProductInfo_len, (Py_ssize_t)sizeof(self->data.InterfaceProductInfo));
             return -1;
         }
@@ -221,7 +221,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///协议信息
     // TThostFtdcProtocolInfoType char[11]
     if( ReqUserLoginSMField_ProtocolInfo != NULL ) {
-        if(ReqUserLoginSMField_ProtocolInfo_len > (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
+        if(ReqUserLoginSMField_ProtocolInfo_len >= (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
             PyErr_Format(PyExc_ValueError, "ProtocolInfo too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_ProtocolInfo_len, (Py_ssize_t)sizeof(self->data.ProtocolInfo));
             return -1;
         }
@@ -234,7 +234,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///Mac地址
     // TThostFtdcMacAddressType char[21]
     if( ReqUserLoginSMField_MacAddress != NULL ) {
-        if(ReqUserLoginSMField_MacAddress_len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+        if(ReqUserLoginSMField_MacAddress_len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
             PyErr_Format(PyExc_ValueError, "MacAddress too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_MacAddress_len, (Py_ssize_t)sizeof(self->data.MacAddress));
             return -1;
         }
@@ -247,7 +247,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///动态密码
     // TThostFtdcPasswordType char[41]
     if( ReqUserLoginSMField_OneTimePassword != NULL ) {
-        if(ReqUserLoginSMField_OneTimePassword_len > (Py_ssize_t)sizeof(self->data.OneTimePassword)) {
+        if(ReqUserLoginSMField_OneTimePassword_len >= (Py_ssize_t)sizeof(self->data.OneTimePassword)) {
             PyErr_Format(PyExc_ValueError, "OneTimePassword too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_OneTimePassword_len, (Py_ssize_t)sizeof(self->data.OneTimePassword));
             return -1;
         }
@@ -260,7 +260,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( ReqUserLoginSMField_reserve1 != NULL ) {
-        if(ReqUserLoginSMField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(ReqUserLoginSMField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -273,7 +273,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///登录备注
     // TThostFtdcLoginRemarkType char[36]
     if( ReqUserLoginSMField_LoginRemark != NULL ) {
-        if(ReqUserLoginSMField_LoginRemark_len > (Py_ssize_t)sizeof(self->data.LoginRemark)) {
+        if(ReqUserLoginSMField_LoginRemark_len >= (Py_ssize_t)sizeof(self->data.LoginRemark)) {
             PyErr_Format(PyExc_ValueError, "LoginRemark too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_LoginRemark_len, (Py_ssize_t)sizeof(self->data.LoginRemark));
             return -1;
         }
@@ -290,7 +290,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///终端IP地址
     // TThostFtdcIPAddressType char[33]
     if( ReqUserLoginSMField_ClientIPAddress != NULL ) {
-        if(ReqUserLoginSMField_ClientIPAddress_len > (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
+        if(ReqUserLoginSMField_ClientIPAddress_len >= (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
             PyErr_Format(PyExc_ValueError, "ClientIPAddress too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_ClientIPAddress_len, (Py_ssize_t)sizeof(self->data.ClientIPAddress));
             return -1;
         }
@@ -303,7 +303,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///短信验证码
     // TThostFtdcSMSCodeType char[17]
     if( ReqUserLoginSMField_SMSCode != NULL ) {
-        if(ReqUserLoginSMField_SMSCode_len > (Py_ssize_t)sizeof(self->data.SMSCode)) {
+        if(ReqUserLoginSMField_SMSCode_len >= (Py_ssize_t)sizeof(self->data.SMSCode)) {
             PyErr_Format(PyExc_ValueError, "SMSCode too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_SMSCode_len, (Py_ssize_t)sizeof(self->data.SMSCode));
             return -1;
         }
@@ -316,7 +316,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///经纪公司名称
     // TThostFtdcBrokerNameType char[81]
     if( ReqUserLoginSMField_BrokerName != NULL ) {
-        if(ReqUserLoginSMField_BrokerName_len > (Py_ssize_t)sizeof(self->data.BrokerName)) {
+        if(ReqUserLoginSMField_BrokerName_len >= (Py_ssize_t)sizeof(self->data.BrokerName)) {
             PyErr_Format(PyExc_ValueError, "BrokerName too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_BrokerName_len, (Py_ssize_t)sizeof(self->data.BrokerName));
             return -1;
         }
@@ -329,7 +329,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///认证码
     // TThostFtdcAuthCodeType char[17]
     if( ReqUserLoginSMField_AuthCode != NULL ) {
-        if(ReqUserLoginSMField_AuthCode_len > (Py_ssize_t)sizeof(self->data.AuthCode)) {
+        if(ReqUserLoginSMField_AuthCode_len >= (Py_ssize_t)sizeof(self->data.AuthCode)) {
             PyErr_Format(PyExc_ValueError, "AuthCode too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_AuthCode_len, (Py_ssize_t)sizeof(self->data.AuthCode));
             return -1;
         }
@@ -342,7 +342,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( ReqUserLoginSMField_AppID != NULL ) {
-        if(ReqUserLoginSMField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(ReqUserLoginSMField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -355,7 +355,7 @@ static int PyCThostFtdcReqUserLoginSMField_init(PyCThostFtdcReqUserLoginSMField 
     ///PIN码
     // TThostFtdcPasswordType char[41]
     if( ReqUserLoginSMField_PIN != NULL ) {
-        if(ReqUserLoginSMField_PIN_len > (Py_ssize_t)sizeof(self->data.PIN)) {
+        if(ReqUserLoginSMField_PIN_len >= (Py_ssize_t)sizeof(self->data.PIN)) {
             PyErr_Format(PyExc_ValueError, "PIN too long: length=%zd (max allowed is %zd)", ReqUserLoginSMField_PIN_len, (Py_ssize_t)sizeof(self->data.PIN));
             return -1;
         }
@@ -428,7 +428,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_TradingDay(PyCThostFtdcReqUserLog
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -454,7 +454,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_BrokerID(PyCThostFtdcReqUserLogin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -480,7 +480,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_UserID(PyCThostFtdcReqUserLoginSM
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -506,7 +506,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_Password(PyCThostFtdcReqUserLogin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -532,7 +532,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_UserProductInfo(PyCThostFtdcReqUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
         PyErr_SetString(PyExc_ValueError, "UserProductInfo must be less than 11 bytes");
         return -1;
     }
@@ -558,7 +558,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_InterfaceProductInfo(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
         PyErr_SetString(PyExc_ValueError, "InterfaceProductInfo must be less than 11 bytes");
         return -1;
     }
@@ -584,7 +584,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_ProtocolInfo(PyCThostFtdcReqUserL
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
         PyErr_SetString(PyExc_ValueError, "ProtocolInfo must be less than 11 bytes");
         return -1;
     }
@@ -610,7 +610,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_MacAddress(PyCThostFtdcReqUserLog
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
         PyErr_SetString(PyExc_ValueError, "MacAddress must be less than 21 bytes");
         return -1;
     }
@@ -636,7 +636,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_OneTimePassword(PyCThostFtdcReqUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OneTimePassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OneTimePassword)) {
         PyErr_SetString(PyExc_ValueError, "OneTimePassword must be less than 41 bytes");
         return -1;
     }
@@ -662,7 +662,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_reserve1(PyCThostFtdcReqUserLogin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -688,7 +688,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_LoginRemark(PyCThostFtdcReqUserLo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LoginRemark)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LoginRemark)) {
         PyErr_SetString(PyExc_ValueError, "LoginRemark must be less than 36 bytes");
         return -1;
     }
@@ -752,7 +752,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_ClientIPAddress(PyCThostFtdcReqUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
         PyErr_SetString(PyExc_ValueError, "ClientIPAddress must be less than 33 bytes");
         return -1;
     }
@@ -778,7 +778,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_SMSCode(PyCThostFtdcReqUserLoginS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SMSCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SMSCode)) {
         PyErr_SetString(PyExc_ValueError, "SMSCode must be less than 17 bytes");
         return -1;
     }
@@ -804,7 +804,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_BrokerName(PyCThostFtdcReqUserLog
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerName)) {
         PyErr_SetString(PyExc_ValueError, "BrokerName must be less than 81 bytes");
         return -1;
     }
@@ -830,7 +830,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_AuthCode(PyCThostFtdcReqUserLogin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AuthCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AuthCode)) {
         PyErr_SetString(PyExc_ValueError, "AuthCode must be less than 17 bytes");
         return -1;
     }
@@ -856,7 +856,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_AppID(PyCThostFtdcReqUserLoginSMF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }
@@ -882,7 +882,7 @@ static int PyCThostFtdcReqUserLoginSMField_set_PIN(PyCThostFtdcReqUserLoginSMFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.PIN)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.PIN)) {
         PyErr_SetString(PyExc_ValueError, "PIN must be less than 41 bytes");
         return -1;
     }

@@ -59,7 +59,7 @@ static int PyCThostFtdcCurrentTimeField_init(PyCThostFtdcCurrentTimeField *self,
     ///当前交易日
     // TThostFtdcDateType char[9]
     if( CurrentTimeField_CurrDate != NULL ) {
-        if(CurrentTimeField_CurrDate_len > (Py_ssize_t)sizeof(self->data.CurrDate)) {
+        if(CurrentTimeField_CurrDate_len >= (Py_ssize_t)sizeof(self->data.CurrDate)) {
             PyErr_Format(PyExc_ValueError, "CurrDate too long: length=%zd (max allowed is %zd)", CurrentTimeField_CurrDate_len, (Py_ssize_t)sizeof(self->data.CurrDate));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcCurrentTimeField_init(PyCThostFtdcCurrentTimeField *self,
     ///当前时间
     // TThostFtdcTimeType char[9]
     if( CurrentTimeField_CurrTime != NULL ) {
-        if(CurrentTimeField_CurrTime_len > (Py_ssize_t)sizeof(self->data.CurrTime)) {
+        if(CurrentTimeField_CurrTime_len >= (Py_ssize_t)sizeof(self->data.CurrTime)) {
             PyErr_Format(PyExc_ValueError, "CurrTime too long: length=%zd (max allowed is %zd)", CurrentTimeField_CurrTime_len, (Py_ssize_t)sizeof(self->data.CurrTime));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcCurrentTimeField_init(PyCThostFtdcCurrentTimeField *self,
     ///自然日期
     // TThostFtdcDateType char[9]
     if( CurrentTimeField_ActionDay != NULL ) {
-        if(CurrentTimeField_ActionDay_len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+        if(CurrentTimeField_ActionDay_len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
             PyErr_Format(PyExc_ValueError, "ActionDay too long: length=%zd (max allowed is %zd)", CurrentTimeField_ActionDay_len, (Py_ssize_t)sizeof(self->data.ActionDay));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcCurrentTimeField_set_CurrDate(PyCThostFtdcCurrentTimeFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrDate)) {
         PyErr_SetString(PyExc_ValueError, "CurrDate must be less than 9 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcCurrentTimeField_set_CurrTime(PyCThostFtdcCurrentTimeFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrTime)) {
         PyErr_SetString(PyExc_ValueError, "CurrTime must be less than 9 bytes");
         return -1;
     }
@@ -238,7 +238,7 @@ static int PyCThostFtdcCurrentTimeField_set_ActionDay(PyCThostFtdcCurrentTimeFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
         PyErr_SetString(PyExc_ValueError, "ActionDay must be less than 9 bytes");
         return -1;
     }

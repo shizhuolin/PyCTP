@@ -113,7 +113,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///交易日
     // TThostFtdcDateType char[9]
     if( ReqUserLoginWithCaptchaField_TradingDay != NULL ) {
-        if(ReqUserLoginWithCaptchaField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(ReqUserLoginWithCaptchaField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -126,7 +126,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( ReqUserLoginWithCaptchaField_BrokerID != NULL ) {
-        if(ReqUserLoginWithCaptchaField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ReqUserLoginWithCaptchaField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -139,7 +139,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( ReqUserLoginWithCaptchaField_UserID != NULL ) {
-        if(ReqUserLoginWithCaptchaField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(ReqUserLoginWithCaptchaField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -152,7 +152,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///密码
     // TThostFtdcPasswordType char[41]
     if( ReqUserLoginWithCaptchaField_Password != NULL ) {
-        if(ReqUserLoginWithCaptchaField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(ReqUserLoginWithCaptchaField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -165,7 +165,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///用户端产品信息
     // TThostFtdcProductInfoType char[11]
     if( ReqUserLoginWithCaptchaField_UserProductInfo != NULL ) {
-        if(ReqUserLoginWithCaptchaField_UserProductInfo_len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+        if(ReqUserLoginWithCaptchaField_UserProductInfo_len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
             PyErr_Format(PyExc_ValueError, "UserProductInfo too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_UserProductInfo_len, (Py_ssize_t)sizeof(self->data.UserProductInfo));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///接口端产品信息
     // TThostFtdcProductInfoType char[11]
     if( ReqUserLoginWithCaptchaField_InterfaceProductInfo != NULL ) {
-        if(ReqUserLoginWithCaptchaField_InterfaceProductInfo_len > (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
+        if(ReqUserLoginWithCaptchaField_InterfaceProductInfo_len >= (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
             PyErr_Format(PyExc_ValueError, "InterfaceProductInfo too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_InterfaceProductInfo_len, (Py_ssize_t)sizeof(self->data.InterfaceProductInfo));
             return -1;
         }
@@ -191,7 +191,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///协议信息
     // TThostFtdcProtocolInfoType char[11]
     if( ReqUserLoginWithCaptchaField_ProtocolInfo != NULL ) {
-        if(ReqUserLoginWithCaptchaField_ProtocolInfo_len > (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
+        if(ReqUserLoginWithCaptchaField_ProtocolInfo_len >= (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
             PyErr_Format(PyExc_ValueError, "ProtocolInfo too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_ProtocolInfo_len, (Py_ssize_t)sizeof(self->data.ProtocolInfo));
             return -1;
         }
@@ -204,7 +204,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///Mac地址
     // TThostFtdcMacAddressType char[21]
     if( ReqUserLoginWithCaptchaField_MacAddress != NULL ) {
-        if(ReqUserLoginWithCaptchaField_MacAddress_len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+        if(ReqUserLoginWithCaptchaField_MacAddress_len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
             PyErr_Format(PyExc_ValueError, "MacAddress too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_MacAddress_len, (Py_ssize_t)sizeof(self->data.MacAddress));
             return -1;
         }
@@ -217,7 +217,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( ReqUserLoginWithCaptchaField_reserve1 != NULL ) {
-        if(ReqUserLoginWithCaptchaField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(ReqUserLoginWithCaptchaField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -230,7 +230,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///登录备注
     // TThostFtdcLoginRemarkType char[36]
     if( ReqUserLoginWithCaptchaField_LoginRemark != NULL ) {
-        if(ReqUserLoginWithCaptchaField_LoginRemark_len > (Py_ssize_t)sizeof(self->data.LoginRemark)) {
+        if(ReqUserLoginWithCaptchaField_LoginRemark_len >= (Py_ssize_t)sizeof(self->data.LoginRemark)) {
             PyErr_Format(PyExc_ValueError, "LoginRemark too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_LoginRemark_len, (Py_ssize_t)sizeof(self->data.LoginRemark));
             return -1;
         }
@@ -243,7 +243,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///图形验证码的文字内容
     // TThostFtdcPasswordType char[41]
     if( ReqUserLoginWithCaptchaField_Captcha != NULL ) {
-        if(ReqUserLoginWithCaptchaField_Captcha_len > (Py_ssize_t)sizeof(self->data.Captcha)) {
+        if(ReqUserLoginWithCaptchaField_Captcha_len >= (Py_ssize_t)sizeof(self->data.Captcha)) {
             PyErr_Format(PyExc_ValueError, "Captcha too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_Captcha_len, (Py_ssize_t)sizeof(self->data.Captcha));
             return -1;
         }
@@ -260,7 +260,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_init(PyCThostFtdcReqUserLogi
     ///终端IP地址
     // TThostFtdcIPAddressType char[33]
     if( ReqUserLoginWithCaptchaField_ClientIPAddress != NULL ) {
-        if(ReqUserLoginWithCaptchaField_ClientIPAddress_len > (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
+        if(ReqUserLoginWithCaptchaField_ClientIPAddress_len >= (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
             PyErr_Format(PyExc_ValueError, "ClientIPAddress too long: length=%zd (max allowed is %zd)", ReqUserLoginWithCaptchaField_ClientIPAddress_len, (Py_ssize_t)sizeof(self->data.ClientIPAddress));
             return -1;
         }
@@ -328,7 +328,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_TradingDay(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -354,7 +354,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_BrokerID(PyCThostFtdcReq
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -380,7 +380,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_UserID(PyCThostFtdcReqUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -406,7 +406,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_Password(PyCThostFtdcReq
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -432,7 +432,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_UserProductInfo(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
         PyErr_SetString(PyExc_ValueError, "UserProductInfo must be less than 11 bytes");
         return -1;
     }
@@ -458,7 +458,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_InterfaceProductInfo(PyC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InterfaceProductInfo)) {
         PyErr_SetString(PyExc_ValueError, "InterfaceProductInfo must be less than 11 bytes");
         return -1;
     }
@@ -484,7 +484,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_ProtocolInfo(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProtocolInfo)) {
         PyErr_SetString(PyExc_ValueError, "ProtocolInfo must be less than 11 bytes");
         return -1;
     }
@@ -510,7 +510,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_MacAddress(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
         PyErr_SetString(PyExc_ValueError, "MacAddress must be less than 21 bytes");
         return -1;
     }
@@ -536,7 +536,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_reserve1(PyCThostFtdcReq
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -562,7 +562,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_LoginRemark(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LoginRemark)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LoginRemark)) {
         PyErr_SetString(PyExc_ValueError, "LoginRemark must be less than 36 bytes");
         return -1;
     }
@@ -588,7 +588,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_Captcha(PyCThostFtdcReqU
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Captcha)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Captcha)) {
         PyErr_SetString(PyExc_ValueError, "Captcha must be less than 41 bytes");
         return -1;
     }
@@ -652,7 +652,7 @@ static int PyCThostFtdcReqUserLoginWithCaptchaField_set_ClientIPAddress(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
         PyErr_SetString(PyExc_ValueError, "ClientIPAddress must be less than 33 bytes");
         return -1;
     }

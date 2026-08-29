@@ -60,7 +60,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_init(PyCThostFtdcSecAgentTradeInfo
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SecAgentTradeInfoField_BrokerID != NULL ) {
-        if(SecAgentTradeInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SecAgentTradeInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SecAgentTradeInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_init(PyCThostFtdcSecAgentTradeInfo
     ///境外中介机构资金帐号
     // TThostFtdcAccountIDType char[13]
     if( SecAgentTradeInfoField_BrokerSecAgentID != NULL ) {
-        if(SecAgentTradeInfoField_BrokerSecAgentID_len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
+        if(SecAgentTradeInfoField_BrokerSecAgentID_len >= (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
             PyErr_Format(PyExc_ValueError, "BrokerSecAgentID too long: length=%zd (max allowed is %zd)", SecAgentTradeInfoField_BrokerSecAgentID_len, (Py_ssize_t)sizeof(self->data.BrokerSecAgentID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_init(PyCThostFtdcSecAgentTradeInfo
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( SecAgentTradeInfoField_InvestorID != NULL ) {
-        if(SecAgentTradeInfoField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(SecAgentTradeInfoField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SecAgentTradeInfoField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_init(PyCThostFtdcSecAgentTradeInfo
     ///二级代理商姓名
     // TThostFtdcLongIndividualNameType char[161]
     if( SecAgentTradeInfoField_LongCustomerName != NULL ) {
-        if(SecAgentTradeInfoField_LongCustomerName_len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+        if(SecAgentTradeInfoField_LongCustomerName_len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
             PyErr_Format(PyExc_ValueError, "LongCustomerName too long: length=%zd (max allowed is %zd)", SecAgentTradeInfoField_LongCustomerName_len, (Py_ssize_t)sizeof(self->data.LongCustomerName));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_set_BrokerID(PyCThostFtdcSecAgentT
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_set_BrokerSecAgentID(PyCThostFtdcS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerSecAgentID must be less than 13 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_set_InvestorID(PyCThostFtdcSecAgen
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcSecAgentTradeInfoField_set_LongCustomerName(PyCThostFtdcS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
         PyErr_SetString(PyExc_ValueError, "LongCustomerName must be less than 161 bytes");
         return -1;
     }

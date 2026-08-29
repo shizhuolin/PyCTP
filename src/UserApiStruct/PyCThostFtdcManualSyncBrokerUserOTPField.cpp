@@ -65,7 +65,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_init(PyCThostFtdcManualSyncB
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( ManualSyncBrokerUserOTPField_BrokerID != NULL ) {
-        if(ManualSyncBrokerUserOTPField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ManualSyncBrokerUserOTPField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_init(PyCThostFtdcManualSyncB
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( ManualSyncBrokerUserOTPField_UserID != NULL ) {
-        if(ManualSyncBrokerUserOTPField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(ManualSyncBrokerUserOTPField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -95,7 +95,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_init(PyCThostFtdcManualSyncB
     ///第一个动态密码
     // TThostFtdcPasswordType char[41]
     if( ManualSyncBrokerUserOTPField_FirstOTP != NULL ) {
-        if(ManualSyncBrokerUserOTPField_FirstOTP_len > (Py_ssize_t)sizeof(self->data.FirstOTP)) {
+        if(ManualSyncBrokerUserOTPField_FirstOTP_len >= (Py_ssize_t)sizeof(self->data.FirstOTP)) {
             PyErr_Format(PyExc_ValueError, "FirstOTP too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_FirstOTP_len, (Py_ssize_t)sizeof(self->data.FirstOTP));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_init(PyCThostFtdcManualSyncB
     ///第二个动态密码
     // TThostFtdcPasswordType char[41]
     if( ManualSyncBrokerUserOTPField_SecondOTP != NULL ) {
-        if(ManualSyncBrokerUserOTPField_SecondOTP_len > (Py_ssize_t)sizeof(self->data.SecondOTP)) {
+        if(ManualSyncBrokerUserOTPField_SecondOTP_len >= (Py_ssize_t)sizeof(self->data.SecondOTP)) {
             PyErr_Format(PyExc_ValueError, "SecondOTP too long: length=%zd (max allowed is %zd)", ManualSyncBrokerUserOTPField_SecondOTP_len, (Py_ssize_t)sizeof(self->data.SecondOTP));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_set_BrokerID(PyCThostFtdcMan
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_set_UserID(PyCThostFtdcManua
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -243,7 +243,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_set_FirstOTP(PyCThostFtdcMan
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FirstOTP)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FirstOTP)) {
         PyErr_SetString(PyExc_ValueError, "FirstOTP must be less than 41 bytes");
         return -1;
     }
@@ -269,7 +269,7 @@ static int PyCThostFtdcManualSyncBrokerUserOTPField_set_SecondOTP(PyCThostFtdcMa
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SecondOTP)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SecondOTP)) {
         PyErr_SetString(PyExc_ValueError, "SecondOTP must be less than 41 bytes");
         return -1;
     }

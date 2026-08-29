@@ -65,7 +65,7 @@ static int PyCThostFtdcQryTradingAccountField_init(PyCThostFtdcQryTradingAccount
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryTradingAccountField_BrokerID != NULL ) {
-        if(QryTradingAccountField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryTradingAccountField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryTradingAccountField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcQryTradingAccountField_init(PyCThostFtdcQryTradingAccount
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QryTradingAccountField_InvestorID != NULL ) {
-        if(QryTradingAccountField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QryTradingAccountField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QryTradingAccountField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcQryTradingAccountField_init(PyCThostFtdcQryTradingAccount
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( QryTradingAccountField_CurrencyID != NULL ) {
-        if(QryTradingAccountField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(QryTradingAccountField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", QryTradingAccountField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcQryTradingAccountField_init(PyCThostFtdcQryTradingAccount
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( QryTradingAccountField_AccountID != NULL ) {
-        if(QryTradingAccountField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(QryTradingAccountField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", QryTradingAccountField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcQryTradingAccountField_set_BrokerID(PyCThostFtdcQryTradin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcQryTradingAccountField_set_InvestorID(PyCThostFtdcQryTrad
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcQryTradingAccountField_set_CurrencyID(PyCThostFtdcQryTrad
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -269,7 +269,7 @@ static int PyCThostFtdcQryTradingAccountField_set_AccountID(PyCThostFtdcQryTradi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }

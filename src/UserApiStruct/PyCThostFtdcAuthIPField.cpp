@@ -54,7 +54,7 @@ static int PyCThostFtdcAuthIPField_init(PyCThostFtdcAuthIPField *self, PyObject 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( AuthIPField_BrokerID != NULL ) {
-        if(AuthIPField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(AuthIPField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AuthIPField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcAuthIPField_init(PyCThostFtdcAuthIPField *self, PyObject 
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( AuthIPField_AppID != NULL ) {
-        if(AuthIPField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(AuthIPField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", AuthIPField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcAuthIPField_init(PyCThostFtdcAuthIPField *self, PyObject 
     ///用户代码
     // TThostFtdcIPAddressType char[33]
     if( AuthIPField_IPAddress != NULL ) {
-        if(AuthIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(AuthIPField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", AuthIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcAuthIPField_set_BrokerID(PyCThostFtdcAuthIPField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcAuthIPField_set_AppID(PyCThostFtdcAuthIPField *self, PyOb
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcAuthIPField_set_IPAddress(PyCThostFtdcAuthIPField *self, 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }

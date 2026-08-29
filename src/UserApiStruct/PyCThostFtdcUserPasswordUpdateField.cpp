@@ -60,7 +60,7 @@ static int PyCThostFtdcUserPasswordUpdateField_init(PyCThostFtdcUserPasswordUpda
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( UserPasswordUpdateField_BrokerID != NULL ) {
-        if(UserPasswordUpdateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(UserPasswordUpdateField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcUserPasswordUpdateField_init(PyCThostFtdcUserPasswordUpda
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( UserPasswordUpdateField_UserID != NULL ) {
-        if(UserPasswordUpdateField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(UserPasswordUpdateField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcUserPasswordUpdateField_init(PyCThostFtdcUserPasswordUpda
     ///原来的口令
     // TThostFtdcPasswordType char[41]
     if( UserPasswordUpdateField_OldPassword != NULL ) {
-        if(UserPasswordUpdateField_OldPassword_len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+        if(UserPasswordUpdateField_OldPassword_len >= (Py_ssize_t)sizeof(self->data.OldPassword)) {
             PyErr_Format(PyExc_ValueError, "OldPassword too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_OldPassword_len, (Py_ssize_t)sizeof(self->data.OldPassword));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcUserPasswordUpdateField_init(PyCThostFtdcUserPasswordUpda
     ///新的口令
     // TThostFtdcPasswordType char[41]
     if( UserPasswordUpdateField_NewPassword != NULL ) {
-        if(UserPasswordUpdateField_NewPassword_len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+        if(UserPasswordUpdateField_NewPassword_len >= (Py_ssize_t)sizeof(self->data.NewPassword)) {
             PyErr_Format(PyExc_ValueError, "NewPassword too long: length=%zd (max allowed is %zd)", UserPasswordUpdateField_NewPassword_len, (Py_ssize_t)sizeof(self->data.NewPassword));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcUserPasswordUpdateField_set_BrokerID(PyCThostFtdcUserPass
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcUserPasswordUpdateField_set_UserID(PyCThostFtdcUserPasswo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcUserPasswordUpdateField_set_OldPassword(PyCThostFtdcUserP
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OldPassword)) {
         PyErr_SetString(PyExc_ValueError, "OldPassword must be less than 41 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcUserPasswordUpdateField_set_NewPassword(PyCThostFtdcUserP
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.NewPassword)) {
         PyErr_SetString(PyExc_ValueError, "NewPassword must be less than 41 bytes");
         return -1;
     }

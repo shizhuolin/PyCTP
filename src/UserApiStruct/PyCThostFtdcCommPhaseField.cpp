@@ -53,7 +53,7 @@ static int PyCThostFtdcCommPhaseField_init(PyCThostFtdcCommPhaseField *self, PyO
     ///交易日
     // TThostFtdcDateType char[9]
     if( CommPhaseField_TradingDay != NULL ) {
-        if(CommPhaseField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(CommPhaseField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", CommPhaseField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -70,7 +70,7 @@ static int PyCThostFtdcCommPhaseField_init(PyCThostFtdcCommPhaseField *self, PyO
     ///系统编号
     // TThostFtdcSystemIDType char[21]
     if( CommPhaseField_SystemID != NULL ) {
-        if(CommPhaseField_SystemID_len > (Py_ssize_t)sizeof(self->data.SystemID)) {
+        if(CommPhaseField_SystemID_len >= (Py_ssize_t)sizeof(self->data.SystemID)) {
             PyErr_Format(PyExc_ValueError, "SystemID too long: length=%zd (max allowed is %zd)", CommPhaseField_SystemID_len, (Py_ssize_t)sizeof(self->data.SystemID));
             return -1;
         }
@@ -128,7 +128,7 @@ static int PyCThostFtdcCommPhaseField_set_TradingDay(PyCThostFtdcCommPhaseField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -192,7 +192,7 @@ static int PyCThostFtdcCommPhaseField_set_SystemID(PyCThostFtdcCommPhaseField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SystemID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SystemID)) {
         PyErr_SetString(PyExc_ValueError, "SystemID must be less than 21 bytes");
         return -1;
     }

@@ -169,7 +169,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///交易日
     // TThostFtdcDateType char[9]
     if( MarketDataField_TradingDay != NULL ) {
-        if(MarketDataField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(MarketDataField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", MarketDataField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -182,7 +182,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( MarketDataField_reserve1 != NULL ) {
-        if(MarketDataField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(MarketDataField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", MarketDataField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -195,7 +195,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( MarketDataField_ExchangeID != NULL ) {
-        if(MarketDataField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(MarketDataField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", MarketDataField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -208,7 +208,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///保留的无效字段
     // TThostFtdcOldExchangeInstIDType char[31]
     if( MarketDataField_reserve2 != NULL ) {
-        if(MarketDataField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(MarketDataField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", MarketDataField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -285,7 +285,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///最后修改时间
     // TThostFtdcTimeType char[9]
     if( MarketDataField_UpdateTime != NULL ) {
-        if(MarketDataField_UpdateTime_len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+        if(MarketDataField_UpdateTime_len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
             PyErr_Format(PyExc_ValueError, "UpdateTime too long: length=%zd (max allowed is %zd)", MarketDataField_UpdateTime_len, (Py_ssize_t)sizeof(self->data.UpdateTime));
             return -1;
         }
@@ -302,7 +302,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///业务日期
     // TThostFtdcDateType char[9]
     if( MarketDataField_ActionDay != NULL ) {
-        if(MarketDataField_ActionDay_len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+        if(MarketDataField_ActionDay_len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
             PyErr_Format(PyExc_ValueError, "ActionDay too long: length=%zd (max allowed is %zd)", MarketDataField_ActionDay_len, (Py_ssize_t)sizeof(self->data.ActionDay));
             return -1;
         }
@@ -315,7 +315,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( MarketDataField_InstrumentID != NULL ) {
-        if(MarketDataField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(MarketDataField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", MarketDataField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -328,7 +328,7 @@ static int PyCThostFtdcMarketDataField_init(PyCThostFtdcMarketDataField *self, P
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( MarketDataField_ExchangeInstID != NULL ) {
-        if(MarketDataField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(MarketDataField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", MarketDataField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -408,7 +408,7 @@ static int PyCThostFtdcMarketDataField_set_TradingDay(PyCThostFtdcMarketDataFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -434,7 +434,7 @@ static int PyCThostFtdcMarketDataField_set_reserve1(PyCThostFtdcMarketDataField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -460,7 +460,7 @@ static int PyCThostFtdcMarketDataField_set_ExchangeID(PyCThostFtdcMarketDataFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -486,7 +486,7 @@ static int PyCThostFtdcMarketDataField_set_reserve2(PyCThostFtdcMarketDataField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
         return -1;
     }
@@ -865,7 +865,7 @@ static int PyCThostFtdcMarketDataField_set_UpdateTime(PyCThostFtdcMarketDataFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
         PyErr_SetString(PyExc_ValueError, "UpdateTime must be less than 9 bytes");
         return -1;
     }
@@ -929,7 +929,7 @@ static int PyCThostFtdcMarketDataField_set_ActionDay(PyCThostFtdcMarketDataField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
         PyErr_SetString(PyExc_ValueError, "ActionDay must be less than 9 bytes");
         return -1;
     }
@@ -955,7 +955,7 @@ static int PyCThostFtdcMarketDataField_set_InstrumentID(PyCThostFtdcMarketDataFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -981,7 +981,7 @@ static int PyCThostFtdcMarketDataField_set_ExchangeInstID(PyCThostFtdcMarketData
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }

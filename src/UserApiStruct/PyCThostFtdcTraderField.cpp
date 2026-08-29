@@ -86,7 +86,7 @@ static int PyCThostFtdcTraderField_init(PyCThostFtdcTraderField *self, PyObject 
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( TraderField_ExchangeID != NULL ) {
-        if(TraderField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(TraderField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", TraderField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcTraderField_init(PyCThostFtdcTraderField *self, PyObject 
     ///交易所交易员代码
     // TThostFtdcTraderIDType char[21]
     if( TraderField_TraderID != NULL ) {
-        if(TraderField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+        if(TraderField_TraderID_len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
             PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", TraderField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
             return -1;
         }
@@ -112,7 +112,7 @@ static int PyCThostFtdcTraderField_init(PyCThostFtdcTraderField *self, PyObject 
     ///会员代码
     // TThostFtdcParticipantIDType char[11]
     if( TraderField_ParticipantID != NULL ) {
-        if(TraderField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(TraderField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", TraderField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -125,7 +125,7 @@ static int PyCThostFtdcTraderField_init(PyCThostFtdcTraderField *self, PyObject 
     ///密码
     // TThostFtdcPasswordType char[41]
     if( TraderField_Password != NULL ) {
-        if(TraderField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(TraderField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", TraderField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -142,7 +142,7 @@ static int PyCThostFtdcTraderField_init(PyCThostFtdcTraderField *self, PyObject 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( TraderField_BrokerID != NULL ) {
-        if(TraderField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TraderField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TraderField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcTraderField_set_ExchangeID(PyCThostFtdcTraderField *self,
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -244,7 +244,7 @@ static int PyCThostFtdcTraderField_set_TraderID(PyCThostFtdcTraderField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
         PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
         return -1;
     }
@@ -270,7 +270,7 @@ static int PyCThostFtdcTraderField_set_ParticipantID(PyCThostFtdcTraderField *se
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -296,7 +296,7 @@ static int PyCThostFtdcTraderField_set_Password(PyCThostFtdcTraderField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -360,7 +360,7 @@ static int PyCThostFtdcTraderField_set_BrokerID(PyCThostFtdcTraderField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }

@@ -78,7 +78,7 @@ static int PyCThostFtdcForQuoteRspField_init(PyCThostFtdcForQuoteRspField *self,
     ///交易日
     // TThostFtdcDateType char[9]
     if( ForQuoteRspField_TradingDay != NULL ) {
-        if(ForQuoteRspField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(ForQuoteRspField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", ForQuoteRspField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcForQuoteRspField_init(PyCThostFtdcForQuoteRspField *self,
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( ForQuoteRspField_reserve1 != NULL ) {
-        if(ForQuoteRspField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(ForQuoteRspField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", ForQuoteRspField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcForQuoteRspField_init(PyCThostFtdcForQuoteRspField *self,
     ///询价编号
     // TThostFtdcOrderSysIDType char[21]
     if( ForQuoteRspField_ForQuoteSysID != NULL ) {
-        if(ForQuoteRspField_ForQuoteSysID_len > (Py_ssize_t)sizeof(self->data.ForQuoteSysID)) {
+        if(ForQuoteRspField_ForQuoteSysID_len >= (Py_ssize_t)sizeof(self->data.ForQuoteSysID)) {
             PyErr_Format(PyExc_ValueError, "ForQuoteSysID too long: length=%zd (max allowed is %zd)", ForQuoteRspField_ForQuoteSysID_len, (Py_ssize_t)sizeof(self->data.ForQuoteSysID));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcForQuoteRspField_init(PyCThostFtdcForQuoteRspField *self,
     ///询价时间
     // TThostFtdcTimeType char[9]
     if( ForQuoteRspField_ForQuoteTime != NULL ) {
-        if(ForQuoteRspField_ForQuoteTime_len > (Py_ssize_t)sizeof(self->data.ForQuoteTime)) {
+        if(ForQuoteRspField_ForQuoteTime_len >= (Py_ssize_t)sizeof(self->data.ForQuoteTime)) {
             PyErr_Format(PyExc_ValueError, "ForQuoteTime too long: length=%zd (max allowed is %zd)", ForQuoteRspField_ForQuoteTime_len, (Py_ssize_t)sizeof(self->data.ForQuoteTime));
             return -1;
         }
@@ -130,7 +130,7 @@ static int PyCThostFtdcForQuoteRspField_init(PyCThostFtdcForQuoteRspField *self,
     ///业务日期
     // TThostFtdcDateType char[9]
     if( ForQuoteRspField_ActionDay != NULL ) {
-        if(ForQuoteRspField_ActionDay_len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+        if(ForQuoteRspField_ActionDay_len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
             PyErr_Format(PyExc_ValueError, "ActionDay too long: length=%zd (max allowed is %zd)", ForQuoteRspField_ActionDay_len, (Py_ssize_t)sizeof(self->data.ActionDay));
             return -1;
         }
@@ -143,7 +143,7 @@ static int PyCThostFtdcForQuoteRspField_init(PyCThostFtdcForQuoteRspField *self,
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( ForQuoteRspField_ExchangeID != NULL ) {
-        if(ForQuoteRspField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(ForQuoteRspField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", ForQuoteRspField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -156,7 +156,7 @@ static int PyCThostFtdcForQuoteRspField_init(PyCThostFtdcForQuoteRspField *self,
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( ForQuoteRspField_InstrumentID != NULL ) {
-        if(ForQuoteRspField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(ForQuoteRspField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", ForQuoteRspField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcForQuoteRspField_set_TradingDay(PyCThostFtdcForQuoteRspFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -244,7 +244,7 @@ static int PyCThostFtdcForQuoteRspField_set_reserve1(PyCThostFtdcForQuoteRspFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -270,7 +270,7 @@ static int PyCThostFtdcForQuoteRspField_set_ForQuoteSysID(PyCThostFtdcForQuoteRs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ForQuoteSysID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ForQuoteSysID)) {
         PyErr_SetString(PyExc_ValueError, "ForQuoteSysID must be less than 21 bytes");
         return -1;
     }
@@ -296,7 +296,7 @@ static int PyCThostFtdcForQuoteRspField_set_ForQuoteTime(PyCThostFtdcForQuoteRsp
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ForQuoteTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ForQuoteTime)) {
         PyErr_SetString(PyExc_ValueError, "ForQuoteTime must be less than 9 bytes");
         return -1;
     }
@@ -322,7 +322,7 @@ static int PyCThostFtdcForQuoteRspField_set_ActionDay(PyCThostFtdcForQuoteRspFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
         PyErr_SetString(PyExc_ValueError, "ActionDay must be less than 9 bytes");
         return -1;
     }
@@ -348,7 +348,7 @@ static int PyCThostFtdcForQuoteRspField_set_ExchangeID(PyCThostFtdcForQuoteRspFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -374,7 +374,7 @@ static int PyCThostFtdcForQuoteRspField_set_InstrumentID(PyCThostFtdcForQuoteRsp
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

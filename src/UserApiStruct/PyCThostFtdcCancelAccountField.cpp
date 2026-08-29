@@ -302,7 +302,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///业务功能码
     // TThostFtdcTradeCodeType char[7]
     if( CancelAccountField_TradeCode != NULL ) {
-        if(CancelAccountField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+        if(CancelAccountField_TradeCode_len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
             PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", CancelAccountField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
             return -1;
         }
@@ -315,7 +315,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///银行代码
     // TThostFtdcBankIDType char[4]
     if( CancelAccountField_BankID != NULL ) {
-        if(CancelAccountField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(CancelAccountField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", CancelAccountField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -328,7 +328,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///银行分支机构代码
     // TThostFtdcBankBrchIDType char[5]
     if( CancelAccountField_BankBranchID != NULL ) {
-        if(CancelAccountField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+        if(CancelAccountField_BankBranchID_len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
             PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", CancelAccountField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
             return -1;
         }
@@ -341,7 +341,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///期商代码
     // TThostFtdcBrokerIDType char[11]
     if( CancelAccountField_BrokerID != NULL ) {
-        if(CancelAccountField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(CancelAccountField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", CancelAccountField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -354,7 +354,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///期商分支机构代码
     // TThostFtdcFutureBranchIDType char[31]
     if( CancelAccountField_BrokerBranchID != NULL ) {
-        if(CancelAccountField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+        if(CancelAccountField_BrokerBranchID_len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
             PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", CancelAccountField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
             return -1;
         }
@@ -367,7 +367,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///交易日期
     // TThostFtdcTradeDateType char[9]
     if( CancelAccountField_TradeDate != NULL ) {
-        if(CancelAccountField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+        if(CancelAccountField_TradeDate_len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
             PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", CancelAccountField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
             return -1;
         }
@@ -380,7 +380,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///交易时间
     // TThostFtdcTradeTimeType char[9]
     if( CancelAccountField_TradeTime != NULL ) {
-        if(CancelAccountField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+        if(CancelAccountField_TradeTime_len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
             PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", CancelAccountField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
             return -1;
         }
@@ -393,7 +393,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///银行流水号
     // TThostFtdcBankSerialType char[13]
     if( CancelAccountField_BankSerial != NULL ) {
-        if(CancelAccountField_BankSerial_len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+        if(CancelAccountField_BankSerial_len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
             PyErr_Format(PyExc_ValueError, "BankSerial too long: length=%zd (max allowed is %zd)", CancelAccountField_BankSerial_len, (Py_ssize_t)sizeof(self->data.BankSerial));
             return -1;
         }
@@ -406,7 +406,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///交易系统日期
     // TThostFtdcTradeDateType char[9]
     if( CancelAccountField_TradingDay != NULL ) {
-        if(CancelAccountField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(CancelAccountField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", CancelAccountField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -431,7 +431,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///客户姓名
     // TThostFtdcIndividualNameType char[51]
     if( CancelAccountField_CustomerName != NULL ) {
-        if(CancelAccountField_CustomerName_len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+        if(CancelAccountField_CustomerName_len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
             PyErr_Format(PyExc_ValueError, "CustomerName too long: length=%zd (max allowed is %zd)", CancelAccountField_CustomerName_len, (Py_ssize_t)sizeof(self->data.CustomerName));
             return -1;
         }
@@ -448,7 +448,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( CancelAccountField_IdentifiedCardNo != NULL ) {
-        if(CancelAccountField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(CancelAccountField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", CancelAccountField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -465,7 +465,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///国家代码
     // TThostFtdcCountryCodeType char[21]
     if( CancelAccountField_CountryCode != NULL ) {
-        if(CancelAccountField_CountryCode_len > (Py_ssize_t)sizeof(self->data.CountryCode)) {
+        if(CancelAccountField_CountryCode_len >= (Py_ssize_t)sizeof(self->data.CountryCode)) {
             PyErr_Format(PyExc_ValueError, "CountryCode too long: length=%zd (max allowed is %zd)", CancelAccountField_CountryCode_len, (Py_ssize_t)sizeof(self->data.CountryCode));
             return -1;
         }
@@ -482,7 +482,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///地址
     // TThostFtdcAddressType char[101]
     if( CancelAccountField_Address != NULL ) {
-        if(CancelAccountField_Address_len > (Py_ssize_t)sizeof(self->data.Address)) {
+        if(CancelAccountField_Address_len >= (Py_ssize_t)sizeof(self->data.Address)) {
             PyErr_Format(PyExc_ValueError, "Address too long: length=%zd (max allowed is %zd)", CancelAccountField_Address_len, (Py_ssize_t)sizeof(self->data.Address));
             return -1;
         }
@@ -495,7 +495,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///邮编
     // TThostFtdcZipCodeType char[7]
     if( CancelAccountField_ZipCode != NULL ) {
-        if(CancelAccountField_ZipCode_len > (Py_ssize_t)sizeof(self->data.ZipCode)) {
+        if(CancelAccountField_ZipCode_len >= (Py_ssize_t)sizeof(self->data.ZipCode)) {
             PyErr_Format(PyExc_ValueError, "ZipCode too long: length=%zd (max allowed is %zd)", CancelAccountField_ZipCode_len, (Py_ssize_t)sizeof(self->data.ZipCode));
             return -1;
         }
@@ -508,7 +508,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///电话号码
     // TThostFtdcTelephoneType char[41]
     if( CancelAccountField_Telephone != NULL ) {
-        if(CancelAccountField_Telephone_len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+        if(CancelAccountField_Telephone_len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
             PyErr_Format(PyExc_ValueError, "Telephone too long: length=%zd (max allowed is %zd)", CancelAccountField_Telephone_len, (Py_ssize_t)sizeof(self->data.Telephone));
             return -1;
         }
@@ -521,7 +521,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///手机
     // TThostFtdcMobilePhoneType char[21]
     if( CancelAccountField_MobilePhone != NULL ) {
-        if(CancelAccountField_MobilePhone_len > (Py_ssize_t)sizeof(self->data.MobilePhone)) {
+        if(CancelAccountField_MobilePhone_len >= (Py_ssize_t)sizeof(self->data.MobilePhone)) {
             PyErr_Format(PyExc_ValueError, "MobilePhone too long: length=%zd (max allowed is %zd)", CancelAccountField_MobilePhone_len, (Py_ssize_t)sizeof(self->data.MobilePhone));
             return -1;
         }
@@ -534,7 +534,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///传真
     // TThostFtdcFaxType char[41]
     if( CancelAccountField_Fax != NULL ) {
-        if(CancelAccountField_Fax_len > (Py_ssize_t)sizeof(self->data.Fax)) {
+        if(CancelAccountField_Fax_len >= (Py_ssize_t)sizeof(self->data.Fax)) {
             PyErr_Format(PyExc_ValueError, "Fax too long: length=%zd (max allowed is %zd)", CancelAccountField_Fax_len, (Py_ssize_t)sizeof(self->data.Fax));
             return -1;
         }
@@ -547,7 +547,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///电子邮件
     // TThostFtdcEMailType char[41]
     if( CancelAccountField_EMail != NULL ) {
-        if(CancelAccountField_EMail_len > (Py_ssize_t)sizeof(self->data.EMail)) {
+        if(CancelAccountField_EMail_len >= (Py_ssize_t)sizeof(self->data.EMail)) {
             PyErr_Format(PyExc_ValueError, "EMail too long: length=%zd (max allowed is %zd)", CancelAccountField_EMail_len, (Py_ssize_t)sizeof(self->data.EMail));
             return -1;
         }
@@ -564,7 +564,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///银行帐号
     // TThostFtdcBankAccountType char[41]
     if( CancelAccountField_BankAccount != NULL ) {
-        if(CancelAccountField_BankAccount_len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+        if(CancelAccountField_BankAccount_len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
             PyErr_Format(PyExc_ValueError, "BankAccount too long: length=%zd (max allowed is %zd)", CancelAccountField_BankAccount_len, (Py_ssize_t)sizeof(self->data.BankAccount));
             return -1;
         }
@@ -577,7 +577,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///银行密码
     // TThostFtdcPasswordType char[41]
     if( CancelAccountField_BankPassWord != NULL ) {
-        if(CancelAccountField_BankPassWord_len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+        if(CancelAccountField_BankPassWord_len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
             PyErr_Format(PyExc_ValueError, "BankPassWord too long: length=%zd (max allowed is %zd)", CancelAccountField_BankPassWord_len, (Py_ssize_t)sizeof(self->data.BankPassWord));
             return -1;
         }
@@ -590,7 +590,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( CancelAccountField_AccountID != NULL ) {
-        if(CancelAccountField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(CancelAccountField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", CancelAccountField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -603,7 +603,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///期货密码
     // TThostFtdcPasswordType char[41]
     if( CancelAccountField_Password != NULL ) {
-        if(CancelAccountField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(CancelAccountField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", CancelAccountField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -624,7 +624,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( CancelAccountField_CurrencyID != NULL ) {
-        if(CancelAccountField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(CancelAccountField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", CancelAccountField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -641,7 +641,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///摘要
     // TThostFtdcDigestType char[36]
     if( CancelAccountField_Digest != NULL ) {
-        if(CancelAccountField_Digest_len > (Py_ssize_t)sizeof(self->data.Digest)) {
+        if(CancelAccountField_Digest_len >= (Py_ssize_t)sizeof(self->data.Digest)) {
             PyErr_Format(PyExc_ValueError, "Digest too long: length=%zd (max allowed is %zd)", CancelAccountField_Digest_len, (Py_ssize_t)sizeof(self->data.Digest));
             return -1;
         }
@@ -658,7 +658,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///渠道标志
     // TThostFtdcDeviceIDType char[3]
     if( CancelAccountField_DeviceID != NULL ) {
-        if(CancelAccountField_DeviceID_len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+        if(CancelAccountField_DeviceID_len >= (Py_ssize_t)sizeof(self->data.DeviceID)) {
             PyErr_Format(PyExc_ValueError, "DeviceID too long: length=%zd (max allowed is %zd)", CancelAccountField_DeviceID_len, (Py_ssize_t)sizeof(self->data.DeviceID));
             return -1;
         }
@@ -675,7 +675,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///期货公司银行编码
     // TThostFtdcBankCodingForFutureType char[33]
     if( CancelAccountField_BrokerIDByBank != NULL ) {
-        if(CancelAccountField_BrokerIDByBank_len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+        if(CancelAccountField_BrokerIDByBank_len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
             PyErr_Format(PyExc_ValueError, "BrokerIDByBank too long: length=%zd (max allowed is %zd)", CancelAccountField_BrokerIDByBank_len, (Py_ssize_t)sizeof(self->data.BrokerIDByBank));
             return -1;
         }
@@ -688,7 +688,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///期货单位帐号
     // TThostFtdcBankAccountType char[41]
     if( CancelAccountField_BankSecuAcc != NULL ) {
-        if(CancelAccountField_BankSecuAcc_len > (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
+        if(CancelAccountField_BankSecuAcc_len >= (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
             PyErr_Format(PyExc_ValueError, "BankSecuAcc too long: length=%zd (max allowed is %zd)", CancelAccountField_BankSecuAcc_len, (Py_ssize_t)sizeof(self->data.BankSecuAcc));
             return -1;
         }
@@ -709,7 +709,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///交易柜员
     // TThostFtdcOperNoType char[17]
     if( CancelAccountField_OperNo != NULL ) {
-        if(CancelAccountField_OperNo_len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+        if(CancelAccountField_OperNo_len >= (Py_ssize_t)sizeof(self->data.OperNo)) {
             PyErr_Format(PyExc_ValueError, "OperNo too long: length=%zd (max allowed is %zd)", CancelAccountField_OperNo_len, (Py_ssize_t)sizeof(self->data.OperNo));
             return -1;
         }
@@ -726,7 +726,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///用户标识
     // TThostFtdcUserIDType char[16]
     if( CancelAccountField_UserID != NULL ) {
-        if(CancelAccountField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(CancelAccountField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", CancelAccountField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -743,7 +743,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///错误信息
     // TThostFtdcErrorMsgType char[81]
     if( CancelAccountField_ErrorMsg != NULL ) {
-        if(CancelAccountField_ErrorMsg_len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+        if(CancelAccountField_ErrorMsg_len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
             PyErr_Format(PyExc_ValueError, "ErrorMsg too long: length=%zd (max allowed is %zd)", CancelAccountField_ErrorMsg_len, (Py_ssize_t)sizeof(self->data.ErrorMsg));
             return -1;
         }
@@ -756,7 +756,7 @@ static int PyCThostFtdcCancelAccountField_init(PyCThostFtdcCancelAccountField *s
     ///长客户姓名
     // TThostFtdcLongIndividualNameType char[161]
     if( CancelAccountField_LongCustomerName != NULL ) {
-        if(CancelAccountField_LongCustomerName_len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+        if(CancelAccountField_LongCustomerName_len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
             PyErr_Format(PyExc_ValueError, "LongCustomerName too long: length=%zd (max allowed is %zd)", CancelAccountField_LongCustomerName_len, (Py_ssize_t)sizeof(self->data.LongCustomerName));
             return -1;
         }
@@ -858,7 +858,7 @@ static int PyCThostFtdcCancelAccountField_set_TradeCode(PyCThostFtdcCancelAccoun
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
         PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
         return -1;
     }
@@ -884,7 +884,7 @@ static int PyCThostFtdcCancelAccountField_set_BankID(PyCThostFtdcCancelAccountFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -910,7 +910,7 @@ static int PyCThostFtdcCancelAccountField_set_BankBranchID(PyCThostFtdcCancelAcc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
         return -1;
     }
@@ -936,7 +936,7 @@ static int PyCThostFtdcCancelAccountField_set_BrokerID(PyCThostFtdcCancelAccount
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -962,7 +962,7 @@ static int PyCThostFtdcCancelAccountField_set_BrokerBranchID(PyCThostFtdcCancelA
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
         return -1;
     }
@@ -988,7 +988,7 @@ static int PyCThostFtdcCancelAccountField_set_TradeDate(PyCThostFtdcCancelAccoun
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
         PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
         return -1;
     }
@@ -1014,7 +1014,7 @@ static int PyCThostFtdcCancelAccountField_set_TradeTime(PyCThostFtdcCancelAccoun
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
         PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
         return -1;
     }
@@ -1040,7 +1040,7 @@ static int PyCThostFtdcCancelAccountField_set_BankSerial(PyCThostFtdcCancelAccou
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
         PyErr_SetString(PyExc_ValueError, "BankSerial must be less than 13 bytes");
         return -1;
     }
@@ -1066,7 +1066,7 @@ static int PyCThostFtdcCancelAccountField_set_TradingDay(PyCThostFtdcCancelAccou
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -1191,7 +1191,7 @@ static int PyCThostFtdcCancelAccountField_set_CustomerName(PyCThostFtdcCancelAcc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
         PyErr_SetString(PyExc_ValueError, "CustomerName must be less than 51 bytes");
         return -1;
     }
@@ -1240,7 +1240,7 @@ static int PyCThostFtdcCancelAccountField_set_IdentifiedCardNo(PyCThostFtdcCance
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -1289,7 +1289,7 @@ static int PyCThostFtdcCancelAccountField_set_CountryCode(PyCThostFtdcCancelAcco
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CountryCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CountryCode)) {
         PyErr_SetString(PyExc_ValueError, "CountryCode must be less than 21 bytes");
         return -1;
     }
@@ -1338,7 +1338,7 @@ static int PyCThostFtdcCancelAccountField_set_Address(PyCThostFtdcCancelAccountF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Address)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Address)) {
         PyErr_SetString(PyExc_ValueError, "Address must be less than 101 bytes");
         return -1;
     }
@@ -1364,7 +1364,7 @@ static int PyCThostFtdcCancelAccountField_set_ZipCode(PyCThostFtdcCancelAccountF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ZipCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ZipCode)) {
         PyErr_SetString(PyExc_ValueError, "ZipCode must be less than 7 bytes");
         return -1;
     }
@@ -1390,7 +1390,7 @@ static int PyCThostFtdcCancelAccountField_set_Telephone(PyCThostFtdcCancelAccoun
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
         PyErr_SetString(PyExc_ValueError, "Telephone must be less than 41 bytes");
         return -1;
     }
@@ -1416,7 +1416,7 @@ static int PyCThostFtdcCancelAccountField_set_MobilePhone(PyCThostFtdcCancelAcco
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MobilePhone)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MobilePhone)) {
         PyErr_SetString(PyExc_ValueError, "MobilePhone must be less than 21 bytes");
         return -1;
     }
@@ -1442,7 +1442,7 @@ static int PyCThostFtdcCancelAccountField_set_Fax(PyCThostFtdcCancelAccountField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Fax)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Fax)) {
         PyErr_SetString(PyExc_ValueError, "Fax must be less than 41 bytes");
         return -1;
     }
@@ -1468,7 +1468,7 @@ static int PyCThostFtdcCancelAccountField_set_EMail(PyCThostFtdcCancelAccountFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.EMail)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.EMail)) {
         PyErr_SetString(PyExc_ValueError, "EMail must be less than 41 bytes");
         return -1;
     }
@@ -1517,7 +1517,7 @@ static int PyCThostFtdcCancelAccountField_set_BankAccount(PyCThostFtdcCancelAcco
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
         PyErr_SetString(PyExc_ValueError, "BankAccount must be less than 41 bytes");
         return -1;
     }
@@ -1543,7 +1543,7 @@ static int PyCThostFtdcCancelAccountField_set_BankPassWord(PyCThostFtdcCancelAcc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
         PyErr_SetString(PyExc_ValueError, "BankPassWord must be less than 41 bytes");
         return -1;
     }
@@ -1569,7 +1569,7 @@ static int PyCThostFtdcCancelAccountField_set_AccountID(PyCThostFtdcCancelAccoun
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -1595,7 +1595,7 @@ static int PyCThostFtdcCancelAccountField_set_Password(PyCThostFtdcCancelAccount
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -1682,7 +1682,7 @@ static int PyCThostFtdcCancelAccountField_set_CurrencyID(PyCThostFtdcCancelAccou
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -1731,7 +1731,7 @@ static int PyCThostFtdcCancelAccountField_set_Digest(PyCThostFtdcCancelAccountFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Digest)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Digest)) {
         PyErr_SetString(PyExc_ValueError, "Digest must be less than 36 bytes");
         return -1;
     }
@@ -1780,7 +1780,7 @@ static int PyCThostFtdcCancelAccountField_set_DeviceID(PyCThostFtdcCancelAccount
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DeviceID)) {
         PyErr_SetString(PyExc_ValueError, "DeviceID must be less than 3 bytes");
         return -1;
     }
@@ -1829,7 +1829,7 @@ static int PyCThostFtdcCancelAccountField_set_BrokerIDByBank(PyCThostFtdcCancelA
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
         PyErr_SetString(PyExc_ValueError, "BrokerIDByBank must be less than 33 bytes");
         return -1;
     }
@@ -1855,7 +1855,7 @@ static int PyCThostFtdcCancelAccountField_set_BankSecuAcc(PyCThostFtdcCancelAcco
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
         PyErr_SetString(PyExc_ValueError, "BankSecuAcc must be less than 41 bytes");
         return -1;
     }
@@ -1927,7 +1927,7 @@ static int PyCThostFtdcCancelAccountField_set_OperNo(PyCThostFtdcCancelAccountFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OperNo)) {
         PyErr_SetString(PyExc_ValueError, "OperNo must be less than 17 bytes");
         return -1;
     }
@@ -1991,7 +1991,7 @@ static int PyCThostFtdcCancelAccountField_set_UserID(PyCThostFtdcCancelAccountFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -2055,7 +2055,7 @@ static int PyCThostFtdcCancelAccountField_set_ErrorMsg(PyCThostFtdcCancelAccount
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
         PyErr_SetString(PyExc_ValueError, "ErrorMsg must be less than 81 bytes");
         return -1;
     }
@@ -2081,7 +2081,7 @@ static int PyCThostFtdcCancelAccountField_set_LongCustomerName(PyCThostFtdcCance
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
         PyErr_SetString(PyExc_ValueError, "LongCustomerName must be less than 161 bytes");
         return -1;
     }

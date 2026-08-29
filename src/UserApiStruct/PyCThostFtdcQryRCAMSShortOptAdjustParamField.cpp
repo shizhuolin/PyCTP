@@ -42,7 +42,7 @@ static int PyCThostFtdcQryRCAMSShortOptAdjustParamField_init(PyCThostFtdcQryRCAM
     ///产品组合代码
     // TThostFtdcProductIDType char[41]
     if( QryRCAMSShortOptAdjustParamField_CombProductID != NULL ) {
-        if(QryRCAMSShortOptAdjustParamField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+        if(QryRCAMSShortOptAdjustParamField_CombProductID_len >= (Py_ssize_t)sizeof(self->data.CombProductID)) {
             PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", QryRCAMSShortOptAdjustParamField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryRCAMSShortOptAdjustParamField_set_CombProductID(PyCTho
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CombProductID)) {
         PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
         return -1;
     }

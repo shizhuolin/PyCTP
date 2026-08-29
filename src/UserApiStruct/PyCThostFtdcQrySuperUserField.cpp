@@ -42,7 +42,7 @@ static int PyCThostFtdcQrySuperUserField_init(PyCThostFtdcQrySuperUserField *sel
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( QrySuperUserField_UserID != NULL ) {
-        if(QrySuperUserField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(QrySuperUserField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", QrySuperUserField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQrySuperUserField_set_UserID(PyCThostFtdcQrySuperUserFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }

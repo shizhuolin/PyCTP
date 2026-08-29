@@ -60,7 +60,7 @@ static int PyCThostFtdcTradingAccountPasswordField_init(PyCThostFtdcTradingAccou
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( TradingAccountPasswordField_BrokerID != NULL ) {
-        if(TradingAccountPasswordField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TradingAccountPasswordField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcTradingAccountPasswordField_init(PyCThostFtdcTradingAccou
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( TradingAccountPasswordField_AccountID != NULL ) {
-        if(TradingAccountPasswordField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(TradingAccountPasswordField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcTradingAccountPasswordField_init(PyCThostFtdcTradingAccou
     ///密码
     // TThostFtdcPasswordType char[41]
     if( TradingAccountPasswordField_Password != NULL ) {
-        if(TradingAccountPasswordField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(TradingAccountPasswordField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcTradingAccountPasswordField_init(PyCThostFtdcTradingAccou
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( TradingAccountPasswordField_CurrencyID != NULL ) {
-        if(TradingAccountPasswordField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(TradingAccountPasswordField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcTradingAccountPasswordField_set_BrokerID(PyCThostFtdcTrad
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcTradingAccountPasswordField_set_AccountID(PyCThostFtdcTra
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcTradingAccountPasswordField_set_Password(PyCThostFtdcTrad
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcTradingAccountPasswordField_set_CurrencyID(PyCThostFtdcTr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

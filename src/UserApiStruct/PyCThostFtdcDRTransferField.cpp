@@ -66,7 +66,7 @@ static int PyCThostFtdcDRTransferField_init(PyCThostFtdcDRTransferField *self, P
     ///原应用单元代码
     // TThostFtdcBrokerIDType char[11]
     if( DRTransferField_OrigBrokerID != NULL ) {
-        if(DRTransferField_OrigBrokerID_len > (Py_ssize_t)sizeof(self->data.OrigBrokerID)) {
+        if(DRTransferField_OrigBrokerID_len >= (Py_ssize_t)sizeof(self->data.OrigBrokerID)) {
             PyErr_Format(PyExc_ValueError, "OrigBrokerID too long: length=%zd (max allowed is %zd)", DRTransferField_OrigBrokerID_len, (Py_ssize_t)sizeof(self->data.OrigBrokerID));
             return -1;
         }
@@ -79,7 +79,7 @@ static int PyCThostFtdcDRTransferField_init(PyCThostFtdcDRTransferField *self, P
     ///目标易用单元代码
     // TThostFtdcBrokerIDType char[11]
     if( DRTransferField_DestBrokerID != NULL ) {
-        if(DRTransferField_DestBrokerID_len > (Py_ssize_t)sizeof(self->data.DestBrokerID)) {
+        if(DRTransferField_DestBrokerID_len >= (Py_ssize_t)sizeof(self->data.DestBrokerID)) {
             PyErr_Format(PyExc_ValueError, "DestBrokerID too long: length=%zd (max allowed is %zd)", DRTransferField_DestBrokerID_len, (Py_ssize_t)sizeof(self->data.DestBrokerID));
             return -1;
         }
@@ -214,7 +214,7 @@ static int PyCThostFtdcDRTransferField_set_OrigBrokerID(PyCThostFtdcDRTransferFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OrigBrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OrigBrokerID)) {
         PyErr_SetString(PyExc_ValueError, "OrigBrokerID must be less than 11 bytes");
         return -1;
     }
@@ -240,7 +240,7 @@ static int PyCThostFtdcDRTransferField_set_DestBrokerID(PyCThostFtdcDRTransferFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DestBrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DestBrokerID)) {
         PyErr_SetString(PyExc_ValueError, "DestBrokerID must be less than 11 bytes");
         return -1;
     }

@@ -54,7 +54,7 @@ static int PyCThostFtdcNoticeField_init(PyCThostFtdcNoticeField *self, PyObject 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( NoticeField_BrokerID != NULL ) {
-        if(NoticeField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(NoticeField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", NoticeField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcNoticeField_init(PyCThostFtdcNoticeField *self, PyObject 
     ///消息正文
     // TThostFtdcContentType char[501]
     if( NoticeField_Content != NULL ) {
-        if(NoticeField_Content_len > (Py_ssize_t)sizeof(self->data.Content)) {
+        if(NoticeField_Content_len >= (Py_ssize_t)sizeof(self->data.Content)) {
             PyErr_Format(PyExc_ValueError, "Content too long: length=%zd (max allowed is %zd)", NoticeField_Content_len, (Py_ssize_t)sizeof(self->data.Content));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcNoticeField_init(PyCThostFtdcNoticeField *self, PyObject 
     ///经纪公司通知内容序列号
     // TThostFtdcSequenceLabelType char[2]
     if( NoticeField_SequenceLabel != NULL ) {
-        if(NoticeField_SequenceLabel_len > (Py_ssize_t)sizeof(self->data.SequenceLabel)) {
+        if(NoticeField_SequenceLabel_len >= (Py_ssize_t)sizeof(self->data.SequenceLabel)) {
             PyErr_Format(PyExc_ValueError, "SequenceLabel too long: length=%zd (max allowed is %zd)", NoticeField_SequenceLabel_len, (Py_ssize_t)sizeof(self->data.SequenceLabel));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcNoticeField_set_BrokerID(PyCThostFtdcNoticeField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcNoticeField_set_Content(PyCThostFtdcNoticeField *self, Py
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Content)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Content)) {
         PyErr_SetString(PyExc_ValueError, "Content must be less than 501 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcNoticeField_set_SequenceLabel(PyCThostFtdcNoticeField *se
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SequenceLabel)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SequenceLabel)) {
         PyErr_SetString(PyExc_ValueError, "SequenceLabel must be less than 2 bytes");
         return -1;
     }

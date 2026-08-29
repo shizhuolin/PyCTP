@@ -284,7 +284,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///交易日
     // TThostFtdcDateType char[9]
     if( DepthMarketDataField_TradingDay != NULL ) {
-        if(DepthMarketDataField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(DepthMarketDataField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", DepthMarketDataField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -297,7 +297,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( DepthMarketDataField_reserve1 != NULL ) {
-        if(DepthMarketDataField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(DepthMarketDataField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", DepthMarketDataField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -310,7 +310,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( DepthMarketDataField_ExchangeID != NULL ) {
-        if(DepthMarketDataField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(DepthMarketDataField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", DepthMarketDataField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -323,7 +323,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///保留的无效字段
     // TThostFtdcOldExchangeInstIDType char[31]
     if( DepthMarketDataField_reserve2 != NULL ) {
-        if(DepthMarketDataField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(DepthMarketDataField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", DepthMarketDataField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -400,7 +400,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///最后修改时间
     // TThostFtdcTimeType char[9]
     if( DepthMarketDataField_UpdateTime != NULL ) {
-        if(DepthMarketDataField_UpdateTime_len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+        if(DepthMarketDataField_UpdateTime_len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
             PyErr_Format(PyExc_ValueError, "UpdateTime too long: length=%zd (max allowed is %zd)", DepthMarketDataField_UpdateTime_len, (Py_ssize_t)sizeof(self->data.UpdateTime));
             return -1;
         }
@@ -501,7 +501,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///业务日期
     // TThostFtdcDateType char[9]
     if( DepthMarketDataField_ActionDay != NULL ) {
-        if(DepthMarketDataField_ActionDay_len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+        if(DepthMarketDataField_ActionDay_len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
             PyErr_Format(PyExc_ValueError, "ActionDay too long: length=%zd (max allowed is %zd)", DepthMarketDataField_ActionDay_len, (Py_ssize_t)sizeof(self->data.ActionDay));
             return -1;
         }
@@ -514,7 +514,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( DepthMarketDataField_InstrumentID != NULL ) {
-        if(DepthMarketDataField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(DepthMarketDataField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", DepthMarketDataField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -527,7 +527,7 @@ static int PyCThostFtdcDepthMarketDataField_init(PyCThostFtdcDepthMarketDataFiel
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( DepthMarketDataField_ExchangeInstID != NULL ) {
-        if(DepthMarketDataField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(DepthMarketDataField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", DepthMarketDataField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -638,7 +638,7 @@ static int PyCThostFtdcDepthMarketDataField_set_TradingDay(PyCThostFtdcDepthMark
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -664,7 +664,7 @@ static int PyCThostFtdcDepthMarketDataField_set_reserve1(PyCThostFtdcDepthMarket
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -690,7 +690,7 @@ static int PyCThostFtdcDepthMarketDataField_set_ExchangeID(PyCThostFtdcDepthMark
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -716,7 +716,7 @@ static int PyCThostFtdcDepthMarketDataField_set_reserve2(PyCThostFtdcDepthMarket
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
         return -1;
     }
@@ -1095,7 +1095,7 @@ static int PyCThostFtdcDepthMarketDataField_set_UpdateTime(PyCThostFtdcDepthMark
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
         PyErr_SetString(PyExc_ValueError, "UpdateTime must be less than 9 bytes");
         return -1;
     }
@@ -1770,7 +1770,7 @@ static int PyCThostFtdcDepthMarketDataField_set_ActionDay(PyCThostFtdcDepthMarke
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
         PyErr_SetString(PyExc_ValueError, "ActionDay must be less than 9 bytes");
         return -1;
     }
@@ -1796,7 +1796,7 @@ static int PyCThostFtdcDepthMarketDataField_set_InstrumentID(PyCThostFtdcDepthMa
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -1822,7 +1822,7 @@ static int PyCThostFtdcDepthMarketDataField_set_ExchangeInstID(PyCThostFtdcDepth
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }

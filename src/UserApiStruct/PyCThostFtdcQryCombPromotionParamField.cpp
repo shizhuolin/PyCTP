@@ -48,7 +48,7 @@ static int PyCThostFtdcQryCombPromotionParamField_init(PyCThostFtdcQryCombPromot
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryCombPromotionParamField_ExchangeID != NULL ) {
-        if(QryCombPromotionParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryCombPromotionParamField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryCombPromotionParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQryCombPromotionParamField_init(PyCThostFtdcQryCombPromot
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryCombPromotionParamField_InstrumentID != NULL ) {
-        if(QryCombPromotionParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QryCombPromotionParamField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryCombPromotionParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQryCombPromotionParamField_set_ExchangeID(PyCThostFtdcQry
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQryCombPromotionParamField_set_InstrumentID(PyCThostFtdcQ
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

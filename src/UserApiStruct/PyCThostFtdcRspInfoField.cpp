@@ -51,7 +51,7 @@ static int PyCThostFtdcRspInfoField_init(PyCThostFtdcRspInfoField *self, PyObjec
     ///错误信息
     // TThostFtdcErrorMsgType char[81]
     if( RspInfoField_ErrorMsg != NULL ) {
-        if(RspInfoField_ErrorMsg_len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+        if(RspInfoField_ErrorMsg_len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
             PyErr_Format(PyExc_ValueError, "ErrorMsg too long: length=%zd (max allowed is %zd)", RspInfoField_ErrorMsg_len, (Py_ssize_t)sizeof(self->data.ErrorMsg));
             return -1;
         }
@@ -146,7 +146,7 @@ static int PyCThostFtdcRspInfoField_set_ErrorMsg(PyCThostFtdcRspInfoField *self,
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
         PyErr_SetString(PyExc_ValueError, "ErrorMsg must be less than 81 bytes");
         return -1;
     }

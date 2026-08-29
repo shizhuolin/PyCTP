@@ -54,7 +54,7 @@ static int PyCThostFtdcSMSVerifyInfoField_init(PyCThostFtdcSMSVerifyInfoField *s
     ///验证码创建时间
     // TThostFtdcTimeType char[9]
     if( SMSVerifyInfoField_CreateTime != NULL ) {
-        if(SMSVerifyInfoField_CreateTime_len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+        if(SMSVerifyInfoField_CreateTime_len >= (Py_ssize_t)sizeof(self->data.CreateTime)) {
             PyErr_Format(PyExc_ValueError, "CreateTime too long: length=%zd (max allowed is %zd)", SMSVerifyInfoField_CreateTime_len, (Py_ssize_t)sizeof(self->data.CreateTime));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcSMSVerifyInfoField_init(PyCThostFtdcSMSVerifyInfoField *s
     ///手机号
     // TThostFtdcSMSPhoneType char[17]
     if( SMSVerifyInfoField_Mobile != NULL ) {
-        if(SMSVerifyInfoField_Mobile_len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+        if(SMSVerifyInfoField_Mobile_len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
             PyErr_Format(PyExc_ValueError, "Mobile too long: length=%zd (max allowed is %zd)", SMSVerifyInfoField_Mobile_len, (Py_ssize_t)sizeof(self->data.Mobile));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcSMSVerifyInfoField_init(PyCThostFtdcSMSVerifyInfoField *s
     ///短信验证信息内容
     // TThostFtdcSMSContentType char[129]
     if( SMSVerifyInfoField_SMSContent != NULL ) {
-        if(SMSVerifyInfoField_SMSContent_len > (Py_ssize_t)sizeof(self->data.SMSContent)) {
+        if(SMSVerifyInfoField_SMSContent_len >= (Py_ssize_t)sizeof(self->data.SMSContent)) {
             PyErr_Format(PyExc_ValueError, "SMSContent too long: length=%zd (max allowed is %zd)", SMSVerifyInfoField_SMSContent_len, (Py_ssize_t)sizeof(self->data.SMSContent));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcSMSVerifyInfoField_set_CreateTime(PyCThostFtdcSMSVerifyIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CreateTime)) {
         PyErr_SetString(PyExc_ValueError, "CreateTime must be less than 9 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcSMSVerifyInfoField_set_Mobile(PyCThostFtdcSMSVerifyInfoFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
         PyErr_SetString(PyExc_ValueError, "Mobile must be less than 17 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcSMSVerifyInfoField_set_SMSContent(PyCThostFtdcSMSVerifyIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SMSContent)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SMSContent)) {
         PyErr_SetString(PyExc_ValueError, "SMSContent must be less than 129 bytes");
         return -1;
     }

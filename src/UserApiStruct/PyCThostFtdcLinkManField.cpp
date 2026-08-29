@@ -105,7 +105,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( LinkManField_BrokerID != NULL ) {
-        if(LinkManField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(LinkManField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", LinkManField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( LinkManField_InvestorID != NULL ) {
-        if(LinkManField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(LinkManField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", LinkManField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -139,7 +139,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( LinkManField_IdentifiedCardNo != NULL ) {
-        if(LinkManField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(LinkManField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", LinkManField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -152,7 +152,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///名称
     // TThostFtdcPartyNameType char[81]
     if( LinkManField_PersonName != NULL ) {
-        if(LinkManField_PersonName_len > (Py_ssize_t)sizeof(self->data.PersonName)) {
+        if(LinkManField_PersonName_len >= (Py_ssize_t)sizeof(self->data.PersonName)) {
             PyErr_Format(PyExc_ValueError, "PersonName too long: length=%zd (max allowed is %zd)", LinkManField_PersonName_len, (Py_ssize_t)sizeof(self->data.PersonName));
             return -1;
         }
@@ -165,7 +165,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///联系电话
     // TThostFtdcTelephoneType char[41]
     if( LinkManField_Telephone != NULL ) {
-        if(LinkManField_Telephone_len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+        if(LinkManField_Telephone_len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
             PyErr_Format(PyExc_ValueError, "Telephone too long: length=%zd (max allowed is %zd)", LinkManField_Telephone_len, (Py_ssize_t)sizeof(self->data.Telephone));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///通讯地址
     // TThostFtdcAddressType char[101]
     if( LinkManField_Address != NULL ) {
-        if(LinkManField_Address_len > (Py_ssize_t)sizeof(self->data.Address)) {
+        if(LinkManField_Address_len >= (Py_ssize_t)sizeof(self->data.Address)) {
             PyErr_Format(PyExc_ValueError, "Address too long: length=%zd (max allowed is %zd)", LinkManField_Address_len, (Py_ssize_t)sizeof(self->data.Address));
             return -1;
         }
@@ -191,7 +191,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///邮政编码
     // TThostFtdcZipCodeType char[7]
     if( LinkManField_ZipCode != NULL ) {
-        if(LinkManField_ZipCode_len > (Py_ssize_t)sizeof(self->data.ZipCode)) {
+        if(LinkManField_ZipCode_len >= (Py_ssize_t)sizeof(self->data.ZipCode)) {
             PyErr_Format(PyExc_ValueError, "ZipCode too long: length=%zd (max allowed is %zd)", LinkManField_ZipCode_len, (Py_ssize_t)sizeof(self->data.ZipCode));
             return -1;
         }
@@ -208,7 +208,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///开户邮政编码
     // TThostFtdcUOAZipCodeType char[11]
     if( LinkManField_UOAZipCode != NULL ) {
-        if(LinkManField_UOAZipCode_len > (Py_ssize_t)sizeof(self->data.UOAZipCode)) {
+        if(LinkManField_UOAZipCode_len >= (Py_ssize_t)sizeof(self->data.UOAZipCode)) {
             PyErr_Format(PyExc_ValueError, "UOAZipCode too long: length=%zd (max allowed is %zd)", LinkManField_UOAZipCode_len, (Py_ssize_t)sizeof(self->data.UOAZipCode));
             return -1;
         }
@@ -221,7 +221,7 @@ static int PyCThostFtdcLinkManField_init(PyCThostFtdcLinkManField *self, PyObjec
     ///全称
     // TThostFtdcInvestorFullNameType char[101]
     if( LinkManField_PersonFullName != NULL ) {
-        if(LinkManField_PersonFullName_len > (Py_ssize_t)sizeof(self->data.PersonFullName)) {
+        if(LinkManField_PersonFullName_len >= (Py_ssize_t)sizeof(self->data.PersonFullName)) {
             PyErr_Format(PyExc_ValueError, "PersonFullName too long: length=%zd (max allowed is %zd)", LinkManField_PersonFullName_len, (Py_ssize_t)sizeof(self->data.PersonFullName));
             return -1;
         }
@@ -288,7 +288,7 @@ static int PyCThostFtdcLinkManField_set_BrokerID(PyCThostFtdcLinkManField *self,
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -314,7 +314,7 @@ static int PyCThostFtdcLinkManField_set_InvestorID(PyCThostFtdcLinkManField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -386,7 +386,7 @@ static int PyCThostFtdcLinkManField_set_IdentifiedCardNo(PyCThostFtdcLinkManFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -412,7 +412,7 @@ static int PyCThostFtdcLinkManField_set_PersonName(PyCThostFtdcLinkManField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.PersonName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.PersonName)) {
         PyErr_SetString(PyExc_ValueError, "PersonName must be less than 81 bytes");
         return -1;
     }
@@ -438,7 +438,7 @@ static int PyCThostFtdcLinkManField_set_Telephone(PyCThostFtdcLinkManField *self
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
         PyErr_SetString(PyExc_ValueError, "Telephone must be less than 41 bytes");
         return -1;
     }
@@ -464,7 +464,7 @@ static int PyCThostFtdcLinkManField_set_Address(PyCThostFtdcLinkManField *self, 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Address)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Address)) {
         PyErr_SetString(PyExc_ValueError, "Address must be less than 101 bytes");
         return -1;
     }
@@ -490,7 +490,7 @@ static int PyCThostFtdcLinkManField_set_ZipCode(PyCThostFtdcLinkManField *self, 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ZipCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ZipCode)) {
         PyErr_SetString(PyExc_ValueError, "ZipCode must be less than 7 bytes");
         return -1;
     }
@@ -554,7 +554,7 @@ static int PyCThostFtdcLinkManField_set_UOAZipCode(PyCThostFtdcLinkManField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UOAZipCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UOAZipCode)) {
         PyErr_SetString(PyExc_ValueError, "UOAZipCode must be less than 11 bytes");
         return -1;
     }
@@ -580,7 +580,7 @@ static int PyCThostFtdcLinkManField_set_PersonFullName(PyCThostFtdcLinkManField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.PersonFullName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.PersonFullName)) {
         PyErr_SetString(PyExc_ValueError, "PersonFullName must be less than 101 bytes");
         return -1;
     }

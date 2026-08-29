@@ -282,7 +282,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_init(PyCThostFtdcSyncDeltaD
     ///交易日
     // TThostFtdcDateType char[9]
     if( SyncDeltaDepthMarketDataField_TradingDay != NULL ) {
-        if(SyncDeltaDepthMarketDataField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SyncDeltaDepthMarketDataField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SyncDeltaDepthMarketDataField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -295,7 +295,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_init(PyCThostFtdcSyncDeltaD
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaDepthMarketDataField_InstrumentID != NULL ) {
-        if(SyncDeltaDepthMarketDataField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(SyncDeltaDepthMarketDataField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaDepthMarketDataField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -308,7 +308,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_init(PyCThostFtdcSyncDeltaD
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncDeltaDepthMarketDataField_ExchangeID != NULL ) {
-        if(SyncDeltaDepthMarketDataField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncDeltaDepthMarketDataField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaDepthMarketDataField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -321,7 +321,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_init(PyCThostFtdcSyncDeltaD
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( SyncDeltaDepthMarketDataField_ExchangeInstID != NULL ) {
-        if(SyncDeltaDepthMarketDataField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(SyncDeltaDepthMarketDataField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", SyncDeltaDepthMarketDataField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -398,7 +398,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_init(PyCThostFtdcSyncDeltaD
     ///最后修改时间
     // TThostFtdcTimeType char[9]
     if( SyncDeltaDepthMarketDataField_UpdateTime != NULL ) {
-        if(SyncDeltaDepthMarketDataField_UpdateTime_len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+        if(SyncDeltaDepthMarketDataField_UpdateTime_len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
             PyErr_Format(PyExc_ValueError, "UpdateTime too long: length=%zd (max allowed is %zd)", SyncDeltaDepthMarketDataField_UpdateTime_len, (Py_ssize_t)sizeof(self->data.UpdateTime));
             return -1;
         }
@@ -499,7 +499,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_init(PyCThostFtdcSyncDeltaD
     ///业务日期
     // TThostFtdcDateType char[9]
     if( SyncDeltaDepthMarketDataField_ActionDay != NULL ) {
-        if(SyncDeltaDepthMarketDataField_ActionDay_len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+        if(SyncDeltaDepthMarketDataField_ActionDay_len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
             PyErr_Format(PyExc_ValueError, "ActionDay too long: length=%zd (max allowed is %zd)", SyncDeltaDepthMarketDataField_ActionDay_len, (Py_ssize_t)sizeof(self->data.ActionDay));
             return -1;
         }
@@ -618,7 +618,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_set_TradingDay(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -644,7 +644,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_set_InstrumentID(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -670,7 +670,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_set_ExchangeID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -696,7 +696,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_set_ExchangeInstID(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }
@@ -1075,7 +1075,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_set_UpdateTime(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
         PyErr_SetString(PyExc_ValueError, "UpdateTime must be less than 9 bytes");
         return -1;
     }
@@ -1750,7 +1750,7 @@ static int PyCThostFtdcSyncDeltaDepthMarketDataField_set_ActionDay(PyCThostFtdcS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
         PyErr_SetString(PyExc_ValueError, "ActionDay must be less than 9 bytes");
         return -1;
     }

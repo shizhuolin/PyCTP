@@ -54,7 +54,7 @@ static int PyCThostFtdcRspGenSMSCodeField_init(PyCThostFtdcRspGenSMSCodeField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( RspGenSMSCodeField_BrokerID != NULL ) {
-        if(RspGenSMSCodeField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(RspGenSMSCodeField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RspGenSMSCodeField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcRspGenSMSCodeField_init(PyCThostFtdcRspGenSMSCodeField *s
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( RspGenSMSCodeField_UserID != NULL ) {
-        if(RspGenSMSCodeField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(RspGenSMSCodeField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", RspGenSMSCodeField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcRspGenSMSCodeField_init(PyCThostFtdcRspGenSMSCodeField *s
     ///生成时间
     // TThostFtdcTimeType char[9]
     if( RspGenSMSCodeField_GenTime != NULL ) {
-        if(RspGenSMSCodeField_GenTime_len > (Py_ssize_t)sizeof(self->data.GenTime)) {
+        if(RspGenSMSCodeField_GenTime_len >= (Py_ssize_t)sizeof(self->data.GenTime)) {
             PyErr_Format(PyExc_ValueError, "GenTime too long: length=%zd (max allowed is %zd)", RspGenSMSCodeField_GenTime_len, (Py_ssize_t)sizeof(self->data.GenTime));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcRspGenSMSCodeField_set_BrokerID(PyCThostFtdcRspGenSMSCode
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcRspGenSMSCodeField_set_UserID(PyCThostFtdcRspGenSMSCodeFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcRspGenSMSCodeField_set_GenTime(PyCThostFtdcRspGenSMSCodeF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.GenTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.GenTime)) {
         PyErr_SetString(PyExc_ValueError, "GenTime must be less than 9 bytes");
         return -1;
     }

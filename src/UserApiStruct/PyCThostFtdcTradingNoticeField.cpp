@@ -87,7 +87,7 @@ static int PyCThostFtdcTradingNoticeField_init(PyCThostFtdcTradingNoticeField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( TradingNoticeField_BrokerID != NULL ) {
-        if(TradingNoticeField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TradingNoticeField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradingNoticeField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcTradingNoticeField_init(PyCThostFtdcTradingNoticeField *s
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( TradingNoticeField_InvestorID != NULL ) {
-        if(TradingNoticeField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(TradingNoticeField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", TradingNoticeField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -121,7 +121,7 @@ static int PyCThostFtdcTradingNoticeField_init(PyCThostFtdcTradingNoticeField *s
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( TradingNoticeField_UserID != NULL ) {
-        if(TradingNoticeField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(TradingNoticeField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", TradingNoticeField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -134,7 +134,7 @@ static int PyCThostFtdcTradingNoticeField_init(PyCThostFtdcTradingNoticeField *s
     ///发送时间
     // TThostFtdcTimeType char[9]
     if( TradingNoticeField_SendTime != NULL ) {
-        if(TradingNoticeField_SendTime_len > (Py_ssize_t)sizeof(self->data.SendTime)) {
+        if(TradingNoticeField_SendTime_len >= (Py_ssize_t)sizeof(self->data.SendTime)) {
             PyErr_Format(PyExc_ValueError, "SendTime too long: length=%zd (max allowed is %zd)", TradingNoticeField_SendTime_len, (Py_ssize_t)sizeof(self->data.SendTime));
             return -1;
         }
@@ -151,7 +151,7 @@ static int PyCThostFtdcTradingNoticeField_init(PyCThostFtdcTradingNoticeField *s
     ///消息正文
     // TThostFtdcContentType char[501]
     if( TradingNoticeField_FieldContent != NULL ) {
-        if(TradingNoticeField_FieldContent_len > (Py_ssize_t)sizeof(self->data.FieldContent)) {
+        if(TradingNoticeField_FieldContent_len >= (Py_ssize_t)sizeof(self->data.FieldContent)) {
             PyErr_Format(PyExc_ValueError, "FieldContent too long: length=%zd (max allowed is %zd)", TradingNoticeField_FieldContent_len, (Py_ssize_t)sizeof(self->data.FieldContent));
             return -1;
         }
@@ -164,7 +164,7 @@ static int PyCThostFtdcTradingNoticeField_init(PyCThostFtdcTradingNoticeField *s
     ///投资单元代码
     // TThostFtdcInvestUnitIDType char[17]
     if( TradingNoticeField_InvestUnitID != NULL ) {
-        if(TradingNoticeField_InvestUnitID_len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+        if(TradingNoticeField_InvestUnitID_len >= (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
             PyErr_Format(PyExc_ValueError, "InvestUnitID too long: length=%zd (max allowed is %zd)", TradingNoticeField_InvestUnitID_len, (Py_ssize_t)sizeof(self->data.InvestUnitID));
             return -1;
         }
@@ -228,7 +228,7 @@ static int PyCThostFtdcTradingNoticeField_set_BrokerID(PyCThostFtdcTradingNotice
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -277,7 +277,7 @@ static int PyCThostFtdcTradingNoticeField_set_InvestorID(PyCThostFtdcTradingNoti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -341,7 +341,7 @@ static int PyCThostFtdcTradingNoticeField_set_UserID(PyCThostFtdcTradingNoticeFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -367,7 +367,7 @@ static int PyCThostFtdcTradingNoticeField_set_SendTime(PyCThostFtdcTradingNotice
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SendTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SendTime)) {
         PyErr_SetString(PyExc_ValueError, "SendTime must be less than 9 bytes");
         return -1;
     }
@@ -431,7 +431,7 @@ static int PyCThostFtdcTradingNoticeField_set_FieldContent(PyCThostFtdcTradingNo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FieldContent)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FieldContent)) {
         PyErr_SetString(PyExc_ValueError, "FieldContent must be less than 501 bytes");
         return -1;
     }
@@ -457,7 +457,7 @@ static int PyCThostFtdcTradingNoticeField_set_InvestUnitID(PyCThostFtdcTradingNo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
         PyErr_SetString(PyExc_ValueError, "InvestUnitID must be less than 17 bytes");
         return -1;
     }

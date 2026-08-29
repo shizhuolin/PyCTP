@@ -48,7 +48,7 @@ static int PyCThostFtdcQryMarginModelField_init(PyCThostFtdcQryMarginModelField 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryMarginModelField_BrokerID != NULL ) {
-        if(QryMarginModelField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryMarginModelField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryMarginModelField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQryMarginModelField_init(PyCThostFtdcQryMarginModelField 
     ///保证金率模板代码
     // TThostFtdcInvestorIDType char[13]
     if( QryMarginModelField_MarginModelID != NULL ) {
-        if(QryMarginModelField_MarginModelID_len > (Py_ssize_t)sizeof(self->data.MarginModelID)) {
+        if(QryMarginModelField_MarginModelID_len >= (Py_ssize_t)sizeof(self->data.MarginModelID)) {
             PyErr_Format(PyExc_ValueError, "MarginModelID too long: length=%zd (max allowed is %zd)", QryMarginModelField_MarginModelID_len, (Py_ssize_t)sizeof(self->data.MarginModelID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQryMarginModelField_set_BrokerID(PyCThostFtdcQryMarginMod
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQryMarginModelField_set_MarginModelID(PyCThostFtdcQryMarg
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MarginModelID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MarginModelID)) {
         PyErr_SetString(PyExc_ValueError, "MarginModelID must be less than 13 bytes");
         return -1;
     }

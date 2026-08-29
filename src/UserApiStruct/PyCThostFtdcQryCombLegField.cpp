@@ -42,7 +42,7 @@ static int PyCThostFtdcQryCombLegField_init(PyCThostFtdcQryCombLegField *self, P
     ///单腿合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryCombLegField_LegInstrumentID != NULL ) {
-        if(QryCombLegField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+        if(QryCombLegField_LegInstrumentID_len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", QryCombLegField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryCombLegField_set_LegInstrumentID(PyCThostFtdcQryCombLe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
         return -1;
     }

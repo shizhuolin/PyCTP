@@ -52,7 +52,7 @@ static int PyCThostFtdcFrontInfoField_init(PyCThostFtdcFrontInfoField *self, PyO
     ///前置地址
     // TThostFtdcAddressType char[101]
     if( FrontInfoField_FrontAddr != NULL ) {
-        if(FrontInfoField_FrontAddr_len > (Py_ssize_t)sizeof(self->data.FrontAddr)) {
+        if(FrontInfoField_FrontAddr_len >= (Py_ssize_t)sizeof(self->data.FrontAddr)) {
             PyErr_Format(PyExc_ValueError, "FrontAddr too long: length=%zd (max allowed is %zd)", FrontInfoField_FrontAddr_len, (Py_ssize_t)sizeof(self->data.FrontAddr));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcFrontInfoField_set_FrontAddr(PyCThostFtdcFrontInfoField *
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FrontAddr)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FrontAddr)) {
         PyErr_SetString(PyExc_ValueError, "FrontAddr must be less than 101 bytes");
         return -1;
     }

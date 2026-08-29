@@ -82,7 +82,7 @@ static int PyCThostFtdcSettlementInfoField_init(PyCThostFtdcSettlementInfoField 
     ///交易日
     // TThostFtdcDateType char[9]
     if( SettlementInfoField_TradingDay != NULL ) {
-        if(SettlementInfoField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SettlementInfoField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SettlementInfoField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcSettlementInfoField_init(PyCThostFtdcSettlementInfoField 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SettlementInfoField_BrokerID != NULL ) {
-        if(SettlementInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SettlementInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SettlementInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -112,7 +112,7 @@ static int PyCThostFtdcSettlementInfoField_init(PyCThostFtdcSettlementInfoField 
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( SettlementInfoField_InvestorID != NULL ) {
-        if(SettlementInfoField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(SettlementInfoField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SettlementInfoField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -129,7 +129,7 @@ static int PyCThostFtdcSettlementInfoField_init(PyCThostFtdcSettlementInfoField 
     ///消息正文
     // TThostFtdcContentType char[501]
     if( SettlementInfoField_Content != NULL ) {
-        if(SettlementInfoField_Content_len > (Py_ssize_t)sizeof(self->data.Content)) {
+        if(SettlementInfoField_Content_len >= (Py_ssize_t)sizeof(self->data.Content)) {
             PyErr_Format(PyExc_ValueError, "Content too long: length=%zd (max allowed is %zd)", SettlementInfoField_Content_len, (Py_ssize_t)sizeof(self->data.Content));
             return -1;
         }
@@ -142,7 +142,7 @@ static int PyCThostFtdcSettlementInfoField_init(PyCThostFtdcSettlementInfoField 
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( SettlementInfoField_AccountID != NULL ) {
-        if(SettlementInfoField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(SettlementInfoField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", SettlementInfoField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -155,7 +155,7 @@ static int PyCThostFtdcSettlementInfoField_init(PyCThostFtdcSettlementInfoField 
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( SettlementInfoField_CurrencyID != NULL ) {
-        if(SettlementInfoField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(SettlementInfoField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", SettlementInfoField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcSettlementInfoField_set_TradingDay(PyCThostFtdcSettlement
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -282,7 +282,7 @@ static int PyCThostFtdcSettlementInfoField_set_BrokerID(PyCThostFtdcSettlementIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -308,7 +308,7 @@ static int PyCThostFtdcSettlementInfoField_set_InvestorID(PyCThostFtdcSettlement
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -372,7 +372,7 @@ static int PyCThostFtdcSettlementInfoField_set_Content(PyCThostFtdcSettlementInf
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Content)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Content)) {
         PyErr_SetString(PyExc_ValueError, "Content must be less than 501 bytes");
         return -1;
     }
@@ -398,7 +398,7 @@ static int PyCThostFtdcSettlementInfoField_set_AccountID(PyCThostFtdcSettlementI
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -424,7 +424,7 @@ static int PyCThostFtdcSettlementInfoField_set_CurrencyID(PyCThostFtdcSettlement
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

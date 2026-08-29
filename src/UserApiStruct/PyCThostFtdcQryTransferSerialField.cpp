@@ -60,7 +60,7 @@ static int PyCThostFtdcQryTransferSerialField_init(PyCThostFtdcQryTransferSerial
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryTransferSerialField_BrokerID != NULL ) {
-        if(QryTransferSerialField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryTransferSerialField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcQryTransferSerialField_init(PyCThostFtdcQryTransferSerial
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( QryTransferSerialField_AccountID != NULL ) {
-        if(QryTransferSerialField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(QryTransferSerialField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcQryTransferSerialField_init(PyCThostFtdcQryTransferSerial
     ///银行编码
     // TThostFtdcBankIDType char[4]
     if( QryTransferSerialField_BankID != NULL ) {
-        if(QryTransferSerialField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(QryTransferSerialField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcQryTransferSerialField_init(PyCThostFtdcQryTransferSerial
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( QryTransferSerialField_CurrencyID != NULL ) {
-        if(QryTransferSerialField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(QryTransferSerialField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", QryTransferSerialField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcQryTransferSerialField_set_BrokerID(PyCThostFtdcQryTransf
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcQryTransferSerialField_set_AccountID(PyCThostFtdcQryTrans
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcQryTransferSerialField_set_BankID(PyCThostFtdcQryTransfer
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcQryTransferSerialField_set_CurrencyID(PyCThostFtdcQryTran
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

@@ -60,7 +60,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_init(PyCThostFtdcQrySecAgentACIDM
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QrySecAgentACIDMapField_BrokerID != NULL ) {
-        if(QrySecAgentACIDMapField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QrySecAgentACIDMapField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySecAgentACIDMapField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_init(PyCThostFtdcQrySecAgentACIDM
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( QrySecAgentACIDMapField_UserID != NULL ) {
-        if(QrySecAgentACIDMapField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(QrySecAgentACIDMapField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", QrySecAgentACIDMapField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_init(PyCThostFtdcQrySecAgentACIDM
     ///资金账户
     // TThostFtdcAccountIDType char[13]
     if( QrySecAgentACIDMapField_AccountID != NULL ) {
-        if(QrySecAgentACIDMapField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(QrySecAgentACIDMapField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", QrySecAgentACIDMapField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_init(PyCThostFtdcQrySecAgentACIDM
     ///币种
     // TThostFtdcCurrencyIDType char[4]
     if( QrySecAgentACIDMapField_CurrencyID != NULL ) {
-        if(QrySecAgentACIDMapField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(QrySecAgentACIDMapField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", QrySecAgentACIDMapField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_set_BrokerID(PyCThostFtdcQrySecAg
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_set_UserID(PyCThostFtdcQrySecAgen
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_set_AccountID(PyCThostFtdcQrySecA
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcQrySecAgentACIDMapField_set_CurrencyID(PyCThostFtdcQrySec
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

@@ -42,7 +42,7 @@ static int PyCThostFtdcQryRiskSettleProductStatusField_init(PyCThostFtdcQryRiskS
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryRiskSettleProductStatusField_ProductID != NULL ) {
-        if(QryRiskSettleProductStatusField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(QryRiskSettleProductStatusField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryRiskSettleProductStatusField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryRiskSettleProductStatusField_set_ProductID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }

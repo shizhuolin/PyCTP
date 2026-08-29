@@ -65,7 +65,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_init(PyCThostFtdcCFMMCTrading
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( CFMMCTradingAccountKeyField_BrokerID != NULL ) {
-        if(CFMMCTradingAccountKeyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(CFMMCTradingAccountKeyField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_init(PyCThostFtdcCFMMCTrading
     ///经纪公司统一编码
     // TThostFtdcParticipantIDType char[11]
     if( CFMMCTradingAccountKeyField_ParticipantID != NULL ) {
-        if(CFMMCTradingAccountKeyField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(CFMMCTradingAccountKeyField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_init(PyCThostFtdcCFMMCTrading
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( CFMMCTradingAccountKeyField_AccountID != NULL ) {
-        if(CFMMCTradingAccountKeyField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(CFMMCTradingAccountKeyField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_init(PyCThostFtdcCFMMCTrading
     ///动态密钥
     // TThostFtdcCFMMCKeyType char[21]
     if( CFMMCTradingAccountKeyField_CurrentKey != NULL ) {
-        if(CFMMCTradingAccountKeyField_CurrentKey_len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+        if(CFMMCTradingAccountKeyField_CurrentKey_len >= (Py_ssize_t)sizeof(self->data.CurrentKey)) {
             PyErr_Format(PyExc_ValueError, "CurrentKey too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountKeyField_CurrentKey_len, (Py_ssize_t)sizeof(self->data.CurrentKey));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_set_BrokerID(PyCThostFtdcCFMM
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_set_ParticipantID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_set_AccountID(PyCThostFtdcCFM
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -284,7 +284,7 @@ static int PyCThostFtdcCFMMCTradingAccountKeyField_set_CurrentKey(PyCThostFtdcCF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrentKey)) {
         PyErr_SetString(PyExc_ValueError, "CurrentKey must be less than 21 bytes");
         return -1;
     }

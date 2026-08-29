@@ -153,7 +153,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( TraderOfferField_ExchangeID != NULL ) {
-        if(TraderOfferField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(TraderOfferField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", TraderOfferField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -166,7 +166,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///交易所交易员代码
     // TThostFtdcTraderIDType char[21]
     if( TraderOfferField_TraderID != NULL ) {
-        if(TraderOfferField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+        if(TraderOfferField_TraderID_len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
             PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", TraderOfferField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
             return -1;
         }
@@ -179,7 +179,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///会员代码
     // TThostFtdcParticipantIDType char[11]
     if( TraderOfferField_ParticipantID != NULL ) {
-        if(TraderOfferField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(TraderOfferField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", TraderOfferField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -192,7 +192,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///密码
     // TThostFtdcPasswordType char[41]
     if( TraderOfferField_Password != NULL ) {
-        if(TraderOfferField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(TraderOfferField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", TraderOfferField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -209,7 +209,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///本地报单编号
     // TThostFtdcOrderLocalIDType char[13]
     if( TraderOfferField_OrderLocalID != NULL ) {
-        if(TraderOfferField_OrderLocalID_len > (Py_ssize_t)sizeof(self->data.OrderLocalID)) {
+        if(TraderOfferField_OrderLocalID_len >= (Py_ssize_t)sizeof(self->data.OrderLocalID)) {
             PyErr_Format(PyExc_ValueError, "OrderLocalID too long: length=%zd (max allowed is %zd)", TraderOfferField_OrderLocalID_len, (Py_ssize_t)sizeof(self->data.OrderLocalID));
             return -1;
         }
@@ -226,7 +226,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///发出连接请求的日期
     // TThostFtdcDateType char[9]
     if( TraderOfferField_ConnectRequestDate != NULL ) {
-        if(TraderOfferField_ConnectRequestDate_len > (Py_ssize_t)sizeof(self->data.ConnectRequestDate)) {
+        if(TraderOfferField_ConnectRequestDate_len >= (Py_ssize_t)sizeof(self->data.ConnectRequestDate)) {
             PyErr_Format(PyExc_ValueError, "ConnectRequestDate too long: length=%zd (max allowed is %zd)", TraderOfferField_ConnectRequestDate_len, (Py_ssize_t)sizeof(self->data.ConnectRequestDate));
             return -1;
         }
@@ -239,7 +239,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///发出连接请求的时间
     // TThostFtdcTimeType char[9]
     if( TraderOfferField_ConnectRequestTime != NULL ) {
-        if(TraderOfferField_ConnectRequestTime_len > (Py_ssize_t)sizeof(self->data.ConnectRequestTime)) {
+        if(TraderOfferField_ConnectRequestTime_len >= (Py_ssize_t)sizeof(self->data.ConnectRequestTime)) {
             PyErr_Format(PyExc_ValueError, "ConnectRequestTime too long: length=%zd (max allowed is %zd)", TraderOfferField_ConnectRequestTime_len, (Py_ssize_t)sizeof(self->data.ConnectRequestTime));
             return -1;
         }
@@ -252,7 +252,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///上次报告日期
     // TThostFtdcDateType char[9]
     if( TraderOfferField_LastReportDate != NULL ) {
-        if(TraderOfferField_LastReportDate_len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
+        if(TraderOfferField_LastReportDate_len >= (Py_ssize_t)sizeof(self->data.LastReportDate)) {
             PyErr_Format(PyExc_ValueError, "LastReportDate too long: length=%zd (max allowed is %zd)", TraderOfferField_LastReportDate_len, (Py_ssize_t)sizeof(self->data.LastReportDate));
             return -1;
         }
@@ -265,7 +265,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///上次报告时间
     // TThostFtdcTimeType char[9]
     if( TraderOfferField_LastReportTime != NULL ) {
-        if(TraderOfferField_LastReportTime_len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
+        if(TraderOfferField_LastReportTime_len >= (Py_ssize_t)sizeof(self->data.LastReportTime)) {
             PyErr_Format(PyExc_ValueError, "LastReportTime too long: length=%zd (max allowed is %zd)", TraderOfferField_LastReportTime_len, (Py_ssize_t)sizeof(self->data.LastReportTime));
             return -1;
         }
@@ -278,7 +278,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///完成连接日期
     // TThostFtdcDateType char[9]
     if( TraderOfferField_ConnectDate != NULL ) {
-        if(TraderOfferField_ConnectDate_len > (Py_ssize_t)sizeof(self->data.ConnectDate)) {
+        if(TraderOfferField_ConnectDate_len >= (Py_ssize_t)sizeof(self->data.ConnectDate)) {
             PyErr_Format(PyExc_ValueError, "ConnectDate too long: length=%zd (max allowed is %zd)", TraderOfferField_ConnectDate_len, (Py_ssize_t)sizeof(self->data.ConnectDate));
             return -1;
         }
@@ -291,7 +291,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///完成连接时间
     // TThostFtdcTimeType char[9]
     if( TraderOfferField_ConnectTime != NULL ) {
-        if(TraderOfferField_ConnectTime_len > (Py_ssize_t)sizeof(self->data.ConnectTime)) {
+        if(TraderOfferField_ConnectTime_len >= (Py_ssize_t)sizeof(self->data.ConnectTime)) {
             PyErr_Format(PyExc_ValueError, "ConnectTime too long: length=%zd (max allowed is %zd)", TraderOfferField_ConnectTime_len, (Py_ssize_t)sizeof(self->data.ConnectTime));
             return -1;
         }
@@ -304,7 +304,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///启动日期
     // TThostFtdcDateType char[9]
     if( TraderOfferField_StartDate != NULL ) {
-        if(TraderOfferField_StartDate_len > (Py_ssize_t)sizeof(self->data.StartDate)) {
+        if(TraderOfferField_StartDate_len >= (Py_ssize_t)sizeof(self->data.StartDate)) {
             PyErr_Format(PyExc_ValueError, "StartDate too long: length=%zd (max allowed is %zd)", TraderOfferField_StartDate_len, (Py_ssize_t)sizeof(self->data.StartDate));
             return -1;
         }
@@ -317,7 +317,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///启动时间
     // TThostFtdcTimeType char[9]
     if( TraderOfferField_StartTime != NULL ) {
-        if(TraderOfferField_StartTime_len > (Py_ssize_t)sizeof(self->data.StartTime)) {
+        if(TraderOfferField_StartTime_len >= (Py_ssize_t)sizeof(self->data.StartTime)) {
             PyErr_Format(PyExc_ValueError, "StartTime too long: length=%zd (max allowed is %zd)", TraderOfferField_StartTime_len, (Py_ssize_t)sizeof(self->data.StartTime));
             return -1;
         }
@@ -330,7 +330,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///交易日
     // TThostFtdcDateType char[9]
     if( TraderOfferField_TradingDay != NULL ) {
-        if(TraderOfferField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(TraderOfferField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", TraderOfferField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -343,7 +343,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( TraderOfferField_BrokerID != NULL ) {
-        if(TraderOfferField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TraderOfferField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TraderOfferField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -356,7 +356,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///本席位最大成交编号
     // TThostFtdcTradeIDType char[21]
     if( TraderOfferField_MaxTradeID != NULL ) {
-        if(TraderOfferField_MaxTradeID_len > (Py_ssize_t)sizeof(self->data.MaxTradeID)) {
+        if(TraderOfferField_MaxTradeID_len >= (Py_ssize_t)sizeof(self->data.MaxTradeID)) {
             PyErr_Format(PyExc_ValueError, "MaxTradeID too long: length=%zd (max allowed is %zd)", TraderOfferField_MaxTradeID_len, (Py_ssize_t)sizeof(self->data.MaxTradeID));
             return -1;
         }
@@ -369,7 +369,7 @@ static int PyCThostFtdcTraderOfferField_init(PyCThostFtdcTraderOfferField *self,
     ///本席位最大报单备拷
     // TThostFtdcReturnCodeType char[7]
     if( TraderOfferField_MaxOrderMessageReference != NULL ) {
-        if(TraderOfferField_MaxOrderMessageReference_len > (Py_ssize_t)sizeof(self->data.MaxOrderMessageReference)) {
+        if(TraderOfferField_MaxOrderMessageReference_len >= (Py_ssize_t)sizeof(self->data.MaxOrderMessageReference)) {
             PyErr_Format(PyExc_ValueError, "MaxOrderMessageReference too long: length=%zd (max allowed is %zd)", TraderOfferField_MaxOrderMessageReference_len, (Py_ssize_t)sizeof(self->data.MaxOrderMessageReference));
             return -1;
         }
@@ -448,7 +448,7 @@ static int PyCThostFtdcTraderOfferField_set_ExchangeID(PyCThostFtdcTraderOfferFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -474,7 +474,7 @@ static int PyCThostFtdcTraderOfferField_set_TraderID(PyCThostFtdcTraderOfferFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
         PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
         return -1;
     }
@@ -500,7 +500,7 @@ static int PyCThostFtdcTraderOfferField_set_ParticipantID(PyCThostFtdcTraderOffe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -526,7 +526,7 @@ static int PyCThostFtdcTraderOfferField_set_Password(PyCThostFtdcTraderOfferFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -590,7 +590,7 @@ static int PyCThostFtdcTraderOfferField_set_OrderLocalID(PyCThostFtdcTraderOffer
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OrderLocalID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OrderLocalID)) {
         PyErr_SetString(PyExc_ValueError, "OrderLocalID must be less than 13 bytes");
         return -1;
     }
@@ -639,7 +639,7 @@ static int PyCThostFtdcTraderOfferField_set_ConnectRequestDate(PyCThostFtdcTrade
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConnectRequestDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ConnectRequestDate)) {
         PyErr_SetString(PyExc_ValueError, "ConnectRequestDate must be less than 9 bytes");
         return -1;
     }
@@ -665,7 +665,7 @@ static int PyCThostFtdcTraderOfferField_set_ConnectRequestTime(PyCThostFtdcTrade
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConnectRequestTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ConnectRequestTime)) {
         PyErr_SetString(PyExc_ValueError, "ConnectRequestTime must be less than 9 bytes");
         return -1;
     }
@@ -691,7 +691,7 @@ static int PyCThostFtdcTraderOfferField_set_LastReportDate(PyCThostFtdcTraderOff
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LastReportDate)) {
         PyErr_SetString(PyExc_ValueError, "LastReportDate must be less than 9 bytes");
         return -1;
     }
@@ -717,7 +717,7 @@ static int PyCThostFtdcTraderOfferField_set_LastReportTime(PyCThostFtdcTraderOff
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LastReportTime)) {
         PyErr_SetString(PyExc_ValueError, "LastReportTime must be less than 9 bytes");
         return -1;
     }
@@ -743,7 +743,7 @@ static int PyCThostFtdcTraderOfferField_set_ConnectDate(PyCThostFtdcTraderOfferF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConnectDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ConnectDate)) {
         PyErr_SetString(PyExc_ValueError, "ConnectDate must be less than 9 bytes");
         return -1;
     }
@@ -769,7 +769,7 @@ static int PyCThostFtdcTraderOfferField_set_ConnectTime(PyCThostFtdcTraderOfferF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConnectTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ConnectTime)) {
         PyErr_SetString(PyExc_ValueError, "ConnectTime must be less than 9 bytes");
         return -1;
     }
@@ -795,7 +795,7 @@ static int PyCThostFtdcTraderOfferField_set_StartDate(PyCThostFtdcTraderOfferFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.StartDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.StartDate)) {
         PyErr_SetString(PyExc_ValueError, "StartDate must be less than 9 bytes");
         return -1;
     }
@@ -821,7 +821,7 @@ static int PyCThostFtdcTraderOfferField_set_StartTime(PyCThostFtdcTraderOfferFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.StartTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.StartTime)) {
         PyErr_SetString(PyExc_ValueError, "StartTime must be less than 9 bytes");
         return -1;
     }
@@ -847,7 +847,7 @@ static int PyCThostFtdcTraderOfferField_set_TradingDay(PyCThostFtdcTraderOfferFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -873,7 +873,7 @@ static int PyCThostFtdcTraderOfferField_set_BrokerID(PyCThostFtdcTraderOfferFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -899,7 +899,7 @@ static int PyCThostFtdcTraderOfferField_set_MaxTradeID(PyCThostFtdcTraderOfferFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MaxTradeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MaxTradeID)) {
         PyErr_SetString(PyExc_ValueError, "MaxTradeID must be less than 21 bytes");
         return -1;
     }
@@ -925,7 +925,7 @@ static int PyCThostFtdcTraderOfferField_set_MaxOrderMessageReference(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MaxOrderMessageReference)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MaxOrderMessageReference)) {
         PyErr_SetString(PyExc_ValueError, "MaxOrderMessageReference must be less than 7 bytes");
         return -1;
     }

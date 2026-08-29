@@ -51,7 +51,7 @@ static int PyCThostFtdcReqVerifyApiKeyField_init(PyCThostFtdcReqVerifyApiKeyFiel
     ///握手回复数据
     // TThostFtdcHandshakeDataType char[301]
     if( ReqVerifyApiKeyField_ApiHandshakeData != NULL ) {
-        if(ReqVerifyApiKeyField_ApiHandshakeData_len > (Py_ssize_t)sizeof(self->data.ApiHandshakeData)) {
+        if(ReqVerifyApiKeyField_ApiHandshakeData_len >= (Py_ssize_t)sizeof(self->data.ApiHandshakeData)) {
             PyErr_Format(PyExc_ValueError, "ApiHandshakeData too long: length=%zd (max allowed is %zd)", ReqVerifyApiKeyField_ApiHandshakeData_len, (Py_ssize_t)sizeof(self->data.ApiHandshakeData));
             return -1;
         }
@@ -146,7 +146,7 @@ static int PyCThostFtdcReqVerifyApiKeyField_set_ApiHandshakeData(PyCThostFtdcReq
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ApiHandshakeData)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ApiHandshakeData)) {
         PyErr_SetString(PyExc_ValueError, "ApiHandshakeData must be less than 301 bytes");
         return -1;
     }

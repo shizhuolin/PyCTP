@@ -56,7 +56,7 @@ static int PyCThostFtdcRspApiHandshakeField_init(PyCThostFtdcRspApiHandshakeFiel
     ///握手回复数据
     // TThostFtdcHandshakeDataType char[301]
     if( RspApiHandshakeField_FrontHandshakeData != NULL ) {
-        if(RspApiHandshakeField_FrontHandshakeData_len > (Py_ssize_t)sizeof(self->data.FrontHandshakeData)) {
+        if(RspApiHandshakeField_FrontHandshakeData_len >= (Py_ssize_t)sizeof(self->data.FrontHandshakeData)) {
             PyErr_Format(PyExc_ValueError, "FrontHandshakeData too long: length=%zd (max allowed is %zd)", RspApiHandshakeField_FrontHandshakeData_len, (Py_ssize_t)sizeof(self->data.FrontHandshakeData));
             return -1;
         }
@@ -156,7 +156,7 @@ static int PyCThostFtdcRspApiHandshakeField_set_FrontHandshakeData(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FrontHandshakeData)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FrontHandshakeData)) {
         PyErr_SetString(PyExc_ValueError, "FrontHandshakeData must be less than 301 bytes");
         return -1;
     }

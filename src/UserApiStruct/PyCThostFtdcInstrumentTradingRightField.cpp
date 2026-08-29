@@ -70,7 +70,7 @@ static int PyCThostFtdcInstrumentTradingRightField_init(PyCThostFtdcInstrumentTr
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( InstrumentTradingRightField_reserve1 != NULL ) {
-        if(InstrumentTradingRightField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(InstrumentTradingRightField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", InstrumentTradingRightField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -87,7 +87,7 @@ static int PyCThostFtdcInstrumentTradingRightField_init(PyCThostFtdcInstrumentTr
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InstrumentTradingRightField_BrokerID != NULL ) {
-        if(InstrumentTradingRightField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InstrumentTradingRightField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InstrumentTradingRightField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -100,7 +100,7 @@ static int PyCThostFtdcInstrumentTradingRightField_init(PyCThostFtdcInstrumentTr
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InstrumentTradingRightField_InvestorID != NULL ) {
-        if(InstrumentTradingRightField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InstrumentTradingRightField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InstrumentTradingRightField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcInstrumentTradingRightField_init(PyCThostFtdcInstrumentTr
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( InstrumentTradingRightField_InstrumentID != NULL ) {
-        if(InstrumentTradingRightField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(InstrumentTradingRightField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", InstrumentTradingRightField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcInstrumentTradingRightField_set_reserve1(PyCThostFtdcInst
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -227,7 +227,7 @@ static int PyCThostFtdcInstrumentTradingRightField_set_BrokerID(PyCThostFtdcInst
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -253,7 +253,7 @@ static int PyCThostFtdcInstrumentTradingRightField_set_InvestorID(PyCThostFtdcIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -302,7 +302,7 @@ static int PyCThostFtdcInstrumentTradingRightField_set_InstrumentID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

@@ -84,7 +84,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryOptionSelfCloseField_BrokerID != NULL ) {
-        if(QryOptionSelfCloseField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryOptionSelfCloseField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -97,7 +97,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QryOptionSelfCloseField_InvestorID != NULL ) {
-        if(QryOptionSelfCloseField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QryOptionSelfCloseField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -110,7 +110,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( QryOptionSelfCloseField_reserve1 != NULL ) {
-        if(QryOptionSelfCloseField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryOptionSelfCloseField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -123,7 +123,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryOptionSelfCloseField_ExchangeID != NULL ) {
-        if(QryOptionSelfCloseField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryOptionSelfCloseField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -136,7 +136,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///期权自对冲编号
     // TThostFtdcOrderSysIDType char[21]
     if( QryOptionSelfCloseField_OptionSelfCloseSysID != NULL ) {
-        if(QryOptionSelfCloseField_OptionSelfCloseSysID_len > (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
+        if(QryOptionSelfCloseField_OptionSelfCloseSysID_len >= (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
             PyErr_Format(PyExc_ValueError, "OptionSelfCloseSysID too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_OptionSelfCloseSysID_len, (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID));
             return -1;
         }
@@ -149,7 +149,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///开始时间
     // TThostFtdcTimeType char[9]
     if( QryOptionSelfCloseField_InsertTimeStart != NULL ) {
-        if(QryOptionSelfCloseField_InsertTimeStart_len > (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
+        if(QryOptionSelfCloseField_InsertTimeStart_len >= (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
             PyErr_Format(PyExc_ValueError, "InsertTimeStart too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_InsertTimeStart_len, (Py_ssize_t)sizeof(self->data.InsertTimeStart));
             return -1;
         }
@@ -162,7 +162,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///结束时间
     // TThostFtdcTimeType char[9]
     if( QryOptionSelfCloseField_InsertTimeEnd != NULL ) {
-        if(QryOptionSelfCloseField_InsertTimeEnd_len > (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
+        if(QryOptionSelfCloseField_InsertTimeEnd_len >= (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
             PyErr_Format(PyExc_ValueError, "InsertTimeEnd too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_InsertTimeEnd_len, (Py_ssize_t)sizeof(self->data.InsertTimeEnd));
             return -1;
         }
@@ -175,7 +175,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_init(PyCThostFtdcQryOptionSelfClo
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryOptionSelfCloseField_InstrumentID != NULL ) {
-        if(QryOptionSelfCloseField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QryOptionSelfCloseField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryOptionSelfCloseField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -238,7 +238,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_BrokerID(PyCThostFtdcQryOptio
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -264,7 +264,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_InvestorID(PyCThostFtdcQryOpt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -290,7 +290,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_reserve1(PyCThostFtdcQryOptio
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -316,7 +316,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_ExchangeID(PyCThostFtdcQryOpt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -342,7 +342,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_OptionSelfCloseSysID(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
         PyErr_SetString(PyExc_ValueError, "OptionSelfCloseSysID must be less than 21 bytes");
         return -1;
     }
@@ -368,7 +368,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_InsertTimeStart(PyCThostFtdcQ
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
         PyErr_SetString(PyExc_ValueError, "InsertTimeStart must be less than 9 bytes");
         return -1;
     }
@@ -394,7 +394,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_InsertTimeEnd(PyCThostFtdcQry
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
         PyErr_SetString(PyExc_ValueError, "InsertTimeEnd must be less than 9 bytes");
         return -1;
     }
@@ -420,7 +420,7 @@ static int PyCThostFtdcQryOptionSelfCloseField_set_InstrumentID(PyCThostFtdcQryO
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

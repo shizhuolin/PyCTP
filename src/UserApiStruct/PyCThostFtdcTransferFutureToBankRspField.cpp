@@ -70,7 +70,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_init(PyCThostFtdcTransferFut
     ///响应代码
     // TThostFtdcRetCodeType char[5]
     if( TransferFutureToBankRspField_RetCode != NULL ) {
-        if(TransferFutureToBankRspField_RetCode_len > (Py_ssize_t)sizeof(self->data.RetCode)) {
+        if(TransferFutureToBankRspField_RetCode_len >= (Py_ssize_t)sizeof(self->data.RetCode)) {
             PyErr_Format(PyExc_ValueError, "RetCode too long: length=%zd (max allowed is %zd)", TransferFutureToBankRspField_RetCode_len, (Py_ssize_t)sizeof(self->data.RetCode));
             return -1;
         }
@@ -83,7 +83,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_init(PyCThostFtdcTransferFut
     ///响应信息
     // TThostFtdcRetInfoType char[129]
     if( TransferFutureToBankRspField_RetInfo != NULL ) {
-        if(TransferFutureToBankRspField_RetInfo_len > (Py_ssize_t)sizeof(self->data.RetInfo)) {
+        if(TransferFutureToBankRspField_RetInfo_len >= (Py_ssize_t)sizeof(self->data.RetInfo)) {
             PyErr_Format(PyExc_ValueError, "RetInfo too long: length=%zd (max allowed is %zd)", TransferFutureToBankRspField_RetInfo_len, (Py_ssize_t)sizeof(self->data.RetInfo));
             return -1;
         }
@@ -96,7 +96,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_init(PyCThostFtdcTransferFut
     ///资金账户
     // TThostFtdcAccountIDType char[13]
     if( TransferFutureToBankRspField_FutureAccount != NULL ) {
-        if(TransferFutureToBankRspField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+        if(TransferFutureToBankRspField_FutureAccount_len >= (Py_ssize_t)sizeof(self->data.FutureAccount)) {
             PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", TransferFutureToBankRspField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_init(PyCThostFtdcTransferFut
     ///币种
     // TThostFtdcCurrencyCodeType char[4]
     if( TransferFutureToBankRspField_CurrencyCode != NULL ) {
-        if(TransferFutureToBankRspField_CurrencyCode_len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+        if(TransferFutureToBankRspField_CurrencyCode_len >= (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
             PyErr_Format(PyExc_ValueError, "CurrencyCode too long: length=%zd (max allowed is %zd)", TransferFutureToBankRspField_CurrencyCode_len, (Py_ssize_t)sizeof(self->data.CurrencyCode));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_set_RetCode(PyCThostFtdcTran
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RetCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.RetCode)) {
         PyErr_SetString(PyExc_ValueError, "RetCode must be less than 5 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_set_RetInfo(PyCThostFtdcTran
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RetInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.RetInfo)) {
         PyErr_SetString(PyExc_ValueError, "RetInfo must be less than 129 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_set_FutureAccount(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FutureAccount)) {
         PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
         return -1;
     }
@@ -298,7 +298,7 @@ static int PyCThostFtdcTransferFutureToBankRspField_set_CurrencyCode(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyCode must be less than 4 bytes");
         return -1;
     }

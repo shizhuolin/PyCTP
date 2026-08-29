@@ -48,7 +48,7 @@ static int PyCThostFtdcSpecificInstrumentField_init(PyCThostFtdcSpecificInstrume
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( SpecificInstrumentField_reserve1 != NULL ) {
-        if(SpecificInstrumentField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(SpecificInstrumentField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", SpecificInstrumentField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcSpecificInstrumentField_init(PyCThostFtdcSpecificInstrume
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( SpecificInstrumentField_InstrumentID != NULL ) {
-        if(SpecificInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(SpecificInstrumentField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SpecificInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcSpecificInstrumentField_set_reserve1(PyCThostFtdcSpecific
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcSpecificInstrumentField_set_InstrumentID(PyCThostFtdcSpec
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

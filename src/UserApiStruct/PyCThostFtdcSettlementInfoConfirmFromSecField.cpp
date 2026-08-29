@@ -65,7 +65,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_init(PyCThostFtdcSettle
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SettlementInfoConfirmFromSecField_BrokerID != NULL ) {
-        if(SettlementInfoConfirmFromSecField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SettlementInfoConfirmFromSecField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_init(PyCThostFtdcSettle
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( SettlementInfoConfirmFromSecField_InvestorID != NULL ) {
-        if(SettlementInfoConfirmFromSecField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(SettlementInfoConfirmFromSecField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_init(PyCThostFtdcSettle
     ///确认日期
     // TThostFtdcDateType char[9]
     if( SettlementInfoConfirmFromSecField_ConfirmDate != NULL ) {
-        if(SettlementInfoConfirmFromSecField_ConfirmDate_len > (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
+        if(SettlementInfoConfirmFromSecField_ConfirmDate_len >= (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
             PyErr_Format(PyExc_ValueError, "ConfirmDate too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_ConfirmDate_len, (Py_ssize_t)sizeof(self->data.ConfirmDate));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_init(PyCThostFtdcSettle
     ///确认时间
     // TThostFtdcTimeType char[9]
     if( SettlementInfoConfirmFromSecField_ConfirmTime != NULL ) {
-        if(SettlementInfoConfirmFromSecField_ConfirmTime_len > (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
+        if(SettlementInfoConfirmFromSecField_ConfirmTime_len >= (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
             PyErr_Format(PyExc_ValueError, "ConfirmTime too long: length=%zd (max allowed is %zd)", SettlementInfoConfirmFromSecField_ConfirmTime_len, (Py_ssize_t)sizeof(self->data.ConfirmTime));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_BrokerID(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_InvestorID(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmDate(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ConfirmDate)) {
         PyErr_SetString(PyExc_ValueError, "ConfirmDate must be less than 9 bytes");
         return -1;
     }
@@ -246,7 +246,7 @@ static int PyCThostFtdcSettlementInfoConfirmFromSecField_set_ConfirmTime(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ConfirmTime)) {
         PyErr_SetString(PyExc_ValueError, "ConfirmTime must be less than 9 bytes");
         return -1;
     }

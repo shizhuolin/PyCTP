@@ -77,7 +77,7 @@ static int PyCThostFtdcMulticastInstrumentField_init(PyCThostFtdcMulticastInstru
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( MulticastInstrumentField_reserve1 != NULL ) {
-        if(MulticastInstrumentField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(MulticastInstrumentField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", MulticastInstrumentField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -106,7 +106,7 @@ static int PyCThostFtdcMulticastInstrumentField_init(PyCThostFtdcMulticastInstru
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( MulticastInstrumentField_InstrumentID != NULL ) {
-        if(MulticastInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(MulticastInstrumentField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", MulticastInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -206,7 +206,7 @@ static int PyCThostFtdcMulticastInstrumentField_set_reserve1(PyCThostFtdcMultica
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -350,7 +350,7 @@ static int PyCThostFtdcMulticastInstrumentField_set_InstrumentID(PyCThostFtdcMul
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

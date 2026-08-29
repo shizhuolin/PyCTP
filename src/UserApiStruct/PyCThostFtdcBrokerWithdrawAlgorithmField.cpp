@@ -88,7 +88,7 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_init(PyCThostFtdcBrokerWithd
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( BrokerWithdrawAlgorithmField_BrokerID != NULL ) {
-        if(BrokerWithdrawAlgorithmField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(BrokerWithdrawAlgorithmField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerWithdrawAlgorithmField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -125,7 +125,7 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_init(PyCThostFtdcBrokerWithd
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( BrokerWithdrawAlgorithmField_CurrencyID != NULL ) {
-        if(BrokerWithdrawAlgorithmField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(BrokerWithdrawAlgorithmField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", BrokerWithdrawAlgorithmField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_BrokerID(PyCThostFtdcBro
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -375,7 +375,7 @@ static int PyCThostFtdcBrokerWithdrawAlgorithmField_set_CurrencyID(PyCThostFtdcB
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

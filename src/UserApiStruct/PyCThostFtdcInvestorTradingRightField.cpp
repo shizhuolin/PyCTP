@@ -53,7 +53,7 @@ static int PyCThostFtdcInvestorTradingRightField_init(PyCThostFtdcInvestorTradin
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorTradingRightField_BrokerID != NULL ) {
-        if(InvestorTradingRightField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorTradingRightField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorTradingRightField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -66,7 +66,7 @@ static int PyCThostFtdcInvestorTradingRightField_init(PyCThostFtdcInvestorTradin
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorTradingRightField_InvestorID != NULL ) {
-        if(InvestorTradingRightField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InvestorTradingRightField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorTradingRightField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -128,7 +128,7 @@ static int PyCThostFtdcInvestorTradingRightField_set_BrokerID(PyCThostFtdcInvest
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -154,7 +154,7 @@ static int PyCThostFtdcInvestorTradingRightField_set_InvestorID(PyCThostFtdcInve
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }

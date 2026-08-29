@@ -285,7 +285,7 @@ static int PyCThostFtdcSyncingTradingAccountField_init(PyCThostFtdcSyncingTradin
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SyncingTradingAccountField_BrokerID != NULL ) {
-        if(SyncingTradingAccountField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SyncingTradingAccountField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncingTradingAccountField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -298,7 +298,7 @@ static int PyCThostFtdcSyncingTradingAccountField_init(PyCThostFtdcSyncingTradin
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( SyncingTradingAccountField_AccountID != NULL ) {
-        if(SyncingTradingAccountField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(SyncingTradingAccountField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", SyncingTradingAccountField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -395,7 +395,7 @@ static int PyCThostFtdcSyncingTradingAccountField_init(PyCThostFtdcSyncingTradin
     ///交易日
     // TThostFtdcDateType char[9]
     if( SyncingTradingAccountField_TradingDay != NULL ) {
-        if(SyncingTradingAccountField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SyncingTradingAccountField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SyncingTradingAccountField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -436,7 +436,7 @@ static int PyCThostFtdcSyncingTradingAccountField_init(PyCThostFtdcSyncingTradin
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( SyncingTradingAccountField_CurrencyID != NULL ) {
-        if(SyncingTradingAccountField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(SyncingTradingAccountField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", SyncingTradingAccountField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -608,7 +608,7 @@ static int PyCThostFtdcSyncingTradingAccountField_set_BrokerID(PyCThostFtdcSynci
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -634,7 +634,7 @@ static int PyCThostFtdcSyncingTradingAccountField_set_AccountID(PyCThostFtdcSync
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -1101,7 +1101,7 @@ static int PyCThostFtdcSyncingTradingAccountField_set_TradingDay(PyCThostFtdcSyn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -1291,7 +1291,7 @@ static int PyCThostFtdcSyncingTradingAccountField_set_CurrencyID(PyCThostFtdcSyn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

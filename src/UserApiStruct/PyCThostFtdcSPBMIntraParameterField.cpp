@@ -64,7 +64,7 @@ static int PyCThostFtdcSPBMIntraParameterField_init(PyCThostFtdcSPBMIntraParamet
     ///交易日
     // TThostFtdcDateType char[9]
     if( SPBMIntraParameterField_TradingDay != NULL ) {
-        if(SPBMIntraParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SPBMIntraParameterField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SPBMIntraParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -77,7 +77,7 @@ static int PyCThostFtdcSPBMIntraParameterField_init(PyCThostFtdcSPBMIntraParamet
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SPBMIntraParameterField_ExchangeID != NULL ) {
-        if(SPBMIntraParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SPBMIntraParameterField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SPBMIntraParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -90,7 +90,7 @@ static int PyCThostFtdcSPBMIntraParameterField_init(PyCThostFtdcSPBMIntraParamet
     ///品种代码
     // TThostFtdcInstrumentIDType char[81]
     if( SPBMIntraParameterField_ProdFamilyCode != NULL ) {
-        if(SPBMIntraParameterField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+        if(SPBMIntraParameterField_ProdFamilyCode_len >= (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
             PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", SPBMIntraParameterField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcSPBMIntraParameterField_set_TradingDay(PyCThostFtdcSPBMIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcSPBMIntraParameterField_set_ExchangeID(PyCThostFtdcSPBMIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcSPBMIntraParameterField_set_ProdFamilyCode(PyCThostFtdcSP
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
         PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
         return -1;
     }

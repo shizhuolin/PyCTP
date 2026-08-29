@@ -59,7 +59,7 @@ static int PyCThostFtdcBrokerField_init(PyCThostFtdcBrokerField *self, PyObject 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( BrokerField_BrokerID != NULL ) {
-        if(BrokerField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(BrokerField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcBrokerField_init(PyCThostFtdcBrokerField *self, PyObject 
     ///经纪公司简称
     // TThostFtdcBrokerAbbrType char[9]
     if( BrokerField_BrokerAbbr != NULL ) {
-        if(BrokerField_BrokerAbbr_len > (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
+        if(BrokerField_BrokerAbbr_len >= (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
             PyErr_Format(PyExc_ValueError, "BrokerAbbr too long: length=%zd (max allowed is %zd)", BrokerField_BrokerAbbr_len, (Py_ssize_t)sizeof(self->data.BrokerAbbr));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcBrokerField_init(PyCThostFtdcBrokerField *self, PyObject 
     ///经纪公司名称
     // TThostFtdcBrokerNameType char[81]
     if( BrokerField_BrokerName != NULL ) {
-        if(BrokerField_BrokerName_len > (Py_ssize_t)sizeof(self->data.BrokerName)) {
+        if(BrokerField_BrokerName_len >= (Py_ssize_t)sizeof(self->data.BrokerName)) {
             PyErr_Format(PyExc_ValueError, "BrokerName too long: length=%zd (max allowed is %zd)", BrokerField_BrokerName_len, (Py_ssize_t)sizeof(self->data.BrokerName));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcBrokerField_set_BrokerID(PyCThostFtdcBrokerField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcBrokerField_set_BrokerAbbr(PyCThostFtdcBrokerField *self,
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
         PyErr_SetString(PyExc_ValueError, "BrokerAbbr must be less than 9 bytes");
         return -1;
     }
@@ -200,7 +200,7 @@ static int PyCThostFtdcBrokerField_set_BrokerName(PyCThostFtdcBrokerField *self,
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerName)) {
         PyErr_SetString(PyExc_ValueError, "BrokerName must be less than 81 bytes");
         return -1;
     }

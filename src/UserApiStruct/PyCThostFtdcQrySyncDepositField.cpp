@@ -48,7 +48,7 @@ static int PyCThostFtdcQrySyncDepositField_init(PyCThostFtdcQrySyncDepositField 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QrySyncDepositField_BrokerID != NULL ) {
-        if(QrySyncDepositField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QrySyncDepositField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySyncDepositField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQrySyncDepositField_init(PyCThostFtdcQrySyncDepositField 
     ///出入金流水号
     // TThostFtdcDepositSeqNoType char[15]
     if( QrySyncDepositField_DepositSeqNo != NULL ) {
-        if(QrySyncDepositField_DepositSeqNo_len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+        if(QrySyncDepositField_DepositSeqNo_len >= (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
             PyErr_Format(PyExc_ValueError, "DepositSeqNo too long: length=%zd (max allowed is %zd)", QrySyncDepositField_DepositSeqNo_len, (Py_ssize_t)sizeof(self->data.DepositSeqNo));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQrySyncDepositField_set_BrokerID(PyCThostFtdcQrySyncDepos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQrySyncDepositField_set_DepositSeqNo(PyCThostFtdcQrySyncD
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
         PyErr_SetString(PyExc_ValueError, "DepositSeqNo must be less than 15 bytes");
         return -1;
     }

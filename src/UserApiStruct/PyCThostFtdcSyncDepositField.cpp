@@ -86,7 +86,7 @@ static int PyCThostFtdcSyncDepositField_init(PyCThostFtdcSyncDepositField *self,
     ///出入金流水号
     // TThostFtdcDepositSeqNoType char[15]
     if( SyncDepositField_DepositSeqNo != NULL ) {
-        if(SyncDepositField_DepositSeqNo_len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+        if(SyncDepositField_DepositSeqNo_len >= (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
             PyErr_Format(PyExc_ValueError, "DepositSeqNo too long: length=%zd (max allowed is %zd)", SyncDepositField_DepositSeqNo_len, (Py_ssize_t)sizeof(self->data.DepositSeqNo));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcSyncDepositField_init(PyCThostFtdcSyncDepositField *self,
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SyncDepositField_BrokerID != NULL ) {
-        if(SyncDepositField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SyncDepositField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDepositField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -112,7 +112,7 @@ static int PyCThostFtdcSyncDepositField_init(PyCThostFtdcSyncDepositField *self,
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( SyncDepositField_InvestorID != NULL ) {
-        if(SyncDepositField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(SyncDepositField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SyncDepositField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -133,7 +133,7 @@ static int PyCThostFtdcSyncDepositField_init(PyCThostFtdcSyncDepositField *self,
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( SyncDepositField_CurrencyID != NULL ) {
-        if(SyncDepositField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(SyncDepositField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", SyncDepositField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -150,7 +150,7 @@ static int PyCThostFtdcSyncDepositField_init(PyCThostFtdcSyncDepositField *self,
     ///资金密码
     // TThostFtdcPasswordType char[41]
     if( SyncDepositField_TradingPassword != NULL ) {
-        if(SyncDepositField_TradingPassword_len > (Py_ssize_t)sizeof(self->data.TradingPassword)) {
+        if(SyncDepositField_TradingPassword_len >= (Py_ssize_t)sizeof(self->data.TradingPassword)) {
             PyErr_Format(PyExc_ValueError, "TradingPassword too long: length=%zd (max allowed is %zd)", SyncDepositField_TradingPassword_len, (Py_ssize_t)sizeof(self->data.TradingPassword));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcSyncDepositField_set_DepositSeqNo(PyCThostFtdcSyncDeposit
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
         PyErr_SetString(PyExc_ValueError, "DepositSeqNo must be less than 15 bytes");
         return -1;
     }
@@ -244,7 +244,7 @@ static int PyCThostFtdcSyncDepositField_set_BrokerID(PyCThostFtdcSyncDepositFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -270,7 +270,7 @@ static int PyCThostFtdcSyncDepositField_set_InvestorID(PyCThostFtdcSyncDepositFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -355,7 +355,7 @@ static int PyCThostFtdcSyncDepositField_set_CurrencyID(PyCThostFtdcSyncDepositFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -419,7 +419,7 @@ static int PyCThostFtdcSyncDepositField_set_TradingPassword(PyCThostFtdcSyncDepo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingPassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingPassword)) {
         PyErr_SetString(PyExc_ValueError, "TradingPassword must be less than 41 bytes");
         return -1;
     }

@@ -84,7 +84,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryForQuoteField_BrokerID != NULL ) {
-        if(QryForQuoteField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryForQuoteField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryForQuoteField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -97,7 +97,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QryForQuoteField_InvestorID != NULL ) {
-        if(QryForQuoteField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QryForQuoteField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QryForQuoteField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -110,7 +110,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( QryForQuoteField_reserve1 != NULL ) {
-        if(QryForQuoteField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryForQuoteField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryForQuoteField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -123,7 +123,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryForQuoteField_ExchangeID != NULL ) {
-        if(QryForQuoteField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryForQuoteField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryForQuoteField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -136,7 +136,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///开始时间
     // TThostFtdcTimeType char[9]
     if( QryForQuoteField_InsertTimeStart != NULL ) {
-        if(QryForQuoteField_InsertTimeStart_len > (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
+        if(QryForQuoteField_InsertTimeStart_len >= (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
             PyErr_Format(PyExc_ValueError, "InsertTimeStart too long: length=%zd (max allowed is %zd)", QryForQuoteField_InsertTimeStart_len, (Py_ssize_t)sizeof(self->data.InsertTimeStart));
             return -1;
         }
@@ -149,7 +149,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///结束时间
     // TThostFtdcTimeType char[9]
     if( QryForQuoteField_InsertTimeEnd != NULL ) {
-        if(QryForQuoteField_InsertTimeEnd_len > (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
+        if(QryForQuoteField_InsertTimeEnd_len >= (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
             PyErr_Format(PyExc_ValueError, "InsertTimeEnd too long: length=%zd (max allowed is %zd)", QryForQuoteField_InsertTimeEnd_len, (Py_ssize_t)sizeof(self->data.InsertTimeEnd));
             return -1;
         }
@@ -162,7 +162,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///投资单元代码
     // TThostFtdcInvestUnitIDType char[17]
     if( QryForQuoteField_InvestUnitID != NULL ) {
-        if(QryForQuoteField_InvestUnitID_len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+        if(QryForQuoteField_InvestUnitID_len >= (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
             PyErr_Format(PyExc_ValueError, "InvestUnitID too long: length=%zd (max allowed is %zd)", QryForQuoteField_InvestUnitID_len, (Py_ssize_t)sizeof(self->data.InvestUnitID));
             return -1;
         }
@@ -175,7 +175,7 @@ static int PyCThostFtdcQryForQuoteField_init(PyCThostFtdcQryForQuoteField *self,
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryForQuoteField_InstrumentID != NULL ) {
-        if(QryForQuoteField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QryForQuoteField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryForQuoteField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -238,7 +238,7 @@ static int PyCThostFtdcQryForQuoteField_set_BrokerID(PyCThostFtdcQryForQuoteFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -264,7 +264,7 @@ static int PyCThostFtdcQryForQuoteField_set_InvestorID(PyCThostFtdcQryForQuoteFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -290,7 +290,7 @@ static int PyCThostFtdcQryForQuoteField_set_reserve1(PyCThostFtdcQryForQuoteFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -316,7 +316,7 @@ static int PyCThostFtdcQryForQuoteField_set_ExchangeID(PyCThostFtdcQryForQuoteFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -342,7 +342,7 @@ static int PyCThostFtdcQryForQuoteField_set_InsertTimeStart(PyCThostFtdcQryForQu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InsertTimeStart)) {
         PyErr_SetString(PyExc_ValueError, "InsertTimeStart must be less than 9 bytes");
         return -1;
     }
@@ -368,7 +368,7 @@ static int PyCThostFtdcQryForQuoteField_set_InsertTimeEnd(PyCThostFtdcQryForQuot
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InsertTimeEnd)) {
         PyErr_SetString(PyExc_ValueError, "InsertTimeEnd must be less than 9 bytes");
         return -1;
     }
@@ -394,7 +394,7 @@ static int PyCThostFtdcQryForQuoteField_set_InvestUnitID(PyCThostFtdcQryForQuote
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
         PyErr_SetString(PyExc_ValueError, "InvestUnitID must be less than 17 bytes");
         return -1;
     }
@@ -420,7 +420,7 @@ static int PyCThostFtdcQryForQuoteField_set_InstrumentID(PyCThostFtdcQryForQuote
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

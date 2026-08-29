@@ -48,7 +48,7 @@ static int PyCThostFtdcQryLoginForbiddenIPField_init(PyCThostFtdcQryLoginForbidd
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( QryLoginForbiddenIPField_reserve1 != NULL ) {
-        if(QryLoginForbiddenIPField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryLoginForbiddenIPField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryLoginForbiddenIPField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQryLoginForbiddenIPField_init(PyCThostFtdcQryLoginForbidd
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( QryLoginForbiddenIPField_IPAddress != NULL ) {
-        if(QryLoginForbiddenIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(QryLoginForbiddenIPField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", QryLoginForbiddenIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQryLoginForbiddenIPField_set_reserve1(PyCThostFtdcQryLogi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQryLoginForbiddenIPField_set_IPAddress(PyCThostFtdcQryLog
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }

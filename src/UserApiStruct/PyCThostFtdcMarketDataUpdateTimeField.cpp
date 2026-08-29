@@ -65,7 +65,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_init(PyCThostFtdcMarketDataUpda
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( MarketDataUpdateTimeField_reserve1 != NULL ) {
-        if(MarketDataUpdateTimeField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(MarketDataUpdateTimeField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", MarketDataUpdateTimeField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_init(PyCThostFtdcMarketDataUpda
     ///最后修改时间
     // TThostFtdcTimeType char[9]
     if( MarketDataUpdateTimeField_UpdateTime != NULL ) {
-        if(MarketDataUpdateTimeField_UpdateTime_len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+        if(MarketDataUpdateTimeField_UpdateTime_len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
             PyErr_Format(PyExc_ValueError, "UpdateTime too long: length=%zd (max allowed is %zd)", MarketDataUpdateTimeField_UpdateTime_len, (Py_ssize_t)sizeof(self->data.UpdateTime));
             return -1;
         }
@@ -95,7 +95,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_init(PyCThostFtdcMarketDataUpda
     ///业务日期
     // TThostFtdcDateType char[9]
     if( MarketDataUpdateTimeField_ActionDay != NULL ) {
-        if(MarketDataUpdateTimeField_ActionDay_len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+        if(MarketDataUpdateTimeField_ActionDay_len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
             PyErr_Format(PyExc_ValueError, "ActionDay too long: length=%zd (max allowed is %zd)", MarketDataUpdateTimeField_ActionDay_len, (Py_ssize_t)sizeof(self->data.ActionDay));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_init(PyCThostFtdcMarketDataUpda
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( MarketDataUpdateTimeField_InstrumentID != NULL ) {
-        if(MarketDataUpdateTimeField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(MarketDataUpdateTimeField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", MarketDataUpdateTimeField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_set_reserve1(PyCThostFtdcMarket
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_set_UpdateTime(PyCThostFtdcMark
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UpdateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UpdateTime)) {
         PyErr_SetString(PyExc_ValueError, "UpdateTime must be less than 9 bytes");
         return -1;
     }
@@ -258,7 +258,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_set_ActionDay(PyCThostFtdcMarke
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDay)) {
         PyErr_SetString(PyExc_ValueError, "ActionDay must be less than 9 bytes");
         return -1;
     }
@@ -284,7 +284,7 @@ static int PyCThostFtdcMarketDataUpdateTimeField_set_InstrumentID(PyCThostFtdcMa
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

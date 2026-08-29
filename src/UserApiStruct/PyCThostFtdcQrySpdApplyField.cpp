@@ -72,7 +72,7 @@ static int PyCThostFtdcQrySpdApplyField_init(PyCThostFtdcQrySpdApplyField *self,
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QrySpdApplyField_BrokerID != NULL ) {
-        if(QrySpdApplyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QrySpdApplyField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySpdApplyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcQrySpdApplyField_init(PyCThostFtdcQrySpdApplyField *self,
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QrySpdApplyField_InvestorID != NULL ) {
-        if(QrySpdApplyField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QrySpdApplyField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QrySpdApplyField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQrySpdApplyField_init(PyCThostFtdcQrySpdApplyField *self,
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QrySpdApplyField_ExchangeID != NULL ) {
-        if(QrySpdApplyField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QrySpdApplyField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QrySpdApplyField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -111,7 +111,7 @@ static int PyCThostFtdcQrySpdApplyField_init(PyCThostFtdcQrySpdApplyField *self,
     ///报单编号
     // TThostFtdcOrderSysIDType char[21]
     if( QrySpdApplyField_OrderSysID != NULL ) {
-        if(QrySpdApplyField_OrderSysID_len > (Py_ssize_t)sizeof(self->data.OrderSysID)) {
+        if(QrySpdApplyField_OrderSysID_len >= (Py_ssize_t)sizeof(self->data.OrderSysID)) {
             PyErr_Format(PyExc_ValueError, "OrderSysID too long: length=%zd (max allowed is %zd)", QrySpdApplyField_OrderSysID_len, (Py_ssize_t)sizeof(self->data.OrderSysID));
             return -1;
         }
@@ -124,7 +124,7 @@ static int PyCThostFtdcQrySpdApplyField_init(PyCThostFtdcQrySpdApplyField *self,
     ///第一腿合约编码
     // TThostFtdcExchangeInstIDType char[81]
     if( QrySpdApplyField_FirstLegInstrumentID != NULL ) {
-        if(QrySpdApplyField_FirstLegInstrumentID_len > (Py_ssize_t)sizeof(self->data.FirstLegInstrumentID)) {
+        if(QrySpdApplyField_FirstLegInstrumentID_len >= (Py_ssize_t)sizeof(self->data.FirstLegInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "FirstLegInstrumentID too long: length=%zd (max allowed is %zd)", QrySpdApplyField_FirstLegInstrumentID_len, (Py_ssize_t)sizeof(self->data.FirstLegInstrumentID));
             return -1;
         }
@@ -137,7 +137,7 @@ static int PyCThostFtdcQrySpdApplyField_init(PyCThostFtdcQrySpdApplyField *self,
     ///第二腿合约编码
     // TThostFtdcExchangeInstIDType char[81]
     if( QrySpdApplyField_SecondLegInstrumentID != NULL ) {
-        if(QrySpdApplyField_SecondLegInstrumentID_len > (Py_ssize_t)sizeof(self->data.SecondLegInstrumentID)) {
+        if(QrySpdApplyField_SecondLegInstrumentID_len >= (Py_ssize_t)sizeof(self->data.SecondLegInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "SecondLegInstrumentID too long: length=%zd (max allowed is %zd)", QrySpdApplyField_SecondLegInstrumentID_len, (Py_ssize_t)sizeof(self->data.SecondLegInstrumentID));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcQrySpdApplyField_set_BrokerID(PyCThostFtdcQrySpdApplyFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -224,7 +224,7 @@ static int PyCThostFtdcQrySpdApplyField_set_InvestorID(PyCThostFtdcQrySpdApplyFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -250,7 +250,7 @@ static int PyCThostFtdcQrySpdApplyField_set_ExchangeID(PyCThostFtdcQrySpdApplyFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -276,7 +276,7 @@ static int PyCThostFtdcQrySpdApplyField_set_OrderSysID(PyCThostFtdcQrySpdApplyFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OrderSysID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OrderSysID)) {
         PyErr_SetString(PyExc_ValueError, "OrderSysID must be less than 21 bytes");
         return -1;
     }
@@ -302,7 +302,7 @@ static int PyCThostFtdcQrySpdApplyField_set_FirstLegInstrumentID(PyCThostFtdcQry
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FirstLegInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FirstLegInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "FirstLegInstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -328,7 +328,7 @@ static int PyCThostFtdcQrySpdApplyField_set_SecondLegInstrumentID(PyCThostFtdcQr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SecondLegInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SecondLegInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "SecondLegInstrumentID must be less than 81 bytes");
         return -1;
     }

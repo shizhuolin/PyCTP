@@ -54,7 +54,7 @@ static int PyCThostFtdcInvestorReserveInfoField_init(PyCThostFtdcInvestorReserve
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorReserveInfoField_BrokerID != NULL ) {
-        if(InvestorReserveInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorReserveInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorReserveInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcInvestorReserveInfoField_init(PyCThostFtdcInvestorReserve
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( InvestorReserveInfoField_UserID != NULL ) {
-        if(InvestorReserveInfoField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(InvestorReserveInfoField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", InvestorReserveInfoField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcInvestorReserveInfoField_init(PyCThostFtdcInvestorReserve
     ///预留信息
     // TThostFtdcReserveInfoType char[65]
     if( InvestorReserveInfoField_ReserveInfo != NULL ) {
-        if(InvestorReserveInfoField_ReserveInfo_len > (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
+        if(InvestorReserveInfoField_ReserveInfo_len >= (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
             PyErr_Format(PyExc_ValueError, "ReserveInfo too long: length=%zd (max allowed is %zd)", InvestorReserveInfoField_ReserveInfo_len, (Py_ssize_t)sizeof(self->data.ReserveInfo));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcInvestorReserveInfoField_set_BrokerID(PyCThostFtdcInvesto
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcInvestorReserveInfoField_set_UserID(PyCThostFtdcInvestorR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcInvestorReserveInfoField_set_ReserveInfo(PyCThostFtdcInve
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
         PyErr_SetString(PyExc_ValueError, "ReserveInfo must be less than 65 bytes");
         return -1;
     }

@@ -100,7 +100,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( UserSystemInfoField_BrokerID != NULL ) {
-        if(UserSystemInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(UserSystemInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", UserSystemInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -113,7 +113,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( UserSystemInfoField_UserID != NULL ) {
-        if(UserSystemInfoField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(UserSystemInfoField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", UserSystemInfoField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -130,7 +130,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///用户端系统内部信息
     // TThostFtdcClientSystemInfoType char[273]
     if( UserSystemInfoField_ClientSystemInfo != NULL ) {
-        if(UserSystemInfoField_ClientSystemInfo_len > (Py_ssize_t)sizeof(self->data.ClientSystemInfo)) {
+        if(UserSystemInfoField_ClientSystemInfo_len >= (Py_ssize_t)sizeof(self->data.ClientSystemInfo)) {
             PyErr_Format(PyExc_ValueError, "ClientSystemInfo too long: length=%zd (max allowed is %zd)", UserSystemInfoField_ClientSystemInfo_len, (Py_ssize_t)sizeof(self->data.ClientSystemInfo));
             return -1;
         }
@@ -143,7 +143,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( UserSystemInfoField_reserve1 != NULL ) {
-        if(UserSystemInfoField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(UserSystemInfoField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", UserSystemInfoField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -160,7 +160,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///登录成功时间
     // TThostFtdcTimeType char[9]
     if( UserSystemInfoField_ClientLoginTime != NULL ) {
-        if(UserSystemInfoField_ClientLoginTime_len > (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
+        if(UserSystemInfoField_ClientLoginTime_len >= (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
             PyErr_Format(PyExc_ValueError, "ClientLoginTime too long: length=%zd (max allowed is %zd)", UserSystemInfoField_ClientLoginTime_len, (Py_ssize_t)sizeof(self->data.ClientLoginTime));
             return -1;
         }
@@ -173,7 +173,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( UserSystemInfoField_ClientAppID != NULL ) {
-        if(UserSystemInfoField_ClientAppID_len > (Py_ssize_t)sizeof(self->data.ClientAppID)) {
+        if(UserSystemInfoField_ClientAppID_len >= (Py_ssize_t)sizeof(self->data.ClientAppID)) {
             PyErr_Format(PyExc_ValueError, "ClientAppID too long: length=%zd (max allowed is %zd)", UserSystemInfoField_ClientAppID_len, (Py_ssize_t)sizeof(self->data.ClientAppID));
             return -1;
         }
@@ -186,7 +186,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///用户公网IP
     // TThostFtdcIPAddressType char[33]
     if( UserSystemInfoField_ClientPublicIP != NULL ) {
-        if(UserSystemInfoField_ClientPublicIP_len > (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
+        if(UserSystemInfoField_ClientPublicIP_len >= (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
             PyErr_Format(PyExc_ValueError, "ClientPublicIP too long: length=%zd (max allowed is %zd)", UserSystemInfoField_ClientPublicIP_len, (Py_ssize_t)sizeof(self->data.ClientPublicIP));
             return -1;
         }
@@ -199,7 +199,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///客户登录备注2
     // TThostFtdcClientLoginRemarkType char[151]
     if( UserSystemInfoField_ClientLoginRemark != NULL ) {
-        if(UserSystemInfoField_ClientLoginRemark_len > (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
+        if(UserSystemInfoField_ClientLoginRemark_len >= (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
             PyErr_Format(PyExc_ValueError, "ClientLoginRemark too long: length=%zd (max allowed is %zd)", UserSystemInfoField_ClientLoginRemark_len, (Py_ssize_t)sizeof(self->data.ClientLoginRemark));
             return -1;
         }
@@ -212,7 +212,7 @@ static int PyCThostFtdcUserSystemInfoField_init(PyCThostFtdcUserSystemInfoField 
     ///客户终端的MAC等标识
     // TThostFtdcDeviceTagType char[41]
     if( UserSystemInfoField_MAC != NULL ) {
-        if(UserSystemInfoField_MAC_len > (Py_ssize_t)sizeof(self->data.MAC)) {
+        if(UserSystemInfoField_MAC_len >= (Py_ssize_t)sizeof(self->data.MAC)) {
             PyErr_Format(PyExc_ValueError, "MAC too long: length=%zd (max allowed is %zd)", UserSystemInfoField_MAC_len, (Py_ssize_t)sizeof(self->data.MAC));
             return -1;
         }
@@ -278,7 +278,7 @@ static int PyCThostFtdcUserSystemInfoField_set_BrokerID(PyCThostFtdcUserSystemIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -304,7 +304,7 @@ static int PyCThostFtdcUserSystemInfoField_set_UserID(PyCThostFtdcUserSystemInfo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -368,7 +368,7 @@ static int PyCThostFtdcUserSystemInfoField_set_ClientSystemInfo(PyCThostFtdcUser
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientSystemInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientSystemInfo)) {
         PyErr_SetString(PyExc_ValueError, "ClientSystemInfo must be less than 273 bytes");
         return -1;
     }
@@ -394,7 +394,7 @@ static int PyCThostFtdcUserSystemInfoField_set_reserve1(PyCThostFtdcUserSystemIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -458,7 +458,7 @@ static int PyCThostFtdcUserSystemInfoField_set_ClientLoginTime(PyCThostFtdcUserS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
         PyErr_SetString(PyExc_ValueError, "ClientLoginTime must be less than 9 bytes");
         return -1;
     }
@@ -484,7 +484,7 @@ static int PyCThostFtdcUserSystemInfoField_set_ClientAppID(PyCThostFtdcUserSyste
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientAppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientAppID)) {
         PyErr_SetString(PyExc_ValueError, "ClientAppID must be less than 33 bytes");
         return -1;
     }
@@ -510,7 +510,7 @@ static int PyCThostFtdcUserSystemInfoField_set_ClientPublicIP(PyCThostFtdcUserSy
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
         PyErr_SetString(PyExc_ValueError, "ClientPublicIP must be less than 33 bytes");
         return -1;
     }
@@ -536,7 +536,7 @@ static int PyCThostFtdcUserSystemInfoField_set_ClientLoginRemark(PyCThostFtdcUse
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
         PyErr_SetString(PyExc_ValueError, "ClientLoginRemark must be less than 151 bytes");
         return -1;
     }
@@ -562,7 +562,7 @@ static int PyCThostFtdcUserSystemInfoField_set_MAC(PyCThostFtdcUserSystemInfoFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MAC)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MAC)) {
         PyErr_SetString(PyExc_ValueError, "MAC must be less than 41 bytes");
         return -1;
     }

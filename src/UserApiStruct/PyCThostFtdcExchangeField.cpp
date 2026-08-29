@@ -53,7 +53,7 @@ static int PyCThostFtdcExchangeField_init(PyCThostFtdcExchangeField *self, PyObj
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( ExchangeField_ExchangeID != NULL ) {
-        if(ExchangeField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(ExchangeField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", ExchangeField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -66,7 +66,7 @@ static int PyCThostFtdcExchangeField_init(PyCThostFtdcExchangeField *self, PyObj
     ///交易所名称
     // TThostFtdcExchangeNameType char[61]
     if( ExchangeField_ExchangeName != NULL ) {
-        if(ExchangeField_ExchangeName_len > (Py_ssize_t)sizeof(self->data.ExchangeName)) {
+        if(ExchangeField_ExchangeName_len >= (Py_ssize_t)sizeof(self->data.ExchangeName)) {
             PyErr_Format(PyExc_ValueError, "ExchangeName too long: length=%zd (max allowed is %zd)", ExchangeField_ExchangeName_len, (Py_ssize_t)sizeof(self->data.ExchangeName));
             return -1;
         }
@@ -128,7 +128,7 @@ static int PyCThostFtdcExchangeField_set_ExchangeID(PyCThostFtdcExchangeField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -154,7 +154,7 @@ static int PyCThostFtdcExchangeField_set_ExchangeName(PyCThostFtdcExchangeField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeName)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeName must be less than 61 bytes");
         return -1;
     }

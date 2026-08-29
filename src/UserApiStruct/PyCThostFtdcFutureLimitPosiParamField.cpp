@@ -84,7 +84,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_init(PyCThostFtdcFutureLimitPos
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( FutureLimitPosiParamField_BrokerID != NULL ) {
-        if(FutureLimitPosiParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(FutureLimitPosiParamField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", FutureLimitPosiParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -97,7 +97,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_init(PyCThostFtdcFutureLimitPos
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( FutureLimitPosiParamField_InvestorID != NULL ) {
-        if(FutureLimitPosiParamField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(FutureLimitPosiParamField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", FutureLimitPosiParamField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -110,7 +110,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_init(PyCThostFtdcFutureLimitPos
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( FutureLimitPosiParamField_reserve1 != NULL ) {
-        if(FutureLimitPosiParamField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(FutureLimitPosiParamField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", FutureLimitPosiParamField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -135,7 +135,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_init(PyCThostFtdcFutureLimitPos
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( FutureLimitPosiParamField_ProductID != NULL ) {
-        if(FutureLimitPosiParamField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(FutureLimitPosiParamField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", FutureLimitPosiParamField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -221,7 +221,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_set_BrokerID(PyCThostFtdcFuture
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -247,7 +247,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_set_InvestorID(PyCThostFtdcFutu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -273,7 +273,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_set_reserve1(PyCThostFtdcFuture
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -413,7 +413,7 @@ static int PyCThostFtdcFutureLimitPosiParamField_set_ProductID(PyCThostFtdcFutur
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }

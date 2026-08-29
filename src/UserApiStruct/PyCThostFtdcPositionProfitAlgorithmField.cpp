@@ -65,7 +65,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_init(PyCThostFtdcPositionPro
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( PositionProfitAlgorithmField_BrokerID != NULL ) {
-        if(PositionProfitAlgorithmField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(PositionProfitAlgorithmField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", PositionProfitAlgorithmField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_init(PyCThostFtdcPositionPro
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( PositionProfitAlgorithmField_AccountID != NULL ) {
-        if(PositionProfitAlgorithmField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(PositionProfitAlgorithmField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", PositionProfitAlgorithmField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -95,7 +95,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_init(PyCThostFtdcPositionPro
     ///备注
     // TThostFtdcMemoType char[161]
     if( PositionProfitAlgorithmField_Memo != NULL ) {
-        if(PositionProfitAlgorithmField_Memo_len > (Py_ssize_t)sizeof(self->data.Memo)) {
+        if(PositionProfitAlgorithmField_Memo_len >= (Py_ssize_t)sizeof(self->data.Memo)) {
             PyErr_Format(PyExc_ValueError, "Memo too long: length=%zd (max allowed is %zd)", PositionProfitAlgorithmField_Memo_len, (Py_ssize_t)sizeof(self->data.Memo));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_init(PyCThostFtdcPositionPro
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( PositionProfitAlgorithmField_CurrencyID != NULL ) {
-        if(PositionProfitAlgorithmField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(PositionProfitAlgorithmField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", PositionProfitAlgorithmField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_set_BrokerID(PyCThostFtdcPos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_set_AccountID(PyCThostFtdcPo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -243,7 +243,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_set_Memo(PyCThostFtdcPositio
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Memo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Memo)) {
         PyErr_SetString(PyExc_ValueError, "Memo must be less than 161 bytes");
         return -1;
     }
@@ -269,7 +269,7 @@ static int PyCThostFtdcPositionProfitAlgorithmField_set_CurrencyID(PyCThostFtdcP
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

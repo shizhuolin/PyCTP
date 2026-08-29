@@ -60,7 +60,7 @@ static int PyCThostFtdcRiskForbiddenRightField_init(PyCThostFtdcRiskForbiddenRig
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( RiskForbiddenRightField_BrokerID != NULL ) {
-        if(RiskForbiddenRightField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(RiskForbiddenRightField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RiskForbiddenRightField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcRiskForbiddenRightField_init(PyCThostFtdcRiskForbiddenRig
     ///投资者编号
     // TThostFtdcInvestorIDType char[13]
     if( RiskForbiddenRightField_InvestorID != NULL ) {
-        if(RiskForbiddenRightField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(RiskForbiddenRightField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", RiskForbiddenRightField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcRiskForbiddenRightField_init(PyCThostFtdcRiskForbiddenRig
     ///合约/产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( RiskForbiddenRightField_InstrumentID != NULL ) {
-        if(RiskForbiddenRightField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(RiskForbiddenRightField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", RiskForbiddenRightField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcRiskForbiddenRightField_init(PyCThostFtdcRiskForbiddenRig
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( RiskForbiddenRightField_UserID != NULL ) {
-        if(RiskForbiddenRightField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(RiskForbiddenRightField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", RiskForbiddenRightField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcRiskForbiddenRightField_set_BrokerID(PyCThostFtdcRiskForb
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcRiskForbiddenRightField_set_InvestorID(PyCThostFtdcRiskFo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcRiskForbiddenRightField_set_InstrumentID(PyCThostFtdcRisk
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcRiskForbiddenRightField_set_UserID(PyCThostFtdcRiskForbid
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }

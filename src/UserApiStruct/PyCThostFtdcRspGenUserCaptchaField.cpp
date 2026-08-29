@@ -59,7 +59,7 @@ static int PyCThostFtdcRspGenUserCaptchaField_init(PyCThostFtdcRspGenUserCaptcha
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( RspGenUserCaptchaField_BrokerID != NULL ) {
-        if(RspGenUserCaptchaField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(RspGenUserCaptchaField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RspGenUserCaptchaField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcRspGenUserCaptchaField_init(PyCThostFtdcRspGenUserCaptcha
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( RspGenUserCaptchaField_UserID != NULL ) {
-        if(RspGenUserCaptchaField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(RspGenUserCaptchaField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", RspGenUserCaptchaField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcRspGenUserCaptchaField_init(PyCThostFtdcRspGenUserCaptcha
     ///图片信息
     // TThostFtdcCaptchaInfoType char[2561]
     if( RspGenUserCaptchaField_CaptchaInfo != NULL ) {
-        if(RspGenUserCaptchaField_CaptchaInfo_len > (Py_ssize_t)sizeof(self->data.CaptchaInfo)) {
+        if(RspGenUserCaptchaField_CaptchaInfo_len >= (Py_ssize_t)sizeof(self->data.CaptchaInfo)) {
             PyErr_Format(PyExc_ValueError, "CaptchaInfo too long: length=%zd (max allowed is %zd)", RspGenUserCaptchaField_CaptchaInfo_len, (Py_ssize_t)sizeof(self->data.CaptchaInfo));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcRspGenUserCaptchaField_set_BrokerID(PyCThostFtdcRspGenUse
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcRspGenUserCaptchaField_set_UserID(PyCThostFtdcRspGenUserC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -238,7 +238,7 @@ static int PyCThostFtdcRspGenUserCaptchaField_set_CaptchaInfo(PyCThostFtdcRspGen
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CaptchaInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CaptchaInfo)) {
         PyErr_SetString(PyExc_ValueError, "CaptchaInfo must be less than 2561 bytes");
         return -1;
     }

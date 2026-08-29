@@ -112,7 +112,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_init(PyCThostFtdcSyncDelta
     ///交易日
     // TThostFtdcDateType char[9]
     if( SyncDeltaRCAMSCombRuleDtlField_TradingDay != NULL ) {
-        if(SyncDeltaRCAMSCombRuleDtlField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SyncDeltaRCAMSCombRuleDtlField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SyncDeltaRCAMSCombRuleDtlField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -125,7 +125,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_init(PyCThostFtdcSyncDelta
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncDeltaRCAMSCombRuleDtlField_ExchangeID != NULL ) {
-        if(SyncDeltaRCAMSCombRuleDtlField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncDeltaRCAMSCombRuleDtlField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaRCAMSCombRuleDtlField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_init(PyCThostFtdcSyncDelta
     ///策略产品
     // TThostFtdcProductIDType char[41]
     if( SyncDeltaRCAMSCombRuleDtlField_ProdGroup != NULL ) {
-        if(SyncDeltaRCAMSCombRuleDtlField_ProdGroup_len > (Py_ssize_t)sizeof(self->data.ProdGroup)) {
+        if(SyncDeltaRCAMSCombRuleDtlField_ProdGroup_len >= (Py_ssize_t)sizeof(self->data.ProdGroup)) {
             PyErr_Format(PyExc_ValueError, "ProdGroup too long: length=%zd (max allowed is %zd)", SyncDeltaRCAMSCombRuleDtlField_ProdGroup_len, (Py_ssize_t)sizeof(self->data.ProdGroup));
             return -1;
         }
@@ -151,7 +151,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_init(PyCThostFtdcSyncDelta
     ///策略id
     // TThostFtdcRuleIdType char[51]
     if( SyncDeltaRCAMSCombRuleDtlField_RuleId != NULL ) {
-        if(SyncDeltaRCAMSCombRuleDtlField_RuleId_len > (Py_ssize_t)sizeof(self->data.RuleId)) {
+        if(SyncDeltaRCAMSCombRuleDtlField_RuleId_len >= (Py_ssize_t)sizeof(self->data.RuleId)) {
             PyErr_Format(PyExc_ValueError, "RuleId too long: length=%zd (max allowed is %zd)", SyncDeltaRCAMSCombRuleDtlField_RuleId_len, (Py_ssize_t)sizeof(self->data.RuleId));
             return -1;
         }
@@ -176,7 +176,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_init(PyCThostFtdcSyncDelta
     ///交易所组合合约代码
     // TThostFtdcExchangeInstIDType char[81]
     if( SyncDeltaRCAMSCombRuleDtlField_ExchangeInstID != NULL ) {
-        if(SyncDeltaRCAMSCombRuleDtlField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(SyncDeltaRCAMSCombRuleDtlField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", SyncDeltaRCAMSCombRuleDtlField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -193,7 +193,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_init(PyCThostFtdcSyncDelta
     ///单腿合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaRCAMSCombRuleDtlField_LegInstrumentID != NULL ) {
-        if(SyncDeltaRCAMSCombRuleDtlField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+        if(SyncDeltaRCAMSCombRuleDtlField_LegInstrumentID_len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaRCAMSCombRuleDtlField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
             return -1;
         }
@@ -278,7 +278,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_set_TradingDay(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -304,7 +304,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_set_ExchangeID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -330,7 +330,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_set_ProdGroup(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProdGroup)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProdGroup)) {
         PyErr_SetString(PyExc_ValueError, "ProdGroup must be less than 41 bytes");
         return -1;
     }
@@ -356,7 +356,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_set_RuleId(PyCThostFtdcSyn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RuleId)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.RuleId)) {
         PyErr_SetString(PyExc_ValueError, "RuleId must be less than 51 bytes");
         return -1;
     }
@@ -464,7 +464,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_set_ExchangeInstID(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }
@@ -528,7 +528,7 @@ static int PyCThostFtdcSyncDeltaRCAMSCombRuleDtlField_set_LegInstrumentID(PyCTho
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
         return -1;
     }

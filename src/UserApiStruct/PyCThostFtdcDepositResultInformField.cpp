@@ -76,7 +76,7 @@ static int PyCThostFtdcDepositResultInformField_init(PyCThostFtdcDepositResultIn
     ///出入金流水号，该流水号为银期报盘返回的流水号
     // TThostFtdcDepositSeqNoType char[15]
     if( DepositResultInformField_DepositSeqNo != NULL ) {
-        if(DepositResultInformField_DepositSeqNo_len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+        if(DepositResultInformField_DepositSeqNo_len >= (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
             PyErr_Format(PyExc_ValueError, "DepositSeqNo too long: length=%zd (max allowed is %zd)", DepositResultInformField_DepositSeqNo_len, (Py_ssize_t)sizeof(self->data.DepositSeqNo));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcDepositResultInformField_init(PyCThostFtdcDepositResultIn
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( DepositResultInformField_BrokerID != NULL ) {
-        if(DepositResultInformField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(DepositResultInformField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", DepositResultInformField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -102,7 +102,7 @@ static int PyCThostFtdcDepositResultInformField_init(PyCThostFtdcDepositResultIn
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( DepositResultInformField_InvestorID != NULL ) {
-        if(DepositResultInformField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(DepositResultInformField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", DepositResultInformField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -123,7 +123,7 @@ static int PyCThostFtdcDepositResultInformField_init(PyCThostFtdcDepositResultIn
     ///返回代码
     // TThostFtdcReturnCodeType char[7]
     if( DepositResultInformField_ReturnCode != NULL ) {
-        if(DepositResultInformField_ReturnCode_len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
+        if(DepositResultInformField_ReturnCode_len >= (Py_ssize_t)sizeof(self->data.ReturnCode)) {
             PyErr_Format(PyExc_ValueError, "ReturnCode too long: length=%zd (max allowed is %zd)", DepositResultInformField_ReturnCode_len, (Py_ssize_t)sizeof(self->data.ReturnCode));
             return -1;
         }
@@ -136,7 +136,7 @@ static int PyCThostFtdcDepositResultInformField_init(PyCThostFtdcDepositResultIn
     ///返回码描述
     // TThostFtdcDescrInfoForReturnCodeType char[129]
     if( DepositResultInformField_DescrInfoForReturnCode != NULL ) {
-        if(DepositResultInformField_DescrInfoForReturnCode_len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
+        if(DepositResultInformField_DescrInfoForReturnCode_len >= (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
             PyErr_Format(PyExc_ValueError, "DescrInfoForReturnCode too long: length=%zd (max allowed is %zd)", DepositResultInformField_DescrInfoForReturnCode_len, (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcDepositResultInformField_set_DepositSeqNo(PyCThostFtdcDep
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DepositSeqNo)) {
         PyErr_SetString(PyExc_ValueError, "DepositSeqNo must be less than 15 bytes");
         return -1;
     }
@@ -224,7 +224,7 @@ static int PyCThostFtdcDepositResultInformField_set_BrokerID(PyCThostFtdcDeposit
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -250,7 +250,7 @@ static int PyCThostFtdcDepositResultInformField_set_InvestorID(PyCThostFtdcDepos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -335,7 +335,7 @@ static int PyCThostFtdcDepositResultInformField_set_ReturnCode(PyCThostFtdcDepos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ReturnCode)) {
         PyErr_SetString(PyExc_ValueError, "ReturnCode must be less than 7 bytes");
         return -1;
     }
@@ -361,7 +361,7 @@ static int PyCThostFtdcDepositResultInformField_set_DescrInfoForReturnCode(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
         PyErr_SetString(PyExc_ValueError, "DescrInfoForReturnCode must be less than 129 bytes");
         return -1;
     }

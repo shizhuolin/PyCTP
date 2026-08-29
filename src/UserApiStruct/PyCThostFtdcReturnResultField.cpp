@@ -48,7 +48,7 @@ static int PyCThostFtdcReturnResultField_init(PyCThostFtdcReturnResultField *sel
     ///返回代码
     // TThostFtdcReturnCodeType char[7]
     if( ReturnResultField_ReturnCode != NULL ) {
-        if(ReturnResultField_ReturnCode_len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
+        if(ReturnResultField_ReturnCode_len >= (Py_ssize_t)sizeof(self->data.ReturnCode)) {
             PyErr_Format(PyExc_ValueError, "ReturnCode too long: length=%zd (max allowed is %zd)", ReturnResultField_ReturnCode_len, (Py_ssize_t)sizeof(self->data.ReturnCode));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcReturnResultField_init(PyCThostFtdcReturnResultField *sel
     ///返回码描述
     // TThostFtdcDescrInfoForReturnCodeType char[129]
     if( ReturnResultField_DescrInfoForReturnCode != NULL ) {
-        if(ReturnResultField_DescrInfoForReturnCode_len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
+        if(ReturnResultField_DescrInfoForReturnCode_len >= (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
             PyErr_Format(PyExc_ValueError, "DescrInfoForReturnCode too long: length=%zd (max allowed is %zd)", ReturnResultField_DescrInfoForReturnCode_len, (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcReturnResultField_set_ReturnCode(PyCThostFtdcReturnResult
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ReturnCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ReturnCode)) {
         PyErr_SetString(PyExc_ValueError, "ReturnCode must be less than 7 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcReturnResultField_set_DescrInfoForReturnCode(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DescrInfoForReturnCode)) {
         PyErr_SetString(PyExc_ValueError, "DescrInfoForReturnCode must be less than 129 bytes");
         return -1;
     }

@@ -54,7 +54,7 @@ static int PyCThostFtdcQrySPBMFutureParameterField_init(PyCThostFtdcQrySPBMFutur
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QrySPBMFutureParameterField_ExchangeID != NULL ) {
-        if(QrySPBMFutureParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QrySPBMFutureParameterField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QrySPBMFutureParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcQrySPBMFutureParameterField_init(PyCThostFtdcQrySPBMFutur
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QrySPBMFutureParameterField_InstrumentID != NULL ) {
-        if(QrySPBMFutureParameterField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QrySPBMFutureParameterField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QrySPBMFutureParameterField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcQrySPBMFutureParameterField_init(PyCThostFtdcQrySPBMFutur
     ///品种代码
     // TThostFtdcInstrumentIDType char[81]
     if( QrySPBMFutureParameterField_ProdFamilyCode != NULL ) {
-        if(QrySPBMFutureParameterField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+        if(QrySPBMFutureParameterField_ProdFamilyCode_len >= (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
             PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", QrySPBMFutureParameterField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcQrySPBMFutureParameterField_set_ExchangeID(PyCThostFtdcQr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcQrySPBMFutureParameterField_set_InstrumentID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcQrySPBMFutureParameterField_set_ProdFamilyCode(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
         PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
         return -1;
     }

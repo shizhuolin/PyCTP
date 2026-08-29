@@ -62,7 +62,7 @@ static int PyCThostFtdcFrontStatusField_init(PyCThostFtdcFrontStatusField *self,
     ///上次报告日期
     // TThostFtdcDateType char[9]
     if( FrontStatusField_LastReportDate != NULL ) {
-        if(FrontStatusField_LastReportDate_len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
+        if(FrontStatusField_LastReportDate_len >= (Py_ssize_t)sizeof(self->data.LastReportDate)) {
             PyErr_Format(PyExc_ValueError, "LastReportDate too long: length=%zd (max allowed is %zd)", FrontStatusField_LastReportDate_len, (Py_ssize_t)sizeof(self->data.LastReportDate));
             return -1;
         }
@@ -75,7 +75,7 @@ static int PyCThostFtdcFrontStatusField_init(PyCThostFtdcFrontStatusField *self,
     ///上次报告时间
     // TThostFtdcTimeType char[9]
     if( FrontStatusField_LastReportTime != NULL ) {
-        if(FrontStatusField_LastReportTime_len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
+        if(FrontStatusField_LastReportTime_len >= (Py_ssize_t)sizeof(self->data.LastReportTime)) {
             PyErr_Format(PyExc_ValueError, "LastReportTime too long: length=%zd (max allowed is %zd)", FrontStatusField_LastReportTime_len, (Py_ssize_t)sizeof(self->data.LastReportTime));
             return -1;
         }
@@ -176,7 +176,7 @@ static int PyCThostFtdcFrontStatusField_set_LastReportDate(PyCThostFtdcFrontStat
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastReportDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LastReportDate)) {
         PyErr_SetString(PyExc_ValueError, "LastReportDate must be less than 9 bytes");
         return -1;
     }
@@ -202,7 +202,7 @@ static int PyCThostFtdcFrontStatusField_set_LastReportTime(PyCThostFtdcFrontStat
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastReportTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LastReportTime)) {
         PyErr_SetString(PyExc_ValueError, "LastReportTime must be less than 9 bytes");
         return -1;
     }

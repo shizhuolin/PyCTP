@@ -78,7 +78,7 @@ static int PyCThostFtdcUserIPField_init(PyCThostFtdcUserIPField *self, PyObject 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( UserIPField_BrokerID != NULL ) {
-        if(UserIPField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(UserIPField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", UserIPField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcUserIPField_init(PyCThostFtdcUserIPField *self, PyObject 
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( UserIPField_UserID != NULL ) {
-        if(UserIPField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(UserIPField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", UserIPField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcUserIPField_init(PyCThostFtdcUserIPField *self, PyObject 
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( UserIPField_reserve1 != NULL ) {
-        if(UserIPField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(UserIPField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", UserIPField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcUserIPField_init(PyCThostFtdcUserIPField *self, PyObject 
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( UserIPField_reserve2 != NULL ) {
-        if(UserIPField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(UserIPField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", UserIPField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -130,7 +130,7 @@ static int PyCThostFtdcUserIPField_init(PyCThostFtdcUserIPField *self, PyObject 
     ///Mac地址
     // TThostFtdcMacAddressType char[21]
     if( UserIPField_MacAddress != NULL ) {
-        if(UserIPField_MacAddress_len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+        if(UserIPField_MacAddress_len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
             PyErr_Format(PyExc_ValueError, "MacAddress too long: length=%zd (max allowed is %zd)", UserIPField_MacAddress_len, (Py_ssize_t)sizeof(self->data.MacAddress));
             return -1;
         }
@@ -143,7 +143,7 @@ static int PyCThostFtdcUserIPField_init(PyCThostFtdcUserIPField *self, PyObject 
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( UserIPField_IPAddress != NULL ) {
-        if(UserIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(UserIPField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", UserIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -156,7 +156,7 @@ static int PyCThostFtdcUserIPField_init(PyCThostFtdcUserIPField *self, PyObject 
     ///IP地址掩码
     // TThostFtdcIPAddressType char[33]
     if( UserIPField_IPMask != NULL ) {
-        if(UserIPField_IPMask_len > (Py_ssize_t)sizeof(self->data.IPMask)) {
+        if(UserIPField_IPMask_len >= (Py_ssize_t)sizeof(self->data.IPMask)) {
             PyErr_Format(PyExc_ValueError, "IPMask too long: length=%zd (max allowed is %zd)", UserIPField_IPMask_len, (Py_ssize_t)sizeof(self->data.IPMask));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcUserIPField_set_BrokerID(PyCThostFtdcUserIPField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -244,7 +244,7 @@ static int PyCThostFtdcUserIPField_set_UserID(PyCThostFtdcUserIPField *self, PyO
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -270,7 +270,7 @@ static int PyCThostFtdcUserIPField_set_reserve1(PyCThostFtdcUserIPField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -296,7 +296,7 @@ static int PyCThostFtdcUserIPField_set_reserve2(PyCThostFtdcUserIPField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 16 bytes");
         return -1;
     }
@@ -322,7 +322,7 @@ static int PyCThostFtdcUserIPField_set_MacAddress(PyCThostFtdcUserIPField *self,
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
         PyErr_SetString(PyExc_ValueError, "MacAddress must be less than 21 bytes");
         return -1;
     }
@@ -348,7 +348,7 @@ static int PyCThostFtdcUserIPField_set_IPAddress(PyCThostFtdcUserIPField *self, 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }
@@ -374,7 +374,7 @@ static int PyCThostFtdcUserIPField_set_IPMask(PyCThostFtdcUserIPField *self, PyO
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPMask)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPMask)) {
         PyErr_SetString(PyExc_ValueError, "IPMask must be less than 33 bytes");
         return -1;
     }

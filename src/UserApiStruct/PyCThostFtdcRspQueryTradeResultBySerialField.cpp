@@ -185,7 +185,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///业务功能码
     // TThostFtdcTradeCodeType char[7]
     if( RspQueryTradeResultBySerialField_TradeCode != NULL ) {
-        if(RspQueryTradeResultBySerialField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+        if(RspQueryTradeResultBySerialField_TradeCode_len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
             PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///银行代码
     // TThostFtdcBankIDType char[4]
     if( RspQueryTradeResultBySerialField_BankID != NULL ) {
-        if(RspQueryTradeResultBySerialField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(RspQueryTradeResultBySerialField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -211,7 +211,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///银行分支机构代码
     // TThostFtdcBankBrchIDType char[5]
     if( RspQueryTradeResultBySerialField_BankBranchID != NULL ) {
-        if(RspQueryTradeResultBySerialField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+        if(RspQueryTradeResultBySerialField_BankBranchID_len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
             PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
             return -1;
         }
@@ -224,7 +224,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///期商代码
     // TThostFtdcBrokerIDType char[11]
     if( RspQueryTradeResultBySerialField_BrokerID != NULL ) {
-        if(RspQueryTradeResultBySerialField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(RspQueryTradeResultBySerialField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -237,7 +237,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///期商分支机构代码
     // TThostFtdcFutureBranchIDType char[31]
     if( RspQueryTradeResultBySerialField_BrokerBranchID != NULL ) {
-        if(RspQueryTradeResultBySerialField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+        if(RspQueryTradeResultBySerialField_BrokerBranchID_len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
             PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
             return -1;
         }
@@ -250,7 +250,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///交易日期
     // TThostFtdcTradeDateType char[9]
     if( RspQueryTradeResultBySerialField_TradeDate != NULL ) {
-        if(RspQueryTradeResultBySerialField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+        if(RspQueryTradeResultBySerialField_TradeDate_len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
             PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
             return -1;
         }
@@ -263,7 +263,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///交易时间
     // TThostFtdcTradeTimeType char[9]
     if( RspQueryTradeResultBySerialField_TradeTime != NULL ) {
-        if(RspQueryTradeResultBySerialField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+        if(RspQueryTradeResultBySerialField_TradeTime_len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
             PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
             return -1;
         }
@@ -276,7 +276,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///银行流水号
     // TThostFtdcBankSerialType char[13]
     if( RspQueryTradeResultBySerialField_BankSerial != NULL ) {
-        if(RspQueryTradeResultBySerialField_BankSerial_len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+        if(RspQueryTradeResultBySerialField_BankSerial_len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
             PyErr_Format(PyExc_ValueError, "BankSerial too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_BankSerial_len, (Py_ssize_t)sizeof(self->data.BankSerial));
             return -1;
         }
@@ -289,7 +289,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///交易系统日期
     // TThostFtdcTradeDateType char[9]
     if( RspQueryTradeResultBySerialField_TradingDay != NULL ) {
-        if(RspQueryTradeResultBySerialField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(RspQueryTradeResultBySerialField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -318,7 +318,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///错误信息
     // TThostFtdcErrorMsgType char[81]
     if( RspQueryTradeResultBySerialField_ErrorMsg != NULL ) {
-        if(RspQueryTradeResultBySerialField_ErrorMsg_len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+        if(RspQueryTradeResultBySerialField_ErrorMsg_len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
             PyErr_Format(PyExc_ValueError, "ErrorMsg too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_ErrorMsg_len, (Py_ssize_t)sizeof(self->data.ErrorMsg));
             return -1;
         }
@@ -339,7 +339,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///本流水号发布者机构编码
     // TThostFtdcOrganCodeType char[36]
     if( RspQueryTradeResultBySerialField_RefrenceIssure != NULL ) {
-        if(RspQueryTradeResultBySerialField_RefrenceIssure_len > (Py_ssize_t)sizeof(self->data.RefrenceIssure)) {
+        if(RspQueryTradeResultBySerialField_RefrenceIssure_len >= (Py_ssize_t)sizeof(self->data.RefrenceIssure)) {
             PyErr_Format(PyExc_ValueError, "RefrenceIssure too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_RefrenceIssure_len, (Py_ssize_t)sizeof(self->data.RefrenceIssure));
             return -1;
         }
@@ -352,7 +352,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///原始返回代码
     // TThostFtdcReturnCodeType char[7]
     if( RspQueryTradeResultBySerialField_OriginReturnCode != NULL ) {
-        if(RspQueryTradeResultBySerialField_OriginReturnCode_len > (Py_ssize_t)sizeof(self->data.OriginReturnCode)) {
+        if(RspQueryTradeResultBySerialField_OriginReturnCode_len >= (Py_ssize_t)sizeof(self->data.OriginReturnCode)) {
             PyErr_Format(PyExc_ValueError, "OriginReturnCode too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_OriginReturnCode_len, (Py_ssize_t)sizeof(self->data.OriginReturnCode));
             return -1;
         }
@@ -365,7 +365,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///原始返回码描述
     // TThostFtdcDescrInfoForReturnCodeType char[129]
     if( RspQueryTradeResultBySerialField_OriginDescrInfoForReturnCode != NULL ) {
-        if(RspQueryTradeResultBySerialField_OriginDescrInfoForReturnCode_len > (Py_ssize_t)sizeof(self->data.OriginDescrInfoForReturnCode)) {
+        if(RspQueryTradeResultBySerialField_OriginDescrInfoForReturnCode_len >= (Py_ssize_t)sizeof(self->data.OriginDescrInfoForReturnCode)) {
             PyErr_Format(PyExc_ValueError, "OriginDescrInfoForReturnCode too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_OriginDescrInfoForReturnCode_len, (Py_ssize_t)sizeof(self->data.OriginDescrInfoForReturnCode));
             return -1;
         }
@@ -378,7 +378,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///银行帐号
     // TThostFtdcBankAccountType char[41]
     if( RspQueryTradeResultBySerialField_BankAccount != NULL ) {
-        if(RspQueryTradeResultBySerialField_BankAccount_len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+        if(RspQueryTradeResultBySerialField_BankAccount_len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
             PyErr_Format(PyExc_ValueError, "BankAccount too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_BankAccount_len, (Py_ssize_t)sizeof(self->data.BankAccount));
             return -1;
         }
@@ -391,7 +391,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///银行密码
     // TThostFtdcPasswordType char[41]
     if( RspQueryTradeResultBySerialField_BankPassWord != NULL ) {
-        if(RspQueryTradeResultBySerialField_BankPassWord_len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+        if(RspQueryTradeResultBySerialField_BankPassWord_len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
             PyErr_Format(PyExc_ValueError, "BankPassWord too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_BankPassWord_len, (Py_ssize_t)sizeof(self->data.BankPassWord));
             return -1;
         }
@@ -404,7 +404,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( RspQueryTradeResultBySerialField_AccountID != NULL ) {
-        if(RspQueryTradeResultBySerialField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(RspQueryTradeResultBySerialField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -417,7 +417,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///期货密码
     // TThostFtdcPasswordType char[41]
     if( RspQueryTradeResultBySerialField_Password != NULL ) {
-        if(RspQueryTradeResultBySerialField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(RspQueryTradeResultBySerialField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -430,7 +430,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( RspQueryTradeResultBySerialField_CurrencyID != NULL ) {
-        if(RspQueryTradeResultBySerialField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(RspQueryTradeResultBySerialField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -447,7 +447,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_init(PyCThostFtdcRspQuer
     ///摘要
     // TThostFtdcDigestType char[36]
     if( RspQueryTradeResultBySerialField_Digest != NULL ) {
-        if(RspQueryTradeResultBySerialField_Digest_len > (Py_ssize_t)sizeof(self->data.Digest)) {
+        if(RspQueryTradeResultBySerialField_Digest_len >= (Py_ssize_t)sizeof(self->data.Digest)) {
             PyErr_Format(PyExc_ValueError, "Digest too long: length=%zd (max allowed is %zd)", RspQueryTradeResultBySerialField_Digest_len, (Py_ssize_t)sizeof(self->data.Digest));
             return -1;
         }
@@ -528,7 +528,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_TradeCode(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
         PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
         return -1;
     }
@@ -554,7 +554,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_BankID(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -580,7 +580,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_BankBranchID(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
         return -1;
     }
@@ -606,7 +606,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_BrokerID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -632,7 +632,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_BrokerBranchID(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
         return -1;
     }
@@ -658,7 +658,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_TradeDate(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
         PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
         return -1;
     }
@@ -684,7 +684,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_TradeTime(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
         PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
         return -1;
     }
@@ -710,7 +710,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_BankSerial(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
         PyErr_SetString(PyExc_ValueError, "BankSerial must be less than 13 bytes");
         return -1;
     }
@@ -736,7 +736,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_TradingDay(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -899,7 +899,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_ErrorMsg(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
         PyErr_SetString(PyExc_ValueError, "ErrorMsg must be less than 81 bytes");
         return -1;
     }
@@ -986,7 +986,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_RefrenceIssure(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RefrenceIssure)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.RefrenceIssure)) {
         PyErr_SetString(PyExc_ValueError, "RefrenceIssure must be less than 36 bytes");
         return -1;
     }
@@ -1012,7 +1012,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_OriginReturnCode(PyC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OriginReturnCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OriginReturnCode)) {
         PyErr_SetString(PyExc_ValueError, "OriginReturnCode must be less than 7 bytes");
         return -1;
     }
@@ -1038,7 +1038,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_OriginDescrInfoForRe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OriginDescrInfoForReturnCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OriginDescrInfoForReturnCode)) {
         PyErr_SetString(PyExc_ValueError, "OriginDescrInfoForReturnCode must be less than 129 bytes");
         return -1;
     }
@@ -1064,7 +1064,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_BankAccount(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
         PyErr_SetString(PyExc_ValueError, "BankAccount must be less than 41 bytes");
         return -1;
     }
@@ -1090,7 +1090,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_BankPassWord(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
         PyErr_SetString(PyExc_ValueError, "BankPassWord must be less than 41 bytes");
         return -1;
     }
@@ -1116,7 +1116,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_AccountID(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -1142,7 +1142,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_Password(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -1168,7 +1168,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_CurrencyID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -1215,7 +1215,7 @@ static int PyCThostFtdcRspQueryTradeResultBySerialField_set_Digest(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Digest)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Digest)) {
         PyErr_SetString(PyExc_ValueError, "Digest must be less than 36 bytes");
         return -1;
     }

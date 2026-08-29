@@ -81,7 +81,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_init(PyCThostFtdcBrokerUserOTPPar
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( BrokerUserOTPParamField_BrokerID != NULL ) {
-        if(BrokerUserOTPParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(BrokerUserOTPParamField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerUserOTPParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -94,7 +94,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_init(PyCThostFtdcBrokerUserOTPPar
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( BrokerUserOTPParamField_UserID != NULL ) {
-        if(BrokerUserOTPParamField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(BrokerUserOTPParamField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", BrokerUserOTPParamField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -107,7 +107,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_init(PyCThostFtdcBrokerUserOTPPar
     ///动态令牌提供商
     // TThostFtdcOTPVendorsIDType char[2]
     if( BrokerUserOTPParamField_OTPVendorsID != NULL ) {
-        if(BrokerUserOTPParamField_OTPVendorsID_len > (Py_ssize_t)sizeof(self->data.OTPVendorsID)) {
+        if(BrokerUserOTPParamField_OTPVendorsID_len >= (Py_ssize_t)sizeof(self->data.OTPVendorsID)) {
             PyErr_Format(PyExc_ValueError, "OTPVendorsID too long: length=%zd (max allowed is %zd)", BrokerUserOTPParamField_OTPVendorsID_len, (Py_ssize_t)sizeof(self->data.OTPVendorsID));
             return -1;
         }
@@ -120,7 +120,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_init(PyCThostFtdcBrokerUserOTPPar
     ///动态令牌序列号
     // TThostFtdcSerialNumberType char[17]
     if( BrokerUserOTPParamField_SerialNumber != NULL ) {
-        if(BrokerUserOTPParamField_SerialNumber_len > (Py_ssize_t)sizeof(self->data.SerialNumber)) {
+        if(BrokerUserOTPParamField_SerialNumber_len >= (Py_ssize_t)sizeof(self->data.SerialNumber)) {
             PyErr_Format(PyExc_ValueError, "SerialNumber too long: length=%zd (max allowed is %zd)", BrokerUserOTPParamField_SerialNumber_len, (Py_ssize_t)sizeof(self->data.SerialNumber));
             return -1;
         }
@@ -133,7 +133,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_init(PyCThostFtdcBrokerUserOTPPar
     ///令牌密钥
     // TThostFtdcAuthKeyType char[41]
     if( BrokerUserOTPParamField_AuthKey != NULL ) {
-        if(BrokerUserOTPParamField_AuthKey_len > (Py_ssize_t)sizeof(self->data.AuthKey)) {
+        if(BrokerUserOTPParamField_AuthKey_len >= (Py_ssize_t)sizeof(self->data.AuthKey)) {
             PyErr_Format(PyExc_ValueError, "AuthKey too long: length=%zd (max allowed is %zd)", BrokerUserOTPParamField_AuthKey_len, (Py_ssize_t)sizeof(self->data.AuthKey));
             return -1;
         }
@@ -208,7 +208,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_set_BrokerID(PyCThostFtdcBrokerUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -234,7 +234,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_set_UserID(PyCThostFtdcBrokerUser
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -260,7 +260,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_set_OTPVendorsID(PyCThostFtdcBrok
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OTPVendorsID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OTPVendorsID)) {
         PyErr_SetString(PyExc_ValueError, "OTPVendorsID must be less than 2 bytes");
         return -1;
     }
@@ -286,7 +286,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_set_SerialNumber(PyCThostFtdcBrok
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SerialNumber)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SerialNumber)) {
         PyErr_SetString(PyExc_ValueError, "SerialNumber must be less than 17 bytes");
         return -1;
     }
@@ -312,7 +312,7 @@ static int PyCThostFtdcBrokerUserOTPParamField_set_AuthKey(PyCThostFtdcBrokerUse
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AuthKey)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AuthKey)) {
         PyErr_SetString(PyExc_ValueError, "AuthKey must be less than 41 bytes");
         return -1;
     }

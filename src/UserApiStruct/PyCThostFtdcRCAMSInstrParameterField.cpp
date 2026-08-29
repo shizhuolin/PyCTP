@@ -59,7 +59,7 @@ static int PyCThostFtdcRCAMSInstrParameterField_init(PyCThostFtdcRCAMSInstrParam
     ///交易日
     // TThostFtdcDateType char[9]
     if( RCAMSInstrParameterField_TradingDay != NULL ) {
-        if(RCAMSInstrParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(RCAMSInstrParameterField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", RCAMSInstrParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcRCAMSInstrParameterField_init(PyCThostFtdcRCAMSInstrParam
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( RCAMSInstrParameterField_ExchangeID != NULL ) {
-        if(RCAMSInstrParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(RCAMSInstrParameterField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", RCAMSInstrParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcRCAMSInstrParameterField_init(PyCThostFtdcRCAMSInstrParam
     ///产品代码
     // TThostFtdcProductIDType char[41]
     if( RCAMSInstrParameterField_ProductID != NULL ) {
-        if(RCAMSInstrParameterField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(RCAMSInstrParameterField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", RCAMSInstrParameterField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcRCAMSInstrParameterField_set_TradingDay(PyCThostFtdcRCAMS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcRCAMSInstrParameterField_set_ExchangeID(PyCThostFtdcRCAMS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -200,7 +200,7 @@ static int PyCThostFtdcRCAMSInstrParameterField_set_ProductID(PyCThostFtdcRCAMSI
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
         return -1;
     }

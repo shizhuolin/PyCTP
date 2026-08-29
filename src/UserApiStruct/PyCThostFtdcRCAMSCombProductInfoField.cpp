@@ -66,7 +66,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_init(PyCThostFtdcRCAMSCombProdu
     ///交易日
     // TThostFtdcDateType char[9]
     if( RCAMSCombProductInfoField_TradingDay != NULL ) {
-        if(RCAMSCombProductInfoField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(RCAMSCombProductInfoField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", RCAMSCombProductInfoField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -79,7 +79,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_init(PyCThostFtdcRCAMSCombProdu
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( RCAMSCombProductInfoField_ExchangeID != NULL ) {
-        if(RCAMSCombProductInfoField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(RCAMSCombProductInfoField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", RCAMSCombProductInfoField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -92,7 +92,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_init(PyCThostFtdcRCAMSCombProdu
     ///产品代码
     // TThostFtdcProductIDType char[41]
     if( RCAMSCombProductInfoField_ProductID != NULL ) {
-        if(RCAMSCombProductInfoField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(RCAMSCombProductInfoField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", RCAMSCombProductInfoField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -105,7 +105,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_init(PyCThostFtdcRCAMSCombProdu
     ///商品组代码
     // TThostFtdcProductIDType char[41]
     if( RCAMSCombProductInfoField_CombProductID != NULL ) {
-        if(RCAMSCombProductInfoField_CombProductID_len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+        if(RCAMSCombProductInfoField_CombProductID_len >= (Py_ssize_t)sizeof(self->data.CombProductID)) {
             PyErr_Format(PyExc_ValueError, "CombProductID too long: length=%zd (max allowed is %zd)", RCAMSCombProductInfoField_CombProductID_len, (Py_ssize_t)sizeof(self->data.CombProductID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_init(PyCThostFtdcRCAMSCombProdu
     ///商品群代码
     // TThostFtdcProductIDType char[41]
     if( RCAMSCombProductInfoField_ProductGroupID != NULL ) {
-        if(RCAMSCombProductInfoField_ProductGroupID_len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+        if(RCAMSCombProductInfoField_ProductGroupID_len >= (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
             PyErr_Format(PyExc_ValueError, "ProductGroupID too long: length=%zd (max allowed is %zd)", RCAMSCombProductInfoField_ProductGroupID_len, (Py_ssize_t)sizeof(self->data.ProductGroupID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_set_TradingDay(PyCThostFtdcRCAM
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_set_ExchangeID(PyCThostFtdcRCAM
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_set_ProductID(PyCThostFtdcRCAMS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_set_CombProductID(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CombProductID)) {
         PyErr_SetString(PyExc_ValueError, "CombProductID must be less than 41 bytes");
         return -1;
     }
@@ -282,7 +282,7 @@ static int PyCThostFtdcRCAMSCombProductInfoField_set_ProductGroupID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
         PyErr_SetString(PyExc_ValueError, "ProductGroupID must be less than 41 bytes");
         return -1;
     }

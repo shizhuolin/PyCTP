@@ -65,7 +65,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_init(PyCThostFtdcAppAuthentica
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( AppAuthenticationCodeField_BrokerID != NULL ) {
-        if(AppAuthenticationCodeField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(AppAuthenticationCodeField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AppAuthenticationCodeField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_init(PyCThostFtdcAppAuthentica
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( AppAuthenticationCodeField_AppID != NULL ) {
-        if(AppAuthenticationCodeField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(AppAuthenticationCodeField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", AppAuthenticationCodeField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_init(PyCThostFtdcAppAuthentica
     ///认证码
     // TThostFtdcAuthCodeType char[17]
     if( AppAuthenticationCodeField_AuthCode != NULL ) {
-        if(AppAuthenticationCodeField_AuthCode_len > (Py_ssize_t)sizeof(self->data.AuthCode)) {
+        if(AppAuthenticationCodeField_AuthCode_len >= (Py_ssize_t)sizeof(self->data.AuthCode)) {
             PyErr_Format(PyExc_ValueError, "AuthCode too long: length=%zd (max allowed is %zd)", AppAuthenticationCodeField_AuthCode_len, (Py_ssize_t)sizeof(self->data.AuthCode));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_init(PyCThostFtdcAppAuthentica
     ///旧认证码
     // TThostFtdcAuthCodeType char[17]
     if( AppAuthenticationCodeField_PreAuthCode != NULL ) {
-        if(AppAuthenticationCodeField_PreAuthCode_len > (Py_ssize_t)sizeof(self->data.PreAuthCode)) {
+        if(AppAuthenticationCodeField_PreAuthCode_len >= (Py_ssize_t)sizeof(self->data.PreAuthCode)) {
             PyErr_Format(PyExc_ValueError, "PreAuthCode too long: length=%zd (max allowed is %zd)", AppAuthenticationCodeField_PreAuthCode_len, (Py_ssize_t)sizeof(self->data.PreAuthCode));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_set_BrokerID(PyCThostFtdcAppAu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_set_AppID(PyCThostFtdcAppAuthe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_set_AuthCode(PyCThostFtdcAppAu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AuthCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AuthCode)) {
         PyErr_SetString(PyExc_ValueError, "AuthCode must be less than 17 bytes");
         return -1;
     }
@@ -246,7 +246,7 @@ static int PyCThostFtdcAppAuthenticationCodeField_set_PreAuthCode(PyCThostFtdcAp
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.PreAuthCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.PreAuthCode)) {
         PyErr_SetString(PyExc_ValueError, "PreAuthCode must be less than 17 bytes");
         return -1;
     }

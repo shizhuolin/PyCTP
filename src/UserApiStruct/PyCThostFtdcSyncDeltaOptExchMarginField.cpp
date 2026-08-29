@@ -98,7 +98,7 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_init(PyCThostFtdcSyncDeltaOpt
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SyncDeltaOptExchMarginField_BrokerID != NULL ) {
-        if(SyncDeltaOptExchMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SyncDeltaOptExchMarginField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDeltaOptExchMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -111,7 +111,7 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_init(PyCThostFtdcSyncDeltaOpt
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaOptExchMarginField_InstrumentID != NULL ) {
-        if(SyncDeltaOptExchMarginField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(SyncDeltaOptExchMarginField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaOptExchMarginField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_BrokerID(PyCThostFtdcSync
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -244,7 +244,7 @@ static int PyCThostFtdcSyncDeltaOptExchMarginField_set_InstrumentID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

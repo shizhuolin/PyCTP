@@ -48,7 +48,7 @@ static int PyCThostFtdcQrySyncDelaySwapField_init(PyCThostFtdcQrySyncDelaySwapFi
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QrySyncDelaySwapField_BrokerID != NULL ) {
-        if(QrySyncDelaySwapField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QrySyncDelaySwapField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySyncDelaySwapField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQrySyncDelaySwapField_init(PyCThostFtdcQrySyncDelaySwapFi
     ///延时换汇流水号
     // TThostFtdcDepositSeqNoType char[15]
     if( QrySyncDelaySwapField_DelaySwapSeqNo != NULL ) {
-        if(QrySyncDelaySwapField_DelaySwapSeqNo_len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
+        if(QrySyncDelaySwapField_DelaySwapSeqNo_len >= (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
             PyErr_Format(PyExc_ValueError, "DelaySwapSeqNo too long: length=%zd (max allowed is %zd)", QrySyncDelaySwapField_DelaySwapSeqNo_len, (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQrySyncDelaySwapField_set_BrokerID(PyCThostFtdcQrySyncDel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQrySyncDelaySwapField_set_DelaySwapSeqNo(PyCThostFtdcQryS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DelaySwapSeqNo)) {
         PyErr_SetString(PyExc_ValueError, "DelaySwapSeqNo must be less than 15 bytes");
         return -1;
     }

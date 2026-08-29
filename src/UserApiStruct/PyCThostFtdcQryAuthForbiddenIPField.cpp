@@ -42,7 +42,7 @@ static int PyCThostFtdcQryAuthForbiddenIPField_init(PyCThostFtdcQryAuthForbidden
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( QryAuthForbiddenIPField_IPAddress != NULL ) {
-        if(QryAuthForbiddenIPField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(QryAuthForbiddenIPField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", QryAuthForbiddenIPField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryAuthForbiddenIPField_set_IPAddress(PyCThostFtdcQryAuth
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }

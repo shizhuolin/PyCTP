@@ -48,7 +48,7 @@ static int PyCThostFtdcQryBrokerUserFunctionField_init(PyCThostFtdcQryBrokerUser
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryBrokerUserFunctionField_BrokerID != NULL ) {
-        if(QryBrokerUserFunctionField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryBrokerUserFunctionField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryBrokerUserFunctionField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQryBrokerUserFunctionField_init(PyCThostFtdcQryBrokerUser
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( QryBrokerUserFunctionField_UserID != NULL ) {
-        if(QryBrokerUserFunctionField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(QryBrokerUserFunctionField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", QryBrokerUserFunctionField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQryBrokerUserFunctionField_set_BrokerID(PyCThostFtdcQryBr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQryBrokerUserFunctionField_set_UserID(PyCThostFtdcQryBrok
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }

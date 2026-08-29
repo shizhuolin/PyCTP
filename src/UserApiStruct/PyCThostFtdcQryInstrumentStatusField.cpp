@@ -54,7 +54,7 @@ static int PyCThostFtdcQryInstrumentStatusField_init(PyCThostFtdcQryInstrumentSt
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryInstrumentStatusField_ExchangeID != NULL ) {
-        if(QryInstrumentStatusField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryInstrumentStatusField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryInstrumentStatusField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcQryInstrumentStatusField_init(PyCThostFtdcQryInstrumentSt
     ///保留的无效字段
     // TThostFtdcOldExchangeInstIDType char[31]
     if( QryInstrumentStatusField_reserve1 != NULL ) {
-        if(QryInstrumentStatusField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryInstrumentStatusField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryInstrumentStatusField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcQryInstrumentStatusField_init(PyCThostFtdcQryInstrumentSt
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( QryInstrumentStatusField_ExchangeInstID != NULL ) {
-        if(QryInstrumentStatusField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(QryInstrumentStatusField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", QryInstrumentStatusField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcQryInstrumentStatusField_set_ExchangeID(PyCThostFtdcQryIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcQryInstrumentStatusField_set_reserve1(PyCThostFtdcQryInst
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcQryInstrumentStatusField_set_ExchangeInstID(PyCThostFtdcQ
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }

@@ -270,7 +270,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///业务功能码
     // TThostFtdcTradeCodeType char[7]
     if( ReserveOpenAccountConfirmField_TradeCode != NULL ) {
-        if(ReserveOpenAccountConfirmField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+        if(ReserveOpenAccountConfirmField_TradeCode_len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
             PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
             return -1;
         }
@@ -283,7 +283,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///银行代码
     // TThostFtdcBankIDType char[4]
     if( ReserveOpenAccountConfirmField_BankID != NULL ) {
-        if(ReserveOpenAccountConfirmField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(ReserveOpenAccountConfirmField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -296,7 +296,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///银行分支机构代码
     // TThostFtdcBankBrchIDType char[5]
     if( ReserveOpenAccountConfirmField_BankBranchID != NULL ) {
-        if(ReserveOpenAccountConfirmField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+        if(ReserveOpenAccountConfirmField_BankBranchID_len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
             PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
             return -1;
         }
@@ -309,7 +309,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///期商代码
     // TThostFtdcBrokerIDType char[11]
     if( ReserveOpenAccountConfirmField_BrokerID != NULL ) {
-        if(ReserveOpenAccountConfirmField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ReserveOpenAccountConfirmField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -322,7 +322,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///期商分支机构代码
     // TThostFtdcFutureBranchIDType char[31]
     if( ReserveOpenAccountConfirmField_BrokerBranchID != NULL ) {
-        if(ReserveOpenAccountConfirmField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+        if(ReserveOpenAccountConfirmField_BrokerBranchID_len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
             PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
             return -1;
         }
@@ -335,7 +335,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///交易日期
     // TThostFtdcTradeDateType char[9]
     if( ReserveOpenAccountConfirmField_TradeDate != NULL ) {
-        if(ReserveOpenAccountConfirmField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+        if(ReserveOpenAccountConfirmField_TradeDate_len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
             PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
             return -1;
         }
@@ -348,7 +348,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///交易时间
     // TThostFtdcTradeTimeType char[9]
     if( ReserveOpenAccountConfirmField_TradeTime != NULL ) {
-        if(ReserveOpenAccountConfirmField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+        if(ReserveOpenAccountConfirmField_TradeTime_len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
             PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
             return -1;
         }
@@ -361,7 +361,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///银行流水号
     // TThostFtdcBankSerialType char[13]
     if( ReserveOpenAccountConfirmField_BankSerial != NULL ) {
-        if(ReserveOpenAccountConfirmField_BankSerial_len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+        if(ReserveOpenAccountConfirmField_BankSerial_len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
             PyErr_Format(PyExc_ValueError, "BankSerial too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BankSerial_len, (Py_ssize_t)sizeof(self->data.BankSerial));
             return -1;
         }
@@ -374,7 +374,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///交易系统日期
     // TThostFtdcTradeDateType char[9]
     if( ReserveOpenAccountConfirmField_TradingDay != NULL ) {
-        if(ReserveOpenAccountConfirmField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(ReserveOpenAccountConfirmField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -399,7 +399,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///客户姓名
     // TThostFtdcLongIndividualNameType char[161]
     if( ReserveOpenAccountConfirmField_CustomerName != NULL ) {
-        if(ReserveOpenAccountConfirmField_CustomerName_len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+        if(ReserveOpenAccountConfirmField_CustomerName_len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
             PyErr_Format(PyExc_ValueError, "CustomerName too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_CustomerName_len, (Py_ssize_t)sizeof(self->data.CustomerName));
             return -1;
         }
@@ -416,7 +416,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( ReserveOpenAccountConfirmField_IdentifiedCardNo != NULL ) {
-        if(ReserveOpenAccountConfirmField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(ReserveOpenAccountConfirmField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -433,7 +433,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///国家代码
     // TThostFtdcCountryCodeType char[21]
     if( ReserveOpenAccountConfirmField_CountryCode != NULL ) {
-        if(ReserveOpenAccountConfirmField_CountryCode_len > (Py_ssize_t)sizeof(self->data.CountryCode)) {
+        if(ReserveOpenAccountConfirmField_CountryCode_len >= (Py_ssize_t)sizeof(self->data.CountryCode)) {
             PyErr_Format(PyExc_ValueError, "CountryCode too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_CountryCode_len, (Py_ssize_t)sizeof(self->data.CountryCode));
             return -1;
         }
@@ -450,7 +450,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///地址
     // TThostFtdcAddressType char[101]
     if( ReserveOpenAccountConfirmField_Address != NULL ) {
-        if(ReserveOpenAccountConfirmField_Address_len > (Py_ssize_t)sizeof(self->data.Address)) {
+        if(ReserveOpenAccountConfirmField_Address_len >= (Py_ssize_t)sizeof(self->data.Address)) {
             PyErr_Format(PyExc_ValueError, "Address too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_Address_len, (Py_ssize_t)sizeof(self->data.Address));
             return -1;
         }
@@ -463,7 +463,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///邮编
     // TThostFtdcZipCodeType char[7]
     if( ReserveOpenAccountConfirmField_ZipCode != NULL ) {
-        if(ReserveOpenAccountConfirmField_ZipCode_len > (Py_ssize_t)sizeof(self->data.ZipCode)) {
+        if(ReserveOpenAccountConfirmField_ZipCode_len >= (Py_ssize_t)sizeof(self->data.ZipCode)) {
             PyErr_Format(PyExc_ValueError, "ZipCode too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_ZipCode_len, (Py_ssize_t)sizeof(self->data.ZipCode));
             return -1;
         }
@@ -476,7 +476,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///电话号码
     // TThostFtdcTelephoneType char[41]
     if( ReserveOpenAccountConfirmField_Telephone != NULL ) {
-        if(ReserveOpenAccountConfirmField_Telephone_len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+        if(ReserveOpenAccountConfirmField_Telephone_len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
             PyErr_Format(PyExc_ValueError, "Telephone too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_Telephone_len, (Py_ssize_t)sizeof(self->data.Telephone));
             return -1;
         }
@@ -489,7 +489,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///手机
     // TThostFtdcMobilePhoneType char[21]
     if( ReserveOpenAccountConfirmField_MobilePhone != NULL ) {
-        if(ReserveOpenAccountConfirmField_MobilePhone_len > (Py_ssize_t)sizeof(self->data.MobilePhone)) {
+        if(ReserveOpenAccountConfirmField_MobilePhone_len >= (Py_ssize_t)sizeof(self->data.MobilePhone)) {
             PyErr_Format(PyExc_ValueError, "MobilePhone too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_MobilePhone_len, (Py_ssize_t)sizeof(self->data.MobilePhone));
             return -1;
         }
@@ -502,7 +502,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///传真
     // TThostFtdcFaxType char[41]
     if( ReserveOpenAccountConfirmField_Fax != NULL ) {
-        if(ReserveOpenAccountConfirmField_Fax_len > (Py_ssize_t)sizeof(self->data.Fax)) {
+        if(ReserveOpenAccountConfirmField_Fax_len >= (Py_ssize_t)sizeof(self->data.Fax)) {
             PyErr_Format(PyExc_ValueError, "Fax too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_Fax_len, (Py_ssize_t)sizeof(self->data.Fax));
             return -1;
         }
@@ -515,7 +515,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///电子邮件
     // TThostFtdcEMailType char[41]
     if( ReserveOpenAccountConfirmField_EMail != NULL ) {
-        if(ReserveOpenAccountConfirmField_EMail_len > (Py_ssize_t)sizeof(self->data.EMail)) {
+        if(ReserveOpenAccountConfirmField_EMail_len >= (Py_ssize_t)sizeof(self->data.EMail)) {
             PyErr_Format(PyExc_ValueError, "EMail too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_EMail_len, (Py_ssize_t)sizeof(self->data.EMail));
             return -1;
         }
@@ -532,7 +532,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///银行帐号
     // TThostFtdcBankAccountType char[41]
     if( ReserveOpenAccountConfirmField_BankAccount != NULL ) {
-        if(ReserveOpenAccountConfirmField_BankAccount_len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+        if(ReserveOpenAccountConfirmField_BankAccount_len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
             PyErr_Format(PyExc_ValueError, "BankAccount too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BankAccount_len, (Py_ssize_t)sizeof(self->data.BankAccount));
             return -1;
         }
@@ -545,7 +545,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///银行密码
     // TThostFtdcPasswordType char[41]
     if( ReserveOpenAccountConfirmField_BankPassWord != NULL ) {
-        if(ReserveOpenAccountConfirmField_BankPassWord_len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+        if(ReserveOpenAccountConfirmField_BankPassWord_len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
             PyErr_Format(PyExc_ValueError, "BankPassWord too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BankPassWord_len, (Py_ssize_t)sizeof(self->data.BankPassWord));
             return -1;
         }
@@ -566,7 +566,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( ReserveOpenAccountConfirmField_CurrencyID != NULL ) {
-        if(ReserveOpenAccountConfirmField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(ReserveOpenAccountConfirmField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -579,7 +579,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///摘要
     // TThostFtdcDigestType char[36]
     if( ReserveOpenAccountConfirmField_Digest != NULL ) {
-        if(ReserveOpenAccountConfirmField_Digest_len > (Py_ssize_t)sizeof(self->data.Digest)) {
+        if(ReserveOpenAccountConfirmField_Digest_len >= (Py_ssize_t)sizeof(self->data.Digest)) {
             PyErr_Format(PyExc_ValueError, "Digest too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_Digest_len, (Py_ssize_t)sizeof(self->data.Digest));
             return -1;
         }
@@ -596,7 +596,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///期货公司银行编码
     // TThostFtdcBankCodingForFutureType char[33]
     if( ReserveOpenAccountConfirmField_BrokerIDByBank != NULL ) {
-        if(ReserveOpenAccountConfirmField_BrokerIDByBank_len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+        if(ReserveOpenAccountConfirmField_BrokerIDByBank_len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
             PyErr_Format(PyExc_ValueError, "BrokerIDByBank too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BrokerIDByBank_len, (Py_ssize_t)sizeof(self->data.BrokerIDByBank));
             return -1;
         }
@@ -613,7 +613,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( ReserveOpenAccountConfirmField_AccountID != NULL ) {
-        if(ReserveOpenAccountConfirmField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(ReserveOpenAccountConfirmField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -626,7 +626,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///期货密码
     // TThostFtdcPasswordType char[41]
     if( ReserveOpenAccountConfirmField_Password != NULL ) {
-        if(ReserveOpenAccountConfirmField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(ReserveOpenAccountConfirmField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -639,7 +639,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///预约开户银行流水号
     // TThostFtdcBankSerialType char[13]
     if( ReserveOpenAccountConfirmField_BankReserveOpenSeq != NULL ) {
-        if(ReserveOpenAccountConfirmField_BankReserveOpenSeq_len > (Py_ssize_t)sizeof(self->data.BankReserveOpenSeq)) {
+        if(ReserveOpenAccountConfirmField_BankReserveOpenSeq_len >= (Py_ssize_t)sizeof(self->data.BankReserveOpenSeq)) {
             PyErr_Format(PyExc_ValueError, "BankReserveOpenSeq too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BankReserveOpenSeq_len, (Py_ssize_t)sizeof(self->data.BankReserveOpenSeq));
             return -1;
         }
@@ -652,7 +652,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///预约开户日期
     // TThostFtdcTradeDateType char[9]
     if( ReserveOpenAccountConfirmField_BookDate != NULL ) {
-        if(ReserveOpenAccountConfirmField_BookDate_len > (Py_ssize_t)sizeof(self->data.BookDate)) {
+        if(ReserveOpenAccountConfirmField_BookDate_len >= (Py_ssize_t)sizeof(self->data.BookDate)) {
             PyErr_Format(PyExc_ValueError, "BookDate too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BookDate_len, (Py_ssize_t)sizeof(self->data.BookDate));
             return -1;
         }
@@ -665,7 +665,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///预约开户验证密码
     // TThostFtdcPasswordType char[41]
     if( ReserveOpenAccountConfirmField_BookPsw != NULL ) {
-        if(ReserveOpenAccountConfirmField_BookPsw_len > (Py_ssize_t)sizeof(self->data.BookPsw)) {
+        if(ReserveOpenAccountConfirmField_BookPsw_len >= (Py_ssize_t)sizeof(self->data.BookPsw)) {
             PyErr_Format(PyExc_ValueError, "BookPsw too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_BookPsw_len, (Py_ssize_t)sizeof(self->data.BookPsw));
             return -1;
         }
@@ -682,7 +682,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_init(PyCThostFtdcReserveOp
     ///错误信息
     // TThostFtdcErrorMsgType char[81]
     if( ReserveOpenAccountConfirmField_ErrorMsg != NULL ) {
-        if(ReserveOpenAccountConfirmField_ErrorMsg_len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+        if(ReserveOpenAccountConfirmField_ErrorMsg_len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
             PyErr_Format(PyExc_ValueError, "ErrorMsg too long: length=%zd (max allowed is %zd)", ReserveOpenAccountConfirmField_ErrorMsg_len, (Py_ssize_t)sizeof(self->data.ErrorMsg));
             return -1;
         }
@@ -778,7 +778,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_TradeCode(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
         PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
         return -1;
     }
@@ -804,7 +804,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BankID(PyCThostFtdcRes
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -830,7 +830,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BankBranchID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
         return -1;
     }
@@ -856,7 +856,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BrokerID(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -882,7 +882,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BrokerBranchID(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
         return -1;
     }
@@ -908,7 +908,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_TradeDate(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
         PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
         return -1;
     }
@@ -934,7 +934,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_TradeTime(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
         PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
         return -1;
     }
@@ -960,7 +960,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BankSerial(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
         PyErr_SetString(PyExc_ValueError, "BankSerial must be less than 13 bytes");
         return -1;
     }
@@ -986,7 +986,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_TradingDay(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -1111,7 +1111,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_CustomerName(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
         PyErr_SetString(PyExc_ValueError, "CustomerName must be less than 161 bytes");
         return -1;
     }
@@ -1160,7 +1160,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_IdentifiedCardNo(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -1209,7 +1209,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_CountryCode(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CountryCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CountryCode)) {
         PyErr_SetString(PyExc_ValueError, "CountryCode must be less than 21 bytes");
         return -1;
     }
@@ -1258,7 +1258,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_Address(PyCThostFtdcRe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Address)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Address)) {
         PyErr_SetString(PyExc_ValueError, "Address must be less than 101 bytes");
         return -1;
     }
@@ -1284,7 +1284,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_ZipCode(PyCThostFtdcRe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ZipCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ZipCode)) {
         PyErr_SetString(PyExc_ValueError, "ZipCode must be less than 7 bytes");
         return -1;
     }
@@ -1310,7 +1310,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_Telephone(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
         PyErr_SetString(PyExc_ValueError, "Telephone must be less than 41 bytes");
         return -1;
     }
@@ -1336,7 +1336,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_MobilePhone(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MobilePhone)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MobilePhone)) {
         PyErr_SetString(PyExc_ValueError, "MobilePhone must be less than 21 bytes");
         return -1;
     }
@@ -1362,7 +1362,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_Fax(PyCThostFtdcReserv
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Fax)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Fax)) {
         PyErr_SetString(PyExc_ValueError, "Fax must be less than 41 bytes");
         return -1;
     }
@@ -1388,7 +1388,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_EMail(PyCThostFtdcRese
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.EMail)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.EMail)) {
         PyErr_SetString(PyExc_ValueError, "EMail must be less than 41 bytes");
         return -1;
     }
@@ -1437,7 +1437,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BankAccount(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
         PyErr_SetString(PyExc_ValueError, "BankAccount must be less than 41 bytes");
         return -1;
     }
@@ -1463,7 +1463,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BankPassWord(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
         PyErr_SetString(PyExc_ValueError, "BankPassWord must be less than 41 bytes");
         return -1;
     }
@@ -1550,7 +1550,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_CurrencyID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -1576,7 +1576,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_Digest(PyCThostFtdcRes
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Digest)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Digest)) {
         PyErr_SetString(PyExc_ValueError, "Digest must be less than 36 bytes");
         return -1;
     }
@@ -1625,7 +1625,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BrokerIDByBank(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
         PyErr_SetString(PyExc_ValueError, "BrokerIDByBank must be less than 33 bytes");
         return -1;
     }
@@ -1689,7 +1689,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_AccountID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -1715,7 +1715,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_Password(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -1741,7 +1741,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BankReserveOpenSeq(PyC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankReserveOpenSeq)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankReserveOpenSeq)) {
         PyErr_SetString(PyExc_ValueError, "BankReserveOpenSeq must be less than 13 bytes");
         return -1;
     }
@@ -1767,7 +1767,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BookDate(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BookDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BookDate)) {
         PyErr_SetString(PyExc_ValueError, "BookDate must be less than 9 bytes");
         return -1;
     }
@@ -1793,7 +1793,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_BookPsw(PyCThostFtdcRe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BookPsw)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BookPsw)) {
         PyErr_SetString(PyExc_ValueError, "BookPsw must be less than 41 bytes");
         return -1;
     }
@@ -1857,7 +1857,7 @@ static int PyCThostFtdcReserveOpenAccountConfirmField_set_ErrorMsg(PyCThostFtdcR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
         PyErr_SetString(PyExc_ValueError, "ErrorMsg must be less than 81 bytes");
         return -1;
     }

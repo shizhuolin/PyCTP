@@ -54,7 +54,7 @@ static int PyCThostFtdcCommRateModelField_init(PyCThostFtdcCommRateModelField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( CommRateModelField_BrokerID != NULL ) {
-        if(CommRateModelField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(CommRateModelField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", CommRateModelField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcCommRateModelField_init(PyCThostFtdcCommRateModelField *s
     ///手续费率模板代码
     // TThostFtdcInvestorIDType char[13]
     if( CommRateModelField_CommModelID != NULL ) {
-        if(CommRateModelField_CommModelID_len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
+        if(CommRateModelField_CommModelID_len >= (Py_ssize_t)sizeof(self->data.CommModelID)) {
             PyErr_Format(PyExc_ValueError, "CommModelID too long: length=%zd (max allowed is %zd)", CommRateModelField_CommModelID_len, (Py_ssize_t)sizeof(self->data.CommModelID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcCommRateModelField_init(PyCThostFtdcCommRateModelField *s
     ///模板名称
     // TThostFtdcCommModelNameType char[161]
     if( CommRateModelField_CommModelName != NULL ) {
-        if(CommRateModelField_CommModelName_len > (Py_ssize_t)sizeof(self->data.CommModelName)) {
+        if(CommRateModelField_CommModelName_len >= (Py_ssize_t)sizeof(self->data.CommModelName)) {
             PyErr_Format(PyExc_ValueError, "CommModelName too long: length=%zd (max allowed is %zd)", CommRateModelField_CommModelName_len, (Py_ssize_t)sizeof(self->data.CommModelName));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcCommRateModelField_set_BrokerID(PyCThostFtdcCommRateModel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcCommRateModelField_set_CommModelID(PyCThostFtdcCommRateMo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommModelID)) {
         PyErr_SetString(PyExc_ValueError, "CommModelID must be less than 13 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcCommRateModelField_set_CommModelName(PyCThostFtdcCommRate
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommModelName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommModelName)) {
         PyErr_SetString(PyExc_ValueError, "CommModelName must be less than 161 bytes");
         return -1;
     }

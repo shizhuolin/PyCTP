@@ -65,7 +65,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_init(PyCThostFtdcCFMMCTradi
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( CFMMCTradingAccountTokenField_BrokerID != NULL ) {
-        if(CFMMCTradingAccountTokenField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(CFMMCTradingAccountTokenField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountTokenField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_init(PyCThostFtdcCFMMCTradi
     ///经纪公司统一编码
     // TThostFtdcParticipantIDType char[11]
     if( CFMMCTradingAccountTokenField_ParticipantID != NULL ) {
-        if(CFMMCTradingAccountTokenField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(CFMMCTradingAccountTokenField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountTokenField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_init(PyCThostFtdcCFMMCTradi
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( CFMMCTradingAccountTokenField_AccountID != NULL ) {
-        if(CFMMCTradingAccountTokenField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(CFMMCTradingAccountTokenField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountTokenField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_init(PyCThostFtdcCFMMCTradi
     ///动态令牌
     // TThostFtdcCFMMCTokenType char[21]
     if( CFMMCTradingAccountTokenField_Token != NULL ) {
-        if(CFMMCTradingAccountTokenField_Token_len > (Py_ssize_t)sizeof(self->data.Token)) {
+        if(CFMMCTradingAccountTokenField_Token_len >= (Py_ssize_t)sizeof(self->data.Token)) {
             PyErr_Format(PyExc_ValueError, "Token too long: length=%zd (max allowed is %zd)", CFMMCTradingAccountTokenField_Token_len, (Py_ssize_t)sizeof(self->data.Token));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_set_BrokerID(PyCThostFtdcCF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_set_ParticipantID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_set_AccountID(PyCThostFtdcC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -284,7 +284,7 @@ static int PyCThostFtdcCFMMCTradingAccountTokenField_set_Token(PyCThostFtdcCFMMC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Token)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Token)) {
         PyErr_SetString(PyExc_ValueError, "Token must be less than 21 bytes");
         return -1;
     }

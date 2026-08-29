@@ -59,7 +59,7 @@ static int PyCThostFtdcSMSVerifyConfigField_init(PyCThostFtdcSMSVerifyConfigFiel
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( SMSVerifyConfigField_UserID != NULL ) {
-        if(SMSVerifyConfigField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(SMSVerifyConfigField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", SMSVerifyConfigField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcSMSVerifyConfigField_init(PyCThostFtdcSMSVerifyConfigFiel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SMSVerifyConfigField_BrokerID != NULL ) {
-        if(SMSVerifyConfigField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SMSVerifyConfigField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SMSVerifyConfigField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcSMSVerifyConfigField_init(PyCThostFtdcSMSVerifyConfigFiel
     ///手机号
     // TThostFtdcSMSPhoneType char[17]
     if( SMSVerifyConfigField_Mobile != NULL ) {
-        if(SMSVerifyConfigField_Mobile_len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+        if(SMSVerifyConfigField_Mobile_len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
             PyErr_Format(PyExc_ValueError, "Mobile too long: length=%zd (max allowed is %zd)", SMSVerifyConfigField_Mobile_len, (Py_ssize_t)sizeof(self->data.Mobile));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcSMSVerifyConfigField_set_UserID(PyCThostFtdcSMSVerifyConf
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcSMSVerifyConfigField_set_BrokerID(PyCThostFtdcSMSVerifyCo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -200,7 +200,7 @@ static int PyCThostFtdcSMSVerifyConfigField_set_Mobile(PyCThostFtdcSMSVerifyConf
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
         PyErr_SetString(PyExc_ValueError, "Mobile must be less than 17 bytes");
         return -1;
     }

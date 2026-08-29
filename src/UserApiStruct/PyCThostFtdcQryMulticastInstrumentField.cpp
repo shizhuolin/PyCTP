@@ -57,7 +57,7 @@ static int PyCThostFtdcQryMulticastInstrumentField_init(PyCThostFtdcQryMulticast
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( QryMulticastInstrumentField_reserve1 != NULL ) {
-        if(QryMulticastInstrumentField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryMulticastInstrumentField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryMulticastInstrumentField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -70,7 +70,7 @@ static int PyCThostFtdcQryMulticastInstrumentField_init(PyCThostFtdcQryMulticast
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryMulticastInstrumentField_InstrumentID != NULL ) {
-        if(QryMulticastInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QryMulticastInstrumentField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryMulticastInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -166,7 +166,7 @@ static int PyCThostFtdcQryMulticastInstrumentField_set_reserve1(PyCThostFtdcQryM
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -192,7 +192,7 @@ static int PyCThostFtdcQryMulticastInstrumentField_set_InstrumentID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

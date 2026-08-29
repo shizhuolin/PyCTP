@@ -63,7 +63,7 @@ static int PyCThostFtdcSyncDeltaIndexPriceField_init(PyCThostFtdcSyncDeltaIndexP
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SyncDeltaIndexPriceField_BrokerID != NULL ) {
-        if(SyncDeltaIndexPriceField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SyncDeltaIndexPriceField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncDeltaIndexPriceField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -76,7 +76,7 @@ static int PyCThostFtdcSyncDeltaIndexPriceField_init(PyCThostFtdcSyncDeltaIndexP
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaIndexPriceField_InstrumentID != NULL ) {
-        if(SyncDeltaIndexPriceField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(SyncDeltaIndexPriceField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaIndexPriceField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcSyncDeltaIndexPriceField_set_BrokerID(PyCThostFtdcSyncDel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcSyncDeltaIndexPriceField_set_InstrumentID(PyCThostFtdcSyn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

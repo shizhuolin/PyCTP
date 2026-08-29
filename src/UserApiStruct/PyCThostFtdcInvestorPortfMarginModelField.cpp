@@ -54,7 +54,7 @@ static int PyCThostFtdcInvestorPortfMarginModelField_init(PyCThostFtdcInvestorPo
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorPortfMarginModelField_BrokerID != NULL ) {
-        if(InvestorPortfMarginModelField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorPortfMarginModelField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginModelField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcInvestorPortfMarginModelField_init(PyCThostFtdcInvestorPo
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorPortfMarginModelField_InvestorID != NULL ) {
-        if(InvestorPortfMarginModelField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InvestorPortfMarginModelField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginModelField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcInvestorPortfMarginModelField_init(PyCThostFtdcInvestorPo
     ///保证金系数模板
     // TThostFtdcInvestorIDType char[13]
     if( InvestorPortfMarginModelField_MarginModelID != NULL ) {
-        if(InvestorPortfMarginModelField_MarginModelID_len > (Py_ssize_t)sizeof(self->data.MarginModelID)) {
+        if(InvestorPortfMarginModelField_MarginModelID_len >= (Py_ssize_t)sizeof(self->data.MarginModelID)) {
             PyErr_Format(PyExc_ValueError, "MarginModelID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginModelField_MarginModelID_len, (Py_ssize_t)sizeof(self->data.MarginModelID));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcInvestorPortfMarginModelField_set_BrokerID(PyCThostFtdcIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcInvestorPortfMarginModelField_set_InvestorID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcInvestorPortfMarginModelField_set_MarginModelID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MarginModelID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MarginModelID)) {
         PyErr_SetString(PyExc_ValueError, "MarginModelID must be less than 13 bytes");
         return -1;
     }

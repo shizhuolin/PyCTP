@@ -347,7 +347,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///被冲正银行流水号
     // TThostFtdcBankSerialType char[13]
     if( RspRepealField_BankRepealSerial != NULL ) {
-        if(RspRepealField_BankRepealSerial_len > (Py_ssize_t)sizeof(self->data.BankRepealSerial)) {
+        if(RspRepealField_BankRepealSerial_len >= (Py_ssize_t)sizeof(self->data.BankRepealSerial)) {
             PyErr_Format(PyExc_ValueError, "BankRepealSerial too long: length=%zd (max allowed is %zd)", RspRepealField_BankRepealSerial_len, (Py_ssize_t)sizeof(self->data.BankRepealSerial));
             return -1;
         }
@@ -364,7 +364,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///业务功能码
     // TThostFtdcTradeCodeType char[7]
     if( RspRepealField_TradeCode != NULL ) {
-        if(RspRepealField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+        if(RspRepealField_TradeCode_len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
             PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", RspRepealField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
             return -1;
         }
@@ -377,7 +377,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///银行代码
     // TThostFtdcBankIDType char[4]
     if( RspRepealField_BankID != NULL ) {
-        if(RspRepealField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(RspRepealField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", RspRepealField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -390,7 +390,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///银行分支机构代码
     // TThostFtdcBankBrchIDType char[5]
     if( RspRepealField_BankBranchID != NULL ) {
-        if(RspRepealField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+        if(RspRepealField_BankBranchID_len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
             PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", RspRepealField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
             return -1;
         }
@@ -403,7 +403,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///期商代码
     // TThostFtdcBrokerIDType char[11]
     if( RspRepealField_BrokerID != NULL ) {
-        if(RspRepealField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(RspRepealField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RspRepealField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -416,7 +416,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///期商分支机构代码
     // TThostFtdcFutureBranchIDType char[31]
     if( RspRepealField_BrokerBranchID != NULL ) {
-        if(RspRepealField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+        if(RspRepealField_BrokerBranchID_len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
             PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", RspRepealField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
             return -1;
         }
@@ -429,7 +429,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///交易日期
     // TThostFtdcTradeDateType char[9]
     if( RspRepealField_TradeDate != NULL ) {
-        if(RspRepealField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+        if(RspRepealField_TradeDate_len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
             PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", RspRepealField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
             return -1;
         }
@@ -442,7 +442,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///交易时间
     // TThostFtdcTradeTimeType char[9]
     if( RspRepealField_TradeTime != NULL ) {
-        if(RspRepealField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+        if(RspRepealField_TradeTime_len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
             PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", RspRepealField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
             return -1;
         }
@@ -455,7 +455,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///银行流水号
     // TThostFtdcBankSerialType char[13]
     if( RspRepealField_BankSerial != NULL ) {
-        if(RspRepealField_BankSerial_len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+        if(RspRepealField_BankSerial_len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
             PyErr_Format(PyExc_ValueError, "BankSerial too long: length=%zd (max allowed is %zd)", RspRepealField_BankSerial_len, (Py_ssize_t)sizeof(self->data.BankSerial));
             return -1;
         }
@@ -468,7 +468,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///交易系统日期
     // TThostFtdcTradeDateType char[9]
     if( RspRepealField_TradingDay != NULL ) {
-        if(RspRepealField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(RspRepealField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", RspRepealField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -493,7 +493,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///客户姓名
     // TThostFtdcIndividualNameType char[51]
     if( RspRepealField_CustomerName != NULL ) {
-        if(RspRepealField_CustomerName_len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+        if(RspRepealField_CustomerName_len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
             PyErr_Format(PyExc_ValueError, "CustomerName too long: length=%zd (max allowed is %zd)", RspRepealField_CustomerName_len, (Py_ssize_t)sizeof(self->data.CustomerName));
             return -1;
         }
@@ -510,7 +510,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( RspRepealField_IdentifiedCardNo != NULL ) {
-        if(RspRepealField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(RspRepealField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", RspRepealField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -527,7 +527,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///银行帐号
     // TThostFtdcBankAccountType char[41]
     if( RspRepealField_BankAccount != NULL ) {
-        if(RspRepealField_BankAccount_len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+        if(RspRepealField_BankAccount_len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
             PyErr_Format(PyExc_ValueError, "BankAccount too long: length=%zd (max allowed is %zd)", RspRepealField_BankAccount_len, (Py_ssize_t)sizeof(self->data.BankAccount));
             return -1;
         }
@@ -540,7 +540,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///银行密码
     // TThostFtdcPasswordType char[41]
     if( RspRepealField_BankPassWord != NULL ) {
-        if(RspRepealField_BankPassWord_len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+        if(RspRepealField_BankPassWord_len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
             PyErr_Format(PyExc_ValueError, "BankPassWord too long: length=%zd (max allowed is %zd)", RspRepealField_BankPassWord_len, (Py_ssize_t)sizeof(self->data.BankPassWord));
             return -1;
         }
@@ -553,7 +553,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( RspRepealField_AccountID != NULL ) {
-        if(RspRepealField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(RspRepealField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", RspRepealField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -566,7 +566,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///期货密码
     // TThostFtdcPasswordType char[41]
     if( RspRepealField_Password != NULL ) {
-        if(RspRepealField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(RspRepealField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", RspRepealField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -587,7 +587,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///用户标识
     // TThostFtdcUserIDType char[16]
     if( RspRepealField_UserID != NULL ) {
-        if(RspRepealField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(RspRepealField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", RspRepealField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -604,7 +604,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( RspRepealField_CurrencyID != NULL ) {
-        if(RspRepealField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(RspRepealField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", RspRepealField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -637,7 +637,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///发送方给接收方的消息
     // TThostFtdcAddInfoType char[129]
     if( RspRepealField_Message != NULL ) {
-        if(RspRepealField_Message_len > (Py_ssize_t)sizeof(self->data.Message)) {
+        if(RspRepealField_Message_len >= (Py_ssize_t)sizeof(self->data.Message)) {
             PyErr_Format(PyExc_ValueError, "Message too long: length=%zd (max allowed is %zd)", RspRepealField_Message_len, (Py_ssize_t)sizeof(self->data.Message));
             return -1;
         }
@@ -650,7 +650,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///摘要
     // TThostFtdcDigestType char[36]
     if( RspRepealField_Digest != NULL ) {
-        if(RspRepealField_Digest_len > (Py_ssize_t)sizeof(self->data.Digest)) {
+        if(RspRepealField_Digest_len >= (Py_ssize_t)sizeof(self->data.Digest)) {
             PyErr_Format(PyExc_ValueError, "Digest too long: length=%zd (max allowed is %zd)", RspRepealField_Digest_len, (Py_ssize_t)sizeof(self->data.Digest));
             return -1;
         }
@@ -667,7 +667,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///渠道标志
     // TThostFtdcDeviceIDType char[3]
     if( RspRepealField_DeviceID != NULL ) {
-        if(RspRepealField_DeviceID_len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+        if(RspRepealField_DeviceID_len >= (Py_ssize_t)sizeof(self->data.DeviceID)) {
             PyErr_Format(PyExc_ValueError, "DeviceID too long: length=%zd (max allowed is %zd)", RspRepealField_DeviceID_len, (Py_ssize_t)sizeof(self->data.DeviceID));
             return -1;
         }
@@ -684,7 +684,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///期货公司银行编码
     // TThostFtdcBankCodingForFutureType char[33]
     if( RspRepealField_BrokerIDByBank != NULL ) {
-        if(RspRepealField_BrokerIDByBank_len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+        if(RspRepealField_BrokerIDByBank_len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
             PyErr_Format(PyExc_ValueError, "BrokerIDByBank too long: length=%zd (max allowed is %zd)", RspRepealField_BrokerIDByBank_len, (Py_ssize_t)sizeof(self->data.BrokerIDByBank));
             return -1;
         }
@@ -697,7 +697,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///期货单位帐号
     // TThostFtdcBankAccountType char[41]
     if( RspRepealField_BankSecuAcc != NULL ) {
-        if(RspRepealField_BankSecuAcc_len > (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
+        if(RspRepealField_BankSecuAcc_len >= (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
             PyErr_Format(PyExc_ValueError, "BankSecuAcc too long: length=%zd (max allowed is %zd)", RspRepealField_BankSecuAcc_len, (Py_ssize_t)sizeof(self->data.BankSecuAcc));
             return -1;
         }
@@ -718,7 +718,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///交易柜员
     // TThostFtdcOperNoType char[17]
     if( RspRepealField_OperNo != NULL ) {
-        if(RspRepealField_OperNo_len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+        if(RspRepealField_OperNo_len >= (Py_ssize_t)sizeof(self->data.OperNo)) {
             PyErr_Format(PyExc_ValueError, "OperNo too long: length=%zd (max allowed is %zd)", RspRepealField_OperNo_len, (Py_ssize_t)sizeof(self->data.OperNo));
             return -1;
         }
@@ -747,7 +747,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///错误信息
     // TThostFtdcErrorMsgType char[81]
     if( RspRepealField_ErrorMsg != NULL ) {
-        if(RspRepealField_ErrorMsg_len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+        if(RspRepealField_ErrorMsg_len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
             PyErr_Format(PyExc_ValueError, "ErrorMsg too long: length=%zd (max allowed is %zd)", RspRepealField_ErrorMsg_len, (Py_ssize_t)sizeof(self->data.ErrorMsg));
             return -1;
         }
@@ -760,7 +760,7 @@ static int PyCThostFtdcRspRepealField_init(PyCThostFtdcRspRepealField *self, PyO
     ///长客户姓名
     // TThostFtdcLongIndividualNameType char[161]
     if( RspRepealField_LongCustomerName != NULL ) {
-        if(RspRepealField_LongCustomerName_len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+        if(RspRepealField_LongCustomerName_len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
             PyErr_Format(PyExc_ValueError, "LongCustomerName too long: length=%zd (max allowed is %zd)", RspRepealField_LongCustomerName_len, (Py_ssize_t)sizeof(self->data.LongCustomerName));
             return -1;
         }
@@ -1028,7 +1028,7 @@ static int PyCThostFtdcRspRepealField_set_BankRepealSerial(PyCThostFtdcRspRepeal
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankRepealSerial)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankRepealSerial)) {
         PyErr_SetString(PyExc_ValueError, "BankRepealSerial must be less than 13 bytes");
         return -1;
     }
@@ -1092,7 +1092,7 @@ static int PyCThostFtdcRspRepealField_set_TradeCode(PyCThostFtdcRspRepealField *
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
         PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
         return -1;
     }
@@ -1118,7 +1118,7 @@ static int PyCThostFtdcRspRepealField_set_BankID(PyCThostFtdcRspRepealField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -1144,7 +1144,7 @@ static int PyCThostFtdcRspRepealField_set_BankBranchID(PyCThostFtdcRspRepealFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
         return -1;
     }
@@ -1170,7 +1170,7 @@ static int PyCThostFtdcRspRepealField_set_BrokerID(PyCThostFtdcRspRepealField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -1196,7 +1196,7 @@ static int PyCThostFtdcRspRepealField_set_BrokerBranchID(PyCThostFtdcRspRepealFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
         return -1;
     }
@@ -1222,7 +1222,7 @@ static int PyCThostFtdcRspRepealField_set_TradeDate(PyCThostFtdcRspRepealField *
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
         PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
         return -1;
     }
@@ -1248,7 +1248,7 @@ static int PyCThostFtdcRspRepealField_set_TradeTime(PyCThostFtdcRspRepealField *
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
         PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
         return -1;
     }
@@ -1274,7 +1274,7 @@ static int PyCThostFtdcRspRepealField_set_BankSerial(PyCThostFtdcRspRepealField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
         PyErr_SetString(PyExc_ValueError, "BankSerial must be less than 13 bytes");
         return -1;
     }
@@ -1300,7 +1300,7 @@ static int PyCThostFtdcRspRepealField_set_TradingDay(PyCThostFtdcRspRepealField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -1425,7 +1425,7 @@ static int PyCThostFtdcRspRepealField_set_CustomerName(PyCThostFtdcRspRepealFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
         PyErr_SetString(PyExc_ValueError, "CustomerName must be less than 51 bytes");
         return -1;
     }
@@ -1474,7 +1474,7 @@ static int PyCThostFtdcRspRepealField_set_IdentifiedCardNo(PyCThostFtdcRspRepeal
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -1523,7 +1523,7 @@ static int PyCThostFtdcRspRepealField_set_BankAccount(PyCThostFtdcRspRepealField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
         PyErr_SetString(PyExc_ValueError, "BankAccount must be less than 41 bytes");
         return -1;
     }
@@ -1549,7 +1549,7 @@ static int PyCThostFtdcRspRepealField_set_BankPassWord(PyCThostFtdcRspRepealFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankPassWord)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankPassWord)) {
         PyErr_SetString(PyExc_ValueError, "BankPassWord must be less than 41 bytes");
         return -1;
     }
@@ -1575,7 +1575,7 @@ static int PyCThostFtdcRspRepealField_set_AccountID(PyCThostFtdcRspRepealField *
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -1601,7 +1601,7 @@ static int PyCThostFtdcRspRepealField_set_Password(PyCThostFtdcRspRepealField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -1703,7 +1703,7 @@ static int PyCThostFtdcRspRepealField_set_UserID(PyCThostFtdcRspRepealField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -1752,7 +1752,7 @@ static int PyCThostFtdcRspRepealField_set_CurrencyID(PyCThostFtdcRspRepealField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -1885,7 +1885,7 @@ static int PyCThostFtdcRspRepealField_set_Message(PyCThostFtdcRspRepealField *se
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Message)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Message)) {
         PyErr_SetString(PyExc_ValueError, "Message must be less than 129 bytes");
         return -1;
     }
@@ -1911,7 +1911,7 @@ static int PyCThostFtdcRspRepealField_set_Digest(PyCThostFtdcRspRepealField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Digest)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Digest)) {
         PyErr_SetString(PyExc_ValueError, "Digest must be less than 36 bytes");
         return -1;
     }
@@ -1960,7 +1960,7 @@ static int PyCThostFtdcRspRepealField_set_DeviceID(PyCThostFtdcRspRepealField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DeviceID)) {
         PyErr_SetString(PyExc_ValueError, "DeviceID must be less than 3 bytes");
         return -1;
     }
@@ -2009,7 +2009,7 @@ static int PyCThostFtdcRspRepealField_set_BrokerIDByBank(PyCThostFtdcRspRepealFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
         PyErr_SetString(PyExc_ValueError, "BrokerIDByBank must be less than 33 bytes");
         return -1;
     }
@@ -2035,7 +2035,7 @@ static int PyCThostFtdcRspRepealField_set_BankSecuAcc(PyCThostFtdcRspRepealField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankSecuAcc)) {
         PyErr_SetString(PyExc_ValueError, "BankSecuAcc must be less than 41 bytes");
         return -1;
     }
@@ -2107,7 +2107,7 @@ static int PyCThostFtdcRspRepealField_set_OperNo(PyCThostFtdcRspRepealField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OperNo)) {
         PyErr_SetString(PyExc_ValueError, "OperNo must be less than 17 bytes");
         return -1;
     }
@@ -2270,7 +2270,7 @@ static int PyCThostFtdcRspRepealField_set_ErrorMsg(PyCThostFtdcRspRepealField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
         PyErr_SetString(PyExc_ValueError, "ErrorMsg must be less than 81 bytes");
         return -1;
     }
@@ -2296,7 +2296,7 @@ static int PyCThostFtdcRspRepealField_set_LongCustomerName(PyCThostFtdcRspRepeal
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
         PyErr_SetString(PyExc_ValueError, "LongCustomerName must be less than 161 bytes");
         return -1;
     }

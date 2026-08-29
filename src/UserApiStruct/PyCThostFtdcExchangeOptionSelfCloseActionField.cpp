@@ -158,7 +158,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( ExchangeOptionSelfCloseActionField_ExchangeID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(ExchangeOptionSelfCloseActionField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -171,7 +171,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///期权自对冲操作编号
     // TThostFtdcOrderSysIDType char[21]
     if( ExchangeOptionSelfCloseActionField_OptionSelfCloseSysID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_OptionSelfCloseSysID_len > (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
+        if(ExchangeOptionSelfCloseActionField_OptionSelfCloseSysID_len >= (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
             PyErr_Format(PyExc_ValueError, "OptionSelfCloseSysID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_OptionSelfCloseSysID_len, (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID));
             return -1;
         }
@@ -188,7 +188,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///操作日期
     // TThostFtdcDateType char[9]
     if( ExchangeOptionSelfCloseActionField_ActionDate != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_ActionDate_len > (Py_ssize_t)sizeof(self->data.ActionDate)) {
+        if(ExchangeOptionSelfCloseActionField_ActionDate_len >= (Py_ssize_t)sizeof(self->data.ActionDate)) {
             PyErr_Format(PyExc_ValueError, "ActionDate too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_ActionDate_len, (Py_ssize_t)sizeof(self->data.ActionDate));
             return -1;
         }
@@ -201,7 +201,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///操作时间
     // TThostFtdcTimeType char[9]
     if( ExchangeOptionSelfCloseActionField_ActionTime != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_ActionTime_len > (Py_ssize_t)sizeof(self->data.ActionTime)) {
+        if(ExchangeOptionSelfCloseActionField_ActionTime_len >= (Py_ssize_t)sizeof(self->data.ActionTime)) {
             PyErr_Format(PyExc_ValueError, "ActionTime too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_ActionTime_len, (Py_ssize_t)sizeof(self->data.ActionTime));
             return -1;
         }
@@ -214,7 +214,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///交易所交易员代码
     // TThostFtdcTraderIDType char[21]
     if( ExchangeOptionSelfCloseActionField_TraderID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+        if(ExchangeOptionSelfCloseActionField_TraderID_len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
             PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
             return -1;
         }
@@ -231,7 +231,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///本地期权自对冲编号
     // TThostFtdcOrderLocalIDType char[13]
     if( ExchangeOptionSelfCloseActionField_OptionSelfCloseLocalID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_OptionSelfCloseLocalID_len > (Py_ssize_t)sizeof(self->data.OptionSelfCloseLocalID)) {
+        if(ExchangeOptionSelfCloseActionField_OptionSelfCloseLocalID_len >= (Py_ssize_t)sizeof(self->data.OptionSelfCloseLocalID)) {
             PyErr_Format(PyExc_ValueError, "OptionSelfCloseLocalID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_OptionSelfCloseLocalID_len, (Py_ssize_t)sizeof(self->data.OptionSelfCloseLocalID));
             return -1;
         }
@@ -244,7 +244,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///操作本地编号
     // TThostFtdcOrderLocalIDType char[13]
     if( ExchangeOptionSelfCloseActionField_ActionLocalID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_ActionLocalID_len > (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
+        if(ExchangeOptionSelfCloseActionField_ActionLocalID_len >= (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
             PyErr_Format(PyExc_ValueError, "ActionLocalID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_ActionLocalID_len, (Py_ssize_t)sizeof(self->data.ActionLocalID));
             return -1;
         }
@@ -257,7 +257,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///会员代码
     // TThostFtdcParticipantIDType char[11]
     if( ExchangeOptionSelfCloseActionField_ParticipantID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(ExchangeOptionSelfCloseActionField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -270,7 +270,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///客户代码
     // TThostFtdcClientIDType char[11]
     if( ExchangeOptionSelfCloseActionField_ClientID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_ClientID_len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+        if(ExchangeOptionSelfCloseActionField_ClientID_len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
             PyErr_Format(PyExc_ValueError, "ClientID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_ClientID_len, (Py_ssize_t)sizeof(self->data.ClientID));
             return -1;
         }
@@ -283,7 +283,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///业务单元
     // TThostFtdcBusinessUnitType char[21]
     if( ExchangeOptionSelfCloseActionField_BusinessUnit != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_BusinessUnit_len > (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
+        if(ExchangeOptionSelfCloseActionField_BusinessUnit_len >= (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
             PyErr_Format(PyExc_ValueError, "BusinessUnit too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_BusinessUnit_len, (Py_ssize_t)sizeof(self->data.BusinessUnit));
             return -1;
         }
@@ -300,7 +300,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( ExchangeOptionSelfCloseActionField_UserID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(ExchangeOptionSelfCloseActionField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -313,7 +313,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///营业部编号
     // TThostFtdcBranchIDType char[9]
     if( ExchangeOptionSelfCloseActionField_BranchID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_BranchID_len > (Py_ssize_t)sizeof(self->data.BranchID)) {
+        if(ExchangeOptionSelfCloseActionField_BranchID_len >= (Py_ssize_t)sizeof(self->data.BranchID)) {
             PyErr_Format(PyExc_ValueError, "BranchID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_BranchID_len, (Py_ssize_t)sizeof(self->data.BranchID));
             return -1;
         }
@@ -326,7 +326,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( ExchangeOptionSelfCloseActionField_reserve1 != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(ExchangeOptionSelfCloseActionField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -339,7 +339,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///Mac地址
     // TThostFtdcMacAddressType char[21]
     if( ExchangeOptionSelfCloseActionField_MacAddress != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_MacAddress_len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+        if(ExchangeOptionSelfCloseActionField_MacAddress_len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
             PyErr_Format(PyExc_ValueError, "MacAddress too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_MacAddress_len, (Py_ssize_t)sizeof(self->data.MacAddress));
             return -1;
         }
@@ -352,7 +352,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///保留的无效字段
     // TThostFtdcOldExchangeInstIDType char[31]
     if( ExchangeOptionSelfCloseActionField_reserve2 != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(ExchangeOptionSelfCloseActionField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -369,7 +369,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( ExchangeOptionSelfCloseActionField_IPAddress != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(ExchangeOptionSelfCloseActionField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -382,7 +382,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_init(PyCThostFtdcExcha
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( ExchangeOptionSelfCloseActionField_ExchangeInstID != NULL ) {
-        if(ExchangeOptionSelfCloseActionField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(ExchangeOptionSelfCloseActionField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", ExchangeOptionSelfCloseActionField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -458,7 +458,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_ExchangeID(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -484,7 +484,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_OptionSelfCloseSys
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OptionSelfCloseSysID)) {
         PyErr_SetString(PyExc_ValueError, "OptionSelfCloseSysID must be less than 21 bytes");
         return -1;
     }
@@ -533,7 +533,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_ActionDate(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDate)) {
         PyErr_SetString(PyExc_ValueError, "ActionDate must be less than 9 bytes");
         return -1;
     }
@@ -559,7 +559,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_ActionTime(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionTime)) {
         PyErr_SetString(PyExc_ValueError, "ActionTime must be less than 9 bytes");
         return -1;
     }
@@ -585,7 +585,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_TraderID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
         PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
         return -1;
     }
@@ -649,7 +649,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_OptionSelfCloseLoc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OptionSelfCloseLocalID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OptionSelfCloseLocalID)) {
         PyErr_SetString(PyExc_ValueError, "OptionSelfCloseLocalID must be less than 13 bytes");
         return -1;
     }
@@ -675,7 +675,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_ActionLocalID(PyCT
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
         PyErr_SetString(PyExc_ValueError, "ActionLocalID must be less than 13 bytes");
         return -1;
     }
@@ -701,7 +701,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_ParticipantID(PyCT
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -727,7 +727,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_ClientID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
         PyErr_SetString(PyExc_ValueError, "ClientID must be less than 11 bytes");
         return -1;
     }
@@ -753,7 +753,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_BusinessUnit(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
         PyErr_SetString(PyExc_ValueError, "BusinessUnit must be less than 21 bytes");
         return -1;
     }
@@ -802,7 +802,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_UserID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -828,7 +828,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_BranchID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BranchID)) {
         PyErr_SetString(PyExc_ValueError, "BranchID must be less than 9 bytes");
         return -1;
     }
@@ -854,7 +854,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_reserve1(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -880,7 +880,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_MacAddress(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
         PyErr_SetString(PyExc_ValueError, "MacAddress must be less than 21 bytes");
         return -1;
     }
@@ -906,7 +906,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_reserve2(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
         return -1;
     }
@@ -955,7 +955,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_IPAddress(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }
@@ -981,7 +981,7 @@ static int PyCThostFtdcExchangeOptionSelfCloseActionField_set_ExchangeInstID(PyC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }

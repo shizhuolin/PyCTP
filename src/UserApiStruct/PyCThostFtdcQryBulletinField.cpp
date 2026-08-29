@@ -63,7 +63,7 @@ static int PyCThostFtdcQryBulletinField_init(PyCThostFtdcQryBulletinField *self,
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryBulletinField_ExchangeID != NULL ) {
-        if(QryBulletinField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryBulletinField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryBulletinField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -84,7 +84,7 @@ static int PyCThostFtdcQryBulletinField_init(PyCThostFtdcQryBulletinField *self,
     ///公告类型
     // TThostFtdcNewsTypeType char[3]
     if( QryBulletinField_NewsType != NULL ) {
-        if(QryBulletinField_NewsType_len > (Py_ssize_t)sizeof(self->data.NewsType)) {
+        if(QryBulletinField_NewsType_len >= (Py_ssize_t)sizeof(self->data.NewsType)) {
             PyErr_Format(PyExc_ValueError, "NewsType too long: length=%zd (max allowed is %zd)", QryBulletinField_NewsType_len, (Py_ssize_t)sizeof(self->data.NewsType));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcQryBulletinField_set_ExchangeID(PyCThostFtdcQryBulletinFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -250,7 +250,7 @@ static int PyCThostFtdcQryBulletinField_set_NewsType(PyCThostFtdcQryBulletinFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NewsType)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.NewsType)) {
         PyErr_SetString(PyExc_ValueError, "NewsType must be less than 3 bytes");
         return -1;
     }

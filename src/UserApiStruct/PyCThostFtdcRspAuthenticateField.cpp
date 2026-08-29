@@ -65,7 +65,7 @@ static int PyCThostFtdcRspAuthenticateField_init(PyCThostFtdcRspAuthenticateFiel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( RspAuthenticateField_BrokerID != NULL ) {
-        if(RspAuthenticateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(RspAuthenticateField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RspAuthenticateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcRspAuthenticateField_init(PyCThostFtdcRspAuthenticateFiel
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( RspAuthenticateField_UserID != NULL ) {
-        if(RspAuthenticateField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(RspAuthenticateField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", RspAuthenticateField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcRspAuthenticateField_init(PyCThostFtdcRspAuthenticateFiel
     ///用户端产品信息
     // TThostFtdcProductInfoType char[11]
     if( RspAuthenticateField_UserProductInfo != NULL ) {
-        if(RspAuthenticateField_UserProductInfo_len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+        if(RspAuthenticateField_UserProductInfo_len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
             PyErr_Format(PyExc_ValueError, "UserProductInfo too long: length=%zd (max allowed is %zd)", RspAuthenticateField_UserProductInfo_len, (Py_ssize_t)sizeof(self->data.UserProductInfo));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcRspAuthenticateField_init(PyCThostFtdcRspAuthenticateFiel
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( RspAuthenticateField_AppID != NULL ) {
-        if(RspAuthenticateField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(RspAuthenticateField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", RspAuthenticateField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcRspAuthenticateField_set_BrokerID(PyCThostFtdcRspAuthenti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcRspAuthenticateField_set_UserID(PyCThostFtdcRspAuthentica
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcRspAuthenticateField_set_UserProductInfo(PyCThostFtdcRspA
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
         PyErr_SetString(PyExc_ValueError, "UserProductInfo must be less than 11 bytes");
         return -1;
     }
@@ -246,7 +246,7 @@ static int PyCThostFtdcRspAuthenticateField_set_AppID(PyCThostFtdcRspAuthenticat
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }

@@ -54,7 +54,7 @@ static int PyCThostFtdcVerifyInvestorPasswordField_init(PyCThostFtdcVerifyInvest
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( VerifyInvestorPasswordField_BrokerID != NULL ) {
-        if(VerifyInvestorPasswordField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(VerifyInvestorPasswordField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", VerifyInvestorPasswordField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcVerifyInvestorPasswordField_init(PyCThostFtdcVerifyInvest
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( VerifyInvestorPasswordField_InvestorID != NULL ) {
-        if(VerifyInvestorPasswordField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(VerifyInvestorPasswordField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", VerifyInvestorPasswordField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcVerifyInvestorPasswordField_init(PyCThostFtdcVerifyInvest
     ///密码
     // TThostFtdcPasswordType char[41]
     if( VerifyInvestorPasswordField_Password != NULL ) {
-        if(VerifyInvestorPasswordField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(VerifyInvestorPasswordField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", VerifyInvestorPasswordField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcVerifyInvestorPasswordField_set_BrokerID(PyCThostFtdcVeri
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcVerifyInvestorPasswordField_set_InvestorID(PyCThostFtdcVe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcVerifyInvestorPasswordField_set_Password(PyCThostFtdcVeri
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }

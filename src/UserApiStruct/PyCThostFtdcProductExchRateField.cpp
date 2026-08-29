@@ -65,7 +65,7 @@ static int PyCThostFtdcProductExchRateField_init(PyCThostFtdcProductExchRateFiel
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( ProductExchRateField_reserve1 != NULL ) {
-        if(ProductExchRateField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(ProductExchRateField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", ProductExchRateField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcProductExchRateField_init(PyCThostFtdcProductExchRateFiel
     ///报价币种类型
     // TThostFtdcCurrencyIDType char[4]
     if( ProductExchRateField_QuoteCurrencyID != NULL ) {
-        if(ProductExchRateField_QuoteCurrencyID_len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
+        if(ProductExchRateField_QuoteCurrencyID_len >= (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
             PyErr_Format(PyExc_ValueError, "QuoteCurrencyID too long: length=%zd (max allowed is %zd)", ProductExchRateField_QuoteCurrencyID_len, (Py_ssize_t)sizeof(self->data.QuoteCurrencyID));
             return -1;
         }
@@ -95,7 +95,7 @@ static int PyCThostFtdcProductExchRateField_init(PyCThostFtdcProductExchRateFiel
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( ProductExchRateField_ExchangeID != NULL ) {
-        if(ProductExchRateField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(ProductExchRateField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", ProductExchRateField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcProductExchRateField_init(PyCThostFtdcProductExchRateFiel
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( ProductExchRateField_ProductID != NULL ) {
-        if(ProductExchRateField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(ProductExchRateField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", ProductExchRateField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcProductExchRateField_set_reserve1(PyCThostFtdcProductExch
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcProductExchRateField_set_QuoteCurrencyID(PyCThostFtdcProd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "QuoteCurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -241,7 +241,7 @@ static int PyCThostFtdcProductExchRateField_set_ExchangeID(PyCThostFtdcProductEx
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -267,7 +267,7 @@ static int PyCThostFtdcProductExchRateField_set_ProductID(PyCThostFtdcProductExc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }

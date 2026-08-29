@@ -60,7 +60,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_init(PyCThostFtdcQryBrokerTra
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryBrokerTradingParamsField_BrokerID != NULL ) {
-        if(QryBrokerTradingParamsField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryBrokerTradingParamsField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryBrokerTradingParamsField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_init(PyCThostFtdcQryBrokerTra
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QryBrokerTradingParamsField_InvestorID != NULL ) {
-        if(QryBrokerTradingParamsField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QryBrokerTradingParamsField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QryBrokerTradingParamsField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_init(PyCThostFtdcQryBrokerTra
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( QryBrokerTradingParamsField_CurrencyID != NULL ) {
-        if(QryBrokerTradingParamsField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(QryBrokerTradingParamsField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", QryBrokerTradingParamsField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_init(PyCThostFtdcQryBrokerTra
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( QryBrokerTradingParamsField_AccountID != NULL ) {
-        if(QryBrokerTradingParamsField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(QryBrokerTradingParamsField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", QryBrokerTradingParamsField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_set_BrokerID(PyCThostFtdcQryB
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_set_InvestorID(PyCThostFtdcQr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_set_CurrencyID(PyCThostFtdcQr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcQryBrokerTradingParamsField_set_AccountID(PyCThostFtdcQry
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }

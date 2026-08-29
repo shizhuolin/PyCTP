@@ -59,7 +59,7 @@ static int PyCThostFtdcAuthUserIDField_init(PyCThostFtdcAuthUserIDField *self, P
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( AuthUserIDField_BrokerID != NULL ) {
-        if(AuthUserIDField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(AuthUserIDField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AuthUserIDField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcAuthUserIDField_init(PyCThostFtdcAuthUserIDField *self, P
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( AuthUserIDField_AppID != NULL ) {
-        if(AuthUserIDField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(AuthUserIDField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", AuthUserIDField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcAuthUserIDField_init(PyCThostFtdcAuthUserIDField *self, P
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( AuthUserIDField_UserID != NULL ) {
-        if(AuthUserIDField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(AuthUserIDField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", AuthUserIDField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcAuthUserIDField_set_BrokerID(PyCThostFtdcAuthUserIDField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcAuthUserIDField_set_AppID(PyCThostFtdcAuthUserIDField *se
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }
@@ -200,7 +200,7 @@ static int PyCThostFtdcAuthUserIDField_set_UserID(PyCThostFtdcAuthUserIDField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }

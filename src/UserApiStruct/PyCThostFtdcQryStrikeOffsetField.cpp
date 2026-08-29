@@ -60,7 +60,7 @@ static int PyCThostFtdcQryStrikeOffsetField_init(PyCThostFtdcQryStrikeOffsetFiel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryStrikeOffsetField_BrokerID != NULL ) {
-        if(QryStrikeOffsetField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryStrikeOffsetField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryStrikeOffsetField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcQryStrikeOffsetField_init(PyCThostFtdcQryStrikeOffsetFiel
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QryStrikeOffsetField_InvestorID != NULL ) {
-        if(QryStrikeOffsetField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QryStrikeOffsetField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QryStrikeOffsetField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcQryStrikeOffsetField_init(PyCThostFtdcQryStrikeOffsetFiel
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( QryStrikeOffsetField_reserve1 != NULL ) {
-        if(QryStrikeOffsetField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryStrikeOffsetField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryStrikeOffsetField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcQryStrikeOffsetField_init(PyCThostFtdcQryStrikeOffsetFiel
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryStrikeOffsetField_InstrumentID != NULL ) {
-        if(QryStrikeOffsetField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QryStrikeOffsetField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryStrikeOffsetField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcQryStrikeOffsetField_set_BrokerID(PyCThostFtdcQryStrikeOf
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcQryStrikeOffsetField_set_InvestorID(PyCThostFtdcQryStrike
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcQryStrikeOffsetField_set_reserve1(PyCThostFtdcQryStrikeOf
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcQryStrikeOffsetField_set_InstrumentID(PyCThostFtdcQryStri
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

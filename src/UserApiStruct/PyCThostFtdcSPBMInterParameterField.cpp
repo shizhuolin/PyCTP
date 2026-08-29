@@ -70,7 +70,7 @@ static int PyCThostFtdcSPBMInterParameterField_init(PyCThostFtdcSPBMInterParamet
     ///交易日
     // TThostFtdcDateType char[9]
     if( SPBMInterParameterField_TradingDay != NULL ) {
-        if(SPBMInterParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SPBMInterParameterField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SPBMInterParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -83,7 +83,7 @@ static int PyCThostFtdcSPBMInterParameterField_init(PyCThostFtdcSPBMInterParamet
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SPBMInterParameterField_ExchangeID != NULL ) {
-        if(SPBMInterParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SPBMInterParameterField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SPBMInterParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcSPBMInterParameterField_init(PyCThostFtdcSPBMInterParamet
     ///第一腿构成品种
     // TThostFtdcInstrumentIDType char[81]
     if( SPBMInterParameterField_Leg1ProdFamilyCode != NULL ) {
-        if(SPBMInterParameterField_Leg1ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
+        if(SPBMInterParameterField_Leg1ProdFamilyCode_len >= (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
             PyErr_Format(PyExc_ValueError, "Leg1ProdFamilyCode too long: length=%zd (max allowed is %zd)", SPBMInterParameterField_Leg1ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcSPBMInterParameterField_init(PyCThostFtdcSPBMInterParamet
     ///第二腿构成品种
     // TThostFtdcInstrumentIDType char[81]
     if( SPBMInterParameterField_Leg2ProdFamilyCode != NULL ) {
-        if(SPBMInterParameterField_Leg2ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
+        if(SPBMInterParameterField_Leg2ProdFamilyCode_len >= (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
             PyErr_Format(PyExc_ValueError, "Leg2ProdFamilyCode too long: length=%zd (max allowed is %zd)", SPBMInterParameterField_Leg2ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcSPBMInterParameterField_set_TradingDay(PyCThostFtdcSPBMIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcSPBMInterParameterField_set_ExchangeID(PyCThostFtdcSPBMIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -289,7 +289,7 @@ static int PyCThostFtdcSPBMInterParameterField_set_Leg1ProdFamilyCode(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
         PyErr_SetString(PyExc_ValueError, "Leg1ProdFamilyCode must be less than 81 bytes");
         return -1;
     }
@@ -315,7 +315,7 @@ static int PyCThostFtdcSPBMInterParameterField_set_Leg2ProdFamilyCode(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
         PyErr_SetString(PyExc_ValueError, "Leg2ProdFamilyCode must be less than 81 bytes");
         return -1;
     }

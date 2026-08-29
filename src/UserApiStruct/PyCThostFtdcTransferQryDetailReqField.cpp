@@ -42,7 +42,7 @@ static int PyCThostFtdcTransferQryDetailReqField_init(PyCThostFtdcTransferQryDet
     ///期货资金账户
     // TThostFtdcAccountIDType char[13]
     if( TransferQryDetailReqField_FutureAccount != NULL ) {
-        if(TransferQryDetailReqField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+        if(TransferQryDetailReqField_FutureAccount_len >= (Py_ssize_t)sizeof(self->data.FutureAccount)) {
             PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", TransferQryDetailReqField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcTransferQryDetailReqField_set_FutureAccount(PyCThostFtdcT
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FutureAccount)) {
         PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
         return -1;
     }

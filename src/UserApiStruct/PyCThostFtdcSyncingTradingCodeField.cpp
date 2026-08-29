@@ -70,7 +70,7 @@ static int PyCThostFtdcSyncingTradingCodeField_init(PyCThostFtdcSyncingTradingCo
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( SyncingTradingCodeField_InvestorID != NULL ) {
-        if(SyncingTradingCodeField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(SyncingTradingCodeField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SyncingTradingCodeField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -83,7 +83,7 @@ static int PyCThostFtdcSyncingTradingCodeField_init(PyCThostFtdcSyncingTradingCo
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SyncingTradingCodeField_BrokerID != NULL ) {
-        if(SyncingTradingCodeField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SyncingTradingCodeField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncingTradingCodeField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -96,7 +96,7 @@ static int PyCThostFtdcSyncingTradingCodeField_init(PyCThostFtdcSyncingTradingCo
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncingTradingCodeField_ExchangeID != NULL ) {
-        if(SyncingTradingCodeField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncingTradingCodeField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncingTradingCodeField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -109,7 +109,7 @@ static int PyCThostFtdcSyncingTradingCodeField_init(PyCThostFtdcSyncingTradingCo
     ///客户代码
     // TThostFtdcClientIDType char[11]
     if( SyncingTradingCodeField_ClientID != NULL ) {
-        if(SyncingTradingCodeField_ClientID_len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+        if(SyncingTradingCodeField_ClientID_len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
             PyErr_Format(PyExc_ValueError, "ClientID too long: length=%zd (max allowed is %zd)", SyncingTradingCodeField_ClientID_len, (Py_ssize_t)sizeof(self->data.ClientID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcSyncingTradingCodeField_set_InvestorID(PyCThostFtdcSyncin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcSyncingTradingCodeField_set_BrokerID(PyCThostFtdcSyncingT
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcSyncingTradingCodeField_set_ExchangeID(PyCThostFtdcSyncin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcSyncingTradingCodeField_set_ClientID(PyCThostFtdcSyncingT
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
         PyErr_SetString(PyExc_ValueError, "ClientID must be less than 11 bytes");
         return -1;
     }

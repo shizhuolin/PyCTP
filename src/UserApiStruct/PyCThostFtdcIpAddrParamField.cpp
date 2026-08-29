@@ -114,7 +114,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( IpAddrParamField_BrokerID != NULL ) {
-        if(IpAddrParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(IpAddrParamField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", IpAddrParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -127,7 +127,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///服务地址
     // TThostFtdcIpAddrType char[129]
     if( IpAddrParamField_Address != NULL ) {
-        if(IpAddrParamField_Address_len > (Py_ssize_t)sizeof(self->data.Address)) {
+        if(IpAddrParamField_Address_len >= (Py_ssize_t)sizeof(self->data.Address)) {
             PyErr_Format(PyExc_ValueError, "Address too long: length=%zd (max allowed is %zd)", IpAddrParamField_Address_len, (Py_ssize_t)sizeof(self->data.Address));
             return -1;
         }
@@ -144,7 +144,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///交易中心名称
     // TThostFtdcDRIdentityNameType char[65]
     if( IpAddrParamField_DRIdentityName != NULL ) {
-        if(IpAddrParamField_DRIdentityName_len > (Py_ssize_t)sizeof(self->data.DRIdentityName)) {
+        if(IpAddrParamField_DRIdentityName_len >= (Py_ssize_t)sizeof(self->data.DRIdentityName)) {
             PyErr_Format(PyExc_ValueError, "DRIdentityName too long: length=%zd (max allowed is %zd)", IpAddrParamField_DRIdentityName_len, (Py_ssize_t)sizeof(self->data.DRIdentityName));
             return -1;
         }
@@ -169,7 +169,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///服务地址名称
     // TThostFtdcAddrNameType char[65]
     if( IpAddrParamField_AddrName != NULL ) {
-        if(IpAddrParamField_AddrName_len > (Py_ssize_t)sizeof(self->data.AddrName)) {
+        if(IpAddrParamField_AddrName_len >= (Py_ssize_t)sizeof(self->data.AddrName)) {
             PyErr_Format(PyExc_ValueError, "AddrName too long: length=%zd (max allowed is %zd)", IpAddrParamField_AddrName_len, (Py_ssize_t)sizeof(self->data.AddrName));
             return -1;
         }
@@ -190,7 +190,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///地址补充信息
     // TThostFtdcAddrRemarkType char[161]
     if( IpAddrParamField_Remark != NULL ) {
-        if(IpAddrParamField_Remark_len > (Py_ssize_t)sizeof(self->data.Remark)) {
+        if(IpAddrParamField_Remark_len >= (Py_ssize_t)sizeof(self->data.Remark)) {
             PyErr_Format(PyExc_ValueError, "Remark too long: length=%zd (max allowed is %zd)", IpAddrParamField_Remark_len, (Py_ssize_t)sizeof(self->data.Remark));
             return -1;
         }
@@ -203,7 +203,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///站点
     // TThostFtdcSiteType char[51]
     if( IpAddrParamField_Site != NULL ) {
-        if(IpAddrParamField_Site_len > (Py_ssize_t)sizeof(self->data.Site)) {
+        if(IpAddrParamField_Site_len >= (Py_ssize_t)sizeof(self->data.Site)) {
             PyErr_Format(PyExc_ValueError, "Site too long: length=%zd (max allowed is %zd)", IpAddrParamField_Site_len, (Py_ssize_t)sizeof(self->data.Site));
             return -1;
         }
@@ -216,7 +216,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///网络运营商
     // TThostFtdcNetOperatorType char[9]
     if( IpAddrParamField_NetOperator != NULL ) {
-        if(IpAddrParamField_NetOperator_len > (Py_ssize_t)sizeof(self->data.NetOperator)) {
+        if(IpAddrParamField_NetOperator_len >= (Py_ssize_t)sizeof(self->data.NetOperator)) {
             PyErr_Format(PyExc_ValueError, "NetOperator too long: length=%zd (max allowed is %zd)", IpAddrParamField_NetOperator_len, (Py_ssize_t)sizeof(self->data.NetOperator));
             return -1;
         }
@@ -229,7 +229,7 @@ static int PyCThostFtdcIpAddrParamField_init(PyCThostFtdcIpAddrParamField *self,
     ///系统名称
     // TThostFtdcAddrNameType char[65]
     if( IpAddrParamField_SysName != NULL ) {
-        if(IpAddrParamField_SysName_len > (Py_ssize_t)sizeof(self->data.SysName)) {
+        if(IpAddrParamField_SysName_len >= (Py_ssize_t)sizeof(self->data.SysName)) {
             PyErr_Format(PyExc_ValueError, "SysName too long: length=%zd (max allowed is %zd)", IpAddrParamField_SysName_len, (Py_ssize_t)sizeof(self->data.SysName));
             return -1;
         }
@@ -298,7 +298,7 @@ static int PyCThostFtdcIpAddrParamField_set_BrokerID(PyCThostFtdcIpAddrParamFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -324,7 +324,7 @@ static int PyCThostFtdcIpAddrParamField_set_Address(PyCThostFtdcIpAddrParamField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Address)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Address)) {
         PyErr_SetString(PyExc_ValueError, "Address must be less than 129 bytes");
         return -1;
     }
@@ -388,7 +388,7 @@ static int PyCThostFtdcIpAddrParamField_set_DRIdentityName(PyCThostFtdcIpAddrPar
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DRIdentityName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DRIdentityName)) {
         PyErr_SetString(PyExc_ValueError, "DRIdentityName must be less than 65 bytes");
         return -1;
     }
@@ -498,7 +498,7 @@ static int PyCThostFtdcIpAddrParamField_set_AddrName(PyCThostFtdcIpAddrParamFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AddrName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AddrName)) {
         PyErr_SetString(PyExc_ValueError, "AddrName must be less than 65 bytes");
         return -1;
     }
@@ -600,7 +600,7 @@ static int PyCThostFtdcIpAddrParamField_set_Remark(PyCThostFtdcIpAddrParamField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Remark)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Remark)) {
         PyErr_SetString(PyExc_ValueError, "Remark must be less than 161 bytes");
         return -1;
     }
@@ -626,7 +626,7 @@ static int PyCThostFtdcIpAddrParamField_set_Site(PyCThostFtdcIpAddrParamField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Site)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Site)) {
         PyErr_SetString(PyExc_ValueError, "Site must be less than 51 bytes");
         return -1;
     }
@@ -652,7 +652,7 @@ static int PyCThostFtdcIpAddrParamField_set_NetOperator(PyCThostFtdcIpAddrParamF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NetOperator)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.NetOperator)) {
         PyErr_SetString(PyExc_ValueError, "NetOperator must be less than 9 bytes");
         return -1;
     }
@@ -678,7 +678,7 @@ static int PyCThostFtdcIpAddrParamField_set_SysName(PyCThostFtdcIpAddrParamField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SysName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SysName)) {
         PyErr_SetString(PyExc_ValueError, "SysName must be less than 65 bytes");
         return -1;
     }

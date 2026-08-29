@@ -69,7 +69,7 @@ static int PyCThostFtdcInvestorWithdrawAlgorithmField_init(PyCThostFtdcInvestorW
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorWithdrawAlgorithmField_BrokerID != NULL ) {
-        if(InvestorWithdrawAlgorithmField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorWithdrawAlgorithmField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorWithdrawAlgorithmField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcInvestorWithdrawAlgorithmField_init(PyCThostFtdcInvestorW
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorWithdrawAlgorithmField_InvestorID != NULL ) {
-        if(InvestorWithdrawAlgorithmField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InvestorWithdrawAlgorithmField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorWithdrawAlgorithmField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -103,7 +103,7 @@ static int PyCThostFtdcInvestorWithdrawAlgorithmField_init(PyCThostFtdcInvestorW
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( InvestorWithdrawAlgorithmField_CurrencyID != NULL ) {
-        if(InvestorWithdrawAlgorithmField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(InvestorWithdrawAlgorithmField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", InvestorWithdrawAlgorithmField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcInvestorWithdrawAlgorithmField_set_BrokerID(PyCThostFtdcI
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -217,7 +217,7 @@ static int PyCThostFtdcInvestorWithdrawAlgorithmField_set_InvestorID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -264,7 +264,7 @@ static int PyCThostFtdcInvestorWithdrawAlgorithmField_set_CurrencyID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

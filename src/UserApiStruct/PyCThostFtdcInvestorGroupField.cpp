@@ -54,7 +54,7 @@ static int PyCThostFtdcInvestorGroupField_init(PyCThostFtdcInvestorGroupField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorGroupField_BrokerID != NULL ) {
-        if(InvestorGroupField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorGroupField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorGroupField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcInvestorGroupField_init(PyCThostFtdcInvestorGroupField *s
     ///投资者分组代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorGroupField_InvestorGroupID != NULL ) {
-        if(InvestorGroupField_InvestorGroupID_len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
+        if(InvestorGroupField_InvestorGroupID_len >= (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
             PyErr_Format(PyExc_ValueError, "InvestorGroupID too long: length=%zd (max allowed is %zd)", InvestorGroupField_InvestorGroupID_len, (Py_ssize_t)sizeof(self->data.InvestorGroupID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcInvestorGroupField_init(PyCThostFtdcInvestorGroupField *s
     ///投资者分组名称
     // TThostFtdcInvestorGroupNameType char[41]
     if( InvestorGroupField_InvestorGroupName != NULL ) {
-        if(InvestorGroupField_InvestorGroupName_len > (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
+        if(InvestorGroupField_InvestorGroupName_len >= (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
             PyErr_Format(PyExc_ValueError, "InvestorGroupName too long: length=%zd (max allowed is %zd)", InvestorGroupField_InvestorGroupName_len, (Py_ssize_t)sizeof(self->data.InvestorGroupName));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcInvestorGroupField_set_BrokerID(PyCThostFtdcInvestorGroup
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcInvestorGroupField_set_InvestorGroupID(PyCThostFtdcInvest
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorGroupID must be less than 13 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcInvestorGroupField_set_InvestorGroupName(PyCThostFtdcInve
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorGroupName)) {
         PyErr_SetString(PyExc_ValueError, "InvestorGroupName must be less than 41 bytes");
         return -1;
     }

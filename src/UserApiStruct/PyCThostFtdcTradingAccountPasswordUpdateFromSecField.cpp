@@ -71,7 +71,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_init(PyCThostFtd
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( TradingAccountPasswordUpdateFromSecField_BrokerID != NULL ) {
-        if(TradingAccountPasswordUpdateFromSecField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TradingAccountPasswordUpdateFromSecField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateFromSecField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -84,7 +84,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_init(PyCThostFtd
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( TradingAccountPasswordUpdateFromSecField_AccountID != NULL ) {
-        if(TradingAccountPasswordUpdateFromSecField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(TradingAccountPasswordUpdateFromSecField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateFromSecField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -97,7 +97,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_init(PyCThostFtd
     ///原来的口令
     // TThostFtdcPasswordType char[41]
     if( TradingAccountPasswordUpdateFromSecField_OldPassword != NULL ) {
-        if(TradingAccountPasswordUpdateFromSecField_OldPassword_len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+        if(TradingAccountPasswordUpdateFromSecField_OldPassword_len >= (Py_ssize_t)sizeof(self->data.OldPassword)) {
             PyErr_Format(PyExc_ValueError, "OldPassword too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateFromSecField_OldPassword_len, (Py_ssize_t)sizeof(self->data.OldPassword));
             return -1;
         }
@@ -110,7 +110,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_init(PyCThostFtd
     ///新的口令
     // TThostFtdcPasswordType char[41]
     if( TradingAccountPasswordUpdateFromSecField_NewPassword != NULL ) {
-        if(TradingAccountPasswordUpdateFromSecField_NewPassword_len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+        if(TradingAccountPasswordUpdateFromSecField_NewPassword_len >= (Py_ssize_t)sizeof(self->data.NewPassword)) {
             PyErr_Format(PyExc_ValueError, "NewPassword too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateFromSecField_NewPassword_len, (Py_ssize_t)sizeof(self->data.NewPassword));
             return -1;
         }
@@ -123,7 +123,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_init(PyCThostFtd
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( TradingAccountPasswordUpdateFromSecField_CurrencyID != NULL ) {
-        if(TradingAccountPasswordUpdateFromSecField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(TradingAccountPasswordUpdateFromSecField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateFromSecField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -188,7 +188,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_set_BrokerID(PyC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -214,7 +214,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_set_AccountID(Py
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -240,7 +240,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_set_OldPassword(
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OldPassword)) {
         PyErr_SetString(PyExc_ValueError, "OldPassword must be less than 41 bytes");
         return -1;
     }
@@ -266,7 +266,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_set_NewPassword(
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.NewPassword)) {
         PyErr_SetString(PyExc_ValueError, "NewPassword must be less than 41 bytes");
         return -1;
     }
@@ -292,7 +292,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateFromSecField_set_CurrencyID(P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

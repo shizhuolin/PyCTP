@@ -82,7 +82,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_init(PyCThostFtdcVer
     ///客户姓名
     // TThostFtdcIndividualNameType char[51]
     if( VerifyFuturePasswordAndCustInfoField_CustomerName != NULL ) {
-        if(VerifyFuturePasswordAndCustInfoField_CustomerName_len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+        if(VerifyFuturePasswordAndCustInfoField_CustomerName_len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
             PyErr_Format(PyExc_ValueError, "CustomerName too long: length=%zd (max allowed is %zd)", VerifyFuturePasswordAndCustInfoField_CustomerName_len, (Py_ssize_t)sizeof(self->data.CustomerName));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_init(PyCThostFtdcVer
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( VerifyFuturePasswordAndCustInfoField_IdentifiedCardNo != NULL ) {
-        if(VerifyFuturePasswordAndCustInfoField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(VerifyFuturePasswordAndCustInfoField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", VerifyFuturePasswordAndCustInfoField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -116,7 +116,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_init(PyCThostFtdcVer
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( VerifyFuturePasswordAndCustInfoField_AccountID != NULL ) {
-        if(VerifyFuturePasswordAndCustInfoField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(VerifyFuturePasswordAndCustInfoField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", VerifyFuturePasswordAndCustInfoField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -129,7 +129,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_init(PyCThostFtdcVer
     ///期货密码
     // TThostFtdcPasswordType char[41]
     if( VerifyFuturePasswordAndCustInfoField_Password != NULL ) {
-        if(VerifyFuturePasswordAndCustInfoField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(VerifyFuturePasswordAndCustInfoField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", VerifyFuturePasswordAndCustInfoField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -142,7 +142,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_init(PyCThostFtdcVer
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( VerifyFuturePasswordAndCustInfoField_CurrencyID != NULL ) {
-        if(VerifyFuturePasswordAndCustInfoField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(VerifyFuturePasswordAndCustInfoField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", VerifyFuturePasswordAndCustInfoField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -155,7 +155,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_init(PyCThostFtdcVer
     ///长客户姓名
     // TThostFtdcLongIndividualNameType char[161]
     if( VerifyFuturePasswordAndCustInfoField_LongCustomerName != NULL ) {
-        if(VerifyFuturePasswordAndCustInfoField_LongCustomerName_len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+        if(VerifyFuturePasswordAndCustInfoField_LongCustomerName_len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
             PyErr_Format(PyExc_ValueError, "LongCustomerName too long: length=%zd (max allowed is %zd)", VerifyFuturePasswordAndCustInfoField_LongCustomerName_len, (Py_ssize_t)sizeof(self->data.LongCustomerName));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_set_CustomerName(PyC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
         PyErr_SetString(PyExc_ValueError, "CustomerName must be less than 51 bytes");
         return -1;
     }
@@ -267,7 +267,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_set_IdentifiedCardNo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -316,7 +316,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_set_AccountID(PyCTho
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -342,7 +342,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_set_Password(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -368,7 +368,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_set_CurrencyID(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -394,7 +394,7 @@ static int PyCThostFtdcVerifyFuturePasswordAndCustInfoField_set_LongCustomerName
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
         PyErr_SetString(PyExc_ValueError, "LongCustomerName must be less than 161 bytes");
         return -1;
     }

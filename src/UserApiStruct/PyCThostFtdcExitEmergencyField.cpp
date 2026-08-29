@@ -42,7 +42,7 @@ static int PyCThostFtdcExitEmergencyField_init(PyCThostFtdcExitEmergencyField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( ExitEmergencyField_BrokerID != NULL ) {
-        if(ExitEmergencyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ExitEmergencyField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ExitEmergencyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcExitEmergencyField_set_BrokerID(PyCThostFtdcExitEmergency
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }

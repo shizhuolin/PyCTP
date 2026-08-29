@@ -66,7 +66,7 @@ static int PyCThostFtdcProductGroupField_init(PyCThostFtdcProductGroupField *sel
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( ProductGroupField_reserve1 != NULL ) {
-        if(ProductGroupField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(ProductGroupField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", ProductGroupField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -79,7 +79,7 @@ static int PyCThostFtdcProductGroupField_init(PyCThostFtdcProductGroupField *sel
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( ProductGroupField_ExchangeID != NULL ) {
-        if(ProductGroupField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(ProductGroupField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", ProductGroupField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -92,7 +92,7 @@ static int PyCThostFtdcProductGroupField_init(PyCThostFtdcProductGroupField *sel
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( ProductGroupField_reserve2 != NULL ) {
-        if(ProductGroupField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(ProductGroupField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", ProductGroupField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -105,7 +105,7 @@ static int PyCThostFtdcProductGroupField_init(PyCThostFtdcProductGroupField *sel
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( ProductGroupField_ProductID != NULL ) {
-        if(ProductGroupField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(ProductGroupField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", ProductGroupField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcProductGroupField_init(PyCThostFtdcProductGroupField *sel
     ///产品组代码
     // TThostFtdcInstrumentIDType char[81]
     if( ProductGroupField_ProductGroupID != NULL ) {
-        if(ProductGroupField_ProductGroupID_len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+        if(ProductGroupField_ProductGroupID_len >= (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
             PyErr_Format(PyExc_ValueError, "ProductGroupID too long: length=%zd (max allowed is %zd)", ProductGroupField_ProductGroupID_len, (Py_ssize_t)sizeof(self->data.ProductGroupID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcProductGroupField_set_reserve1(PyCThostFtdcProductGroupFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcProductGroupField_set_ExchangeID(PyCThostFtdcProductGroup
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcProductGroupField_set_reserve2(PyCThostFtdcProductGroupFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcProductGroupField_set_ProductID(PyCThostFtdcProductGroupF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }
@@ -282,7 +282,7 @@ static int PyCThostFtdcProductGroupField_set_ProductGroupID(PyCThostFtdcProductG
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
         PyErr_SetString(PyExc_ValueError, "ProductGroupID must be less than 81 bytes");
         return -1;
     }

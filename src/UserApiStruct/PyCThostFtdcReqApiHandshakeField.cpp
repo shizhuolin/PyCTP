@@ -42,7 +42,7 @@ static int PyCThostFtdcReqApiHandshakeField_init(PyCThostFtdcReqApiHandshakeFiel
     ///api与front通信密钥版本号
     // TThostFtdcCryptoKeyVersionType char[31]
     if( ReqApiHandshakeField_CryptoKeyVersion != NULL ) {
-        if(ReqApiHandshakeField_CryptoKeyVersion_len > (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
+        if(ReqApiHandshakeField_CryptoKeyVersion_len >= (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
             PyErr_Format(PyExc_ValueError, "CryptoKeyVersion too long: length=%zd (max allowed is %zd)", ReqApiHandshakeField_CryptoKeyVersion_len, (Py_ssize_t)sizeof(self->data.CryptoKeyVersion));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcReqApiHandshakeField_set_CryptoKeyVersion(PyCThostFtdcReq
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CryptoKeyVersion)) {
         PyErr_SetString(PyExc_ValueError, "CryptoKeyVersion must be less than 31 bytes");
         return -1;
     }

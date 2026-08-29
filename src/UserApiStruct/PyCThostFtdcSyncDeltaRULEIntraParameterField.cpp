@@ -85,7 +85,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_init(PyCThostFtdcSyncDel
     ///交易日
     // TThostFtdcDateType char[9]
     if( SyncDeltaRULEIntraParameterField_TradingDay != NULL ) {
-        if(SyncDeltaRULEIntraParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SyncDeltaRULEIntraParameterField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SyncDeltaRULEIntraParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_init(PyCThostFtdcSyncDel
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncDeltaRULEIntraParameterField_ExchangeID != NULL ) {
-        if(SyncDeltaRULEIntraParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncDeltaRULEIntraParameterField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaRULEIntraParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -111,7 +111,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_init(PyCThostFtdcSyncDel
     ///品种代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaRULEIntraParameterField_ProdFamilyCode != NULL ) {
-        if(SyncDeltaRULEIntraParameterField_ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+        if(SyncDeltaRULEIntraParameterField_ProdFamilyCode_len >= (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
             PyErr_Format(PyExc_ValueError, "ProdFamilyCode too long: length=%zd (max allowed is %zd)", SyncDeltaRULEIntraParameterField_ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.ProdFamilyCode));
             return -1;
         }
@@ -124,7 +124,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_init(PyCThostFtdcSyncDel
     ///标准合约
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaRULEIntraParameterField_StdInstrumentID != NULL ) {
-        if(SyncDeltaRULEIntraParameterField_StdInstrumentID_len > (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
+        if(SyncDeltaRULEIntraParameterField_StdInstrumentID_len >= (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "StdInstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaRULEIntraParameterField_StdInstrumentID_len, (Py_ssize_t)sizeof(self->data.StdInstrumentID));
             return -1;
         }
@@ -208,7 +208,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_set_TradingDay(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -234,7 +234,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_set_ExchangeID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -260,7 +260,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_set_ProdFamilyCode(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProdFamilyCode)) {
         PyErr_SetString(PyExc_ValueError, "ProdFamilyCode must be less than 81 bytes");
         return -1;
     }
@@ -286,7 +286,7 @@ static int PyCThostFtdcSyncDeltaRULEIntraParameterField_set_StdInstrumentID(PyCT
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.StdInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "StdInstrumentID must be less than 81 bytes");
         return -1;
     }

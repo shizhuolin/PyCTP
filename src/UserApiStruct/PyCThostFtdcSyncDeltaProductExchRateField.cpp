@@ -63,7 +63,7 @@ static int PyCThostFtdcSyncDeltaProductExchRateField_init(PyCThostFtdcSyncDeltaP
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaProductExchRateField_ProductID != NULL ) {
-        if(SyncDeltaProductExchRateField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(SyncDeltaProductExchRateField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", SyncDeltaProductExchRateField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -76,7 +76,7 @@ static int PyCThostFtdcSyncDeltaProductExchRateField_init(PyCThostFtdcSyncDeltaP
     ///报价币种类型
     // TThostFtdcCurrencyIDType char[4]
     if( SyncDeltaProductExchRateField_QuoteCurrencyID != NULL ) {
-        if(SyncDeltaProductExchRateField_QuoteCurrencyID_len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
+        if(SyncDeltaProductExchRateField_QuoteCurrencyID_len >= (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
             PyErr_Format(PyExc_ValueError, "QuoteCurrencyID too long: length=%zd (max allowed is %zd)", SyncDeltaProductExchRateField_QuoteCurrencyID_len, (Py_ssize_t)sizeof(self->data.QuoteCurrencyID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcSyncDeltaProductExchRateField_set_ProductID(PyCThostFtdcS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcSyncDeltaProductExchRateField_set_QuoteCurrencyID(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.QuoteCurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "QuoteCurrencyID must be less than 4 bytes");
         return -1;
     }

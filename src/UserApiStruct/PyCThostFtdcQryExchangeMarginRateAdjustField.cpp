@@ -59,7 +59,7 @@ static int PyCThostFtdcQryExchangeMarginRateAdjustField_init(PyCThostFtdcQryExch
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QryExchangeMarginRateAdjustField_BrokerID != NULL ) {
-        if(QryExchangeMarginRateAdjustField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QryExchangeMarginRateAdjustField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QryExchangeMarginRateAdjustField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcQryExchangeMarginRateAdjustField_init(PyCThostFtdcQryExch
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( QryExchangeMarginRateAdjustField_reserve1 != NULL ) {
-        if(QryExchangeMarginRateAdjustField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryExchangeMarginRateAdjustField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryExchangeMarginRateAdjustField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcQryExchangeMarginRateAdjustField_init(PyCThostFtdcQryExch
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryExchangeMarginRateAdjustField_InstrumentID != NULL ) {
-        if(QryExchangeMarginRateAdjustField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QryExchangeMarginRateAdjustField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryExchangeMarginRateAdjustField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcQryExchangeMarginRateAdjustField_set_BrokerID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcQryExchangeMarginRateAdjustField_set_reserve1(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -223,7 +223,7 @@ static int PyCThostFtdcQryExchangeMarginRateAdjustField_set_InstrumentID(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

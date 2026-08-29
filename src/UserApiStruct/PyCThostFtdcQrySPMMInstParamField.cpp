@@ -42,7 +42,7 @@ static int PyCThostFtdcQrySPMMInstParamField_init(PyCThostFtdcQrySPMMInstParamFi
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QrySPMMInstParamField_InstrumentID != NULL ) {
-        if(QrySPMMInstParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QrySPMMInstParamField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QrySPMMInstParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQrySPMMInstParamField_set_InstrumentID(PyCThostFtdcQrySPM
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

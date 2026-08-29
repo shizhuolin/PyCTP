@@ -66,7 +66,7 @@ static int PyCThostFtdcReqAuthenticateField_init(PyCThostFtdcReqAuthenticateFiel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( ReqAuthenticateField_BrokerID != NULL ) {
-        if(ReqAuthenticateField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ReqAuthenticateField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ReqAuthenticateField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -79,7 +79,7 @@ static int PyCThostFtdcReqAuthenticateField_init(PyCThostFtdcReqAuthenticateFiel
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( ReqAuthenticateField_UserID != NULL ) {
-        if(ReqAuthenticateField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(ReqAuthenticateField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ReqAuthenticateField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -92,7 +92,7 @@ static int PyCThostFtdcReqAuthenticateField_init(PyCThostFtdcReqAuthenticateFiel
     ///用户端产品信息
     // TThostFtdcProductInfoType char[11]
     if( ReqAuthenticateField_UserProductInfo != NULL ) {
-        if(ReqAuthenticateField_UserProductInfo_len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+        if(ReqAuthenticateField_UserProductInfo_len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
             PyErr_Format(PyExc_ValueError, "UserProductInfo too long: length=%zd (max allowed is %zd)", ReqAuthenticateField_UserProductInfo_len, (Py_ssize_t)sizeof(self->data.UserProductInfo));
             return -1;
         }
@@ -105,7 +105,7 @@ static int PyCThostFtdcReqAuthenticateField_init(PyCThostFtdcReqAuthenticateFiel
     ///认证码
     // TThostFtdcAuthCodeType char[17]
     if( ReqAuthenticateField_AuthCode != NULL ) {
-        if(ReqAuthenticateField_AuthCode_len > (Py_ssize_t)sizeof(self->data.AuthCode)) {
+        if(ReqAuthenticateField_AuthCode_len >= (Py_ssize_t)sizeof(self->data.AuthCode)) {
             PyErr_Format(PyExc_ValueError, "AuthCode too long: length=%zd (max allowed is %zd)", ReqAuthenticateField_AuthCode_len, (Py_ssize_t)sizeof(self->data.AuthCode));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcReqAuthenticateField_init(PyCThostFtdcReqAuthenticateFiel
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( ReqAuthenticateField_AppID != NULL ) {
-        if(ReqAuthenticateField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(ReqAuthenticateField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", ReqAuthenticateField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcReqAuthenticateField_set_BrokerID(PyCThostFtdcReqAuthenti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcReqAuthenticateField_set_UserID(PyCThostFtdcReqAuthentica
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcReqAuthenticateField_set_UserProductInfo(PyCThostFtdcReqA
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
         PyErr_SetString(PyExc_ValueError, "UserProductInfo must be less than 11 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcReqAuthenticateField_set_AuthCode(PyCThostFtdcReqAuthenti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AuthCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AuthCode)) {
         PyErr_SetString(PyExc_ValueError, "AuthCode must be less than 17 bytes");
         return -1;
     }
@@ -282,7 +282,7 @@ static int PyCThostFtdcReqAuthenticateField_set_AppID(PyCThostFtdcReqAuthenticat
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }

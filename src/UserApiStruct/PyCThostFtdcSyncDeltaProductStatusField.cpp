@@ -62,7 +62,7 @@ static int PyCThostFtdcSyncDeltaProductStatusField_init(PyCThostFtdcSyncDeltaPro
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncDeltaProductStatusField_ExchangeID != NULL ) {
-        if(SyncDeltaProductStatusField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncDeltaProductStatusField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaProductStatusField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -75,7 +75,7 @@ static int PyCThostFtdcSyncDeltaProductStatusField_init(PyCThostFtdcSyncDeltaPro
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaProductStatusField_ProductID != NULL ) {
-        if(SyncDeltaProductStatusField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(SyncDeltaProductStatusField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", SyncDeltaProductStatusField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -176,7 +176,7 @@ static int PyCThostFtdcSyncDeltaProductStatusField_set_ExchangeID(PyCThostFtdcSy
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -202,7 +202,7 @@ static int PyCThostFtdcSyncDeltaProductStatusField_set_ProductID(PyCThostFtdcSyn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }

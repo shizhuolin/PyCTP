@@ -155,7 +155,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_init(PyCThostFtdcInvesto
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( InvestorCommoditySPMMMarginField_ExchangeID != NULL ) {
-        if(InvestorCommoditySPMMMarginField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(InvestorCommoditySPMMMarginField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InvestorCommoditySPMMMarginField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_init(PyCThostFtdcInvesto
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorCommoditySPMMMarginField_BrokerID != NULL ) {
-        if(InvestorCommoditySPMMMarginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorCommoditySPMMMarginField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorCommoditySPMMMarginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -181,7 +181,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_init(PyCThostFtdcInvesto
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorCommoditySPMMMarginField_InvestorID != NULL ) {
-        if(InvestorCommoditySPMMMarginField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InvestorCommoditySPMMMarginField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorCommoditySPMMMarginField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -194,7 +194,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_init(PyCThostFtdcInvesto
     ///商品组代码
     // TThostFtdcSPMMProductIDType char[41]
     if( InvestorCommoditySPMMMarginField_CommodityID != NULL ) {
-        if(InvestorCommoditySPMMMarginField_CommodityID_len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
+        if(InvestorCommoditySPMMMarginField_CommodityID_len >= (Py_ssize_t)sizeof(self->data.CommodityID)) {
             PyErr_Format(PyExc_ValueError, "CommodityID too long: length=%zd (max allowed is %zd)", InvestorCommoditySPMMMarginField_CommodityID_len, (Py_ssize_t)sizeof(self->data.CommodityID));
             return -1;
         }
@@ -348,7 +348,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_set_ExchangeID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -374,7 +374,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_set_BrokerID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -400,7 +400,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_set_InvestorID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -426,7 +426,7 @@ static int PyCThostFtdcInvestorCommoditySPMMMarginField_set_CommodityID(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommodityID)) {
         PyErr_SetString(PyExc_ValueError, "CommodityID must be less than 41 bytes");
         return -1;
     }

@@ -84,7 +84,7 @@ static int PyCThostFtdcSyncDeltaSPMMModelParamField_init(PyCThostFtdcSyncDeltaSP
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncDeltaSPMMModelParamField_ExchangeID != NULL ) {
-        if(SyncDeltaSPMMModelParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncDeltaSPMMModelParamField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaSPMMModelParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -97,7 +97,7 @@ static int PyCThostFtdcSyncDeltaSPMMModelParamField_init(PyCThostFtdcSyncDeltaSP
     ///SPMM模板ID
     // TThostFtdcSPMMModelIDType char[33]
     if( SyncDeltaSPMMModelParamField_SPMMModelID != NULL ) {
-        if(SyncDeltaSPMMModelParamField_SPMMModelID_len > (Py_ssize_t)sizeof(self->data.SPMMModelID)) {
+        if(SyncDeltaSPMMModelParamField_SPMMModelID_len >= (Py_ssize_t)sizeof(self->data.SPMMModelID)) {
             PyErr_Format(PyExc_ValueError, "SPMMModelID too long: length=%zd (max allowed is %zd)", SyncDeltaSPMMModelParamField_SPMMModelID_len, (Py_ssize_t)sizeof(self->data.SPMMModelID));
             return -1;
         }
@@ -110,7 +110,7 @@ static int PyCThostFtdcSyncDeltaSPMMModelParamField_init(PyCThostFtdcSyncDeltaSP
     ///商品群代码
     // TThostFtdcSPMMProductIDType char[41]
     if( SyncDeltaSPMMModelParamField_CommodityGroupID != NULL ) {
-        if(SyncDeltaSPMMModelParamField_CommodityGroupID_len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
+        if(SyncDeltaSPMMModelParamField_CommodityGroupID_len >= (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
             PyErr_Format(PyExc_ValueError, "CommodityGroupID too long: length=%zd (max allowed is %zd)", SyncDeltaSPMMModelParamField_CommodityGroupID_len, (Py_ssize_t)sizeof(self->data.CommodityGroupID));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcSyncDeltaSPMMModelParamField_set_ExchangeID(PyCThostFtdcS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -224,7 +224,7 @@ static int PyCThostFtdcSyncDeltaSPMMModelParamField_set_SPMMModelID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SPMMModelID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SPMMModelID)) {
         PyErr_SetString(PyExc_ValueError, "SPMMModelID must be less than 33 bytes");
         return -1;
     }
@@ -250,7 +250,7 @@ static int PyCThostFtdcSyncDeltaSPMMModelParamField_set_CommodityGroupID(PyCThos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
         PyErr_SetString(PyExc_ValueError, "CommodityGroupID must be less than 41 bytes");
         return -1;
     }

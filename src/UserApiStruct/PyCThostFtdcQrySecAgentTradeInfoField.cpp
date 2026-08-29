@@ -48,7 +48,7 @@ static int PyCThostFtdcQrySecAgentTradeInfoField_init(PyCThostFtdcQrySecAgentTra
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QrySecAgentTradeInfoField_BrokerID != NULL ) {
-        if(QrySecAgentTradeInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QrySecAgentTradeInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySecAgentTradeInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQrySecAgentTradeInfoField_init(PyCThostFtdcQrySecAgentTra
     ///境外中介机构资金帐号
     // TThostFtdcAccountIDType char[13]
     if( QrySecAgentTradeInfoField_BrokerSecAgentID != NULL ) {
-        if(QrySecAgentTradeInfoField_BrokerSecAgentID_len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
+        if(QrySecAgentTradeInfoField_BrokerSecAgentID_len >= (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
             PyErr_Format(PyExc_ValueError, "BrokerSecAgentID too long: length=%zd (max allowed is %zd)", QrySecAgentTradeInfoField_BrokerSecAgentID_len, (Py_ssize_t)sizeof(self->data.BrokerSecAgentID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerID(PyCThostFtdcQrySec
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQrySecAgentTradeInfoField_set_BrokerSecAgentID(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerSecAgentID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerSecAgentID must be less than 13 bytes");
         return -1;
     }

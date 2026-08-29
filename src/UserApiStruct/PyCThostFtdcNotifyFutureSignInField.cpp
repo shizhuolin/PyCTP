@@ -179,7 +179,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///业务功能码
     // TThostFtdcTradeCodeType char[7]
     if( NotifyFutureSignInField_TradeCode != NULL ) {
-        if(NotifyFutureSignInField_TradeCode_len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+        if(NotifyFutureSignInField_TradeCode_len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
             PyErr_Format(PyExc_ValueError, "TradeCode too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_TradeCode_len, (Py_ssize_t)sizeof(self->data.TradeCode));
             return -1;
         }
@@ -192,7 +192,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///银行代码
     // TThostFtdcBankIDType char[4]
     if( NotifyFutureSignInField_BankID != NULL ) {
-        if(NotifyFutureSignInField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(NotifyFutureSignInField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -205,7 +205,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///银行分支机构代码
     // TThostFtdcBankBrchIDType char[5]
     if( NotifyFutureSignInField_BankBranchID != NULL ) {
-        if(NotifyFutureSignInField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+        if(NotifyFutureSignInField_BankBranchID_len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
             PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///期商代码
     // TThostFtdcBrokerIDType char[11]
     if( NotifyFutureSignInField_BrokerID != NULL ) {
-        if(NotifyFutureSignInField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(NotifyFutureSignInField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -231,7 +231,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///期商分支机构代码
     // TThostFtdcFutureBranchIDType char[31]
     if( NotifyFutureSignInField_BrokerBranchID != NULL ) {
-        if(NotifyFutureSignInField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+        if(NotifyFutureSignInField_BrokerBranchID_len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
             PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
             return -1;
         }
@@ -244,7 +244,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///交易日期
     // TThostFtdcTradeDateType char[9]
     if( NotifyFutureSignInField_TradeDate != NULL ) {
-        if(NotifyFutureSignInField_TradeDate_len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+        if(NotifyFutureSignInField_TradeDate_len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
             PyErr_Format(PyExc_ValueError, "TradeDate too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_TradeDate_len, (Py_ssize_t)sizeof(self->data.TradeDate));
             return -1;
         }
@@ -257,7 +257,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///交易时间
     // TThostFtdcTradeTimeType char[9]
     if( NotifyFutureSignInField_TradeTime != NULL ) {
-        if(NotifyFutureSignInField_TradeTime_len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+        if(NotifyFutureSignInField_TradeTime_len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
             PyErr_Format(PyExc_ValueError, "TradeTime too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_TradeTime_len, (Py_ssize_t)sizeof(self->data.TradeTime));
             return -1;
         }
@@ -270,7 +270,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///银行流水号
     // TThostFtdcBankSerialType char[13]
     if( NotifyFutureSignInField_BankSerial != NULL ) {
-        if(NotifyFutureSignInField_BankSerial_len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+        if(NotifyFutureSignInField_BankSerial_len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
             PyErr_Format(PyExc_ValueError, "BankSerial too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_BankSerial_len, (Py_ssize_t)sizeof(self->data.BankSerial));
             return -1;
         }
@@ -283,7 +283,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///交易系统日期
     // TThostFtdcTradeDateType char[9]
     if( NotifyFutureSignInField_TradingDay != NULL ) {
-        if(NotifyFutureSignInField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(NotifyFutureSignInField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -312,7 +312,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///用户标识
     // TThostFtdcUserIDType char[16]
     if( NotifyFutureSignInField_UserID != NULL ) {
-        if(NotifyFutureSignInField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(NotifyFutureSignInField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -325,7 +325,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///摘要
     // TThostFtdcDigestType char[36]
     if( NotifyFutureSignInField_Digest != NULL ) {
-        if(NotifyFutureSignInField_Digest_len > (Py_ssize_t)sizeof(self->data.Digest)) {
+        if(NotifyFutureSignInField_Digest_len >= (Py_ssize_t)sizeof(self->data.Digest)) {
             PyErr_Format(PyExc_ValueError, "Digest too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_Digest_len, (Py_ssize_t)sizeof(self->data.Digest));
             return -1;
         }
@@ -338,7 +338,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( NotifyFutureSignInField_CurrencyID != NULL ) {
-        if(NotifyFutureSignInField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(NotifyFutureSignInField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -351,7 +351,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///渠道标志
     // TThostFtdcDeviceIDType char[3]
     if( NotifyFutureSignInField_DeviceID != NULL ) {
-        if(NotifyFutureSignInField_DeviceID_len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+        if(NotifyFutureSignInField_DeviceID_len >= (Py_ssize_t)sizeof(self->data.DeviceID)) {
             PyErr_Format(PyExc_ValueError, "DeviceID too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_DeviceID_len, (Py_ssize_t)sizeof(self->data.DeviceID));
             return -1;
         }
@@ -364,7 +364,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///期货公司银行编码
     // TThostFtdcBankCodingForFutureType char[33]
     if( NotifyFutureSignInField_BrokerIDByBank != NULL ) {
-        if(NotifyFutureSignInField_BrokerIDByBank_len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+        if(NotifyFutureSignInField_BrokerIDByBank_len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
             PyErr_Format(PyExc_ValueError, "BrokerIDByBank too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_BrokerIDByBank_len, (Py_ssize_t)sizeof(self->data.BrokerIDByBank));
             return -1;
         }
@@ -377,7 +377,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///交易柜员
     // TThostFtdcOperNoType char[17]
     if( NotifyFutureSignInField_OperNo != NULL ) {
-        if(NotifyFutureSignInField_OperNo_len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+        if(NotifyFutureSignInField_OperNo_len >= (Py_ssize_t)sizeof(self->data.OperNo)) {
             PyErr_Format(PyExc_ValueError, "OperNo too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_OperNo_len, (Py_ssize_t)sizeof(self->data.OperNo));
             return -1;
         }
@@ -402,7 +402,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///错误信息
     // TThostFtdcErrorMsgType char[81]
     if( NotifyFutureSignInField_ErrorMsg != NULL ) {
-        if(NotifyFutureSignInField_ErrorMsg_len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+        if(NotifyFutureSignInField_ErrorMsg_len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
             PyErr_Format(PyExc_ValueError, "ErrorMsg too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_ErrorMsg_len, (Py_ssize_t)sizeof(self->data.ErrorMsg));
             return -1;
         }
@@ -415,7 +415,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///PIN密钥
     // TThostFtdcPasswordKeyType char[129]
     if( NotifyFutureSignInField_PinKey != NULL ) {
-        if(NotifyFutureSignInField_PinKey_len > (Py_ssize_t)sizeof(self->data.PinKey)) {
+        if(NotifyFutureSignInField_PinKey_len >= (Py_ssize_t)sizeof(self->data.PinKey)) {
             PyErr_Format(PyExc_ValueError, "PinKey too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_PinKey_len, (Py_ssize_t)sizeof(self->data.PinKey));
             return -1;
         }
@@ -428,7 +428,7 @@ static int PyCThostFtdcNotifyFutureSignInField_init(PyCThostFtdcNotifyFutureSign
     ///MAC密钥
     // TThostFtdcPasswordKeyType char[129]
     if( NotifyFutureSignInField_MacKey != NULL ) {
-        if(NotifyFutureSignInField_MacKey_len > (Py_ssize_t)sizeof(self->data.MacKey)) {
+        if(NotifyFutureSignInField_MacKey_len >= (Py_ssize_t)sizeof(self->data.MacKey)) {
             PyErr_Format(PyExc_ValueError, "MacKey too long: length=%zd (max allowed is %zd)", NotifyFutureSignInField_MacKey_len, (Py_ssize_t)sizeof(self->data.MacKey));
             return -1;
         }
@@ -508,7 +508,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_TradeCode(PyCThostFtdcNotifyF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeCode)) {
         PyErr_SetString(PyExc_ValueError, "TradeCode must be less than 7 bytes");
         return -1;
     }
@@ -534,7 +534,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_BankID(PyCThostFtdcNotifyFutu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -560,7 +560,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_BankBranchID(PyCThostFtdcNoti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
         return -1;
     }
@@ -586,7 +586,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_BrokerID(PyCThostFtdcNotifyFu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -612,7 +612,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_BrokerBranchID(PyCThostFtdcNo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
         return -1;
     }
@@ -638,7 +638,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_TradeDate(PyCThostFtdcNotifyF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeDate)) {
         PyErr_SetString(PyExc_ValueError, "TradeDate must be less than 9 bytes");
         return -1;
     }
@@ -664,7 +664,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_TradeTime(PyCThostFtdcNotifyF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeTime)) {
         PyErr_SetString(PyExc_ValueError, "TradeTime must be less than 9 bytes");
         return -1;
     }
@@ -690,7 +690,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_BankSerial(PyCThostFtdcNotify
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankSerial)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankSerial)) {
         PyErr_SetString(PyExc_ValueError, "BankSerial must be less than 13 bytes");
         return -1;
     }
@@ -716,7 +716,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_TradingDay(PyCThostFtdcNotify
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -879,7 +879,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_UserID(PyCThostFtdcNotifyFutu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -905,7 +905,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_Digest(PyCThostFtdcNotifyFutu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Digest)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Digest)) {
         PyErr_SetString(PyExc_ValueError, "Digest must be less than 36 bytes");
         return -1;
     }
@@ -931,7 +931,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_CurrencyID(PyCThostFtdcNotify
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -957,7 +957,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_DeviceID(PyCThostFtdcNotifyFu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DeviceID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DeviceID)) {
         PyErr_SetString(PyExc_ValueError, "DeviceID must be less than 3 bytes");
         return -1;
     }
@@ -983,7 +983,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_BrokerIDByBank(PyCThostFtdcNo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerIDByBank)) {
         PyErr_SetString(PyExc_ValueError, "BrokerIDByBank must be less than 33 bytes");
         return -1;
     }
@@ -1009,7 +1009,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_OperNo(PyCThostFtdcNotifyFutu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OperNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OperNo)) {
         PyErr_SetString(PyExc_ValueError, "OperNo must be less than 17 bytes");
         return -1;
     }
@@ -1149,7 +1149,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_ErrorMsg(PyCThostFtdcNotifyFu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ErrorMsg)) {
         PyErr_SetString(PyExc_ValueError, "ErrorMsg must be less than 81 bytes");
         return -1;
     }
@@ -1175,7 +1175,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_PinKey(PyCThostFtdcNotifyFutu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.PinKey)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.PinKey)) {
         PyErr_SetString(PyExc_ValueError, "PinKey must be less than 129 bytes");
         return -1;
     }
@@ -1201,7 +1201,7 @@ static int PyCThostFtdcNotifyFutureSignInField_set_MacKey(PyCThostFtdcNotifyFutu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MacKey)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MacKey)) {
         PyErr_SetString(PyExc_ValueError, "MacKey must be less than 129 bytes");
         return -1;
     }

@@ -105,7 +105,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( BulletinField_ExchangeID != NULL ) {
-        if(BulletinField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(BulletinField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", BulletinField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///交易日
     // TThostFtdcDateType char[9]
     if( BulletinField_TradingDay != NULL ) {
-        if(BulletinField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(BulletinField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", BulletinField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -139,7 +139,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///公告类型
     // TThostFtdcNewsTypeType char[3]
     if( BulletinField_NewsType != NULL ) {
-        if(BulletinField_NewsType_len > (Py_ssize_t)sizeof(self->data.NewsType)) {
+        if(BulletinField_NewsType_len >= (Py_ssize_t)sizeof(self->data.NewsType)) {
             PyErr_Format(PyExc_ValueError, "NewsType too long: length=%zd (max allowed is %zd)", BulletinField_NewsType_len, (Py_ssize_t)sizeof(self->data.NewsType));
             return -1;
         }
@@ -156,7 +156,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///发送时间
     // TThostFtdcTimeType char[9]
     if( BulletinField_SendTime != NULL ) {
-        if(BulletinField_SendTime_len > (Py_ssize_t)sizeof(self->data.SendTime)) {
+        if(BulletinField_SendTime_len >= (Py_ssize_t)sizeof(self->data.SendTime)) {
             PyErr_Format(PyExc_ValueError, "SendTime too long: length=%zd (max allowed is %zd)", BulletinField_SendTime_len, (Py_ssize_t)sizeof(self->data.SendTime));
             return -1;
         }
@@ -169,7 +169,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///消息摘要
     // TThostFtdcAbstractType char[81]
     if( BulletinField_Abstract != NULL ) {
-        if(BulletinField_Abstract_len > (Py_ssize_t)sizeof(self->data.Abstract)) {
+        if(BulletinField_Abstract_len >= (Py_ssize_t)sizeof(self->data.Abstract)) {
             PyErr_Format(PyExc_ValueError, "Abstract too long: length=%zd (max allowed is %zd)", BulletinField_Abstract_len, (Py_ssize_t)sizeof(self->data.Abstract));
             return -1;
         }
@@ -182,7 +182,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///消息来源
     // TThostFtdcComeFromType char[21]
     if( BulletinField_ComeFrom != NULL ) {
-        if(BulletinField_ComeFrom_len > (Py_ssize_t)sizeof(self->data.ComeFrom)) {
+        if(BulletinField_ComeFrom_len >= (Py_ssize_t)sizeof(self->data.ComeFrom)) {
             PyErr_Format(PyExc_ValueError, "ComeFrom too long: length=%zd (max allowed is %zd)", BulletinField_ComeFrom_len, (Py_ssize_t)sizeof(self->data.ComeFrom));
             return -1;
         }
@@ -195,7 +195,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///消息正文
     // TThostFtdcContentType char[501]
     if( BulletinField_Content != NULL ) {
-        if(BulletinField_Content_len > (Py_ssize_t)sizeof(self->data.Content)) {
+        if(BulletinField_Content_len >= (Py_ssize_t)sizeof(self->data.Content)) {
             PyErr_Format(PyExc_ValueError, "Content too long: length=%zd (max allowed is %zd)", BulletinField_Content_len, (Py_ssize_t)sizeof(self->data.Content));
             return -1;
         }
@@ -208,7 +208,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///WEB地址
     // TThostFtdcURLLinkType char[201]
     if( BulletinField_URLLink != NULL ) {
-        if(BulletinField_URLLink_len > (Py_ssize_t)sizeof(self->data.URLLink)) {
+        if(BulletinField_URLLink_len >= (Py_ssize_t)sizeof(self->data.URLLink)) {
             PyErr_Format(PyExc_ValueError, "URLLink too long: length=%zd (max allowed is %zd)", BulletinField_URLLink_len, (Py_ssize_t)sizeof(self->data.URLLink));
             return -1;
         }
@@ -221,7 +221,7 @@ static int PyCThostFtdcBulletinField_init(PyCThostFtdcBulletinField *self, PyObj
     ///市场代码
     // TThostFtdcMarketIDType char[31]
     if( BulletinField_MarketID != NULL ) {
-        if(BulletinField_MarketID_len > (Py_ssize_t)sizeof(self->data.MarketID)) {
+        if(BulletinField_MarketID_len >= (Py_ssize_t)sizeof(self->data.MarketID)) {
             PyErr_Format(PyExc_ValueError, "MarketID too long: length=%zd (max allowed is %zd)", BulletinField_MarketID_len, (Py_ssize_t)sizeof(self->data.MarketID));
             return -1;
         }
@@ -288,7 +288,7 @@ static int PyCThostFtdcBulletinField_set_ExchangeID(PyCThostFtdcBulletinField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -314,7 +314,7 @@ static int PyCThostFtdcBulletinField_set_TradingDay(PyCThostFtdcBulletinField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -416,7 +416,7 @@ static int PyCThostFtdcBulletinField_set_NewsType(PyCThostFtdcBulletinField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NewsType)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.NewsType)) {
         PyErr_SetString(PyExc_ValueError, "NewsType must be less than 3 bytes");
         return -1;
     }
@@ -465,7 +465,7 @@ static int PyCThostFtdcBulletinField_set_SendTime(PyCThostFtdcBulletinField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SendTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SendTime)) {
         PyErr_SetString(PyExc_ValueError, "SendTime must be less than 9 bytes");
         return -1;
     }
@@ -491,7 +491,7 @@ static int PyCThostFtdcBulletinField_set_Abstract(PyCThostFtdcBulletinField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Abstract)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Abstract)) {
         PyErr_SetString(PyExc_ValueError, "Abstract must be less than 81 bytes");
         return -1;
     }
@@ -517,7 +517,7 @@ static int PyCThostFtdcBulletinField_set_ComeFrom(PyCThostFtdcBulletinField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ComeFrom)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ComeFrom)) {
         PyErr_SetString(PyExc_ValueError, "ComeFrom must be less than 21 bytes");
         return -1;
     }
@@ -543,7 +543,7 @@ static int PyCThostFtdcBulletinField_set_Content(PyCThostFtdcBulletinField *self
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Content)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Content)) {
         PyErr_SetString(PyExc_ValueError, "Content must be less than 501 bytes");
         return -1;
     }
@@ -569,7 +569,7 @@ static int PyCThostFtdcBulletinField_set_URLLink(PyCThostFtdcBulletinField *self
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.URLLink)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.URLLink)) {
         PyErr_SetString(PyExc_ValueError, "URLLink must be less than 201 bytes");
         return -1;
     }
@@ -595,7 +595,7 @@ static int PyCThostFtdcBulletinField_set_MarketID(PyCThostFtdcBulletinField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MarketID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MarketID)) {
         PyErr_SetString(PyExc_ValueError, "MarketID must be less than 31 bytes");
         return -1;
     }

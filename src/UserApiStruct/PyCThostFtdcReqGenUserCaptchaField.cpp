@@ -54,7 +54,7 @@ static int PyCThostFtdcReqGenUserCaptchaField_init(PyCThostFtdcReqGenUserCaptcha
     ///交易日
     // TThostFtdcDateType char[9]
     if( ReqGenUserCaptchaField_TradingDay != NULL ) {
-        if(ReqGenUserCaptchaField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(ReqGenUserCaptchaField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", ReqGenUserCaptchaField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -67,7 +67,7 @@ static int PyCThostFtdcReqGenUserCaptchaField_init(PyCThostFtdcReqGenUserCaptcha
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( ReqGenUserCaptchaField_BrokerID != NULL ) {
-        if(ReqGenUserCaptchaField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ReqGenUserCaptchaField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ReqGenUserCaptchaField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -80,7 +80,7 @@ static int PyCThostFtdcReqGenUserCaptchaField_init(PyCThostFtdcReqGenUserCaptcha
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( ReqGenUserCaptchaField_UserID != NULL ) {
-        if(ReqGenUserCaptchaField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(ReqGenUserCaptchaField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", ReqGenUserCaptchaField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcReqGenUserCaptchaField_set_TradingDay(PyCThostFtdcReqGenU
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -164,7 +164,7 @@ static int PyCThostFtdcReqGenUserCaptchaField_set_BrokerID(PyCThostFtdcReqGenUse
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -190,7 +190,7 @@ static int PyCThostFtdcReqGenUserCaptchaField_set_UserID(PyCThostFtdcReqGenUserC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }

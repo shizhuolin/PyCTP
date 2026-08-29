@@ -59,7 +59,7 @@ static int PyCThostFtdcTradingAccountReserveField_init(PyCThostFtdcTradingAccoun
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( TradingAccountReserveField_BrokerID != NULL ) {
-        if(TradingAccountReserveField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TradingAccountReserveField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradingAccountReserveField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcTradingAccountReserveField_init(PyCThostFtdcTradingAccoun
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( TradingAccountReserveField_AccountID != NULL ) {
-        if(TradingAccountReserveField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(TradingAccountReserveField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", TradingAccountReserveField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcTradingAccountReserveField_init(PyCThostFtdcTradingAccoun
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( TradingAccountReserveField_CurrencyID != NULL ) {
-        if(TradingAccountReserveField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(TradingAccountReserveField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", TradingAccountReserveField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcTradingAccountReserveField_set_BrokerID(PyCThostFtdcTradi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcTradingAccountReserveField_set_AccountID(PyCThostFtdcTrad
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -221,7 +221,7 @@ static int PyCThostFtdcTradingAccountReserveField_set_CurrencyID(PyCThostFtdcTra
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

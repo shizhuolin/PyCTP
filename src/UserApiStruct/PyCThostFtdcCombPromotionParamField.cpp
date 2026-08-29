@@ -59,7 +59,7 @@ static int PyCThostFtdcCombPromotionParamField_init(PyCThostFtdcCombPromotionPar
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( CombPromotionParamField_ExchangeID != NULL ) {
-        if(CombPromotionParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(CombPromotionParamField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", CombPromotionParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcCombPromotionParamField_init(PyCThostFtdcCombPromotionPar
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( CombPromotionParamField_InstrumentID != NULL ) {
-        if(CombPromotionParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(CombPromotionParamField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", CombPromotionParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcCombPromotionParamField_init(PyCThostFtdcCombPromotionPar
     ///投机套保标志
     // TThostFtdcCombHedgeFlagType char[5]
     if( CombPromotionParamField_CombHedgeFlag != NULL ) {
-        if(CombPromotionParamField_CombHedgeFlag_len > (Py_ssize_t)sizeof(self->data.CombHedgeFlag)) {
+        if(CombPromotionParamField_CombHedgeFlag_len >= (Py_ssize_t)sizeof(self->data.CombHedgeFlag)) {
             PyErr_Format(PyExc_ValueError, "CombHedgeFlag too long: length=%zd (max allowed is %zd)", CombPromotionParamField_CombHedgeFlag_len, (Py_ssize_t)sizeof(self->data.CombHedgeFlag));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcCombPromotionParamField_set_ExchangeID(PyCThostFtdcCombPr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcCombPromotionParamField_set_InstrumentID(PyCThostFtdcComb
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -200,7 +200,7 @@ static int PyCThostFtdcCombPromotionParamField_set_CombHedgeFlag(PyCThostFtdcCom
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombHedgeFlag)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CombHedgeFlag)) {
         PyErr_SetString(PyExc_ValueError, "CombHedgeFlag must be less than 5 bytes");
         return -1;
     }

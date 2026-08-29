@@ -146,7 +146,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///交易日
     // TThostFtdcDateType char[9]
     if( RspUserLoginField_TradingDay != NULL ) {
-        if(RspUserLoginField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(RspUserLoginField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", RspUserLoginField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -159,7 +159,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///登录成功时间
     // TThostFtdcTimeType char[9]
     if( RspUserLoginField_LoginTime != NULL ) {
-        if(RspUserLoginField_LoginTime_len > (Py_ssize_t)sizeof(self->data.LoginTime)) {
+        if(RspUserLoginField_LoginTime_len >= (Py_ssize_t)sizeof(self->data.LoginTime)) {
             PyErr_Format(PyExc_ValueError, "LoginTime too long: length=%zd (max allowed is %zd)", RspUserLoginField_LoginTime_len, (Py_ssize_t)sizeof(self->data.LoginTime));
             return -1;
         }
@@ -172,7 +172,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( RspUserLoginField_BrokerID != NULL ) {
-        if(RspUserLoginField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(RspUserLoginField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", RspUserLoginField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -185,7 +185,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( RspUserLoginField_UserID != NULL ) {
-        if(RspUserLoginField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(RspUserLoginField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", RspUserLoginField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///交易系统名称
     // TThostFtdcSystemNameType char[41]
     if( RspUserLoginField_SystemName != NULL ) {
-        if(RspUserLoginField_SystemName_len > (Py_ssize_t)sizeof(self->data.SystemName)) {
+        if(RspUserLoginField_SystemName_len >= (Py_ssize_t)sizeof(self->data.SystemName)) {
             PyErr_Format(PyExc_ValueError, "SystemName too long: length=%zd (max allowed is %zd)", RspUserLoginField_SystemName_len, (Py_ssize_t)sizeof(self->data.SystemName));
             return -1;
         }
@@ -219,7 +219,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///最大报单引用
     // TThostFtdcOrderRefType char[13]
     if( RspUserLoginField_MaxOrderRef != NULL ) {
-        if(RspUserLoginField_MaxOrderRef_len > (Py_ssize_t)sizeof(self->data.MaxOrderRef)) {
+        if(RspUserLoginField_MaxOrderRef_len >= (Py_ssize_t)sizeof(self->data.MaxOrderRef)) {
             PyErr_Format(PyExc_ValueError, "MaxOrderRef too long: length=%zd (max allowed is %zd)", RspUserLoginField_MaxOrderRef_len, (Py_ssize_t)sizeof(self->data.MaxOrderRef));
             return -1;
         }
@@ -232,7 +232,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///上期所时间
     // TThostFtdcTimeType char[9]
     if( RspUserLoginField_SHFETime != NULL ) {
-        if(RspUserLoginField_SHFETime_len > (Py_ssize_t)sizeof(self->data.SHFETime)) {
+        if(RspUserLoginField_SHFETime_len >= (Py_ssize_t)sizeof(self->data.SHFETime)) {
             PyErr_Format(PyExc_ValueError, "SHFETime too long: length=%zd (max allowed is %zd)", RspUserLoginField_SHFETime_len, (Py_ssize_t)sizeof(self->data.SHFETime));
             return -1;
         }
@@ -245,7 +245,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///大商所时间
     // TThostFtdcTimeType char[9]
     if( RspUserLoginField_DCETime != NULL ) {
-        if(RspUserLoginField_DCETime_len > (Py_ssize_t)sizeof(self->data.DCETime)) {
+        if(RspUserLoginField_DCETime_len >= (Py_ssize_t)sizeof(self->data.DCETime)) {
             PyErr_Format(PyExc_ValueError, "DCETime too long: length=%zd (max allowed is %zd)", RspUserLoginField_DCETime_len, (Py_ssize_t)sizeof(self->data.DCETime));
             return -1;
         }
@@ -258,7 +258,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///郑商所时间
     // TThostFtdcTimeType char[9]
     if( RspUserLoginField_CZCETime != NULL ) {
-        if(RspUserLoginField_CZCETime_len > (Py_ssize_t)sizeof(self->data.CZCETime)) {
+        if(RspUserLoginField_CZCETime_len >= (Py_ssize_t)sizeof(self->data.CZCETime)) {
             PyErr_Format(PyExc_ValueError, "CZCETime too long: length=%zd (max allowed is %zd)", RspUserLoginField_CZCETime_len, (Py_ssize_t)sizeof(self->data.CZCETime));
             return -1;
         }
@@ -271,7 +271,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///中金所时间
     // TThostFtdcTimeType char[9]
     if( RspUserLoginField_FFEXTime != NULL ) {
-        if(RspUserLoginField_FFEXTime_len > (Py_ssize_t)sizeof(self->data.FFEXTime)) {
+        if(RspUserLoginField_FFEXTime_len >= (Py_ssize_t)sizeof(self->data.FFEXTime)) {
             PyErr_Format(PyExc_ValueError, "FFEXTime too long: length=%zd (max allowed is %zd)", RspUserLoginField_FFEXTime_len, (Py_ssize_t)sizeof(self->data.FFEXTime));
             return -1;
         }
@@ -284,7 +284,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///能源中心时间
     // TThostFtdcTimeType char[9]
     if( RspUserLoginField_INETime != NULL ) {
-        if(RspUserLoginField_INETime_len > (Py_ssize_t)sizeof(self->data.INETime)) {
+        if(RspUserLoginField_INETime_len >= (Py_ssize_t)sizeof(self->data.INETime)) {
             PyErr_Format(PyExc_ValueError, "INETime too long: length=%zd (max allowed is %zd)", RspUserLoginField_INETime_len, (Py_ssize_t)sizeof(self->data.INETime));
             return -1;
         }
@@ -297,7 +297,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///后台版本信息
     // TThostFtdcSysVersionType char[41]
     if( RspUserLoginField_SysVersion != NULL ) {
-        if(RspUserLoginField_SysVersion_len > (Py_ssize_t)sizeof(self->data.SysVersion)) {
+        if(RspUserLoginField_SysVersion_len >= (Py_ssize_t)sizeof(self->data.SysVersion)) {
             PyErr_Format(PyExc_ValueError, "SysVersion too long: length=%zd (max allowed is %zd)", RspUserLoginField_SysVersion_len, (Py_ssize_t)sizeof(self->data.SysVersion));
             return -1;
         }
@@ -310,7 +310,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///广期所时间
     // TThostFtdcTimeType char[9]
     if( RspUserLoginField_GFEXTime != NULL ) {
-        if(RspUserLoginField_GFEXTime_len > (Py_ssize_t)sizeof(self->data.GFEXTime)) {
+        if(RspUserLoginField_GFEXTime_len >= (Py_ssize_t)sizeof(self->data.GFEXTime)) {
             PyErr_Format(PyExc_ValueError, "GFEXTime too long: length=%zd (max allowed is %zd)", RspUserLoginField_GFEXTime_len, (Py_ssize_t)sizeof(self->data.GFEXTime));
             return -1;
         }
@@ -331,7 +331,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///上次登陆时间
     // TThostFtdcDateTimeType char[17]
     if( RspUserLoginField_LastLoginTime != NULL ) {
-        if(RspUserLoginField_LastLoginTime_len > (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
+        if(RspUserLoginField_LastLoginTime_len >= (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
             PyErr_Format(PyExc_ValueError, "LastLoginTime too long: length=%zd (max allowed is %zd)", RspUserLoginField_LastLoginTime_len, (Py_ssize_t)sizeof(self->data.LastLoginTime));
             return -1;
         }
@@ -344,7 +344,7 @@ static int PyCThostFtdcRspUserLoginField_init(PyCThostFtdcRspUserLoginField *sel
     ///预留信息
     // TThostFtdcReserveInfoType char[65]
     if( RspUserLoginField_ReserveInfo != NULL ) {
-        if(RspUserLoginField_ReserveInfo_len > (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
+        if(RspUserLoginField_ReserveInfo_len >= (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
             PyErr_Format(PyExc_ValueError, "ReserveInfo too long: length=%zd (max allowed is %zd)", RspUserLoginField_ReserveInfo_len, (Py_ssize_t)sizeof(self->data.ReserveInfo));
             return -1;
         }
@@ -418,7 +418,7 @@ static int PyCThostFtdcRspUserLoginField_set_TradingDay(PyCThostFtdcRspUserLogin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -444,7 +444,7 @@ static int PyCThostFtdcRspUserLoginField_set_LoginTime(PyCThostFtdcRspUserLoginF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LoginTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LoginTime)) {
         PyErr_SetString(PyExc_ValueError, "LoginTime must be less than 9 bytes");
         return -1;
     }
@@ -470,7 +470,7 @@ static int PyCThostFtdcRspUserLoginField_set_BrokerID(PyCThostFtdcRspUserLoginFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -496,7 +496,7 @@ static int PyCThostFtdcRspUserLoginField_set_UserID(PyCThostFtdcRspUserLoginFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -522,7 +522,7 @@ static int PyCThostFtdcRspUserLoginField_set_SystemName(PyCThostFtdcRspUserLogin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SystemName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SystemName)) {
         PyErr_SetString(PyExc_ValueError, "SystemName must be less than 41 bytes");
         return -1;
     }
@@ -624,7 +624,7 @@ static int PyCThostFtdcRspUserLoginField_set_MaxOrderRef(PyCThostFtdcRspUserLogi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MaxOrderRef)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MaxOrderRef)) {
         PyErr_SetString(PyExc_ValueError, "MaxOrderRef must be less than 13 bytes");
         return -1;
     }
@@ -650,7 +650,7 @@ static int PyCThostFtdcRspUserLoginField_set_SHFETime(PyCThostFtdcRspUserLoginFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SHFETime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SHFETime)) {
         PyErr_SetString(PyExc_ValueError, "SHFETime must be less than 9 bytes");
         return -1;
     }
@@ -676,7 +676,7 @@ static int PyCThostFtdcRspUserLoginField_set_DCETime(PyCThostFtdcRspUserLoginFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.DCETime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.DCETime)) {
         PyErr_SetString(PyExc_ValueError, "DCETime must be less than 9 bytes");
         return -1;
     }
@@ -702,7 +702,7 @@ static int PyCThostFtdcRspUserLoginField_set_CZCETime(PyCThostFtdcRspUserLoginFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CZCETime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CZCETime)) {
         PyErr_SetString(PyExc_ValueError, "CZCETime must be less than 9 bytes");
         return -1;
     }
@@ -728,7 +728,7 @@ static int PyCThostFtdcRspUserLoginField_set_FFEXTime(PyCThostFtdcRspUserLoginFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FFEXTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FFEXTime)) {
         PyErr_SetString(PyExc_ValueError, "FFEXTime must be less than 9 bytes");
         return -1;
     }
@@ -754,7 +754,7 @@ static int PyCThostFtdcRspUserLoginField_set_INETime(PyCThostFtdcRspUserLoginFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.INETime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.INETime)) {
         PyErr_SetString(PyExc_ValueError, "INETime must be less than 9 bytes");
         return -1;
     }
@@ -780,7 +780,7 @@ static int PyCThostFtdcRspUserLoginField_set_SysVersion(PyCThostFtdcRspUserLogin
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SysVersion)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SysVersion)) {
         PyErr_SetString(PyExc_ValueError, "SysVersion must be less than 41 bytes");
         return -1;
     }
@@ -806,7 +806,7 @@ static int PyCThostFtdcRspUserLoginField_set_GFEXTime(PyCThostFtdcRspUserLoginFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.GFEXTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.GFEXTime)) {
         PyErr_SetString(PyExc_ValueError, "GFEXTime must be less than 9 bytes");
         return -1;
     }
@@ -908,7 +908,7 @@ static int PyCThostFtdcRspUserLoginField_set_LastLoginTime(PyCThostFtdcRspUserLo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
         PyErr_SetString(PyExc_ValueError, "LastLoginTime must be less than 17 bytes");
         return -1;
     }
@@ -934,7 +934,7 @@ static int PyCThostFtdcRspUserLoginField_set_ReserveInfo(PyCThostFtdcRspUserLogi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ReserveInfo)) {
         PyErr_SetString(PyExc_ValueError, "ReserveInfo must be less than 65 bytes");
         return -1;
     }

@@ -80,7 +80,7 @@ static int PyCThostFtdcCombinationLegField_init(PyCThostFtdcCombinationLegField 
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( CombinationLegField_reserve1 != NULL ) {
-        if(CombinationLegField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(CombinationLegField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", CombinationLegField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -97,7 +97,7 @@ static int PyCThostFtdcCombinationLegField_init(PyCThostFtdcCombinationLegField 
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( CombinationLegField_reserve2 != NULL ) {
-        if(CombinationLegField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(CombinationLegField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", CombinationLegField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -122,7 +122,7 @@ static int PyCThostFtdcCombinationLegField_init(PyCThostFtdcCombinationLegField 
     ///组合合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( CombinationLegField_CombInstrumentID != NULL ) {
-        if(CombinationLegField_CombInstrumentID_len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
+        if(CombinationLegField_CombInstrumentID_len >= (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "CombInstrumentID too long: length=%zd (max allowed is %zd)", CombinationLegField_CombInstrumentID_len, (Py_ssize_t)sizeof(self->data.CombInstrumentID));
             return -1;
         }
@@ -135,7 +135,7 @@ static int PyCThostFtdcCombinationLegField_init(PyCThostFtdcCombinationLegField 
     ///单腿合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( CombinationLegField_LegInstrumentID != NULL ) {
-        if(CombinationLegField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+        if(CombinationLegField_LegInstrumentID_len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", CombinationLegField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcCombinationLegField_set_reserve1(PyCThostFtdcCombinationL
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -262,7 +262,7 @@ static int PyCThostFtdcCombinationLegField_set_reserve2(PyCThostFtdcCombinationL
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
         return -1;
     }
@@ -387,7 +387,7 @@ static int PyCThostFtdcCombinationLegField_set_CombInstrumentID(PyCThostFtdcComb
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "CombInstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -413,7 +413,7 @@ static int PyCThostFtdcCombinationLegField_set_LegInstrumentID(PyCThostFtdcCombi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
         return -1;
     }

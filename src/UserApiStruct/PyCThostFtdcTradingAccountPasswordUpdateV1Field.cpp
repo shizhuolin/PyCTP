@@ -60,7 +60,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_init(PyCThostFtdcTrad
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( TradingAccountPasswordUpdateV1Field_BrokerID != NULL ) {
-        if(TradingAccountPasswordUpdateV1Field_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TradingAccountPasswordUpdateV1Field_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateV1Field_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_init(PyCThostFtdcTrad
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( TradingAccountPasswordUpdateV1Field_InvestorID != NULL ) {
-        if(TradingAccountPasswordUpdateV1Field_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(TradingAccountPasswordUpdateV1Field_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateV1Field_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_init(PyCThostFtdcTrad
     ///原来的口令
     // TThostFtdcPasswordType char[41]
     if( TradingAccountPasswordUpdateV1Field_OldPassword != NULL ) {
-        if(TradingAccountPasswordUpdateV1Field_OldPassword_len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+        if(TradingAccountPasswordUpdateV1Field_OldPassword_len >= (Py_ssize_t)sizeof(self->data.OldPassword)) {
             PyErr_Format(PyExc_ValueError, "OldPassword too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateV1Field_OldPassword_len, (Py_ssize_t)sizeof(self->data.OldPassword));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_init(PyCThostFtdcTrad
     ///新的口令
     // TThostFtdcPasswordType char[41]
     if( TradingAccountPasswordUpdateV1Field_NewPassword != NULL ) {
-        if(TradingAccountPasswordUpdateV1Field_NewPassword_len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+        if(TradingAccountPasswordUpdateV1Field_NewPassword_len >= (Py_ssize_t)sizeof(self->data.NewPassword)) {
             PyErr_Format(PyExc_ValueError, "NewPassword too long: length=%zd (max allowed is %zd)", TradingAccountPasswordUpdateV1Field_NewPassword_len, (Py_ssize_t)sizeof(self->data.NewPassword));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_set_BrokerID(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_set_InvestorID(PyCTho
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_set_OldPassword(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OldPassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OldPassword)) {
         PyErr_SetString(PyExc_ValueError, "OldPassword must be less than 41 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcTradingAccountPasswordUpdateV1Field_set_NewPassword(PyCTh
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NewPassword)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.NewPassword)) {
         PyErr_SetString(PyExc_ValueError, "NewPassword must be less than 41 bytes");
         return -1;
     }

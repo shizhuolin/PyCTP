@@ -66,7 +66,7 @@ static int PyCThostFtdcQrySettlementInfoField_init(PyCThostFtdcQrySettlementInfo
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QrySettlementInfoField_BrokerID != NULL ) {
-        if(QrySettlementInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QrySettlementInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QrySettlementInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -79,7 +79,7 @@ static int PyCThostFtdcQrySettlementInfoField_init(PyCThostFtdcQrySettlementInfo
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QrySettlementInfoField_InvestorID != NULL ) {
-        if(QrySettlementInfoField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QrySettlementInfoField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QrySettlementInfoField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -92,7 +92,7 @@ static int PyCThostFtdcQrySettlementInfoField_init(PyCThostFtdcQrySettlementInfo
     ///交易日
     // TThostFtdcDateType char[9]
     if( QrySettlementInfoField_TradingDay != NULL ) {
-        if(QrySettlementInfoField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(QrySettlementInfoField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", QrySettlementInfoField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -105,7 +105,7 @@ static int PyCThostFtdcQrySettlementInfoField_init(PyCThostFtdcQrySettlementInfo
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( QrySettlementInfoField_AccountID != NULL ) {
-        if(QrySettlementInfoField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(QrySettlementInfoField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", QrySettlementInfoField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQrySettlementInfoField_init(PyCThostFtdcQrySettlementInfo
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( QrySettlementInfoField_CurrencyID != NULL ) {
-        if(QrySettlementInfoField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(QrySettlementInfoField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", QrySettlementInfoField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcQrySettlementInfoField_set_BrokerID(PyCThostFtdcQrySettle
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcQrySettlementInfoField_set_InvestorID(PyCThostFtdcQrySett
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcQrySettlementInfoField_set_TradingDay(PyCThostFtdcQrySett
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcQrySettlementInfoField_set_AccountID(PyCThostFtdcQrySettl
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -282,7 +282,7 @@ static int PyCThostFtdcQrySettlementInfoField_set_CurrencyID(PyCThostFtdcQrySett
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }

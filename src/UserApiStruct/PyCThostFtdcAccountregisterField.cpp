@@ -139,7 +139,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///交易日期
     // TThostFtdcTradeDateType char[9]
     if( AccountregisterField_TradeDay != NULL ) {
-        if(AccountregisterField_TradeDay_len > (Py_ssize_t)sizeof(self->data.TradeDay)) {
+        if(AccountregisterField_TradeDay_len >= (Py_ssize_t)sizeof(self->data.TradeDay)) {
             PyErr_Format(PyExc_ValueError, "TradeDay too long: length=%zd (max allowed is %zd)", AccountregisterField_TradeDay_len, (Py_ssize_t)sizeof(self->data.TradeDay));
             return -1;
         }
@@ -152,7 +152,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///银行编码
     // TThostFtdcBankIDType char[4]
     if( AccountregisterField_BankID != NULL ) {
-        if(AccountregisterField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(AccountregisterField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", AccountregisterField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -165,7 +165,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///银行分支机构编码
     // TThostFtdcBankBrchIDType char[5]
     if( AccountregisterField_BankBranchID != NULL ) {
-        if(AccountregisterField_BankBranchID_len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+        if(AccountregisterField_BankBranchID_len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
             PyErr_Format(PyExc_ValueError, "BankBranchID too long: length=%zd (max allowed is %zd)", AccountregisterField_BankBranchID_len, (Py_ssize_t)sizeof(self->data.BankBranchID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///银行帐号
     // TThostFtdcBankAccountType char[41]
     if( AccountregisterField_BankAccount != NULL ) {
-        if(AccountregisterField_BankAccount_len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+        if(AccountregisterField_BankAccount_len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
             PyErr_Format(PyExc_ValueError, "BankAccount too long: length=%zd (max allowed is %zd)", AccountregisterField_BankAccount_len, (Py_ssize_t)sizeof(self->data.BankAccount));
             return -1;
         }
@@ -191,7 +191,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///期货公司编码
     // TThostFtdcBrokerIDType char[11]
     if( AccountregisterField_BrokerID != NULL ) {
-        if(AccountregisterField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(AccountregisterField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AccountregisterField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -204,7 +204,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///期货公司分支机构编码
     // TThostFtdcFutureBranchIDType char[31]
     if( AccountregisterField_BrokerBranchID != NULL ) {
-        if(AccountregisterField_BrokerBranchID_len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+        if(AccountregisterField_BrokerBranchID_len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
             PyErr_Format(PyExc_ValueError, "BrokerBranchID too long: length=%zd (max allowed is %zd)", AccountregisterField_BrokerBranchID_len, (Py_ssize_t)sizeof(self->data.BrokerBranchID));
             return -1;
         }
@@ -217,7 +217,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( AccountregisterField_AccountID != NULL ) {
-        if(AccountregisterField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(AccountregisterField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", AccountregisterField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -234,7 +234,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( AccountregisterField_IdentifiedCardNo != NULL ) {
-        if(AccountregisterField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(AccountregisterField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", AccountregisterField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -247,7 +247,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///客户姓名
     // TThostFtdcIndividualNameType char[51]
     if( AccountregisterField_CustomerName != NULL ) {
-        if(AccountregisterField_CustomerName_len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+        if(AccountregisterField_CustomerName_len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
             PyErr_Format(PyExc_ValueError, "CustomerName too long: length=%zd (max allowed is %zd)", AccountregisterField_CustomerName_len, (Py_ssize_t)sizeof(self->data.CustomerName));
             return -1;
         }
@@ -260,7 +260,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///币种代码
     // TThostFtdcCurrencyIDType char[4]
     if( AccountregisterField_CurrencyID != NULL ) {
-        if(AccountregisterField_CurrencyID_len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+        if(AccountregisterField_CurrencyID_len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
             PyErr_Format(PyExc_ValueError, "CurrencyID too long: length=%zd (max allowed is %zd)", AccountregisterField_CurrencyID_len, (Py_ssize_t)sizeof(self->data.CurrencyID));
             return -1;
         }
@@ -277,7 +277,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///签约日期
     // TThostFtdcTradeDateType char[9]
     if( AccountregisterField_RegDate != NULL ) {
-        if(AccountregisterField_RegDate_len > (Py_ssize_t)sizeof(self->data.RegDate)) {
+        if(AccountregisterField_RegDate_len >= (Py_ssize_t)sizeof(self->data.RegDate)) {
             PyErr_Format(PyExc_ValueError, "RegDate too long: length=%zd (max allowed is %zd)", AccountregisterField_RegDate_len, (Py_ssize_t)sizeof(self->data.RegDate));
             return -1;
         }
@@ -290,7 +290,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///解约日期
     // TThostFtdcTradeDateType char[9]
     if( AccountregisterField_OutDate != NULL ) {
-        if(AccountregisterField_OutDate_len > (Py_ssize_t)sizeof(self->data.OutDate)) {
+        if(AccountregisterField_OutDate_len >= (Py_ssize_t)sizeof(self->data.OutDate)) {
             PyErr_Format(PyExc_ValueError, "OutDate too long: length=%zd (max allowed is %zd)", AccountregisterField_OutDate_len, (Py_ssize_t)sizeof(self->data.OutDate));
             return -1;
         }
@@ -315,7 +315,7 @@ static int PyCThostFtdcAccountregisterField_init(PyCThostFtdcAccountregisterFiel
     ///长客户姓名
     // TThostFtdcLongIndividualNameType char[161]
     if( AccountregisterField_LongCustomerName != NULL ) {
-        if(AccountregisterField_LongCustomerName_len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+        if(AccountregisterField_LongCustomerName_len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
             PyErr_Format(PyExc_ValueError, "LongCustomerName too long: length=%zd (max allowed is %zd)", AccountregisterField_LongCustomerName_len, (Py_ssize_t)sizeof(self->data.LongCustomerName));
             return -1;
         }
@@ -388,7 +388,7 @@ static int PyCThostFtdcAccountregisterField_set_TradeDay(PyCThostFtdcAccountregi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradeDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradeDay)) {
         PyErr_SetString(PyExc_ValueError, "TradeDay must be less than 9 bytes");
         return -1;
     }
@@ -414,7 +414,7 @@ static int PyCThostFtdcAccountregisterField_set_BankID(PyCThostFtdcAccountregist
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -440,7 +440,7 @@ static int PyCThostFtdcAccountregisterField_set_BankBranchID(PyCThostFtdcAccount
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BankBranchID must be less than 5 bytes");
         return -1;
     }
@@ -466,7 +466,7 @@ static int PyCThostFtdcAccountregisterField_set_BankAccount(PyCThostFtdcAccountr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankAccount)) {
         PyErr_SetString(PyExc_ValueError, "BankAccount must be less than 41 bytes");
         return -1;
     }
@@ -492,7 +492,7 @@ static int PyCThostFtdcAccountregisterField_set_BrokerID(PyCThostFtdcAccountregi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -518,7 +518,7 @@ static int PyCThostFtdcAccountregisterField_set_BrokerBranchID(PyCThostFtdcAccou
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerBranchID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerBranchID must be less than 31 bytes");
         return -1;
     }
@@ -544,7 +544,7 @@ static int PyCThostFtdcAccountregisterField_set_AccountID(PyCThostFtdcAccountreg
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -593,7 +593,7 @@ static int PyCThostFtdcAccountregisterField_set_IdentifiedCardNo(PyCThostFtdcAcc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -619,7 +619,7 @@ static int PyCThostFtdcAccountregisterField_set_CustomerName(PyCThostFtdcAccount
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
         PyErr_SetString(PyExc_ValueError, "CustomerName must be less than 51 bytes");
         return -1;
     }
@@ -645,7 +645,7 @@ static int PyCThostFtdcAccountregisterField_set_CurrencyID(PyCThostFtdcAccountre
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -694,7 +694,7 @@ static int PyCThostFtdcAccountregisterField_set_RegDate(PyCThostFtdcAccountregis
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.RegDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.RegDate)) {
         PyErr_SetString(PyExc_ValueError, "RegDate must be less than 9 bytes");
         return -1;
     }
@@ -720,7 +720,7 @@ static int PyCThostFtdcAccountregisterField_set_OutDate(PyCThostFtdcAccountregis
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OutDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OutDate)) {
         PyErr_SetString(PyExc_ValueError, "OutDate must be less than 9 bytes");
         return -1;
     }
@@ -830,7 +830,7 @@ static int PyCThostFtdcAccountregisterField_set_LongCustomerName(PyCThostFtdcAcc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
         PyErr_SetString(PyExc_ValueError, "LongCustomerName must be less than 161 bytes");
         return -1;
     }

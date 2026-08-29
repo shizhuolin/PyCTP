@@ -42,7 +42,7 @@ static int PyCThostFtdcQryRCAMSInstrParameterField_init(PyCThostFtdcQryRCAMSInst
     ///产品代码
     // TThostFtdcProductIDType char[41]
     if( QryRCAMSInstrParameterField_ProductID != NULL ) {
-        if(QryRCAMSInstrParameterField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(QryRCAMSInstrParameterField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryRCAMSInstrParameterField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryRCAMSInstrParameterField_set_ProductID(PyCThostFtdcQry
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
         return -1;
     }

@@ -42,7 +42,7 @@ static int PyCThostFtdcQryTraderAssignField_init(PyCThostFtdcQryTraderAssignFiel
     ///交易员代码
     // TThostFtdcTraderIDType char[21]
     if( QryTraderAssignField_TraderID != NULL ) {
-        if(QryTraderAssignField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+        if(QryTraderAssignField_TraderID_len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
             PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", QryTraderAssignField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryTraderAssignField_set_TraderID(PyCThostFtdcQryTraderAs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
         PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
         return -1;
     }

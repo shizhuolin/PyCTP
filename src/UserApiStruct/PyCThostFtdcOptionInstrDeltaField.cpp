@@ -70,7 +70,7 @@ static int PyCThostFtdcOptionInstrDeltaField_init(PyCThostFtdcOptionInstrDeltaFi
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( OptionInstrDeltaField_reserve1 != NULL ) {
-        if(OptionInstrDeltaField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(OptionInstrDeltaField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -87,7 +87,7 @@ static int PyCThostFtdcOptionInstrDeltaField_init(PyCThostFtdcOptionInstrDeltaFi
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( OptionInstrDeltaField_BrokerID != NULL ) {
-        if(OptionInstrDeltaField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(OptionInstrDeltaField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -100,7 +100,7 @@ static int PyCThostFtdcOptionInstrDeltaField_init(PyCThostFtdcOptionInstrDeltaFi
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( OptionInstrDeltaField_InvestorID != NULL ) {
-        if(OptionInstrDeltaField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(OptionInstrDeltaField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcOptionInstrDeltaField_init(PyCThostFtdcOptionInstrDeltaFi
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( OptionInstrDeltaField_InstrumentID != NULL ) {
-        if(OptionInstrDeltaField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(OptionInstrDeltaField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", OptionInstrDeltaField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcOptionInstrDeltaField_set_reserve1(PyCThostFtdcOptionInst
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -227,7 +227,7 @@ static int PyCThostFtdcOptionInstrDeltaField_set_BrokerID(PyCThostFtdcOptionInst
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -253,7 +253,7 @@ static int PyCThostFtdcOptionInstrDeltaField_set_InvestorID(PyCThostFtdcOptionIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -300,7 +300,7 @@ static int PyCThostFtdcOptionInstrDeltaField_set_InstrumentID(PyCThostFtdcOption
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

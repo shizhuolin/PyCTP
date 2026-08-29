@@ -65,7 +65,7 @@ static int PyCThostFtdcTraderAssignField_init(PyCThostFtdcTraderAssignField *sel
     ///应用单元代码
     // TThostFtdcBrokerIDType char[11]
     if( TraderAssignField_BrokerID != NULL ) {
-        if(TraderAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(TraderAssignField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", TraderAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcTraderAssignField_init(PyCThostFtdcTraderAssignField *sel
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( TraderAssignField_ExchangeID != NULL ) {
-        if(TraderAssignField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(TraderAssignField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", TraderAssignField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcTraderAssignField_init(PyCThostFtdcTraderAssignField *sel
     ///交易所交易员代码
     // TThostFtdcTraderIDType char[21]
     if( TraderAssignField_TraderID != NULL ) {
-        if(TraderAssignField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+        if(TraderAssignField_TraderID_len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
             PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", TraderAssignField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcTraderAssignField_init(PyCThostFtdcTraderAssignField *sel
     ///会员代码
     // TThostFtdcParticipantIDType char[11]
     if( TraderAssignField_ParticipantID != NULL ) {
-        if(TraderAssignField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(TraderAssignField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", TraderAssignField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcTraderAssignField_set_BrokerID(PyCThostFtdcTraderAssignFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcTraderAssignField_set_ExchangeID(PyCThostFtdcTraderAssign
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcTraderAssignField_set_TraderID(PyCThostFtdcTraderAssignFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
         PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
         return -1;
     }
@@ -246,7 +246,7 @@ static int PyCThostFtdcTraderAssignField_set_ParticipantID(PyCThostFtdcTraderAss
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }

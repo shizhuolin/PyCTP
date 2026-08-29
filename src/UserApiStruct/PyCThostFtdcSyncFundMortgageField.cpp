@@ -71,7 +71,7 @@ static int PyCThostFtdcSyncFundMortgageField_init(PyCThostFtdcSyncFundMortgageFi
     ///货币质押流水号
     // TThostFtdcDepositSeqNoType char[15]
     if( SyncFundMortgageField_MortgageSeqNo != NULL ) {
-        if(SyncFundMortgageField_MortgageSeqNo_len > (Py_ssize_t)sizeof(self->data.MortgageSeqNo)) {
+        if(SyncFundMortgageField_MortgageSeqNo_len >= (Py_ssize_t)sizeof(self->data.MortgageSeqNo)) {
             PyErr_Format(PyExc_ValueError, "MortgageSeqNo too long: length=%zd (max allowed is %zd)", SyncFundMortgageField_MortgageSeqNo_len, (Py_ssize_t)sizeof(self->data.MortgageSeqNo));
             return -1;
         }
@@ -84,7 +84,7 @@ static int PyCThostFtdcSyncFundMortgageField_init(PyCThostFtdcSyncFundMortgageFi
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SyncFundMortgageField_BrokerID != NULL ) {
-        if(SyncFundMortgageField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SyncFundMortgageField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SyncFundMortgageField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -97,7 +97,7 @@ static int PyCThostFtdcSyncFundMortgageField_init(PyCThostFtdcSyncFundMortgageFi
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( SyncFundMortgageField_InvestorID != NULL ) {
-        if(SyncFundMortgageField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(SyncFundMortgageField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", SyncFundMortgageField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -110,7 +110,7 @@ static int PyCThostFtdcSyncFundMortgageField_init(PyCThostFtdcSyncFundMortgageFi
     ///源币种
     // TThostFtdcCurrencyIDType char[4]
     if( SyncFundMortgageField_FromCurrencyID != NULL ) {
-        if(SyncFundMortgageField_FromCurrencyID_len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
+        if(SyncFundMortgageField_FromCurrencyID_len >= (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
             PyErr_Format(PyExc_ValueError, "FromCurrencyID too long: length=%zd (max allowed is %zd)", SyncFundMortgageField_FromCurrencyID_len, (Py_ssize_t)sizeof(self->data.FromCurrencyID));
             return -1;
         }
@@ -127,7 +127,7 @@ static int PyCThostFtdcSyncFundMortgageField_init(PyCThostFtdcSyncFundMortgageFi
     ///目标币种
     // TThostFtdcCurrencyIDType char[4]
     if( SyncFundMortgageField_ToCurrencyID != NULL ) {
-        if(SyncFundMortgageField_ToCurrencyID_len > (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
+        if(SyncFundMortgageField_ToCurrencyID_len >= (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
             PyErr_Format(PyExc_ValueError, "ToCurrencyID too long: length=%zd (max allowed is %zd)", SyncFundMortgageField_ToCurrencyID_len, (Py_ssize_t)sizeof(self->data.ToCurrencyID));
             return -1;
         }
@@ -188,7 +188,7 @@ static int PyCThostFtdcSyncFundMortgageField_set_MortgageSeqNo(PyCThostFtdcSyncF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MortgageSeqNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MortgageSeqNo)) {
         PyErr_SetString(PyExc_ValueError, "MortgageSeqNo must be less than 15 bytes");
         return -1;
     }
@@ -214,7 +214,7 @@ static int PyCThostFtdcSyncFundMortgageField_set_BrokerID(PyCThostFtdcSyncFundMo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -240,7 +240,7 @@ static int PyCThostFtdcSyncFundMortgageField_set_InvestorID(PyCThostFtdcSyncFund
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -266,7 +266,7 @@ static int PyCThostFtdcSyncFundMortgageField_set_FromCurrencyID(PyCThostFtdcSync
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FromCurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "FromCurrencyID must be less than 4 bytes");
         return -1;
     }
@@ -313,7 +313,7 @@ static int PyCThostFtdcSyncFundMortgageField_set_ToCurrencyID(PyCThostFtdcSyncFu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ToCurrencyID)) {
         PyErr_SetString(PyExc_ValueError, "ToCurrencyID must be less than 4 bytes");
         return -1;
     }

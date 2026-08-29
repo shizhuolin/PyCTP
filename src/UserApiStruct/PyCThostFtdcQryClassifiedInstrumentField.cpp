@@ -70,7 +70,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_init(PyCThostFtdcQryClassifi
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryClassifiedInstrumentField_InstrumentID != NULL ) {
-        if(QryClassifiedInstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QryClassifiedInstrumentField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -83,7 +83,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_init(PyCThostFtdcQryClassifi
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryClassifiedInstrumentField_ExchangeID != NULL ) {
-        if(QryClassifiedInstrumentField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryClassifiedInstrumentField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -96,7 +96,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_init(PyCThostFtdcQryClassifi
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( QryClassifiedInstrumentField_ExchangeInstID != NULL ) {
-        if(QryClassifiedInstrumentField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(QryClassifiedInstrumentField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -109,7 +109,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_init(PyCThostFtdcQryClassifi
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( QryClassifiedInstrumentField_ProductID != NULL ) {
-        if(QryClassifiedInstrumentField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(QryClassifiedInstrumentField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", QryClassifiedInstrumentField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_set_InstrumentID(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeID(PyCThostFtdcQ
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_set_ExchangeInstID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcQryClassifiedInstrumentField_set_ProductID(PyCThostFtdcQr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }

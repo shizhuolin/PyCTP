@@ -53,7 +53,7 @@ static int PyCThostFtdcIPListField_init(PyCThostFtdcIPListField *self, PyObject 
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( IPListField_reserve1 != NULL ) {
-        if(IPListField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(IPListField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", IPListField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -70,7 +70,7 @@ static int PyCThostFtdcIPListField_init(PyCThostFtdcIPListField *self, PyObject 
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( IPListField_IPAddress != NULL ) {
-        if(IPListField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(IPListField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", IPListField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -128,7 +128,7 @@ static int PyCThostFtdcIPListField_set_reserve1(PyCThostFtdcIPListField *self, P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -192,7 +192,7 @@ static int PyCThostFtdcIPListField_set_IPAddress(PyCThostFtdcIPListField *self, 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }

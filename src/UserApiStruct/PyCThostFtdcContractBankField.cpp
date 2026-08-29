@@ -66,7 +66,7 @@ static int PyCThostFtdcContractBankField_init(PyCThostFtdcContractBankField *sel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( ContractBankField_BrokerID != NULL ) {
-        if(ContractBankField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(ContractBankField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", ContractBankField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -79,7 +79,7 @@ static int PyCThostFtdcContractBankField_init(PyCThostFtdcContractBankField *sel
     ///银行代码
     // TThostFtdcBankIDType char[4]
     if( ContractBankField_BankID != NULL ) {
-        if(ContractBankField_BankID_len > (Py_ssize_t)sizeof(self->data.BankID)) {
+        if(ContractBankField_BankID_len >= (Py_ssize_t)sizeof(self->data.BankID)) {
             PyErr_Format(PyExc_ValueError, "BankID too long: length=%zd (max allowed is %zd)", ContractBankField_BankID_len, (Py_ssize_t)sizeof(self->data.BankID));
             return -1;
         }
@@ -92,7 +92,7 @@ static int PyCThostFtdcContractBankField_init(PyCThostFtdcContractBankField *sel
     ///银行分中心代码
     // TThostFtdcBankBrchIDType char[5]
     if( ContractBankField_BankBrchID != NULL ) {
-        if(ContractBankField_BankBrchID_len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
+        if(ContractBankField_BankBrchID_len >= (Py_ssize_t)sizeof(self->data.BankBrchID)) {
             PyErr_Format(PyExc_ValueError, "BankBrchID too long: length=%zd (max allowed is %zd)", ContractBankField_BankBrchID_len, (Py_ssize_t)sizeof(self->data.BankBrchID));
             return -1;
         }
@@ -105,7 +105,7 @@ static int PyCThostFtdcContractBankField_init(PyCThostFtdcContractBankField *sel
     ///银行名称
     // TThostFtdcBankNameType char[101]
     if( ContractBankField_BankName != NULL ) {
-        if(ContractBankField_BankName_len > (Py_ssize_t)sizeof(self->data.BankName)) {
+        if(ContractBankField_BankName_len >= (Py_ssize_t)sizeof(self->data.BankName)) {
             PyErr_Format(PyExc_ValueError, "BankName too long: length=%zd (max allowed is %zd)", ContractBankField_BankName_len, (Py_ssize_t)sizeof(self->data.BankName));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcContractBankField_init(PyCThostFtdcContractBankField *sel
     ///上报csrc的银行代码
     // TThostFtdcBankIDType char[4]
     if( ContractBankField_csrcBankID != NULL ) {
-        if(ContractBankField_csrcBankID_len > (Py_ssize_t)sizeof(self->data.csrcBankID)) {
+        if(ContractBankField_csrcBankID_len >= (Py_ssize_t)sizeof(self->data.csrcBankID)) {
             PyErr_Format(PyExc_ValueError, "csrcBankID too long: length=%zd (max allowed is %zd)", ContractBankField_csrcBankID_len, (Py_ssize_t)sizeof(self->data.csrcBankID));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcContractBankField_set_BrokerID(PyCThostFtdcContractBankFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -204,7 +204,7 @@ static int PyCThostFtdcContractBankField_set_BankID(PyCThostFtdcContractBankFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankID)) {
         PyErr_SetString(PyExc_ValueError, "BankID must be less than 4 bytes");
         return -1;
     }
@@ -230,7 +230,7 @@ static int PyCThostFtdcContractBankField_set_BankBrchID(PyCThostFtdcContractBank
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankBrchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankBrchID)) {
         PyErr_SetString(PyExc_ValueError, "BankBrchID must be less than 5 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcContractBankField_set_BankName(PyCThostFtdcContractBankFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BankName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BankName)) {
         PyErr_SetString(PyExc_ValueError, "BankName must be less than 101 bytes");
         return -1;
     }
@@ -282,7 +282,7 @@ static int PyCThostFtdcContractBankField_set_csrcBankID(PyCThostFtdcContractBank
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.csrcBankID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.csrcBankID)) {
         PyErr_SetString(PyExc_ValueError, "csrcBankID must be less than 4 bytes");
         return -1;
     }

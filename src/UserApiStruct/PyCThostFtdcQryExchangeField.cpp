@@ -42,7 +42,7 @@ static int PyCThostFtdcQryExchangeField_init(PyCThostFtdcQryExchangeField *self,
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryExchangeField_ExchangeID != NULL ) {
-        if(QryExchangeField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryExchangeField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryExchangeField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryExchangeField_set_ExchangeID(PyCThostFtdcQryExchangeFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }

@@ -332,7 +332,7 @@ static int Py{struct_name}_set_{member_name}(Py{struct_name} *self, PyObject* va
     {member_comment}
     // {member_type_name} {member_field_type_name}[{member_field_type_len}]
     if( {struct_inst_prefix_name}_{member_name} != NULL ) {{
-        if({struct_inst_prefix_name}_{member_name}_len > (Py_ssize_t)sizeof(self->data.{member_name})) {{
+        if({struct_inst_prefix_name}_{member_name}_len >= (Py_ssize_t)sizeof(self->data.{member_name})) {{
             PyErr_Format(PyExc_ValueError, "{member_name} too long: length=%zd (max allowed is %zd)", {struct_inst_prefix_name}_{member_name}_len, (Py_ssize_t)sizeof(self->data.{member_name}));
             return -1;
         }}
@@ -362,7 +362,7 @@ static int Py{struct_name}_set_{member_name}(Py{struct_name} *self, PyObject* va
     }}
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.{member_name})) {{
+    if (len >= (Py_ssize_t)sizeof(self->data.{member_name})) {{
         PyErr_SetString(PyExc_ValueError, "{member_name} must be less than {member_field_type_len} bytes");
         return -1;
     }}

@@ -93,7 +93,7 @@ static int PyCThostFtdcInstrumentStatusField_init(PyCThostFtdcInstrumentStatusFi
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( InstrumentStatusField_ExchangeID != NULL ) {
-        if(InstrumentStatusField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(InstrumentStatusField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InstrumentStatusField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -106,7 +106,7 @@ static int PyCThostFtdcInstrumentStatusField_init(PyCThostFtdcInstrumentStatusFi
     ///保留的无效字段
     // TThostFtdcOldExchangeInstIDType char[31]
     if( InstrumentStatusField_reserve1 != NULL ) {
-        if(InstrumentStatusField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(InstrumentStatusField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", InstrumentStatusField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -119,7 +119,7 @@ static int PyCThostFtdcInstrumentStatusField_init(PyCThostFtdcInstrumentStatusFi
     ///结算组代码
     // TThostFtdcSettlementGroupIDType char[9]
     if( InstrumentStatusField_SettlementGroupID != NULL ) {
-        if(InstrumentStatusField_SettlementGroupID_len > (Py_ssize_t)sizeof(self->data.SettlementGroupID)) {
+        if(InstrumentStatusField_SettlementGroupID_len >= (Py_ssize_t)sizeof(self->data.SettlementGroupID)) {
             PyErr_Format(PyExc_ValueError, "SettlementGroupID too long: length=%zd (max allowed is %zd)", InstrumentStatusField_SettlementGroupID_len, (Py_ssize_t)sizeof(self->data.SettlementGroupID));
             return -1;
         }
@@ -132,7 +132,7 @@ static int PyCThostFtdcInstrumentStatusField_init(PyCThostFtdcInstrumentStatusFi
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( InstrumentStatusField_reserve2 != NULL ) {
-        if(InstrumentStatusField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(InstrumentStatusField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", InstrumentStatusField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -153,7 +153,7 @@ static int PyCThostFtdcInstrumentStatusField_init(PyCThostFtdcInstrumentStatusFi
     ///进入本状态时间
     // TThostFtdcTimeType char[9]
     if( InstrumentStatusField_EnterTime != NULL ) {
-        if(InstrumentStatusField_EnterTime_len > (Py_ssize_t)sizeof(self->data.EnterTime)) {
+        if(InstrumentStatusField_EnterTime_len >= (Py_ssize_t)sizeof(self->data.EnterTime)) {
             PyErr_Format(PyExc_ValueError, "EnterTime too long: length=%zd (max allowed is %zd)", InstrumentStatusField_EnterTime_len, (Py_ssize_t)sizeof(self->data.EnterTime));
             return -1;
         }
@@ -170,7 +170,7 @@ static int PyCThostFtdcInstrumentStatusField_init(PyCThostFtdcInstrumentStatusFi
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( InstrumentStatusField_ExchangeInstID != NULL ) {
-        if(InstrumentStatusField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(InstrumentStatusField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", InstrumentStatusField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -183,7 +183,7 @@ static int PyCThostFtdcInstrumentStatusField_init(PyCThostFtdcInstrumentStatusFi
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( InstrumentStatusField_InstrumentID != NULL ) {
-        if(InstrumentStatusField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(InstrumentStatusField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", InstrumentStatusField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -248,7 +248,7 @@ static int PyCThostFtdcInstrumentStatusField_set_ExchangeID(PyCThostFtdcInstrume
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -274,7 +274,7 @@ static int PyCThostFtdcInstrumentStatusField_set_reserve1(PyCThostFtdcInstrument
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -300,7 +300,7 @@ static int PyCThostFtdcInstrumentStatusField_set_SettlementGroupID(PyCThostFtdcI
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SettlementGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SettlementGroupID)) {
         PyErr_SetString(PyExc_ValueError, "SettlementGroupID must be less than 9 bytes");
         return -1;
     }
@@ -326,7 +326,7 @@ static int PyCThostFtdcInstrumentStatusField_set_reserve2(PyCThostFtdcInstrument
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
         return -1;
     }
@@ -413,7 +413,7 @@ static int PyCThostFtdcInstrumentStatusField_set_EnterTime(PyCThostFtdcInstrumen
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.EnterTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.EnterTime)) {
         PyErr_SetString(PyExc_ValueError, "EnterTime must be less than 9 bytes");
         return -1;
     }
@@ -462,7 +462,7 @@ static int PyCThostFtdcInstrumentStatusField_set_ExchangeInstID(PyCThostFtdcInst
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }
@@ -488,7 +488,7 @@ static int PyCThostFtdcInstrumentStatusField_set_InstrumentID(PyCThostFtdcInstru
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }

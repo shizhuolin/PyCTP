@@ -68,7 +68,7 @@ static int PyCThostFtdcCombLegField_init(PyCThostFtdcCombLegField *self, PyObjec
     ///组合合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( CombLegField_CombInstrumentID != NULL ) {
-        if(CombLegField_CombInstrumentID_len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
+        if(CombLegField_CombInstrumentID_len >= (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "CombInstrumentID too long: length=%zd (max allowed is %zd)", CombLegField_CombInstrumentID_len, (Py_ssize_t)sizeof(self->data.CombInstrumentID));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcCombLegField_init(PyCThostFtdcCombLegField *self, PyObjec
     ///单腿合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( CombLegField_LegInstrumentID != NULL ) {
-        if(CombLegField_LegInstrumentID_len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+        if(CombLegField_LegInstrumentID_len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
             PyErr_Format(PyExc_ValueError, "LegInstrumentID too long: length=%zd (max allowed is %zd)", CombLegField_LegInstrumentID_len, (Py_ssize_t)sizeof(self->data.LegInstrumentID));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcCombLegField_set_CombInstrumentID(PyCThostFtdcCombLegFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CombInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "CombInstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -222,7 +222,7 @@ static int PyCThostFtdcCombLegField_set_LegInstrumentID(PyCThostFtdcCombLegField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LegInstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "LegInstrumentID must be less than 81 bytes");
         return -1;
     }

@@ -53,7 +53,7 @@ static int PyCThostFtdcFensUserInfoField_init(PyCThostFtdcFensUserInfoField *sel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( FensUserInfoField_BrokerID != NULL ) {
-        if(FensUserInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(FensUserInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", FensUserInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -66,7 +66,7 @@ static int PyCThostFtdcFensUserInfoField_init(PyCThostFtdcFensUserInfoField *sel
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( FensUserInfoField_UserID != NULL ) {
-        if(FensUserInfoField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(FensUserInfoField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", FensUserInfoField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -128,7 +128,7 @@ static int PyCThostFtdcFensUserInfoField_set_BrokerID(PyCThostFtdcFensUserInfoFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -154,7 +154,7 @@ static int PyCThostFtdcFensUserInfoField_set_UserID(PyCThostFtdcFensUserInfoFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }

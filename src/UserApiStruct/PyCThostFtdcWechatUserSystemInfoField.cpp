@@ -88,7 +88,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_init(PyCThostFtdcWechatUserSyst
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( WechatUserSystemInfoField_BrokerID != NULL ) {
-        if(WechatUserSystemInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(WechatUserSystemInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", WechatUserSystemInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -101,7 +101,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_init(PyCThostFtdcWechatUserSyst
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( WechatUserSystemInfoField_UserID != NULL ) {
-        if(WechatUserSystemInfoField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(WechatUserSystemInfoField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", WechatUserSystemInfoField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_init(PyCThostFtdcWechatUserSyst
     ///微信小程序等用户端系统内部信息
     // TThostFtdcClientSystemInfoType char[273]
     if( WechatUserSystemInfoField_WechatCltSysInfo != NULL ) {
-        if(WechatUserSystemInfoField_WechatCltSysInfo_len > (Py_ssize_t)sizeof(self->data.WechatCltSysInfo)) {
+        if(WechatUserSystemInfoField_WechatCltSysInfo_len >= (Py_ssize_t)sizeof(self->data.WechatCltSysInfo)) {
             PyErr_Format(PyExc_ValueError, "WechatCltSysInfo too long: length=%zd (max allowed is %zd)", WechatUserSystemInfoField_WechatCltSysInfo_len, (Py_ssize_t)sizeof(self->data.WechatCltSysInfo));
             return -1;
         }
@@ -135,7 +135,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_init(PyCThostFtdcWechatUserSyst
     ///登录成功时间
     // TThostFtdcTimeType char[9]
     if( WechatUserSystemInfoField_ClientLoginTime != NULL ) {
-        if(WechatUserSystemInfoField_ClientLoginTime_len > (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
+        if(WechatUserSystemInfoField_ClientLoginTime_len >= (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
             PyErr_Format(PyExc_ValueError, "ClientLoginTime too long: length=%zd (max allowed is %zd)", WechatUserSystemInfoField_ClientLoginTime_len, (Py_ssize_t)sizeof(self->data.ClientLoginTime));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_init(PyCThostFtdcWechatUserSyst
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( WechatUserSystemInfoField_ClientAppID != NULL ) {
-        if(WechatUserSystemInfoField_ClientAppID_len > (Py_ssize_t)sizeof(self->data.ClientAppID)) {
+        if(WechatUserSystemInfoField_ClientAppID_len >= (Py_ssize_t)sizeof(self->data.ClientAppID)) {
             PyErr_Format(PyExc_ValueError, "ClientAppID too long: length=%zd (max allowed is %zd)", WechatUserSystemInfoField_ClientAppID_len, (Py_ssize_t)sizeof(self->data.ClientAppID));
             return -1;
         }
@@ -161,7 +161,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_init(PyCThostFtdcWechatUserSyst
     ///用户公网IP
     // TThostFtdcIPAddressType char[33]
     if( WechatUserSystemInfoField_ClientPublicIP != NULL ) {
-        if(WechatUserSystemInfoField_ClientPublicIP_len > (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
+        if(WechatUserSystemInfoField_ClientPublicIP_len >= (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
             PyErr_Format(PyExc_ValueError, "ClientPublicIP too long: length=%zd (max allowed is %zd)", WechatUserSystemInfoField_ClientPublicIP_len, (Py_ssize_t)sizeof(self->data.ClientPublicIP));
             return -1;
         }
@@ -174,7 +174,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_init(PyCThostFtdcWechatUserSyst
     ///客户登录备注2
     // TThostFtdcClientLoginRemarkType char[151]
     if( WechatUserSystemInfoField_ClientLoginRemark != NULL ) {
-        if(WechatUserSystemInfoField_ClientLoginRemark_len > (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
+        if(WechatUserSystemInfoField_ClientLoginRemark_len >= (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
             PyErr_Format(PyExc_ValueError, "ClientLoginRemark too long: length=%zd (max allowed is %zd)", WechatUserSystemInfoField_ClientLoginRemark_len, (Py_ssize_t)sizeof(self->data.ClientLoginRemark));
             return -1;
         }
@@ -238,7 +238,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_set_BrokerID(PyCThostFtdcWechat
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -264,7 +264,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_set_UserID(PyCThostFtdcWechatUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -328,7 +328,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_set_WechatCltSysInfo(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.WechatCltSysInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.WechatCltSysInfo)) {
         PyErr_SetString(PyExc_ValueError, "WechatCltSysInfo must be less than 273 bytes");
         return -1;
     }
@@ -392,7 +392,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_set_ClientLoginTime(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientLoginTime)) {
         PyErr_SetString(PyExc_ValueError, "ClientLoginTime must be less than 9 bytes");
         return -1;
     }
@@ -418,7 +418,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_set_ClientAppID(PyCThostFtdcWec
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientAppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientAppID)) {
         PyErr_SetString(PyExc_ValueError, "ClientAppID must be less than 33 bytes");
         return -1;
     }
@@ -444,7 +444,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_set_ClientPublicIP(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientPublicIP)) {
         PyErr_SetString(PyExc_ValueError, "ClientPublicIP must be less than 33 bytes");
         return -1;
     }
@@ -470,7 +470,7 @@ static int PyCThostFtdcWechatUserSystemInfoField_set_ClientLoginRemark(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientLoginRemark)) {
         PyErr_SetString(PyExc_ValueError, "ClientLoginRemark must be less than 151 bytes");
         return -1;
     }

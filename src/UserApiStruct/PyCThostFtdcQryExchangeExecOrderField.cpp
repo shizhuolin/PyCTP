@@ -72,7 +72,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_init(PyCThostFtdcQryExchangeExe
     ///会员代码
     // TThostFtdcParticipantIDType char[11]
     if( QryExchangeExecOrderField_ParticipantID != NULL ) {
-        if(QryExchangeExecOrderField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(QryExchangeExecOrderField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", QryExchangeExecOrderField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -85,7 +85,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_init(PyCThostFtdcQryExchangeExe
     ///客户代码
     // TThostFtdcClientIDType char[11]
     if( QryExchangeExecOrderField_ClientID != NULL ) {
-        if(QryExchangeExecOrderField_ClientID_len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+        if(QryExchangeExecOrderField_ClientID_len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
             PyErr_Format(PyExc_ValueError, "ClientID too long: length=%zd (max allowed is %zd)", QryExchangeExecOrderField_ClientID_len, (Py_ssize_t)sizeof(self->data.ClientID));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_init(PyCThostFtdcQryExchangeExe
     ///保留的无效字段
     // TThostFtdcOldExchangeInstIDType char[31]
     if( QryExchangeExecOrderField_reserve1 != NULL ) {
-        if(QryExchangeExecOrderField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QryExchangeExecOrderField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QryExchangeExecOrderField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -111,7 +111,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_init(PyCThostFtdcQryExchangeExe
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QryExchangeExecOrderField_ExchangeID != NULL ) {
-        if(QryExchangeExecOrderField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QryExchangeExecOrderField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QryExchangeExecOrderField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -124,7 +124,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_init(PyCThostFtdcQryExchangeExe
     ///交易所交易员代码
     // TThostFtdcTraderIDType char[21]
     if( QryExchangeExecOrderField_TraderID != NULL ) {
-        if(QryExchangeExecOrderField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+        if(QryExchangeExecOrderField_TraderID_len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
             PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", QryExchangeExecOrderField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
             return -1;
         }
@@ -137,7 +137,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_init(PyCThostFtdcQryExchangeExe
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( QryExchangeExecOrderField_ExchangeInstID != NULL ) {
-        if(QryExchangeExecOrderField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(QryExchangeExecOrderField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", QryExchangeExecOrderField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_set_ParticipantID(PyCThostFtdcQ
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -224,7 +224,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_set_ClientID(PyCThostFtdcQryExc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
         PyErr_SetString(PyExc_ValueError, "ClientID must be less than 11 bytes");
         return -1;
     }
@@ -250,7 +250,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_set_reserve1(PyCThostFtdcQryExc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -276,7 +276,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_set_ExchangeID(PyCThostFtdcQryE
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -302,7 +302,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_set_TraderID(PyCThostFtdcQryExc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
         PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
         return -1;
     }
@@ -328,7 +328,7 @@ static int PyCThostFtdcQryExchangeExecOrderField_set_ExchangeInstID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }

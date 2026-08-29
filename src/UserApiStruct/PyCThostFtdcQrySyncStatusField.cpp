@@ -42,7 +42,7 @@ static int PyCThostFtdcQrySyncStatusField_init(PyCThostFtdcQrySyncStatusField *s
     ///交易日
     // TThostFtdcDateType char[9]
     if( QrySyncStatusField_TradingDay != NULL ) {
-        if(QrySyncStatusField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(QrySyncStatusField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", QrySyncStatusField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcQrySyncStatusField_set_TradingDay(PyCThostFtdcQrySyncStat
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }

@@ -99,7 +99,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InputHedgeCfmField_BrokerID != NULL ) {
-        if(InputHedgeCfmField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InputHedgeCfmField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -112,7 +112,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( InputHedgeCfmField_UserID != NULL ) {
-        if(InputHedgeCfmField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(InputHedgeCfmField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -125,7 +125,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InputHedgeCfmField_InvestorID != NULL ) {
-        if(InputHedgeCfmField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InputHedgeCfmField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -138,7 +138,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( InputHedgeCfmField_ExchangeID != NULL ) {
-        if(InputHedgeCfmField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(InputHedgeCfmField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -151,7 +151,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( InputHedgeCfmField_InstrumentID != NULL ) {
-        if(InputHedgeCfmField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(InputHedgeCfmField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -176,7 +176,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///报单引用
     // TThostFtdcOrderRefType char[13]
     if( InputHedgeCfmField_OrderRef != NULL ) {
-        if(InputHedgeCfmField_OrderRef_len > (Py_ssize_t)sizeof(self->data.OrderRef)) {
+        if(InputHedgeCfmField_OrderRef_len >= (Py_ssize_t)sizeof(self->data.OrderRef)) {
             PyErr_Format(PyExc_ValueError, "OrderRef too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_OrderRef_len, (Py_ssize_t)sizeof(self->data.OrderRef));
             return -1;
         }
@@ -189,7 +189,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( InputHedgeCfmField_IPAddress != NULL ) {
-        if(InputHedgeCfmField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(InputHedgeCfmField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -202,7 +202,7 @@ static int PyCThostFtdcInputHedgeCfmField_init(PyCThostFtdcInputHedgeCfmField *s
     ///Mac地址
     // TThostFtdcMacAddressType char[21]
     if( InputHedgeCfmField_MacAddress != NULL ) {
-        if(InputHedgeCfmField_MacAddress_len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+        if(InputHedgeCfmField_MacAddress_len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
             PyErr_Format(PyExc_ValueError, "MacAddress too long: length=%zd (max allowed is %zd)", InputHedgeCfmField_MacAddress_len, (Py_ssize_t)sizeof(self->data.MacAddress));
             return -1;
         }
@@ -268,7 +268,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_BrokerID(PyCThostFtdcInputHedgeCfm
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -294,7 +294,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_UserID(PyCThostFtdcInputHedgeCfmFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -320,7 +320,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_InvestorID(PyCThostFtdcInputHedgeC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -346,7 +346,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_ExchangeID(PyCThostFtdcInputHedgeC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -372,7 +372,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_InstrumentID(PyCThostFtdcInputHedg
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -497,7 +497,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_OrderRef(PyCThostFtdcInputHedgeCfm
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OrderRef)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OrderRef)) {
         PyErr_SetString(PyExc_ValueError, "OrderRef must be less than 13 bytes");
         return -1;
     }
@@ -523,7 +523,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_IPAddress(PyCThostFtdcInputHedgeCf
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }
@@ -549,7 +549,7 @@ static int PyCThostFtdcInputHedgeCfmField_set_MacAddress(PyCThostFtdcInputHedgeC
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
         PyErr_SetString(PyExc_ValueError, "MacAddress must be less than 21 bytes");
         return -1;
     }

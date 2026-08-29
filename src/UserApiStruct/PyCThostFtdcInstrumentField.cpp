@@ -226,7 +226,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( InstrumentField_reserve1 != NULL ) {
-        if(InstrumentField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(InstrumentField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", InstrumentField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -239,7 +239,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( InstrumentField_ExchangeID != NULL ) {
-        if(InstrumentField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(InstrumentField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InstrumentField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -252,7 +252,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///合约名称
     // TThostFtdcInstrumentNameType char[21]
     if( InstrumentField_InstrumentName != NULL ) {
-        if(InstrumentField_InstrumentName_len > (Py_ssize_t)sizeof(self->data.InstrumentName)) {
+        if(InstrumentField_InstrumentName_len >= (Py_ssize_t)sizeof(self->data.InstrumentName)) {
             PyErr_Format(PyExc_ValueError, "InstrumentName too long: length=%zd (max allowed is %zd)", InstrumentField_InstrumentName_len, (Py_ssize_t)sizeof(self->data.InstrumentName));
             return -1;
         }
@@ -265,7 +265,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///保留的无效字段
     // TThostFtdcOldExchangeInstIDType char[31]
     if( InstrumentField_reserve2 != NULL ) {
-        if(InstrumentField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(InstrumentField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", InstrumentField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -278,7 +278,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( InstrumentField_reserve3 != NULL ) {
-        if(InstrumentField_reserve3_len > (Py_ssize_t)sizeof(self->data.reserve3)) {
+        if(InstrumentField_reserve3_len >= (Py_ssize_t)sizeof(self->data.reserve3)) {
             PyErr_Format(PyExc_ValueError, "reserve3 too long: length=%zd (max allowed is %zd)", InstrumentField_reserve3_len, (Py_ssize_t)sizeof(self->data.reserve3));
             return -1;
         }
@@ -327,7 +327,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///创建日
     // TThostFtdcDateType char[9]
     if( InstrumentField_CreateDate != NULL ) {
-        if(InstrumentField_CreateDate_len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+        if(InstrumentField_CreateDate_len >= (Py_ssize_t)sizeof(self->data.CreateDate)) {
             PyErr_Format(PyExc_ValueError, "CreateDate too long: length=%zd (max allowed is %zd)", InstrumentField_CreateDate_len, (Py_ssize_t)sizeof(self->data.CreateDate));
             return -1;
         }
@@ -340,7 +340,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///上市日
     // TThostFtdcDateType char[9]
     if( InstrumentField_OpenDate != NULL ) {
-        if(InstrumentField_OpenDate_len > (Py_ssize_t)sizeof(self->data.OpenDate)) {
+        if(InstrumentField_OpenDate_len >= (Py_ssize_t)sizeof(self->data.OpenDate)) {
             PyErr_Format(PyExc_ValueError, "OpenDate too long: length=%zd (max allowed is %zd)", InstrumentField_OpenDate_len, (Py_ssize_t)sizeof(self->data.OpenDate));
             return -1;
         }
@@ -353,7 +353,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///到期日
     // TThostFtdcDateType char[9]
     if( InstrumentField_ExpireDate != NULL ) {
-        if(InstrumentField_ExpireDate_len > (Py_ssize_t)sizeof(self->data.ExpireDate)) {
+        if(InstrumentField_ExpireDate_len >= (Py_ssize_t)sizeof(self->data.ExpireDate)) {
             PyErr_Format(PyExc_ValueError, "ExpireDate too long: length=%zd (max allowed is %zd)", InstrumentField_ExpireDate_len, (Py_ssize_t)sizeof(self->data.ExpireDate));
             return -1;
         }
@@ -366,7 +366,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///开始交割日
     // TThostFtdcDateType char[9]
     if( InstrumentField_StartDelivDate != NULL ) {
-        if(InstrumentField_StartDelivDate_len > (Py_ssize_t)sizeof(self->data.StartDelivDate)) {
+        if(InstrumentField_StartDelivDate_len >= (Py_ssize_t)sizeof(self->data.StartDelivDate)) {
             PyErr_Format(PyExc_ValueError, "StartDelivDate too long: length=%zd (max allowed is %zd)", InstrumentField_StartDelivDate_len, (Py_ssize_t)sizeof(self->data.StartDelivDate));
             return -1;
         }
@@ -379,7 +379,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///结束交割日
     // TThostFtdcDateType char[9]
     if( InstrumentField_EndDelivDate != NULL ) {
-        if(InstrumentField_EndDelivDate_len > (Py_ssize_t)sizeof(self->data.EndDelivDate)) {
+        if(InstrumentField_EndDelivDate_len >= (Py_ssize_t)sizeof(self->data.EndDelivDate)) {
             PyErr_Format(PyExc_ValueError, "EndDelivDate too long: length=%zd (max allowed is %zd)", InstrumentField_EndDelivDate_len, (Py_ssize_t)sizeof(self->data.EndDelivDate));
             return -1;
         }
@@ -420,7 +420,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( InstrumentField_reserve4 != NULL ) {
-        if(InstrumentField_reserve4_len > (Py_ssize_t)sizeof(self->data.reserve4)) {
+        if(InstrumentField_reserve4_len >= (Py_ssize_t)sizeof(self->data.reserve4)) {
             PyErr_Format(PyExc_ValueError, "reserve4 too long: length=%zd (max allowed is %zd)", InstrumentField_reserve4_len, (Py_ssize_t)sizeof(self->data.reserve4));
             return -1;
         }
@@ -449,7 +449,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( InstrumentField_InstrumentID != NULL ) {
-        if(InstrumentField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(InstrumentField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", InstrumentField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -462,7 +462,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///合约在交易所的代码
     // TThostFtdcExchangeInstIDType char[81]
     if( InstrumentField_ExchangeInstID != NULL ) {
-        if(InstrumentField_ExchangeInstID_len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+        if(InstrumentField_ExchangeInstID_len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeInstID too long: length=%zd (max allowed is %zd)", InstrumentField_ExchangeInstID_len, (Py_ssize_t)sizeof(self->data.ExchangeInstID));
             return -1;
         }
@@ -475,7 +475,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///产品代码
     // TThostFtdcInstrumentIDType char[81]
     if( InstrumentField_ProductID != NULL ) {
-        if(InstrumentField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(InstrumentField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", InstrumentField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -488,7 +488,7 @@ static int PyCThostFtdcInstrumentField_init(PyCThostFtdcInstrumentField *self, P
     ///基础商品代码
     // TThostFtdcInstrumentIDType char[81]
     if( InstrumentField_UnderlyingInstrID != NULL ) {
-        if(InstrumentField_UnderlyingInstrID_len > (Py_ssize_t)sizeof(self->data.UnderlyingInstrID)) {
+        if(InstrumentField_UnderlyingInstrID_len >= (Py_ssize_t)sizeof(self->data.UnderlyingInstrID)) {
             PyErr_Format(PyExc_ValueError, "UnderlyingInstrID too long: length=%zd (max allowed is %zd)", InstrumentField_UnderlyingInstrID_len, (Py_ssize_t)sizeof(self->data.UnderlyingInstrID));
             return -1;
         }
@@ -578,7 +578,7 @@ static int PyCThostFtdcInstrumentField_set_reserve1(PyCThostFtdcInstrumentField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -604,7 +604,7 @@ static int PyCThostFtdcInstrumentField_set_ExchangeID(PyCThostFtdcInstrumentFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -630,7 +630,7 @@ static int PyCThostFtdcInstrumentField_set_InstrumentName(PyCThostFtdcInstrument
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentName)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentName must be less than 21 bytes");
         return -1;
     }
@@ -656,7 +656,7 @@ static int PyCThostFtdcInstrumentField_set_reserve2(PyCThostFtdcInstrumentField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 31 bytes");
         return -1;
     }
@@ -682,7 +682,7 @@ static int PyCThostFtdcInstrumentField_set_reserve3(PyCThostFtdcInstrumentField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve3)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve3)) {
         PyErr_SetString(PyExc_ValueError, "reserve3 must be less than 31 bytes");
         return -1;
     }
@@ -1018,7 +1018,7 @@ static int PyCThostFtdcInstrumentField_set_CreateDate(PyCThostFtdcInstrumentFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CreateDate)) {
         PyErr_SetString(PyExc_ValueError, "CreateDate must be less than 9 bytes");
         return -1;
     }
@@ -1044,7 +1044,7 @@ static int PyCThostFtdcInstrumentField_set_OpenDate(PyCThostFtdcInstrumentField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OpenDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OpenDate)) {
         PyErr_SetString(PyExc_ValueError, "OpenDate must be less than 9 bytes");
         return -1;
     }
@@ -1070,7 +1070,7 @@ static int PyCThostFtdcInstrumentField_set_ExpireDate(PyCThostFtdcInstrumentFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExpireDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExpireDate)) {
         PyErr_SetString(PyExc_ValueError, "ExpireDate must be less than 9 bytes");
         return -1;
     }
@@ -1096,7 +1096,7 @@ static int PyCThostFtdcInstrumentField_set_StartDelivDate(PyCThostFtdcInstrument
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.StartDelivDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.StartDelivDate)) {
         PyErr_SetString(PyExc_ValueError, "StartDelivDate must be less than 9 bytes");
         return -1;
     }
@@ -1122,7 +1122,7 @@ static int PyCThostFtdcInstrumentField_set_EndDelivDate(PyCThostFtdcInstrumentFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.EndDelivDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.EndDelivDate)) {
         PyErr_SetString(PyExc_ValueError, "EndDelivDate must be less than 9 bytes");
         return -1;
     }
@@ -1320,7 +1320,7 @@ static int PyCThostFtdcInstrumentField_set_reserve4(PyCThostFtdcInstrumentField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve4)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve4)) {
         PyErr_SetString(PyExc_ValueError, "reserve4 must be less than 31 bytes");
         return -1;
     }
@@ -1434,7 +1434,7 @@ static int PyCThostFtdcInstrumentField_set_InstrumentID(PyCThostFtdcInstrumentFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -1460,7 +1460,7 @@ static int PyCThostFtdcInstrumentField_set_ExchangeInstID(PyCThostFtdcInstrument
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeInstID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeInstID must be less than 81 bytes");
         return -1;
     }
@@ -1486,7 +1486,7 @@ static int PyCThostFtdcInstrumentField_set_ProductID(PyCThostFtdcInstrumentField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 81 bytes");
         return -1;
     }
@@ -1512,7 +1512,7 @@ static int PyCThostFtdcInstrumentField_set_UnderlyingInstrID(PyCThostFtdcInstrum
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UnderlyingInstrID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UnderlyingInstrID)) {
         PyErr_SetString(PyExc_ValueError, "UnderlyingInstrID must be less than 81 bytes");
         return -1;
     }

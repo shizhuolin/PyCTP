@@ -214,7 +214,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QuoteActionField_BrokerID != NULL ) {
-        if(QuoteActionField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QuoteActionField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QuoteActionField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -227,7 +227,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( QuoteActionField_InvestorID != NULL ) {
-        if(QuoteActionField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(QuoteActionField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", QuoteActionField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -244,7 +244,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///报价引用
     // TThostFtdcOrderRefType char[13]
     if( QuoteActionField_QuoteRef != NULL ) {
-        if(QuoteActionField_QuoteRef_len > (Py_ssize_t)sizeof(self->data.QuoteRef)) {
+        if(QuoteActionField_QuoteRef_len >= (Py_ssize_t)sizeof(self->data.QuoteRef)) {
             PyErr_Format(PyExc_ValueError, "QuoteRef too long: length=%zd (max allowed is %zd)", QuoteActionField_QuoteRef_len, (Py_ssize_t)sizeof(self->data.QuoteRef));
             return -1;
         }
@@ -269,7 +269,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QuoteActionField_ExchangeID != NULL ) {
-        if(QuoteActionField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QuoteActionField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QuoteActionField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -282,7 +282,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///报价操作编号
     // TThostFtdcOrderSysIDType char[21]
     if( QuoteActionField_QuoteSysID != NULL ) {
-        if(QuoteActionField_QuoteSysID_len > (Py_ssize_t)sizeof(self->data.QuoteSysID)) {
+        if(QuoteActionField_QuoteSysID_len >= (Py_ssize_t)sizeof(self->data.QuoteSysID)) {
             PyErr_Format(PyExc_ValueError, "QuoteSysID too long: length=%zd (max allowed is %zd)", QuoteActionField_QuoteSysID_len, (Py_ssize_t)sizeof(self->data.QuoteSysID));
             return -1;
         }
@@ -299,7 +299,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///操作日期
     // TThostFtdcDateType char[9]
     if( QuoteActionField_ActionDate != NULL ) {
-        if(QuoteActionField_ActionDate_len > (Py_ssize_t)sizeof(self->data.ActionDate)) {
+        if(QuoteActionField_ActionDate_len >= (Py_ssize_t)sizeof(self->data.ActionDate)) {
             PyErr_Format(PyExc_ValueError, "ActionDate too long: length=%zd (max allowed is %zd)", QuoteActionField_ActionDate_len, (Py_ssize_t)sizeof(self->data.ActionDate));
             return -1;
         }
@@ -312,7 +312,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///操作时间
     // TThostFtdcTimeType char[9]
     if( QuoteActionField_ActionTime != NULL ) {
-        if(QuoteActionField_ActionTime_len > (Py_ssize_t)sizeof(self->data.ActionTime)) {
+        if(QuoteActionField_ActionTime_len >= (Py_ssize_t)sizeof(self->data.ActionTime)) {
             PyErr_Format(PyExc_ValueError, "ActionTime too long: length=%zd (max allowed is %zd)", QuoteActionField_ActionTime_len, (Py_ssize_t)sizeof(self->data.ActionTime));
             return -1;
         }
@@ -325,7 +325,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///交易所交易员代码
     // TThostFtdcTraderIDType char[21]
     if( QuoteActionField_TraderID != NULL ) {
-        if(QuoteActionField_TraderID_len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+        if(QuoteActionField_TraderID_len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
             PyErr_Format(PyExc_ValueError, "TraderID too long: length=%zd (max allowed is %zd)", QuoteActionField_TraderID_len, (Py_ssize_t)sizeof(self->data.TraderID));
             return -1;
         }
@@ -342,7 +342,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///本地报价编号
     // TThostFtdcOrderLocalIDType char[13]
     if( QuoteActionField_QuoteLocalID != NULL ) {
-        if(QuoteActionField_QuoteLocalID_len > (Py_ssize_t)sizeof(self->data.QuoteLocalID)) {
+        if(QuoteActionField_QuoteLocalID_len >= (Py_ssize_t)sizeof(self->data.QuoteLocalID)) {
             PyErr_Format(PyExc_ValueError, "QuoteLocalID too long: length=%zd (max allowed is %zd)", QuoteActionField_QuoteLocalID_len, (Py_ssize_t)sizeof(self->data.QuoteLocalID));
             return -1;
         }
@@ -355,7 +355,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///操作本地编号
     // TThostFtdcOrderLocalIDType char[13]
     if( QuoteActionField_ActionLocalID != NULL ) {
-        if(QuoteActionField_ActionLocalID_len > (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
+        if(QuoteActionField_ActionLocalID_len >= (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
             PyErr_Format(PyExc_ValueError, "ActionLocalID too long: length=%zd (max allowed is %zd)", QuoteActionField_ActionLocalID_len, (Py_ssize_t)sizeof(self->data.ActionLocalID));
             return -1;
         }
@@ -368,7 +368,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///会员代码
     // TThostFtdcParticipantIDType char[11]
     if( QuoteActionField_ParticipantID != NULL ) {
-        if(QuoteActionField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(QuoteActionField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", QuoteActionField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -381,7 +381,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///客户代码
     // TThostFtdcClientIDType char[11]
     if( QuoteActionField_ClientID != NULL ) {
-        if(QuoteActionField_ClientID_len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+        if(QuoteActionField_ClientID_len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
             PyErr_Format(PyExc_ValueError, "ClientID too long: length=%zd (max allowed is %zd)", QuoteActionField_ClientID_len, (Py_ssize_t)sizeof(self->data.ClientID));
             return -1;
         }
@@ -394,7 +394,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///业务单元
     // TThostFtdcBusinessUnitType char[21]
     if( QuoteActionField_BusinessUnit != NULL ) {
-        if(QuoteActionField_BusinessUnit_len > (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
+        if(QuoteActionField_BusinessUnit_len >= (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
             PyErr_Format(PyExc_ValueError, "BusinessUnit too long: length=%zd (max allowed is %zd)", QuoteActionField_BusinessUnit_len, (Py_ssize_t)sizeof(self->data.BusinessUnit));
             return -1;
         }
@@ -411,7 +411,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( QuoteActionField_UserID != NULL ) {
-        if(QuoteActionField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(QuoteActionField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", QuoteActionField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -424,7 +424,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///状态信息
     // TThostFtdcErrorMsgType char[81]
     if( QuoteActionField_StatusMsg != NULL ) {
-        if(QuoteActionField_StatusMsg_len > (Py_ssize_t)sizeof(self->data.StatusMsg)) {
+        if(QuoteActionField_StatusMsg_len >= (Py_ssize_t)sizeof(self->data.StatusMsg)) {
             PyErr_Format(PyExc_ValueError, "StatusMsg too long: length=%zd (max allowed is %zd)", QuoteActionField_StatusMsg_len, (Py_ssize_t)sizeof(self->data.StatusMsg));
             return -1;
         }
@@ -437,7 +437,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///保留的无效字段
     // TThostFtdcOldInstrumentIDType char[31]
     if( QuoteActionField_reserve1 != NULL ) {
-        if(QuoteActionField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(QuoteActionField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", QuoteActionField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -450,7 +450,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///营业部编号
     // TThostFtdcBranchIDType char[9]
     if( QuoteActionField_BranchID != NULL ) {
-        if(QuoteActionField_BranchID_len > (Py_ssize_t)sizeof(self->data.BranchID)) {
+        if(QuoteActionField_BranchID_len >= (Py_ssize_t)sizeof(self->data.BranchID)) {
             PyErr_Format(PyExc_ValueError, "BranchID too long: length=%zd (max allowed is %zd)", QuoteActionField_BranchID_len, (Py_ssize_t)sizeof(self->data.BranchID));
             return -1;
         }
@@ -463,7 +463,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///投资单元代码
     // TThostFtdcInvestUnitIDType char[17]
     if( QuoteActionField_InvestUnitID != NULL ) {
-        if(QuoteActionField_InvestUnitID_len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+        if(QuoteActionField_InvestUnitID_len >= (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
             PyErr_Format(PyExc_ValueError, "InvestUnitID too long: length=%zd (max allowed is %zd)", QuoteActionField_InvestUnitID_len, (Py_ssize_t)sizeof(self->data.InvestUnitID));
             return -1;
         }
@@ -476,7 +476,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( QuoteActionField_reserve2 != NULL ) {
-        if(QuoteActionField_reserve2_len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+        if(QuoteActionField_reserve2_len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
             PyErr_Format(PyExc_ValueError, "reserve2 too long: length=%zd (max allowed is %zd)", QuoteActionField_reserve2_len, (Py_ssize_t)sizeof(self->data.reserve2));
             return -1;
         }
@@ -489,7 +489,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///Mac地址
     // TThostFtdcMacAddressType char[21]
     if( QuoteActionField_MacAddress != NULL ) {
-        if(QuoteActionField_MacAddress_len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+        if(QuoteActionField_MacAddress_len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
             PyErr_Format(PyExc_ValueError, "MacAddress too long: length=%zd (max allowed is %zd)", QuoteActionField_MacAddress_len, (Py_ssize_t)sizeof(self->data.MacAddress));
             return -1;
         }
@@ -502,7 +502,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( QuoteActionField_InstrumentID != NULL ) {
-        if(QuoteActionField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(QuoteActionField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", QuoteActionField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -515,7 +515,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( QuoteActionField_IPAddress != NULL ) {
-        if(QuoteActionField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(QuoteActionField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", QuoteActionField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -528,7 +528,7 @@ static int PyCThostFtdcQuoteActionField_init(PyCThostFtdcQuoteActionField *self,
     ///报单回显字段
     // TThostFtdcOrderMemoType char[13]
     if( QuoteActionField_OrderMemo != NULL ) {
-        if(QuoteActionField_OrderMemo_len > (Py_ssize_t)sizeof(self->data.OrderMemo)) {
+        if(QuoteActionField_OrderMemo_len >= (Py_ssize_t)sizeof(self->data.OrderMemo)) {
             PyErr_Format(PyExc_ValueError, "OrderMemo too long: length=%zd (max allowed is %zd)", QuoteActionField_OrderMemo_len, (Py_ssize_t)sizeof(self->data.OrderMemo));
             return -1;
         }
@@ -618,7 +618,7 @@ static int PyCThostFtdcQuoteActionField_set_BrokerID(PyCThostFtdcQuoteActionFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -644,7 +644,7 @@ static int PyCThostFtdcQuoteActionField_set_InvestorID(PyCThostFtdcQuoteActionFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -708,7 +708,7 @@ static int PyCThostFtdcQuoteActionField_set_QuoteRef(PyCThostFtdcQuoteActionFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.QuoteRef)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.QuoteRef)) {
         PyErr_SetString(PyExc_ValueError, "QuoteRef must be less than 13 bytes");
         return -1;
     }
@@ -848,7 +848,7 @@ static int PyCThostFtdcQuoteActionField_set_ExchangeID(PyCThostFtdcQuoteActionFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -874,7 +874,7 @@ static int PyCThostFtdcQuoteActionField_set_QuoteSysID(PyCThostFtdcQuoteActionFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.QuoteSysID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.QuoteSysID)) {
         PyErr_SetString(PyExc_ValueError, "QuoteSysID must be less than 21 bytes");
         return -1;
     }
@@ -923,7 +923,7 @@ static int PyCThostFtdcQuoteActionField_set_ActionDate(PyCThostFtdcQuoteActionFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionDate)) {
         PyErr_SetString(PyExc_ValueError, "ActionDate must be less than 9 bytes");
         return -1;
     }
@@ -949,7 +949,7 @@ static int PyCThostFtdcQuoteActionField_set_ActionTime(PyCThostFtdcQuoteActionFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionTime)) {
         PyErr_SetString(PyExc_ValueError, "ActionTime must be less than 9 bytes");
         return -1;
     }
@@ -975,7 +975,7 @@ static int PyCThostFtdcQuoteActionField_set_TraderID(PyCThostFtdcQuoteActionFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TraderID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TraderID)) {
         PyErr_SetString(PyExc_ValueError, "TraderID must be less than 21 bytes");
         return -1;
     }
@@ -1039,7 +1039,7 @@ static int PyCThostFtdcQuoteActionField_set_QuoteLocalID(PyCThostFtdcQuoteAction
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.QuoteLocalID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.QuoteLocalID)) {
         PyErr_SetString(PyExc_ValueError, "QuoteLocalID must be less than 13 bytes");
         return -1;
     }
@@ -1065,7 +1065,7 @@ static int PyCThostFtdcQuoteActionField_set_ActionLocalID(PyCThostFtdcQuoteActio
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ActionLocalID)) {
         PyErr_SetString(PyExc_ValueError, "ActionLocalID must be less than 13 bytes");
         return -1;
     }
@@ -1091,7 +1091,7 @@ static int PyCThostFtdcQuoteActionField_set_ParticipantID(PyCThostFtdcQuoteActio
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -1117,7 +1117,7 @@ static int PyCThostFtdcQuoteActionField_set_ClientID(PyCThostFtdcQuoteActionFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientID)) {
         PyErr_SetString(PyExc_ValueError, "ClientID must be less than 11 bytes");
         return -1;
     }
@@ -1143,7 +1143,7 @@ static int PyCThostFtdcQuoteActionField_set_BusinessUnit(PyCThostFtdcQuoteAction
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BusinessUnit)) {
         PyErr_SetString(PyExc_ValueError, "BusinessUnit must be less than 21 bytes");
         return -1;
     }
@@ -1192,7 +1192,7 @@ static int PyCThostFtdcQuoteActionField_set_UserID(PyCThostFtdcQuoteActionField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -1218,7 +1218,7 @@ static int PyCThostFtdcQuoteActionField_set_StatusMsg(PyCThostFtdcQuoteActionFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.StatusMsg)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.StatusMsg)) {
         PyErr_SetString(PyExc_ValueError, "StatusMsg must be less than 81 bytes");
         return -1;
     }
@@ -1244,7 +1244,7 @@ static int PyCThostFtdcQuoteActionField_set_reserve1(PyCThostFtdcQuoteActionFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 31 bytes");
         return -1;
     }
@@ -1270,7 +1270,7 @@ static int PyCThostFtdcQuoteActionField_set_BranchID(PyCThostFtdcQuoteActionFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BranchID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BranchID)) {
         PyErr_SetString(PyExc_ValueError, "BranchID must be less than 9 bytes");
         return -1;
     }
@@ -1296,7 +1296,7 @@ static int PyCThostFtdcQuoteActionField_set_InvestUnitID(PyCThostFtdcQuoteAction
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestUnitID)) {
         PyErr_SetString(PyExc_ValueError, "InvestUnitID must be less than 17 bytes");
         return -1;
     }
@@ -1322,7 +1322,7 @@ static int PyCThostFtdcQuoteActionField_set_reserve2(PyCThostFtdcQuoteActionFiel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve2)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve2)) {
         PyErr_SetString(PyExc_ValueError, "reserve2 must be less than 16 bytes");
         return -1;
     }
@@ -1348,7 +1348,7 @@ static int PyCThostFtdcQuoteActionField_set_MacAddress(PyCThostFtdcQuoteActionFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MacAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MacAddress)) {
         PyErr_SetString(PyExc_ValueError, "MacAddress must be less than 21 bytes");
         return -1;
     }
@@ -1374,7 +1374,7 @@ static int PyCThostFtdcQuoteActionField_set_InstrumentID(PyCThostFtdcQuoteAction
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -1400,7 +1400,7 @@ static int PyCThostFtdcQuoteActionField_set_IPAddress(PyCThostFtdcQuoteActionFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }
@@ -1426,7 +1426,7 @@ static int PyCThostFtdcQuoteActionField_set_OrderMemo(PyCThostFtdcQuoteActionFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OrderMemo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OrderMemo)) {
         PyErr_SetString(PyExc_ValueError, "OrderMemo must be less than 13 bytes");
         return -1;
     }

@@ -105,7 +105,7 @@ static int PyCThostFtdcBrokerDepositField_init(PyCThostFtdcBrokerDepositField *s
     ///交易日期
     // TThostFtdcTradeDateType char[9]
     if( BrokerDepositField_TradingDay != NULL ) {
-        if(BrokerDepositField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(BrokerDepositField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", BrokerDepositField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcBrokerDepositField_init(PyCThostFtdcBrokerDepositField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( BrokerDepositField_BrokerID != NULL ) {
-        if(BrokerDepositField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(BrokerDepositField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerDepositField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -131,7 +131,7 @@ static int PyCThostFtdcBrokerDepositField_init(PyCThostFtdcBrokerDepositField *s
     ///会员代码
     // TThostFtdcParticipantIDType char[11]
     if( BrokerDepositField_ParticipantID != NULL ) {
-        if(BrokerDepositField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(BrokerDepositField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", BrokerDepositField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -144,7 +144,7 @@ static int PyCThostFtdcBrokerDepositField_init(PyCThostFtdcBrokerDepositField *s
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( BrokerDepositField_ExchangeID != NULL ) {
-        if(BrokerDepositField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(BrokerDepositField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", BrokerDepositField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -248,7 +248,7 @@ static int PyCThostFtdcBrokerDepositField_set_TradingDay(PyCThostFtdcBrokerDepos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -274,7 +274,7 @@ static int PyCThostFtdcBrokerDepositField_set_BrokerID(PyCThostFtdcBrokerDeposit
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -300,7 +300,7 @@ static int PyCThostFtdcBrokerDepositField_set_ParticipantID(PyCThostFtdcBrokerDe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -326,7 +326,7 @@ static int PyCThostFtdcBrokerDepositField_set_ExchangeID(PyCThostFtdcBrokerDepos
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }

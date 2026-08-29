@@ -76,7 +76,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_init(PyCThostFtdcCFMMCBrokerKeyField 
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( CFMMCBrokerKeyField_BrokerID != NULL ) {
-        if(CFMMCBrokerKeyField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(CFMMCBrokerKeyField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_init(PyCThostFtdcCFMMCBrokerKeyField 
     ///经纪公司统一编码
     // TThostFtdcParticipantIDType char[11]
     if( CFMMCBrokerKeyField_ParticipantID != NULL ) {
-        if(CFMMCBrokerKeyField_ParticipantID_len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+        if(CFMMCBrokerKeyField_ParticipantID_len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
             PyErr_Format(PyExc_ValueError, "ParticipantID too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_ParticipantID_len, (Py_ssize_t)sizeof(self->data.ParticipantID));
             return -1;
         }
@@ -102,7 +102,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_init(PyCThostFtdcCFMMCBrokerKeyField 
     ///密钥生成日期
     // TThostFtdcDateType char[9]
     if( CFMMCBrokerKeyField_CreateDate != NULL ) {
-        if(CFMMCBrokerKeyField_CreateDate_len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+        if(CFMMCBrokerKeyField_CreateDate_len >= (Py_ssize_t)sizeof(self->data.CreateDate)) {
             PyErr_Format(PyExc_ValueError, "CreateDate too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_CreateDate_len, (Py_ssize_t)sizeof(self->data.CreateDate));
             return -1;
         }
@@ -115,7 +115,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_init(PyCThostFtdcCFMMCBrokerKeyField 
     ///密钥生成时间
     // TThostFtdcTimeType char[9]
     if( CFMMCBrokerKeyField_CreateTime != NULL ) {
-        if(CFMMCBrokerKeyField_CreateTime_len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+        if(CFMMCBrokerKeyField_CreateTime_len >= (Py_ssize_t)sizeof(self->data.CreateTime)) {
             PyErr_Format(PyExc_ValueError, "CreateTime too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_CreateTime_len, (Py_ssize_t)sizeof(self->data.CreateTime));
             return -1;
         }
@@ -132,7 +132,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_init(PyCThostFtdcCFMMCBrokerKeyField 
     ///动态密钥
     // TThostFtdcCFMMCKeyType char[21]
     if( CFMMCBrokerKeyField_CurrentKey != NULL ) {
-        if(CFMMCBrokerKeyField_CurrentKey_len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+        if(CFMMCBrokerKeyField_CurrentKey_len >= (Py_ssize_t)sizeof(self->data.CurrentKey)) {
             PyErr_Format(PyExc_ValueError, "CurrentKey too long: length=%zd (max allowed is %zd)", CFMMCBrokerKeyField_CurrentKey_len, (Py_ssize_t)sizeof(self->data.CurrentKey));
             return -1;
         }
@@ -198,7 +198,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_set_BrokerID(PyCThostFtdcCFMMCBrokerK
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -224,7 +224,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_set_ParticipantID(PyCThostFtdcCFMMCBr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ParticipantID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ParticipantID)) {
         PyErr_SetString(PyExc_ValueError, "ParticipantID must be less than 11 bytes");
         return -1;
     }
@@ -250,7 +250,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_set_CreateDate(PyCThostFtdcCFMMCBroke
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CreateDate)) {
         PyErr_SetString(PyExc_ValueError, "CreateDate must be less than 9 bytes");
         return -1;
     }
@@ -276,7 +276,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_set_CreateTime(PyCThostFtdcCFMMCBroke
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CreateTime)) {
         PyErr_SetString(PyExc_ValueError, "CreateTime must be less than 9 bytes");
         return -1;
     }
@@ -340,7 +340,7 @@ static int PyCThostFtdcCFMMCBrokerKeyField_set_CurrentKey(PyCThostFtdcCFMMCBroke
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrentKey)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrentKey)) {
         PyErr_SetString(PyExc_ValueError, "CurrentKey must be less than 21 bytes");
         return -1;
     }

@@ -65,7 +65,7 @@ static int PyCThostFtdcLocalAddrConfigField_init(PyCThostFtdcLocalAddrConfigFiel
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( LocalAddrConfigField_BrokerID != NULL ) {
-        if(LocalAddrConfigField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(LocalAddrConfigField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", LocalAddrConfigField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -78,7 +78,7 @@ static int PyCThostFtdcLocalAddrConfigField_init(PyCThostFtdcLocalAddrConfigFiel
     ///对端地址
     // TThostFtdcIpAddrType char[129]
     if( LocalAddrConfigField_PeerAddr != NULL ) {
-        if(LocalAddrConfigField_PeerAddr_len > (Py_ssize_t)sizeof(self->data.PeerAddr)) {
+        if(LocalAddrConfigField_PeerAddr_len >= (Py_ssize_t)sizeof(self->data.PeerAddr)) {
             PyErr_Format(PyExc_ValueError, "PeerAddr too long: length=%zd (max allowed is %zd)", LocalAddrConfigField_PeerAddr_len, (Py_ssize_t)sizeof(self->data.PeerAddr));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcLocalAddrConfigField_init(PyCThostFtdcLocalAddrConfigFiel
     ///子网掩码
     // TThostFtdcIpAddrType char[129]
     if( LocalAddrConfigField_NetMask != NULL ) {
-        if(LocalAddrConfigField_NetMask_len > (Py_ssize_t)sizeof(self->data.NetMask)) {
+        if(LocalAddrConfigField_NetMask_len >= (Py_ssize_t)sizeof(self->data.NetMask)) {
             PyErr_Format(PyExc_ValueError, "NetMask too long: length=%zd (max allowed is %zd)", LocalAddrConfigField_NetMask_len, (Py_ssize_t)sizeof(self->data.NetMask));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcLocalAddrConfigField_init(PyCThostFtdcLocalAddrConfigFiel
     ///内网服务地址
     // TThostFtdcIpAddrType char[129]
     if( LocalAddrConfigField_LocalAddress != NULL ) {
-        if(LocalAddrConfigField_LocalAddress_len > (Py_ssize_t)sizeof(self->data.LocalAddress)) {
+        if(LocalAddrConfigField_LocalAddress_len >= (Py_ssize_t)sizeof(self->data.LocalAddress)) {
             PyErr_Format(PyExc_ValueError, "LocalAddress too long: length=%zd (max allowed is %zd)", LocalAddrConfigField_LocalAddress_len, (Py_ssize_t)sizeof(self->data.LocalAddress));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcLocalAddrConfigField_set_BrokerID(PyCThostFtdcLocalAddrCo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -194,7 +194,7 @@ static int PyCThostFtdcLocalAddrConfigField_set_PeerAddr(PyCThostFtdcLocalAddrCo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.PeerAddr)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.PeerAddr)) {
         PyErr_SetString(PyExc_ValueError, "PeerAddr must be less than 129 bytes");
         return -1;
     }
@@ -220,7 +220,7 @@ static int PyCThostFtdcLocalAddrConfigField_set_NetMask(PyCThostFtdcLocalAddrCon
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.NetMask)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.NetMask)) {
         PyErr_SetString(PyExc_ValueError, "NetMask must be less than 129 bytes");
         return -1;
     }
@@ -284,7 +284,7 @@ static int PyCThostFtdcLocalAddrConfigField_set_LocalAddress(PyCThostFtdcLocalAd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LocalAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LocalAddress)) {
         PyErr_SetString(PyExc_ValueError, "LocalAddress must be less than 129 bytes");
         return -1;
     }

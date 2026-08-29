@@ -59,7 +59,7 @@ static int PyCThostFtdcAddrAppIDRelationField_init(PyCThostFtdcAddrAppIDRelation
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( AddrAppIDRelationField_BrokerID != NULL ) {
-        if(AddrAppIDRelationField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(AddrAppIDRelationField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AddrAppIDRelationField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcAddrAppIDRelationField_init(PyCThostFtdcAddrAppIDRelation
     ///服务地址
     // TThostFtdcIpAddrType char[129]
     if( AddrAppIDRelationField_Address != NULL ) {
-        if(AddrAppIDRelationField_Address_len > (Py_ssize_t)sizeof(self->data.Address)) {
+        if(AddrAppIDRelationField_Address_len >= (Py_ssize_t)sizeof(self->data.Address)) {
             PyErr_Format(PyExc_ValueError, "Address too long: length=%zd (max allowed is %zd)", AddrAppIDRelationField_Address_len, (Py_ssize_t)sizeof(self->data.Address));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcAddrAppIDRelationField_init(PyCThostFtdcAddrAppIDRelation
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( AddrAppIDRelationField_AppID != NULL ) {
-        if(AddrAppIDRelationField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(AddrAppIDRelationField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", AddrAppIDRelationField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcAddrAppIDRelationField_set_BrokerID(PyCThostFtdcAddrAppID
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcAddrAppIDRelationField_set_Address(PyCThostFtdcAddrAppIDR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Address)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Address)) {
         PyErr_SetString(PyExc_ValueError, "Address must be less than 129 bytes");
         return -1;
     }
@@ -238,7 +238,7 @@ static int PyCThostFtdcAddrAppIDRelationField_set_AppID(PyCThostFtdcAddrAppIDRel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }

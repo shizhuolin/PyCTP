@@ -88,7 +88,7 @@ static int PyCThostFtdcAuthenticationInfoField_init(PyCThostFtdcAuthenticationIn
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( AuthenticationInfoField_BrokerID != NULL ) {
-        if(AuthenticationInfoField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(AuthenticationInfoField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", AuthenticationInfoField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -101,7 +101,7 @@ static int PyCThostFtdcAuthenticationInfoField_init(PyCThostFtdcAuthenticationIn
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( AuthenticationInfoField_UserID != NULL ) {
-        if(AuthenticationInfoField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(AuthenticationInfoField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", AuthenticationInfoField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -114,7 +114,7 @@ static int PyCThostFtdcAuthenticationInfoField_init(PyCThostFtdcAuthenticationIn
     ///用户端产品信息
     // TThostFtdcProductInfoType char[11]
     if( AuthenticationInfoField_UserProductInfo != NULL ) {
-        if(AuthenticationInfoField_UserProductInfo_len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+        if(AuthenticationInfoField_UserProductInfo_len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
             PyErr_Format(PyExc_ValueError, "UserProductInfo too long: length=%zd (max allowed is %zd)", AuthenticationInfoField_UserProductInfo_len, (Py_ssize_t)sizeof(self->data.UserProductInfo));
             return -1;
         }
@@ -127,7 +127,7 @@ static int PyCThostFtdcAuthenticationInfoField_init(PyCThostFtdcAuthenticationIn
     ///认证信息
     // TThostFtdcAuthInfoType char[129]
     if( AuthenticationInfoField_AuthInfo != NULL ) {
-        if(AuthenticationInfoField_AuthInfo_len > (Py_ssize_t)sizeof(self->data.AuthInfo)) {
+        if(AuthenticationInfoField_AuthInfo_len >= (Py_ssize_t)sizeof(self->data.AuthInfo)) {
             PyErr_Format(PyExc_ValueError, "AuthInfo too long: length=%zd (max allowed is %zd)", AuthenticationInfoField_AuthInfo_len, (Py_ssize_t)sizeof(self->data.AuthInfo));
             return -1;
         }
@@ -144,7 +144,7 @@ static int PyCThostFtdcAuthenticationInfoField_init(PyCThostFtdcAuthenticationIn
     ///App代码
     // TThostFtdcAppIDType char[33]
     if( AuthenticationInfoField_AppID != NULL ) {
-        if(AuthenticationInfoField_AppID_len > (Py_ssize_t)sizeof(self->data.AppID)) {
+        if(AuthenticationInfoField_AppID_len >= (Py_ssize_t)sizeof(self->data.AppID)) {
             PyErr_Format(PyExc_ValueError, "AppID too long: length=%zd (max allowed is %zd)", AuthenticationInfoField_AppID_len, (Py_ssize_t)sizeof(self->data.AppID));
             return -1;
         }
@@ -161,7 +161,7 @@ static int PyCThostFtdcAuthenticationInfoField_init(PyCThostFtdcAuthenticationIn
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( AuthenticationInfoField_reserve1 != NULL ) {
-        if(AuthenticationInfoField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(AuthenticationInfoField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", AuthenticationInfoField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -174,7 +174,7 @@ static int PyCThostFtdcAuthenticationInfoField_init(PyCThostFtdcAuthenticationIn
     ///终端IP地址
     // TThostFtdcIPAddressType char[33]
     if( AuthenticationInfoField_ClientIPAddress != NULL ) {
-        if(AuthenticationInfoField_ClientIPAddress_len > (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
+        if(AuthenticationInfoField_ClientIPAddress_len >= (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
             PyErr_Format(PyExc_ValueError, "ClientIPAddress too long: length=%zd (max allowed is %zd)", AuthenticationInfoField_ClientIPAddress_len, (Py_ssize_t)sizeof(self->data.ClientIPAddress));
             return -1;
         }
@@ -238,7 +238,7 @@ static int PyCThostFtdcAuthenticationInfoField_set_BrokerID(PyCThostFtdcAuthenti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -264,7 +264,7 @@ static int PyCThostFtdcAuthenticationInfoField_set_UserID(PyCThostFtdcAuthentica
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -290,7 +290,7 @@ static int PyCThostFtdcAuthenticationInfoField_set_UserProductInfo(PyCThostFtdcA
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserProductInfo)) {
         PyErr_SetString(PyExc_ValueError, "UserProductInfo must be less than 11 bytes");
         return -1;
     }
@@ -316,7 +316,7 @@ static int PyCThostFtdcAuthenticationInfoField_set_AuthInfo(PyCThostFtdcAuthenti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AuthInfo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AuthInfo)) {
         PyErr_SetString(PyExc_ValueError, "AuthInfo must be less than 129 bytes");
         return -1;
     }
@@ -380,7 +380,7 @@ static int PyCThostFtdcAuthenticationInfoField_set_AppID(PyCThostFtdcAuthenticat
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AppID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AppID)) {
         PyErr_SetString(PyExc_ValueError, "AppID must be less than 33 bytes");
         return -1;
     }
@@ -429,7 +429,7 @@ static int PyCThostFtdcAuthenticationInfoField_set_reserve1(PyCThostFtdcAuthenti
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -455,7 +455,7 @@ static int PyCThostFtdcAuthenticationInfoField_set_ClientIPAddress(PyCThostFtdcA
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ClientIPAddress)) {
         PyErr_SetString(PyExc_ValueError, "ClientIPAddress must be less than 33 bytes");
         return -1;
     }

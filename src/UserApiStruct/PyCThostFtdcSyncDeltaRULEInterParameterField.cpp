@@ -101,7 +101,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_init(PyCThostFtdcSyncDel
     ///交易日
     // TThostFtdcDateType char[9]
     if( SyncDeltaRULEInterParameterField_TradingDay != NULL ) {
-        if(SyncDeltaRULEInterParameterField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SyncDeltaRULEInterParameterField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SyncDeltaRULEInterParameterField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -114,7 +114,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_init(PyCThostFtdcSyncDel
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncDeltaRULEInterParameterField_ExchangeID != NULL ) {
-        if(SyncDeltaRULEInterParameterField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncDeltaRULEInterParameterField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaRULEInterParameterField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -135,7 +135,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_init(PyCThostFtdcSyncDel
     ///第一腿构成品种
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaRULEInterParameterField_Leg1ProdFamilyCode != NULL ) {
-        if(SyncDeltaRULEInterParameterField_Leg1ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
+        if(SyncDeltaRULEInterParameterField_Leg1ProdFamilyCode_len >= (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
             PyErr_Format(PyExc_ValueError, "Leg1ProdFamilyCode too long: length=%zd (max allowed is %zd)", SyncDeltaRULEInterParameterField_Leg1ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_init(PyCThostFtdcSyncDel
     ///第二腿构成品种
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaRULEInterParameterField_Leg2ProdFamilyCode != NULL ) {
-        if(SyncDeltaRULEInterParameterField_Leg2ProdFamilyCode_len > (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
+        if(SyncDeltaRULEInterParameterField_Leg2ProdFamilyCode_len >= (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
             PyErr_Format(PyExc_ValueError, "Leg2ProdFamilyCode too long: length=%zd (max allowed is %zd)", SyncDeltaRULEInterParameterField_Leg2ProdFamilyCode_len, (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode));
             return -1;
         }
@@ -173,7 +173,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_init(PyCThostFtdcSyncDel
     ///商品群名称
     // TThostFtdcInstrumentNameType char[21]
     if( SyncDeltaRULEInterParameterField_CommodityGroupName != NULL ) {
-        if(SyncDeltaRULEInterParameterField_CommodityGroupName_len > (Py_ssize_t)sizeof(self->data.CommodityGroupName)) {
+        if(SyncDeltaRULEInterParameterField_CommodityGroupName_len >= (Py_ssize_t)sizeof(self->data.CommodityGroupName)) {
             PyErr_Format(PyExc_ValueError, "CommodityGroupName too long: length=%zd (max allowed is %zd)", SyncDeltaRULEInterParameterField_CommodityGroupName_len, (Py_ssize_t)sizeof(self->data.CommodityGroupName));
             return -1;
         }
@@ -248,7 +248,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_set_TradingDay(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }
@@ -274,7 +274,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_set_ExchangeID(PyCThostF
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -359,7 +359,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_set_Leg1ProdFamilyCode(P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Leg1ProdFamilyCode)) {
         PyErr_SetString(PyExc_ValueError, "Leg1ProdFamilyCode must be less than 81 bytes");
         return -1;
     }
@@ -385,7 +385,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_set_Leg2ProdFamilyCode(P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Leg2ProdFamilyCode)) {
         PyErr_SetString(PyExc_ValueError, "Leg2ProdFamilyCode must be less than 81 bytes");
         return -1;
     }
@@ -525,7 +525,7 @@ static int PyCThostFtdcSyncDeltaRULEInterParameterField_set_CommodityGroupName(P
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommodityGroupName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommodityGroupName)) {
         PyErr_SetString(PyExc_ValueError, "CommodityGroupName must be less than 21 bytes");
         return -1;
     }

@@ -59,7 +59,7 @@ static int PyCThostFtdcWithDrawParamField_init(PyCThostFtdcWithDrawParamField *s
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( WithDrawParamField_BrokerID != NULL ) {
-        if(WithDrawParamField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(WithDrawParamField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", WithDrawParamField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -72,7 +72,7 @@ static int PyCThostFtdcWithDrawParamField_init(PyCThostFtdcWithDrawParamField *s
     ///投资者帐号
     // TThostFtdcAccountIDType char[13]
     if( WithDrawParamField_AccountID != NULL ) {
-        if(WithDrawParamField_AccountID_len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+        if(WithDrawParamField_AccountID_len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
             PyErr_Format(PyExc_ValueError, "AccountID too long: length=%zd (max allowed is %zd)", WithDrawParamField_AccountID_len, (Py_ssize_t)sizeof(self->data.AccountID));
             return -1;
         }
@@ -89,7 +89,7 @@ static int PyCThostFtdcWithDrawParamField_init(PyCThostFtdcWithDrawParamField *s
     ///参数代码值
     // TThostFtdcWithDrawParamValueType char[41]
     if( WithDrawParamField_WithDrawParamValue != NULL ) {
-        if(WithDrawParamField_WithDrawParamValue_len > (Py_ssize_t)sizeof(self->data.WithDrawParamValue)) {
+        if(WithDrawParamField_WithDrawParamValue_len >= (Py_ssize_t)sizeof(self->data.WithDrawParamValue)) {
             PyErr_Format(PyExc_ValueError, "WithDrawParamValue too long: length=%zd (max allowed is %zd)", WithDrawParamField_WithDrawParamValue_len, (Py_ssize_t)sizeof(self->data.WithDrawParamValue));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcWithDrawParamField_set_BrokerID(PyCThostFtdcWithDrawParam
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -174,7 +174,7 @@ static int PyCThostFtdcWithDrawParamField_set_AccountID(PyCThostFtdcWithDrawPara
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.AccountID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.AccountID)) {
         PyErr_SetString(PyExc_ValueError, "AccountID must be less than 13 bytes");
         return -1;
     }
@@ -223,7 +223,7 @@ static int PyCThostFtdcWithDrawParamField_set_WithDrawParamValue(PyCThostFtdcWit
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.WithDrawParamValue)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.WithDrawParamValue)) {
         PyErr_SetString(PyExc_ValueError, "WithDrawParamValue must be less than 41 bytes");
         return -1;
     }

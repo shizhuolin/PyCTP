@@ -52,7 +52,7 @@ static int PyCThostFtdcBrokerUserRightAssignField_init(PyCThostFtdcBrokerUserRig
     ///应用单元代码
     // TThostFtdcBrokerIDType char[11]
     if( BrokerUserRightAssignField_BrokerID != NULL ) {
-        if(BrokerUserRightAssignField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(BrokerUserRightAssignField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerUserRightAssignField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcBrokerUserRightAssignField_set_BrokerID(PyCThostFtdcBroke
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }

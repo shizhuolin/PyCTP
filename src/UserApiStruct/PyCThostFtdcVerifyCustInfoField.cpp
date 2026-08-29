@@ -64,7 +64,7 @@ static int PyCThostFtdcVerifyCustInfoField_init(PyCThostFtdcVerifyCustInfoField 
     ///客户姓名
     // TThostFtdcIndividualNameType char[51]
     if( VerifyCustInfoField_CustomerName != NULL ) {
-        if(VerifyCustInfoField_CustomerName_len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+        if(VerifyCustInfoField_CustomerName_len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
             PyErr_Format(PyExc_ValueError, "CustomerName too long: length=%zd (max allowed is %zd)", VerifyCustInfoField_CustomerName_len, (Py_ssize_t)sizeof(self->data.CustomerName));
             return -1;
         }
@@ -81,7 +81,7 @@ static int PyCThostFtdcVerifyCustInfoField_init(PyCThostFtdcVerifyCustInfoField 
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( VerifyCustInfoField_IdentifiedCardNo != NULL ) {
-        if(VerifyCustInfoField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(VerifyCustInfoField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", VerifyCustInfoField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -98,7 +98,7 @@ static int PyCThostFtdcVerifyCustInfoField_init(PyCThostFtdcVerifyCustInfoField 
     ///长客户姓名
     // TThostFtdcLongIndividualNameType char[161]
     if( VerifyCustInfoField_LongCustomerName != NULL ) {
-        if(VerifyCustInfoField_LongCustomerName_len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+        if(VerifyCustInfoField_LongCustomerName_len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
             PyErr_Format(PyExc_ValueError, "LongCustomerName too long: length=%zd (max allowed is %zd)", VerifyCustInfoField_LongCustomerName_len, (Py_ssize_t)sizeof(self->data.LongCustomerName));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcVerifyCustInfoField_set_CustomerName(PyCThostFtdcVerifyCu
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CustomerName)) {
         PyErr_SetString(PyExc_ValueError, "CustomerName must be less than 51 bytes");
         return -1;
     }
@@ -207,7 +207,7 @@ static int PyCThostFtdcVerifyCustInfoField_set_IdentifiedCardNo(PyCThostFtdcVeri
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -256,7 +256,7 @@ static int PyCThostFtdcVerifyCustInfoField_set_LongCustomerName(PyCThostFtdcVeri
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LongCustomerName)) {
         PyErr_SetString(PyExc_ValueError, "LongCustomerName must be less than 161 bytes");
         return -1;
     }

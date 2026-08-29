@@ -69,7 +69,7 @@ static int PyCThostFtdcTransferFutureToBankReqField_init(PyCThostFtdcTransferFut
     ///期货资金账户
     // TThostFtdcAccountIDType char[13]
     if( TransferFutureToBankReqField_FutureAccount != NULL ) {
-        if(TransferFutureToBankReqField_FutureAccount_len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+        if(TransferFutureToBankReqField_FutureAccount_len >= (Py_ssize_t)sizeof(self->data.FutureAccount)) {
             PyErr_Format(PyExc_ValueError, "FutureAccount too long: length=%zd (max allowed is %zd)", TransferFutureToBankReqField_FutureAccount_len, (Py_ssize_t)sizeof(self->data.FutureAccount));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcTransferFutureToBankReqField_init(PyCThostFtdcTransferFut
     ///密码
     // TThostFtdcFutureAccPwdType char[17]
     if( TransferFutureToBankReqField_FutureAccPwd != NULL ) {
-        if(TransferFutureToBankReqField_FutureAccPwd_len > (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
+        if(TransferFutureToBankReqField_FutureAccPwd_len >= (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
             PyErr_Format(PyExc_ValueError, "FutureAccPwd too long: length=%zd (max allowed is %zd)", TransferFutureToBankReqField_FutureAccPwd_len, (Py_ssize_t)sizeof(self->data.FutureAccPwd));
             return -1;
         }
@@ -107,7 +107,7 @@ static int PyCThostFtdcTransferFutureToBankReqField_init(PyCThostFtdcTransferFut
     ///币种：RMB-人民币 USD-美圆 HKD-港元
     // TThostFtdcCurrencyCodeType char[4]
     if( TransferFutureToBankReqField_CurrencyCode != NULL ) {
-        if(TransferFutureToBankReqField_CurrencyCode_len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+        if(TransferFutureToBankReqField_CurrencyCode_len >= (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
             PyErr_Format(PyExc_ValueError, "CurrencyCode too long: length=%zd (max allowed is %zd)", TransferFutureToBankReqField_CurrencyCode_len, (Py_ssize_t)sizeof(self->data.CurrencyCode));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcTransferFutureToBankReqField_set_FutureAccount(PyCThostFt
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureAccount)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FutureAccount)) {
         PyErr_SetString(PyExc_ValueError, "FutureAccount must be less than 13 bytes");
         return -1;
     }
@@ -217,7 +217,7 @@ static int PyCThostFtdcTransferFutureToBankReqField_set_FutureAccPwd(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.FutureAccPwd)) {
         PyErr_SetString(PyExc_ValueError, "FutureAccPwd must be less than 17 bytes");
         return -1;
     }
@@ -285,7 +285,7 @@ static int PyCThostFtdcTransferFutureToBankReqField_set_CurrencyCode(PyCThostFtd
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CurrencyCode)) {
         PyErr_SetString(PyExc_ValueError, "CurrencyCode must be less than 4 bytes");
         return -1;
     }

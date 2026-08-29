@@ -75,7 +75,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_init(PyCThostFtdcSyncDeltaSPM
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( SyncDeltaSPMMInstParamField_ExchangeID != NULL ) {
-        if(SyncDeltaSPMMInstParamField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(SyncDeltaSPMMInstParamField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", SyncDeltaSPMMInstParamField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -88,7 +88,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_init(PyCThostFtdcSyncDeltaSPM
     ///合约代码
     // TThostFtdcInstrumentIDType char[81]
     if( SyncDeltaSPMMInstParamField_InstrumentID != NULL ) {
-        if(SyncDeltaSPMMInstParamField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(SyncDeltaSPMMInstParamField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", SyncDeltaSPMMInstParamField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -105,7 +105,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_init(PyCThostFtdcSyncDeltaSPM
     ///商品组代码
     // TThostFtdcSPMMProductIDType char[41]
     if( SyncDeltaSPMMInstParamField_CommodityID != NULL ) {
-        if(SyncDeltaSPMMInstParamField_CommodityID_len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
+        if(SyncDeltaSPMMInstParamField_CommodityID_len >= (Py_ssize_t)sizeof(self->data.CommodityID)) {
             PyErr_Format(PyExc_ValueError, "CommodityID too long: length=%zd (max allowed is %zd)", SyncDeltaSPMMInstParamField_CommodityID_len, (Py_ssize_t)sizeof(self->data.CommodityID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_init(PyCThostFtdcSyncDeltaSPM
     ///商品群代码
     // TThostFtdcSPMMProductIDType char[41]
     if( SyncDeltaSPMMInstParamField_CommodityGroupID != NULL ) {
-        if(SyncDeltaSPMMInstParamField_CommodityGroupID_len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
+        if(SyncDeltaSPMMInstParamField_CommodityGroupID_len >= (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
             PyErr_Format(PyExc_ValueError, "CommodityGroupID too long: length=%zd (max allowed is %zd)", SyncDeltaSPMMInstParamField_CommodityGroupID_len, (Py_ssize_t)sizeof(self->data.CommodityGroupID));
             return -1;
         }
@@ -188,7 +188,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_set_ExchangeID(PyCThostFtdcSy
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -214,7 +214,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_set_InstrumentID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -263,7 +263,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_set_CommodityID(PyCThostFtdcS
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommodityID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommodityID)) {
         PyErr_SetString(PyExc_ValueError, "CommodityID must be less than 41 bytes");
         return -1;
     }
@@ -289,7 +289,7 @@ static int PyCThostFtdcSyncDeltaSPMMInstParamField_set_CommodityGroupID(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommodityGroupID)) {
         PyErr_SetString(PyExc_ValueError, "CommodityGroupID must be less than 41 bytes");
         return -1;
     }

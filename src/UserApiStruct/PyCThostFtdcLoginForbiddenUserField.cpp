@@ -60,7 +60,7 @@ static int PyCThostFtdcLoginForbiddenUserField_init(PyCThostFtdcLoginForbiddenUs
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( LoginForbiddenUserField_BrokerID != NULL ) {
-        if(LoginForbiddenUserField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(LoginForbiddenUserField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -73,7 +73,7 @@ static int PyCThostFtdcLoginForbiddenUserField_init(PyCThostFtdcLoginForbiddenUs
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( LoginForbiddenUserField_UserID != NULL ) {
-        if(LoginForbiddenUserField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(LoginForbiddenUserField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -86,7 +86,7 @@ static int PyCThostFtdcLoginForbiddenUserField_init(PyCThostFtdcLoginForbiddenUs
     ///保留的无效字段
     // TThostFtdcOldIPAddressType char[16]
     if( LoginForbiddenUserField_reserve1 != NULL ) {
-        if(LoginForbiddenUserField_reserve1_len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+        if(LoginForbiddenUserField_reserve1_len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
             PyErr_Format(PyExc_ValueError, "reserve1 too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_reserve1_len, (Py_ssize_t)sizeof(self->data.reserve1));
             return -1;
         }
@@ -99,7 +99,7 @@ static int PyCThostFtdcLoginForbiddenUserField_init(PyCThostFtdcLoginForbiddenUs
     ///IP地址
     // TThostFtdcIPAddressType char[33]
     if( LoginForbiddenUserField_IPAddress != NULL ) {
-        if(LoginForbiddenUserField_IPAddress_len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+        if(LoginForbiddenUserField_IPAddress_len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
             PyErr_Format(PyExc_ValueError, "IPAddress too long: length=%zd (max allowed is %zd)", LoginForbiddenUserField_IPAddress_len, (Py_ssize_t)sizeof(self->data.IPAddress));
             return -1;
         }
@@ -158,7 +158,7 @@ static int PyCThostFtdcLoginForbiddenUserField_set_BrokerID(PyCThostFtdcLoginFor
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -184,7 +184,7 @@ static int PyCThostFtdcLoginForbiddenUserField_set_UserID(PyCThostFtdcLoginForbi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -210,7 +210,7 @@ static int PyCThostFtdcLoginForbiddenUserField_set_reserve1(PyCThostFtdcLoginFor
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.reserve1)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.reserve1)) {
         PyErr_SetString(PyExc_ValueError, "reserve1 must be less than 16 bytes");
         return -1;
     }
@@ -236,7 +236,7 @@ static int PyCThostFtdcLoginForbiddenUserField_set_IPAddress(PyCThostFtdcLoginFo
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IPAddress)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IPAddress)) {
         PyErr_SetString(PyExc_ValueError, "IPAddress must be less than 33 bytes");
         return -1;
     }

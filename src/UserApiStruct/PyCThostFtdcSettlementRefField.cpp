@@ -47,7 +47,7 @@ static int PyCThostFtdcSettlementRefField_init(PyCThostFtdcSettlementRefField *s
     ///交易日
     // TThostFtdcDateType char[9]
     if( SettlementRefField_TradingDay != NULL ) {
-        if(SettlementRefField_TradingDay_len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+        if(SettlementRefField_TradingDay_len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
             PyErr_Format(PyExc_ValueError, "TradingDay too long: length=%zd (max allowed is %zd)", SettlementRefField_TradingDay_len, (Py_ssize_t)sizeof(self->data.TradingDay));
             return -1;
         }
@@ -108,7 +108,7 @@ static int PyCThostFtdcSettlementRefField_set_TradingDay(PyCThostFtdcSettlementR
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.TradingDay)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.TradingDay)) {
         PyErr_SetString(PyExc_ValueError, "TradingDay must be less than 9 bytes");
         return -1;
     }

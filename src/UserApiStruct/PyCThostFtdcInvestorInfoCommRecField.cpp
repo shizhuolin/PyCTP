@@ -96,7 +96,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_init(PyCThostFtdcInvestorInfoCom
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( InvestorInfoCommRecField_ExchangeID != NULL ) {
-        if(InvestorInfoCommRecField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(InvestorInfoCommRecField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InvestorInfoCommRecField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -109,7 +109,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_init(PyCThostFtdcInvestorInfoCom
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorInfoCommRecField_BrokerID != NULL ) {
-        if(InvestorInfoCommRecField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorInfoCommRecField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorInfoCommRecField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -122,7 +122,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_init(PyCThostFtdcInvestorInfoCom
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorInfoCommRecField_InvestorID != NULL ) {
-        if(InvestorInfoCommRecField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InvestorInfoCommRecField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorInfoCommRecField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -135,7 +135,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_init(PyCThostFtdcInvestorInfoCom
     ///商品代码
     // TThostFtdcInstrumentIDType char[81]
     if( InvestorInfoCommRecField_InstrumentID != NULL ) {
-        if(InvestorInfoCommRecField_InstrumentID_len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+        if(InvestorInfoCommRecField_InstrumentID_len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
             PyErr_Format(PyExc_ValueError, "InstrumentID too long: length=%zd (max allowed is %zd)", InvestorInfoCommRecField_InstrumentID_len, (Py_ssize_t)sizeof(self->data.InstrumentID));
             return -1;
         }
@@ -168,7 +168,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_init(PyCThostFtdcInvestorInfoCom
     ///品种代码
     // TThostFtdcProductIDType char[41]
     if( InvestorInfoCommRecField_ProductID != NULL ) {
-        if(InvestorInfoCommRecField_ProductID_len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+        if(InvestorInfoCommRecField_ProductID_len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
             PyErr_Format(PyExc_ValueError, "ProductID too long: length=%zd (max allowed is %zd)", InvestorInfoCommRecField_ProductID_len, (Py_ssize_t)sizeof(self->data.ProductID));
             return -1;
         }
@@ -238,7 +238,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_set_ExchangeID(PyCThostFtdcInves
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -264,7 +264,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_set_BrokerID(PyCThostFtdcInvesto
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -290,7 +290,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_set_InvestorID(PyCThostFtdcInves
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -316,7 +316,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_set_InstrumentID(PyCThostFtdcInv
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InstrumentID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InstrumentID)) {
         PyErr_SetString(PyExc_ValueError, "InstrumentID must be less than 81 bytes");
         return -1;
     }
@@ -515,7 +515,7 @@ static int PyCThostFtdcInvestorInfoCommRecField_set_ProductID(PyCThostFtdcInvest
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductID)) {
         PyErr_SetString(PyExc_ValueError, "ProductID must be less than 41 bytes");
         return -1;
     }

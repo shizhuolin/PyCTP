@@ -122,7 +122,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorField_InvestorID != NULL ) {
-        if(InvestorField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InvestorField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -135,7 +135,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorField_BrokerID != NULL ) {
-        if(InvestorField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -148,7 +148,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///投资者分组代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorField_InvestorGroupID != NULL ) {
-        if(InvestorField_InvestorGroupID_len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
+        if(InvestorField_InvestorGroupID_len >= (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
             PyErr_Format(PyExc_ValueError, "InvestorGroupID too long: length=%zd (max allowed is %zd)", InvestorField_InvestorGroupID_len, (Py_ssize_t)sizeof(self->data.InvestorGroupID));
             return -1;
         }
@@ -161,7 +161,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///投资者名称
     // TThostFtdcPartyNameType char[81]
     if( InvestorField_InvestorName != NULL ) {
-        if(InvestorField_InvestorName_len > (Py_ssize_t)sizeof(self->data.InvestorName)) {
+        if(InvestorField_InvestorName_len >= (Py_ssize_t)sizeof(self->data.InvestorName)) {
             PyErr_Format(PyExc_ValueError, "InvestorName too long: length=%zd (max allowed is %zd)", InvestorField_InvestorName_len, (Py_ssize_t)sizeof(self->data.InvestorName));
             return -1;
         }
@@ -178,7 +178,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///证件号码
     // TThostFtdcIdentifiedCardNoType char[51]
     if( InvestorField_IdentifiedCardNo != NULL ) {
-        if(InvestorField_IdentifiedCardNo_len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+        if(InvestorField_IdentifiedCardNo_len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
             PyErr_Format(PyExc_ValueError, "IdentifiedCardNo too long: length=%zd (max allowed is %zd)", InvestorField_IdentifiedCardNo_len, (Py_ssize_t)sizeof(self->data.IdentifiedCardNo));
             return -1;
         }
@@ -195,7 +195,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///联系电话
     // TThostFtdcTelephoneType char[41]
     if( InvestorField_Telephone != NULL ) {
-        if(InvestorField_Telephone_len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+        if(InvestorField_Telephone_len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
             PyErr_Format(PyExc_ValueError, "Telephone too long: length=%zd (max allowed is %zd)", InvestorField_Telephone_len, (Py_ssize_t)sizeof(self->data.Telephone));
             return -1;
         }
@@ -208,7 +208,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///通讯地址
     // TThostFtdcAddressType char[101]
     if( InvestorField_Address != NULL ) {
-        if(InvestorField_Address_len > (Py_ssize_t)sizeof(self->data.Address)) {
+        if(InvestorField_Address_len >= (Py_ssize_t)sizeof(self->data.Address)) {
             PyErr_Format(PyExc_ValueError, "Address too long: length=%zd (max allowed is %zd)", InvestorField_Address_len, (Py_ssize_t)sizeof(self->data.Address));
             return -1;
         }
@@ -221,7 +221,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///开户日期
     // TThostFtdcDateType char[9]
     if( InvestorField_OpenDate != NULL ) {
-        if(InvestorField_OpenDate_len > (Py_ssize_t)sizeof(self->data.OpenDate)) {
+        if(InvestorField_OpenDate_len >= (Py_ssize_t)sizeof(self->data.OpenDate)) {
             PyErr_Format(PyExc_ValueError, "OpenDate too long: length=%zd (max allowed is %zd)", InvestorField_OpenDate_len, (Py_ssize_t)sizeof(self->data.OpenDate));
             return -1;
         }
@@ -234,7 +234,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///手机
     // TThostFtdcMobileType char[41]
     if( InvestorField_Mobile != NULL ) {
-        if(InvestorField_Mobile_len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+        if(InvestorField_Mobile_len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
             PyErr_Format(PyExc_ValueError, "Mobile too long: length=%zd (max allowed is %zd)", InvestorField_Mobile_len, (Py_ssize_t)sizeof(self->data.Mobile));
             return -1;
         }
@@ -247,7 +247,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///手续费率模板代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorField_CommModelID != NULL ) {
-        if(InvestorField_CommModelID_len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
+        if(InvestorField_CommModelID_len >= (Py_ssize_t)sizeof(self->data.CommModelID)) {
             PyErr_Format(PyExc_ValueError, "CommModelID too long: length=%zd (max allowed is %zd)", InvestorField_CommModelID_len, (Py_ssize_t)sizeof(self->data.CommModelID));
             return -1;
         }
@@ -260,7 +260,7 @@ static int PyCThostFtdcInvestorField_init(PyCThostFtdcInvestorField *self, PyObj
     ///保证金率模板代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorField_MarginModelID != NULL ) {
-        if(InvestorField_MarginModelID_len > (Py_ssize_t)sizeof(self->data.MarginModelID)) {
+        if(InvestorField_MarginModelID_len >= (Py_ssize_t)sizeof(self->data.MarginModelID)) {
             PyErr_Format(PyExc_ValueError, "MarginModelID too long: length=%zd (max allowed is %zd)", InvestorField_MarginModelID_len, (Py_ssize_t)sizeof(self->data.MarginModelID));
             return -1;
         }
@@ -338,7 +338,7 @@ static int PyCThostFtdcInvestorField_set_InvestorID(PyCThostFtdcInvestorField *s
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -364,7 +364,7 @@ static int PyCThostFtdcInvestorField_set_BrokerID(PyCThostFtdcInvestorField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -390,7 +390,7 @@ static int PyCThostFtdcInvestorField_set_InvestorGroupID(PyCThostFtdcInvestorFie
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorGroupID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorGroupID must be less than 13 bytes");
         return -1;
     }
@@ -416,7 +416,7 @@ static int PyCThostFtdcInvestorField_set_InvestorName(PyCThostFtdcInvestorField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorName)) {
         PyErr_SetString(PyExc_ValueError, "InvestorName must be less than 81 bytes");
         return -1;
     }
@@ -465,7 +465,7 @@ static int PyCThostFtdcInvestorField_set_IdentifiedCardNo(PyCThostFtdcInvestorFi
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.IdentifiedCardNo)) {
         PyErr_SetString(PyExc_ValueError, "IdentifiedCardNo must be less than 51 bytes");
         return -1;
     }
@@ -529,7 +529,7 @@ static int PyCThostFtdcInvestorField_set_Telephone(PyCThostFtdcInvestorField *se
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Telephone)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Telephone)) {
         PyErr_SetString(PyExc_ValueError, "Telephone must be less than 41 bytes");
         return -1;
     }
@@ -555,7 +555,7 @@ static int PyCThostFtdcInvestorField_set_Address(PyCThostFtdcInvestorField *self
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Address)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Address)) {
         PyErr_SetString(PyExc_ValueError, "Address must be less than 101 bytes");
         return -1;
     }
@@ -581,7 +581,7 @@ static int PyCThostFtdcInvestorField_set_OpenDate(PyCThostFtdcInvestorField *sel
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.OpenDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.OpenDate)) {
         PyErr_SetString(PyExc_ValueError, "OpenDate must be less than 9 bytes");
         return -1;
     }
@@ -607,7 +607,7 @@ static int PyCThostFtdcInvestorField_set_Mobile(PyCThostFtdcInvestorField *self,
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
         PyErr_SetString(PyExc_ValueError, "Mobile must be less than 41 bytes");
         return -1;
     }
@@ -633,7 +633,7 @@ static int PyCThostFtdcInvestorField_set_CommModelID(PyCThostFtdcInvestorField *
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CommModelID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CommModelID)) {
         PyErr_SetString(PyExc_ValueError, "CommModelID must be less than 13 bytes");
         return -1;
     }
@@ -659,7 +659,7 @@ static int PyCThostFtdcInvestorField_set_MarginModelID(PyCThostFtdcInvestorField
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.MarginModelID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.MarginModelID)) {
         PyErr_SetString(PyExc_ValueError, "MarginModelID must be less than 13 bytes");
         return -1;
     }

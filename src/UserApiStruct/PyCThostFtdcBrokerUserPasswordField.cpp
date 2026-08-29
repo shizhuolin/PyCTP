@@ -78,7 +78,7 @@ static int PyCThostFtdcBrokerUserPasswordField_init(PyCThostFtdcBrokerUserPasswo
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( BrokerUserPasswordField_BrokerID != NULL ) {
-        if(BrokerUserPasswordField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(BrokerUserPasswordField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", BrokerUserPasswordField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -91,7 +91,7 @@ static int PyCThostFtdcBrokerUserPasswordField_init(PyCThostFtdcBrokerUserPasswo
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( BrokerUserPasswordField_UserID != NULL ) {
-        if(BrokerUserPasswordField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(BrokerUserPasswordField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", BrokerUserPasswordField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -104,7 +104,7 @@ static int PyCThostFtdcBrokerUserPasswordField_init(PyCThostFtdcBrokerUserPasswo
     ///密码
     // TThostFtdcPasswordType char[41]
     if( BrokerUserPasswordField_Password != NULL ) {
-        if(BrokerUserPasswordField_Password_len > (Py_ssize_t)sizeof(self->data.Password)) {
+        if(BrokerUserPasswordField_Password_len >= (Py_ssize_t)sizeof(self->data.Password)) {
             PyErr_Format(PyExc_ValueError, "Password too long: length=%zd (max allowed is %zd)", BrokerUserPasswordField_Password_len, (Py_ssize_t)sizeof(self->data.Password));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcBrokerUserPasswordField_init(PyCThostFtdcBrokerUserPasswo
     ///上次修改时间
     // TThostFtdcDateTimeType char[17]
     if( BrokerUserPasswordField_LastUpdateTime != NULL ) {
-        if(BrokerUserPasswordField_LastUpdateTime_len > (Py_ssize_t)sizeof(self->data.LastUpdateTime)) {
+        if(BrokerUserPasswordField_LastUpdateTime_len >= (Py_ssize_t)sizeof(self->data.LastUpdateTime)) {
             PyErr_Format(PyExc_ValueError, "LastUpdateTime too long: length=%zd (max allowed is %zd)", BrokerUserPasswordField_LastUpdateTime_len, (Py_ssize_t)sizeof(self->data.LastUpdateTime));
             return -1;
         }
@@ -130,7 +130,7 @@ static int PyCThostFtdcBrokerUserPasswordField_init(PyCThostFtdcBrokerUserPasswo
     ///上次登陆时间
     // TThostFtdcDateTimeType char[17]
     if( BrokerUserPasswordField_LastLoginTime != NULL ) {
-        if(BrokerUserPasswordField_LastLoginTime_len > (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
+        if(BrokerUserPasswordField_LastLoginTime_len >= (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
             PyErr_Format(PyExc_ValueError, "LastLoginTime too long: length=%zd (max allowed is %zd)", BrokerUserPasswordField_LastLoginTime_len, (Py_ssize_t)sizeof(self->data.LastLoginTime));
             return -1;
         }
@@ -143,7 +143,7 @@ static int PyCThostFtdcBrokerUserPasswordField_init(PyCThostFtdcBrokerUserPasswo
     ///密码过期时间
     // TThostFtdcDateType char[9]
     if( BrokerUserPasswordField_ExpireDate != NULL ) {
-        if(BrokerUserPasswordField_ExpireDate_len > (Py_ssize_t)sizeof(self->data.ExpireDate)) {
+        if(BrokerUserPasswordField_ExpireDate_len >= (Py_ssize_t)sizeof(self->data.ExpireDate)) {
             PyErr_Format(PyExc_ValueError, "ExpireDate too long: length=%zd (max allowed is %zd)", BrokerUserPasswordField_ExpireDate_len, (Py_ssize_t)sizeof(self->data.ExpireDate));
             return -1;
         }
@@ -156,7 +156,7 @@ static int PyCThostFtdcBrokerUserPasswordField_init(PyCThostFtdcBrokerUserPasswo
     ///弱密码过期时间
     // TThostFtdcDateType char[9]
     if( BrokerUserPasswordField_WeakExpireDate != NULL ) {
-        if(BrokerUserPasswordField_WeakExpireDate_len > (Py_ssize_t)sizeof(self->data.WeakExpireDate)) {
+        if(BrokerUserPasswordField_WeakExpireDate_len >= (Py_ssize_t)sizeof(self->data.WeakExpireDate)) {
             PyErr_Format(PyExc_ValueError, "WeakExpireDate too long: length=%zd (max allowed is %zd)", BrokerUserPasswordField_WeakExpireDate_len, (Py_ssize_t)sizeof(self->data.WeakExpireDate));
             return -1;
         }
@@ -218,7 +218,7 @@ static int PyCThostFtdcBrokerUserPasswordField_set_BrokerID(PyCThostFtdcBrokerUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -244,7 +244,7 @@ static int PyCThostFtdcBrokerUserPasswordField_set_UserID(PyCThostFtdcBrokerUser
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -270,7 +270,7 @@ static int PyCThostFtdcBrokerUserPasswordField_set_Password(PyCThostFtdcBrokerUs
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Password)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Password)) {
         PyErr_SetString(PyExc_ValueError, "Password must be less than 41 bytes");
         return -1;
     }
@@ -296,7 +296,7 @@ static int PyCThostFtdcBrokerUserPasswordField_set_LastUpdateTime(PyCThostFtdcBr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastUpdateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LastUpdateTime)) {
         PyErr_SetString(PyExc_ValueError, "LastUpdateTime must be less than 17 bytes");
         return -1;
     }
@@ -322,7 +322,7 @@ static int PyCThostFtdcBrokerUserPasswordField_set_LastLoginTime(PyCThostFtdcBro
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.LastLoginTime)) {
         PyErr_SetString(PyExc_ValueError, "LastLoginTime must be less than 17 bytes");
         return -1;
     }
@@ -348,7 +348,7 @@ static int PyCThostFtdcBrokerUserPasswordField_set_ExpireDate(PyCThostFtdcBroker
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExpireDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExpireDate)) {
         PyErr_SetString(PyExc_ValueError, "ExpireDate must be less than 9 bytes");
         return -1;
     }
@@ -374,7 +374,7 @@ static int PyCThostFtdcBrokerUserPasswordField_set_WeakExpireDate(PyCThostFtdcBr
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.WeakExpireDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.WeakExpireDate)) {
         PyErr_SetString(PyExc_ValueError, "WeakExpireDate must be less than 9 bytes");
         return -1;
     }

@@ -88,7 +88,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_init(PyCThostFtdcSMSVerifyInfoF
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( SMSVerifyInfoFromSecField_BrokerID != NULL ) {
-        if(SMSVerifyInfoFromSecField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(SMSVerifyInfoFromSecField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", SMSVerifyInfoFromSecField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -101,7 +101,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_init(PyCThostFtdcSMSVerifyInfoF
     ///经纪公司简称
     // TThostFtdcBrokerAbbrType char[9]
     if( SMSVerifyInfoFromSecField_BrokerAbbr != NULL ) {
-        if(SMSVerifyInfoFromSecField_BrokerAbbr_len > (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
+        if(SMSVerifyInfoFromSecField_BrokerAbbr_len >= (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
             PyErr_Format(PyExc_ValueError, "BrokerAbbr too long: length=%zd (max allowed is %zd)", SMSVerifyInfoFromSecField_BrokerAbbr_len, (Py_ssize_t)sizeof(self->data.BrokerAbbr));
             return -1;
         }
@@ -114,7 +114,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_init(PyCThostFtdcSMSVerifyInfoF
     ///用户代码
     // TThostFtdcUserIDType char[16]
     if( SMSVerifyInfoFromSecField_UserID != NULL ) {
-        if(SMSVerifyInfoFromSecField_UserID_len > (Py_ssize_t)sizeof(self->data.UserID)) {
+        if(SMSVerifyInfoFromSecField_UserID_len >= (Py_ssize_t)sizeof(self->data.UserID)) {
             PyErr_Format(PyExc_ValueError, "UserID too long: length=%zd (max allowed is %zd)", SMSVerifyInfoFromSecField_UserID_len, (Py_ssize_t)sizeof(self->data.UserID));
             return -1;
         }
@@ -127,7 +127,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_init(PyCThostFtdcSMSVerifyInfoF
     ///手机号
     // TThostFtdcSMSPhoneType char[17]
     if( SMSVerifyInfoFromSecField_Mobile != NULL ) {
-        if(SMSVerifyInfoFromSecField_Mobile_len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+        if(SMSVerifyInfoFromSecField_Mobile_len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
             PyErr_Format(PyExc_ValueError, "Mobile too long: length=%zd (max allowed is %zd)", SMSVerifyInfoFromSecField_Mobile_len, (Py_ssize_t)sizeof(self->data.Mobile));
             return -1;
         }
@@ -140,7 +140,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_init(PyCThostFtdcSMSVerifyInfoF
     ///短信验证码
     // TThostFtdcSMSCodeType char[17]
     if( SMSVerifyInfoFromSecField_SMSCode != NULL ) {
-        if(SMSVerifyInfoFromSecField_SMSCode_len > (Py_ssize_t)sizeof(self->data.SMSCode)) {
+        if(SMSVerifyInfoFromSecField_SMSCode_len >= (Py_ssize_t)sizeof(self->data.SMSCode)) {
             PyErr_Format(PyExc_ValueError, "SMSCode too long: length=%zd (max allowed is %zd)", SMSVerifyInfoFromSecField_SMSCode_len, (Py_ssize_t)sizeof(self->data.SMSCode));
             return -1;
         }
@@ -153,7 +153,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_init(PyCThostFtdcSMSVerifyInfoF
     ///验证码创建日期
     // TThostFtdcDateType char[9]
     if( SMSVerifyInfoFromSecField_CreateDate != NULL ) {
-        if(SMSVerifyInfoFromSecField_CreateDate_len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+        if(SMSVerifyInfoFromSecField_CreateDate_len >= (Py_ssize_t)sizeof(self->data.CreateDate)) {
             PyErr_Format(PyExc_ValueError, "CreateDate too long: length=%zd (max allowed is %zd)", SMSVerifyInfoFromSecField_CreateDate_len, (Py_ssize_t)sizeof(self->data.CreateDate));
             return -1;
         }
@@ -166,7 +166,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_init(PyCThostFtdcSMSVerifyInfoF
     ///验证码创建时间
     // TThostFtdcTimeType char[9]
     if( SMSVerifyInfoFromSecField_CreateTime != NULL ) {
-        if(SMSVerifyInfoFromSecField_CreateTime_len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+        if(SMSVerifyInfoFromSecField_CreateTime_len >= (Py_ssize_t)sizeof(self->data.CreateTime)) {
             PyErr_Format(PyExc_ValueError, "CreateTime too long: length=%zd (max allowed is %zd)", SMSVerifyInfoFromSecField_CreateTime_len, (Py_ssize_t)sizeof(self->data.CreateTime));
             return -1;
         }
@@ -238,7 +238,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_set_BrokerID(PyCThostFtdcSMSVer
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -264,7 +264,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_set_BrokerAbbr(PyCThostFtdcSMSV
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerAbbr)) {
         PyErr_SetString(PyExc_ValueError, "BrokerAbbr must be less than 9 bytes");
         return -1;
     }
@@ -290,7 +290,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_set_UserID(PyCThostFtdcSMSVerif
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.UserID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.UserID)) {
         PyErr_SetString(PyExc_ValueError, "UserID must be less than 16 bytes");
         return -1;
     }
@@ -316,7 +316,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_set_Mobile(PyCThostFtdcSMSVerif
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.Mobile)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.Mobile)) {
         PyErr_SetString(PyExc_ValueError, "Mobile must be less than 17 bytes");
         return -1;
     }
@@ -342,7 +342,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_set_SMSCode(PyCThostFtdcSMSVeri
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SMSCode)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SMSCode)) {
         PyErr_SetString(PyExc_ValueError, "SMSCode must be less than 17 bytes");
         return -1;
     }
@@ -368,7 +368,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_set_CreateDate(PyCThostFtdcSMSV
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateDate)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CreateDate)) {
         PyErr_SetString(PyExc_ValueError, "CreateDate must be less than 9 bytes");
         return -1;
     }
@@ -394,7 +394,7 @@ static int PyCThostFtdcSMSVerifyInfoFromSecField_set_CreateTime(PyCThostFtdcSMSV
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.CreateTime)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.CreateTime)) {
         PyErr_SetString(PyExc_ValueError, "CreateTime must be less than 9 bytes");
         return -1;
     }

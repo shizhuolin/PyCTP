@@ -74,7 +74,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_init(PyCThostFtdcInvestorPo
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( InvestorPortfMarginRatioField_BrokerID != NULL ) {
-        if(InvestorPortfMarginRatioField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(InvestorPortfMarginRatioField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -87,7 +87,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_init(PyCThostFtdcInvestorPo
     ///投资者代码
     // TThostFtdcInvestorIDType char[13]
     if( InvestorPortfMarginRatioField_InvestorID != NULL ) {
-        if(InvestorPortfMarginRatioField_InvestorID_len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+        if(InvestorPortfMarginRatioField_InvestorID_len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
             PyErr_Format(PyExc_ValueError, "InvestorID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_InvestorID_len, (Py_ssize_t)sizeof(self->data.InvestorID));
             return -1;
         }
@@ -100,7 +100,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_init(PyCThostFtdcInvestorPo
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( InvestorPortfMarginRatioField_ExchangeID != NULL ) {
-        if(InvestorPortfMarginRatioField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(InvestorPortfMarginRatioField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -117,7 +117,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_init(PyCThostFtdcInvestorPo
     ///产品群代码
     // TThostFtdcProductIDType char[41]
     if( InvestorPortfMarginRatioField_ProductGroupID != NULL ) {
-        if(InvestorPortfMarginRatioField_ProductGroupID_len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+        if(InvestorPortfMarginRatioField_ProductGroupID_len >= (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
             PyErr_Format(PyExc_ValueError, "ProductGroupID too long: length=%zd (max allowed is %zd)", InvestorPortfMarginRatioField_ProductGroupID_len, (Py_ssize_t)sizeof(self->data.ProductGroupID));
             return -1;
         }
@@ -201,7 +201,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_set_BrokerID(PyCThostFtdcIn
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -227,7 +227,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_set_InvestorID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.InvestorID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.InvestorID)) {
         PyErr_SetString(PyExc_ValueError, "InvestorID must be less than 13 bytes");
         return -1;
     }
@@ -253,7 +253,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_set_ExchangeID(PyCThostFtdc
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }
@@ -300,7 +300,7 @@ static int PyCThostFtdcInvestorPortfMarginRatioField_set_ProductGroupID(PyCThost
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ProductGroupID)) {
         PyErr_SetString(PyExc_ValueError, "ProductGroupID must be less than 41 bytes");
         return -1;
     }

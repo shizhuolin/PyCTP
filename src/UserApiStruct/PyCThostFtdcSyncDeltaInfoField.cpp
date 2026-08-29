@@ -65,7 +65,7 @@ static int PyCThostFtdcSyncDeltaInfoField_init(PyCThostFtdcSyncDeltaInfoField *s
     ///追平描述
     // TThostFtdcSyncDescriptionType char[257]
     if( SyncDeltaInfoField_SyncDescription != NULL ) {
-        if(SyncDeltaInfoField_SyncDescription_len > (Py_ssize_t)sizeof(self->data.SyncDescription)) {
+        if(SyncDeltaInfoField_SyncDescription_len >= (Py_ssize_t)sizeof(self->data.SyncDescription)) {
             PyErr_Format(PyExc_ValueError, "SyncDescription too long: length=%zd (max allowed is %zd)", SyncDeltaInfoField_SyncDescription_len, (Py_ssize_t)sizeof(self->data.SyncDescription));
             return -1;
         }
@@ -189,7 +189,7 @@ static int PyCThostFtdcSyncDeltaInfoField_set_SyncDescription(PyCThostFtdcSyncDe
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SyncDescription)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SyncDescription)) {
         PyErr_SetString(PyExc_ValueError, "SyncDescription must be less than 257 bytes");
         return -1;
     }

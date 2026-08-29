@@ -60,7 +60,7 @@ static int PyCThostFtdcLogoutAllField_init(PyCThostFtdcLogoutAllField *self, PyO
     ///系统名称
     // TThostFtdcSystemNameType char[41]
     if( LogoutAllField_SystemName != NULL ) {
-        if(LogoutAllField_SystemName_len > (Py_ssize_t)sizeof(self->data.SystemName)) {
+        if(LogoutAllField_SystemName_len >= (Py_ssize_t)sizeof(self->data.SystemName)) {
             PyErr_Format(PyExc_ValueError, "SystemName too long: length=%zd (max allowed is %zd)", LogoutAllField_SystemName_len, (Py_ssize_t)sizeof(self->data.SystemName));
             return -1;
         }
@@ -194,7 +194,7 @@ static int PyCThostFtdcLogoutAllField_set_SystemName(PyCThostFtdcLogoutAllField 
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.SystemName)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.SystemName)) {
         PyErr_SetString(PyExc_ValueError, "SystemName must be less than 41 bytes");
         return -1;
     }

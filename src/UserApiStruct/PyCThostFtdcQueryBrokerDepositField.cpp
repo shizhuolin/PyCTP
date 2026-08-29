@@ -48,7 +48,7 @@ static int PyCThostFtdcQueryBrokerDepositField_init(PyCThostFtdcQueryBrokerDepos
     ///经纪公司代码
     // TThostFtdcBrokerIDType char[11]
     if( QueryBrokerDepositField_BrokerID != NULL ) {
-        if(QueryBrokerDepositField_BrokerID_len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+        if(QueryBrokerDepositField_BrokerID_len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
             PyErr_Format(PyExc_ValueError, "BrokerID too long: length=%zd (max allowed is %zd)", QueryBrokerDepositField_BrokerID_len, (Py_ssize_t)sizeof(self->data.BrokerID));
             return -1;
         }
@@ -61,7 +61,7 @@ static int PyCThostFtdcQueryBrokerDepositField_init(PyCThostFtdcQueryBrokerDepos
     ///交易所代码
     // TThostFtdcExchangeIDType char[9]
     if( QueryBrokerDepositField_ExchangeID != NULL ) {
-        if(QueryBrokerDepositField_ExchangeID_len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+        if(QueryBrokerDepositField_ExchangeID_len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
             PyErr_Format(PyExc_ValueError, "ExchangeID too long: length=%zd (max allowed is %zd)", QueryBrokerDepositField_ExchangeID_len, (Py_ssize_t)sizeof(self->data.ExchangeID));
             return -1;
         }
@@ -118,7 +118,7 @@ static int PyCThostFtdcQueryBrokerDepositField_set_BrokerID(PyCThostFtdcQueryBro
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.BrokerID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.BrokerID)) {
         PyErr_SetString(PyExc_ValueError, "BrokerID must be less than 11 bytes");
         return -1;
     }
@@ -144,7 +144,7 @@ static int PyCThostFtdcQueryBrokerDepositField_set_ExchangeID(PyCThostFtdcQueryB
     }
     const char *buf = PyBytes_AsString(val);
     Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.ExchangeID)) {
+    if (len >= (Py_ssize_t)sizeof(self->data.ExchangeID)) {
         PyErr_SetString(PyExc_ValueError, "ExchangeID must be less than 9 bytes");
         return -1;
     }

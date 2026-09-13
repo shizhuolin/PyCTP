@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Python ctypes wrapper for DataCollect API.
 
@@ -16,8 +15,8 @@ Examples
 """
 
 import ctypes
-import sys
 import os
+import sys
 
 # ---------- Platform detection ----------
 IS_WINDOWS = sys.platform.startswith('win')
@@ -42,7 +41,7 @@ DEFAULT_SYMBOL_CANDIDATES = {
 }
 
 
-class DataCollect(object):
+class DataCollect:
     """
     Wrapper for DataCollect dynamic library.
 
@@ -83,7 +82,7 @@ class DataCollect(object):
                 if os.path.exists(path):
                     return path
             raise FileNotFoundError(
-                "None of the given library paths exist: {}".format(lib_path)
+                f"None of the given library paths exist: {lib_path}"
             )
         return lib_path
 
@@ -159,10 +158,8 @@ class DataCollect(object):
                 continue
 
         raise AttributeError(
-            "Could not find symbol for '{}'. Tried: {}. "
-            "Use `symbol_map` to specify the correct mangled name.".format(
-                func_name, candidates
-            )
+            f"Could not find symbol for '{func_name}'. Tried: {candidates}. "
+            "Use `symbol_map` to specify the correct mangled name."
         )
 
     def _setup_functions(self):
@@ -261,7 +258,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ret, info, length = dc.CTP_GetSystemInfo()
-    print("Return code: 0x{:08x}".format(ret))
+    print(f"Return code: 0x{ret:08x}")
     print("Length:", length)
     print("Info (raw bytes):", info)
     

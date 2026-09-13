@@ -1,698 +1,846 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# pylint: disable=too-many-locals
+# pylint: disable=too-many-branches
+# pylint: disable=too-many-statements
+# pylint: disable=too-many-instance-attributes
+# pylint: disable=too-many-lines
 """
-Created on Thu Aug  7 17:28:57 2025
+Analyze the CTP header files and generate C/C++ source code accordingly.
+
+Created on Thu Sep 3 18:28:57 2026
 
 @author: zhuolin.shi
 """
+import io
+import os
+from collections.abc import Callable, Iterator
+from dataclasses import dataclass, field
+from typing import Any, NamedTuple, TypeAlias
 
-def file_read(filename):
-    import chardet
+import chardet
+import jinja2
+from clang import cindex
+
+
+class CTPEnumMember(NamedTuple):
+    """Enum member for ctp."""
+
+    name: str
+    value: str
+    comment: list[str] | None = None  # multi-line comment
+
+@dataclass
+class CTPEnum:
+    """Enum for ctp."""
+
+    name: str
+    underlying_type: str  # e.g 'int', 'char', 'float', 'double', ...
+    comment: list[str] | None = None  # multi-line comment
+    members: list[CTPEnumMember] = field(default_factory=list)
+
+class CTPDefine(NamedTuple):
+    """Macro define for ctp."""
+
+    name: str
+    value: str
+    comment: list[str] | None = None  # multi-line comment
+
+class CTPStructMember(NamedTuple):
+    """Struct member for ctp."""
+
+    name: str
+    type_base: str  # e.g 'int', 'char', 'float', 'double', ...
+    type_is_array: bool = False
+    type_array_length: int = 0  # only type_base is array, else 0
+    type_alias: str | None = None  # e.g 'TThostFtdcTraderIDType'
+    comment: list[str] | None = None  # multi-line comment
+
+@dataclass
+class CTPStruct:
+    """Struct for ctp."""
+
+    name: str
+    comment: list[str] | None = None  # multi-line comment
+    members: list[CTPStructMember] = field(default_factory=list)
+
+class CTPClassMethodParam(NamedTuple):
+    """Class method param for ctp."""
+
+    name: str
+    c_type: str
+    is_const: bool = False
+    is_pointer: bool = False
+    is_reference: bool = False
+    is_array: bool = False
+    array_length: int = 0
+    default: str | None = None
+
+@dataclass
+class CTPClassMethod:
+    """Method for ctp."""
+
+    name: str
+    result_type: str
+    access: str  # 'public', 'protected', 'private'
+    is_static: bool = False
+    is_virtual: bool = False
+    is_pure_virtual: bool = False
+    is_const_method: bool = False
+    comment: list[str] | None = None  # multi-line comment
+    params: list[CTPClassMethodParam] = field(default_factory=list)
+
+@dataclass
+class CTPClass:
+    """Class for ctp."""
+
+    name: str
+    comment: list[str] | None = None  # multi-line comment
+    methods: list[CTPClassMethod] = field(default_factory=list)
+
+def file_read(
+        filename: str,
+        force_encoding: str | None = None,
+        fallback_encoding: str = 'UTF-8') -> str:
+    """Read a file and automatically detect its encoding using chardet.
+
+    The function reads the file in binary mode, detects the most likely
+    encoding with the `chardet` library, and decodes the content accordingly.
+
+    Parameters
+    ----------
+    filename: str
+        Path to the file to be read.
+    force_encoding : str, optional
+        If provided, this encoding is used directly, bypassing automatic
+        detection. default is None.
+    fallback_encoding : str, optional
+        The encoding to use when automatic detection fails
+        (i.e., chardet returns None). default is UTF-8.
+
+    Returns
+    -------
+    str
+        The file content as a decoded string.
+    """
+    f: io.BufferedReader
     with open(filename, 'rb') as f:
-        data = f.read()
-        encoding = chardet.detect(data)
-        sourcecode = data.decode(encoding['encoding'])
-    return sourcecode
+        raw_data: bytes = f.read()
+    if force_encoding is not None:
+        return raw_data.decode(force_encoding)
+    detected_info: dict[str, str | None] = chardet.detect(raw_data)
+    detected_encoding: str | None = detected_info.get('encoding')
+    encoding_to_use: str = (detected_encoding if detected_encoding is not None
+                            else fallback_encoding)
+    return raw_data.decode(encoding_to_use)
 
-def file_save(filename, content):
-    with open(filename, 'wt', encoding='utf-8', newline='\n') as f:
+def file_save(filename: str, content: str, encoding: str = 'UTF-8') -> None:
+    """Save string content to a text file.
+
+    Parameters
+    ----------
+    filename: str
+        Path to the destination file.
+    content: str
+        The text content to write.
+    encoding: str
+        The encoding used to save the content.
+    """
+    f: io.TextIOWrapper
+    with open(filename, 'wt', encoding=encoding, newline='\n') as f:
         f.write(content)
     print('save:', filename)
-    
-def cpp_file_parse(filename):
-    import os
-    from clang.cindex import Index, Config, CursorKind, TranslationUnit
-    from tempfile import NamedTemporaryFile
-    include_path = os.path.dirname(filename)
-    sourcecode = file_read(filename)
-    with NamedTemporaryFile("w", encoding="utf-8", suffix=".tmp", delete=False) as tmp:
-        tmp.write(sourcecode)
-        tmp_filename = tmp.name
-    index = Index.create()
-    tu = index.parse(tmp_filename, args=['-x', 'c++', f'-I{include_path}', '-std=c++11'], options=TranslationUnit.PARSE_DETAILED_PROCESSING_RECORD)
-    return filename, sourcecode, tu
 
-def extract_comment(source_lines, location):
-    from clang.cindex import Index, Config, CursorKind, TranslationUnit, SourceLocation
+def gencode_from_template(
+        template_filename: str,
+        replace: dict[str, Any],
+        generate_filename: str) -> None:
+    """Render a Jinja2 template file and generate the output source file.
+
+    Parameters
+    ----------
+    template_filename : str
+        Absolute or relative path to the template file (e.g.,
+        "/path/to/UserApiDataType.cpp.template").
+    replace : dict[str, Any]
+        Context data for template rendering. Keys correspond to template
+        variable names (accessible as {{ key }} inside the template).
+        Values can be of any type (strings, lists, dicts, custom objects).
+    generate_filename : str
+        Absolute or relative path where the generated source file should
+        be written (e.g., "/path/to/output/UserApiDataType.cpp").
+    """
+    template_dir: str = os.path.dirname(os.path.abspath(template_filename))
+    template_name: str = os.path.basename(template_filename)
+    env: jinja2.Environment = jinja2.Environment(
+        loader=jinja2.FileSystemLoader(str(template_dir)),
+        undefined=jinja2.StrictUndefined,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    output = env.get_template(template_name).render(**replace)
+    if output != file_read(generate_filename):
+        file_save(generate_filename, output)
+
+def cpp_file_parse(
+        filenames: list[str]
+        ) -> tuple[dict[str, str], cindex.TranslationUnit]:
+    """Parse a C/C++ source file using libclang.
+
+    This function reads the source code, creates a temporary file, and parses
+    it with Clang's index to obtain the translation unit (AST).
+
+    Parameters
+    ----------
+    filenames: list[str]
+        Paths to the C/C++ source files to parse.
+
+    Returns
+    -------
+    tuple[dict[str, str], cindex.TranslationUnit]
+        A tuple containing:
+            - The original filename (str) and it's source code content (str)
+            - The Clang translation unit (TranslationUnit) representing the AST
+    """
+    includes = '\n'.join(f'#include "{os.path.basename(f)}"'
+                         for f in filenames)
+    virtual_main = '__main__.h'
+    files: list[tuple[str, str]] = ([(virtual_main, includes)] +
+                                    [(f, file_read(f)) for f in filenames])
+    include_paths: list[str] = list({os.path.dirname(f) for f in filenames})
+    args: list[str] = ['-x', 'c++', '-std=c++11']
+    args += [f'-I{include}' for include in include_paths]
+    options: int = (
+        cindex.TranslationUnit.PARSE_DETAILED_PROCESSING_RECORD |
+        cindex.TranslationUnit.PARSE_INCLUDE_BRIEF_COMMENTS_IN_CODE_COMPLETION)
+
+    tu: cindex.TranslationUnit = cindex.Index.create().parse(
+        files[0][0],
+        args=args,
+        unsaved_files=files,
+        options=options)
+
+    if tu.diagnostics:
+        for diag in tu.diagnostics:
+            print(f"Diagnostic: {diag}")
+
+    return dict(files), tu
+
+def extract_raw_comment(
+        files: dict[str, str],
+        location: int | cindex.SourceLocation) -> list[str]:
+    """Extract raw comment text surrounding a given source location.
+
+    Parameters
+    ----------
+    files: dict[str, str]
+        Mapping from filename to full source code content.
+    location: int | cindex.SourceLocation
+        Either a 0‑based line index, or a libclang SourceLocation object.
+
+    Returns
+    -------
+    list[str]
+        Comment lines (including comment markers) in top‑to‑bottom order.
+        Returns empty list if no comment is found.
+
+    Raises
+    ------
+    KeyError
+        If the file name cannot be found in `files`.
+    ValueError
+        If `location` is of unsupported type.
+    """
     # Backtrack to get preceding comment
-    if type(location) == int:
-        line_index = location
-    elif type(location) == SourceLocation:
-        line_index = location.line - 1 #base 
+    if isinstance(location, int):
+        line_index: int = location
+    elif isinstance(location, cindex.SourceLocation):
+        line_index: int = location.line - 1  # base
     else:
-        raise ValueError(location)
-    comment_lines = []
-    i = line_index - 1
+        raise TypeError(
+            f'Unsupported location type: {type(location).__name__}; '
+            f'expected int or cindex.SourceLocation'
+            )
+    source_lines: list[str] = files[location.file.name].splitlines()
+    comment_lines: list[str] = []
+    i: int = line_index - 1
+    is_block_comment: bool = False
     while i >= 0:
-        line = source_lines[i].strip()
-        if line.startswith('//') or line.startswith('/*') or line.endswith('*/'):
+        line: str = source_lines[i].strip()
+        if is_block_comment:
             comment_lines.insert(0, line)
-            i -= 1
-        elif line == '':
-            i -= 1  # Allow blank line between comments
+            if line.startswith('/*'):
+                break
+            # Allow blank line between comments in block
         else:
-            break
+            if line.startswith('/*') and line.endswith('*/'):
+                comment_lines.insert(0, line)
+                break
+            if not line.startswith('/*') and line.endswith('*/'):
+                comment_lines.insert(0, line)
+                is_block_comment = True
+            elif line.startswith('//'):
+                comment_lines.insert(0, line)
+            elif line == '':
+                # Disable blank line between comments out of block
+                break
+            else:
+                break
+        i -= 1
     return comment_lines
 
-def gencode_from_template(template_filename, replace, generate_filename=None):
-    from string import Template
-    template = file_read( template_filename )
-    t = Template(template)
-    output = t.substitute(replace)
-    if generate_filename:
-        file_save(generate_filename, output)
-    return output
+def get_field_type(t: cindex.Type):
+    """Resolve a Clang type to its base name or array info.
 
-def get_field_type_name(t):
-    from clang.cindex import TypeKind
-    
-    if t.kind == TypeKind.CONSTANTARRAY:
-        element_type = get_field_type_name(t.element_type)
+    Recursively resolve and normalize a `clang.cindex.Type` into a
+    human-readable description, with special handling for arrays, typedefs,
+    and elaborated types.
+
+    This function traverses the type tree to strip away typedef aliases and
+    elaborated type names (e.g., `struct S` → `S`), and for constant-sized
+    arrays it returns both the element type and the array length.
+
+    Parameters
+    ----------
+    t : cindex.Type
+        The Clang type object to be analyzed. Must be a valid Type instance.
+
+    Returns
+    -------
+    Union[str, Tuple[Union[str, Tuple], int]]
+        - For **non‑array types**: returns a string containing the resolved
+          type name (e.g., ``'int'``, ``'char'``, ``'MyStruct'``).
+        - For **constant‑sized arrays**: returns a tuple
+          ``(element_type, count)``, where `element_type` is the result of
+          recursively calling this function on the array's element type (which
+          may itself be an array, leading to nested tuples), and `count` is
+          the integer number of elements.
+        - For **typedefs** and **elaborated types** (`struct`/`class`/`enum`):
+          the function recursively resolves to the underlying type, so the
+          caller never sees the alias or elaborated qualifier.
+
+    Raises
+    ------
+    TypeError
+        If `t` is not an instance of `cindex.Type`.
+    ValueError
+        If the type is invalid (its kind is `TypeKind.INVALID`).
+
+    Notes
+    -----
+    - The function **does not** handle incomplete arrays (`[]`) or
+      variable‑length arrays; those will fall through to the `else` branch and
+      return a spelling like ``'int[]'`` (or raise if the spelling is empty).
+    - For `ELABORATED` types (e.g., `struct S`), `get_named_type()` is used to
+      obtain the underlying declaration type, then recursion continues.
+
+    Examples
+    --------
+    Assuming `field_cursor` is a `Cursor` for a struct member:
+
+    >>> typ = field_cursor.type
+    >>> result = get_field_type(typ)
+    >>> if isinstance(result, tuple):
+    ...     elem, length = result          # array: e.g., ('char', 21)
+    ... else:
+    ...     type_name = result             # non‑array: e.g., 'int'
+
+    For a nested array `int[3][4]`, the function returns:
+    `( ('int', 4), 3 )` – a tuple where the first element is itself a tuple.
+    """
+    if not isinstance(t, cindex.Type):
+        raise TypeError(f'Expected cindex.Type, got {type(t).__name__}')
+    if t.kind == cindex.TypeKind.CONSTANTARRAY:
+        element_type = get_field_type(t.element_type)
         return element_type, t.element_count
-    
-    elif t.kind == TypeKind.ELABORATED:
+    if t.kind == cindex.TypeKind.ELABORATED:
         t1 = t.get_named_type()
-        name = t1.spelling
-        return get_field_type_name(t1)
-    
-    elif t.kind == TypeKind.TYPEDEF:
-        return get_field_type_name(t.get_canonical())
-    
-    else:
-        return t.spelling
-        
-def generate_macro_code(AST_ApiDataType, cpython_path):
-    from clang.cindex import Index, Config, CursorKind, TranslationUnit, SourceLocation
-    import os, re
-    template_filename = os.path.join(cpython_path, 'UserApiDataType.cpp.template')
-    generate_filename = os.path.join(cpython_path, 'UserApiDataType.cpp')
-    cpp_filename, cpp_sourcecode, cpp_tu = AST_ApiDataType
-    source_lines = cpp_sourcecode.splitlines()
-    cppsourcecode = ''
+        return get_field_type(t1)
+    if t.kind == cindex.TypeKind.TYPEDEF:
+        return get_field_type(t.get_canonical())
+    return t.spelling
+
+def ctp_symbol_enum_parse(
+        cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        ) -> list[CTPEnum]:
+    """Parse enum in ctp source code.
+
+    Parameters
+    ----------
+    cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        A tuple containing:
+            - A list of (filename, source_code) pairs for
+              the parsed CTP headers.
+            - The Clang translation unit (AST) used for
+              extracting macro definitions.
+
+    Returns
+    -------
+    list[CTPEnum]
+        parsed enums in ctp source code
+    """
+    cpp_files: dict[str, str]
+    cpp_tu: cindex.TranslationUnit
+    cpp_files, cpp_tu = cpp_parse_data
+    child: cindex.Cursor
+    ctp_enums: list[CTPEnum] = []
+    target_filenames = set(cpp_files.keys())
     for child in cpp_tu.cursor.get_children():
-        # enum
-        if child.kind == CursorKind.ENUM_DECL and child.spelling.startswith('THOST_TE'):
-            comment = '\n\t'.join(extract_comment(source_lines, child.location)).strip()
-            cppsourcecode += f'\t{comment}\n'
-            
-            for node in child.get_children():
-                if node.kind == CursorKind.ENUM_CONSTANT_DECL:
-                    comment = '\n\t'.join(extract_comment(source_lines, node.location)).strip()
-                    cppsourcecode += f'\t{comment}\n'
-                    
-                    if type(node.enum_value) == int:
-                        cppsourcecode += f'\tif( PyModule_AddIntMacro(m, {node.spelling}) < 0 ) return -1;\n'
-        # define
-        elif child.kind == CursorKind.MACRO_DEFINITION and child.spelling.startswith('THOST_FTDC_'):
-            location = child.location
-            macro_line = location.line - 1 #base 
-            macro_name = child.spelling
-            
-            # Read tokens to get macro value
-            tokens = list(cpp_tu.get_tokens(extent=child.extent))
-            rhs_tokens = []
-            seen_name = False
-            for tok in tokens:
-                if not seen_name and tok.spelling == macro_name:
-                    seen_name = True
-                    continue
-                if seen_name:
-                    rhs_tokens.append(tok.spelling)
-            macro_value = ' '.join(rhs_tokens).strip()
-            
-            # Backtrack to get preceding comment
-            comment = '\n\t'.join(extract_comment(source_lines, child.location)).strip()
-            cppsourcecode += f'\t{comment}\n'
-            
-            if re.search(r'^\'.\'$', macro_value ):
-                cppsourcecode += f'\tif( PyModule_AddCharMacro(m, {macro_name}) < 0 ) return -1;\n'
-            elif re.search(r'^\'.{2,}\'$', macro_value ):
-                cppsourcecode += f'\tif( PyModule_AddStrConstant(m, "{macro_name}", "'+macro_value.strip("'")+'") < 0 ) return -1;\n'
+        if child.kind != cindex.CursorKind.ENUM_DECL:
+            continue
+        if not child.location.file:
+            continue
+        if child.location.file.name not in target_filenames:
+            continue
+        enum_comment: list[str] = None
+        if child.raw_comment and isinstance(child.raw_comment, str):
+            enum_comment = child.raw_comment.splitlines()
+        if not enum_comment:
+            enum_comment = extract_raw_comment(cpp_files, child.location)
+        if not enum_comment:
+            enum_comment = None
+        ctp_enums.append(CTPEnum(
+            name = child.spelling,
+            underlying_type = child.enum_type.spelling,
+            comment = enum_comment))
+        node: cindex.Cursor
+        for node in child.get_children():
+            if node.kind != cindex.CursorKind.ENUM_CONSTANT_DECL:
+                continue
+            node_comment: list[str] = None
+            if node.raw_comment and isinstance(node.raw_comment, str):
+                node_comment = node.raw_comment.splitlines()
+            if not node_comment:
+                node_comment = extract_raw_comment(cpp_files, node.location)
+            if not node_comment:
+                node_comment = None
+            ctp_enums[-1].members.append(CTPEnumMember(
+                name = node.spelling,
+                value = str(node.enum_value),
+                comment = node_comment))
+    return ctp_enums
+
+def ctp_symbol_defined_parse(
+        cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        ) -> list[CTPDefine]:
+    """Parse defines/macro in ctp source code.
+
+    Parameters
+    ----------
+    cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        A tuple containing:
+            - A list of (filename, source_code) pairs for
+              the parsed CTP headers.
+            - The Clang translation unit (AST) used for
+              extracting macro definitions.
+
+    Returns
+    -------
+    list[CTPDefineGroup]
+        parsed define in ctp source code
+    """
+    cpp_files: dict[str, str]
+    cpp_tu: cindex.TranslationUnit
+    cpp_files, cpp_tu = cpp_parse_data
+    child: cindex.Cursor
+    ctp_defines: list[CTPDefine] = []
+    target_filenames = set(cpp_files.keys())
+    for child in cpp_tu.cursor.get_children():
+        if child.kind != cindex.CursorKind.MACRO_DEFINITION:
+            continue
+        if not child.location.file:
+            continue
+        if child.location.file.name not in target_filenames:
+            continue
+        location: cindex.SourceLocation = child.location
+        macro_name: str = child.spelling
+        # Read tokens to get macro value
+        tokens: list[cindex.Token] = list(cpp_tu.get_tokens(
+            extent = child.extent))
+        rhs_tokens: list[str] = []
+        for idx, tok in enumerate(tokens):
+            if tok.spelling == macro_name:
+                rhs_tokens = [t.spelling for t in tokens[idx+1:]]
+                break
+        macro_value: str = ' '.join(rhs_tokens).strip()
+        # Backtrack to get preceding comment
+        macro_comment: list[str] = extract_raw_comment(cpp_files, location)
+        ctp_defines.append(CTPDefine(
+            name = macro_name,
+            value = macro_value,
+            comment = macro_comment if macro_comment else None
+            ))
+    return ctp_defines
+
+
+def ctp_symbol_struct_parse(
+        cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        ) -> list[CTPStruct]:
+    """Parse struct in ctp source code.
+
+    Parameters
+    ----------
+    cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        A tuple containing:
+            - A list of (filename, source_code) pairs for
+              the parsed CTP headers.
+            - The Clang translation unit (AST) used for
+              extracting macro definitions.
+
+    Returns
+    -------
+    listlist[CTPStruct]
+        parsed struct in ctp source code
+    """
+    cpp_files: dict[str, str]
+    cpp_tu: cindex.TranslationUnit
+    cpp_files, cpp_tu = cpp_parse_data
+    structs: list[CTPStruct] = []
+    target_filenames = set(cpp_files.keys())
+    child: cindex.Cursor
+    for child in cpp_tu.cursor.get_children():
+        if child.kind != cindex.CursorKind.STRUCT_DECL:
+            continue
+        if child.location.file.name not in target_filenames:
+            continue
+        struct_name: str = child.spelling
+        struct_comment: str | None = None
+        if child.raw_comment and isinstance(child.raw_comment, str):
+            struct_comment = child.raw_comment.splitlines()
+        if not struct_comment:
+            struct_comment = extract_raw_comment(cpp_files, child.location)
+        if not struct_comment:
+            struct_comment = None
+        struct: CTPStruct = CTPStruct(
+            name = struct_name, comment = struct_comment)
+        node: cindex.Cursor
+        for node in child.get_children():
+            if node.kind != cindex.CursorKind.FIELD_DECL:
+                continue
+            m_comment: list[str] | None = None
+            if node.raw_comment and isinstance(node.raw_comment, str):
+                m_comment = node.raw_comment.splitlines()
+            m_comment = m_comment or extract_raw_comment(
+                cpp_files, node.location)
+            m_comment = m_comment or None
+            m_name = node.spelling
+            m_type_alias = node.type.spelling
+            m_field_type = get_field_type(node.type)
+            if isinstance(m_field_type, str):
+                m_type_base = m_field_type
+                m_type_length = 0
+                m_type_is_array = False
+            elif (isinstance(m_field_type, tuple) and
+                len(m_field_type)==2 and
+                isinstance(m_field_type[0], str) and
+                isinstance(m_field_type[1], int)):
+                m_type_base = m_field_type[0]
+                m_type_length = m_field_type[1]
+                m_type_is_array = True
             else:
-                raise ValueError((cpp_filename, macro_line, macro_name, macro_value))
-                
-    gencode_from_template(template_filename, {'body': cppsourcecode}, generate_filename)
+                raise TypeError(
+                    f'Unexpected type {m_field_type!r} '
+                    f'(type: {type(m_field_type)}) '
+                    f'at {node.location.file.name}:{node.location.line} '
+                    f'{m_type_alias} {m_name}')
+            struct.members.append(CTPStructMember(
+                name = m_name,
+                type_base = m_type_base,
+                type_is_array = m_type_is_array,
+                type_array_length = m_type_length,
+                type_alias = m_type_alias,
+                comment = m_comment))
+        structs.append(struct)
+    return structs
 
-def generate_struct_cppheader_code(AST_ApiStruct, cpython_path):
-    from clang.cindex import Index, Config, CursorKind, TranslationUnit, SourceLocation
-    import os
-    cpp_filename, cpp_sourcecode, cpp_tu = AST_ApiStruct
-    source_lines = cpp_sourcecode.splitlines()
-    
-    template_filename = os.path.join(cpython_path, 'UserApiStruct.h_all.template')
-    generate_filename = os.path.join(cpython_path, 'UserApiStruct.h')
-    cppheadercode = ''
-    for struct in cpp_tu.cursor.get_children():
-        if struct.kind == CursorKind.STRUCT_DECL and struct.spelling.startswith('CThostFtdc'):
-            struct_name = struct.spelling
-            cppheadercode += f'#include "UserApiStruct/Py{struct_name}.h"\n'
-    gencode_from_template(template_filename, {'cppheadercode': cppheadercode}, generate_filename)
-    
-    template_filename = os.path.join(cpython_path, 'UserApiStruct.h.template')
-    for struct in cpp_tu.cursor.get_children():
-        if struct.kind == CursorKind.STRUCT_DECL and struct.spelling.startswith('CThostFtdc'):
-            struct_comment = '\n'.join(extract_comment(source_lines, struct.location)).strip()
-            struct_name = struct.spelling
-            STRUCT_NAME = struct_name.upper()
-            generate_filename = os.path.join(cpython_path, f'UserApiStruct/Py{struct_name}.h')
-            gencode_from_template(template_filename, {'comment': struct_comment, 'struct_name': struct_name
-                                                      ,'STRUCT_NAME': STRUCT_NAME}, generate_filename)
-            
-def generate_struct_cppsource_code(AST_ApiStruct, cpython_path):
-    from clang.cindex import Index, Config, CursorKind, TranslationUnit, SourceLocation
-    import os
-    cpp_filename, cpp_sourcecode, cpp_tu = AST_ApiStruct
-    source_lines = cpp_sourcecode.splitlines()
+def ctp_symbol_class_parse(
+        cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        ) -> list[CTPClass]:
+    """Parse class in ctp source code.
 
-    def get_type_double_code(struct_name, struct_inst_prefix_name, member_comment, member_name, member_type_name, member_field_type_name, member_field_type_len):
-        assert(member_field_type_len==0)
-        _dec = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    double {struct_inst_prefix_name}_{member_name} = 0.0;
-        '''
-        _inp = 'd'
-        _ref = f'        , &{struct_inst_prefix_name}_{member_name} \n'
-        _sett = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    self->data.{member_name} = {struct_inst_prefix_name}_{member_name};
-        '''
-        _out = 'd'
-        _out_var = f'        ,"{member_name}", self->data.{member_name} \n'
-        _getset_body = f'''
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static PyObject *Py{struct_name}_get_{member_name}(Py{struct_name} *self, void *closure) {{
-    return PyFloat_FromDouble(self->data.{member_name});
-}}
+    Parameters
+    ----------
+    cpp_parse_data: tuple[dict[str, str], cindex.TranslationUnit]
+        A tuple containing:
+            - A list of (filename, source_code) pairs for
+              the parsed CTP headers.
+            - The Clang translation unit (AST) used for
+              extracting macro definitions.
 
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static int Py{struct_name}_set_{member_name}(Py{struct_name} *self, PyObject* val, void *closure) {{
-    if (!PyFloat_Check(val)) {{
-        PyErr_SetString(PyExc_TypeError, "{member_name} Expected float");
-        return -1;
-    }}
-    const double buf = PyFloat_AsDouble(val);
-    if (buf == -1 && PyErr_Occurred()) {{
-        return -1;
-    }}
-    self->data.{member_name} = buf;
-    return 0;
-}}
-        '''
-        return dict(dec=_dec, inp=_inp, ref=_ref, sett=_sett, out=_out, out_var=_out_var, getset_body=_getset_body)
-    
-    def get_type_short_code(struct_name, struct_inst_prefix_name, member_comment, member_name, member_type_name, member_field_type_name, member_field_type_len):
-        assert(member_field_type_len==0)
-        _dec = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    short {struct_inst_prefix_name}_{member_name} = 0;
-        '''
-        _inp = 'h'
-        _ref = f'        , &{struct_inst_prefix_name}_{member_name} \n'
-        _sett = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    self->data.{member_name} = {struct_inst_prefix_name}_{member_name};
-        '''
-        _out = 'h'
-        _out_var = f'        ,"{member_name}", self->data.{member_name} \n'
-        _getset_body = f'''
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static PyObject *Py{struct_name}_get_{member_name}(Py{struct_name} *self, void *closure) {{
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.{member_name});
-#else
-    return PyInt_FromLong(self->data.{member_name});
-#endif
-}}
-
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static int Py{struct_name}_set_{member_name}(Py{struct_name} *self, PyObject* val, void *closure) {{
-#if PY_MAJOR_VERSION >= 3
-    if (!PyLong_Check(val)) {{
-        PyErr_SetString(PyExc_TypeError, "{member_name} Expected short");
-#else
-    if (!PyInt_Check(val)) {{
-        PyErr_SetString(PyExc_TypeError, "{member_name} Expected short");
-#endif
-        return -1;
-    }}
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {{ 
-        return -1;
-    }}
-    if (buf < SHRT_MIN || buf > SHRT_MAX) {{
-        PyErr_SetString(PyExc_OverflowError, "the {member_name} value out of range for C short");
-        return -1;
-    }}
-    self->data.{member_name} = (short)buf;
-    return 0;
-}}
-        '''
-        return dict(dec=_dec, inp=_inp, ref=_ref, sett=_sett, out=_out, out_var=_out_var, getset_body=_getset_body)
-    
-    def get_type_int_code(struct_name, struct_inst_prefix_name, member_comment, member_name, member_type_name, member_field_type_name, member_field_type_len):
-        assert(member_field_type_len==0)
-        _dec = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    int {struct_inst_prefix_name}_{member_name} = 0;
-        '''
-        _inp = 'i'
-        _ref = f'        , &{struct_inst_prefix_name}_{member_name} \n'
-        _sett = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    self->data.{member_name} = {struct_inst_prefix_name}_{member_name};
-        '''
-        _out = 'i'
-        _out_var = f'        ,"{member_name}", self->data.{member_name} \n'
-        _getset_body = f'''
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static PyObject *Py{struct_name}_get_{member_name}(Py{struct_name} *self, void *closure) {{
-#if PY_MAJOR_VERSION >= 3
-    return PyLong_FromLong(self->data.{member_name});
-#else
-    return PyInt_FromLong(self->data.{member_name});
-#endif
-}}
-
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static int Py{struct_name}_set_{member_name}(Py{struct_name} *self, PyObject* val, void *closure) {{
-#if PY_MAJOR_VERSION >= 3
-    if (!PyLong_Check(val)) {{
-        PyErr_SetString(PyExc_TypeError, "{member_name} Expected long");
-#else
-    if (!PyInt_Check(val)) {{
-        PyErr_SetString(PyExc_TypeError, "{member_name} Expected int");
-#endif
-        return -1;
-    }}
-#if PY_MAJOR_VERSION >= 3
-    const long buf = PyLong_AsLong(val);
-#else
-    const long buf = PyInt_AsLong(val);
-#endif
-    if (buf == -1 && PyErr_Occurred()) {{
-        return -1;
-    }}
-    if (buf < INT_MIN || buf > INT_MAX) {{
-        PyErr_SetString(PyExc_OverflowError, "the {member_name} value out of range for C int");
-        return -1;
-    }}
-    self->data.{member_name} = (int)buf;
-    return 0;
-}}
-        '''
-        return dict(dec=_dec, inp=_inp, ref=_ref, sett=_sett, out=_out, out_var=_out_var, getset_body=_getset_body)
-    
-    def get_type_char_code(struct_name, struct_inst_prefix_name, member_comment, member_name, member_type_name, member_field_type_name, member_field_type_len):
-        if member_field_type_len:
-            _dec = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}[{member_field_type_len}]
-    const char *{struct_inst_prefix_name}_{member_name} = NULL;
-    Py_ssize_t {struct_inst_prefix_name}_{member_name}_len = 0;
-            '''
-            _inp = 'y#'
-            _ref = f'        , &{struct_inst_prefix_name}_{member_name}, &{struct_inst_prefix_name}_{member_name}_len \n'
-            _sett = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}[{member_field_type_len}]
-    if( {struct_inst_prefix_name}_{member_name} != NULL ) {{
-        if({struct_inst_prefix_name}_{member_name}_len >= (Py_ssize_t)sizeof(self->data.{member_name})) {{
-            PyErr_Format(PyExc_ValueError, "{member_name} too long: length=%zd (max allowed is %zd)", {struct_inst_prefix_name}_{member_name}_len, (Py_ssize_t)sizeof(self->data.{member_name}));
-            return -1;
-        }}
-        // memset(self->data.{member_name}, 0, sizeof(self->data.{member_name}));
-        // memcpy(self->data.{member_name}, {struct_inst_prefix_name}_{member_name}, {struct_inst_prefix_name}_{member_name}_len);        
-        strncpy(self->data.{member_name}, {struct_inst_prefix_name}_{member_name}, sizeof(self->data.{member_name}) );
-        {struct_inst_prefix_name}_{member_name} = NULL;
-    }}
-            '''
-            #_out = 'y#'
-            _out = 'y'
-            _out_var = f'        ,"{member_name}", self->data.{member_name}//, (Py_ssize_t)sizeof(self->data.{member_name}) \n'
-            _getset_body = f'''
-{member_comment}
-// {member_type_name} {member_field_type_name}[{member_field_type_len}]
-static PyObject *Py{struct_name}_get_{member_name}(Py{struct_name} *self, void *closure) {{
-    //return PyBytes_FromStringAndSize(self->data.{member_name}, (Py_ssize_t)sizeof(self->data.{member_name}));
-    return PyBytes_FromString(self->data.{member_name});
-}}
-
-{member_comment}
-// {member_type_name} {member_field_type_name}[{member_field_type_len}]
-static int Py{struct_name}_set_{member_name}(Py{struct_name} *self, PyObject* val, void *closure) {{
-    if (!PyBytes_Check(val)) {{
-        PyErr_SetString(PyExc_TypeError, "{member_name} Expected bytes");
-        return -1;
-    }}
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len >= (Py_ssize_t)sizeof(self->data.{member_name})) {{
-        PyErr_SetString(PyExc_ValueError, "{member_name} must be less than {member_field_type_len} bytes");
-        return -1;
-    }}
-    // memset(self->data.{member_name}, 0, sizeof(self->data.{member_name}));
-    // memcpy(self->data.{member_name}, buf, len);
-    strncpy(self->data.{member_name}, buf, sizeof(self->data.{member_name}));
-    return 0;
-}}
-            '''
-        else:
-            _dec = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    char {struct_inst_prefix_name}_{member_name} = 0;
-            '''
-            _inp = 'c'
-            _ref = f'        , &{struct_inst_prefix_name}_{member_name} \n'
-            _sett = f'''
-    {member_comment}
-    // {member_type_name} {member_field_type_name}
-    self->data.{member_name} = {struct_inst_prefix_name}_{member_name};
-            '''
-            _out = 'c'
-            _out_var = f'        ,"{member_name}", self->data.{member_name} \n'
-            _getset_body = f'''
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static PyObject *Py{struct_name}_get_{member_name}(Py{struct_name} *self, void *closure) {{
-    return PyBytes_FromStringAndSize(&(self->data.{member_name}), 1);
-}}
-
-{member_comment}
-// {member_type_name} {member_field_type_name}
-static int Py{struct_name}_set_{member_name}(Py{struct_name} *self, PyObject* val, void *closure) {{
-    if (!PyBytes_Check(val)) {{
-        PyErr_SetString(PyExc_TypeError, "{member_name} Expected bytes");
-        return -1;
-    }}
-    const char *buf = PyBytes_AsString(val);
-    Py_ssize_t len = PyBytes_Size(val);
-    if (len > (Py_ssize_t)sizeof(self->data.{member_name})) {{
-        PyErr_SetString(PyExc_ValueError, "{member_name} must be equal 1 bytes");
-        return -1;
-    }}
-    self->data.{member_name} = *buf;
-    return 0;
-}}
-            '''
-        return dict(dec=_dec, inp=_inp, ref=_ref, sett=_sett, out=_out, out_var=_out_var, getset_body=_getset_body)
-    
-    callback = {'short':get_type_short_code, 'int':get_type_int_code
-                , 'double': get_type_double_code, 'char': get_type_char_code}
-    
-    template_filename = os.path.join(cpython_path, 'UserApiStruct.cpp_all.template')
-    generate_filename = os.path.join(cpython_path, 'UserApiStruct.cpp')
-    cppsourcecode = ''
-    for struct in cpp_tu.cursor.get_children():
-        if struct.kind == CursorKind.STRUCT_DECL and struct.spelling.startswith('CThostFtdc'):
-            struct_comment = '\n\t'.join(extract_comment(source_lines, struct.location)).strip()
-            struct_name = struct.spelling
-            cppsourcecode += f'\t{struct_comment}\n'
-            cppsourcecode += f'\tif( Py{struct_name}Type_init(module) < 0 ) return -1;\n'
-    gencode_from_template(template_filename, {'cppsourcecode': cppsourcecode}, generate_filename)
-    
-    template_filename = os.path.join(cpython_path, 'UserApiStruct.cpp.template')
-    for struct in cpp_tu.cursor.get_children():
-        if struct.kind == CursorKind.STRUCT_DECL and struct.spelling.startswith('CThostFtdc'):
-            struct_comment = '\n'.join(extract_comment(source_lines, struct.location)).strip()
-            struct_name = struct.spelling
-            STRUCT_NAME = struct_name.upper()
-            struct_inst_prefix_name = struct_name.replace("CThostFtdc", '')
-            cpp_code_keywordslist = ''
-            cpp_code_declaration = ''
-            cpp_code_keywordss = ''
-            cpp_code_refcode = ''
-            cpp_code_setcode = ''
-            cpp_code_outformat = ''
-            cpp_code_outvarlist = ''
-            cpp_code_methodbody = ''
-            cpp_code_getsetlist = ''
-            for member in struct.get_children():
-                if member.kind != CursorKind.FIELD_DECL: continue
-                member_comment = '\n'.join(extract_comment(source_lines, member.location)).strip()
-                member_name = member.spelling
-                member_type_name = member.type.spelling
-                member_field_type_name = get_field_type_name(member.type)
-                member_field_type_len = 0
-                if type(member_field_type_name) == tuple:
-                    member_field_type_name, member_field_type_len = member_field_type_name
-                ret = callback[member_field_type_name](struct_name = struct_name, struct_inst_prefix_name=struct_inst_prefix_name
-                                                       , member_comment = member_comment
-                                                       , member_name = member_name
-                                                       , member_type_name = member_type_name
-                                                       , member_field_type_name = member_field_type_name
-                                                       , member_field_type_len = member_field_type_len)
-                cpp_code_keywordslist += f'"{member_name}", '
-                cpp_code_declaration += ret['dec']
-                cpp_code_keywordss += ret['inp']
-                cpp_code_refcode += ret['ref']
-                cpp_code_setcode += ret['sett']
-                cpp_code_outformat += ",s:" + ret['out']
-                cpp_code_outvarlist += ret['out_var']
-                cpp_code_methodbody += ret['getset_body']
-                cpp_code_getsetlist += f'    {member_comment} \n'
-                cpp_code_getsetlist += f'    {{(char *)"{member_name}", (getter)Py{struct_name}_get_{member_name}, (setter)Py{struct_name}_set_{member_name}, (char *)"{member_name}", NULL}},\n'
-            cpp_code_outformat = cpp_code_outformat.strip(',')
-            generate_filename = os.path.join(cpython_path, f'UserApiStruct/Py{struct_name}.cpp')
-            gencode_from_template(template_filename, {'struct_comment': struct_comment
-                                                      , 'struct_name': struct_name
-                                                      , 'STRUCT_NAME': STRUCT_NAME
-                                                      , 'cpp_code_keywordslist': cpp_code_keywordslist
-                                                      , 'cpp_code_declaration': cpp_code_declaration
-                                                      , 'cpp_code_keywordss': cpp_code_keywordss
-                                                      , 'cpp_code_keywordss_py2': cpp_code_keywordss.replace('y#', 's#')
-                                                      , 'cpp_code_refcode': cpp_code_refcode
-                                                      , 'cpp_code_setcode': cpp_code_setcode
-                                                      , 'cpp_code_outformat': cpp_code_outformat
-                                                      #, 'cpp_code_outformat_py2': cpp_code_outformat.replace('y#', 's#')
-                                                      , 'cpp_code_outformat_py2': cpp_code_outformat.replace('y', 's')
-                                                      , 'cpp_code_outvarlist': cpp_code_outvarlist
-                                                      , 'cpp_code_methodbody': cpp_code_methodbody
-                                                      , 'cpp_code_getsetlist': cpp_code_getsetlist
-                                                      }, generate_filename)
-
-def generate_api_cppsource_code(AST_Api, cpython_path, template_filename, generate_filename, spiclass_name, apiclass_name, apimethod_exclude=[]):
-    from clang.cindex import Index, Config, CursorKind, TranslationUnit, SourceLocation, TypeKind
-    from types import SimpleNamespace
-    import os, re
-    cpp_filename, cpp_sourcecode, cpp_tu = AST_Api
-    source_lines = cpp_sourcecode.splitlines()
-    # CThostFtdc%sApi
-    PYAPICLASS_FLAG = re.match(r'CThostFtdc(.*)Api', apiclass_name).group(1).upper()
-    
+    Returns
+    -------
+    listlist[CTPClass]
+        parsed class in ctp source code
+    """
     def get_default_value(arg_cursor):
         tokens = list(arg_cursor.get_tokens())
         for i, tok in enumerate(tokens):
             if tok.spelling == "=":
-                # 拼接 = 后面的所有 token
+                # Concatenate all tokens after '='
                 return ' '.join(t.spelling for t in tokens[i+1:])
         return None
-    
-    def get_method_param(method):
-        method_param = []
-        for arg in method.get_arguments():
-            if arg.kind != CursorKind.PARM_DECL: continue
-            if arg.type.kind == TypeKind.POINTER:
-                method_param.append(SimpleNamespace(IsPointer=True, Type=arg.type.get_pointee().spelling, Name=arg.spelling, Default=get_default_value(arg)))
-            else:
-                method_param.append(SimpleNamespace(IsPointer=False, Type=arg.type.spelling, Name=arg.spelling, Default=get_default_value(arg)))
-        return method_param
-    
-    def get_method_param_string(method_param):
-        out_arr = []
-        for param in method_param:
-            pointer_flag = '*' if param.IsPointer else ''
-            default_flag = f' = {param.Default}' if param.Default else ''
-            out_arr.append( f'{param.Type} {pointer_flag}{param.Name}{default_flag}' )
-        return ', '.join(out_arr)
-    
-    spibody = ''
-    for classnode in cpp_tu.cursor.get_children():
-        if not (classnode.kind == CursorKind.CLASS_DECL and classnode.spelling == spiclass_name): continue
-        class_name = classnode.spelling
-        for method in classnode.get_children():
-            if not (method.kind == CursorKind.CXX_METHOD and method.is_virtual_method() and method.result_type.kind == TypeKind.VOID and method.spelling.startswith('On')): continue
-            method_comment = '\n\t\t\t'.join(extract_comment(source_lines, method.location)).strip()
-            method_name = method.spelling
-            method_param = get_method_param(method)
-                        
-            spibody += f'''
-            {method_comment}
-			virtual void {method_name}({get_method_param_string(method_param)}) {{
-                PyGILState_STATE gstate = PyGILState_Ensure();\n'''
-            for param in method_param:
-                if param.IsPointer:
-                    spibody += f'			    Py{param.Type} *Py{param.Name} = NULL; \n'
-                    spibody += f'			    PyObject *Py{param.Name}_callarg = Py_None; \n'
-                else:
-                    spibody += f'			    PyObject *Py{param.Name} = NULL; \n'
-            spibody += '			    PyObject *result = NULL; \n'
-            for param in method_param:
-                if param.Type == 'int':
-                    spibody += f'''
-                Py{param.Name} = PyLong_FromLong({param.Name});
-                if(!Py{param.Name}) goto cleanup;
-                    '''
-                elif param.Type == 'bool':
-                    spibody += f'''
-                Py{param.Name} = PyBool_FromLong({param.Name});
-                if (!Py{param.Name}) goto cleanup;
-                    '''
-                elif param.IsPointer:
-                    spibody += f'''
-                if ({param.Name}) {{
-                    Py{param.Name} = PyObject_New(Py{param.Type}, &Py{param.Type}Type);
-                    if (!Py{param.Name}) goto cleanup;
-                    Py{param.Name}->data = *{param.Name};
-                    Py{param.Name}_callarg = (PyObject *)Py{param.Name};
-                }}
-                    '''
-            if method_param:
-                callback_param_format = 'O' * len(method_param)
-                callback_param_varnames = ', '.join([f'Py{param.Name}_callarg' if param.IsPointer else f'Py{param.Name}' for param in method_param])
-                spibody += f'''
-                // result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(__FUNCTION__), const_cast<char *>("{callback_param_format}"), {callback_param_varnames});
-                result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("{method_name}"), const_cast<char *>("{callback_param_format}"), {callback_param_varnames});
-                '''
-            else:
-                spibody += f'''
-                // result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(__FUNCTION__), NULL);
-                result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("{method_name}"), NULL);
-                '''
-            spibody += 'if(!result) PyErr_Print();\n\n'
-            if method_param:
-                spibody += '                cleanup:\n'
-            for param in method_param:
-                spibody += f'                    Py_XDECREF(Py{param.Name});\n'
-            spibody += '\t\t\t\t\tPy_XDECREF(result);\n'
-            spibody += '\t\t\t\t\tPyGILState_Release(gstate);\n\t\t\t}\n'
-    
-    apibody = ''
-    for classnode in cpp_tu.cursor.get_children():
-        if not (classnode.kind == CursorKind.CLASS_DECL and classnode.spelling == apiclass_name): continue
-        class_name = classnode.spelling
-        for method in classnode.get_children():
-            if not method.kind == CursorKind.CXX_METHOD: continue
-            if method.spelling in apimethod_exclude: continue
-            method_comment = extract_comment(source_lines, method.location)
-            method_name = method.spelling
-            method_IsStatic = method.is_static_method()
-            method_IsVirtual = method.is_virtual_method()
-            method_return_type = get_field_type_name(method.result_type)
-            method_param = get_method_param(method)
-            apibody += '\n'.join(method_comment) + '\n'
-            if (not method_IsStatic and method_IsVirtual and method_return_type == 'void' and len(method_param) == 0):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC({method_name}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'int' and len(method_param) == 0):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_INT({method_name}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'const char *' and len(method_param) == 0):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_STRING({method_name}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'char *' and len(method_param) == 0):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_STRING({method_name}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'void' and len(method_param)==1 
-                  and method_param[0].IsPointer and method_param[0].Type=='char'):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_VOID_STRING({method_name}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'void' and len(method_param)==1 
-                  and method_param[0].IsPointer and method_param[0].Type.startswith('CThostFtdc')):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_VOID_STRUCT({method_name}, {method_param[0].Type}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'int' and len(method_param)==1 
-                  and method_param[0].IsPointer and method_param[0].Type.startswith('CThostFtdc')):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_INT_STRUCT({method_name}, {method_param[0].Type}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'int' and len(method_param)==2
-                and method_param[0].IsPointer and method_param[0].Type.startswith('CThostFtdc')
-                and not method_param[1].IsPointer and method_param[1].Type == 'int'):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_INT_STRUCT_INT({method_name}, {method_param[0].Type}) \n'
-            elif (not method_IsStatic and method_IsVirtual and method_return_type == 'int' and len(method_param)==2
-                and not method_param[0].IsPointer and method_param[0].Type == 'char *[]'
-                and not method_param[1].IsPointer and method_param[1].Type == 'int'):
-                apibody += f'PyCTP_{PYAPICLASS_FLAG}_FUNCTION_MAGIC_INT_SUBSCRIBE({method_name}) \n'
-            else:
-                raise ValueError(f'{method_return_type} {method_name}({get_method_param_string(method_param)})')
-            apibody += '\n'
-    
-    apilist = ''
-    for classnode in cpp_tu.cursor.get_children():
-        if not (classnode.kind == CursorKind.CLASS_DECL and classnode.spelling == apiclass_name): continue
-        for method in classnode.get_children():
-            if not method.kind == CursorKind.CXX_METHOD: continue
-            method_comment = extract_comment(source_lines, method.location)
-            method_name = method.spelling
-            method_IsStatic = method.is_static_method()
-            method_IsVirtual = method.is_virtual_method()
-            method_return_type = get_field_type_name(method.result_type)
-            method_param = get_method_param(method)
-            METH_VARARGS_FLAG = 'METH_VARARGS' if method_param else 'METH_NOARGS'
-            if method_IsStatic: continue
-            apilist += '\t' + '\n\t'.join(method_comment) + '\n'
-            apilist += f'    {{"{method_name}", CTP_THOST_FTDC_{PYAPICLASS_FLAG}_API_{method_name}, {METH_VARARGS_FLAG}, NULL}},\n\n'
-            
-    template_filename = os.path.join(cpython_path, template_filename)
-    generate_filename = os.path.join(cpython_path, generate_filename)
-    gencode_from_template(template_filename, {'spibody': spibody, 'apibody': apibody, 'apilist': apilist}, generate_filename)
-    
-def find_h_files(root_dir, endswith=['.h'], exclude_endswith=['SMCertApi.h']):
-    import os
-    h_files = []
-    for dirpath, dirnames, filenames in os.walk(root_dir):
-        for filename in filenames:
-            if any([filename.endswith(k) for k in endswith]) and not any([filename.endswith(k) for k in exclude_endswith]):
-                full_path = os.path.join(dirpath, filename)
-                h_files.append(full_path)
-    return h_files
-    
-def generate_cpp_from_ctp(cpp_path, cpython_path):
-    h_files = find_h_files(cpp_path)
-    AST_ApiDataType, AST_ApiStruct, AST_MdApi, AST_TraderApi = None, None, None, None
-    for file in h_files:
-        if not AST_ApiDataType and file.endswith('ThostFtdcUserApiDataType.h'):
-            AST_ApiDataType = cpp_file_parse(file)
-        if not AST_ApiStruct and file.endswith('ThostFtdcUserApiStruct.h'):
-            AST_ApiStruct = cpp_file_parse(file)
-        if not AST_MdApi and file.endswith('ThostFtdcMdApi.h'):
-            AST_MdApi = cpp_file_parse(file)
-        if not AST_TraderApi and file.endswith('ThostFtdcTraderApi.h'):
-            AST_TraderApi = cpp_file_parse(file)
-            
-    # AST_ApiDataType = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcUserApiDataType.h'))
-    # AST_ApiStruct = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcUserApiStruct.h'))
-    # AST_MdApi = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcMdApi.h'))
-    # AST_TraderApi = cpp_file_parse(os.path.join(cpp_path, 'ThostFtdcTraderApi.h'))
-    
-    # from UserApiDataType.cpp.template to UserApiDataType.cpp.template
-    generate_macro_code(AST_ApiDataType, cpython_path)
-    
-    # from UserApiStruct.h.template UserApiStruct.h_all.template
-    generate_struct_cppheader_code(AST_ApiStruct, cpython_path)
-    
-    # from UserApiStruct.cpp.template UserApiStruct.cpp_all.template
-    generate_struct_cppsource_code(AST_ApiStruct, cpython_path)
-    
-    # from ./src/MdApi.cpp.template
-    generate_api_cppsource_code(AST_MdApi, cpython_path, 'MdApi.cpp.template', 'MdApi.cpp', 'CThostFtdcMdSpi', 'CThostFtdcMdApi', ['CreateFtdcMdApi', 'GetApiVersion', 'RegisterSpi', 'Release', '~CThostFtdcMdApi'])
-    
-    # from ./src/TraderApi.cpp.template
-    generate_api_cppsource_code(AST_TraderApi, cpython_path, 'TraderApi.cpp.template', 'TraderApi.cpp', 'CThostFtdcTraderSpi', 'CThostFtdcTraderApi', ['CreateFtdcTraderApi', 'GetApiVersion', 'RegisterSpi', 'Release', '~CThostFtdcTraderApi', 'SubscribePrivateTopic', 'SubscribePublicTopic'])
 
-import os
-###################################################################################################################################
-ctp_cpp_path = './ctp/v6.7.13_20260225_trader'
-ctp_cpp_path = os.environ.get('ctp_cpp_path', ctp_cpp_path)
-###################################################################################################################################
-ctp_cpython_path = './src'
-generate_cpp_from_ctp(ctp_cpp_path, ctp_cpython_path)
+    def parse_method(cpp_files: dict[str, str], method: cindex.Cursor):
+        method_name: str = method.spelling
+        method_comment: list[str] | None = None
+        if method.raw_comment and isinstance(method.raw_comment, str):
+            method_comment = method.raw_comment.splitlines()
+        method_comment = method_comment or extract_raw_comment(
+            cpp_files, method.location)
+        method_comment = method_comment or None
+        method_result_type: str = get_field_type(method.result_type)
+        access_map = {
+            cindex.AccessSpecifier.PUBLIC: "public",
+            cindex.AccessSpecifier.PROTECTED: "protected",
+            cindex.AccessSpecifier.PRIVATE: "private"}
+        method_access = access_map.get(method.access_specifier, "public")
+        method_is_static: bool = method.is_static_method()
+        method_is_virtual: bool = method.is_virtual_method()
+        method_is_const_method = method.is_const_method()
+        method_is_pure_virtual = method.is_pure_virtual_method()
+        ctp_method: CTPClassMethod = CTPClassMethod(
+            name = method_name,
+            result_type = method_result_type,
+            access = method_access,
+            is_static = method_is_static,
+            is_virtual = method_is_virtual,
+            is_pure_virtual = method_is_pure_virtual,
+            is_const_method = method_is_const_method,
+            comment = method_comment
+            )
+        arg: cindex.Cursor
+        for arg in method.get_arguments():
+            if arg.kind != cindex.CursorKind.PARM_DECL:
+                continue
+            param_name: str = arg.spelling
+            param_type: cindex.Type = arg.type
+            type_info: str | tuple(str, int) = get_field_type(param_type)
+            param_is_pointer: bool = param_type.kind == cindex.TypeKind.POINTER
+            param_is_reference: bool = param_type.kind in (
+                cindex.TypeKind.LVALUEREFERENCE,
+                cindex.TypeKind.RVALUEREFERENCE)
+            param_is_const: bool = param_type.is_const_qualified()
+            param_c_type: str = param_type.spelling
+            param_is_array: bool = False
+            param_array_length: int = 0
+            if isinstance(type_info, tuple):
+                param_c_type = type_info[0]
+                param_is_array = True
+                param_array_length = type_info[1]
+            else:
+                if param_is_pointer:
+                    param_c_type = param_type.get_pointee().spelling
+            param_default = get_default_value(arg)
+            ctp_method.params.append(CTPClassMethodParam(
+                name = param_name,
+                c_type = param_c_type,
+                is_const = param_is_const,
+                is_pointer = param_is_pointer,
+                is_reference = param_is_reference,
+                is_array = param_is_array,
+                array_length = param_array_length,
+                default = param_default
+                ))
+        return ctp_method if ctp_method.name else None
+
+    cpp_files: dict[str, str]
+    cpp_tu: cindex.TranslationUnit
+    cpp_files, cpp_tu = cpp_parse_data
+    classes: list[CTPClass] = []
+    target_filenames = set(cpp_files.keys())
+    child: cindex.Cursor
+    for child in cpp_tu.cursor.get_children():
+        if child.kind != cindex.CursorKind.CLASS_DECL:
+            continue
+        if child.location.file.name not in target_filenames:
+            continue
+        class_name: str = child.spelling
+        class_comment: list[str] | None = None
+        if child.raw_comment and isinstance(child.raw_comment, str):
+            class_comment = child.raw_comment.splitlines()
+        class_comment = class_comment or extract_raw_comment(
+            cpp_files, child.location)
+        class_comment = class_comment or None
+        ctp_class: CTPClass = CTPClass(
+            name = class_name, comment = class_comment)
+        node: cindex.Cursor
+        for node in child.get_children():
+            method:CTPClassMethod = parse_method(cpp_files, node)
+            if method:
+                ctp_class.methods.append(method)
+        classes.append(ctp_class)
+    return classes
+
+def collect_files_by_suffix(
+        search_dir: str,
+        include_suffixes: tuple[str, ...] = ('.h',),
+        exclude_suffixes: tuple[str, ...] = ('SMCertApi.h',)
+        ) -> list[str]:
+    """Collect all files by the specified suffixes and directory.
+
+    Parameters
+    ----------
+    search_dir: str
+        Path to the foloder to search.
+    include_suffixes: tuple[str, ...], optional
+        Set of filename suffixes to include.
+    exclude_suffixes: tuple[str, ...], optional
+        Set of filename suffixes to exclude
+
+    Returns
+    -------
+    list[str]
+        List of full file paths.
+    """
+    matching_files: list[str] = []
+    dirpath: str
+    filenames: list[str]
+    for dirpath, _, filenames in os.walk(search_dir):
+        for filename in filenames:
+            if (filename.endswith(include_suffixes) and
+                not filename.endswith(exclude_suffixes)):
+                matching_files.append(os.path.join(dirpath, filename))
+    return matching_files
+
+def ctp_symbol_parse(
+        cpp_parsed_data: tuple[dict[str, str], cindex.TranslationUnit]):
+    """Parse all ctp symbols.
+
+    Parameters
+    ----------
+    cpp_parsed_data: tuple[dict[str, str], cindex.TranslationUnit]
+        A tuple containing:
+            - A list of (filename, source_code) pairs for
+              the parsed CTP headers.
+            - The Clang translation unit (AST) used for
+              extracting macro definitions.
+
+    Returns
+    -------
+    dict[str, list[Any]]
+        A categorized dictionary of parsed symbols. Keys include:
+            - 'enums': List of parsed enumeration definitions.
+            - 'defines': List of parsed macro (#define) definitions.
+            - 'structs': List of parsed struct definitions.
+            - 'classes': List of parsed class definitions.
+    """
+    symbol_table: dict[
+        str, list[CTPEnum | CTPDefine | CTPStruct | CTPClass]
+        ] = {
+            'enums': ctp_symbol_enum_parse(cpp_parsed_data),
+            'defines': ctp_symbol_defined_parse(cpp_parsed_data),
+            'structs': ctp_symbol_struct_parse(cpp_parsed_data),
+            'classes': ctp_symbol_class_parse(cpp_parsed_data),
+            }
+    return symbol_table
+
+def struct_contexts(
+        symbols: dict[str, list[CTPEnum | CTPDefine | CTPStruct | CTPClass]]
+        ) -> Iterator[dict[str,
+                           list[CTPEnum | CTPDefine | CTPStruct | CTPClass] |
+                           CTPStruct]]:
+    """Generate template contexts for the all of CTPStruct.
+
+    Parameters
+    ----------
+    symbols : dict[str, list[CTPEnum | CTPDefine | CTPStruct | CTPClass]]
+        Looks up the all of CTPStruct in the symbol table and yields
+        one context per CTPStruct pair, each containing the full symbol table
+        plus the injected keys ``struct``.
+
+    Yields
+    ------
+    dict[str, list[CTPEnum | CTPDefine | CTPStruct | CTPClass] | CTPStruct]
+        Rendering context for ``PyType.h.tmpl`` / ``PyType.cpp.tmpl``. Yields:
+        once for the all of CTPstruct
+    """
+    ctp_struct: CTPStruct
+    for ctp_struct in symbols['structs']:
+        yield symbols | {'struct': ctp_struct}
+
+def api_contexts(
+        symbols: dict[str, list[CTPEnum | CTPDefine | CTPStruct | CTPClass]]
+        ) -> Iterator[dict[str,
+                           list[CTPEnum | CTPDefine | CTPStruct | CTPClass] |
+                           CTPClass]]:
+    """Generate template contexts for MdApi and TraderApi.
+
+    Looks up the four CTP API/SPI classes in the symbol table and yields
+    one context per API pair, each containing the full symbol table plus
+    the injected keys ``api_class`` and ``spi_class``.
+
+    Parameters
+    ----------
+    symbols : dict[str, list[CTPEnum | CTPDefine | CTPStruct | CTPClass]]
+        Parsed CTP symbol table. The ``classes`` key holds all CTP classes.
+
+    Yields
+    ------
+    dict[str, list[CTPEnum | CTPDefine | CTPStruct | CTPClass] | CTPClass]
+        Rendering context for ``PyApi.h`` / ``PyApi.cpp``. Yields twice:
+        once for MdApi, once for TraderApi.
+    """
+    md_api: CTPClass = next(
+        (c for c in symbols['classes'] if c.name == 'CThostFtdcMdApi'),
+        None)
+    md_spi: CTPClass = next(
+        (c for c in symbols['classes'] if c.name == 'CThostFtdcMdSpi'),
+        None)
+    trader_api: CTPClass = next(
+        (c for c in symbols['classes'] if c.name == 'CThostFtdcTraderApi'),
+        None)
+    trader_spi: CTPClass = next(
+        (c for c in symbols['classes'] if c.name == 'CThostFtdcTraderSpi'),
+        None)
+    yield symbols | {'api_class': md_api, 'spi_class': md_spi}
+    yield symbols | {'api_class': trader_api, 'spi_class': trader_spi}
+
+def generate_pyctp_code(ctp_headers_dir: str, pyctp_src_dir: str) -> None:
+    """Scan ctp header files and generate corresponding pyctp code.
+
+    Parameters
+    ----------
+    ctp_headers_dir: str
+        Path to the CTP header folder
+    pyctp_src_dir: str
+        Paht to the PyCTP source code. The generated content will overwrite
+        files in this path.
+    """
+    CTPSymbol: TypeAlias = CTPEnum | CTPDefine | CTPStruct | CTPClass
+    CTPSymbolTable: TypeAlias = dict[str, list[CTPSymbol] | CTPSymbol]
+    CTPContextGen: TypeAlias = Callable[[CTPSymbolTable],
+                                        Iterator[CTPSymbolTable]]
+    CTPTemplateSpec: TypeAlias = tuple[str, str, CTPContextGen | None]
+    ctp_header_files: list[str] = collect_files_by_suffix(ctp_headers_dir)
+    cpp_parsed_data: tuple[dict[str, str], cindex.TranslationUnit]
+    cpp_parsed_data = cpp_file_parse(ctp_header_files)
+    ctp_symbol_table: CTPSymbolTable = ctp_symbol_parse(cpp_parsed_data)
+    template_mapping: list[CTPTemplateSpec] = [
+        ('PyConstants.cpp.tmpl', 'PyConstants.cpp', None),
+        ('PyTypes.h.tmpl', 'PyTypes.h', None),
+        ('PyTypes.cpp.tmpl', 'PyTypes.cpp', None),
+        ('PyType.h.tmpl', 'Types/Py{{ struct.name }}.h', struct_contexts),
+        ('PyType.cpp.tmpl', 'Types/Py{{ struct.name }}.cpp', struct_contexts),
+        ('PyApi.h.tmpl', 'Py{{ api_class.name[10:] }}.h', api_contexts),
+        ('PyApi.cpp.tmpl', 'Py{{ api_class.name[10:] }}.cpp', api_contexts),
+        ]
+    env: jinja2.Environment = jinja2.Environment()
+    for tmpl_pat, out_pat, context_gen in template_mapping:
+        if context_gen:
+            for context in context_gen(ctp_symbol_table):
+                tmpl_name = env.from_string(tmpl_pat).render(**context)
+                out_name   = env.from_string(out_pat).render(**context)
+                tmpl_path = os.path.join(pyctp_src_dir, tmpl_name)
+                out_path   = os.path.join(pyctp_src_dir, out_name)
+                gencode_from_template(tmpl_path, context, out_path)
+        else:
+            tmpl_path = os.path.join(pyctp_src_dir, tmpl_pat)
+            out_path = os.path.join(pyctp_src_dir, out_pat)
+            gencode_from_template(tmpl_path, ctp_symbol_table, out_path)
+
+
+###############################################################################
+ctp_cpp_path: str = 'ctp/v6.7.13_20260225_trader'
+ctp_cpp_path: str = os.environ.get('PYCTP_CTP_ROOT', ctp_cpp_path)
+###############################################################################
+ctp_cpython_path: str = 'src'  # pylint: disable=invalid-name
+generate_pyctp_code(ctp_cpp_path, ctp_cpython_path)

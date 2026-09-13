@@ -1,0 +1,81 @@
+// UserApiDataType.cpp : 转换定义CTP预处理定义.
+//
+
+#include "stdafx.h"
+#include "PyConstants.h"
+#include <ThostFtdcUserApiDataType.h>
+
+
+int PyModule_AddCharConstant(PyObject *m, const char *name, const char value) {
+	PyObject *o = PyBytes_FromStringAndSize(&value, 1);
+	if (!o) {
+        PyErr_Format(PyExc_RuntimeError, "can't initialize PyCTP.%s", name);
+        return -1;
+	}
+
+	if (PyModule_AddObject(m, name, o) < 0) {
+        PyErr_Format(PyExc_RuntimeError, "Failed to add %s to module", name);
+        Py_DECREF(o);
+		return -1;
+	}
+	return 0;
+}
+
+int PyModule_AddStrConstant(PyObject *m, const char *name, const char *value) {
+	PyObject *o = PyBytes_FromString(value);
+	if (!o) {
+        PyErr_Format(PyExc_RuntimeError, "can't initialize PyCTP.%s", name);
+		return -1;
+	}
+
+	if (PyModule_AddObject(m, name, o) < 0) {
+        PyErr_Format(PyExc_RuntimeError, "Failed to add %s to module", name);
+        Py_DECREF(o);
+		return -1;
+	}
+	return 0;
+}
+
+int PyCTP_module_add_PyConstants_exec(PyObject *m) {
+
+{% for enum in enums %}
+    {% if enum.name.startswith('THOST_') and enum.underlying_type == 'unsigned int' %}
+        {% if enum.comment %}
+    {{- enum.comment|join('\n')|indent(4, first=True) }}
+        {% endif %}
+        {% for member in enum.members %}
+            {% if member.comment %}
+    {{- member.comment|join('\n')|indent(4, first=True) }}
+            {% endif %}
+    if( PyModule_AddIntMacro(m, {{ member.name }}) < 0 ) return -1;
+        {% endfor %}
+    {% else %}
+        {{ enum }}
+    {% endif %}
+{% endfor %}
+
+{% for define in defines %}
+    {% if define.name.startswith('THOST_FTDC_') %}
+        {% if define.comment %}
+            {% if define.comment|length > 3 %}
+                {# A blank line below for visual separation #}
+
+            {% endif%}
+    {{- define.comment|join('\n')|indent(4, first=True) }}
+        {% endif %}
+        {% if define.value.startswith("'") and define.value.endswith("'") and define.value | length == 3 %}
+    if( PyModule_AddCharMacro(m, {{ define.name }}) < 0 ) return -1;
+        {% elif define.value.startswith("'") and define.value.endswith("'") and define.value | length > 3 %}
+    if( PyModule_AddStrConstant(m, "{{ define.name }}", "{{ define.value | trim('\'') }}") < 0 ) return -1;
+        {% else %}
+            {{ define }}
+        {% endif %}
+    {% elif define.name in ('THOST_FTDCMDAPI_H', 'THOST_FTDCSTRUCT_H', 'THOST_FTDCDATATYPE_H', 'MD_API_EXPORT', 'THOST_FTDCTRADERAPI_H', 'TRADER_API_EXPORT') %}
+        {# There defines need not be converted to python #}
+    {% else %}
+        {{ define }}
+    {% endif %}
+{% endfor %}
+
+	return 0;
+}

@@ -1,0 +1,320 @@
+
+#include "Py{{ struct.name }}.h"
+
+{% if struct.comment %}
+    {{- struct.comment|join('\n') }}
+{% endif %}
+
+static int Py{{ struct.name }}Type_init(PyObject *self, PyObject *args, PyObject *kwds) {
+
+    static const char *kwlist[] = { {% for member in struct.members %}"{{ member.name }}", {% endfor %}NULL };
+
+{% for member in struct.members %}
+
+    /// {{ member.comment | map('trim', '/') | join(' ')  }}
+    {% if member.type_is_array %}
+    /// typedef {{ member.type_base }} {{ member.type_alias }}[{{ member.type_array_length }}]
+    {% else %}
+    /// typedef {{ member.type_base }} {{ member.type_alias }}
+    {% endif %}
+    {% if member.type_base == 'char' and not member.type_is_array %}
+    char {{ struct.name }}_{{ member.name }} = 0;
+    {% elif member.type_base == 'char' and member.type_is_array %}
+    char *{{ struct.name }}_{{ member.name }} = NULL;
+    Py_ssize_t {{ struct.name }}_{{ member.name }}_length = 0;
+    {% elif member.type_base == 'short' and not member.type_is_array %}
+    short {{ struct.name }}_{{ member.name }} = 0;
+    {% elif member.type_base == 'int' and not member.type_is_array %}
+    int {{ struct.name }}_{{ member.name }} = 0;
+    {% elif member.type_base == 'double' and not member.type_is_array %}
+    double {{ struct.name }}_{{ member.name }} = 0.0;
+    {% else %}
+#error unexpected: {{ member }}
+    {% endif %}
+{% endfor %}
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwds, "|
+{%- for member in struct.members -%}
+    {%- if member.type_base == 'char' and not member.type_is_array -%}     c
+    {%- elif member.type_base == 'char' and member.type_is_array -%}       y#
+    {%- elif member.type_base == 'short' and not member.type_is_array -%}  h
+    {%- elif member.type_base == 'int' and not member.type_is_array -%}    i
+    {%- elif member.type_base == 'double' and not member.type_is_array -%} d
+    {%- else -%}
+#error unexpected: {{ member }}
+    {%- endif -%}
+{%- endfor -%}", (char **)kwlist
+{% for member in struct.members %}
+    {% if member.type_base == 'char' and not member.type_is_array %}
+        , &{{ struct.name }}_{{ member.name }}
+    {% elif member.type_base == 'char' and member.type_is_array %}
+        , &{{ struct.name }}_{{ member.name }}, &{{ struct.name }}_{{ member.name }}_length
+    {% elif member.type_base in ('short', 'int', 'double') and not member.type_is_array %}
+        , &{{ struct.name }}_{{ member.name }}
+    {% else %}
+#error unexpected: {{ member }}
+    {% endif %}
+{% endfor %}
+    )) {
+        return -1;
+    }
+
+    Py{{ struct.name }}Data *extra = PyCTP_GetTypeData<Py{{ struct.name }}Data>(self);
+    {{ struct.name }} *data = &(extra->data);
+
+{% for member in struct.members %}
+
+    /// {{ member.comment | map('trim', '/') | join(' ')  }}
+    {% if member.type_is_array %}
+    /// typedef {{ member.type_base }} {{ member.type_alias }}[{{ member.type_array_length }}]
+    {% else %}
+    /// typedef {{ member.type_base }} {{ member.type_alias }}
+    {% endif %}
+    {% if member.type_base == 'char' and not member.type_is_array %}
+    data->{{ member.name }} = {{ struct.name }}_{{ member.name }};
+    {% elif member.type_base == 'char' and member.type_is_array %}
+    if( {{ struct.name }}_{{ member.name }} != NULL ) {
+        if({{ struct.name }}_{{ member.name }}_length >= (Py_ssize_t)sizeof(data->{{ member.name }})) {
+            PyErr_Format(PyExc_ValueError, "{{ member.name }} too long: length=%zd (max allowed is {{ member.type_array_length - 1 }})", {{ struct.name }}_{{ member.name }}_length);
+            return -1;
+        }
+        // memset(data->{{ member.name }}, 0, sizeof(data->{{ member.name }}));
+        // memcpy(data->{{ member.name }}, {{ struct.name }}_{{ member.name }}, {{ struct.name }}_{{ member.name }}_length);
+        strncpy(data->{{ member.name }}, {{ struct.name }}_{{ member.name }}, sizeof(data->{{ member.name }}));
+        {{ struct.name }}_{{ member.name }} = NULL;
+    }
+    {% elif member.type_base in ('short', 'int', 'double') and not member.type_is_array %}
+    data->{{ member.name }} = {{ struct.name }}_{{ member.name }};
+    {% else %}
+#error unexpected: {{ member }}
+    {% endif %}
+{% endfor %}
+
+    extra = NULL;
+    data = NULL;
+
+    return 0;
+};
+
+
+static PyObject *Py{{ struct.name }}Type_repr(PyObject *self) {
+
+    Py{{ struct.name }}Data *extra = PyCTP_GetTypeData<Py{{ struct.name }}Data>(self);
+    {{ struct.name }} *data = &(extra->data);
+
+	PyObject *dict = Py_BuildValue("{
+{%- for member in struct.members -%}
+    {%- if not loop.first -%},{% endif -%} s:
+    {%- if member.type_base == 'char' and not member.type_is_array -%}     c
+    {%- elif member.type_base == 'char' and member.type_is_array -%}       y    {#- y# -#}
+    {%- elif member.type_base == 'short' and not member.type_is_array -%}  h
+    {%- elif member.type_base == 'int' and not member.type_is_array -%}    i
+    {%- elif member.type_base == 'double' and not member.type_is_array -%} d
+    {%- else -%}
+#error unexpected: {{ member }}
+    {%- endif -%}
+{%- endfor -%}
+    }"
+{% for member in struct.members %}
+    {% if member.type_base == 'char' and not member.type_is_array %}
+        , "{{ member.name }}", data->{{ member.name }}
+    {% elif member.type_base == 'char' and member.type_is_array %}
+        , "{{ member.name }}", data->{{ member.name }}//, (Py_ssize_t)sizeof(data->{{ member.name }})
+    {% elif member.type_base in ('short', 'int', 'double') and not member.type_is_array %}
+        , "{{ member.name }}", data->{{ member.name }}
+    {% else %}
+#error unexpected: {{ member }}
+    {% endif %}
+{% endfor %}
+		);
+
+    extra = NULL;
+    data = NULL;
+
+    if (!dict) {
+        PyErr_SetString(PyExc_RuntimeError, "Failed to build {{ struct.name }} repr dict");
+        return NULL;
+    }
+
+    PyObject *repr = PyObject_Repr(dict);
+    Py_DECREF(dict);
+
+    if (!repr) {
+        PyErr_SetString(PyExc_RuntimeError, "Failed to build {{ struct.name }} repr");
+        return NULL;
+    }
+
+    return repr;
+}
+
+{% for member in struct.members %}
+    {% if member.type_base == 'char' and not member.type_is_array %}
+
+/// {{ member.comment | map('trim', '/') | join(' ')  }}
+/// typedef {{ member.type_base }} {{ member.type_alias }}
+static PyObject *Py{{ struct.name }}Type_get_{{ member.name }}(PyObject *self, void *closure) {
+    Py{{ struct.name }}Data *extra = PyCTP_GetTypeData<Py{{ struct.name }}Data>(self);
+    {{ struct.name }} *data = &(extra->data);
+    return PyBytes_FromStringAndSize(&(data->{{ member.name }}), 1);
+}
+
+static int Py{{ struct.name }}Type_set_{{ member.name }}(PyObject *self, PyObject* value, void *closure) {
+    if (!PyBytes_Check(value)) {
+        PyErr_SetString(PyExc_TypeError, "{{ member.name }} Expected bytes");
+        return -1;
+    };
+    Py_ssize_t len = PyBytes_Size(value);
+    if (len > (Py_ssize_t)sizeof({{ struct.name }}::{{ member.name }})) {
+        PyErr_SetString(PyExc_ValueError, "{{ member.name }} must be equal 1 bytes");
+        return -1;
+    }
+    char *buf = PyBytes_AsString(value);
+    Py{{ struct.name }}Data *extra = PyCTP_GetTypeData<Py{{ struct.name }}Data>(self);
+    {{ struct.name }} *data = &(extra->data);
+    data->{{ member.name }} = *buf;
+    extra = NULL;
+    data = NULL;
+    return 0;
+}
+    {% elif member.type_base == 'char' and member.type_is_array %}
+
+/// {{ member.comment | map('trim', '/') | join(' ')  }}
+/// typedef {{ member.type_base }} {{ member.type_alias }}[{{ member.type_array_length }}]
+static PyObject *Py{{ struct.name }}Type_get_{{ member.name }}(PyObject *self, void *closure) {
+    Py{{ struct.name }}Data *extra = PyCTP_GetTypeData<Py{{ struct.name }}Data>(self);
+    {{ struct.name }} *data = &(extra->data);
+    // return PyBytes_FromStringAndSize(data->{{ member.name }}, (Py_ssize_t)sizeof(data->{{ member.name }}));
+    return PyBytes_FromString(data->{{ member.name }});
+}
+
+static int Py{{ struct.name }}Type_set_{{ member.name }}(PyObject *self, PyObject* value, void *closure) {
+    if (!PyBytes_Check(value)) {
+        PyErr_SetString(PyExc_TypeError, "{{ member.name }} Expected bytes");
+        return -1;
+    }
+    Py_ssize_t len = PyBytes_Size(value);
+    if (len >= (Py_ssize_t)sizeof({{ struct.name }}::{{ member.name }})) {
+        PyErr_SetString(PyExc_ValueError, "{{ member.name }} must be less than {{ member.type_array_length - 1 }} bytes");
+        return -1;
+    }
+    char *buf = PyBytes_AsString(value);
+    Py{{ struct.name }}Data *extra = PyCTP_GetTypeData<Py{{ struct.name }}Data>(self);
+    {{ struct.name }} *data = &(extra->data);
+    // memset(data->{{ member.name }}, 0, sizeof(data->{{ member.name }}));
+    // memcpy(data->{{ member.name }}, buf, len);
+    strncpy(data->{{ member.name }}, buf, sizeof(data->{{ member.name }}));
+    extra = NULL;
+    data = NULL;
+    return 0;
+}
+    {% elif member.type_base in ('double', 'int', 'short') and not member.type_is_array %}
+    {% else %}
+#error unexpected: {{ member }}
+    {% endif %}
+{% endfor %}
+
+static PyMemberDef Py{{ struct.name }}Type_members[] = {
+{% for member in struct.members %}
+    {% if member.type_base in ('double', 'int', 'short') and not member.type_is_array %}
+    /// {{ member.comment | map('trim', '/') | join(' ')  }}
+    /// typedef {{ member.type_base }} {{ member.type_alias }}
+    {
+        .name = "{{ member.name }}",
+#if PY_VERSION_HEX < 0x030c0000  // Python 3.12
+        .type = T_{{ member.type_base | upper }},
+#else
+        .type = Py_T_{{ member.type_base | upper }},
+#endif // PY_VERSION_HEX
+        .offset = offsetof(Py{{ struct.name }}Data, data.{{ member.name }}),
+#if PY_VERSION_HEX < 0x030c0000  // Python 3.12
+        .flags = 0,
+#else
+        .flags = Py_RELATIVE_OFFSET,
+#endif // PY_VERSION_HEX
+        .doc = PyDoc_STR("{{ member.comment | map('trim', '/') | join(' ')  }}")
+    },
+    {% elif member.type_base == 'char' %}
+    {% else %}
+#error unexpected: {{ member }}
+    {% endif %}
+{% endfor %}
+    {NULL}  /* Sentinel */
+};
+
+static PyGetSetDef Py{{ struct.name }}Type_getsets[] = {
+{% for member in struct.members %}
+    {% if member.type_base == 'char' %}
+    /// {{ member.comment | map('trim', '/') | join(' ')  }}
+        {% if member.type_is_array %}
+    /// typedef {{ member.type_base }} {{ member.type_alias }}[{{ member.type_array_length }}]
+        {% else %}
+    /// typedef {{ member.type_base }} {{ member.type_alias }}
+        {% endif %}
+    {
+    .name = "{{ member.name }}",
+    .get = Py{{ struct.name }}Type_get_{{ member.name }},
+    .set = Py{{ struct.name }}Type_set_{{ member.name }},
+    .doc = PyDoc_STR("{{ member.comment | map('trim', '/') | join(' ')  }}"),
+    },
+    {% elif member.type_base in ('double', 'int', 'short') and not member.type_is_array %}
+    {% else %}
+#error unexpected: {{ member }}
+    {% endif %}
+{% endfor %}
+    {NULL}  /* Sentinel */
+};
+
+#if PY_VERSION_HEX >= 0x030f0000 // Python 3.15+
+static PySlot Py{{ struct.name }}Type_slots[] = {
+    PySlot_STATIC_DATA(Py_tp_name, (char *)"PyCTP.{{ struct.name }}"),
+    PySlot_STATIC_DATA(Py_tp_doc, (char *)PyDoc_STR("{{ struct.comment | map('trim', '/') | join(' ')  }}")),
+    PySlot_STATIC_DATA(Py_tp_members, Py{{ struct.name }}Type_members),
+    PySlot_STATIC_DATA(Py_tp_getset, Py{{ struct.name }}Type_getsets),
+    PySlot_SIZE(Py_tp_extra_basicsize, sizeof(Py{{ struct.name }}Data)),
+    PySlot_FUNC(Py_tp_init, Py{{ struct.name }}Type_init),
+    PySlot_FUNC(Py_tp_repr, Py{{ struct.name }}Type_repr),
+    PySlot_END
+};
+#else
+static PyType_Slot Py{{ struct.name }}Type_slots_legacy[] = {
+    {Py_tp_doc, (char *)PyDoc_STR("{{ struct.comment | map('trim', '/') | join(' ')  }}")},
+    {Py_tp_members, Py{{ struct.name }}Type_members},
+    {Py_tp_getset, Py{{ struct.name }}Type_getsets},
+    {Py_tp_init, (void *)Py{{ struct.name }}Type_init},
+    {Py_tp_repr, (void *)Py{{ struct.name }}Type_repr},
+    {0, NULL}
+};
+static PyType_Spec Py{{ struct.name }}Type_spec = {
+    .name = "PyCTP.{{ struct.name }}",
+#if PY_VERSION_HEX < 0x030c0000  // Python 3.12
+    .basicsize = (Py_ssize_t)sizeof(Py{{ struct.name }}Data),
+#else
+    .basicsize = -(Py_ssize_t)sizeof(Py{{ struct.name }}Data),
+#endif // PY_VERSION_HEX
+    .itemsize = 0,
+    .flags = Py_TPFLAGS_DEFAULT,
+    .slots = Py{{ struct.name }}Type_slots_legacy,
+};
+#endif
+
+PyTypeObject *Py{{ struct.name }}Type = NULL;
+
+int PyCTP_module_add_Py{{ struct.name }}Type_exec(PyObject *module) {
+
+#if PY_VERSION_HEX >= 0x030f0000 // Python 3.15+
+    PyObject *pytype = PyType_FromSlots(Py{{ struct.name }}Type_slots);
+#else
+    PyObject *pytype = PyType_FromSpec(&Py{{ struct.name }}Type_spec);
+#endif // PY_VERSION_HEX >= 0x030f0000
+    if (!pytype) return -1;
+
+    Py{{ struct.name }}Type = (PyTypeObject *)pytype;
+
+    if( PyModule_AddObject(module, "{{ struct.name }}", pytype) < 0 ) {
+        PyErr_SetString(PyExc_RuntimeError, "Failed to add {{ struct.name }} to module");
+        Py_DECREF(pytype);
+        return -1;
+    }
+
+    return 0;
+}

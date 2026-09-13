@@ -1,0 +1,534 @@
+
+#include "stdafx.h"
+#include "Py{{ api_class.name[10:] }}.h"
+#include "PyTypes.h"
+
+namespace {
+    class Py{{ spi_class.name }} final: public {{ spi_class.name }} {
+        protected:
+
+            Py{{ api_class.name }}Data *api;
+
+        public:
+
+            Py{{ spi_class.name }}(Py{{ api_class.name }}Data *a) : api(a) {}
+
+        {% for method in spi_class.methods %}
+
+            {% if method.access=='public'and method.is_virtual and method.result_type=='void' %}
+                {{- method.comment | map('trim') | join('\n') | indent(12, first=True) }}
+            void {{ method.name }}(
+                {%- for param in method.params -%}
+                    {%- if not loop.first %}, {% endif -%}
+                    {{- param.c_type }} {% if param.is_pointer %}*{% endif %}{{ param.name -}}
+                    {%- if param.default %} = {{ param.default }}{% endif -%}
+                {%- endfor -%}
+            ) override {
+                PyGILState_STATE gstate = PyGILState_Ensure();
+
+            {% for param in method.params %}
+                {% if param.is_pointer %}
+                PyObject *pyobj{{ param.name }} = NULL;
+                PyObject *pyobj{{ param.name }}_arg = Py_None;
+                {% else %}
+                PyObject *pyobj{{ param.name }} = NULL;
+                {% endif %}
+            {% endfor %}
+                PyObject *result = NULL;
+
+            {% for param in method.params %}
+                {% if param.c_type == 'int' %}
+                pyobj{{ param.name }} = PyLong_FromLong({{ param.name }});
+                if(!pyobj{{ param.name }}) goto cleanup;
+                {% elif param.c_type == 'bool' %}
+                pyobj{{ param.name }} = PyBool_FromLong({{ param.name }});
+                if (!pyobj{{ param.name }}) goto cleanup;
+                {% elif param.is_pointer %}
+                if ({{ param.name }}) {
+                    pyobj{{ param.name }} = PyType_GenericAlloc(Py{{ param.c_type }}Type, 0);
+                    if (!pyobj{{ param.name }}) goto cleanup;
+                    Py{{ param.c_type }}Data *extra_{{ param.name }} = PyCTP_GetTypeData<Py{{ param.c_type }}Data>(pyobj{{ param.name }});
+                    extra_{{ param.name }}->data = *{{ param.name }};
+                    pyobj{{ param.name }}_arg = pyobj{{ param.name }};
+                }
+                {% else %}
+#error unexpected: {{ param }}
+                {% endif %}
+            {% endfor %}
+
+            {% if method.params %}
+                // result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(__FUNCTION__), const_cast<char *>("{{ 'O' * (method.params | length) }}")
+                {%- for param in method.params -%}
+                    {%- if param.is_pointer %}, pyobj{{ param.name }}_arg{% else %}, pyobj{{ param.name }}{% endif -%}
+                {%- endfor -%}
+                );
+                result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("{{ method.name }}"), const_cast<char *>("{{ 'O' * (method.params | length) }}")
+                {%- for param in method.params -%}
+                    {%- if param.is_pointer %}, pyobj{{ param.name }}_arg{% else %}, pyobj{{ param.name }}{% endif -%}
+                {%- endfor -%}
+                );
+            {% else %}
+                // result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>(__FUNCTION__), NULL);
+                result = PyObject_CallMethod(this->api->pySpi, const_cast<char *>("{{ method.name }}"), NULL);
+            {% endif %}
+                if(!result) PyErr_Print();
+
+            {% if method.params %}
+                cleanup:
+            {% endif %}
+            {% for param in method.params %}
+                    Py_XDECREF(pyobj{{ param.name }});
+            {% endfor %}
+                    Py_XDECREF(result);
+                PyGILState_Release(gstate);
+            }
+            {% else %}
+#error unexpected: {{ method }}
+            {% endif %}
+        {% endfor %}
+    };
+}
+
+{% for method in api_class.methods %}
+    {% if method.is_static and method.result_type == 'CThostFtdcMdApi *' and method.name == 'CreateFtdcMdApi'
+                           and method.params and method.params | length == 4
+                           and method.params[0].c_type == 'const char' and     method.params[0].is_pointer and method.params[0].default
+                           and method.params[1].c_type == 'const bool' and not method.params[1].is_pointer and method.params[1].default
+                           and method.params[2].c_type == 'const bool' and not method.params[2].is_pointer and method.params[2].default
+                           and method.params[3].c_type == 'bool'       and not method.params[3].is_pointer and method.params[3].default %}
+        {{- method.comment | map('trim') | join('\n') }}
+///@see {% if method.is_static %}static {% endif %}{{ method.result_type }} {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} {% if method.params[0].is_pointer %}*{% endif %}{{ method.params[0].name }} = {{ method.params[0].default }}, {{ method.params[1].c_type }} {% if method.params[1].is_pointer %}*{% endif %}{{ method.params[1].name }} = {{ method.params[1].default }}, {{ method.params[2].c_type }} {% if method.params[2].is_pointer %}*{% endif %}{{ method.params[2].name }} = {{ method.params[2].default }}, {{ method.params[3].c_type }} {% if method.params[3].is_pointer %}*{% endif %}{{ method.params[3].name }} = {{ method.params[3].default }})
+static PyObject *Py{{ api_class.name }}Type_method_{{ method.name }}(PyTypeObject *type, PyObject *args){
+	const char *{{ method.params[0].name }} = {{ method.params[0].default }};
+	bool {{ method.params[1].name }} = {{ method.params[1].default }};
+	bool {{ method.params[2].name }} = {{ method.params[2].default }};
+	bool {{ method.params[3].name }} = {{ method.params[3].default }};
+
+	if (!PyArg_ParseTuple(args, "|yppp", &{{ method.params[0].name }}, &{{ method.params[1].name }}, &{{ method.params[2].name }}, &{{ method.params[3].name }})) {
+		return NULL;
+	}
+
+	/* 构造api对象 */
+	PyObject *self = PyType_GenericAlloc(type, 0);
+	if(!self){
+		return NULL;
+	}
+
+    Py{{ api_class.name }}Data* extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+
+	/* 创建ctpapi实例 */
+	extra->api = {{ api_class.name }}::{{ method.name }}({{ method.params[0].name }}, {{ method.params[1].name }}, {{ method.params[2].name }}, {{ method.params[3].name }});
+
+	if(!(extra->api)){
+		PyErr_SetString(PyExc_RuntimeError, "{{ api_class.name }}::{{ method.name }} failed");
+		Py_DECREF(self);
+		return NULL;
+	}
+
+	extra->spi  = new (std::nothrow) Py{{ spi_class.name }}(extra);
+    if (!(extra->spi)) {
+        PyErr_NoMemory();
+        Py_DECREF(self);
+        return NULL;
+    }
+
+	extra->api->RegisterSpi(extra->spi);
+
+	extra->pySpi = Py_None;
+	Py_INCREF(extra->pySpi);
+
+	return self;
+}
+    {% endif %}
+    {% if method.is_static and method.result_type == 'CThostFtdcTraderApi *' and method.name == 'CreateFtdcTraderApi'
+                           and method.params and method.params | length == 2
+                           and method.params[0].c_type == 'const char' and     method.params[0].is_pointer and method.params[0].default
+                           and method.params[1].c_type == 'bool'       and not method.params[1].is_pointer and method.params[1].default %}
+        {{- method.comment | map('trim') | join('\n') }}
+///@see {% if method.is_static %}static {% endif %}{{ method.result_type }} {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} {% if method.params[0].is_pointer %}*{% endif %}{{ method.params[0].name }} = {{ method.params[0].default }}, {{ method.params[1].c_type }} {% if method.params[1].is_pointer %}*{% endif %}{{ method.params[1].name }} = {{ method.params[1].default }})
+static PyObject *Py{{ api_class.name }}Type_method_{{ method.name }}(PyTypeObject *type, PyObject *args){
+	const char *{{ method.params[0].name }} = {{ method.params[0].default }};
+	bool {{ method.params[1].name }} = {{ method.params[1].default }};
+
+	if (!PyArg_ParseTuple(args, "|yp", &{{ method.params[0].name }}, &{{ method.params[1].name }})) {
+		return NULL;
+	}
+
+	/* 构造api对象 */
+	PyObject *self = PyType_GenericAlloc(type, 0);
+	if(!self){
+		return NULL;
+	}
+
+    Py{{ api_class.name }}Data* extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+
+	/* 创建ctpapi实例 */
+	extra->api = {{ api_class.name }}::{{ method.name }}({{ method.params[0].name }}, {{ method.params[1].name }});
+
+	if(!(extra->api)){
+		PyErr_SetString(PyExc_RuntimeError, "{{ api_class.name }}::{{ method.name }} failed");
+		Py_DECREF(self);
+		return NULL;
+	}
+
+	extra->spi  = new (std::nothrow) Py{{ spi_class.name }}(extra);
+    if (!(extra->spi)) {
+        PyErr_NoMemory();
+        Py_DECREF(self);
+        return NULL;
+    }
+
+	extra->api->RegisterSpi(extra->spi);
+
+	extra->pySpi = Py_None;
+	Py_INCREF(extra->pySpi);
+
+	return self;
+}
+    {% endif %}
+    {% if not method.is_static and method.result_type == 'void' and method.name == 'RegisterSpi'
+                               and method.params and method.params | length == 1
+                               and method.params[0].c_type == spi_class.name and method.params[0].is_pointer %}
+        {{- method.comment | map('trim') | join('\n') }}
+///@see {% if method.is_static %}static {% endif %}{{ method.result_type }} {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} {% if method.params[0].is_pointer %}*{% endif %}{{ method.params[0].name }})
+static PyObject *Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+    Py{{ api_class.name }}Data* extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+    PyObject *tmp = extra->pySpi;
+	if (!PyArg_ParseTuple(args, "O", &extra->pySpi)) {
+		return NULL;
+	}
+	Py_INCREF(extra->pySpi);
+	Py_XDECREF(tmp);
+	Py_RETURN_NONE;
+}
+    {% endif %}
+    {% if not method.is_static and method.result_type == 'void' and method.name == 'Release' and not method.params %}
+        {{- method.comment | map('trim') | join('\n') }}
+///@see void {{ api_class.name }}::{{ method.name }}()
+static PyObject *Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+	Py{{ api_class.name }}Data* extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+	if( extra->api )
+	{
+		extra->api->RegisterSpi(NULL);
+		extra->api->Release();
+		extra->api = NULL;
+	}
+	if( extra->spi ){
+		delete dynamic_cast<Py{{ spi_class.name }} *>(extra->spi);
+		extra->spi = NULL;
+	}
+	Py_CLEAR(extra->pySpi);
+	Py_RETURN_NONE;
+}
+    {% endif %}
+{% endfor %}
+
+{% for method in api_class.methods %}
+    {% if method.access == 'public' and method.name not in('CreateFtdcMdApi', 'CreateFtdcTraderApi', 'RegisterSpi', 'Release') %}
+        {% if not method.is_static and method.result_type == 'void' and not method.params %}
+        {# void fun() #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see void {{ api_class.name }}::{{ method.name }}()
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+    extra->api->{{ method.name }}();
+    extra = NULL;
+    Py_RETURN_NONE;
+}
+        {% elif not method.is_static and method.result_type == 'int' and not method.params %}
+        {# int fun() #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see int {{ api_class.name }}::{{ method.name }}()
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+	return PyLong_FromLong(extra->api->{{ method.name }}());
+}
+        {% elif method.is_static and method.result_type == 'const char *' and not method.params %}
+        {# static const char *fun() #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see static const char * {{ api_class.name }}::{{ method.name }}()
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+    return PyBytes_FromString({{ api_class.name }}::{{ method.name }}());
+}
+        {% elif not method.is_static and method.result_type == 'const char *' and not method.params %}
+        {# const char *fun() #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see const char * {{ api_class.name }}::{{ method.name }}()
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+    return PyBytes_FromString(extra->api->{{ method.name }}());
+}
+        {% elif not method.is_static and method.result_type == 'void' and method.params | length == 1
+                                                                      and method.params[0].is_pointer
+                                                                      and method.params[0].c_type == 'char' %}
+        {# void fun(char *) #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see void {{ api_class.name }}::{{ method.name }}(char *{{ method.params[0].name }})
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+    char *{{ method.params[0].name }} = NULL;
+    if (!PyArg_ParseTuple(args, "y", &{{ method.params[0].name }})) {
+        return NULL;
+    }
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+    extra->api->{{ method.name }}({{ method.params[0].name }});
+    extra = NULL;
+    {{ method.params[0].name }} = NULL;
+    Py_RETURN_NONE;
+}
+        {% elif not method.is_static and method.result_type == 'void' and method.params | length == 1
+                                                                      and method.params[0].is_pointer
+                                                                      and method.params[0].c_type.startswith('CThostFtdc')
+                                                                      and method.params[0].c_type.endswith('Field') %}
+        {# void fun(CThostFtdcXxxField *) #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see void {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} *{{ method.params[0].name }})
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+	PyObject *obj = NULL;
+	if (!PyArg_ParseTuple(args, "O", &obj)) {
+        return NULL;
+    }
+    if (!PyObject_TypeCheck(obj, Py{{ method.params[0].c_type }}Type)) {
+        PyErr_Format(PyExc_TypeError, "{{ method.name }}: expected {{ method.params[0].c_type }} instance");
+        return NULL;
+    }
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+    Py{{ method.params[0].c_type }}Data *obj_extra = PyCTP_GetTypeData<Py{{ method.params[0].c_type }}Data>(obj);
+	extra->api->{{ method.name }}(&(obj_extra->data));
+	extra = NULL;
+	obj_extra = NULL;
+	obj = NULL;
+	Py_RETURN_NONE;
+}
+        {% elif not method.is_static and method.result_type == 'int' and method.params | length == 1
+                                                                     and method.params[0].is_pointer
+                                                                     and method.params[0].c_type.startswith('CThostFtdc')
+                                                                     and method.params[0].c_type.endswith('Field') %}
+        {# int fun(CThostFtdcXxxField *) #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see int {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} *{{ method.params[0].name }})
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+	int ret;
+	PyObject *obj = NULL;
+	if (!PyArg_ParseTuple(args, "O", &obj)) {
+        return NULL;
+    }
+    if (!PyObject_TypeCheck(obj, Py{{ method.params[0].c_type }}Type)) {
+        PyErr_Format(PyExc_TypeError, "{{ method.name }}: expected {{ method.params[0].c_type }} instance");
+        return NULL;
+    }
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+    Py{{ method.params[0].c_type }}Data *obj_extra = PyCTP_GetTypeData<Py{{ method.params[0].c_type }}Data>(obj);
+	ret = extra->api->{{ method.name }}(&(obj_extra->data));
+	extra = NULL;
+	obj_extra = NULL;
+    obj = NULL;
+	return PyLong_FromLong(ret);
+}
+
+        {% elif not method.is_static and method.result_type == 'int' and method.params | length == 2
+                                                                     and method.params[0].is_pointer
+                                                                     and method.params[0].c_type.startswith('CThostFtdc')
+                                                                     and method.params[0].c_type.endswith('Field')
+                                                                     and not method.params[1].is_pointer
+                                                                     and method.params[1].c_type == 'int' %}
+        {# int fun(CThostFtdcXxxField *, int) #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see int {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} *{{ method.params[0].name }}, int {{ method.params[1].name }})
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+	PyObject *arg1 = NULL;
+	int arg2, ret;
+	if (!PyArg_ParseTuple(args, "Oi", &arg1, &arg2)) {
+        return NULL;
+    }
+    if (!PyObject_TypeCheck(arg1, Py{{ method.params[0].c_type }}Type )) {
+        PyErr_Format( PyExc_TypeError, "{{ method.name }}: param 1 expected {{ method.params[0].c_type }} instance");
+        return NULL;
+    }
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+    Py{{ method.params[0].c_type }}Data *arg1_extra = PyCTP_GetTypeData<Py{{ method.params[0].c_type }}Data>(arg1);
+	ret = extra->api->{{ method.name }}(&(arg1_extra->data), arg2);
+	arg1 = NULL;
+	arg1_extra = NULL;
+	extra = NULL;
+	return PyLong_FromLong(ret);
+}
+        {% elif not method.is_static and method.result_type == 'int' and method.params | length == 2
+                                                                     and not method.params[0].is_pointer
+                                                                     and method.params[0].c_type == 'char *[]'
+                                                                     and not method.params[1].is_pointer
+                                                                     and method.params[1].c_type == 'int' %}
+        {# int fun(char *[], int) #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see int {{ api_class.name }}::{{ method.name }}(char *{{ method.params[0].name }}[], int {{ method.params[1].name }})
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+	PyObject *arg1 = NULL;
+	int arg2, ret;
+	char **{{ method.params[0].name }} = NULL;
+	if ( !PyArg_ParseTuple(args, "Oi", &arg1, &arg2) ) {
+        return NULL;
+    }
+	if( !PyList_Check(arg1) ) {
+        PyErr_SetString(PyExc_TypeError, "{{ method.name }}: argument 1 must be a list");
+        return NULL;
+    }
+	if( PyList_Size(arg1) != (Py_ssize_t)arg2 ) {
+        PyErr_Format(PyExc_ValueError, "{{ method.name }}: {{ method.params[1].name }} (%d) does not match list length (%zd)", arg2, PyList_Size(arg1));
+        return NULL;
+    }
+	{{ method.params[0].name }} = new(std::nothrow) char*[arg2];
+	if(!{{ method.params[0].name }}) {
+        PyErr_NoMemory();
+        return NULL;
+	}
+	for(int i=0; i < arg2; i++) {
+        PyObject* item = PyList_GetItem(arg1, i);
+        if( !PyBytes_Check(item) ) {
+            PyErr_Format(PyExc_TypeError, "{{ method.name }}: list item %d must be bytes", i);
+            delete[] {{ method.params[0].name }};
+            return NULL;
+        }
+        {{ method.params[0].name }}[i] = PyBytes_AsString(item);
+	}
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+	ret = extra->api->{{ method.name }}({{ method.params[0].name }}, arg2);
+	delete[] {{ method.params[0].name }};
+	{{ method.params[0].name }} = NULL;
+	arg1 = NULL;
+	extra = NULL;
+	return PyLong_FromLong(ret);
+}
+        {% elif not method.is_static and method.result_type == 'void' and method.params | length == 1
+                                                                      and not method.params[0].is_pointer
+                                                                      and method.params[0].c_type == 'THOST_TE_RESUME_TYPE' %}
+        {# void fun(THOST_TE_RESUME_TYPE, int) #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see void {{ api_class.name }}::{{ method.name }}(THOST_TE_RESUME_TYPE {{ method.params[0].name }})
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+	THOST_TE_RESUME_TYPE {{ method.params[0].name }};
+
+	if (!PyArg_ParseTuple(args, const_cast<char *>("i"), &{{ method.params[0].name }}))
+	{
+		return NULL;
+	}
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+	extra->api->{{ method.name }}({{ method.params[0].name }});
+	Py_RETURN_NONE;
+}
+        {% elif not method.is_static and method.result_type == 'void' and method.params | length == 2
+                                                                      and not method.params[0].is_pointer
+                                                                      and method.params[0].c_type == 'THOST_TE_RESUME_TYPE'
+                                                                      and not method.params[1].is_pointer
+                                                                      and method.params[1].c_type == 'int'
+                                                                      and method.params[1].default == '1' %}
+        {# void fun(THOST_TE_RESUME_TYPE, int) #}
+
+{{ method.comment | map('trim') | join('\n') }}
+///@see void {{ api_class.name }}::{{ method.name }}(THOST_TE_RESUME_TYPE {{ method.params[0].name }}, int {{ method.params[1].name }} = {{ method.params[1].default }})
+static PyObject* Py{{ api_class.name }}Type_method_{{ method.name }}(PyObject *self, PyObject *args) {
+	THOST_TE_RESUME_TYPE {{ method.params[0].name }};
+    int {{ method.params[1].name }} = {{ method.params[1].default }};
+
+	if (!PyArg_ParseTuple(args, "i|i", &{{ method.params[0].name }}, &{{ method.params[1].name }}))
+	{
+		return NULL;
+	}
+    Py{{ api_class.name }}Data *extra = PyCTP_GetTypeData<Py{{ api_class.name }}Data>(self);
+	extra->api->{{ method.name }}({{ method.params[0].name }}, {{ method.params[1].name }});
+	Py_RETURN_NONE;
+}
+        {% else %}
+#error unexpected: {{ method }}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+static void Py{{ api_class.name }}Type_dealloc(PyObject *self) {
+    PyObject *result = Py{{ api_class.name }}Type_method_Release(self, NULL);
+    Py_XDECREF(result);
+	freefunc tp_free = (freefunc)PyType_GetSlot(Py_TYPE(self), Py_tp_free);
+    if (tp_free) {
+        tp_free(self);
+    }
+}
+
+static PyMethodDef Py{{ api_class.name }}Type_methods[] = {
+        {% for method in api_class.methods %}
+            {% if method.access=='public' %}
+                {{- method.comment | map('trim') | join('\n') | indent(4, first=True) }}
+    {
+    .ml_name="{{ method.name }}",
+    .ml_meth=   {%- if method.name.startswith('CreateFtdc') and method.name.endswith('Api') %}(PyCFunction){% endif %}Py{{ api_class.name }}Type_method_{{ method.name }},
+    .ml_flags=  {%- if method.params %}METH_VARARGS{% else %}METH_NOARGS{% endif -%}
+                {%- if method.is_static -%}
+                    {%- if method.name.startswith('CreateFtdc') and method.name.endswith('Api') %} | METH_CLASS
+                    {%- else %} | METH_STATIC
+                    {%- endif -%}
+                {%- endif -%},
+    .ml_doc=PyDoc_STR("{{ method.comment[0] | trim('\s\t\/') }}"),
+    },
+            {% endif %}
+        {% endfor %}
+    {NULL}  /* Sentinel */
+};
+
+#if PY_VERSION_HEX >= 0x030f0000 // Python 3.15+
+static PySlot Py{{ api_class.name }}Type_slots[] = {
+    PySlot_STATIC_DATA(Py_tp_name, (char *)"PyCTP.{{ api_class.name }}"),
+    PySlot_STATIC_DATA(Py_tp_doc, (char *)PyDoc_STR("{{ api_class.comment | map('trim', '/') | join(' ')  }}")),
+    PySlot_UINT64(Py_tp_flags, Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE),
+    PySlot_STATIC_DATA(Py_tp_methods, Py{{ api_class.name }}Type_methods),
+    PySlot_SIZE(Py_tp_extra_basicsize, sizeof(Py{{ api_class.name }}Data)),
+    PySlot_FUNC(Py_tp_dealloc, Py{{ api_class.name }}Type_dealloc),
+    PySlot_END
+};
+#else
+static PyType_Slot Py{{ api_class.name }}Type_slots_legacy[] = {
+    {Py_tp_doc, (char *)PyDoc_STR("{{ api_class.comment | map('trim', '/') | join(' ')  }}")},
+    {Py_tp_methods, Py{{ api_class.name }}Type_methods},
+    {Py_tp_dealloc, (void *)Py{{ api_class.name }}Type_dealloc},
+    {0, NULL}  /* Sentinel */
+};
+static PyType_Spec Py{{ api_class.name }}Type_spec = {
+    .name = "PyCTP.{{ api_class.name }}",
+#if PY_VERSION_HEX < 0x030c0000  // Python 3.12
+    .basicsize = (Py_ssize_t)sizeof(Py{{ api_class.name }}Data),
+#else
+    .basicsize = -(Py_ssize_t)sizeof(Py{{ api_class.name }}Data),
+#endif // PY_VERSION_HEX
+    .itemsize = 0,
+    .flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
+    .slots = Py{{ api_class.name }}Type_slots_legacy,
+};
+#endif
+
+PyTypeObject *Py{{ api_class.name }}Type = NULL;
+
+int PyCTP_module_add_Py{{ api_class.name }}Type_exec(PyObject *module) {
+
+#if PY_VERSION_HEX >= 0x030f0000 // Python 3.15+
+    PyObject *pytype = PyType_FromSlots(Py{{ api_class.name }}Type_slots);
+#else
+    PyObject *pytype = PyType_FromSpec(&Py{{ api_class.name }}Type_spec);
+#endif // PY_VERSION_HEX >= 0x030f0000
+    if (!pytype) return -1;
+
+    Py{{ api_class.name }}Type = (PyTypeObject *)pytype;
+
+    if( PyModule_AddObject(module, "{{ api_class.name }}", pytype) < 0 ) {
+        PyErr_SetString(PyExc_RuntimeError, "Failed to add {{ api_class.name }} to module");
+        Py_DECREF(pytype);
+        return -1;
+    };
+
+    return 0;
+}

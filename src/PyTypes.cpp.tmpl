@@ -1,0 +1,9 @@
+#include "PyTypes.h"
+
+int PyCTP_module_add_PyStructTypes_exec(PyObject *module) {
+{% for struct in structs %}
+    {{- struct.comment|join('\n')|indent(4, first=True) }}
+    if( PyCTP_module_add_Py{{ struct.name }}Type_exec(module) < 0 ) return -1;
+{% endfor %}
+    return 0;
+}

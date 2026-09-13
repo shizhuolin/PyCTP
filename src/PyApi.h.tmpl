@@ -1,0 +1,22 @@
+//行情API转PyCTP
+
+#ifndef PYCTP_PY{{ api_class.name[10:] | upper }}_H
+#define PYCTP_PY{{ api_class.name[10:] | upper }}_H
+
+#include "stdafx.h"
+#include <{{ api_class.name[1:] }}.h>
+
+typedef struct {
+#if PY_VERSION_HEX < 0x030c0000  // Python 3.12
+    PyObject_HEAD
+#endif // PY_VERSION_HEX
+    /* Type-specific fields go here. */
+	{{ api_class.name }} *api; /* api */
+	{{ spi_class.name }} *spi; /* 回调spi */
+	PyObject *pySpi;	  /* py代码回调 */
+} Py{{ api_class.name }}Data;
+
+extern PyTypeObject *Py{{ api_class.name }}Type;
+extern int PyCTP_module_add_Py{{ api_class.name }}Type_exec(PyObject *module);
+
+#endif

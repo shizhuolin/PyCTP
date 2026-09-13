@@ -1,0 +1,11 @@
+#ifndef PYCTP_PYTYPES_H
+#define PYCTP_PYTYPES_H
+
+{% for struct in structs %}
+{{ struct.comment|join('\n') }}
+#include "Types/Py{{ struct.name }}.h"
+{% endfor %}
+
+extern int PyCTP_module_add_PyStructTypes_exec(PyObject *module);
+
+#endif

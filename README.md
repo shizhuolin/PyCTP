@@ -1,75 +1,119 @@
 # PyCTP
 
-## Python 封装的上期所 CTP 接口版本，支持程序化期货交易.
+CTP 期货接口的 Python 封装。
 
-### 版本信息
+## 支持
 
-* 当前版本：v6.7.13_20260225_trader, v6.7.13_20260408_clientdatacollectdll, v6.7.13_20260225_traderSM, v6.7.13_CP_20260408_clientdatacollectdll
-* 更新日期：2026-08-11
+| 项 | 值 |
+|---|---|
+| CTP 标准版 | `v6.7.13_20260225_trader` |
+| CTP 国密版 | `v6.7.13_20260225_traderSM` |
+| Python | 3.6 ~ 3.15 |
+| 平台 | Linux x86_64 / Windows x86 / Windows x64 |
 
-### 环境:
+## 安装
 
-* Linux: gcc，Python 2.7, 3.10
-* Windows 11: Visual Studio 2026，Python 3.10 bit64
+### 前置条件
 
-### 编译及构建:
+- Python 3.6 或更高
+- C 编译器（Linux: gcc； Windows: MSVC 或 MinGW）
+- CTP SDK（见下）
 
-### 运行：
-
+### 默认安装（本地编译，性能优先）
+```bash
+    pip install .
 ```
-./build.sh #看穿式监管生产/评测版本+生产版本PC看穿式采集库
-./build.sh gen #看穿式监管生产/评测版本+生产版本PC看穿式采集库
-./build.sh sm cp gen #穿式监管生产/评测版本（商密）+评测版本PC看穿式采集库
-```
+默认从 `ctp/v6.7.13_20260225_trader` 读取 CTP SDK。
 
-> sm 生成商密版本
-> cp 采集库使用评测版本
-> gen生成对应c/c++代码
+### 指定 CTP SDK 路径
 
-在 *build/lib.linux-x86_64-cpython-39/*（Linux 示例路径）目录下会生成编译好的库文件和示范 Python 文件
-
-> 编译指南请参考文件：PyCTP Compile Guide.html
-
-[http://www.shizhuolin.com/2015/11/07/1120.html](http://www.shizhuolin.com/2015/11/07/1120.html)
-
-### 编译其它版本的ctp
-
-#### 更新ctp库
-
-1. 下载ctp，解压并存放到ctp路径，模仿ctp/v6.7.11_20250617保存,路径不能含中文字符
-> 路径格式 ./ctp/<ctp版本>/<操作系统>/
- 
-2. 更改api中的所有(*.h)头文件为utf8编码，api支持linux64,win32,win64三种操作系统，一共12个头文件都要更改
-> 用记事本打开头文件，文件 > 另存为 编码选择 utf8,覆盖原文件  
-> 头文件名 ThostFtdcMdApi.h, ThostFtdcTraderApi.h, ThostFtdcUserApiDataType.h, ThostFtdcUserApiStruct.h
-
-3. linux64文件夹中的libthostmduserapi_se.so, libthosttraderapi_se.so 文件名区分大小写.
-> 有些版本可能不带_se后缀  
-> 某些版本的linux库文件名不带*lib*前缀， 需要更改库文件名加上*lib*前缀
-
-#### 更新采集库
-
-1. 下载采集库，解压并存放到ctp路径，模仿ctp/sfit_pro_1.0_20220124_1468_FIX保存,路径不能含中文字符
-> 路径格式:  
-> ./ctp/<采集库版本>/<头文件>  
-> ./ctp/<采集库版本>/<Linux操作系统>/<Linux库文件>  
-> ./ctp/<采集库版本>/<Windows操作系统>/(32/64)/<Windows库文件>  
-> Linux库文件带*lib*前缀，区分大小写
-
-2. 更改所有(DataCoolect.h或FixDataCoolect.h)头文件为utf8编码.
-
-#### 生成文件
-
-更改 build.sh / build.bat文件中的 路径位对应的ctp版本
-```
-ctp_cpp_se="./ctp/v6.7.13_20260225_trader"
-ctp_cpp_sm="./ctp/v6.7.13_20260225_traderSM"
-clientdatacollectdll_prod=./ctp/v6.7.13_20260408_clientdatacollectdll
-clientdatacollectdll_eval=./ctp/v6.7.13_CP_20260408_clientdatacollectdll
-```
-执行
-```
-build.sh gen
+```bash
+    PYCTP_CTP_ROOT=/path/to/ctp pip install .
 ```
 
+`PYCTP_CTP_ROOT` 指向包含头文件和库文件的目录, SDK 目录内头文件和库文件需在同一目录下。
 
+### 构建 abi3 wheel（跨 Python 版本）
+```bash
+    PYCTP_LIMITED_API=1 pip wheel .
+```
+生成 `pyctp-x.x.x-cpXX-abi3-<platform>.whl`，
+可安装到编译时的 Python 版本及以上。
+
+### 切换到国密版
+```bash
+    PYCTP_CTP_ROOT=ctp/v6.7.13_20260225_traderSM python ctpgenbyast.py
+    PYCTP_CTP_ROOT=ctp/v6.7.13_20260225_traderSM pip install .
+```
+
+## 使用
+
+完整可运行的示例见 [`tests/test_pyctp.py`](tests/test_pyctp.py)。
+
+基本流程：
+
+```python
+import PyCTP
+
+api = PyCTP.CThostFtdcMdApi.CreateFtdcMdApi()
+api.RegisterSpi(my_spi)          # 自定义回调对象
+api.RegisterFront('tcp://...')
+api.Init()
+
+```
+
+## 更新 CTP SDK
+
+1. 下载 CTP SDK，解压到 `ctp/<版本>/`。路径不能含中文字符。
+
+2. 确认目录结构（头文件和库文件同目录）：
+
+       ctp/v6.7.13_20260225_trader/
+       ├── linux64/
+       │   ├── ThostFtdcMdApi.h
+       │   ├── libthostmduserapi_se.so
+       │   └── ...
+       ├── win32/
+       └── win64/
+
+3. 将 CTP 头文件转换为 UTF-8 编码。
+
+   CTP 官方头文件在不同版本、不同平台上编码可能不一致（GBK、
+   GB18030 或混杂），需要统一转为 UTF-8 才能编译。
+
+   需要处理的文件（4 个）：
+
+   - `ThostFtdcMdApi.h`
+   - `ThostFtdcTraderApi.h`
+   - `ThostFtdcUserApiDataType.h`
+   - `ThostFtdcUserApiStruct.h`
+
+   推荐使用编辑器手动转换（如 VS Code、Notepad++ 都支持
+   编码转换）
+
+4. Linux 库文件名加 `lib` 前缀（如缺）：
+```bash
+cd ctp/<版本>/linux64/
+for f in thost*.so; do [ -f "$f" ] && mv "$f" "lib$f"; done
+```
+
+## 开发
+
+克隆仓库，以可编辑模式安装：
+```bash
+    git clone https://github.com/shizhuolin/PyCTP.git
+    cd PyCTP
+    pip install -e .
+```
+
+修改 `src/` 下的源码后，重新运行 `pip install -e .` 重新编译。
+
+## 链接
+
+- 期货模拟仿真系统：[`https://www.simnow.com.cn/`](https://www.simnow.com.cn/)  
+- CTP API 手册和演示: [`https://www.simnow.com.cn/static/apiDownload.action`](https://www.simnow.com.cn/static/apiDownload.action)
+- 历史文档：[`http://www.shizhuolin.com/2015/11/07/1120.html`](http://www.shizhuolin.com/2015/11/07/1120.html)
+
+## License
+
+LGPL-3.0

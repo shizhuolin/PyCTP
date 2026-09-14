@@ -8,7 +8,7 @@ CTP 期货接口的 Python 封装。
 |---|---|
 | CTP 标准版 | `v6.7.13_20260225_trader` |
 | CTP 国密版 | `v6.7.13_20260225_traderSM` |
-| Python | 3.6 ~ 3.15 |
+| Python | 3.5 ~ 3.15 |
 | 平台 | Linux x86_64 / Windows x86 / Windows x64 |
 
 ## 安装

@@ -100,9 +100,9 @@ namespace {
 ///@see {% if method.is_static %}static {% endif %}{{ method.result_type }} {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} {% if method.params[0].is_pointer %}*{% endif %}{{ method.params[0].name }} = {{ method.params[0].default }}, {{ method.params[1].c_type }} {% if method.params[1].is_pointer %}*{% endif %}{{ method.params[1].name }} = {{ method.params[1].default }}, {{ method.params[2].c_type }} {% if method.params[2].is_pointer %}*{% endif %}{{ method.params[2].name }} = {{ method.params[2].default }}, {{ method.params[3].c_type }} {% if method.params[3].is_pointer %}*{% endif %}{{ method.params[3].name }} = {{ method.params[3].default }})
 static PyObject *Py{{ api_class.name }}Type_method_{{ method.name }}(PyTypeObject *type, PyObject *args){
 	const char *{{ method.params[0].name }} = {{ method.params[0].default }};
-	bool {{ method.params[1].name }} = {{ method.params[1].default }};
-	bool {{ method.params[2].name }} = {{ method.params[2].default }};
-	bool {{ method.params[3].name }} = {{ method.params[3].default }};
+	int {{ method.params[1].name }} = {{ method.params[1].default }};
+	int {{ method.params[2].name }} = {{ method.params[2].default }};
+	int {{ method.params[3].name }} = {{ method.params[3].default }};
 
 	if (!PyArg_ParseTuple(args, "|yppp", &{{ method.params[0].name }}, &{{ method.params[1].name }}, &{{ method.params[2].name }}, &{{ method.params[3].name }})) {
 		return NULL;
@@ -148,7 +148,7 @@ static PyObject *Py{{ api_class.name }}Type_method_{{ method.name }}(PyTypeObjec
 ///@see {% if method.is_static %}static {% endif %}{{ method.result_type }} {{ api_class.name }}::{{ method.name }}({{ method.params[0].c_type }} {% if method.params[0].is_pointer %}*{% endif %}{{ method.params[0].name }} = {{ method.params[0].default }}, {{ method.params[1].c_type }} {% if method.params[1].is_pointer %}*{% endif %}{{ method.params[1].name }} = {{ method.params[1].default }})
 static PyObject *Py{{ api_class.name }}Type_method_{{ method.name }}(PyTypeObject *type, PyObject *args){
 	const char *{{ method.params[0].name }} = {{ method.params[0].default }};
-	bool {{ method.params[1].name }} = {{ method.params[1].default }};
+	int {{ method.params[1].name }} = {{ method.params[1].default }};
 
 	if (!PyArg_ParseTuple(args, "|yp", &{{ method.params[0].name }}, &{{ method.params[1].name }})) {
 		return NULL;

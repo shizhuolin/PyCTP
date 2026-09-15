@@ -480,9 +480,9 @@ namespace {
 ///@see static CThostFtdcMdApi * CThostFtdcMdApi::CreateFtdcMdApi(const char *pszFlowPath = "", const bool bIsUsingUdp = false, const bool bIsMulticast = false, bool bIsProductionMode = true)
 static PyObject *PyCThostFtdcMdApiType_method_CreateFtdcMdApi(PyTypeObject *type, PyObject *args){
 	const char *pszFlowPath = "";
-	bool bIsUsingUdp = false;
-	bool bIsMulticast = false;
-	bool bIsProductionMode = true;
+	int bIsUsingUdp = false;
+	int bIsMulticast = false;
+	int bIsProductionMode = true;
 
 	if (!PyArg_ParseTuple(args, "|yppp", &pszFlowPath, &bIsUsingUdp, &bIsMulticast, &bIsProductionMode)) {
 		return NULL;

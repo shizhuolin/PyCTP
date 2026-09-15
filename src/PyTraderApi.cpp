@@ -7054,7 +7054,7 @@ namespace {
 ///@see static CThostFtdcTraderApi * CThostFtdcTraderApi::CreateFtdcTraderApi(const char *pszFlowPath = "", bool bIsProductionMode = true)
 static PyObject *PyCThostFtdcTraderApiType_method_CreateFtdcTraderApi(PyTypeObject *type, PyObject *args){
 	const char *pszFlowPath = "";
-	bool bIsProductionMode = true;
+	int bIsProductionMode = true;
 
 	if (!PyArg_ParseTuple(args, "|yp", &pszFlowPath, &bIsProductionMode)) {
 		return NULL;

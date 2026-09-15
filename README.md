@@ -35,7 +35,7 @@ CTP 期货接口的 Python 封装。
 
 ### 构建 abi3 wheel（跨 Python 版本）
 ```bash
-    PYCTP_LIMITED_API=1 pip wheel .
+    PYCTP_ABI3=1 pip wheel .
 ```
 生成 `pyctp-x.x.x-cpXX-abi3-<platform>.whl`，
 可安装到编译时的 Python 版本及以上。

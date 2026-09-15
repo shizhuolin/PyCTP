@@ -2254,7 +2254,7 @@ def main():
     product_info = b''
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    flow_path = os.path.join(current_dir, 'flow/')
+    flow_path = os.path.join(current_dir, 'flow')
     if not os.path.exists(flow_path):
         os.makedirs(flow_path)
     flow_path = text_to_bytes(flow_path)
@@ -2262,7 +2262,7 @@ def main():
     trader = CTPTrader(flow_path, is_production_mode)
     market = CTPMarket(flow_path, False, False, is_production_mode)
     print('Python版本: ', sys.version)
-    print('看穿式采集库版本： ', PyCTP.CTP_GetDataCollectApiVersion())
+    # print('看穿式采集库版本： ', PyCTP.CTP_GetDataCollectApiVersion())
     print('行情API版本: ', market.get_api_version())
     print('交易API版本: ', trader.get_api_version())
     print('连接行情前置: ', market.connect(m_front_addr))

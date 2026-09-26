@@ -360,50 +360,50 @@ static PyGetSetDef PyCThostFtdcQryExchangeCombActionFieldType_getsets[] = {
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcQryExchangeCombActionFieldType_get_ParticipantID,
-    .set = PyCThostFtdcQryExchangeCombActionFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcQryExchangeCombActionFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcQryExchangeCombActionFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 客户代码
     /// typedef char TThostFtdcClientIDType[11]
     {
-    .name = "ClientID",
-    .get = PyCThostFtdcQryExchangeCombActionFieldType_get_ClientID,
-    .set = PyCThostFtdcQryExchangeCombActionFieldType_set_ClientID,
-    .doc = PyDoc_STR("客户代码"),
+    /*.name =*/ "ClientID",
+    /*.get =*/ PyCThostFtdcQryExchangeCombActionFieldType_get_ClientID,
+    /*.set =*/ PyCThostFtdcQryExchangeCombActionFieldType_set_ClientID,
+    /*.doc =*/ PyDoc_STR("客户代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldExchangeInstIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryExchangeCombActionFieldType_get_reserve1,
-    .set = PyCThostFtdcQryExchangeCombActionFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryExchangeCombActionFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryExchangeCombActionFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryExchangeCombActionFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryExchangeCombActionFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryExchangeCombActionFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryExchangeCombActionFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcQryExchangeCombActionFieldType_get_TraderID,
-    .set = PyCThostFtdcQryExchangeCombActionFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcQryExchangeCombActionFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcQryExchangeCombActionFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     /// 合约在交易所的代码
     /// typedef char TThostFtdcExchangeInstIDType[81]
     {
-    .name = "ExchangeInstID",
-    .get = PyCThostFtdcQryExchangeCombActionFieldType_get_ExchangeInstID,
-    .set = PyCThostFtdcQryExchangeCombActionFieldType_set_ExchangeInstID,
-    .doc = PyDoc_STR("合约在交易所的代码"),
+    /*.name =*/ "ExchangeInstID",
+    /*.get =*/ PyCThostFtdcQryExchangeCombActionFieldType_get_ExchangeInstID,
+    /*.set =*/ PyCThostFtdcQryExchangeCombActionFieldType_set_ExchangeInstID,
+    /*.doc =*/ PyDoc_STR("合约在交易所的代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -429,15 +429,15 @@ static PyType_Slot PyCThostFtdcQryExchangeCombActionFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryExchangeCombActionFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryExchangeCombActionField",
+    /*.name =*/ "PyCTP.CThostFtdcQryExchangeCombActionField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeCombActionFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeCombActionFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeCombActionFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeCombActionFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryExchangeCombActionFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryExchangeCombActionFieldType_slots_legacy,
 };
 #endif
 

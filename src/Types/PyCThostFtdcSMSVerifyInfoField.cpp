@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcSMSVerifyInfoFieldType_getsets[] = {
     /// 验证码创建时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "CreateTime",
-    .get = PyCThostFtdcSMSVerifyInfoFieldType_get_CreateTime,
-    .set = PyCThostFtdcSMSVerifyInfoFieldType_set_CreateTime,
-    .doc = PyDoc_STR("验证码创建时间"),
+    /*.name =*/ "CreateTime",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFieldType_get_CreateTime,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFieldType_set_CreateTime,
+    /*.doc =*/ PyDoc_STR("验证码创建时间"),
     },
     /// 手机号
     /// typedef char TThostFtdcSMSPhoneType[17]
     {
-    .name = "Mobile",
-    .get = PyCThostFtdcSMSVerifyInfoFieldType_get_Mobile,
-    .set = PyCThostFtdcSMSVerifyInfoFieldType_set_Mobile,
-    .doc = PyDoc_STR("手机号"),
+    /*.name =*/ "Mobile",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFieldType_get_Mobile,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFieldType_set_Mobile,
+    /*.doc =*/ PyDoc_STR("手机号"),
     },
     /// 短信验证信息内容
     /// typedef char TThostFtdcSMSContentType[129]
     {
-    .name = "SMSContent",
-    .get = PyCThostFtdcSMSVerifyInfoFieldType_get_SMSContent,
-    .set = PyCThostFtdcSMSVerifyInfoFieldType_set_SMSContent,
-    .doc = PyDoc_STR("短信验证信息内容"),
+    /*.name =*/ "SMSContent",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFieldType_get_SMSContent,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFieldType_set_SMSContent,
+    /*.doc =*/ PyDoc_STR("短信验证信息内容"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcSMSVerifyInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSMSVerifyInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSMSVerifyInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcSMSVerifyInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSMSVerifyInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSMSVerifyInfoFieldType_slots_legacy,
 };
 #endif
 

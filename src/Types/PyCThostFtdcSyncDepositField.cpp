@@ -346,70 +346,70 @@ static PyMemberDef PyCThostFtdcSyncDepositFieldType_members[] = {
     /// 入金金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Deposit",
+        /*.name =*/ "Deposit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDepositFieldData, data.Deposit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDepositFieldData, data.Deposit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("入金金额")
+        /*.doc =*/ PyDoc_STR("入金金额")
     },
     /// 是否强制进行
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsForce",
+        /*.name =*/ "IsForce",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDepositFieldData, data.IsForce),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDepositFieldData, data.IsForce),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否强制进行")
+        /*.doc =*/ PyDoc_STR("是否强制进行")
     },
     /// 是否是个股期权内转
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsFromSopt",
+        /*.name =*/ "IsFromSopt",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDepositFieldData, data.IsFromSopt),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDepositFieldData, data.IsFromSopt),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否是个股期权内转")
+        /*.doc =*/ PyDoc_STR("是否是个股期权内转")
     },
     /// 是否二级代理商的内转
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsSecAgentTranfer",
+        /*.name =*/ "IsSecAgentTranfer",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDepositFieldData, data.IsSecAgentTranfer),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDepositFieldData, data.IsSecAgentTranfer),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否二级代理商的内转")
+        /*.doc =*/ PyDoc_STR("是否二级代理商的内转")
     },
     {NULL}  /* Sentinel */
 };
@@ -418,42 +418,42 @@ static PyGetSetDef PyCThostFtdcSyncDepositFieldType_getsets[] = {
     /// 出入金流水号
     /// typedef char TThostFtdcDepositSeqNoType[15]
     {
-    .name = "DepositSeqNo",
-    .get = PyCThostFtdcSyncDepositFieldType_get_DepositSeqNo,
-    .set = PyCThostFtdcSyncDepositFieldType_set_DepositSeqNo,
-    .doc = PyDoc_STR("出入金流水号"),
+    /*.name =*/ "DepositSeqNo",
+    /*.get =*/ PyCThostFtdcSyncDepositFieldType_get_DepositSeqNo,
+    /*.set =*/ PyCThostFtdcSyncDepositFieldType_set_DepositSeqNo,
+    /*.doc =*/ PyDoc_STR("出入金流水号"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSyncDepositFieldType_get_BrokerID,
-    .set = PyCThostFtdcSyncDepositFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSyncDepositFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSyncDepositFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcSyncDepositFieldType_get_InvestorID,
-    .set = PyCThostFtdcSyncDepositFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcSyncDepositFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcSyncDepositFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcSyncDepositFieldType_get_CurrencyID,
-    .set = PyCThostFtdcSyncDepositFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcSyncDepositFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcSyncDepositFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     /// 资金密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "TradingPassword",
-    .get = PyCThostFtdcSyncDepositFieldType_get_TradingPassword,
-    .set = PyCThostFtdcSyncDepositFieldType_set_TradingPassword,
-    .doc = PyDoc_STR("资金密码"),
+    /*.name =*/ "TradingPassword",
+    /*.get =*/ PyCThostFtdcSyncDepositFieldType_get_TradingPassword,
+    /*.set =*/ PyCThostFtdcSyncDepositFieldType_set_TradingPassword,
+    /*.doc =*/ PyDoc_STR("资金密码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -479,15 +479,15 @@ static PyType_Slot PyCThostFtdcSyncDepositFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDepositFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDepositField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDepositField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDepositFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDepositFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDepositFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDepositFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDepositFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDepositFieldType_slots_legacy,
 };
 #endif
 

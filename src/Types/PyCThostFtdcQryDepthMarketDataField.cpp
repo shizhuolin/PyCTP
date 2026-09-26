@@ -247,34 +247,34 @@ static PyGetSetDef PyCThostFtdcQryDepthMarketDataFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryDepthMarketDataFieldType_get_reserve1,
-    .set = PyCThostFtdcQryDepthMarketDataFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryDepthMarketDataFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryDepthMarketDataFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryDepthMarketDataFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryDepthMarketDataFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryDepthMarketDataFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryDepthMarketDataFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryDepthMarketDataFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryDepthMarketDataFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryDepthMarketDataFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryDepthMarketDataFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 产品类型
     /// typedef char TThostFtdcProductClassType
     {
-    .name = "ProductClass",
-    .get = PyCThostFtdcQryDepthMarketDataFieldType_get_ProductClass,
-    .set = PyCThostFtdcQryDepthMarketDataFieldType_set_ProductClass,
-    .doc = PyDoc_STR("产品类型"),
+    /*.name =*/ "ProductClass",
+    /*.get =*/ PyCThostFtdcQryDepthMarketDataFieldType_get_ProductClass,
+    /*.set =*/ PyCThostFtdcQryDepthMarketDataFieldType_set_ProductClass,
+    /*.doc =*/ PyDoc_STR("产品类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -300,15 +300,15 @@ static PyType_Slot PyCThostFtdcQryDepthMarketDataFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryDepthMarketDataFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryDepthMarketDataField",
+    /*.name =*/ "PyCTP.CThostFtdcQryDepthMarketDataField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryDepthMarketDataFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryDepthMarketDataFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryDepthMarketDataFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryDepthMarketDataFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryDepthMarketDataFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryDepthMarketDataFieldType_slots_legacy,
 };
 #endif
 

@@ -620,70 +620,70 @@ static PyMemberDef PyCThostFtdcTGIpAddrParamFieldType_members[] = {
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DRIdentityID",
+        /*.name =*/ "DRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.DRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.DRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     /// 服务地址编号
     /// typedef int TThostFtdcCommonIntType
     {
-        .name = "AddrNo",
+        /*.name =*/ "AddrNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.AddrNo),
+        /*.offset =*/ offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.AddrNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("服务地址编号")
+        /*.doc =*/ PyDoc_STR("服务地址编号")
     },
     /// 是否是国密地址
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsSM",
+        /*.name =*/ "IsSM",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.IsSM),
+        /*.offset =*/ offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.IsSM),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否是国密地址")
+        /*.doc =*/ PyDoc_STR("是否是国密地址")
     },
     /// 是否是内网地址
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsLocalAddr",
+        /*.name =*/ "IsLocalAddr",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.IsLocalAddr),
+        /*.offset =*/ offsetof(PyCThostFtdcTGIpAddrParamFieldData, data.IsLocalAddr),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否是内网地址")
+        /*.doc =*/ PyDoc_STR("是否是内网地址")
     },
     {NULL}  /* Sentinel */
 };
@@ -692,90 +692,90 @@ static PyGetSetDef PyCThostFtdcTGIpAddrParamFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_UserID,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 服务地址
     /// typedef char TThostFtdcIpAddrType[129]
     {
-    .name = "Address",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_Address,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_Address,
-    .doc = PyDoc_STR("服务地址"),
+    /*.name =*/ "Address",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_Address,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_Address,
+    /*.doc =*/ PyDoc_STR("服务地址"),
     },
     /// 交易中心名称
     /// typedef char TThostFtdcDRIdentityNameType[65]
     {
-    .name = "DRIdentityName",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_DRIdentityName,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_DRIdentityName,
-    .doc = PyDoc_STR("交易中心名称"),
+    /*.name =*/ "DRIdentityName",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_DRIdentityName,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_DRIdentityName,
+    /*.doc =*/ PyDoc_STR("交易中心名称"),
     },
     /// 交易地址OR行情地址
     /// typedef char TThostFtdcAddrSrvModeType
     {
-    .name = "AddrSrvMode",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_AddrSrvMode,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_AddrSrvMode,
-    .doc = PyDoc_STR("交易地址OR行情地址"),
+    /*.name =*/ "AddrSrvMode",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_AddrSrvMode,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_AddrSrvMode,
+    /*.doc =*/ PyDoc_STR("交易地址OR行情地址"),
     },
     /// 地址版本
     /// typedef char TThostFtdcAddrVerType
     {
-    .name = "AddrVer",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_AddrVer,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_AddrVer,
-    .doc = PyDoc_STR("地址版本"),
+    /*.name =*/ "AddrVer",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_AddrVer,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_AddrVer,
+    /*.doc =*/ PyDoc_STR("地址版本"),
     },
     /// 服务地址名称
     /// typedef char TThostFtdcAddrNameType[65]
     {
-    .name = "AddrName",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_AddrName,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_AddrName,
-    .doc = PyDoc_STR("服务地址名称"),
+    /*.name =*/ "AddrName",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_AddrName,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_AddrName,
+    /*.doc =*/ PyDoc_STR("服务地址名称"),
     },
     /// 地址补充信息
     /// typedef char TThostFtdcAddrRemarkType[161]
     {
-    .name = "Remark",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_Remark,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_Remark,
-    .doc = PyDoc_STR("地址补充信息"),
+    /*.name =*/ "Remark",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_Remark,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_Remark,
+    /*.doc =*/ PyDoc_STR("地址补充信息"),
     },
     /// 站点
     /// typedef char TThostFtdcSiteType[51]
     {
-    .name = "Site",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_Site,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_Site,
-    .doc = PyDoc_STR("站点"),
+    /*.name =*/ "Site",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_Site,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_Site,
+    /*.doc =*/ PyDoc_STR("站点"),
     },
     /// 网络运营商
     /// typedef char TThostFtdcNetOperatorType[9]
     {
-    .name = "NetOperator",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_NetOperator,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_NetOperator,
-    .doc = PyDoc_STR("网络运营商"),
+    /*.name =*/ "NetOperator",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_NetOperator,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_NetOperator,
+    /*.doc =*/ PyDoc_STR("网络运营商"),
     },
     /// 系统名称
     /// typedef char TThostFtdcAddrNameType[65]
     {
-    .name = "SysName",
-    .get = PyCThostFtdcTGIpAddrParamFieldType_get_SysName,
-    .set = PyCThostFtdcTGIpAddrParamFieldType_set_SysName,
-    .doc = PyDoc_STR("系统名称"),
+    /*.name =*/ "SysName",
+    /*.get =*/ PyCThostFtdcTGIpAddrParamFieldType_get_SysName,
+    /*.set =*/ PyCThostFtdcTGIpAddrParamFieldType_set_SysName,
+    /*.doc =*/ PyDoc_STR("系统名称"),
     },
     {NULL}  /* Sentinel */
 };
@@ -801,15 +801,15 @@ static PyType_Slot PyCThostFtdcTGIpAddrParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTGIpAddrParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTGIpAddrParamField",
+    /*.name =*/ "PyCTP.CThostFtdcTGIpAddrParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTGIpAddrParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTGIpAddrParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTGIpAddrParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTGIpAddrParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTGIpAddrParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTGIpAddrParamFieldType_slots_legacy,
 };
 #endif
 

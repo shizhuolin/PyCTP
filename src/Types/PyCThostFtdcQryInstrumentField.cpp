@@ -410,58 +410,58 @@ static PyGetSetDef PyCThostFtdcQryInstrumentFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryInstrumentFieldType_get_reserve1,
-    .set = PyCThostFtdcQryInstrumentFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryInstrumentFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryInstrumentFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryInstrumentFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryInstrumentFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryInstrumentFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryInstrumentFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldExchangeInstIDType[31]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcQryInstrumentFieldType_get_reserve2,
-    .set = PyCThostFtdcQryInstrumentFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcQryInstrumentFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcQryInstrumentFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve3",
-    .get = PyCThostFtdcQryInstrumentFieldType_get_reserve3,
-    .set = PyCThostFtdcQryInstrumentFieldType_set_reserve3,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve3",
+    /*.get =*/ PyCThostFtdcQryInstrumentFieldType_get_reserve3,
+    /*.set =*/ PyCThostFtdcQryInstrumentFieldType_set_reserve3,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryInstrumentFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryInstrumentFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryInstrumentFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryInstrumentFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 合约在交易所的代码
     /// typedef char TThostFtdcExchangeInstIDType[81]
     {
-    .name = "ExchangeInstID",
-    .get = PyCThostFtdcQryInstrumentFieldType_get_ExchangeInstID,
-    .set = PyCThostFtdcQryInstrumentFieldType_set_ExchangeInstID,
-    .doc = PyDoc_STR("合约在交易所的代码"),
+    /*.name =*/ "ExchangeInstID",
+    /*.get =*/ PyCThostFtdcQryInstrumentFieldType_get_ExchangeInstID,
+    /*.set =*/ PyCThostFtdcQryInstrumentFieldType_set_ExchangeInstID,
+    /*.doc =*/ PyDoc_STR("合约在交易所的代码"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcQryInstrumentFieldType_get_ProductID,
-    .set = PyCThostFtdcQryInstrumentFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcQryInstrumentFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcQryInstrumentFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -487,15 +487,15 @@ static PyType_Slot PyCThostFtdcQryInstrumentFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInstrumentFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInstrumentField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInstrumentField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInstrumentFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInstrumentFieldType_slots_legacy,
 };
 #endif
 

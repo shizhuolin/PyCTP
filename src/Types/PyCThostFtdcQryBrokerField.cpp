@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQryBrokerFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryBrokerFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryBrokerFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryBrokerFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryBrokerFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQryBrokerFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryBrokerFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryBrokerField",
+    /*.name =*/ "PyCTP.CThostFtdcQryBrokerField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryBrokerFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryBrokerFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryBrokerFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryBrokerFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryBrokerFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryBrokerFieldType_slots_legacy,
 };
 #endif
 

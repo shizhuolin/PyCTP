@@ -716,784 +716,784 @@ static PyMemberDef PyCThostFtdcSyncDeltaTradingAccountFieldType_members[] = {
     /// 上次质押金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PreMortgage",
+        /*.name =*/ "PreMortgage",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreMortgage),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreMortgage),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上次质押金额")
+        /*.doc =*/ PyDoc_STR("上次质押金额")
     },
     /// 上次信用额度
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PreCredit",
+        /*.name =*/ "PreCredit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreCredit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreCredit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上次信用额度")
+        /*.doc =*/ PyDoc_STR("上次信用额度")
     },
     /// 上次存款额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PreDeposit",
+        /*.name =*/ "PreDeposit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreDeposit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreDeposit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上次存款额")
+        /*.doc =*/ PyDoc_STR("上次存款额")
     },
     /// 上次结算准备金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PreBalance",
+        /*.name =*/ "PreBalance",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreBalance),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreBalance),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上次结算准备金")
+        /*.doc =*/ PyDoc_STR("上次结算准备金")
     },
     /// 上次占用的保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PreMargin",
+        /*.name =*/ "PreMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上次占用的保证金")
+        /*.doc =*/ PyDoc_STR("上次占用的保证金")
     },
     /// 利息基数
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "InterestBase",
+        /*.name =*/ "InterestBase",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.InterestBase),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.InterestBase),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("利息基数")
+        /*.doc =*/ PyDoc_STR("利息基数")
     },
     /// 利息收入
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Interest",
+        /*.name =*/ "Interest",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Interest),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Interest),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("利息收入")
+        /*.doc =*/ PyDoc_STR("利息收入")
     },
     /// 入金金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Deposit",
+        /*.name =*/ "Deposit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Deposit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Deposit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("入金金额")
+        /*.doc =*/ PyDoc_STR("入金金额")
     },
     /// 出金金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Withdraw",
+        /*.name =*/ "Withdraw",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Withdraw),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Withdraw),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("出金金额")
+        /*.doc =*/ PyDoc_STR("出金金额")
     },
     /// 冻结的保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FrozenMargin",
+        /*.name =*/ "FrozenMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("冻结的保证金")
+        /*.doc =*/ PyDoc_STR("冻结的保证金")
     },
     /// 冻结的资金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FrozenCash",
+        /*.name =*/ "FrozenCash",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenCash),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenCash),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("冻结的资金")
+        /*.doc =*/ PyDoc_STR("冻结的资金")
     },
     /// 冻结的手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FrozenCommission",
+        /*.name =*/ "FrozenCommission",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenCommission),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenCommission),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("冻结的手续费")
+        /*.doc =*/ PyDoc_STR("冻结的手续费")
     },
     /// 当前保证金总额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "CurrMargin",
+        /*.name =*/ "CurrMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.CurrMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.CurrMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("当前保证金总额")
+        /*.doc =*/ PyDoc_STR("当前保证金总额")
     },
     /// 资金差额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "CashIn",
+        /*.name =*/ "CashIn",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.CashIn),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.CashIn),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("资金差额")
+        /*.doc =*/ PyDoc_STR("资金差额")
     },
     /// 手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Commission",
+        /*.name =*/ "Commission",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Commission),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Commission),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("手续费")
+        /*.doc =*/ PyDoc_STR("手续费")
     },
     /// 平仓盈亏
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "CloseProfit",
+        /*.name =*/ "CloseProfit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.CloseProfit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.CloseProfit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("平仓盈亏")
+        /*.doc =*/ PyDoc_STR("平仓盈亏")
     },
     /// 持仓盈亏
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PositionProfit",
+        /*.name =*/ "PositionProfit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PositionProfit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PositionProfit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("持仓盈亏")
+        /*.doc =*/ PyDoc_STR("持仓盈亏")
     },
     /// 期货结算准备金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Balance",
+        /*.name =*/ "Balance",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Balance),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Balance),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期货结算准备金")
+        /*.doc =*/ PyDoc_STR("期货结算准备金")
     },
     /// 可用资金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Available",
+        /*.name =*/ "Available",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Available),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Available),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("可用资金")
+        /*.doc =*/ PyDoc_STR("可用资金")
     },
     /// 可取资金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "WithdrawQuota",
+        /*.name =*/ "WithdrawQuota",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.WithdrawQuota),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.WithdrawQuota),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("可取资金")
+        /*.doc =*/ PyDoc_STR("可取资金")
     },
     /// 基本准备金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Reserve",
+        /*.name =*/ "Reserve",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Reserve),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Reserve),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("基本准备金")
+        /*.doc =*/ PyDoc_STR("基本准备金")
     },
     /// 结算编号
     /// typedef int TThostFtdcSettlementIDType
     {
-        .name = "SettlementID",
+        /*.name =*/ "SettlementID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SettlementID),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SettlementID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("结算编号")
+        /*.doc =*/ PyDoc_STR("结算编号")
     },
     /// 信用额度
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Credit",
+        /*.name =*/ "Credit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Credit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Credit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("信用额度")
+        /*.doc =*/ PyDoc_STR("信用额度")
     },
     /// 质押金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Mortgage",
+        /*.name =*/ "Mortgage",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Mortgage),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.Mortgage),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("质押金额")
+        /*.doc =*/ PyDoc_STR("质押金额")
     },
     /// 交易所保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ExchangeMargin",
+        /*.name =*/ "ExchangeMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.ExchangeMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.ExchangeMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易所保证金")
+        /*.doc =*/ PyDoc_STR("交易所保证金")
     },
     /// 投资者交割保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "DeliveryMargin",
+        /*.name =*/ "DeliveryMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.DeliveryMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.DeliveryMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("投资者交割保证金")
+        /*.doc =*/ PyDoc_STR("投资者交割保证金")
     },
     /// 交易所交割保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ExchangeDeliveryMargin",
+        /*.name =*/ "ExchangeDeliveryMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.ExchangeDeliveryMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.ExchangeDeliveryMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易所交割保证金")
+        /*.doc =*/ PyDoc_STR("交易所交割保证金")
     },
     /// 保底期货结算准备金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ReserveBalance",
+        /*.name =*/ "ReserveBalance",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.ReserveBalance),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.ReserveBalance),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("保底期货结算准备金")
+        /*.doc =*/ PyDoc_STR("保底期货结算准备金")
     },
     /// 上次货币质入金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PreFundMortgageIn",
+        /*.name =*/ "PreFundMortgageIn",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreFundMortgageIn),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreFundMortgageIn),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上次货币质入金额")
+        /*.doc =*/ PyDoc_STR("上次货币质入金额")
     },
     /// 上次货币质出金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PreFundMortgageOut",
+        /*.name =*/ "PreFundMortgageOut",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreFundMortgageOut),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.PreFundMortgageOut),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上次货币质出金额")
+        /*.doc =*/ PyDoc_STR("上次货币质出金额")
     },
     /// 货币质入金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FundMortgageIn",
+        /*.name =*/ "FundMortgageIn",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FundMortgageIn),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FundMortgageIn),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("货币质入金额")
+        /*.doc =*/ PyDoc_STR("货币质入金额")
     },
     /// 货币质出金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FundMortgageOut",
+        /*.name =*/ "FundMortgageOut",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FundMortgageOut),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FundMortgageOut),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("货币质出金额")
+        /*.doc =*/ PyDoc_STR("货币质出金额")
     },
     /// 货币质押余额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FundMortgageAvailable",
+        /*.name =*/ "FundMortgageAvailable",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FundMortgageAvailable),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FundMortgageAvailable),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("货币质押余额")
+        /*.doc =*/ PyDoc_STR("货币质押余额")
     },
     /// 可质押货币金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "MortgageableFund",
+        /*.name =*/ "MortgageableFund",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.MortgageableFund),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.MortgageableFund),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("可质押货币金额")
+        /*.doc =*/ PyDoc_STR("可质押货币金额")
     },
     /// 特殊产品占用保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductMargin",
+        /*.name =*/ "SpecProductMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("特殊产品占用保证金")
+        /*.doc =*/ PyDoc_STR("特殊产品占用保证金")
     },
     /// 特殊产品冻结保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductFrozenMargin",
+        /*.name =*/ "SpecProductFrozenMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductFrozenMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductFrozenMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("特殊产品冻结保证金")
+        /*.doc =*/ PyDoc_STR("特殊产品冻结保证金")
     },
     /// 特殊产品手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductCommission",
+        /*.name =*/ "SpecProductCommission",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductCommission),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductCommission),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("特殊产品手续费")
+        /*.doc =*/ PyDoc_STR("特殊产品手续费")
     },
     /// 特殊产品冻结手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductFrozenCommission",
+        /*.name =*/ "SpecProductFrozenCommission",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductFrozenCommission),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductFrozenCommission),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("特殊产品冻结手续费")
+        /*.doc =*/ PyDoc_STR("特殊产品冻结手续费")
     },
     /// 特殊产品持仓盈亏
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductPositionProfit",
+        /*.name =*/ "SpecProductPositionProfit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductPositionProfit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductPositionProfit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("特殊产品持仓盈亏")
+        /*.doc =*/ PyDoc_STR("特殊产品持仓盈亏")
     },
     /// 特殊产品平仓盈亏
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductCloseProfit",
+        /*.name =*/ "SpecProductCloseProfit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductCloseProfit),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductCloseProfit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("特殊产品平仓盈亏")
+        /*.doc =*/ PyDoc_STR("特殊产品平仓盈亏")
     },
     /// 根据持仓盈亏算法计算的特殊产品持仓盈亏
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductPositionProfitByAlg",
+        /*.name =*/ "SpecProductPositionProfitByAlg",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductPositionProfitByAlg),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductPositionProfitByAlg),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("根据持仓盈亏算法计算的特殊产品持仓盈亏")
+        /*.doc =*/ PyDoc_STR("根据持仓盈亏算法计算的特殊产品持仓盈亏")
     },
     /// 特殊产品交易所保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SpecProductExchangeMargin",
+        /*.name =*/ "SpecProductExchangeMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductExchangeMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SpecProductExchangeMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("特殊产品交易所保证金")
+        /*.doc =*/ PyDoc_STR("特殊产品交易所保证金")
     },
     /// 延时换汇冻结金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FrozenSwap",
+        /*.name =*/ "FrozenSwap",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenSwap),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.FrozenSwap),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("延时换汇冻结金额")
+        /*.doc =*/ PyDoc_STR("延时换汇冻结金额")
     },
     /// 剩余换汇额度
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "RemainSwap",
+        /*.name =*/ "RemainSwap",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.RemainSwap),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.RemainSwap),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("剩余换汇额度")
+        /*.doc =*/ PyDoc_STR("剩余换汇额度")
     },
     /// 期权市值
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "OptionValue",
+        /*.name =*/ "OptionValue",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.OptionValue),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.OptionValue),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权市值")
+        /*.doc =*/ PyDoc_STR("期权市值")
     },
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaTradingAccountFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -1502,34 +1502,34 @@ static PyGetSetDef PyCThostFtdcSyncDeltaTradingAccountFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSyncDeltaTradingAccountFieldType_get_BrokerID,
-    .set = PyCThostFtdcSyncDeltaTradingAccountFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcSyncDeltaTradingAccountFieldType_get_AccountID,
-    .set = PyCThostFtdcSyncDeltaTradingAccountFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSyncDeltaTradingAccountFieldType_get_TradingDay,
-    .set = PyCThostFtdcSyncDeltaTradingAccountFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcSyncDeltaTradingAccountFieldType_get_CurrencyID,
-    .set = PyCThostFtdcSyncDeltaTradingAccountFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -1555,15 +1555,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaTradingAccountFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaTradingAccountFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaTradingAccountField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaTradingAccountField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaTradingAccountFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaTradingAccountFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaTradingAccountFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaTradingAccountFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaTradingAccountFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaTradingAccountFieldType_slots_legacy,
 };
 #endif
 

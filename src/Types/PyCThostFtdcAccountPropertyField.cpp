@@ -703,19 +703,19 @@ static PyMemberDef PyCThostFtdcAccountPropertyFieldType_members[] = {
     /// 是否活跃
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsActive",
+        /*.name =*/ "IsActive",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcAccountPropertyFieldData, data.IsActive),
+        /*.offset =*/ offsetof(PyCThostFtdcAccountPropertyFieldData, data.IsActive),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否活跃")
+        /*.doc =*/ PyDoc_STR("是否活跃")
     },
     {NULL}  /* Sentinel */
 };
@@ -724,106 +724,106 @@ static PyGetSetDef PyCThostFtdcAccountPropertyFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_BrokerID,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_AccountID,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 银行统一标识类型
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_BankID,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_BankID,
-    .doc = PyDoc_STR("银行统一标识类型"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行统一标识类型"),
     },
     /// 银行账户
     /// typedef char TThostFtdcBankAccountType[41]
     {
-    .name = "BankAccount",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_BankAccount,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_BankAccount,
-    .doc = PyDoc_STR("银行账户"),
+    /*.name =*/ "BankAccount",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_BankAccount,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_BankAccount,
+    /*.doc =*/ PyDoc_STR("银行账户"),
     },
     /// 银行账户的开户人名称
     /// typedef char TThostFtdcInvestorFullNameType[101]
     {
-    .name = "OpenName",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_OpenName,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_OpenName,
-    .doc = PyDoc_STR("银行账户的开户人名称"),
+    /*.name =*/ "OpenName",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_OpenName,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_OpenName,
+    /*.doc =*/ PyDoc_STR("银行账户的开户人名称"),
     },
     /// 银行账户的开户行
     /// typedef char TThostFtdcOpenBankType[101]
     {
-    .name = "OpenBank",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_OpenBank,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_OpenBank,
-    .doc = PyDoc_STR("银行账户的开户行"),
+    /*.name =*/ "OpenBank",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_OpenBank,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_OpenBank,
+    /*.doc =*/ PyDoc_STR("银行账户的开户行"),
     },
     /// 账户来源
     /// typedef char TThostFtdcAccountSourceTypeType
     {
-    .name = "AccountSourceType",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_AccountSourceType,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_AccountSourceType,
-    .doc = PyDoc_STR("账户来源"),
+    /*.name =*/ "AccountSourceType",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_AccountSourceType,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_AccountSourceType,
+    /*.doc =*/ PyDoc_STR("账户来源"),
     },
     /// 开户日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "OpenDate",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_OpenDate,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_OpenDate,
-    .doc = PyDoc_STR("开户日期"),
+    /*.name =*/ "OpenDate",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_OpenDate,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_OpenDate,
+    /*.doc =*/ PyDoc_STR("开户日期"),
     },
     /// 注销日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "CancelDate",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_CancelDate,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_CancelDate,
-    .doc = PyDoc_STR("注销日期"),
+    /*.name =*/ "CancelDate",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_CancelDate,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_CancelDate,
+    /*.doc =*/ PyDoc_STR("注销日期"),
     },
     /// 录入员代码
     /// typedef char TThostFtdcOperatorIDType[65]
     {
-    .name = "OperatorID",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_OperatorID,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_OperatorID,
-    .doc = PyDoc_STR("录入员代码"),
+    /*.name =*/ "OperatorID",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_OperatorID,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_OperatorID,
+    /*.doc =*/ PyDoc_STR("录入员代码"),
     },
     /// 录入日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "OperateDate",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_OperateDate,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_OperateDate,
-    .doc = PyDoc_STR("录入日期"),
+    /*.name =*/ "OperateDate",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_OperateDate,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_OperateDate,
+    /*.doc =*/ PyDoc_STR("录入日期"),
     },
     /// 录入时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "OperateTime",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_OperateTime,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_OperateTime,
-    .doc = PyDoc_STR("录入时间"),
+    /*.name =*/ "OperateTime",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_OperateTime,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_OperateTime,
+    /*.doc =*/ PyDoc_STR("录入时间"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcAccountPropertyFieldType_get_CurrencyID,
-    .set = PyCThostFtdcAccountPropertyFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcAccountPropertyFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcAccountPropertyFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -849,15 +849,15 @@ static PyType_Slot PyCThostFtdcAccountPropertyFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAccountPropertyFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAccountPropertyField",
+    /*.name =*/ "PyCTP.CThostFtdcAccountPropertyField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAccountPropertyFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAccountPropertyFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAccountPropertyFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAccountPropertyFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAccountPropertyFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAccountPropertyFieldType_slots_legacy,
 };
 #endif
 

@@ -310,42 +310,42 @@ static PyGetSetDef PyCThostFtdcRCAMSCombProductInfoFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcRCAMSCombProductInfoFieldType_get_TradingDay,
-    .set = PyCThostFtdcRCAMSCombProductInfoFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcRCAMSCombProductInfoFieldType_get_ExchangeID,
-    .set = PyCThostFtdcRCAMSCombProductInfoFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcRCAMSCombProductInfoFieldType_get_ProductID,
-    .set = PyCThostFtdcRCAMSCombProductInfoFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     /// 商品组代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "CombProductID",
-    .get = PyCThostFtdcRCAMSCombProductInfoFieldType_get_CombProductID,
-    .set = PyCThostFtdcRCAMSCombProductInfoFieldType_set_CombProductID,
-    .doc = PyDoc_STR("商品组代码"),
+    /*.name =*/ "CombProductID",
+    /*.get =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_get_CombProductID,
+    /*.set =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_set_CombProductID,
+    /*.doc =*/ PyDoc_STR("商品组代码"),
     },
     /// 商品群代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductGroupID",
-    .get = PyCThostFtdcRCAMSCombProductInfoFieldType_get_ProductGroupID,
-    .set = PyCThostFtdcRCAMSCombProductInfoFieldType_set_ProductGroupID,
-    .doc = PyDoc_STR("商品群代码"),
+    /*.name =*/ "ProductGroupID",
+    /*.get =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_get_ProductGroupID,
+    /*.set =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_set_ProductGroupID,
+    /*.doc =*/ PyDoc_STR("商品群代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -371,15 +371,15 @@ static PyType_Slot PyCThostFtdcRCAMSCombProductInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRCAMSCombProductInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRCAMSCombProductInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcRCAMSCombProductInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRCAMSCombProductInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRCAMSCombProductInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRCAMSCombProductInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRCAMSCombProductInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRCAMSCombProductInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRCAMSCombProductInfoFieldType_slots_legacy,
 };
 #endif
 

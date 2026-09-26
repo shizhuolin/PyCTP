@@ -223,53 +223,53 @@ static PyMemberDef PyCThostFtdcCombLegFieldType_members[] = {
     /// 单腿编号
     /// typedef int TThostFtdcLegIDType
     {
-        .name = "LegID",
+        /*.name =*/ "LegID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCombLegFieldData, data.LegID),
+        /*.offset =*/ offsetof(PyCThostFtdcCombLegFieldData, data.LegID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("单腿编号")
+        /*.doc =*/ PyDoc_STR("单腿编号")
     },
     /// 单腿乘数
     /// typedef int TThostFtdcLegMultipleType
     {
-        .name = "LegMultiple",
+        /*.name =*/ "LegMultiple",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCombLegFieldData, data.LegMultiple),
+        /*.offset =*/ offsetof(PyCThostFtdcCombLegFieldData, data.LegMultiple),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("单腿乘数")
+        /*.doc =*/ PyDoc_STR("单腿乘数")
     },
     /// 派生层数
     /// typedef int TThostFtdcImplyLevelType
     {
-        .name = "ImplyLevel",
+        /*.name =*/ "ImplyLevel",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCombLegFieldData, data.ImplyLevel),
+        /*.offset =*/ offsetof(PyCThostFtdcCombLegFieldData, data.ImplyLevel),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("派生层数")
+        /*.doc =*/ PyDoc_STR("派生层数")
     },
     {NULL}  /* Sentinel */
 };
@@ -278,26 +278,26 @@ static PyGetSetDef PyCThostFtdcCombLegFieldType_getsets[] = {
     /// 组合合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "CombInstrumentID",
-    .get = PyCThostFtdcCombLegFieldType_get_CombInstrumentID,
-    .set = PyCThostFtdcCombLegFieldType_set_CombInstrumentID,
-    .doc = PyDoc_STR("组合合约代码"),
+    /*.name =*/ "CombInstrumentID",
+    /*.get =*/ PyCThostFtdcCombLegFieldType_get_CombInstrumentID,
+    /*.set =*/ PyCThostFtdcCombLegFieldType_set_CombInstrumentID,
+    /*.doc =*/ PyDoc_STR("组合合约代码"),
     },
     /// 单腿合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "LegInstrumentID",
-    .get = PyCThostFtdcCombLegFieldType_get_LegInstrumentID,
-    .set = PyCThostFtdcCombLegFieldType_set_LegInstrumentID,
-    .doc = PyDoc_STR("单腿合约代码"),
+    /*.name =*/ "LegInstrumentID",
+    /*.get =*/ PyCThostFtdcCombLegFieldType_get_LegInstrumentID,
+    /*.set =*/ PyCThostFtdcCombLegFieldType_set_LegInstrumentID,
+    /*.doc =*/ PyDoc_STR("单腿合约代码"),
     },
     /// 买卖方向
     /// typedef char TThostFtdcDirectionType
     {
-    .name = "Direction",
-    .get = PyCThostFtdcCombLegFieldType_get_Direction,
-    .set = PyCThostFtdcCombLegFieldType_set_Direction,
-    .doc = PyDoc_STR("买卖方向"),
+    /*.name =*/ "Direction",
+    /*.get =*/ PyCThostFtdcCombLegFieldType_get_Direction,
+    /*.set =*/ PyCThostFtdcCombLegFieldType_set_Direction,
+    /*.doc =*/ PyDoc_STR("买卖方向"),
     },
     {NULL}  /* Sentinel */
 };
@@ -323,15 +323,15 @@ static PyType_Slot PyCThostFtdcCombLegFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCombLegFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCombLegField",
+    /*.name =*/ "PyCTP.CThostFtdcCombLegField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCombLegFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCombLegFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCombLegFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCombLegFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCombLegFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCombLegFieldType_slots_legacy,
 };
 #endif
 

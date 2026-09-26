@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcUserLogoutFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcUserLogoutFieldType_get_BrokerID,
-    .set = PyCThostFtdcUserLogoutFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcUserLogoutFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcUserLogoutFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcUserLogoutFieldType_get_UserID,
-    .set = PyCThostFtdcUserLogoutFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcUserLogoutFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcUserLogoutFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcUserLogoutFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcUserLogoutFieldType_spec = {
-    .name = "PyCTP.CThostFtdcUserLogoutField",
+    /*.name =*/ "PyCTP.CThostFtdcUserLogoutField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcUserLogoutFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcUserLogoutFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcUserLogoutFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcUserLogoutFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcUserLogoutFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcUserLogoutFieldType_slots_legacy,
 };
 #endif
 

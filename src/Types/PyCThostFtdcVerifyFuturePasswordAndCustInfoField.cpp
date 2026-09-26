@@ -434,66 +434,66 @@ static PyGetSetDef PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_getsets[
     /// 客户姓名
     /// typedef char TThostFtdcIndividualNameType[51]
     {
-    .name = "CustomerName",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_CustomerName,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_CustomerName,
-    .doc = PyDoc_STR("客户姓名"),
+    /*.name =*/ "CustomerName",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_CustomerName,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_CustomerName,
+    /*.doc =*/ PyDoc_STR("客户姓名"),
     },
     /// 证件类型
     /// typedef char TThostFtdcIdCardTypeType
     {
-    .name = "IdCardType",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_IdCardType,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_IdCardType,
-    .doc = PyDoc_STR("证件类型"),
+    /*.name =*/ "IdCardType",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_IdCardType,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_IdCardType,
+    /*.doc =*/ PyDoc_STR("证件类型"),
     },
     /// 证件号码
     /// typedef char TThostFtdcIdentifiedCardNoType[51]
     {
-    .name = "IdentifiedCardNo",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_IdentifiedCardNo,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_IdentifiedCardNo,
-    .doc = PyDoc_STR("证件号码"),
+    /*.name =*/ "IdentifiedCardNo",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_IdentifiedCardNo,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_IdentifiedCardNo,
+    /*.doc =*/ PyDoc_STR("证件号码"),
     },
     /// 客户类型
     /// typedef char TThostFtdcCustTypeType
     {
-    .name = "CustType",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_CustType,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_CustType,
-    .doc = PyDoc_STR("客户类型"),
+    /*.name =*/ "CustType",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_CustType,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_CustType,
+    /*.doc =*/ PyDoc_STR("客户类型"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_AccountID,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 期货密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_Password,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_Password,
-    .doc = PyDoc_STR("期货密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("期货密码"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_CurrencyID,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     /// 长客户姓名
     /// typedef char TThostFtdcLongIndividualNameType[161]
     {
-    .name = "LongCustomerName",
-    .get = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_LongCustomerName,
-    .set = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_LongCustomerName,
-    .doc = PyDoc_STR("长客户姓名"),
+    /*.name =*/ "LongCustomerName",
+    /*.get =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_get_LongCustomerName,
+    /*.set =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_set_LongCustomerName,
+    /*.doc =*/ PyDoc_STR("长客户姓名"),
     },
     {NULL}  /* Sentinel */
 };
@@ -519,15 +519,15 @@ static PyType_Slot PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_slots_le
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcVerifyFuturePasswordAndCustInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcVerifyFuturePasswordAndCustInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcVerifyFuturePasswordAndCustInfoFieldType_slots_legacy,
 };
 #endif
 

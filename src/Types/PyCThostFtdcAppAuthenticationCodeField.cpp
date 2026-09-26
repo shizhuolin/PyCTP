@@ -297,42 +297,42 @@ static PyGetSetDef PyCThostFtdcAppAuthenticationCodeFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAppAuthenticationCodeFieldType_get_BrokerID,
-    .set = PyCThostFtdcAppAuthenticationCodeFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAppAuthenticationCodeFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAppAuthenticationCodeFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcAppAuthenticationCodeFieldType_get_AppID,
-    .set = PyCThostFtdcAppAuthenticationCodeFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcAppAuthenticationCodeFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcAppAuthenticationCodeFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     /// 认证码
     /// typedef char TThostFtdcAuthCodeType[17]
     {
-    .name = "AuthCode",
-    .get = PyCThostFtdcAppAuthenticationCodeFieldType_get_AuthCode,
-    .set = PyCThostFtdcAppAuthenticationCodeFieldType_set_AuthCode,
-    .doc = PyDoc_STR("认证码"),
+    /*.name =*/ "AuthCode",
+    /*.get =*/ PyCThostFtdcAppAuthenticationCodeFieldType_get_AuthCode,
+    /*.set =*/ PyCThostFtdcAppAuthenticationCodeFieldType_set_AuthCode,
+    /*.doc =*/ PyDoc_STR("认证码"),
     },
     /// 旧认证码
     /// typedef char TThostFtdcAuthCodeType[17]
     {
-    .name = "PreAuthCode",
-    .get = PyCThostFtdcAppAuthenticationCodeFieldType_get_PreAuthCode,
-    .set = PyCThostFtdcAppAuthenticationCodeFieldType_set_PreAuthCode,
-    .doc = PyDoc_STR("旧认证码"),
+    /*.name =*/ "PreAuthCode",
+    /*.get =*/ PyCThostFtdcAppAuthenticationCodeFieldType_get_PreAuthCode,
+    /*.set =*/ PyCThostFtdcAppAuthenticationCodeFieldType_set_PreAuthCode,
+    /*.doc =*/ PyDoc_STR("旧认证码"),
     },
     /// App类型
     /// typedef char TThostFtdcAppTypeType
     {
-    .name = "AppType",
-    .get = PyCThostFtdcAppAuthenticationCodeFieldType_get_AppType,
-    .set = PyCThostFtdcAppAuthenticationCodeFieldType_set_AppType,
-    .doc = PyDoc_STR("App类型"),
+    /*.name =*/ "AppType",
+    /*.get =*/ PyCThostFtdcAppAuthenticationCodeFieldType_get_AppType,
+    /*.set =*/ PyCThostFtdcAppAuthenticationCodeFieldType_set_AppType,
+    /*.doc =*/ PyDoc_STR("App类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -358,15 +358,15 @@ static PyType_Slot PyCThostFtdcAppAuthenticationCodeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAppAuthenticationCodeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAppAuthenticationCodeField",
+    /*.name =*/ "PyCTP.CThostFtdcAppAuthenticationCodeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAppAuthenticationCodeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAppAuthenticationCodeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAppAuthenticationCodeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAppAuthenticationCodeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAppAuthenticationCodeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAppAuthenticationCodeFieldType_slots_legacy,
 };
 #endif
 

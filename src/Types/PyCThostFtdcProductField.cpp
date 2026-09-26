@@ -735,121 +735,121 @@ static PyMemberDef PyCThostFtdcProductFieldType_members[] = {
     /// 合约数量乘数
     /// typedef int TThostFtdcVolumeMultipleType
     {
-        .name = "VolumeMultiple",
+        /*.name =*/ "VolumeMultiple",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductFieldData, data.VolumeMultiple),
+        /*.offset =*/ offsetof(PyCThostFtdcProductFieldData, data.VolumeMultiple),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("合约数量乘数")
+        /*.doc =*/ PyDoc_STR("合约数量乘数")
     },
     /// 最小变动价位
     /// typedef double TThostFtdcPriceType
     {
-        .name = "PriceTick",
+        /*.name =*/ "PriceTick",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductFieldData, data.PriceTick),
+        /*.offset =*/ offsetof(PyCThostFtdcProductFieldData, data.PriceTick),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最小变动价位")
+        /*.doc =*/ PyDoc_STR("最小变动价位")
     },
     /// 市价单最大下单量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "MaxMarketOrderVolume",
+        /*.name =*/ "MaxMarketOrderVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductFieldData, data.MaxMarketOrderVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcProductFieldData, data.MaxMarketOrderVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("市价单最大下单量")
+        /*.doc =*/ PyDoc_STR("市价单最大下单量")
     },
     /// 市价单最小下单量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "MinMarketOrderVolume",
+        /*.name =*/ "MinMarketOrderVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductFieldData, data.MinMarketOrderVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcProductFieldData, data.MinMarketOrderVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("市价单最小下单量")
+        /*.doc =*/ PyDoc_STR("市价单最小下单量")
     },
     /// 限价单最大下单量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "MaxLimitOrderVolume",
+        /*.name =*/ "MaxLimitOrderVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductFieldData, data.MaxLimitOrderVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcProductFieldData, data.MaxLimitOrderVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("限价单最大下单量")
+        /*.doc =*/ PyDoc_STR("限价单最大下单量")
     },
     /// 限价单最小下单量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "MinLimitOrderVolume",
+        /*.name =*/ "MinLimitOrderVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductFieldData, data.MinLimitOrderVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcProductFieldData, data.MinLimitOrderVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("限价单最小下单量")
+        /*.doc =*/ PyDoc_STR("限价单最小下单量")
     },
     /// 合约基础商品乘数
     /// typedef double TThostFtdcUnderlyingMultipleType
     {
-        .name = "UnderlyingMultiple",
+        /*.name =*/ "UnderlyingMultiple",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductFieldData, data.UnderlyingMultiple),
+        /*.offset =*/ offsetof(PyCThostFtdcProductFieldData, data.UnderlyingMultiple),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("合约基础商品乘数")
+        /*.doc =*/ PyDoc_STR("合约基础商品乘数")
     },
     {NULL}  /* Sentinel */
 };
@@ -858,114 +858,114 @@ static PyGetSetDef PyCThostFtdcProductFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcProductFieldType_get_reserve1,
-    .set = PyCThostFtdcProductFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 产品名称
     /// typedef char TThostFtdcProductNameType[21]
     {
-    .name = "ProductName",
-    .get = PyCThostFtdcProductFieldType_get_ProductName,
-    .set = PyCThostFtdcProductFieldType_set_ProductName,
-    .doc = PyDoc_STR("产品名称"),
+    /*.name =*/ "ProductName",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_ProductName,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_ProductName,
+    /*.doc =*/ PyDoc_STR("产品名称"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcProductFieldType_get_ExchangeID,
-    .set = PyCThostFtdcProductFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品类型
     /// typedef char TThostFtdcProductClassType
     {
-    .name = "ProductClass",
-    .get = PyCThostFtdcProductFieldType_get_ProductClass,
-    .set = PyCThostFtdcProductFieldType_set_ProductClass,
-    .doc = PyDoc_STR("产品类型"),
+    /*.name =*/ "ProductClass",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_ProductClass,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_ProductClass,
+    /*.doc =*/ PyDoc_STR("产品类型"),
     },
     /// 持仓类型
     /// typedef char TThostFtdcPositionTypeType
     {
-    .name = "PositionType",
-    .get = PyCThostFtdcProductFieldType_get_PositionType,
-    .set = PyCThostFtdcProductFieldType_set_PositionType,
-    .doc = PyDoc_STR("持仓类型"),
+    /*.name =*/ "PositionType",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_PositionType,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_PositionType,
+    /*.doc =*/ PyDoc_STR("持仓类型"),
     },
     /// 持仓日期类型
     /// typedef char TThostFtdcPositionDateTypeType
     {
-    .name = "PositionDateType",
-    .get = PyCThostFtdcProductFieldType_get_PositionDateType,
-    .set = PyCThostFtdcProductFieldType_set_PositionDateType,
-    .doc = PyDoc_STR("持仓日期类型"),
+    /*.name =*/ "PositionDateType",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_PositionDateType,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_PositionDateType,
+    /*.doc =*/ PyDoc_STR("持仓日期类型"),
     },
     /// 平仓处理类型
     /// typedef char TThostFtdcCloseDealTypeType
     {
-    .name = "CloseDealType",
-    .get = PyCThostFtdcProductFieldType_get_CloseDealType,
-    .set = PyCThostFtdcProductFieldType_set_CloseDealType,
-    .doc = PyDoc_STR("平仓处理类型"),
+    /*.name =*/ "CloseDealType",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_CloseDealType,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_CloseDealType,
+    /*.doc =*/ PyDoc_STR("平仓处理类型"),
     },
     /// 交易币种类型
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "TradeCurrencyID",
-    .get = PyCThostFtdcProductFieldType_get_TradeCurrencyID,
-    .set = PyCThostFtdcProductFieldType_set_TradeCurrencyID,
-    .doc = PyDoc_STR("交易币种类型"),
+    /*.name =*/ "TradeCurrencyID",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_TradeCurrencyID,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_TradeCurrencyID,
+    /*.doc =*/ PyDoc_STR("交易币种类型"),
     },
     /// 质押资金可用范围
     /// typedef char TThostFtdcMortgageFundUseRangeType
     {
-    .name = "MortgageFundUseRange",
-    .get = PyCThostFtdcProductFieldType_get_MortgageFundUseRange,
-    .set = PyCThostFtdcProductFieldType_set_MortgageFundUseRange,
-    .doc = PyDoc_STR("质押资金可用范围"),
+    /*.name =*/ "MortgageFundUseRange",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_MortgageFundUseRange,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_MortgageFundUseRange,
+    /*.doc =*/ PyDoc_STR("质押资金可用范围"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcProductFieldType_get_reserve2,
-    .set = PyCThostFtdcProductFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcProductFieldType_get_ProductID,
-    .set = PyCThostFtdcProductFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     /// 交易所产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ExchangeProductID",
-    .get = PyCThostFtdcProductFieldType_get_ExchangeProductID,
-    .set = PyCThostFtdcProductFieldType_set_ExchangeProductID,
-    .doc = PyDoc_STR("交易所产品代码"),
+    /*.name =*/ "ExchangeProductID",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_ExchangeProductID,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_ExchangeProductID,
+    /*.doc =*/ PyDoc_STR("交易所产品代码"),
     },
     /// 开仓量限制粒度
     /// typedef char TThostFtdcOpenLimitControlLevelType
     {
-    .name = "OpenLimitControlLevel",
-    .get = PyCThostFtdcProductFieldType_get_OpenLimitControlLevel,
-    .set = PyCThostFtdcProductFieldType_set_OpenLimitControlLevel,
-    .doc = PyDoc_STR("开仓量限制粒度"),
+    /*.name =*/ "OpenLimitControlLevel",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_OpenLimitControlLevel,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_OpenLimitControlLevel,
+    /*.doc =*/ PyDoc_STR("开仓量限制粒度"),
     },
     /// 报单频率控制粒度
     /// typedef char TThostFtdcOrderFreqControlLevelType
     {
-    .name = "OrderFreqControlLevel",
-    .get = PyCThostFtdcProductFieldType_get_OrderFreqControlLevel,
-    .set = PyCThostFtdcProductFieldType_set_OrderFreqControlLevel,
-    .doc = PyDoc_STR("报单频率控制粒度"),
+    /*.name =*/ "OrderFreqControlLevel",
+    /*.get =*/ PyCThostFtdcProductFieldType_get_OrderFreqControlLevel,
+    /*.set =*/ PyCThostFtdcProductFieldType_set_OrderFreqControlLevel,
+    /*.doc =*/ PyDoc_STR("报单频率控制粒度"),
     },
     {NULL}  /* Sentinel */
 };
@@ -991,15 +991,15 @@ static PyType_Slot PyCThostFtdcProductFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcProductFieldType_spec = {
-    .name = "PyCTP.CThostFtdcProductField",
+    /*.name =*/ "PyCTP.CThostFtdcProductField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcProductFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcProductFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcProductFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcProductFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcProductFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcProductFieldType_slots_legacy,
 };
 #endif
 

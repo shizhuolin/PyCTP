@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQueryBrokerDepositFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQueryBrokerDepositFieldType_get_BrokerID,
-    .set = PyCThostFtdcQueryBrokerDepositFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQueryBrokerDepositFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQueryBrokerDepositFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQueryBrokerDepositFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQueryBrokerDepositFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQueryBrokerDepositFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQueryBrokerDepositFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQueryBrokerDepositFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQueryBrokerDepositFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQueryBrokerDepositField",
+    /*.name =*/ "PyCTP.CThostFtdcQueryBrokerDepositField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQueryBrokerDepositFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQueryBrokerDepositFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQueryBrokerDepositFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQueryBrokerDepositFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQueryBrokerDepositFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQueryBrokerDepositFieldType_slots_legacy,
 };
 #endif
 

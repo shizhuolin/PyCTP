@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcSMSVerifyConfigFieldType_members[] = {
     /// 是否启用短信验证
     /// typedef int TThostFtdcBoolType
     {
-        .name = "UseSMSVerify",
+        /*.name =*/ "UseSMSVerify",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSMSVerifyConfigFieldData, data.UseSMSVerify),
+        /*.offset =*/ offsetof(PyCThostFtdcSMSVerifyConfigFieldData, data.UseSMSVerify),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否启用短信验证")
+        /*.doc =*/ PyDoc_STR("是否启用短信验证")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcSMSVerifyConfigFieldType_getsets[] = {
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcSMSVerifyConfigFieldType_get_UserID,
-    .set = PyCThostFtdcSMSVerifyConfigFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcSMSVerifyConfigFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcSMSVerifyConfigFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSMSVerifyConfigFieldType_get_BrokerID,
-    .set = PyCThostFtdcSMSVerifyConfigFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSMSVerifyConfigFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSMSVerifyConfigFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 手机号
     /// typedef char TThostFtdcSMSPhoneType[17]
     {
-    .name = "Mobile",
-    .get = PyCThostFtdcSMSVerifyConfigFieldType_get_Mobile,
-    .set = PyCThostFtdcSMSVerifyConfigFieldType_set_Mobile,
-    .doc = PyDoc_STR("手机号"),
+    /*.name =*/ "Mobile",
+    /*.get =*/ PyCThostFtdcSMSVerifyConfigFieldType_get_Mobile,
+    /*.set =*/ PyCThostFtdcSMSVerifyConfigFieldType_set_Mobile,
+    /*.doc =*/ PyDoc_STR("手机号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcSMSVerifyConfigFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSMSVerifyConfigFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSMSVerifyConfigField",
+    /*.name =*/ "PyCTP.CThostFtdcSMSVerifyConfigField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyConfigFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyConfigFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyConfigFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyConfigFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSMSVerifyConfigFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSMSVerifyConfigFieldType_slots_legacy,
 };
 #endif
 

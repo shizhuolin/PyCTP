@@ -213,36 +213,36 @@ static PyMemberDef PyCThostFtdcSyncDeltaProductExchRateFieldType_members[] = {
     /// 汇率
     /// typedef double TThostFtdcExchangeRateType
     {
-        .name = "ExchangeRate",
+        /*.name =*/ "ExchangeRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaProductExchRateFieldData, data.ExchangeRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaProductExchRateFieldData, data.ExchangeRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("汇率")
+        /*.doc =*/ PyDoc_STR("汇率")
     },
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaProductExchRateFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaProductExchRateFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -251,26 +251,26 @@ static PyGetSetDef PyCThostFtdcSyncDeltaProductExchRateFieldType_getsets[] = {
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcSyncDeltaProductExchRateFieldType_get_ProductID,
-    .set = PyCThostFtdcSyncDeltaProductExchRateFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcSyncDeltaProductExchRateFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcSyncDeltaProductExchRateFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     /// 报价币种类型
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "QuoteCurrencyID",
-    .get = PyCThostFtdcSyncDeltaProductExchRateFieldType_get_QuoteCurrencyID,
-    .set = PyCThostFtdcSyncDeltaProductExchRateFieldType_set_QuoteCurrencyID,
-    .doc = PyDoc_STR("报价币种类型"),
+    /*.name =*/ "QuoteCurrencyID",
+    /*.get =*/ PyCThostFtdcSyncDeltaProductExchRateFieldType_get_QuoteCurrencyID,
+    /*.set =*/ PyCThostFtdcSyncDeltaProductExchRateFieldType_set_QuoteCurrencyID,
+    /*.doc =*/ PyDoc_STR("报价币种类型"),
     },
     /// 操作标志
     /// typedef char TThostFtdcActionDirectionType
     {
-    .name = "ActionDirection",
-    .get = PyCThostFtdcSyncDeltaProductExchRateFieldType_get_ActionDirection,
-    .set = PyCThostFtdcSyncDeltaProductExchRateFieldType_set_ActionDirection,
-    .doc = PyDoc_STR("操作标志"),
+    /*.name =*/ "ActionDirection",
+    /*.get =*/ PyCThostFtdcSyncDeltaProductExchRateFieldType_get_ActionDirection,
+    /*.set =*/ PyCThostFtdcSyncDeltaProductExchRateFieldType_set_ActionDirection,
+    /*.doc =*/ PyDoc_STR("操作标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -296,15 +296,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaProductExchRateFieldType_slots_legacy[] 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaProductExchRateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaProductExchRateField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaProductExchRateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductExchRateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductExchRateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductExchRateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductExchRateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaProductExchRateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaProductExchRateFieldType_slots_legacy,
 };
 #endif
 

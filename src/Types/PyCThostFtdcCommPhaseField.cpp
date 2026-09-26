@@ -166,19 +166,19 @@ static PyMemberDef PyCThostFtdcCommPhaseFieldType_members[] = {
     /// 通讯时段编号
     /// typedef short TThostFtdcCommPhaseNoType
     {
-        .name = "CommPhaseNo",
+        /*.name =*/ "CommPhaseNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_SHORT,
+        /*.type =*/ T_SHORT,
 #else
-        .type = Py_T_SHORT,
+        /*.type =*/ Py_T_SHORT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCommPhaseFieldData, data.CommPhaseNo),
+        /*.offset =*/ offsetof(PyCThostFtdcCommPhaseFieldData, data.CommPhaseNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("通讯时段编号")
+        /*.doc =*/ PyDoc_STR("通讯时段编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -187,18 +187,18 @@ static PyGetSetDef PyCThostFtdcCommPhaseFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcCommPhaseFieldType_get_TradingDay,
-    .set = PyCThostFtdcCommPhaseFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcCommPhaseFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcCommPhaseFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 系统编号
     /// typedef char TThostFtdcSystemIDType[21]
     {
-    .name = "SystemID",
-    .get = PyCThostFtdcCommPhaseFieldType_get_SystemID,
-    .set = PyCThostFtdcCommPhaseFieldType_set_SystemID,
-    .doc = PyDoc_STR("系统编号"),
+    /*.name =*/ "SystemID",
+    /*.get =*/ PyCThostFtdcCommPhaseFieldType_get_SystemID,
+    /*.set =*/ PyCThostFtdcCommPhaseFieldType_set_SystemID,
+    /*.doc =*/ PyDoc_STR("系统编号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -224,15 +224,15 @@ static PyType_Slot PyCThostFtdcCommPhaseFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCommPhaseFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCommPhaseField",
+    /*.name =*/ "PyCTP.CThostFtdcCommPhaseField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCommPhaseFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCommPhaseFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCommPhaseFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCommPhaseFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCommPhaseFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCommPhaseFieldType_slots_legacy,
 };
 #endif
 

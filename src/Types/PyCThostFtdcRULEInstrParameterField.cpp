@@ -363,121 +363,121 @@ static PyMemberDef PyCThostFtdcRULEInstrParameterFieldType_members[] = {
     /// 投机买折算系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "BSpecRatio",
+        /*.name =*/ "BSpecRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.BSpecRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.BSpecRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("投机买折算系数")
+        /*.doc =*/ PyDoc_STR("投机买折算系数")
     },
     /// 投机卖折算系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "SSpecRatio",
+        /*.name =*/ "SSpecRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.SSpecRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.SSpecRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("投机卖折算系数")
+        /*.doc =*/ PyDoc_STR("投机卖折算系数")
     },
     /// 套保买折算系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "BHedgeRatio",
+        /*.name =*/ "BHedgeRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.BHedgeRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.BHedgeRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("套保买折算系数")
+        /*.doc =*/ PyDoc_STR("套保买折算系数")
     },
     /// 套保卖折算系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "SHedgeRatio",
+        /*.name =*/ "SHedgeRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.SHedgeRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.SHedgeRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("套保卖折算系数")
+        /*.doc =*/ PyDoc_STR("套保卖折算系数")
     },
     /// 买附加风险保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "BAddOnMargin",
+        /*.name =*/ "BAddOnMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.BAddOnMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.BAddOnMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("买附加风险保证金")
+        /*.doc =*/ PyDoc_STR("买附加风险保证金")
     },
     /// 卖附加风险保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SAddOnMargin",
+        /*.name =*/ "SAddOnMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.SAddOnMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.SAddOnMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("卖附加风险保证金")
+        /*.doc =*/ PyDoc_STR("卖附加风险保证金")
     },
     /// 商品群号
     /// typedef int TThostFtdcCommodityGroupIDType
     {
-        .name = "CommodityGroupID",
+        /*.name =*/ "CommodityGroupID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.CommodityGroupID),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInstrParameterFieldData, data.CommodityGroupID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("商品群号")
+        /*.doc =*/ PyDoc_STR("商品群号")
     },
     {NULL}  /* Sentinel */
 };
@@ -486,42 +486,42 @@ static PyGetSetDef PyCThostFtdcRULEInstrParameterFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcRULEInstrParameterFieldType_get_TradingDay,
-    .set = PyCThostFtdcRULEInstrParameterFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcRULEInstrParameterFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcRULEInstrParameterFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcRULEInstrParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcRULEInstrParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcRULEInstrParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcRULEInstrParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcRULEInstrParameterFieldType_get_InstrumentID,
-    .set = PyCThostFtdcRULEInstrParameterFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcRULEInstrParameterFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcRULEInstrParameterFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 合约类型
     /// typedef char TThostFtdcInstrumentClassType
     {
-    .name = "InstrumentClass",
-    .get = PyCThostFtdcRULEInstrParameterFieldType_get_InstrumentClass,
-    .set = PyCThostFtdcRULEInstrParameterFieldType_set_InstrumentClass,
-    .doc = PyDoc_STR("合约类型"),
+    /*.name =*/ "InstrumentClass",
+    /*.get =*/ PyCThostFtdcRULEInstrParameterFieldType_get_InstrumentClass,
+    /*.set =*/ PyCThostFtdcRULEInstrParameterFieldType_set_InstrumentClass,
+    /*.doc =*/ PyDoc_STR("合约类型"),
     },
     /// 标准合约
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "StdInstrumentID",
-    .get = PyCThostFtdcRULEInstrParameterFieldType_get_StdInstrumentID,
-    .set = PyCThostFtdcRULEInstrParameterFieldType_set_StdInstrumentID,
-    .doc = PyDoc_STR("标准合约"),
+    /*.name =*/ "StdInstrumentID",
+    /*.get =*/ PyCThostFtdcRULEInstrParameterFieldType_get_StdInstrumentID,
+    /*.set =*/ PyCThostFtdcRULEInstrParameterFieldType_set_StdInstrumentID,
+    /*.doc =*/ PyDoc_STR("标准合约"),
     },
     {NULL}  /* Sentinel */
 };
@@ -547,15 +547,15 @@ static PyType_Slot PyCThostFtdcRULEInstrParameterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRULEInstrParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRULEInstrParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcRULEInstrParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRULEInstrParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRULEInstrParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRULEInstrParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRULEInstrParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRULEInstrParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRULEInstrParameterFieldType_slots_legacy,
 };
 #endif
 

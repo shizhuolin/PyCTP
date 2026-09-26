@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQryTransferBankFieldType_getsets[] = {
     /// 银行代码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcQryTransferBankFieldType_get_BankID,
-    .set = PyCThostFtdcQryTransferBankFieldType_set_BankID,
-    .doc = PyDoc_STR("银行代码"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcQryTransferBankFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcQryTransferBankFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行代码"),
     },
     /// 银行分中心代码
     /// typedef char TThostFtdcBankBrchIDType[5]
     {
-    .name = "BankBrchID",
-    .get = PyCThostFtdcQryTransferBankFieldType_get_BankBrchID,
-    .set = PyCThostFtdcQryTransferBankFieldType_set_BankBrchID,
-    .doc = PyDoc_STR("银行分中心代码"),
+    /*.name =*/ "BankBrchID",
+    /*.get =*/ PyCThostFtdcQryTransferBankFieldType_get_BankBrchID,
+    /*.set =*/ PyCThostFtdcQryTransferBankFieldType_set_BankBrchID,
+    /*.doc =*/ PyDoc_STR("银行分中心代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQryTransferBankFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryTransferBankFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryTransferBankField",
+    /*.name =*/ "PyCTP.CThostFtdcQryTransferBankField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryTransferBankFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryTransferBankFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryTransferBankFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryTransferBankFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryTransferBankFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryTransferBankFieldType_slots_legacy,
 };
 #endif
 

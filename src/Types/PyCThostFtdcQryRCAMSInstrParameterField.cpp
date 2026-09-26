@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQryRCAMSInstrParameterFieldType_getsets[] = {
     /// 产品代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcQryRCAMSInstrParameterFieldType_get_ProductID,
-    .set = PyCThostFtdcQryRCAMSInstrParameterFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcQryRCAMSInstrParameterFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcQryRCAMSInstrParameterFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQryRCAMSInstrParameterFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryRCAMSInstrParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryRCAMSInstrParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcQryRCAMSInstrParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInstrParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInstrParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInstrParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInstrParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryRCAMSInstrParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryRCAMSInstrParameterFieldType_slots_legacy,
 };
 #endif
 

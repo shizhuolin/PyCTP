@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcExitEmergencyFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcExitEmergencyFieldType_get_BrokerID,
-    .set = PyCThostFtdcExitEmergencyFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcExitEmergencyFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcExitEmergencyFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcExitEmergencyFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcExitEmergencyFieldType_spec = {
-    .name = "PyCTP.CThostFtdcExitEmergencyField",
+    /*.name =*/ "PyCTP.CThostFtdcExitEmergencyField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcExitEmergencyFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcExitEmergencyFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcExitEmergencyFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcExitEmergencyFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcExitEmergencyFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcExitEmergencyFieldType_slots_legacy,
 };
 #endif
 

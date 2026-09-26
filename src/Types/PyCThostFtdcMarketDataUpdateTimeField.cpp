@@ -266,19 +266,19 @@ static PyMemberDef PyCThostFtdcMarketDataUpdateTimeFieldType_members[] = {
     /// 最后修改毫秒
     /// typedef int TThostFtdcMillisecType
     {
-        .name = "UpdateMillisec",
+        /*.name =*/ "UpdateMillisec",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataUpdateTimeFieldData, data.UpdateMillisec),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataUpdateTimeFieldData, data.UpdateMillisec),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最后修改毫秒")
+        /*.doc =*/ PyDoc_STR("最后修改毫秒")
     },
     {NULL}  /* Sentinel */
 };
@@ -287,34 +287,34 @@ static PyGetSetDef PyCThostFtdcMarketDataUpdateTimeFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcMarketDataUpdateTimeFieldType_get_reserve1,
-    .set = PyCThostFtdcMarketDataUpdateTimeFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 最后修改时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "UpdateTime",
-    .get = PyCThostFtdcMarketDataUpdateTimeFieldType_get_UpdateTime,
-    .set = PyCThostFtdcMarketDataUpdateTimeFieldType_set_UpdateTime,
-    .doc = PyDoc_STR("最后修改时间"),
+    /*.name =*/ "UpdateTime",
+    /*.get =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_get_UpdateTime,
+    /*.set =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_set_UpdateTime,
+    /*.doc =*/ PyDoc_STR("最后修改时间"),
     },
     /// 业务日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ActionDay",
-    .get = PyCThostFtdcMarketDataUpdateTimeFieldType_get_ActionDay,
-    .set = PyCThostFtdcMarketDataUpdateTimeFieldType_set_ActionDay,
-    .doc = PyDoc_STR("业务日期"),
+    /*.name =*/ "ActionDay",
+    /*.get =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_get_ActionDay,
+    /*.set =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_set_ActionDay,
+    /*.doc =*/ PyDoc_STR("业务日期"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcMarketDataUpdateTimeFieldType_get_InstrumentID,
-    .set = PyCThostFtdcMarketDataUpdateTimeFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -340,15 +340,15 @@ static PyType_Slot PyCThostFtdcMarketDataUpdateTimeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMarketDataUpdateTimeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMarketDataUpdateTimeField",
+    /*.name =*/ "PyCTP.CThostFtdcMarketDataUpdateTimeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMarketDataUpdateTimeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMarketDataUpdateTimeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataUpdateTimeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataUpdateTimeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMarketDataUpdateTimeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMarketDataUpdateTimeFieldType_slots_legacy,
 };
 #endif
 

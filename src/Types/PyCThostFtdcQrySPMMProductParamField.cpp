@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQrySPMMProductParamFieldType_getsets[] = {
     /// 产品代码
     /// typedef char TThostFtdcSPMMProductIDType[41]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcQrySPMMProductParamFieldType_get_ProductID,
-    .set = PyCThostFtdcQrySPMMProductParamFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcQrySPMMProductParamFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcQrySPMMProductParamFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQrySPMMProductParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySPMMProductParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySPMMProductParamField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySPMMProductParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySPMMProductParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySPMMProductParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySPMMProductParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySPMMProductParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySPMMProductParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySPMMProductParamFieldType_slots_legacy,
 };
 #endif
 

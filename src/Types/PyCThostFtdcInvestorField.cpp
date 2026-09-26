@@ -727,19 +727,19 @@ static PyMemberDef PyCThostFtdcInvestorFieldType_members[] = {
     /// 是否活跃
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsActive",
+        /*.name =*/ "IsActive",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorFieldData, data.IsActive),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorFieldData, data.IsActive),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否活跃")
+        /*.doc =*/ PyDoc_STR("是否活跃")
     },
     {NULL}  /* Sentinel */
 };
@@ -748,114 +748,114 @@ static PyGetSetDef PyCThostFtdcInvestorFieldType_getsets[] = {
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInvestorFieldType_get_InvestorID,
-    .set = PyCThostFtdcInvestorFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者分组代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorGroupID",
-    .get = PyCThostFtdcInvestorFieldType_get_InvestorGroupID,
-    .set = PyCThostFtdcInvestorFieldType_set_InvestorGroupID,
-    .doc = PyDoc_STR("投资者分组代码"),
+    /*.name =*/ "InvestorGroupID",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_InvestorGroupID,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_InvestorGroupID,
+    /*.doc =*/ PyDoc_STR("投资者分组代码"),
     },
     /// 投资者名称
     /// typedef char TThostFtdcPartyNameType[81]
     {
-    .name = "InvestorName",
-    .get = PyCThostFtdcInvestorFieldType_get_InvestorName,
-    .set = PyCThostFtdcInvestorFieldType_set_InvestorName,
-    .doc = PyDoc_STR("投资者名称"),
+    /*.name =*/ "InvestorName",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_InvestorName,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_InvestorName,
+    /*.doc =*/ PyDoc_STR("投资者名称"),
     },
     /// 证件类型
     /// typedef char TThostFtdcIdCardTypeType
     {
-    .name = "IdentifiedCardType",
-    .get = PyCThostFtdcInvestorFieldType_get_IdentifiedCardType,
-    .set = PyCThostFtdcInvestorFieldType_set_IdentifiedCardType,
-    .doc = PyDoc_STR("证件类型"),
+    /*.name =*/ "IdentifiedCardType",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_IdentifiedCardType,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_IdentifiedCardType,
+    /*.doc =*/ PyDoc_STR("证件类型"),
     },
     /// 证件号码
     /// typedef char TThostFtdcIdentifiedCardNoType[51]
     {
-    .name = "IdentifiedCardNo",
-    .get = PyCThostFtdcInvestorFieldType_get_IdentifiedCardNo,
-    .set = PyCThostFtdcInvestorFieldType_set_IdentifiedCardNo,
-    .doc = PyDoc_STR("证件号码"),
+    /*.name =*/ "IdentifiedCardNo",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_IdentifiedCardNo,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_IdentifiedCardNo,
+    /*.doc =*/ PyDoc_STR("证件号码"),
     },
     /// 联系电话
     /// typedef char TThostFtdcTelephoneType[41]
     {
-    .name = "Telephone",
-    .get = PyCThostFtdcInvestorFieldType_get_Telephone,
-    .set = PyCThostFtdcInvestorFieldType_set_Telephone,
-    .doc = PyDoc_STR("联系电话"),
+    /*.name =*/ "Telephone",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_Telephone,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_Telephone,
+    /*.doc =*/ PyDoc_STR("联系电话"),
     },
     /// 通讯地址
     /// typedef char TThostFtdcAddressType[101]
     {
-    .name = "Address",
-    .get = PyCThostFtdcInvestorFieldType_get_Address,
-    .set = PyCThostFtdcInvestorFieldType_set_Address,
-    .doc = PyDoc_STR("通讯地址"),
+    /*.name =*/ "Address",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_Address,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_Address,
+    /*.doc =*/ PyDoc_STR("通讯地址"),
     },
     /// 开户日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "OpenDate",
-    .get = PyCThostFtdcInvestorFieldType_get_OpenDate,
-    .set = PyCThostFtdcInvestorFieldType_set_OpenDate,
-    .doc = PyDoc_STR("开户日期"),
+    /*.name =*/ "OpenDate",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_OpenDate,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_OpenDate,
+    /*.doc =*/ PyDoc_STR("开户日期"),
     },
     /// 手机
     /// typedef char TThostFtdcMobileType[41]
     {
-    .name = "Mobile",
-    .get = PyCThostFtdcInvestorFieldType_get_Mobile,
-    .set = PyCThostFtdcInvestorFieldType_set_Mobile,
-    .doc = PyDoc_STR("手机"),
+    /*.name =*/ "Mobile",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_Mobile,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_Mobile,
+    /*.doc =*/ PyDoc_STR("手机"),
     },
     /// 手续费率模板代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "CommModelID",
-    .get = PyCThostFtdcInvestorFieldType_get_CommModelID,
-    .set = PyCThostFtdcInvestorFieldType_set_CommModelID,
-    .doc = PyDoc_STR("手续费率模板代码"),
+    /*.name =*/ "CommModelID",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_CommModelID,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_CommModelID,
+    /*.doc =*/ PyDoc_STR("手续费率模板代码"),
     },
     /// 保证金率模板代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "MarginModelID",
-    .get = PyCThostFtdcInvestorFieldType_get_MarginModelID,
-    .set = PyCThostFtdcInvestorFieldType_set_MarginModelID,
-    .doc = PyDoc_STR("保证金率模板代码"),
+    /*.name =*/ "MarginModelID",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_MarginModelID,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_MarginModelID,
+    /*.doc =*/ PyDoc_STR("保证金率模板代码"),
     },
     /// 是否频率控制
     /// typedef char TThostFtdcEnumBoolType
     {
-    .name = "IsOrderFreq",
-    .get = PyCThostFtdcInvestorFieldType_get_IsOrderFreq,
-    .set = PyCThostFtdcInvestorFieldType_set_IsOrderFreq,
-    .doc = PyDoc_STR("是否频率控制"),
+    /*.name =*/ "IsOrderFreq",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_IsOrderFreq,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_IsOrderFreq,
+    /*.doc =*/ PyDoc_STR("是否频率控制"),
     },
     /// 是否开仓限制
     /// typedef char TThostFtdcEnumBoolType
     {
-    .name = "IsOpenVolLimit",
-    .get = PyCThostFtdcInvestorFieldType_get_IsOpenVolLimit,
-    .set = PyCThostFtdcInvestorFieldType_set_IsOpenVolLimit,
-    .doc = PyDoc_STR("是否开仓限制"),
+    /*.name =*/ "IsOpenVolLimit",
+    /*.get =*/ PyCThostFtdcInvestorFieldType_get_IsOpenVolLimit,
+    /*.set =*/ PyCThostFtdcInvestorFieldType_set_IsOpenVolLimit,
+    /*.doc =*/ PyDoc_STR("是否开仓限制"),
     },
     {NULL}  /* Sentinel */
 };
@@ -881,15 +881,15 @@ static PyType_Slot PyCThostFtdcInvestorFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorFieldType_slots_legacy,
 };
 #endif
 

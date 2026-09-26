@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcQryRULEInterParameterFieldType_members[] = {
     /// 商品群号
     /// typedef int TThostFtdcCommodityGroupIDType
     {
-        .name = "CommodityGroupID",
+        /*.name =*/ "CommodityGroupID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQryRULEInterParameterFieldData, data.CommodityGroupID),
+        /*.offset =*/ offsetof(PyCThostFtdcQryRULEInterParameterFieldData, data.CommodityGroupID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("商品群号")
+        /*.doc =*/ PyDoc_STR("商品群号")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcQryRULEInterParameterFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryRULEInterParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryRULEInterParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryRULEInterParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryRULEInterParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 第一腿构成品种
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "Leg1ProdFamilyCode",
-    .get = PyCThostFtdcQryRULEInterParameterFieldType_get_Leg1ProdFamilyCode,
-    .set = PyCThostFtdcQryRULEInterParameterFieldType_set_Leg1ProdFamilyCode,
-    .doc = PyDoc_STR("第一腿构成品种"),
+    /*.name =*/ "Leg1ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcQryRULEInterParameterFieldType_get_Leg1ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcQryRULEInterParameterFieldType_set_Leg1ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("第一腿构成品种"),
     },
     /// 第二腿构成品种
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "Leg2ProdFamilyCode",
-    .get = PyCThostFtdcQryRULEInterParameterFieldType_get_Leg2ProdFamilyCode,
-    .set = PyCThostFtdcQryRULEInterParameterFieldType_set_Leg2ProdFamilyCode,
-    .doc = PyDoc_STR("第二腿构成品种"),
+    /*.name =*/ "Leg2ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcQryRULEInterParameterFieldType_get_Leg2ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcQryRULEInterParameterFieldType_set_Leg2ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("第二腿构成品种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcQryRULEInterParameterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryRULEInterParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryRULEInterParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcQryRULEInterParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryRULEInterParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryRULEInterParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryRULEInterParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryRULEInterParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryRULEInterParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryRULEInterParameterFieldType_slots_legacy,
 };
 #endif
 

@@ -76,36 +76,36 @@ static PyMemberDef PyCThostFtdcMarketDataBandingPriceFieldType_members[] = {
     /// 上带价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "BandingUpperPrice",
+        /*.name =*/ "BandingUpperPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataBandingPriceFieldData, data.BandingUpperPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataBandingPriceFieldData, data.BandingUpperPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("上带价")
+        /*.doc =*/ PyDoc_STR("上带价")
     },
     /// 下带价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "BandingLowerPrice",
+        /*.name =*/ "BandingLowerPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataBandingPriceFieldData, data.BandingLowerPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataBandingPriceFieldData, data.BandingLowerPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("下带价")
+        /*.doc =*/ PyDoc_STR("下带价")
     },
     {NULL}  /* Sentinel */
 };
@@ -135,15 +135,15 @@ static PyType_Slot PyCThostFtdcMarketDataBandingPriceFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMarketDataBandingPriceFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMarketDataBandingPriceField",
+    /*.name =*/ "PyCTP.CThostFtdcMarketDataBandingPriceField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMarketDataBandingPriceFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMarketDataBandingPriceFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataBandingPriceFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataBandingPriceFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMarketDataBandingPriceFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMarketDataBandingPriceFieldType_slots_legacy,
 };
 #endif
 

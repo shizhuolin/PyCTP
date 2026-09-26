@@ -303,19 +303,19 @@ static PyMemberDef PyCThostFtdcOptionInstrDeltaFieldType_members[] = {
     /// Delta值
     /// typedef double TThostFtdcRatioType
     {
-        .name = "Delta",
+        /*.name =*/ "Delta",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrDeltaFieldData, data.Delta),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrDeltaFieldData, data.Delta),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("Delta值")
+        /*.doc =*/ PyDoc_STR("Delta值")
     },
     {NULL}  /* Sentinel */
 };
@@ -324,42 +324,42 @@ static PyGetSetDef PyCThostFtdcOptionInstrDeltaFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcOptionInstrDeltaFieldType_get_reserve1,
-    .set = PyCThostFtdcOptionInstrDeltaFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcOptionInstrDeltaFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcOptionInstrDeltaFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcOptionInstrDeltaFieldType_get_InvestorRange,
-    .set = PyCThostFtdcOptionInstrDeltaFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcOptionInstrDeltaFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcOptionInstrDeltaFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcOptionInstrDeltaFieldType_get_BrokerID,
-    .set = PyCThostFtdcOptionInstrDeltaFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcOptionInstrDeltaFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcOptionInstrDeltaFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcOptionInstrDeltaFieldType_get_InvestorID,
-    .set = PyCThostFtdcOptionInstrDeltaFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcOptionInstrDeltaFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcOptionInstrDeltaFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcOptionInstrDeltaFieldType_get_InstrumentID,
-    .set = PyCThostFtdcOptionInstrDeltaFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcOptionInstrDeltaFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcOptionInstrDeltaFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -385,15 +385,15 @@ static PyType_Slot PyCThostFtdcOptionInstrDeltaFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcOptionInstrDeltaFieldType_spec = {
-    .name = "PyCTP.CThostFtdcOptionInstrDeltaField",
+    /*.name =*/ "PyCTP.CThostFtdcOptionInstrDeltaField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcOptionInstrDeltaFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcOptionInstrDeltaFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcOptionInstrDeltaFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcOptionInstrDeltaFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcOptionInstrDeltaFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcOptionInstrDeltaFieldType_slots_legacy,
 };
 #endif
 

@@ -176,36 +176,36 @@ static PyMemberDef PyCThostFtdcFrontStatusFieldType_members[] = {
     /// 前置编号
     /// typedef int TThostFtdcFrontIDType
     {
-        .name = "FrontID",
+        /*.name =*/ "FrontID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcFrontStatusFieldData, data.FrontID),
+        /*.offset =*/ offsetof(PyCThostFtdcFrontStatusFieldData, data.FrontID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("前置编号")
+        /*.doc =*/ PyDoc_STR("前置编号")
     },
     /// 是否活跃
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsActive",
+        /*.name =*/ "IsActive",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcFrontStatusFieldData, data.IsActive),
+        /*.offset =*/ offsetof(PyCThostFtdcFrontStatusFieldData, data.IsActive),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否活跃")
+        /*.doc =*/ PyDoc_STR("是否活跃")
     },
     {NULL}  /* Sentinel */
 };
@@ -214,18 +214,18 @@ static PyGetSetDef PyCThostFtdcFrontStatusFieldType_getsets[] = {
     /// 上次报告日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "LastReportDate",
-    .get = PyCThostFtdcFrontStatusFieldType_get_LastReportDate,
-    .set = PyCThostFtdcFrontStatusFieldType_set_LastReportDate,
-    .doc = PyDoc_STR("上次报告日期"),
+    /*.name =*/ "LastReportDate",
+    /*.get =*/ PyCThostFtdcFrontStatusFieldType_get_LastReportDate,
+    /*.set =*/ PyCThostFtdcFrontStatusFieldType_set_LastReportDate,
+    /*.doc =*/ PyDoc_STR("上次报告日期"),
     },
     /// 上次报告时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "LastReportTime",
-    .get = PyCThostFtdcFrontStatusFieldType_get_LastReportTime,
-    .set = PyCThostFtdcFrontStatusFieldType_set_LastReportTime,
-    .doc = PyDoc_STR("上次报告时间"),
+    /*.name =*/ "LastReportTime",
+    /*.get =*/ PyCThostFtdcFrontStatusFieldType_get_LastReportTime,
+    /*.set =*/ PyCThostFtdcFrontStatusFieldType_set_LastReportTime,
+    /*.doc =*/ PyDoc_STR("上次报告时间"),
     },
     {NULL}  /* Sentinel */
 };
@@ -251,15 +251,15 @@ static PyType_Slot PyCThostFtdcFrontStatusFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcFrontStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcFrontStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcFrontStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcFrontStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcFrontStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcFrontStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcFrontStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcFrontStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcFrontStatusFieldType_slots_legacy,
 };
 #endif
 

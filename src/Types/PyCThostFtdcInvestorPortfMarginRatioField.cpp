@@ -303,19 +303,19 @@ static PyMemberDef PyCThostFtdcInvestorPortfMarginRatioFieldType_members[] = {
     /// 会员对投资者收取的保证金和交易所对投资者收取的保证金的比例
     /// typedef double TThostFtdcRatioType
     {
-        .name = "MarginRatio",
+        /*.name =*/ "MarginRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorPortfMarginRatioFieldData, data.MarginRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorPortfMarginRatioFieldData, data.MarginRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("会员对投资者收取的保证金和交易所对投资者收取的保证金的比例")
+        /*.doc =*/ PyDoc_STR("会员对投资者收取的保证金和交易所对投资者收取的保证金的比例")
     },
     {NULL}  /* Sentinel */
 };
@@ -324,42 +324,42 @@ static PyGetSetDef PyCThostFtdcInvestorPortfMarginRatioFieldType_getsets[] = {
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcInvestorPortfMarginRatioFieldType_get_InvestorRange,
-    .set = PyCThostFtdcInvestorPortfMarginRatioFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorPortfMarginRatioFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorPortfMarginRatioFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInvestorPortfMarginRatioFieldType_get_InvestorID,
-    .set = PyCThostFtdcInvestorPortfMarginRatioFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcInvestorPortfMarginRatioFieldType_get_ExchangeID,
-    .set = PyCThostFtdcInvestorPortfMarginRatioFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品群代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductGroupID",
-    .get = PyCThostFtdcInvestorPortfMarginRatioFieldType_get_ProductGroupID,
-    .set = PyCThostFtdcInvestorPortfMarginRatioFieldType_set_ProductGroupID,
-    .doc = PyDoc_STR("产品群代码"),
+    /*.name =*/ "ProductGroupID",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_get_ProductGroupID,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_set_ProductGroupID,
+    /*.doc =*/ PyDoc_STR("产品群代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -385,15 +385,15 @@ static PyType_Slot PyCThostFtdcInvestorPortfMarginRatioFieldType_slots_legacy[] 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorPortfMarginRatioFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorPortfMarginRatioField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorPortfMarginRatioField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginRatioFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginRatioFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginRatioFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginRatioFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorPortfMarginRatioFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorPortfMarginRatioFieldType_slots_legacy,
 };
 #endif
 

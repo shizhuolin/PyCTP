@@ -334,50 +334,50 @@ static PyGetSetDef PyCThostFtdcInstrumentTradingRightFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcInstrumentTradingRightFieldType_get_reserve1,
-    .set = PyCThostFtdcInstrumentTradingRightFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcInstrumentTradingRightFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcInstrumentTradingRightFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcInstrumentTradingRightFieldType_get_InvestorRange,
-    .set = PyCThostFtdcInstrumentTradingRightFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcInstrumentTradingRightFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcInstrumentTradingRightFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInstrumentTradingRightFieldType_get_BrokerID,
-    .set = PyCThostFtdcInstrumentTradingRightFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInstrumentTradingRightFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInstrumentTradingRightFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInstrumentTradingRightFieldType_get_InvestorID,
-    .set = PyCThostFtdcInstrumentTradingRightFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInstrumentTradingRightFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInstrumentTradingRightFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 交易权限
     /// typedef char TThostFtdcTradingRightType
     {
-    .name = "TradingRight",
-    .get = PyCThostFtdcInstrumentTradingRightFieldType_get_TradingRight,
-    .set = PyCThostFtdcInstrumentTradingRightFieldType_set_TradingRight,
-    .doc = PyDoc_STR("交易权限"),
+    /*.name =*/ "TradingRight",
+    /*.get =*/ PyCThostFtdcInstrumentTradingRightFieldType_get_TradingRight,
+    /*.set =*/ PyCThostFtdcInstrumentTradingRightFieldType_set_TradingRight,
+    /*.doc =*/ PyDoc_STR("交易权限"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcInstrumentTradingRightFieldType_get_InstrumentID,
-    .set = PyCThostFtdcInstrumentTradingRightFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcInstrumentTradingRightFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcInstrumentTradingRightFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -403,15 +403,15 @@ static PyType_Slot PyCThostFtdcInstrumentTradingRightFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInstrumentTradingRightFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInstrumentTradingRightField",
+    /*.name =*/ "PyCTP.CThostFtdcInstrumentTradingRightField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInstrumentTradingRightFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInstrumentTradingRightFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInstrumentTradingRightFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInstrumentTradingRightFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInstrumentTradingRightFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInstrumentTradingRightFieldType_slots_legacy,
 };
 #endif
 

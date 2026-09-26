@@ -477,19 +477,19 @@ static PyMemberDef PyCThostFtdcQryMaxOrderVolumeFieldType_members[] = {
     /// 最大允许报单数量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "MaxVolume",
+        /*.name =*/ "MaxVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQryMaxOrderVolumeFieldData, data.MaxVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcQryMaxOrderVolumeFieldData, data.MaxVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最大允许报单数量")
+        /*.doc =*/ PyDoc_STR("最大允许报单数量")
     },
     {NULL}  /* Sentinel */
 };
@@ -498,74 +498,74 @@ static PyGetSetDef PyCThostFtdcQryMaxOrderVolumeFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_reserve1,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 买卖方向
     /// typedef char TThostFtdcDirectionType
     {
-    .name = "Direction",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_Direction,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_Direction,
-    .doc = PyDoc_STR("买卖方向"),
+    /*.name =*/ "Direction",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_Direction,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_Direction,
+    /*.doc =*/ PyDoc_STR("买卖方向"),
     },
     /// 开平标志
     /// typedef char TThostFtdcOffsetFlagType
     {
-    .name = "OffsetFlag",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_OffsetFlag,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_OffsetFlag,
-    .doc = PyDoc_STR("开平标志"),
+    /*.name =*/ "OffsetFlag",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_OffsetFlag,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_OffsetFlag,
+    /*.doc =*/ PyDoc_STR("开平标志"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryMaxOrderVolumeFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryMaxOrderVolumeFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -591,15 +591,15 @@ static PyType_Slot PyCThostFtdcQryMaxOrderVolumeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryMaxOrderVolumeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryMaxOrderVolumeField",
+    /*.name =*/ "PyCTP.CThostFtdcQryMaxOrderVolumeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryMaxOrderVolumeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryMaxOrderVolumeFieldType_slots_legacy,
 };
 #endif
 

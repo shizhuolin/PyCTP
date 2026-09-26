@@ -147,18 +147,18 @@ static PyGetSetDef PyCThostFtdcSyncStatusFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSyncStatusFieldType_get_TradingDay,
-    .set = PyCThostFtdcSyncStatusFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSyncStatusFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSyncStatusFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 数据同步状态
     /// typedef char TThostFtdcDataSyncStatusType
     {
-    .name = "DataSyncStatus",
-    .get = PyCThostFtdcSyncStatusFieldType_get_DataSyncStatus,
-    .set = PyCThostFtdcSyncStatusFieldType_set_DataSyncStatus,
-    .doc = PyDoc_STR("数据同步状态"),
+    /*.name =*/ "DataSyncStatus",
+    /*.get =*/ PyCThostFtdcSyncStatusFieldType_get_DataSyncStatus,
+    /*.set =*/ PyCThostFtdcSyncStatusFieldType_set_DataSyncStatus,
+    /*.doc =*/ PyDoc_STR("数据同步状态"),
     },
     {NULL}  /* Sentinel */
 };
@@ -184,15 +184,15 @@ static PyType_Slot PyCThostFtdcSyncStatusFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncStatusFieldType_slots_legacy,
 };
 #endif
 

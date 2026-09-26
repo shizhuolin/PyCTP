@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcSuperUserFieldType_members[] = {
     /// 是否活跃
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsActive",
+        /*.name =*/ "IsActive",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSuperUserFieldData, data.IsActive),
+        /*.offset =*/ offsetof(PyCThostFtdcSuperUserFieldData, data.IsActive),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否活跃")
+        /*.doc =*/ PyDoc_STR("是否活跃")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcSuperUserFieldType_getsets[] = {
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcSuperUserFieldType_get_UserID,
-    .set = PyCThostFtdcSuperUserFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcSuperUserFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcSuperUserFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 用户名称
     /// typedef char TThostFtdcUserNameType[81]
     {
-    .name = "UserName",
-    .get = PyCThostFtdcSuperUserFieldType_get_UserName,
-    .set = PyCThostFtdcSuperUserFieldType_set_UserName,
-    .doc = PyDoc_STR("用户名称"),
+    /*.name =*/ "UserName",
+    /*.get =*/ PyCThostFtdcSuperUserFieldType_get_UserName,
+    /*.set =*/ PyCThostFtdcSuperUserFieldType_set_UserName,
+    /*.doc =*/ PyDoc_STR("用户名称"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcSuperUserFieldType_get_Password,
-    .set = PyCThostFtdcSuperUserFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcSuperUserFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcSuperUserFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcSuperUserFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSuperUserFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSuperUserField",
+    /*.name =*/ "PyCTP.CThostFtdcSuperUserField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSuperUserFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSuperUserFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSuperUserFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSuperUserFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSuperUserFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSuperUserFieldType_slots_legacy,
 };
 #endif
 

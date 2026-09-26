@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcQryInstrumentOrderCommRateFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_reserve1,
-    .set = PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcQryInstrumentOrderCommRateFieldType_slots_legacy[
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInstrumentOrderCommRateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInstrumentOrderCommRateField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInstrumentOrderCommRateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentOrderCommRateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentOrderCommRateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentOrderCommRateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentOrderCommRateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInstrumentOrderCommRateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInstrumentOrderCommRateFieldType_slots_legacy,
 };
 #endif
 

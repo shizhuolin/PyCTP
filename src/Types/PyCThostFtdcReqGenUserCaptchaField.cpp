@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcReqGenUserCaptchaFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcReqGenUserCaptchaFieldType_get_TradingDay,
-    .set = PyCThostFtdcReqGenUserCaptchaFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcReqGenUserCaptchaFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcReqGenUserCaptchaFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcReqGenUserCaptchaFieldType_get_BrokerID,
-    .set = PyCThostFtdcReqGenUserCaptchaFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcReqGenUserCaptchaFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcReqGenUserCaptchaFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcReqGenUserCaptchaFieldType_get_UserID,
-    .set = PyCThostFtdcReqGenUserCaptchaFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcReqGenUserCaptchaFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcReqGenUserCaptchaFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcReqGenUserCaptchaFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqGenUserCaptchaFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqGenUserCaptchaField",
+    /*.name =*/ "PyCTP.CThostFtdcReqGenUserCaptchaField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqGenUserCaptchaFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqGenUserCaptchaFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqGenUserCaptchaFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqGenUserCaptchaFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqGenUserCaptchaFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqGenUserCaptchaFieldType_slots_legacy,
 };
 #endif
 

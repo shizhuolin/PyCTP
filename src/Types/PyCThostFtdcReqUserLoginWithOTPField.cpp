@@ -666,19 +666,19 @@ static PyMemberDef PyCThostFtdcReqUserLoginWithOTPFieldType_members[] = {
     /// 终端IP端口
     /// typedef int TThostFtdcIPPortType
     {
-        .name = "ClientIPPort",
+        /*.name =*/ "ClientIPPort",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqUserLoginWithOTPFieldData, data.ClientIPPort),
+        /*.offset =*/ offsetof(PyCThostFtdcReqUserLoginWithOTPFieldData, data.ClientIPPort),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("终端IP端口")
+        /*.doc =*/ PyDoc_STR("终端IP端口")
     },
     {NULL}  /* Sentinel */
 };
@@ -687,98 +687,98 @@ static PyGetSetDef PyCThostFtdcReqUserLoginWithOTPFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_TradingDay,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_BrokerID,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_UserID,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_Password,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     /// 用户端产品信息
     /// typedef char TThostFtdcProductInfoType[11]
     {
-    .name = "UserProductInfo",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_UserProductInfo,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_UserProductInfo,
-    .doc = PyDoc_STR("用户端产品信息"),
+    /*.name =*/ "UserProductInfo",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_UserProductInfo,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_UserProductInfo,
+    /*.doc =*/ PyDoc_STR("用户端产品信息"),
     },
     /// 接口端产品信息
     /// typedef char TThostFtdcProductInfoType[11]
     {
-    .name = "InterfaceProductInfo",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_InterfaceProductInfo,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_InterfaceProductInfo,
-    .doc = PyDoc_STR("接口端产品信息"),
+    /*.name =*/ "InterfaceProductInfo",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_InterfaceProductInfo,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_InterfaceProductInfo,
+    /*.doc =*/ PyDoc_STR("接口端产品信息"),
     },
     /// 协议信息
     /// typedef char TThostFtdcProtocolInfoType[11]
     {
-    .name = "ProtocolInfo",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_ProtocolInfo,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_ProtocolInfo,
-    .doc = PyDoc_STR("协议信息"),
+    /*.name =*/ "ProtocolInfo",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_ProtocolInfo,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_ProtocolInfo,
+    /*.doc =*/ PyDoc_STR("协议信息"),
     },
     /// Mac地址
     /// typedef char TThostFtdcMacAddressType[21]
     {
-    .name = "MacAddress",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_MacAddress,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_MacAddress,
-    .doc = PyDoc_STR("Mac地址"),
+    /*.name =*/ "MacAddress",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_MacAddress,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_MacAddress,
+    /*.doc =*/ PyDoc_STR("Mac地址"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_reserve1,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 登录备注
     /// typedef char TThostFtdcLoginRemarkType[36]
     {
-    .name = "LoginRemark",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_LoginRemark,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_LoginRemark,
-    .doc = PyDoc_STR("登录备注"),
+    /*.name =*/ "LoginRemark",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_LoginRemark,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_LoginRemark,
+    /*.doc =*/ PyDoc_STR("登录备注"),
     },
     /// OTP密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "OTPPassword",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_OTPPassword,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_OTPPassword,
-    .doc = PyDoc_STR("OTP密码"),
+    /*.name =*/ "OTPPassword",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_OTPPassword,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_OTPPassword,
+    /*.doc =*/ PyDoc_STR("OTP密码"),
     },
     /// 终端IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "ClientIPAddress",
-    .get = PyCThostFtdcReqUserLoginWithOTPFieldType_get_ClientIPAddress,
-    .set = PyCThostFtdcReqUserLoginWithOTPFieldType_set_ClientIPAddress,
-    .doc = PyDoc_STR("终端IP地址"),
+    /*.name =*/ "ClientIPAddress",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_get_ClientIPAddress,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_set_ClientIPAddress,
+    /*.doc =*/ PyDoc_STR("终端IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -804,15 +804,15 @@ static PyType_Slot PyCThostFtdcReqUserLoginWithOTPFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqUserLoginWithOTPFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqUserLoginWithOTPField",
+    /*.name =*/ "PyCTP.CThostFtdcReqUserLoginWithOTPField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithOTPFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithOTPFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithOTPFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithOTPFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqUserLoginWithOTPFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqUserLoginWithOTPFieldType_slots_legacy,
 };
 #endif
 

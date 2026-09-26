@@ -247,34 +247,34 @@ static PyGetSetDef PyCThostFtdcAuthUserIDFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAuthUserIDFieldType_get_BrokerID,
-    .set = PyCThostFtdcAuthUserIDFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAuthUserIDFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAuthUserIDFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcAuthUserIDFieldType_get_AppID,
-    .set = PyCThostFtdcAuthUserIDFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcAuthUserIDFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcAuthUserIDFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcAuthUserIDFieldType_get_UserID,
-    .set = PyCThostFtdcAuthUserIDFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcAuthUserIDFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcAuthUserIDFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 校验类型
     /// typedef char TThostFtdcAuthTypeType
     {
-    .name = "AuthType",
-    .get = PyCThostFtdcAuthUserIDFieldType_get_AuthType,
-    .set = PyCThostFtdcAuthUserIDFieldType_set_AuthType,
-    .doc = PyDoc_STR("校验类型"),
+    /*.name =*/ "AuthType",
+    /*.get =*/ PyCThostFtdcAuthUserIDFieldType_get_AuthType,
+    /*.set =*/ PyCThostFtdcAuthUserIDFieldType_set_AuthType,
+    /*.doc =*/ PyDoc_STR("校验类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -300,15 +300,15 @@ static PyType_Slot PyCThostFtdcAuthUserIDFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAuthUserIDFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAuthUserIDField",
+    /*.name =*/ "PyCTP.CThostFtdcAuthUserIDField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAuthUserIDFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAuthUserIDFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAuthUserIDFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAuthUserIDFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAuthUserIDFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAuthUserIDFieldType_slots_legacy,
 };
 #endif
 

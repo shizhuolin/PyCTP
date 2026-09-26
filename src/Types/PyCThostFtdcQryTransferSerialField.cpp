@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcQryTransferSerialFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryTransferSerialFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryTransferSerialFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryTransferSerialFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryTransferSerialFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcQryTransferSerialFieldType_get_AccountID,
-    .set = PyCThostFtdcQryTransferSerialFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcQryTransferSerialFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcQryTransferSerialFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 银行编码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcQryTransferSerialFieldType_get_BankID,
-    .set = PyCThostFtdcQryTransferSerialFieldType_set_BankID,
-    .doc = PyDoc_STR("银行编码"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcQryTransferSerialFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcQryTransferSerialFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行编码"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcQryTransferSerialFieldType_get_CurrencyID,
-    .set = PyCThostFtdcQryTransferSerialFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcQryTransferSerialFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcQryTransferSerialFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcQryTransferSerialFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryTransferSerialFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryTransferSerialField",
+    /*.name =*/ "PyCTP.CThostFtdcQryTransferSerialField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryTransferSerialFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryTransferSerialFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryTransferSerialFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryTransferSerialFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryTransferSerialFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryTransferSerialFieldType_slots_legacy,
 };
 #endif
 

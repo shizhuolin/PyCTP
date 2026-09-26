@@ -66,19 +66,19 @@ static PyMemberDef PyCThostFtdcMarketDataAveragePriceFieldType_members[] = {
     /// 当日均价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "AveragePrice",
+        /*.name =*/ "AveragePrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataAveragePriceFieldData, data.AveragePrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataAveragePriceFieldData, data.AveragePrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("当日均价")
+        /*.doc =*/ PyDoc_STR("当日均价")
     },
     {NULL}  /* Sentinel */
 };
@@ -108,15 +108,15 @@ static PyType_Slot PyCThostFtdcMarketDataAveragePriceFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMarketDataAveragePriceFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMarketDataAveragePriceField",
+    /*.name =*/ "PyCTP.CThostFtdcMarketDataAveragePriceField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMarketDataAveragePriceFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMarketDataAveragePriceFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataAveragePriceFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataAveragePriceFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMarketDataAveragePriceFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMarketDataAveragePriceFieldType_slots_legacy,
 };
 #endif
 

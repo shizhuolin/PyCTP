@@ -400,121 +400,121 @@ static PyMemberDef PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_members[] =
     /// 期货合约因子
     /// typedef int TThostFtdcVolumeMultipleType
     {
-        .name = "Cvf",
+        /*.name =*/ "Cvf",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.Cvf),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.Cvf),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期货合约因子")
+        /*.doc =*/ PyDoc_STR("期货合约因子")
     },
     /// 品种保证金标准
     /// typedef double TThostFtdcRatioType
     {
-        .name = "MarginRate",
+        /*.name =*/ "MarginRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.MarginRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.MarginRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("品种保证金标准")
+        /*.doc =*/ PyDoc_STR("品种保证金标准")
     },
     /// 期货合约内部对锁仓费率折扣比例
     /// typedef double TThostFtdcRatioType
     {
-        .name = "LockRateX",
+        /*.name =*/ "LockRateX",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.LockRateX),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.LockRateX),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期货合约内部对锁仓费率折扣比例")
+        /*.doc =*/ PyDoc_STR("期货合约内部对锁仓费率折扣比例")
     },
     /// 提高保证金标准
     /// typedef double TThostFtdcRatioType
     {
-        .name = "AddOnRate",
+        /*.name =*/ "AddOnRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.AddOnRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.AddOnRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("提高保证金标准")
+        /*.doc =*/ PyDoc_STR("提高保证金标准")
     },
     /// 昨结算价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "PreSettlementPrice",
+        /*.name =*/ "PreSettlementPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.PreSettlementPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.PreSettlementPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("昨结算价")
+        /*.doc =*/ PyDoc_STR("昨结算价")
     },
     /// 期货合约内部对锁仓附加费率折扣比例
     /// typedef double TThostFtdcRatioType
     {
-        .name = "AddOnLockRateX2",
+        /*.name =*/ "AddOnLockRateX2",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.AddOnLockRateX2),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.AddOnLockRateX2),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期货合约内部对锁仓附加费率折扣比例")
+        /*.doc =*/ PyDoc_STR("期货合约内部对锁仓附加费率折扣比例")
     },
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -523,50 +523,50 @@ static PyGetSetDef PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_getsets[] =
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_TradingDay,
-    .set = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_InstrumentID,
-    .set = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 品种代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProdFamilyCode",
-    .get = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_ProdFamilyCode,
-    .set = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_ProdFamilyCode,
-    .doc = PyDoc_STR("品种代码"),
+    /*.name =*/ "ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("品种代码"),
     },
     /// 阶段标识
     /// typedef char TThostFtdcTimeRangeType
     {
-    .name = "TimeRange",
-    .get = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_TimeRange,
-    .set = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_TimeRange,
-    .doc = PyDoc_STR("阶段标识"),
+    /*.name =*/ "TimeRange",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_TimeRange,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_TimeRange,
+    /*.doc =*/ PyDoc_STR("阶段标识"),
     },
     /// 操作标志
     /// typedef char TThostFtdcActionDirectionType
     {
-    .name = "ActionDirection",
-    .get = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_ActionDirection,
-    .set = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_ActionDirection,
-    .doc = PyDoc_STR("操作标志"),
+    /*.name =*/ "ActionDirection",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_get_ActionDirection,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_set_ActionDirection,
+    /*.doc =*/ PyDoc_STR("操作标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -592,15 +592,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_slots_legac
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaSPBMFutureParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaSPBMFutureParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPBMFutureParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaSPBMFutureParameterFieldType_slots_legacy,
 };
 #endif
 

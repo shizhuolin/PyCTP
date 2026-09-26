@@ -153,19 +153,19 @@ static PyMemberDef PyCThostFtdcExchangeSequenceFieldType_members[] = {
     /// 序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SequenceNo",
+        /*.name =*/ "SequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcExchangeSequenceFieldData, data.SequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcExchangeSequenceFieldData, data.SequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序号")
+        /*.doc =*/ PyDoc_STR("序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -174,18 +174,18 @@ static PyGetSetDef PyCThostFtdcExchangeSequenceFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcExchangeSequenceFieldType_get_ExchangeID,
-    .set = PyCThostFtdcExchangeSequenceFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcExchangeSequenceFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcExchangeSequenceFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约交易状态
     /// typedef char TThostFtdcInstrumentStatusType
     {
-    .name = "MarketStatus",
-    .get = PyCThostFtdcExchangeSequenceFieldType_get_MarketStatus,
-    .set = PyCThostFtdcExchangeSequenceFieldType_set_MarketStatus,
-    .doc = PyDoc_STR("合约交易状态"),
+    /*.name =*/ "MarketStatus",
+    /*.get =*/ PyCThostFtdcExchangeSequenceFieldType_get_MarketStatus,
+    /*.set =*/ PyCThostFtdcExchangeSequenceFieldType_set_MarketStatus,
+    /*.doc =*/ PyDoc_STR("合约交易状态"),
     },
     {NULL}  /* Sentinel */
 };
@@ -211,15 +211,15 @@ static PyType_Slot PyCThostFtdcExchangeSequenceFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcExchangeSequenceFieldType_spec = {
-    .name = "PyCTP.CThostFtdcExchangeSequenceField",
+    /*.name =*/ "PyCTP.CThostFtdcExchangeSequenceField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcExchangeSequenceFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcExchangeSequenceFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcExchangeSequenceFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcExchangeSequenceFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcExchangeSequenceFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcExchangeSequenceFieldType_slots_legacy,
 };
 #endif
 

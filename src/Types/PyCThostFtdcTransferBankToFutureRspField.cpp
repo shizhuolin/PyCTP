@@ -276,36 +276,36 @@ static PyMemberDef PyCThostFtdcTransferBankToFutureRspFieldType_members[] = {
     /// 转帐金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "TradeAmt",
+        /*.name =*/ "TradeAmt",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTransferBankToFutureRspFieldData, data.TradeAmt),
+        /*.offset =*/ offsetof(PyCThostFtdcTransferBankToFutureRspFieldData, data.TradeAmt),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("转帐金额")
+        /*.doc =*/ PyDoc_STR("转帐金额")
     },
     /// 应收客户手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "CustFee",
+        /*.name =*/ "CustFee",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTransferBankToFutureRspFieldData, data.CustFee),
+        /*.offset =*/ offsetof(PyCThostFtdcTransferBankToFutureRspFieldData, data.CustFee),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("应收客户手续费")
+        /*.doc =*/ PyDoc_STR("应收客户手续费")
     },
     {NULL}  /* Sentinel */
 };
@@ -314,34 +314,34 @@ static PyGetSetDef PyCThostFtdcTransferBankToFutureRspFieldType_getsets[] = {
     /// 响应代码
     /// typedef char TThostFtdcRetCodeType[5]
     {
-    .name = "RetCode",
-    .get = PyCThostFtdcTransferBankToFutureRspFieldType_get_RetCode,
-    .set = PyCThostFtdcTransferBankToFutureRspFieldType_set_RetCode,
-    .doc = PyDoc_STR("响应代码"),
+    /*.name =*/ "RetCode",
+    /*.get =*/ PyCThostFtdcTransferBankToFutureRspFieldType_get_RetCode,
+    /*.set =*/ PyCThostFtdcTransferBankToFutureRspFieldType_set_RetCode,
+    /*.doc =*/ PyDoc_STR("响应代码"),
     },
     /// 响应信息
     /// typedef char TThostFtdcRetInfoType[129]
     {
-    .name = "RetInfo",
-    .get = PyCThostFtdcTransferBankToFutureRspFieldType_get_RetInfo,
-    .set = PyCThostFtdcTransferBankToFutureRspFieldType_set_RetInfo,
-    .doc = PyDoc_STR("响应信息"),
+    /*.name =*/ "RetInfo",
+    /*.get =*/ PyCThostFtdcTransferBankToFutureRspFieldType_get_RetInfo,
+    /*.set =*/ PyCThostFtdcTransferBankToFutureRspFieldType_set_RetInfo,
+    /*.doc =*/ PyDoc_STR("响应信息"),
     },
     /// 资金账户
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "FutureAccount",
-    .get = PyCThostFtdcTransferBankToFutureRspFieldType_get_FutureAccount,
-    .set = PyCThostFtdcTransferBankToFutureRspFieldType_set_FutureAccount,
-    .doc = PyDoc_STR("资金账户"),
+    /*.name =*/ "FutureAccount",
+    /*.get =*/ PyCThostFtdcTransferBankToFutureRspFieldType_get_FutureAccount,
+    /*.set =*/ PyCThostFtdcTransferBankToFutureRspFieldType_set_FutureAccount,
+    /*.doc =*/ PyDoc_STR("资金账户"),
     },
     /// 币种
     /// typedef char TThostFtdcCurrencyCodeType[4]
     {
-    .name = "CurrencyCode",
-    .get = PyCThostFtdcTransferBankToFutureRspFieldType_get_CurrencyCode,
-    .set = PyCThostFtdcTransferBankToFutureRspFieldType_set_CurrencyCode,
-    .doc = PyDoc_STR("币种"),
+    /*.name =*/ "CurrencyCode",
+    /*.get =*/ PyCThostFtdcTransferBankToFutureRspFieldType_get_CurrencyCode,
+    /*.set =*/ PyCThostFtdcTransferBankToFutureRspFieldType_set_CurrencyCode,
+    /*.doc =*/ PyDoc_STR("币种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -367,15 +367,15 @@ static PyType_Slot PyCThostFtdcTransferBankToFutureRspFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTransferBankToFutureRspFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTransferBankToFutureRspField",
+    /*.name =*/ "PyCTP.CThostFtdcTransferBankToFutureRspField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTransferBankToFutureRspFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTransferBankToFutureRspFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTransferBankToFutureRspFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTransferBankToFutureRspFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTransferBankToFutureRspFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTransferBankToFutureRspFieldType_slots_legacy,
 };
 #endif
 

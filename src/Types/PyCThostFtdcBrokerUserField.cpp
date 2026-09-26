@@ -273,53 +273,53 @@ static PyMemberDef PyCThostFtdcBrokerUserFieldType_members[] = {
     /// 是否活跃
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsActive",
+        /*.name =*/ "IsActive",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserFieldData, data.IsActive),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserFieldData, data.IsActive),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否活跃")
+        /*.doc =*/ PyDoc_STR("是否活跃")
     },
     /// 是否使用令牌
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsUsingOTP",
+        /*.name =*/ "IsUsingOTP",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserFieldData, data.IsUsingOTP),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserFieldData, data.IsUsingOTP),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否使用令牌")
+        /*.doc =*/ PyDoc_STR("是否使用令牌")
     },
     /// 是否强制终端认证
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsAuthForce",
+        /*.name =*/ "IsAuthForce",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserFieldData, data.IsAuthForce),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserFieldData, data.IsAuthForce),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否强制终端认证")
+        /*.doc =*/ PyDoc_STR("是否强制终端认证")
     },
     {NULL}  /* Sentinel */
 };
@@ -328,34 +328,34 @@ static PyGetSetDef PyCThostFtdcBrokerUserFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerUserFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerUserFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerUserFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerUserFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcBrokerUserFieldType_get_UserID,
-    .set = PyCThostFtdcBrokerUserFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcBrokerUserFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcBrokerUserFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 用户名称
     /// typedef char TThostFtdcUserNameType[81]
     {
-    .name = "UserName",
-    .get = PyCThostFtdcBrokerUserFieldType_get_UserName,
-    .set = PyCThostFtdcBrokerUserFieldType_set_UserName,
-    .doc = PyDoc_STR("用户名称"),
+    /*.name =*/ "UserName",
+    /*.get =*/ PyCThostFtdcBrokerUserFieldType_get_UserName,
+    /*.set =*/ PyCThostFtdcBrokerUserFieldType_set_UserName,
+    /*.doc =*/ PyDoc_STR("用户名称"),
     },
     /// 用户类型
     /// typedef char TThostFtdcUserTypeType
     {
-    .name = "UserType",
-    .get = PyCThostFtdcBrokerUserFieldType_get_UserType,
-    .set = PyCThostFtdcBrokerUserFieldType_set_UserType,
-    .doc = PyDoc_STR("用户类型"),
+    /*.name =*/ "UserType",
+    /*.get =*/ PyCThostFtdcBrokerUserFieldType_get_UserType,
+    /*.set =*/ PyCThostFtdcBrokerUserFieldType_set_UserType,
+    /*.doc =*/ PyDoc_STR("用户类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -381,15 +381,15 @@ static PyType_Slot PyCThostFtdcBrokerUserFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerUserFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerUserField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerUserField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerUserFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerUserFieldType_slots_legacy,
 };
 #endif
 

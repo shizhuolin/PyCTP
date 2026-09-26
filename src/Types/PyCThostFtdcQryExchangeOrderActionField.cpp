@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcQryExchangeOrderActionFieldType_getsets[] = {
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcQryExchangeOrderActionFieldType_get_ParticipantID,
-    .set = PyCThostFtdcQryExchangeOrderActionFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcQryExchangeOrderActionFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcQryExchangeOrderActionFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 客户代码
     /// typedef char TThostFtdcClientIDType[11]
     {
-    .name = "ClientID",
-    .get = PyCThostFtdcQryExchangeOrderActionFieldType_get_ClientID,
-    .set = PyCThostFtdcQryExchangeOrderActionFieldType_set_ClientID,
-    .doc = PyDoc_STR("客户代码"),
+    /*.name =*/ "ClientID",
+    /*.get =*/ PyCThostFtdcQryExchangeOrderActionFieldType_get_ClientID,
+    /*.set =*/ PyCThostFtdcQryExchangeOrderActionFieldType_set_ClientID,
+    /*.doc =*/ PyDoc_STR("客户代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryExchangeOrderActionFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryExchangeOrderActionFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryExchangeOrderActionFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryExchangeOrderActionFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcQryExchangeOrderActionFieldType_get_TraderID,
-    .set = PyCThostFtdcQryExchangeOrderActionFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcQryExchangeOrderActionFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcQryExchangeOrderActionFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcQryExchangeOrderActionFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryExchangeOrderActionFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryExchangeOrderActionField",
+    /*.name =*/ "PyCTP.CThostFtdcQryExchangeOrderActionField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeOrderActionFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeOrderActionFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeOrderActionFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeOrderActionFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryExchangeOrderActionFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryExchangeOrderActionFieldType_slots_legacy,
 };
 #endif
 

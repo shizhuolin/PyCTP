@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcCurrentTimeFieldType_members[] = {
     /// 当前时间（毫秒）
     /// typedef int TThostFtdcMillisecType
     {
-        .name = "CurrMillisec",
+        /*.name =*/ "CurrMillisec",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCurrentTimeFieldData, data.CurrMillisec),
+        /*.offset =*/ offsetof(PyCThostFtdcCurrentTimeFieldData, data.CurrMillisec),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("当前时间（毫秒）")
+        /*.doc =*/ PyDoc_STR("当前时间（毫秒）")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcCurrentTimeFieldType_getsets[] = {
     /// 当前交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "CurrDate",
-    .get = PyCThostFtdcCurrentTimeFieldType_get_CurrDate,
-    .set = PyCThostFtdcCurrentTimeFieldType_set_CurrDate,
-    .doc = PyDoc_STR("当前交易日"),
+    /*.name =*/ "CurrDate",
+    /*.get =*/ PyCThostFtdcCurrentTimeFieldType_get_CurrDate,
+    /*.set =*/ PyCThostFtdcCurrentTimeFieldType_set_CurrDate,
+    /*.doc =*/ PyDoc_STR("当前交易日"),
     },
     /// 当前时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "CurrTime",
-    .get = PyCThostFtdcCurrentTimeFieldType_get_CurrTime,
-    .set = PyCThostFtdcCurrentTimeFieldType_set_CurrTime,
-    .doc = PyDoc_STR("当前时间"),
+    /*.name =*/ "CurrTime",
+    /*.get =*/ PyCThostFtdcCurrentTimeFieldType_get_CurrTime,
+    /*.set =*/ PyCThostFtdcCurrentTimeFieldType_set_CurrTime,
+    /*.doc =*/ PyDoc_STR("当前时间"),
     },
     /// 自然日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ActionDay",
-    .get = PyCThostFtdcCurrentTimeFieldType_get_ActionDay,
-    .set = PyCThostFtdcCurrentTimeFieldType_set_ActionDay,
-    .doc = PyDoc_STR("自然日期"),
+    /*.name =*/ "ActionDay",
+    /*.get =*/ PyCThostFtdcCurrentTimeFieldType_get_ActionDay,
+    /*.set =*/ PyCThostFtdcCurrentTimeFieldType_set_ActionDay,
+    /*.doc =*/ PyDoc_STR("自然日期"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcCurrentTimeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCurrentTimeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCurrentTimeField",
+    /*.name =*/ "PyCTP.CThostFtdcCurrentTimeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCurrentTimeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCurrentTimeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCurrentTimeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCurrentTimeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCurrentTimeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCurrentTimeFieldType_slots_legacy,
 };
 #endif
 

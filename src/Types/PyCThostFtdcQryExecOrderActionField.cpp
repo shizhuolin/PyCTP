@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryExecOrderActionFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryExecOrderActionFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryExecOrderActionFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryExecOrderActionFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryExecOrderActionFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryExecOrderActionFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryExecOrderActionFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryExecOrderActionFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryExecOrderActionFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryExecOrderActionFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryExecOrderActionFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryExecOrderActionFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryExecOrderActionFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryExecOrderActionFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryExecOrderActionFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryExecOrderActionField",
+    /*.name =*/ "PyCTP.CThostFtdcQryExecOrderActionField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryExecOrderActionFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryExecOrderActionFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryExecOrderActionFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryExecOrderActionFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryExecOrderActionFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryExecOrderActionFieldType_slots_legacy,
 };
 #endif
 

@@ -373,53 +373,53 @@ static PyMemberDef PyCThostFtdcTraderFieldType_members[] = {
     /// 安装数量
     /// typedef int TThostFtdcInstallCountType
     {
-        .name = "InstallCount",
+        /*.name =*/ "InstallCount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTraderFieldData, data.InstallCount),
+        /*.offset =*/ offsetof(PyCThostFtdcTraderFieldData, data.InstallCount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("安装数量")
+        /*.doc =*/ PyDoc_STR("安装数量")
     },
     /// 交易报盘安装数量
     /// typedef int TThostFtdcInstallCountType
     {
-        .name = "TradeInstallCount",
+        /*.name =*/ "TradeInstallCount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTraderFieldData, data.TradeInstallCount),
+        /*.offset =*/ offsetof(PyCThostFtdcTraderFieldData, data.TradeInstallCount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易报盘安装数量")
+        /*.doc =*/ PyDoc_STR("交易报盘安装数量")
     },
     /// 行情报盘安装数量
     /// typedef int TThostFtdcInstallCountType
     {
-        .name = "MDInstallCount",
+        /*.name =*/ "MDInstallCount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTraderFieldData, data.MDInstallCount),
+        /*.offset =*/ offsetof(PyCThostFtdcTraderFieldData, data.MDInstallCount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("行情报盘安装数量")
+        /*.doc =*/ PyDoc_STR("行情报盘安装数量")
     },
     {NULL}  /* Sentinel */
 };
@@ -428,50 +428,50 @@ static PyGetSetDef PyCThostFtdcTraderFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcTraderFieldType_get_ExchangeID,
-    .set = PyCThostFtdcTraderFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcTraderFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcTraderFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcTraderFieldType_get_TraderID,
-    .set = PyCThostFtdcTraderFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcTraderFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcTraderFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcTraderFieldType_get_ParticipantID,
-    .set = PyCThostFtdcTraderFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcTraderFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcTraderFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcTraderFieldType_get_Password,
-    .set = PyCThostFtdcTraderFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcTraderFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcTraderFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTraderFieldType_get_BrokerID,
-    .set = PyCThostFtdcTraderFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTraderFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTraderFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 撤单时选择席位算法
     /// typedef char TThostFtdcOrderCancelAlgType
     {
-    .name = "OrderCancelAlg",
-    .get = PyCThostFtdcTraderFieldType_get_OrderCancelAlg,
-    .set = PyCThostFtdcTraderFieldType_set_OrderCancelAlg,
-    .doc = PyDoc_STR("撤单时选择席位算法"),
+    /*.name =*/ "OrderCancelAlg",
+    /*.get =*/ PyCThostFtdcTraderFieldType_get_OrderCancelAlg,
+    /*.set =*/ PyCThostFtdcTraderFieldType_set_OrderCancelAlg,
+    /*.doc =*/ PyDoc_STR("撤单时选择席位算法"),
     },
     {NULL}  /* Sentinel */
 };
@@ -497,15 +497,15 @@ static PyType_Slot PyCThostFtdcTraderFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTraderFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTraderField",
+    /*.name =*/ "PyCTP.CThostFtdcTraderField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTraderFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTraderFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTraderFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTraderFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTraderFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTraderFieldType_slots_legacy,
 };
 #endif
 

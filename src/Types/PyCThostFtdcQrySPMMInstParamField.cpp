@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQrySPMMInstParamFieldType_getsets[] = {
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQrySPMMInstParamFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQrySPMMInstParamFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQrySPMMInstParamFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQrySPMMInstParamFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQrySPMMInstParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySPMMInstParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySPMMInstParamField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySPMMInstParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySPMMInstParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySPMMInstParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySPMMInstParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySPMMInstParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySPMMInstParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySPMMInstParamFieldType_slots_legacy,
 };
 #endif
 

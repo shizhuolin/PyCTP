@@ -293,87 +293,87 @@ static PyMemberDef PyCThostFtdcSyncDeltaSPMMModelParamFieldType_members[] = {
     /// SPMM品种内跨期优惠系数
     /// typedef double TThostFtdcSPMMDiscountRatioType
     {
-        .name = "IntraCommodityRate",
+        /*.name =*/ "IntraCommodityRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.IntraCommodityRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.IntraCommodityRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("SPMM品种内跨期优惠系数")
+        /*.doc =*/ PyDoc_STR("SPMM品种内跨期优惠系数")
     },
     /// SPMM品种间优惠系数
     /// typedef double TThostFtdcSPMMDiscountRatioType
     {
-        .name = "InterCommodityRate",
+        /*.name =*/ "InterCommodityRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.InterCommodityRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.InterCommodityRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("SPMM品种间优惠系数")
+        /*.doc =*/ PyDoc_STR("SPMM品种间优惠系数")
     },
     /// SPMM期权优惠系数
     /// typedef double TThostFtdcSPMMDiscountRatioType
     {
-        .name = "OptionDiscountRate",
+        /*.name =*/ "OptionDiscountRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.OptionDiscountRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.OptionDiscountRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("SPMM期权优惠系数")
+        /*.doc =*/ PyDoc_STR("SPMM期权优惠系数")
     },
     /// 商品群最小保证金比例
     /// typedef double TThostFtdcSPMMDiscountRatioType
     {
-        .name = "MiniMarginRatio",
+        /*.name =*/ "MiniMarginRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.MiniMarginRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.MiniMarginRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("商品群最小保证金比例")
+        /*.doc =*/ PyDoc_STR("商品群最小保证金比例")
     },
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -382,34 +382,34 @@ static PyGetSetDef PyCThostFtdcSyncDeltaSPMMModelParamFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// SPMM模板ID
     /// typedef char TThostFtdcSPMMModelIDType[33]
     {
-    .name = "SPMMModelID",
-    .get = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_SPMMModelID,
-    .set = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_SPMMModelID,
-    .doc = PyDoc_STR("SPMM模板ID"),
+    /*.name =*/ "SPMMModelID",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_SPMMModelID,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_SPMMModelID,
+    /*.doc =*/ PyDoc_STR("SPMM模板ID"),
     },
     /// 商品群代码
     /// typedef char TThostFtdcSPMMProductIDType[41]
     {
-    .name = "CommodityGroupID",
-    .get = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_CommodityGroupID,
-    .set = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_CommodityGroupID,
-    .doc = PyDoc_STR("商品群代码"),
+    /*.name =*/ "CommodityGroupID",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_CommodityGroupID,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_CommodityGroupID,
+    /*.doc =*/ PyDoc_STR("商品群代码"),
     },
     /// 操作标志
     /// typedef char TThostFtdcActionDirectionType
     {
-    .name = "ActionDirection",
-    .get = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_ActionDirection,
-    .set = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_ActionDirection,
-    .doc = PyDoc_STR("操作标志"),
+    /*.name =*/ "ActionDirection",
+    /*.get =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_get_ActionDirection,
+    /*.set =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_set_ActionDirection,
+    /*.doc =*/ PyDoc_STR("操作标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -435,15 +435,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaSPMMModelParamFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaSPMMModelParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaSPMMModelParamField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaSPMMModelParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaSPMMModelParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaSPMMModelParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaSPMMModelParamFieldType_slots_legacy,
 };
 #endif
 

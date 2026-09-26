@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryProductGroupFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryProductGroupFieldType_get_reserve1,
-    .set = PyCThostFtdcQryProductGroupFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryProductGroupFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryProductGroupFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryProductGroupFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryProductGroupFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryProductGroupFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryProductGroupFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcQryProductGroupFieldType_get_ProductID,
-    .set = PyCThostFtdcQryProductGroupFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcQryProductGroupFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcQryProductGroupFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryProductGroupFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryProductGroupFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryProductGroupField",
+    /*.name =*/ "PyCTP.CThostFtdcQryProductGroupField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryProductGroupFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryProductGroupFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryProductGroupFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryProductGroupFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryProductGroupFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryProductGroupFieldType_slots_legacy,
 };
 #endif
 

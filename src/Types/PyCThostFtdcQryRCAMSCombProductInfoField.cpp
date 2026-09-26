@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryRCAMSCombProductInfoFieldType_getsets[] = {
     /// 产品代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcQryRCAMSCombProductInfoFieldType_get_ProductID,
-    .set = PyCThostFtdcQryRCAMSCombProductInfoFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcQryRCAMSCombProductInfoFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcQryRCAMSCombProductInfoFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     /// 商品组代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "CombProductID",
-    .get = PyCThostFtdcQryRCAMSCombProductInfoFieldType_get_CombProductID,
-    .set = PyCThostFtdcQryRCAMSCombProductInfoFieldType_set_CombProductID,
-    .doc = PyDoc_STR("商品组代码"),
+    /*.name =*/ "CombProductID",
+    /*.get =*/ PyCThostFtdcQryRCAMSCombProductInfoFieldType_get_CombProductID,
+    /*.set =*/ PyCThostFtdcQryRCAMSCombProductInfoFieldType_set_CombProductID,
+    /*.doc =*/ PyDoc_STR("商品组代码"),
     },
     /// 商品群代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductGroupID",
-    .get = PyCThostFtdcQryRCAMSCombProductInfoFieldType_get_ProductGroupID,
-    .set = PyCThostFtdcQryRCAMSCombProductInfoFieldType_set_ProductGroupID,
-    .doc = PyDoc_STR("商品群代码"),
+    /*.name =*/ "ProductGroupID",
+    /*.get =*/ PyCThostFtdcQryRCAMSCombProductInfoFieldType_get_ProductGroupID,
+    /*.set =*/ PyCThostFtdcQryRCAMSCombProductInfoFieldType_set_ProductGroupID,
+    /*.doc =*/ PyDoc_STR("商品群代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryRCAMSCombProductInfoFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryRCAMSCombProductInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryRCAMSCombProductInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcQryRCAMSCombProductInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSCombProductInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSCombProductInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSCombProductInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSCombProductInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryRCAMSCombProductInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryRCAMSCombProductInfoFieldType_slots_legacy,
 };
 #endif
 

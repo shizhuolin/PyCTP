@@ -363,36 +363,36 @@ static PyMemberDef PyCThostFtdcBrokerUserOTPParamFieldType_members[] = {
     /// 漂移值
     /// typedef int TThostFtdcLastDriftType
     {
-        .name = "LastDrift",
+        /*.name =*/ "LastDrift",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserOTPParamFieldData, data.LastDrift),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserOTPParamFieldData, data.LastDrift),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("漂移值")
+        /*.doc =*/ PyDoc_STR("漂移值")
     },
     /// 成功值
     /// typedef int TThostFtdcLastSuccessType
     {
-        .name = "LastSuccess",
+        /*.name =*/ "LastSuccess",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserOTPParamFieldData, data.LastSuccess),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserOTPParamFieldData, data.LastSuccess),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("成功值")
+        /*.doc =*/ PyDoc_STR("成功值")
     },
     {NULL}  /* Sentinel */
 };
@@ -401,50 +401,50 @@ static PyGetSetDef PyCThostFtdcBrokerUserOTPParamFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerUserOTPParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerUserOTPParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerUserOTPParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerUserOTPParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcBrokerUserOTPParamFieldType_get_UserID,
-    .set = PyCThostFtdcBrokerUserOTPParamFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcBrokerUserOTPParamFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcBrokerUserOTPParamFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 动态令牌提供商
     /// typedef char TThostFtdcOTPVendorsIDType[2]
     {
-    .name = "OTPVendorsID",
-    .get = PyCThostFtdcBrokerUserOTPParamFieldType_get_OTPVendorsID,
-    .set = PyCThostFtdcBrokerUserOTPParamFieldType_set_OTPVendorsID,
-    .doc = PyDoc_STR("动态令牌提供商"),
+    /*.name =*/ "OTPVendorsID",
+    /*.get =*/ PyCThostFtdcBrokerUserOTPParamFieldType_get_OTPVendorsID,
+    /*.set =*/ PyCThostFtdcBrokerUserOTPParamFieldType_set_OTPVendorsID,
+    /*.doc =*/ PyDoc_STR("动态令牌提供商"),
     },
     /// 动态令牌序列号
     /// typedef char TThostFtdcSerialNumberType[17]
     {
-    .name = "SerialNumber",
-    .get = PyCThostFtdcBrokerUserOTPParamFieldType_get_SerialNumber,
-    .set = PyCThostFtdcBrokerUserOTPParamFieldType_set_SerialNumber,
-    .doc = PyDoc_STR("动态令牌序列号"),
+    /*.name =*/ "SerialNumber",
+    /*.get =*/ PyCThostFtdcBrokerUserOTPParamFieldType_get_SerialNumber,
+    /*.set =*/ PyCThostFtdcBrokerUserOTPParamFieldType_set_SerialNumber,
+    /*.doc =*/ PyDoc_STR("动态令牌序列号"),
     },
     /// 令牌密钥
     /// typedef char TThostFtdcAuthKeyType[41]
     {
-    .name = "AuthKey",
-    .get = PyCThostFtdcBrokerUserOTPParamFieldType_get_AuthKey,
-    .set = PyCThostFtdcBrokerUserOTPParamFieldType_set_AuthKey,
-    .doc = PyDoc_STR("令牌密钥"),
+    /*.name =*/ "AuthKey",
+    /*.get =*/ PyCThostFtdcBrokerUserOTPParamFieldType_get_AuthKey,
+    /*.set =*/ PyCThostFtdcBrokerUserOTPParamFieldType_set_AuthKey,
+    /*.doc =*/ PyDoc_STR("令牌密钥"),
     },
     /// 动态令牌类型
     /// typedef char TThostFtdcOTPTypeType
     {
-    .name = "OTPType",
-    .get = PyCThostFtdcBrokerUserOTPParamFieldType_get_OTPType,
-    .set = PyCThostFtdcBrokerUserOTPParamFieldType_set_OTPType,
-    .doc = PyDoc_STR("动态令牌类型"),
+    /*.name =*/ "OTPType",
+    /*.get =*/ PyCThostFtdcBrokerUserOTPParamFieldType_get_OTPType,
+    /*.set =*/ PyCThostFtdcBrokerUserOTPParamFieldType_set_OTPType,
+    /*.doc =*/ PyDoc_STR("动态令牌类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -470,15 +470,15 @@ static PyType_Slot PyCThostFtdcBrokerUserOTPParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerUserOTPParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerUserOTPParamField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerUserOTPParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserOTPParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserOTPParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserOTPParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserOTPParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerUserOTPParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerUserOTPParamFieldType_slots_legacy,
 };
 #endif
 

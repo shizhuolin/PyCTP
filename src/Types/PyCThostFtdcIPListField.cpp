@@ -166,19 +166,19 @@ static PyMemberDef PyCThostFtdcIPListFieldType_members[] = {
     /// 是否白名单
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsWhite",
+        /*.name =*/ "IsWhite",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcIPListFieldData, data.IsWhite),
+        /*.offset =*/ offsetof(PyCThostFtdcIPListFieldData, data.IsWhite),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否白名单")
+        /*.doc =*/ PyDoc_STR("是否白名单")
     },
     {NULL}  /* Sentinel */
 };
@@ -187,18 +187,18 @@ static PyGetSetDef PyCThostFtdcIPListFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcIPListFieldType_get_reserve1,
-    .set = PyCThostFtdcIPListFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcIPListFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcIPListFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcIPListFieldType_get_IPAddress,
-    .set = PyCThostFtdcIPListFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcIPListFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcIPListFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -224,15 +224,15 @@ static PyType_Slot PyCThostFtdcIPListFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcIPListFieldType_spec = {
-    .name = "PyCTP.CThostFtdcIPListField",
+    /*.name =*/ "PyCTP.CThostFtdcIPListField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcIPListFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcIPListFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcIPListFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcIPListFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcIPListFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcIPListFieldType_slots_legacy,
 };
 #endif
 

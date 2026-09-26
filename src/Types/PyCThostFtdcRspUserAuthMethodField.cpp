@@ -66,19 +66,19 @@ static PyMemberDef PyCThostFtdcRspUserAuthMethodFieldType_members[] = {
     /// 当前可以用的认证模式
     /// typedef int TThostFtdcCurrentAuthMethodType
     {
-        .name = "UsableAuthMethod",
+        /*.name =*/ "UsableAuthMethod",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspUserAuthMethodFieldData, data.UsableAuthMethod),
+        /*.offset =*/ offsetof(PyCThostFtdcRspUserAuthMethodFieldData, data.UsableAuthMethod),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("当前可以用的认证模式")
+        /*.doc =*/ PyDoc_STR("当前可以用的认证模式")
     },
     {NULL}  /* Sentinel */
 };
@@ -108,15 +108,15 @@ static PyType_Slot PyCThostFtdcRspUserAuthMethodFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspUserAuthMethodFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspUserAuthMethodField",
+    /*.name =*/ "PyCTP.CThostFtdcRspUserAuthMethodField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspUserAuthMethodFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspUserAuthMethodFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspUserAuthMethodFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspUserAuthMethodFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspUserAuthMethodFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspUserAuthMethodFieldType_slots_legacy,
 };
 #endif
 

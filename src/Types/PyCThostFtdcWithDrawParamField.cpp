@@ -247,34 +247,34 @@ static PyGetSetDef PyCThostFtdcWithDrawParamFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcWithDrawParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcWithDrawParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcWithDrawParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcWithDrawParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcWithDrawParamFieldType_get_AccountID,
-    .set = PyCThostFtdcWithDrawParamFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcWithDrawParamFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcWithDrawParamFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 参数代码
     /// typedef char TThostFtdcWithDrawParamIDType
     {
-    .name = "WithDrawParamID",
-    .get = PyCThostFtdcWithDrawParamFieldType_get_WithDrawParamID,
-    .set = PyCThostFtdcWithDrawParamFieldType_set_WithDrawParamID,
-    .doc = PyDoc_STR("参数代码"),
+    /*.name =*/ "WithDrawParamID",
+    /*.get =*/ PyCThostFtdcWithDrawParamFieldType_get_WithDrawParamID,
+    /*.set =*/ PyCThostFtdcWithDrawParamFieldType_set_WithDrawParamID,
+    /*.doc =*/ PyDoc_STR("参数代码"),
     },
     /// 参数代码值
     /// typedef char TThostFtdcWithDrawParamValueType[41]
     {
-    .name = "WithDrawParamValue",
-    .get = PyCThostFtdcWithDrawParamFieldType_get_WithDrawParamValue,
-    .set = PyCThostFtdcWithDrawParamFieldType_set_WithDrawParamValue,
-    .doc = PyDoc_STR("参数代码值"),
+    /*.name =*/ "WithDrawParamValue",
+    /*.get =*/ PyCThostFtdcWithDrawParamFieldType_get_WithDrawParamValue,
+    /*.set =*/ PyCThostFtdcWithDrawParamFieldType_set_WithDrawParamValue,
+    /*.doc =*/ PyDoc_STR("参数代码值"),
     },
     {NULL}  /* Sentinel */
 };
@@ -300,15 +300,15 @@ static PyType_Slot PyCThostFtdcWithDrawParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcWithDrawParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcWithDrawParamField",
+    /*.name =*/ "PyCTP.CThostFtdcWithDrawParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcWithDrawParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcWithDrawParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcWithDrawParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcWithDrawParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcWithDrawParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcWithDrawParamFieldType_slots_legacy,
 };
 #endif
 

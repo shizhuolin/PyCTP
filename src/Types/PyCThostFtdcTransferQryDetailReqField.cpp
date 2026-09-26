@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcTransferQryDetailReqFieldType_getsets[] = {
     /// 期货资金账户
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "FutureAccount",
-    .get = PyCThostFtdcTransferQryDetailReqFieldType_get_FutureAccount,
-    .set = PyCThostFtdcTransferQryDetailReqFieldType_set_FutureAccount,
-    .doc = PyDoc_STR("期货资金账户"),
+    /*.name =*/ "FutureAccount",
+    /*.get =*/ PyCThostFtdcTransferQryDetailReqFieldType_get_FutureAccount,
+    /*.set =*/ PyCThostFtdcTransferQryDetailReqFieldType_set_FutureAccount,
+    /*.doc =*/ PyDoc_STR("期货资金账户"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcTransferQryDetailReqFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTransferQryDetailReqFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTransferQryDetailReqField",
+    /*.name =*/ "PyCTP.CThostFtdcTransferQryDetailReqField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTransferQryDetailReqFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTransferQryDetailReqFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTransferQryDetailReqFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTransferQryDetailReqFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTransferQryDetailReqFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTransferQryDetailReqFieldType_slots_legacy,
 };
 #endif
 

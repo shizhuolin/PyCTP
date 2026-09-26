@@ -126,36 +126,36 @@ static PyMemberDef PyCThostFtdcRspApiHandshakeFieldType_members[] = {
     /// 握手回复数据长度
     /// typedef int TThostFtdcHandshakeDataLenType
     {
-        .name = "FrontHandshakeDataLen",
+        /*.name =*/ "FrontHandshakeDataLen",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspApiHandshakeFieldData, data.FrontHandshakeDataLen),
+        /*.offset =*/ offsetof(PyCThostFtdcRspApiHandshakeFieldData, data.FrontHandshakeDataLen),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("握手回复数据长度")
+        /*.doc =*/ PyDoc_STR("握手回复数据长度")
     },
     /// API认证是否开启
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsApiAuthEnabled",
+        /*.name =*/ "IsApiAuthEnabled",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspApiHandshakeFieldData, data.IsApiAuthEnabled),
+        /*.offset =*/ offsetof(PyCThostFtdcRspApiHandshakeFieldData, data.IsApiAuthEnabled),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("API认证是否开启")
+        /*.doc =*/ PyDoc_STR("API认证是否开启")
     },
     {NULL}  /* Sentinel */
 };
@@ -164,10 +164,10 @@ static PyGetSetDef PyCThostFtdcRspApiHandshakeFieldType_getsets[] = {
     /// 握手回复数据
     /// typedef char TThostFtdcHandshakeDataType[301]
     {
-    .name = "FrontHandshakeData",
-    .get = PyCThostFtdcRspApiHandshakeFieldType_get_FrontHandshakeData,
-    .set = PyCThostFtdcRspApiHandshakeFieldType_set_FrontHandshakeData,
-    .doc = PyDoc_STR("握手回复数据"),
+    /*.name =*/ "FrontHandshakeData",
+    /*.get =*/ PyCThostFtdcRspApiHandshakeFieldType_get_FrontHandshakeData,
+    /*.set =*/ PyCThostFtdcRspApiHandshakeFieldType_set_FrontHandshakeData,
+    /*.doc =*/ PyDoc_STR("握手回复数据"),
     },
     {NULL}  /* Sentinel */
 };
@@ -193,15 +193,15 @@ static PyType_Slot PyCThostFtdcRspApiHandshakeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspApiHandshakeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspApiHandshakeField",
+    /*.name =*/ "PyCTP.CThostFtdcRspApiHandshakeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspApiHandshakeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspApiHandshakeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspApiHandshakeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspApiHandshakeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspApiHandshakeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspApiHandshakeFieldType_slots_legacy,
 };
 #endif
 

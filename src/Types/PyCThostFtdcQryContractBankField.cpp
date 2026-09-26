@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryContractBankFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryContractBankFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryContractBankFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryContractBankFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryContractBankFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 银行代码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcQryContractBankFieldType_get_BankID,
-    .set = PyCThostFtdcQryContractBankFieldType_set_BankID,
-    .doc = PyDoc_STR("银行代码"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcQryContractBankFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcQryContractBankFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行代码"),
     },
     /// 银行分中心代码
     /// typedef char TThostFtdcBankBrchIDType[5]
     {
-    .name = "BankBrchID",
-    .get = PyCThostFtdcQryContractBankFieldType_get_BankBrchID,
-    .set = PyCThostFtdcQryContractBankFieldType_set_BankBrchID,
-    .doc = PyDoc_STR("银行分中心代码"),
+    /*.name =*/ "BankBrchID",
+    /*.get =*/ PyCThostFtdcQryContractBankFieldType_get_BankBrchID,
+    /*.set =*/ PyCThostFtdcQryContractBankFieldType_set_BankBrchID,
+    /*.doc =*/ PyDoc_STR("银行分中心代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryContractBankFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryContractBankFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryContractBankField",
+    /*.name =*/ "PyCTP.CThostFtdcQryContractBankField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryContractBankFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryContractBankFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryContractBankFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryContractBankFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryContractBankFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryContractBankFieldType_slots_legacy,
 };
 #endif
 

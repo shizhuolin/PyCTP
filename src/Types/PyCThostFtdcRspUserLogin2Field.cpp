@@ -676,36 +676,36 @@ static PyMemberDef PyCThostFtdcRspUserLogin2FieldType_members[] = {
     /// 前置编号
     /// typedef int TThostFtdcFrontIDType
     {
-        .name = "FrontID",
+        /*.name =*/ "FrontID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspUserLogin2FieldData, data.FrontID),
+        /*.offset =*/ offsetof(PyCThostFtdcRspUserLogin2FieldData, data.FrontID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("前置编号")
+        /*.doc =*/ PyDoc_STR("前置编号")
     },
     /// 会话编号
     /// typedef int TThostFtdcSessionIDType
     {
-        .name = "SessionID",
+        /*.name =*/ "SessionID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspUserLogin2FieldData, data.SessionID),
+        /*.offset =*/ offsetof(PyCThostFtdcRspUserLogin2FieldData, data.SessionID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("会话编号")
+        /*.doc =*/ PyDoc_STR("会话编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -714,98 +714,98 @@ static PyGetSetDef PyCThostFtdcRspUserLogin2FieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_TradingDay,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 登录成功时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "LoginTime",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_LoginTime,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_LoginTime,
-    .doc = PyDoc_STR("登录成功时间"),
+    /*.name =*/ "LoginTime",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_LoginTime,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_LoginTime,
+    /*.doc =*/ PyDoc_STR("登录成功时间"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_BrokerID,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_UserID,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 交易系统名称
     /// typedef char TThostFtdcSystemNameType[41]
     {
-    .name = "SystemName",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_SystemName,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_SystemName,
-    .doc = PyDoc_STR("交易系统名称"),
+    /*.name =*/ "SystemName",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_SystemName,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_SystemName,
+    /*.doc =*/ PyDoc_STR("交易系统名称"),
     },
     /// 最大报单引用
     /// typedef char TThostFtdcOrderRefType[13]
     {
-    .name = "MaxOrderRef",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_MaxOrderRef,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_MaxOrderRef,
-    .doc = PyDoc_STR("最大报单引用"),
+    /*.name =*/ "MaxOrderRef",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_MaxOrderRef,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_MaxOrderRef,
+    /*.doc =*/ PyDoc_STR("最大报单引用"),
     },
     /// 上期所时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "SHFETime",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_SHFETime,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_SHFETime,
-    .doc = PyDoc_STR("上期所时间"),
+    /*.name =*/ "SHFETime",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_SHFETime,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_SHFETime,
+    /*.doc =*/ PyDoc_STR("上期所时间"),
     },
     /// 大商所时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "DCETime",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_DCETime,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_DCETime,
-    .doc = PyDoc_STR("大商所时间"),
+    /*.name =*/ "DCETime",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_DCETime,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_DCETime,
+    /*.doc =*/ PyDoc_STR("大商所时间"),
     },
     /// 郑商所时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "CZCETime",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_CZCETime,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_CZCETime,
-    .doc = PyDoc_STR("郑商所时间"),
+    /*.name =*/ "CZCETime",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_CZCETime,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_CZCETime,
+    /*.doc =*/ PyDoc_STR("郑商所时间"),
     },
     /// 中金所时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "FFEXTime",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_FFEXTime,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_FFEXTime,
-    .doc = PyDoc_STR("中金所时间"),
+    /*.name =*/ "FFEXTime",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_FFEXTime,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_FFEXTime,
+    /*.doc =*/ PyDoc_STR("中金所时间"),
     },
     /// 能源中心时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "INETime",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_INETime,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_INETime,
-    .doc = PyDoc_STR("能源中心时间"),
+    /*.name =*/ "INETime",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_INETime,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_INETime,
+    /*.doc =*/ PyDoc_STR("能源中心时间"),
     },
     /// 随机串
     /// typedef char TThostFtdcRandomStringType[17]
     {
-    .name = "RandomString",
-    .get = PyCThostFtdcRspUserLogin2FieldType_get_RandomString,
-    .set = PyCThostFtdcRspUserLogin2FieldType_set_RandomString,
-    .doc = PyDoc_STR("随机串"),
+    /*.name =*/ "RandomString",
+    /*.get =*/ PyCThostFtdcRspUserLogin2FieldType_get_RandomString,
+    /*.set =*/ PyCThostFtdcRspUserLogin2FieldType_set_RandomString,
+    /*.doc =*/ PyDoc_STR("随机串"),
     },
     {NULL}  /* Sentinel */
 };
@@ -831,15 +831,15 @@ static PyType_Slot PyCThostFtdcRspUserLogin2FieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspUserLogin2FieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspUserLogin2Field",
+    /*.name =*/ "PyCTP.CThostFtdcRspUserLogin2Field",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspUserLogin2FieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspUserLogin2FieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspUserLogin2FieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspUserLogin2FieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspUserLogin2FieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspUserLogin2FieldType_slots_legacy,
 };
 #endif
 

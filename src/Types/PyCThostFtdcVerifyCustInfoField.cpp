@@ -284,42 +284,42 @@ static PyGetSetDef PyCThostFtdcVerifyCustInfoFieldType_getsets[] = {
     /// 客户姓名
     /// typedef char TThostFtdcIndividualNameType[51]
     {
-    .name = "CustomerName",
-    .get = PyCThostFtdcVerifyCustInfoFieldType_get_CustomerName,
-    .set = PyCThostFtdcVerifyCustInfoFieldType_set_CustomerName,
-    .doc = PyDoc_STR("客户姓名"),
+    /*.name =*/ "CustomerName",
+    /*.get =*/ PyCThostFtdcVerifyCustInfoFieldType_get_CustomerName,
+    /*.set =*/ PyCThostFtdcVerifyCustInfoFieldType_set_CustomerName,
+    /*.doc =*/ PyDoc_STR("客户姓名"),
     },
     /// 证件类型
     /// typedef char TThostFtdcIdCardTypeType
     {
-    .name = "IdCardType",
-    .get = PyCThostFtdcVerifyCustInfoFieldType_get_IdCardType,
-    .set = PyCThostFtdcVerifyCustInfoFieldType_set_IdCardType,
-    .doc = PyDoc_STR("证件类型"),
+    /*.name =*/ "IdCardType",
+    /*.get =*/ PyCThostFtdcVerifyCustInfoFieldType_get_IdCardType,
+    /*.set =*/ PyCThostFtdcVerifyCustInfoFieldType_set_IdCardType,
+    /*.doc =*/ PyDoc_STR("证件类型"),
     },
     /// 证件号码
     /// typedef char TThostFtdcIdentifiedCardNoType[51]
     {
-    .name = "IdentifiedCardNo",
-    .get = PyCThostFtdcVerifyCustInfoFieldType_get_IdentifiedCardNo,
-    .set = PyCThostFtdcVerifyCustInfoFieldType_set_IdentifiedCardNo,
-    .doc = PyDoc_STR("证件号码"),
+    /*.name =*/ "IdentifiedCardNo",
+    /*.get =*/ PyCThostFtdcVerifyCustInfoFieldType_get_IdentifiedCardNo,
+    /*.set =*/ PyCThostFtdcVerifyCustInfoFieldType_set_IdentifiedCardNo,
+    /*.doc =*/ PyDoc_STR("证件号码"),
     },
     /// 客户类型
     /// typedef char TThostFtdcCustTypeType
     {
-    .name = "CustType",
-    .get = PyCThostFtdcVerifyCustInfoFieldType_get_CustType,
-    .set = PyCThostFtdcVerifyCustInfoFieldType_set_CustType,
-    .doc = PyDoc_STR("客户类型"),
+    /*.name =*/ "CustType",
+    /*.get =*/ PyCThostFtdcVerifyCustInfoFieldType_get_CustType,
+    /*.set =*/ PyCThostFtdcVerifyCustInfoFieldType_set_CustType,
+    /*.doc =*/ PyDoc_STR("客户类型"),
     },
     /// 长客户姓名
     /// typedef char TThostFtdcLongIndividualNameType[161]
     {
-    .name = "LongCustomerName",
-    .get = PyCThostFtdcVerifyCustInfoFieldType_get_LongCustomerName,
-    .set = PyCThostFtdcVerifyCustInfoFieldType_set_LongCustomerName,
-    .doc = PyDoc_STR("长客户姓名"),
+    /*.name =*/ "LongCustomerName",
+    /*.get =*/ PyCThostFtdcVerifyCustInfoFieldType_get_LongCustomerName,
+    /*.set =*/ PyCThostFtdcVerifyCustInfoFieldType_set_LongCustomerName,
+    /*.doc =*/ PyDoc_STR("长客户姓名"),
     },
     {NULL}  /* Sentinel */
 };
@@ -345,15 +345,15 @@ static PyType_Slot PyCThostFtdcVerifyCustInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcVerifyCustInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcVerifyCustInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcVerifyCustInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcVerifyCustInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcVerifyCustInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcVerifyCustInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcVerifyCustInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcVerifyCustInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcVerifyCustInfoFieldType_slots_legacy,
 };
 #endif
 

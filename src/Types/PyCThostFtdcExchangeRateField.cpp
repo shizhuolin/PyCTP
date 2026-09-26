@@ -226,36 +226,36 @@ static PyMemberDef PyCThostFtdcExchangeRateFieldType_members[] = {
     /// 源币种单位数量
     /// typedef double TThostFtdcCurrencyUnitType
     {
-        .name = "FromCurrencyUnit",
+        /*.name =*/ "FromCurrencyUnit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcExchangeRateFieldData, data.FromCurrencyUnit),
+        /*.offset =*/ offsetof(PyCThostFtdcExchangeRateFieldData, data.FromCurrencyUnit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("源币种单位数量")
+        /*.doc =*/ PyDoc_STR("源币种单位数量")
     },
     /// 汇率
     /// typedef double TThostFtdcExchangeRateType
     {
-        .name = "ExchangeRate",
+        /*.name =*/ "ExchangeRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcExchangeRateFieldData, data.ExchangeRate),
+        /*.offset =*/ offsetof(PyCThostFtdcExchangeRateFieldData, data.ExchangeRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("汇率")
+        /*.doc =*/ PyDoc_STR("汇率")
     },
     {NULL}  /* Sentinel */
 };
@@ -264,26 +264,26 @@ static PyGetSetDef PyCThostFtdcExchangeRateFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcExchangeRateFieldType_get_BrokerID,
-    .set = PyCThostFtdcExchangeRateFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcExchangeRateFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcExchangeRateFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 源币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "FromCurrencyID",
-    .get = PyCThostFtdcExchangeRateFieldType_get_FromCurrencyID,
-    .set = PyCThostFtdcExchangeRateFieldType_set_FromCurrencyID,
-    .doc = PyDoc_STR("源币种"),
+    /*.name =*/ "FromCurrencyID",
+    /*.get =*/ PyCThostFtdcExchangeRateFieldType_get_FromCurrencyID,
+    /*.set =*/ PyCThostFtdcExchangeRateFieldType_set_FromCurrencyID,
+    /*.doc =*/ PyDoc_STR("源币种"),
     },
     /// 目标币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "ToCurrencyID",
-    .get = PyCThostFtdcExchangeRateFieldType_get_ToCurrencyID,
-    .set = PyCThostFtdcExchangeRateFieldType_set_ToCurrencyID,
-    .doc = PyDoc_STR("目标币种"),
+    /*.name =*/ "ToCurrencyID",
+    /*.get =*/ PyCThostFtdcExchangeRateFieldType_get_ToCurrencyID,
+    /*.set =*/ PyCThostFtdcExchangeRateFieldType_set_ToCurrencyID,
+    /*.doc =*/ PyDoc_STR("目标币种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -309,15 +309,15 @@ static PyType_Slot PyCThostFtdcExchangeRateFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcExchangeRateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcExchangeRateField",
+    /*.name =*/ "PyCTP.CThostFtdcExchangeRateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcExchangeRateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcExchangeRateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcExchangeRateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcExchangeRateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcExchangeRateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcExchangeRateFieldType_slots_legacy,
 };
 #endif
 

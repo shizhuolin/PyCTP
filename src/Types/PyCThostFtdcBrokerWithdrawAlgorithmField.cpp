@@ -371,53 +371,53 @@ static PyMemberDef PyCThostFtdcBrokerWithdrawAlgorithmFieldType_members[] = {
     /// 资金使用率
     /// typedef double TThostFtdcRatioType
     {
-        .name = "UsingRatio",
+        /*.name =*/ "UsingRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData, data.UsingRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData, data.UsingRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("资金使用率")
+        /*.doc =*/ PyDoc_STR("资金使用率")
     },
     /// 是否启用用户事件
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsBrokerUserEvent",
+        /*.name =*/ "IsBrokerUserEvent",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData, data.IsBrokerUserEvent),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData, data.IsBrokerUserEvent),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否启用用户事件")
+        /*.doc =*/ PyDoc_STR("是否启用用户事件")
     },
     /// 货币质押比率
     /// typedef double TThostFtdcRatioType
     {
-        .name = "FundMortgageRatio",
+        /*.name =*/ "FundMortgageRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData, data.FundMortgageRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData, data.FundMortgageRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("货币质押比率")
+        /*.doc =*/ PyDoc_STR("货币质押比率")
     },
     {NULL}  /* Sentinel */
 };
@@ -426,58 +426,58 @@ static PyGetSetDef PyCThostFtdcBrokerWithdrawAlgorithmFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 可提资金算法
     /// typedef char TThostFtdcAlgorithmType
     {
-    .name = "WithdrawAlgorithm",
-    .get = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_WithdrawAlgorithm,
-    .set = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_WithdrawAlgorithm,
-    .doc = PyDoc_STR("可提资金算法"),
+    /*.name =*/ "WithdrawAlgorithm",
+    /*.get =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_WithdrawAlgorithm,
+    /*.set =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_WithdrawAlgorithm,
+    /*.doc =*/ PyDoc_STR("可提资金算法"),
     },
     /// 可提是否包含平仓盈利
     /// typedef char TThostFtdcIncludeCloseProfitType
     {
-    .name = "IncludeCloseProfit",
-    .get = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_IncludeCloseProfit,
-    .set = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_IncludeCloseProfit,
-    .doc = PyDoc_STR("可提是否包含平仓盈利"),
+    /*.name =*/ "IncludeCloseProfit",
+    /*.get =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_IncludeCloseProfit,
+    /*.set =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_IncludeCloseProfit,
+    /*.doc =*/ PyDoc_STR("可提是否包含平仓盈利"),
     },
     /// 本日无仓且无成交客户是否受可提比例限制
     /// typedef char TThostFtdcAllWithoutTradeType
     {
-    .name = "AllWithoutTrade",
-    .get = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_AllWithoutTrade,
-    .set = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_AllWithoutTrade,
-    .doc = PyDoc_STR("本日无仓且无成交客户是否受可提比例限制"),
+    /*.name =*/ "AllWithoutTrade",
+    /*.get =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_AllWithoutTrade,
+    /*.set =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_AllWithoutTrade,
+    /*.doc =*/ PyDoc_STR("本日无仓且无成交客户是否受可提比例限制"),
     },
     /// 可用是否包含平仓盈利
     /// typedef char TThostFtdcIncludeCloseProfitType
     {
-    .name = "AvailIncludeCloseProfit",
-    .get = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_AvailIncludeCloseProfit,
-    .set = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_AvailIncludeCloseProfit,
-    .doc = PyDoc_STR("可用是否包含平仓盈利"),
+    /*.name =*/ "AvailIncludeCloseProfit",
+    /*.get =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_AvailIncludeCloseProfit,
+    /*.set =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_AvailIncludeCloseProfit,
+    /*.doc =*/ PyDoc_STR("可用是否包含平仓盈利"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_CurrencyID,
-    .set = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     /// 权益算法
     /// typedef char TThostFtdcBalanceAlgorithmType
     {
-    .name = "BalanceAlgorithm",
-    .get = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_BalanceAlgorithm,
-    .set = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_BalanceAlgorithm,
-    .doc = PyDoc_STR("权益算法"),
+    /*.name =*/ "BalanceAlgorithm",
+    /*.get =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_get_BalanceAlgorithm,
+    /*.set =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_set_BalanceAlgorithm,
+    /*.doc =*/ PyDoc_STR("权益算法"),
     },
     {NULL}  /* Sentinel */
 };
@@ -503,15 +503,15 @@ static PyType_Slot PyCThostFtdcBrokerWithdrawAlgorithmFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerWithdrawAlgorithmFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerWithdrawAlgorithmField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerWithdrawAlgorithmField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerWithdrawAlgorithmFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerWithdrawAlgorithmFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerWithdrawAlgorithmFieldType_slots_legacy,
 };
 #endif
 

@@ -446,325 +446,325 @@ static PyMemberDef PyCThostFtdcInvestorCommoditySPMMMarginFieldType_members[] = 
     /// 优惠仓位应收保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "MarginBeforeDiscount",
+        /*.name =*/ "MarginBeforeDiscount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.MarginBeforeDiscount),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.MarginBeforeDiscount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("优惠仓位应收保证金")
+        /*.doc =*/ PyDoc_STR("优惠仓位应收保证金")
     },
     /// 不优惠仓位应收保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "MarginNoDiscount",
+        /*.name =*/ "MarginNoDiscount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.MarginNoDiscount),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.MarginNoDiscount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("不优惠仓位应收保证金")
+        /*.doc =*/ PyDoc_STR("不优惠仓位应收保证金")
     },
     /// 多头实仓风险
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "LongPosRisk",
+        /*.name =*/ "LongPosRisk",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.LongPosRisk),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.LongPosRisk),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("多头实仓风险")
+        /*.doc =*/ PyDoc_STR("多头实仓风险")
     },
     /// 多头开仓冻结风险
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "LongOpenFrozenRisk",
+        /*.name =*/ "LongOpenFrozenRisk",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.LongOpenFrozenRisk),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.LongOpenFrozenRisk),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("多头开仓冻结风险")
+        /*.doc =*/ PyDoc_STR("多头开仓冻结风险")
     },
     /// 多头被平冻结风险
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "LongCloseFrozenRisk",
+        /*.name =*/ "LongCloseFrozenRisk",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.LongCloseFrozenRisk),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.LongCloseFrozenRisk),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("多头被平冻结风险")
+        /*.doc =*/ PyDoc_STR("多头被平冻结风险")
     },
     /// 空头实仓风险
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ShortPosRisk",
+        /*.name =*/ "ShortPosRisk",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.ShortPosRisk),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.ShortPosRisk),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("空头实仓风险")
+        /*.doc =*/ PyDoc_STR("空头实仓风险")
     },
     /// 空头开仓冻结风险
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ShortOpenFrozenRisk",
+        /*.name =*/ "ShortOpenFrozenRisk",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.ShortOpenFrozenRisk),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.ShortOpenFrozenRisk),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("空头开仓冻结风险")
+        /*.doc =*/ PyDoc_STR("空头开仓冻结风险")
     },
     /// 空头被平冻结风险
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ShortCloseFrozenRisk",
+        /*.name =*/ "ShortCloseFrozenRisk",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.ShortCloseFrozenRisk),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.ShortCloseFrozenRisk),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("空头被平冻结风险")
+        /*.doc =*/ PyDoc_STR("空头被平冻结风险")
     },
     /// SPMM品种内跨期优惠系数
     /// typedef double TThostFtdcSPMMDiscountRatioType
     {
-        .name = "IntraCommodityRate",
+        /*.name =*/ "IntraCommodityRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.IntraCommodityRate),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.IntraCommodityRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("SPMM品种内跨期优惠系数")
+        /*.doc =*/ PyDoc_STR("SPMM品种内跨期优惠系数")
     },
     /// SPMM期权优惠系数
     /// typedef double TThostFtdcSPMMDiscountRatioType
     {
-        .name = "OptionDiscountRate",
+        /*.name =*/ "OptionDiscountRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.OptionDiscountRate),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.OptionDiscountRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("SPMM期权优惠系数")
+        /*.doc =*/ PyDoc_STR("SPMM期权优惠系数")
     },
     /// 实仓对冲优惠金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "PosDiscount",
+        /*.name =*/ "PosDiscount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.PosDiscount),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.PosDiscount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("实仓对冲优惠金额")
+        /*.doc =*/ PyDoc_STR("实仓对冲优惠金额")
     },
     /// 开仓报单对冲优惠金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "OpenFrozenDiscount",
+        /*.name =*/ "OpenFrozenDiscount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.OpenFrozenDiscount),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.OpenFrozenDiscount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("开仓报单对冲优惠金额")
+        /*.doc =*/ PyDoc_STR("开仓报单对冲优惠金额")
     },
     /// 品种风险净头
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "NetRisk",
+        /*.name =*/ "NetRisk",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.NetRisk),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.NetRisk),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("品种风险净头")
+        /*.doc =*/ PyDoc_STR("品种风险净头")
     },
     /// 平仓冻结保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "CloseFrozenMargin",
+        /*.name =*/ "CloseFrozenMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.CloseFrozenMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.CloseFrozenMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("平仓冻结保证金")
+        /*.doc =*/ PyDoc_STR("平仓冻结保证金")
     },
     /// 冻结的手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FrozenCommission",
+        /*.name =*/ "FrozenCommission",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.FrozenCommission),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.FrozenCommission),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("冻结的手续费")
+        /*.doc =*/ PyDoc_STR("冻结的手续费")
     },
     /// 手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Commission",
+        /*.name =*/ "Commission",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.Commission),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.Commission),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("手续费")
+        /*.doc =*/ PyDoc_STR("手续费")
     },
     /// 冻结的资金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FrozenCash",
+        /*.name =*/ "FrozenCash",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.FrozenCash),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.FrozenCash),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("冻结的资金")
+        /*.doc =*/ PyDoc_STR("冻结的资金")
     },
     /// 资金差额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "CashIn",
+        /*.name =*/ "CashIn",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.CashIn),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.CashIn),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("资金差额")
+        /*.doc =*/ PyDoc_STR("资金差额")
     },
     /// 行权冻结资金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "StrikeFrozenMargin",
+        /*.name =*/ "StrikeFrozenMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.StrikeFrozenMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData, data.StrikeFrozenMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("行权冻结资金")
+        /*.doc =*/ PyDoc_STR("行权冻结资金")
     },
     {NULL}  /* Sentinel */
 };
@@ -773,34 +773,34 @@ static PyGetSetDef PyCThostFtdcInvestorCommoditySPMMMarginFieldType_getsets[] = 
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_ExchangeID,
-    .set = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_InvestorID,
-    .set = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 商品组代码
     /// typedef char TThostFtdcSPMMProductIDType[41]
     {
-    .name = "CommodityID",
-    .get = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_CommodityID,
-    .set = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_CommodityID,
-    .doc = PyDoc_STR("商品组代码"),
+    /*.name =*/ "CommodityID",
+    /*.get =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_get_CommodityID,
+    /*.set =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_set_CommodityID,
+    /*.doc =*/ PyDoc_STR("商品组代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -826,15 +826,15 @@ static PyType_Slot PyCThostFtdcInvestorCommoditySPMMMarginFieldType_slots_legacy
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorCommoditySPMMMarginFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorCommoditySPMMMarginField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorCommoditySPMMMarginField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorCommoditySPMMMarginFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorCommoditySPMMMarginFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorCommoditySPMMMarginFieldType_slots_legacy,
 };
 #endif
 

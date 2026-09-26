@@ -136,138 +136,138 @@ static PyMemberDef PyCThostFtdcMarketDataStaticFieldType_members[] = {
     /// 今开盘
     /// typedef double TThostFtdcPriceType
     {
-        .name = "OpenPrice",
+        /*.name =*/ "OpenPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.OpenPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.OpenPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("今开盘")
+        /*.doc =*/ PyDoc_STR("今开盘")
     },
     /// 最高价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "HighestPrice",
+        /*.name =*/ "HighestPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.HighestPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.HighestPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最高价")
+        /*.doc =*/ PyDoc_STR("最高价")
     },
     /// 最低价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "LowestPrice",
+        /*.name =*/ "LowestPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.LowestPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.LowestPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最低价")
+        /*.doc =*/ PyDoc_STR("最低价")
     },
     /// 今收盘
     /// typedef double TThostFtdcPriceType
     {
-        .name = "ClosePrice",
+        /*.name =*/ "ClosePrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.ClosePrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.ClosePrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("今收盘")
+        /*.doc =*/ PyDoc_STR("今收盘")
     },
     /// 涨停板价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "UpperLimitPrice",
+        /*.name =*/ "UpperLimitPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.UpperLimitPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.UpperLimitPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("涨停板价")
+        /*.doc =*/ PyDoc_STR("涨停板价")
     },
     /// 跌停板价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "LowerLimitPrice",
+        /*.name =*/ "LowerLimitPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.LowerLimitPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.LowerLimitPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("跌停板价")
+        /*.doc =*/ PyDoc_STR("跌停板价")
     },
     /// 本次结算价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "SettlementPrice",
+        /*.name =*/ "SettlementPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.SettlementPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.SettlementPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("本次结算价")
+        /*.doc =*/ PyDoc_STR("本次结算价")
     },
     /// 今虚实度
     /// typedef double TThostFtdcRatioType
     {
-        .name = "CurrDelta",
+        /*.name =*/ "CurrDelta",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataStaticFieldData, data.CurrDelta),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataStaticFieldData, data.CurrDelta),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("今虚实度")
+        /*.doc =*/ PyDoc_STR("今虚实度")
     },
     {NULL}  /* Sentinel */
 };
@@ -297,15 +297,15 @@ static PyType_Slot PyCThostFtdcMarketDataStaticFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMarketDataStaticFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMarketDataStaticField",
+    /*.name =*/ "PyCTP.CThostFtdcMarketDataStaticField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMarketDataStaticFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMarketDataStaticFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataStaticFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataStaticFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMarketDataStaticFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMarketDataStaticFieldType_slots_legacy,
 };
 #endif
 

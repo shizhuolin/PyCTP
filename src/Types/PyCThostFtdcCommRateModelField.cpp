@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcCommRateModelFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcCommRateModelFieldType_get_BrokerID,
-    .set = PyCThostFtdcCommRateModelFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcCommRateModelFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcCommRateModelFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 手续费率模板代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "CommModelID",
-    .get = PyCThostFtdcCommRateModelFieldType_get_CommModelID,
-    .set = PyCThostFtdcCommRateModelFieldType_set_CommModelID,
-    .doc = PyDoc_STR("手续费率模板代码"),
+    /*.name =*/ "CommModelID",
+    /*.get =*/ PyCThostFtdcCommRateModelFieldType_get_CommModelID,
+    /*.set =*/ PyCThostFtdcCommRateModelFieldType_set_CommModelID,
+    /*.doc =*/ PyDoc_STR("手续费率模板代码"),
     },
     /// 模板名称
     /// typedef char TThostFtdcCommModelNameType[161]
     {
-    .name = "CommModelName",
-    .get = PyCThostFtdcCommRateModelFieldType_get_CommModelName,
-    .set = PyCThostFtdcCommRateModelFieldType_set_CommModelName,
-    .doc = PyDoc_STR("模板名称"),
+    /*.name =*/ "CommModelName",
+    /*.get =*/ PyCThostFtdcCommRateModelFieldType_get_CommModelName,
+    /*.set =*/ PyCThostFtdcCommRateModelFieldType_set_CommModelName,
+    /*.doc =*/ PyDoc_STR("模板名称"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcCommRateModelFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCommRateModelFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCommRateModelField",
+    /*.name =*/ "PyCTP.CThostFtdcCommRateModelField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCommRateModelFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCommRateModelFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCommRateModelFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCommRateModelFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCommRateModelFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCommRateModelFieldType_slots_legacy,
 };
 #endif
 

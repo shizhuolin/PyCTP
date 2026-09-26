@@ -563,36 +563,36 @@ static PyMemberDef PyCThostFtdcBulletinFieldType_members[] = {
     /// 公告编号
     /// typedef int TThostFtdcBulletinIDType
     {
-        .name = "BulletinID",
+        /*.name =*/ "BulletinID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBulletinFieldData, data.BulletinID),
+        /*.offset =*/ offsetof(PyCThostFtdcBulletinFieldData, data.BulletinID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("公告编号")
+        /*.doc =*/ PyDoc_STR("公告编号")
     },
     /// 序列号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SequenceNo",
+        /*.name =*/ "SequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBulletinFieldData, data.SequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcBulletinFieldData, data.SequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序列号")
+        /*.doc =*/ PyDoc_STR("序列号")
     },
     {NULL}  /* Sentinel */
 };
@@ -601,82 +601,82 @@ static PyGetSetDef PyCThostFtdcBulletinFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcBulletinFieldType_get_ExchangeID,
-    .set = PyCThostFtdcBulletinFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcBulletinFieldType_get_TradingDay,
-    .set = PyCThostFtdcBulletinFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 公告类型
     /// typedef char TThostFtdcNewsTypeType[3]
     {
-    .name = "NewsType",
-    .get = PyCThostFtdcBulletinFieldType_get_NewsType,
-    .set = PyCThostFtdcBulletinFieldType_set_NewsType,
-    .doc = PyDoc_STR("公告类型"),
+    /*.name =*/ "NewsType",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_NewsType,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_NewsType,
+    /*.doc =*/ PyDoc_STR("公告类型"),
     },
     /// 紧急程度
     /// typedef char TThostFtdcNewsUrgencyType
     {
-    .name = "NewsUrgency",
-    .get = PyCThostFtdcBulletinFieldType_get_NewsUrgency,
-    .set = PyCThostFtdcBulletinFieldType_set_NewsUrgency,
-    .doc = PyDoc_STR("紧急程度"),
+    /*.name =*/ "NewsUrgency",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_NewsUrgency,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_NewsUrgency,
+    /*.doc =*/ PyDoc_STR("紧急程度"),
     },
     /// 发送时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "SendTime",
-    .get = PyCThostFtdcBulletinFieldType_get_SendTime,
-    .set = PyCThostFtdcBulletinFieldType_set_SendTime,
-    .doc = PyDoc_STR("发送时间"),
+    /*.name =*/ "SendTime",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_SendTime,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_SendTime,
+    /*.doc =*/ PyDoc_STR("发送时间"),
     },
     /// 消息摘要
     /// typedef char TThostFtdcAbstractType[81]
     {
-    .name = "Abstract",
-    .get = PyCThostFtdcBulletinFieldType_get_Abstract,
-    .set = PyCThostFtdcBulletinFieldType_set_Abstract,
-    .doc = PyDoc_STR("消息摘要"),
+    /*.name =*/ "Abstract",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_Abstract,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_Abstract,
+    /*.doc =*/ PyDoc_STR("消息摘要"),
     },
     /// 消息来源
     /// typedef char TThostFtdcComeFromType[21]
     {
-    .name = "ComeFrom",
-    .get = PyCThostFtdcBulletinFieldType_get_ComeFrom,
-    .set = PyCThostFtdcBulletinFieldType_set_ComeFrom,
-    .doc = PyDoc_STR("消息来源"),
+    /*.name =*/ "ComeFrom",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_ComeFrom,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_ComeFrom,
+    /*.doc =*/ PyDoc_STR("消息来源"),
     },
     /// 消息正文
     /// typedef char TThostFtdcContentType[501]
     {
-    .name = "Content",
-    .get = PyCThostFtdcBulletinFieldType_get_Content,
-    .set = PyCThostFtdcBulletinFieldType_set_Content,
-    .doc = PyDoc_STR("消息正文"),
+    /*.name =*/ "Content",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_Content,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_Content,
+    /*.doc =*/ PyDoc_STR("消息正文"),
     },
     /// WEB地址
     /// typedef char TThostFtdcURLLinkType[201]
     {
-    .name = "URLLink",
-    .get = PyCThostFtdcBulletinFieldType_get_URLLink,
-    .set = PyCThostFtdcBulletinFieldType_set_URLLink,
-    .doc = PyDoc_STR("WEB地址"),
+    /*.name =*/ "URLLink",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_URLLink,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_URLLink,
+    /*.doc =*/ PyDoc_STR("WEB地址"),
     },
     /// 市场代码
     /// typedef char TThostFtdcMarketIDType[31]
     {
-    .name = "MarketID",
-    .get = PyCThostFtdcBulletinFieldType_get_MarketID,
-    .set = PyCThostFtdcBulletinFieldType_set_MarketID,
-    .doc = PyDoc_STR("市场代码"),
+    /*.name =*/ "MarketID",
+    /*.get =*/ PyCThostFtdcBulletinFieldType_get_MarketID,
+    /*.set =*/ PyCThostFtdcBulletinFieldType_set_MarketID,
+    /*.doc =*/ PyDoc_STR("市场代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -702,15 +702,15 @@ static PyType_Slot PyCThostFtdcBulletinFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBulletinFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBulletinField",
+    /*.name =*/ "PyCTP.CThostFtdcBulletinField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBulletinFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBulletinFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBulletinFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBulletinFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBulletinFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBulletinFieldType_slots_legacy,
 };
 #endif
 

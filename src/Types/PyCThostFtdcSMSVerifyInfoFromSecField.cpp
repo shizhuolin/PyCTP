@@ -426,36 +426,36 @@ static PyMemberDef PyCThostFtdcSMSVerifyInfoFromSecFieldType_members[] = {
     /// 验证码是否被使用过
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsUsed",
+        /*.name =*/ "IsUsed",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSMSVerifyInfoFromSecFieldData, data.IsUsed),
+        /*.offset =*/ offsetof(PyCThostFtdcSMSVerifyInfoFromSecFieldData, data.IsUsed),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("验证码是否被使用过")
+        /*.doc =*/ PyDoc_STR("验证码是否被使用过")
     },
     /// 次席的交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "FromSec",
+        /*.name =*/ "FromSec",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSMSVerifyInfoFromSecFieldData, data.FromSec),
+        /*.offset =*/ offsetof(PyCThostFtdcSMSVerifyInfoFromSecFieldData, data.FromSec),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("次席的交易中心代码")
+        /*.doc =*/ PyDoc_STR("次席的交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -464,58 +464,58 @@ static PyGetSetDef PyCThostFtdcSMSVerifyInfoFromSecFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_BrokerID,
-    .set = PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 经纪公司简称
     /// typedef char TThostFtdcBrokerAbbrType[9]
     {
-    .name = "BrokerAbbr",
-    .get = PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_BrokerAbbr,
-    .set = PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_BrokerAbbr,
-    .doc = PyDoc_STR("经纪公司简称"),
+    /*.name =*/ "BrokerAbbr",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_BrokerAbbr,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_BrokerAbbr,
+    /*.doc =*/ PyDoc_STR("经纪公司简称"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_UserID,
-    .set = PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 手机号
     /// typedef char TThostFtdcSMSPhoneType[17]
     {
-    .name = "Mobile",
-    .get = PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_Mobile,
-    .set = PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_Mobile,
-    .doc = PyDoc_STR("手机号"),
+    /*.name =*/ "Mobile",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_Mobile,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_Mobile,
+    /*.doc =*/ PyDoc_STR("手机号"),
     },
     /// 短信验证码
     /// typedef char TThostFtdcSMSCodeType[17]
     {
-    .name = "SMSCode",
-    .get = PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_SMSCode,
-    .set = PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_SMSCode,
-    .doc = PyDoc_STR("短信验证码"),
+    /*.name =*/ "SMSCode",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_SMSCode,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_SMSCode,
+    /*.doc =*/ PyDoc_STR("短信验证码"),
     },
     /// 验证码创建日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "CreateDate",
-    .get = PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_CreateDate,
-    .set = PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_CreateDate,
-    .doc = PyDoc_STR("验证码创建日期"),
+    /*.name =*/ "CreateDate",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_CreateDate,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_CreateDate,
+    /*.doc =*/ PyDoc_STR("验证码创建日期"),
     },
     /// 验证码创建时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "CreateTime",
-    .get = PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_CreateTime,
-    .set = PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_CreateTime,
-    .doc = PyDoc_STR("验证码创建时间"),
+    /*.name =*/ "CreateTime",
+    /*.get =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_get_CreateTime,
+    /*.set =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_set_CreateTime,
+    /*.doc =*/ PyDoc_STR("验证码创建时间"),
     },
     {NULL}  /* Sentinel */
 };
@@ -541,15 +541,15 @@ static PyType_Slot PyCThostFtdcSMSVerifyInfoFromSecFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSMSVerifyInfoFromSecFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSMSVerifyInfoFromSecField",
+    /*.name =*/ "PyCTP.CThostFtdcSMSVerifyInfoFromSecField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFromSecFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFromSecFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFromSecFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSMSVerifyInfoFromSecFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSMSVerifyInfoFromSecFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSMSVerifyInfoFromSecFieldType_slots_legacy,
 };
 #endif
 

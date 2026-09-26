@@ -470,70 +470,70 @@ static PyMemberDef PyCThostFtdcInstrumentOrderCommRateFieldType_members[] = {
     /// 报单手续费
     /// typedef double TThostFtdcRatioType
     {
-        .name = "OrderCommByVolume",
+        /*.name =*/ "OrderCommByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderCommByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderCommByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("报单手续费")
+        /*.doc =*/ PyDoc_STR("报单手续费")
     },
     /// 撤单手续费
     /// typedef double TThostFtdcRatioType
     {
-        .name = "OrderActionCommByVolume",
+        /*.name =*/ "OrderActionCommByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderActionCommByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderActionCommByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("撤单手续费")
+        /*.doc =*/ PyDoc_STR("撤单手续费")
     },
     /// 报单手续费
     /// typedef double TThostFtdcRatioType
     {
-        .name = "OrderCommByTrade",
+        /*.name =*/ "OrderCommByTrade",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderCommByTrade),
+        /*.offset =*/ offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderCommByTrade),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("报单手续费")
+        /*.doc =*/ PyDoc_STR("报单手续费")
     },
     /// 撤单手续费
     /// typedef double TThostFtdcRatioType
     {
-        .name = "OrderActionCommByTrade",
+        /*.name =*/ "OrderActionCommByTrade",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderActionCommByTrade),
+        /*.offset =*/ offsetof(PyCThostFtdcInstrumentOrderCommRateFieldData, data.OrderActionCommByTrade),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("撤单手续费")
+        /*.doc =*/ PyDoc_STR("撤单手续费")
     },
     {NULL}  /* Sentinel */
 };
@@ -542,66 +542,66 @@ static PyGetSetDef PyCThostFtdcInstrumentOrderCommRateFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_reserve1,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_InvestorRange,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_BrokerID,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_InvestorID,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_ExchangeID,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcInstrumentOrderCommRateFieldType_get_InstrumentID,
-    .set = PyCThostFtdcInstrumentOrderCommRateFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -627,15 +627,15 @@ static PyType_Slot PyCThostFtdcInstrumentOrderCommRateFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInstrumentOrderCommRateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInstrumentOrderCommRateField",
+    /*.name =*/ "PyCTP.CThostFtdcInstrumentOrderCommRateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInstrumentOrderCommRateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInstrumentOrderCommRateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInstrumentOrderCommRateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInstrumentOrderCommRateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInstrumentOrderCommRateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInstrumentOrderCommRateFieldType_slots_legacy,
 };
 #endif
 

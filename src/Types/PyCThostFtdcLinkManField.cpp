@@ -590,19 +590,19 @@ static PyMemberDef PyCThostFtdcLinkManFieldType_members[] = {
     /// 优先级
     /// typedef int TThostFtdcPriorityType
     {
-        .name = "Priority",
+        /*.name =*/ "Priority",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcLinkManFieldData, data.Priority),
+        /*.offset =*/ offsetof(PyCThostFtdcLinkManFieldData, data.Priority),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("优先级")
+        /*.doc =*/ PyDoc_STR("优先级")
     },
     {NULL}  /* Sentinel */
 };
@@ -611,90 +611,90 @@ static PyGetSetDef PyCThostFtdcLinkManFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcLinkManFieldType_get_BrokerID,
-    .set = PyCThostFtdcLinkManFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcLinkManFieldType_get_InvestorID,
-    .set = PyCThostFtdcLinkManFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 联系人类型
     /// typedef char TThostFtdcPersonTypeType
     {
-    .name = "PersonType",
-    .get = PyCThostFtdcLinkManFieldType_get_PersonType,
-    .set = PyCThostFtdcLinkManFieldType_set_PersonType,
-    .doc = PyDoc_STR("联系人类型"),
+    /*.name =*/ "PersonType",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_PersonType,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_PersonType,
+    /*.doc =*/ PyDoc_STR("联系人类型"),
     },
     /// 证件类型
     /// typedef char TThostFtdcIdCardTypeType
     {
-    .name = "IdentifiedCardType",
-    .get = PyCThostFtdcLinkManFieldType_get_IdentifiedCardType,
-    .set = PyCThostFtdcLinkManFieldType_set_IdentifiedCardType,
-    .doc = PyDoc_STR("证件类型"),
+    /*.name =*/ "IdentifiedCardType",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_IdentifiedCardType,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_IdentifiedCardType,
+    /*.doc =*/ PyDoc_STR("证件类型"),
     },
     /// 证件号码
     /// typedef char TThostFtdcIdentifiedCardNoType[51]
     {
-    .name = "IdentifiedCardNo",
-    .get = PyCThostFtdcLinkManFieldType_get_IdentifiedCardNo,
-    .set = PyCThostFtdcLinkManFieldType_set_IdentifiedCardNo,
-    .doc = PyDoc_STR("证件号码"),
+    /*.name =*/ "IdentifiedCardNo",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_IdentifiedCardNo,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_IdentifiedCardNo,
+    /*.doc =*/ PyDoc_STR("证件号码"),
     },
     /// 名称
     /// typedef char TThostFtdcPartyNameType[81]
     {
-    .name = "PersonName",
-    .get = PyCThostFtdcLinkManFieldType_get_PersonName,
-    .set = PyCThostFtdcLinkManFieldType_set_PersonName,
-    .doc = PyDoc_STR("名称"),
+    /*.name =*/ "PersonName",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_PersonName,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_PersonName,
+    /*.doc =*/ PyDoc_STR("名称"),
     },
     /// 联系电话
     /// typedef char TThostFtdcTelephoneType[41]
     {
-    .name = "Telephone",
-    .get = PyCThostFtdcLinkManFieldType_get_Telephone,
-    .set = PyCThostFtdcLinkManFieldType_set_Telephone,
-    .doc = PyDoc_STR("联系电话"),
+    /*.name =*/ "Telephone",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_Telephone,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_Telephone,
+    /*.doc =*/ PyDoc_STR("联系电话"),
     },
     /// 通讯地址
     /// typedef char TThostFtdcAddressType[101]
     {
-    .name = "Address",
-    .get = PyCThostFtdcLinkManFieldType_get_Address,
-    .set = PyCThostFtdcLinkManFieldType_set_Address,
-    .doc = PyDoc_STR("通讯地址"),
+    /*.name =*/ "Address",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_Address,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_Address,
+    /*.doc =*/ PyDoc_STR("通讯地址"),
     },
     /// 邮政编码
     /// typedef char TThostFtdcZipCodeType[7]
     {
-    .name = "ZipCode",
-    .get = PyCThostFtdcLinkManFieldType_get_ZipCode,
-    .set = PyCThostFtdcLinkManFieldType_set_ZipCode,
-    .doc = PyDoc_STR("邮政编码"),
+    /*.name =*/ "ZipCode",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_ZipCode,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_ZipCode,
+    /*.doc =*/ PyDoc_STR("邮政编码"),
     },
     /// 开户邮政编码
     /// typedef char TThostFtdcUOAZipCodeType[11]
     {
-    .name = "UOAZipCode",
-    .get = PyCThostFtdcLinkManFieldType_get_UOAZipCode,
-    .set = PyCThostFtdcLinkManFieldType_set_UOAZipCode,
-    .doc = PyDoc_STR("开户邮政编码"),
+    /*.name =*/ "UOAZipCode",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_UOAZipCode,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_UOAZipCode,
+    /*.doc =*/ PyDoc_STR("开户邮政编码"),
     },
     /// 全称
     /// typedef char TThostFtdcInvestorFullNameType[101]
     {
-    .name = "PersonFullName",
-    .get = PyCThostFtdcLinkManFieldType_get_PersonFullName,
-    .set = PyCThostFtdcLinkManFieldType_set_PersonFullName,
-    .doc = PyDoc_STR("全称"),
+    /*.name =*/ "PersonFullName",
+    /*.get =*/ PyCThostFtdcLinkManFieldType_get_PersonFullName,
+    /*.set =*/ PyCThostFtdcLinkManFieldType_set_PersonFullName,
+    /*.doc =*/ PyDoc_STR("全称"),
     },
     {NULL}  /* Sentinel */
 };
@@ -720,15 +720,15 @@ static PyType_Slot PyCThostFtdcLinkManFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcLinkManFieldType_spec = {
-    .name = "PyCTP.CThostFtdcLinkManField",
+    /*.name =*/ "PyCTP.CThostFtdcLinkManField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcLinkManFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcLinkManFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcLinkManFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcLinkManFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcLinkManFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcLinkManFieldType_slots_legacy,
 };
 #endif
 

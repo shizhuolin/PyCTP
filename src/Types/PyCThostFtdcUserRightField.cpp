@@ -203,19 +203,19 @@ static PyMemberDef PyCThostFtdcUserRightFieldType_members[] = {
     /// 是否禁止
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsForbidden",
+        /*.name =*/ "IsForbidden",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcUserRightFieldData, data.IsForbidden),
+        /*.offset =*/ offsetof(PyCThostFtdcUserRightFieldData, data.IsForbidden),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否禁止")
+        /*.doc =*/ PyDoc_STR("是否禁止")
     },
     {NULL}  /* Sentinel */
 };
@@ -224,26 +224,26 @@ static PyGetSetDef PyCThostFtdcUserRightFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcUserRightFieldType_get_BrokerID,
-    .set = PyCThostFtdcUserRightFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcUserRightFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcUserRightFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcUserRightFieldType_get_UserID,
-    .set = PyCThostFtdcUserRightFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcUserRightFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcUserRightFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 客户权限类型
     /// typedef char TThostFtdcUserRightTypeType
     {
-    .name = "UserRightType",
-    .get = PyCThostFtdcUserRightFieldType_get_UserRightType,
-    .set = PyCThostFtdcUserRightFieldType_set_UserRightType,
-    .doc = PyDoc_STR("客户权限类型"),
+    /*.name =*/ "UserRightType",
+    /*.get =*/ PyCThostFtdcUserRightFieldType_get_UserRightType,
+    /*.set =*/ PyCThostFtdcUserRightFieldType_set_UserRightType,
+    /*.doc =*/ PyDoc_STR("客户权限类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -269,15 +269,15 @@ static PyType_Slot PyCThostFtdcUserRightFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcUserRightFieldType_spec = {
-    .name = "PyCTP.CThostFtdcUserRightField",
+    /*.name =*/ "PyCTP.CThostFtdcUserRightField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcUserRightFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcUserRightFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcUserRightFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcUserRightFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcUserRightFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcUserRightFieldType_slots_legacy,
 };
 #endif
 

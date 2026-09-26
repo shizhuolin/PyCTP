@@ -310,42 +310,42 @@ static PyGetSetDef PyCThostFtdcProductGroupFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcProductGroupFieldType_get_reserve1,
-    .set = PyCThostFtdcProductGroupFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcProductGroupFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcProductGroupFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcProductGroupFieldType_get_ExchangeID,
-    .set = PyCThostFtdcProductGroupFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcProductGroupFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcProductGroupFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcProductGroupFieldType_get_reserve2,
-    .set = PyCThostFtdcProductGroupFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcProductGroupFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcProductGroupFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcProductGroupFieldType_get_ProductID,
-    .set = PyCThostFtdcProductGroupFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcProductGroupFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcProductGroupFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     /// 产品组代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductGroupID",
-    .get = PyCThostFtdcProductGroupFieldType_get_ProductGroupID,
-    .set = PyCThostFtdcProductGroupFieldType_set_ProductGroupID,
-    .doc = PyDoc_STR("产品组代码"),
+    /*.name =*/ "ProductGroupID",
+    /*.get =*/ PyCThostFtdcProductGroupFieldType_get_ProductGroupID,
+    /*.set =*/ PyCThostFtdcProductGroupFieldType_set_ProductGroupID,
+    /*.doc =*/ PyDoc_STR("产品组代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -371,15 +371,15 @@ static PyType_Slot PyCThostFtdcProductGroupFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcProductGroupFieldType_spec = {
-    .name = "PyCTP.CThostFtdcProductGroupField",
+    /*.name =*/ "PyCTP.CThostFtdcProductGroupField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcProductGroupFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcProductGroupFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcProductGroupFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcProductGroupFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcProductGroupFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcProductGroupFieldType_slots_legacy,
 };
 #endif
 

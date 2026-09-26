@@ -864,19 +864,19 @@ static PyMemberDef PyCThostFtdcAccountregisterFieldType_members[] = {
     /// 交易ID
     /// typedef int TThostFtdcTIDType
     {
-        .name = "TID",
+        /*.name =*/ "TID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcAccountregisterFieldData, data.TID),
+        /*.offset =*/ offsetof(PyCThostFtdcAccountregisterFieldData, data.TID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易ID")
+        /*.doc =*/ PyDoc_STR("交易ID")
     },
     {NULL}  /* Sentinel */
 };
@@ -885,138 +885,138 @@ static PyGetSetDef PyCThostFtdcAccountregisterFieldType_getsets[] = {
     /// 交易日期
     /// typedef char TThostFtdcTradeDateType[9]
     {
-    .name = "TradeDay",
-    .get = PyCThostFtdcAccountregisterFieldType_get_TradeDay,
-    .set = PyCThostFtdcAccountregisterFieldType_set_TradeDay,
-    .doc = PyDoc_STR("交易日期"),
+    /*.name =*/ "TradeDay",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_TradeDay,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_TradeDay,
+    /*.doc =*/ PyDoc_STR("交易日期"),
     },
     /// 银行编码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcAccountregisterFieldType_get_BankID,
-    .set = PyCThostFtdcAccountregisterFieldType_set_BankID,
-    .doc = PyDoc_STR("银行编码"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行编码"),
     },
     /// 银行分支机构编码
     /// typedef char TThostFtdcBankBrchIDType[5]
     {
-    .name = "BankBranchID",
-    .get = PyCThostFtdcAccountregisterFieldType_get_BankBranchID,
-    .set = PyCThostFtdcAccountregisterFieldType_set_BankBranchID,
-    .doc = PyDoc_STR("银行分支机构编码"),
+    /*.name =*/ "BankBranchID",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_BankBranchID,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_BankBranchID,
+    /*.doc =*/ PyDoc_STR("银行分支机构编码"),
     },
     /// 银行帐号
     /// typedef char TThostFtdcBankAccountType[41]
     {
-    .name = "BankAccount",
-    .get = PyCThostFtdcAccountregisterFieldType_get_BankAccount,
-    .set = PyCThostFtdcAccountregisterFieldType_set_BankAccount,
-    .doc = PyDoc_STR("银行帐号"),
+    /*.name =*/ "BankAccount",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_BankAccount,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_BankAccount,
+    /*.doc =*/ PyDoc_STR("银行帐号"),
     },
     /// 期货公司编码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAccountregisterFieldType_get_BrokerID,
-    .set = PyCThostFtdcAccountregisterFieldType_set_BrokerID,
-    .doc = PyDoc_STR("期货公司编码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("期货公司编码"),
     },
     /// 期货公司分支机构编码
     /// typedef char TThostFtdcFutureBranchIDType[31]
     {
-    .name = "BrokerBranchID",
-    .get = PyCThostFtdcAccountregisterFieldType_get_BrokerBranchID,
-    .set = PyCThostFtdcAccountregisterFieldType_set_BrokerBranchID,
-    .doc = PyDoc_STR("期货公司分支机构编码"),
+    /*.name =*/ "BrokerBranchID",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_BrokerBranchID,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_BrokerBranchID,
+    /*.doc =*/ PyDoc_STR("期货公司分支机构编码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcAccountregisterFieldType_get_AccountID,
-    .set = PyCThostFtdcAccountregisterFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 证件类型
     /// typedef char TThostFtdcIdCardTypeType
     {
-    .name = "IdCardType",
-    .get = PyCThostFtdcAccountregisterFieldType_get_IdCardType,
-    .set = PyCThostFtdcAccountregisterFieldType_set_IdCardType,
-    .doc = PyDoc_STR("证件类型"),
+    /*.name =*/ "IdCardType",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_IdCardType,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_IdCardType,
+    /*.doc =*/ PyDoc_STR("证件类型"),
     },
     /// 证件号码
     /// typedef char TThostFtdcIdentifiedCardNoType[51]
     {
-    .name = "IdentifiedCardNo",
-    .get = PyCThostFtdcAccountregisterFieldType_get_IdentifiedCardNo,
-    .set = PyCThostFtdcAccountregisterFieldType_set_IdentifiedCardNo,
-    .doc = PyDoc_STR("证件号码"),
+    /*.name =*/ "IdentifiedCardNo",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_IdentifiedCardNo,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_IdentifiedCardNo,
+    /*.doc =*/ PyDoc_STR("证件号码"),
     },
     /// 客户姓名
     /// typedef char TThostFtdcIndividualNameType[51]
     {
-    .name = "CustomerName",
-    .get = PyCThostFtdcAccountregisterFieldType_get_CustomerName,
-    .set = PyCThostFtdcAccountregisterFieldType_set_CustomerName,
-    .doc = PyDoc_STR("客户姓名"),
+    /*.name =*/ "CustomerName",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_CustomerName,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_CustomerName,
+    /*.doc =*/ PyDoc_STR("客户姓名"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcAccountregisterFieldType_get_CurrencyID,
-    .set = PyCThostFtdcAccountregisterFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     /// 开销户类别
     /// typedef char TThostFtdcOpenOrDestroyType
     {
-    .name = "OpenOrDestroy",
-    .get = PyCThostFtdcAccountregisterFieldType_get_OpenOrDestroy,
-    .set = PyCThostFtdcAccountregisterFieldType_set_OpenOrDestroy,
-    .doc = PyDoc_STR("开销户类别"),
+    /*.name =*/ "OpenOrDestroy",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_OpenOrDestroy,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_OpenOrDestroy,
+    /*.doc =*/ PyDoc_STR("开销户类别"),
     },
     /// 签约日期
     /// typedef char TThostFtdcTradeDateType[9]
     {
-    .name = "RegDate",
-    .get = PyCThostFtdcAccountregisterFieldType_get_RegDate,
-    .set = PyCThostFtdcAccountregisterFieldType_set_RegDate,
-    .doc = PyDoc_STR("签约日期"),
+    /*.name =*/ "RegDate",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_RegDate,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_RegDate,
+    /*.doc =*/ PyDoc_STR("签约日期"),
     },
     /// 解约日期
     /// typedef char TThostFtdcTradeDateType[9]
     {
-    .name = "OutDate",
-    .get = PyCThostFtdcAccountregisterFieldType_get_OutDate,
-    .set = PyCThostFtdcAccountregisterFieldType_set_OutDate,
-    .doc = PyDoc_STR("解约日期"),
+    /*.name =*/ "OutDate",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_OutDate,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_OutDate,
+    /*.doc =*/ PyDoc_STR("解约日期"),
     },
     /// 客户类型
     /// typedef char TThostFtdcCustTypeType
     {
-    .name = "CustType",
-    .get = PyCThostFtdcAccountregisterFieldType_get_CustType,
-    .set = PyCThostFtdcAccountregisterFieldType_set_CustType,
-    .doc = PyDoc_STR("客户类型"),
+    /*.name =*/ "CustType",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_CustType,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_CustType,
+    /*.doc =*/ PyDoc_STR("客户类型"),
     },
     /// 银行帐号类型
     /// typedef char TThostFtdcBankAccTypeType
     {
-    .name = "BankAccType",
-    .get = PyCThostFtdcAccountregisterFieldType_get_BankAccType,
-    .set = PyCThostFtdcAccountregisterFieldType_set_BankAccType,
-    .doc = PyDoc_STR("银行帐号类型"),
+    /*.name =*/ "BankAccType",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_BankAccType,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_BankAccType,
+    /*.doc =*/ PyDoc_STR("银行帐号类型"),
     },
     /// 长客户姓名
     /// typedef char TThostFtdcLongIndividualNameType[161]
     {
-    .name = "LongCustomerName",
-    .get = PyCThostFtdcAccountregisterFieldType_get_LongCustomerName,
-    .set = PyCThostFtdcAccountregisterFieldType_set_LongCustomerName,
-    .doc = PyDoc_STR("长客户姓名"),
+    /*.name =*/ "LongCustomerName",
+    /*.get =*/ PyCThostFtdcAccountregisterFieldType_get_LongCustomerName,
+    /*.set =*/ PyCThostFtdcAccountregisterFieldType_set_LongCustomerName,
+    /*.doc =*/ PyDoc_STR("长客户姓名"),
     },
     {NULL}  /* Sentinel */
 };
@@ -1042,15 +1042,15 @@ static PyType_Slot PyCThostFtdcAccountregisterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAccountregisterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAccountregisterField",
+    /*.name =*/ "PyCTP.CThostFtdcAccountregisterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAccountregisterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAccountregisterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAccountregisterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAccountregisterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAccountregisterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAccountregisterFieldType_slots_legacy,
 };
 #endif
 

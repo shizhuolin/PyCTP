@@ -306,87 +306,87 @@ static PyMemberDef PyCThostFtdcSPBMOptionParameterFieldType_members[] = {
     /// 期权合约因子
     /// typedef int TThostFtdcVolumeMultipleType
     {
-        .name = "Cvf",
+        /*.name =*/ "Cvf",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.Cvf),
+        /*.offset =*/ offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.Cvf),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权合约因子")
+        /*.doc =*/ PyDoc_STR("期权合约因子")
     },
     /// 期权冲抵价格
     /// typedef double TThostFtdcPriceType
     {
-        .name = "DownPrice",
+        /*.name =*/ "DownPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.DownPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.DownPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权冲抵价格")
+        /*.doc =*/ PyDoc_STR("期权冲抵价格")
     },
     /// Delta值
     /// typedef double TThostFtdcDeltaType
     {
-        .name = "Delta",
+        /*.name =*/ "Delta",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.Delta),
+        /*.offset =*/ offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.Delta),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("Delta值")
+        /*.doc =*/ PyDoc_STR("Delta值")
     },
     /// 卖方期权风险转换最低值
     /// typedef double TThostFtdcDeltaType
     {
-        .name = "SlimiDelta",
+        /*.name =*/ "SlimiDelta",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.SlimiDelta),
+        /*.offset =*/ offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.SlimiDelta),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("卖方期权风险转换最低值")
+        /*.doc =*/ PyDoc_STR("卖方期权风险转换最低值")
     },
     /// 昨结算价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "PreSettlementPrice",
+        /*.name =*/ "PreSettlementPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.PreSettlementPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcSPBMOptionParameterFieldData, data.PreSettlementPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("昨结算价")
+        /*.doc =*/ PyDoc_STR("昨结算价")
     },
     {NULL}  /* Sentinel */
 };
@@ -395,34 +395,34 @@ static PyGetSetDef PyCThostFtdcSPBMOptionParameterFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSPBMOptionParameterFieldType_get_TradingDay,
-    .set = PyCThostFtdcSPBMOptionParameterFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSPBMOptionParameterFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSPBMOptionParameterFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSPBMOptionParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSPBMOptionParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSPBMOptionParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSPBMOptionParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcSPBMOptionParameterFieldType_get_InstrumentID,
-    .set = PyCThostFtdcSPBMOptionParameterFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcSPBMOptionParameterFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcSPBMOptionParameterFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 品种代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProdFamilyCode",
-    .get = PyCThostFtdcSPBMOptionParameterFieldType_get_ProdFamilyCode,
-    .set = PyCThostFtdcSPBMOptionParameterFieldType_set_ProdFamilyCode,
-    .doc = PyDoc_STR("品种代码"),
+    /*.name =*/ "ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcSPBMOptionParameterFieldType_get_ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcSPBMOptionParameterFieldType_set_ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("品种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -448,15 +448,15 @@ static PyType_Slot PyCThostFtdcSPBMOptionParameterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSPBMOptionParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSPBMOptionParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcSPBMOptionParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSPBMOptionParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSPBMOptionParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSPBMOptionParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSPBMOptionParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSPBMOptionParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSPBMOptionParameterFieldType_slots_legacy,
 };
 #endif
 

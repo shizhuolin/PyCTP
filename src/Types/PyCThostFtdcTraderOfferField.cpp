@@ -990,19 +990,19 @@ static PyMemberDef PyCThostFtdcTraderOfferFieldType_members[] = {
     /// 安装编号
     /// typedef int TThostFtdcInstallIDType
     {
-        .name = "InstallID",
+        /*.name =*/ "InstallID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTraderOfferFieldData, data.InstallID),
+        /*.offset =*/ offsetof(PyCThostFtdcTraderOfferFieldData, data.InstallID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("安装编号")
+        /*.doc =*/ PyDoc_STR("安装编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -1011,154 +1011,154 @@ static PyGetSetDef PyCThostFtdcTraderOfferFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcTraderOfferFieldType_get_ExchangeID,
-    .set = PyCThostFtdcTraderOfferFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcTraderOfferFieldType_get_TraderID,
-    .set = PyCThostFtdcTraderOfferFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcTraderOfferFieldType_get_ParticipantID,
-    .set = PyCThostFtdcTraderOfferFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcTraderOfferFieldType_get_Password,
-    .set = PyCThostFtdcTraderOfferFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     /// 本地报单编号
     /// typedef char TThostFtdcOrderLocalIDType[13]
     {
-    .name = "OrderLocalID",
-    .get = PyCThostFtdcTraderOfferFieldType_get_OrderLocalID,
-    .set = PyCThostFtdcTraderOfferFieldType_set_OrderLocalID,
-    .doc = PyDoc_STR("本地报单编号"),
+    /*.name =*/ "OrderLocalID",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_OrderLocalID,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_OrderLocalID,
+    /*.doc =*/ PyDoc_STR("本地报单编号"),
     },
     /// 交易所交易员连接状态
     /// typedef char TThostFtdcTraderConnectStatusType
     {
-    .name = "TraderConnectStatus",
-    .get = PyCThostFtdcTraderOfferFieldType_get_TraderConnectStatus,
-    .set = PyCThostFtdcTraderOfferFieldType_set_TraderConnectStatus,
-    .doc = PyDoc_STR("交易所交易员连接状态"),
+    /*.name =*/ "TraderConnectStatus",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_TraderConnectStatus,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_TraderConnectStatus,
+    /*.doc =*/ PyDoc_STR("交易所交易员连接状态"),
     },
     /// 发出连接请求的日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ConnectRequestDate",
-    .get = PyCThostFtdcTraderOfferFieldType_get_ConnectRequestDate,
-    .set = PyCThostFtdcTraderOfferFieldType_set_ConnectRequestDate,
-    .doc = PyDoc_STR("发出连接请求的日期"),
+    /*.name =*/ "ConnectRequestDate",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_ConnectRequestDate,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_ConnectRequestDate,
+    /*.doc =*/ PyDoc_STR("发出连接请求的日期"),
     },
     /// 发出连接请求的时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "ConnectRequestTime",
-    .get = PyCThostFtdcTraderOfferFieldType_get_ConnectRequestTime,
-    .set = PyCThostFtdcTraderOfferFieldType_set_ConnectRequestTime,
-    .doc = PyDoc_STR("发出连接请求的时间"),
+    /*.name =*/ "ConnectRequestTime",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_ConnectRequestTime,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_ConnectRequestTime,
+    /*.doc =*/ PyDoc_STR("发出连接请求的时间"),
     },
     /// 上次报告日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "LastReportDate",
-    .get = PyCThostFtdcTraderOfferFieldType_get_LastReportDate,
-    .set = PyCThostFtdcTraderOfferFieldType_set_LastReportDate,
-    .doc = PyDoc_STR("上次报告日期"),
+    /*.name =*/ "LastReportDate",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_LastReportDate,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_LastReportDate,
+    /*.doc =*/ PyDoc_STR("上次报告日期"),
     },
     /// 上次报告时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "LastReportTime",
-    .get = PyCThostFtdcTraderOfferFieldType_get_LastReportTime,
-    .set = PyCThostFtdcTraderOfferFieldType_set_LastReportTime,
-    .doc = PyDoc_STR("上次报告时间"),
+    /*.name =*/ "LastReportTime",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_LastReportTime,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_LastReportTime,
+    /*.doc =*/ PyDoc_STR("上次报告时间"),
     },
     /// 完成连接日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ConnectDate",
-    .get = PyCThostFtdcTraderOfferFieldType_get_ConnectDate,
-    .set = PyCThostFtdcTraderOfferFieldType_set_ConnectDate,
-    .doc = PyDoc_STR("完成连接日期"),
+    /*.name =*/ "ConnectDate",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_ConnectDate,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_ConnectDate,
+    /*.doc =*/ PyDoc_STR("完成连接日期"),
     },
     /// 完成连接时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "ConnectTime",
-    .get = PyCThostFtdcTraderOfferFieldType_get_ConnectTime,
-    .set = PyCThostFtdcTraderOfferFieldType_set_ConnectTime,
-    .doc = PyDoc_STR("完成连接时间"),
+    /*.name =*/ "ConnectTime",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_ConnectTime,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_ConnectTime,
+    /*.doc =*/ PyDoc_STR("完成连接时间"),
     },
     /// 启动日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "StartDate",
-    .get = PyCThostFtdcTraderOfferFieldType_get_StartDate,
-    .set = PyCThostFtdcTraderOfferFieldType_set_StartDate,
-    .doc = PyDoc_STR("启动日期"),
+    /*.name =*/ "StartDate",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_StartDate,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_StartDate,
+    /*.doc =*/ PyDoc_STR("启动日期"),
     },
     /// 启动时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "StartTime",
-    .get = PyCThostFtdcTraderOfferFieldType_get_StartTime,
-    .set = PyCThostFtdcTraderOfferFieldType_set_StartTime,
-    .doc = PyDoc_STR("启动时间"),
+    /*.name =*/ "StartTime",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_StartTime,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_StartTime,
+    /*.doc =*/ PyDoc_STR("启动时间"),
     },
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcTraderOfferFieldType_get_TradingDay,
-    .set = PyCThostFtdcTraderOfferFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTraderOfferFieldType_get_BrokerID,
-    .set = PyCThostFtdcTraderOfferFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 本席位最大成交编号
     /// typedef char TThostFtdcTradeIDType[21]
     {
-    .name = "MaxTradeID",
-    .get = PyCThostFtdcTraderOfferFieldType_get_MaxTradeID,
-    .set = PyCThostFtdcTraderOfferFieldType_set_MaxTradeID,
-    .doc = PyDoc_STR("本席位最大成交编号"),
+    /*.name =*/ "MaxTradeID",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_MaxTradeID,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_MaxTradeID,
+    /*.doc =*/ PyDoc_STR("本席位最大成交编号"),
     },
     /// 本席位最大报单备拷
     /// typedef char TThostFtdcReturnCodeType[7]
     {
-    .name = "MaxOrderMessageReference",
-    .get = PyCThostFtdcTraderOfferFieldType_get_MaxOrderMessageReference,
-    .set = PyCThostFtdcTraderOfferFieldType_set_MaxOrderMessageReference,
-    .doc = PyDoc_STR("本席位最大报单备拷"),
+    /*.name =*/ "MaxOrderMessageReference",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_MaxOrderMessageReference,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_MaxOrderMessageReference,
+    /*.doc =*/ PyDoc_STR("本席位最大报单备拷"),
     },
     /// 撤单时选择席位算法
     /// typedef char TThostFtdcOrderCancelAlgType
     {
-    .name = "OrderCancelAlg",
-    .get = PyCThostFtdcTraderOfferFieldType_get_OrderCancelAlg,
-    .set = PyCThostFtdcTraderOfferFieldType_set_OrderCancelAlg,
-    .doc = PyDoc_STR("撤单时选择席位算法"),
+    /*.name =*/ "OrderCancelAlg",
+    /*.get =*/ PyCThostFtdcTraderOfferFieldType_get_OrderCancelAlg,
+    /*.set =*/ PyCThostFtdcTraderOfferFieldType_set_OrderCancelAlg,
+    /*.doc =*/ PyDoc_STR("撤单时选择席位算法"),
     },
     {NULL}  /* Sentinel */
 };
@@ -1184,15 +1184,15 @@ static PyType_Slot PyCThostFtdcTraderOfferFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTraderOfferFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTraderOfferField",
+    /*.name =*/ "PyCTP.CThostFtdcTraderOfferField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTraderOfferFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTraderOfferFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTraderOfferFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTraderOfferFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTraderOfferFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTraderOfferFieldType_slots_legacy,
 };
 #endif
 

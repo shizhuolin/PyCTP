@@ -96,70 +96,70 @@ static PyMemberDef PyCThostFtdcMarketDataBestPriceFieldType_members[] = {
     /// 申买价一
     /// typedef double TThostFtdcPriceType
     {
-        .name = "BidPrice1",
+        /*.name =*/ "BidPrice1",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.BidPrice1),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.BidPrice1),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申买价一")
+        /*.doc =*/ PyDoc_STR("申买价一")
     },
     /// 申买量一
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "BidVolume1",
+        /*.name =*/ "BidVolume1",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.BidVolume1),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.BidVolume1),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申买量一")
+        /*.doc =*/ PyDoc_STR("申买量一")
     },
     /// 申卖价一
     /// typedef double TThostFtdcPriceType
     {
-        .name = "AskPrice1",
+        /*.name =*/ "AskPrice1",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.AskPrice1),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.AskPrice1),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申卖价一")
+        /*.doc =*/ PyDoc_STR("申卖价一")
     },
     /// 申卖量一
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "AskVolume1",
+        /*.name =*/ "AskVolume1",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.AskVolume1),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataBestPriceFieldData, data.AskVolume1),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申卖量一")
+        /*.doc =*/ PyDoc_STR("申卖量一")
     },
     {NULL}  /* Sentinel */
 };
@@ -189,15 +189,15 @@ static PyType_Slot PyCThostFtdcMarketDataBestPriceFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMarketDataBestPriceFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMarketDataBestPriceField",
+    /*.name =*/ "PyCTP.CThostFtdcMarketDataBestPriceField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMarketDataBestPriceFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMarketDataBestPriceFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataBestPriceFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataBestPriceFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMarketDataBestPriceFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMarketDataBestPriceFieldType_slots_legacy,
 };
 #endif
 

@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQrySuperUserFieldType_getsets[] = {
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcQrySuperUserFieldType_get_UserID,
-    .set = PyCThostFtdcQrySuperUserFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcQrySuperUserFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcQrySuperUserFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQrySuperUserFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySuperUserFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySuperUserField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySuperUserField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySuperUserFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySuperUserFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySuperUserFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySuperUserFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySuperUserFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySuperUserFieldType_slots_legacy,
 };
 #endif
 

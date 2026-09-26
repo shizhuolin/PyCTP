@@ -408,66 +408,66 @@ static PyGetSetDef PyCThostFtdcBrokerTradingParamsFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_InvestorID,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保证金价格类型
     /// typedef char TThostFtdcMarginPriceTypeType
     {
-    .name = "MarginPriceType",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_MarginPriceType,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_MarginPriceType,
-    .doc = PyDoc_STR("保证金价格类型"),
+    /*.name =*/ "MarginPriceType",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_MarginPriceType,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_MarginPriceType,
+    /*.doc =*/ PyDoc_STR("保证金价格类型"),
     },
     /// 盈亏算法
     /// typedef char TThostFtdcAlgorithmType
     {
-    .name = "Algorithm",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_Algorithm,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_Algorithm,
-    .doc = PyDoc_STR("盈亏算法"),
+    /*.name =*/ "Algorithm",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_Algorithm,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_Algorithm,
+    /*.doc =*/ PyDoc_STR("盈亏算法"),
     },
     /// 可用是否包含平仓盈利
     /// typedef char TThostFtdcIncludeCloseProfitType
     {
-    .name = "AvailIncludeCloseProfit",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_AvailIncludeCloseProfit,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_AvailIncludeCloseProfit,
-    .doc = PyDoc_STR("可用是否包含平仓盈利"),
+    /*.name =*/ "AvailIncludeCloseProfit",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_AvailIncludeCloseProfit,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_AvailIncludeCloseProfit,
+    /*.doc =*/ PyDoc_STR("可用是否包含平仓盈利"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_CurrencyID,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     /// 期权权利金价格类型
     /// typedef char TThostFtdcOptionRoyaltyPriceTypeType
     {
-    .name = "OptionRoyaltyPriceType",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_OptionRoyaltyPriceType,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_OptionRoyaltyPriceType,
-    .doc = PyDoc_STR("期权权利金价格类型"),
+    /*.name =*/ "OptionRoyaltyPriceType",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_OptionRoyaltyPriceType,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_OptionRoyaltyPriceType,
+    /*.doc =*/ PyDoc_STR("期权权利金价格类型"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcBrokerTradingParamsFieldType_get_AccountID,
-    .set = PyCThostFtdcBrokerTradingParamsFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcBrokerTradingParamsFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcBrokerTradingParamsFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -493,15 +493,15 @@ static PyType_Slot PyCThostFtdcBrokerTradingParamsFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerTradingParamsFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerTradingParamsField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerTradingParamsField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingParamsFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingParamsFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingParamsFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingParamsFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerTradingParamsFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerTradingParamsFieldType_slots_legacy,
 };
 #endif
 

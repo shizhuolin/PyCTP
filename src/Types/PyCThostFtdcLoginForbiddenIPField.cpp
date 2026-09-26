@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcLoginForbiddenIPFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcLoginForbiddenIPFieldType_get_reserve1,
-    .set = PyCThostFtdcLoginForbiddenIPFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcLoginForbiddenIPFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcLoginForbiddenIPFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcLoginForbiddenIPFieldType_get_IPAddress,
-    .set = PyCThostFtdcLoginForbiddenIPFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcLoginForbiddenIPFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcLoginForbiddenIPFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcLoginForbiddenIPFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcLoginForbiddenIPFieldType_spec = {
-    .name = "PyCTP.CThostFtdcLoginForbiddenIPField",
+    /*.name =*/ "PyCTP.CThostFtdcLoginForbiddenIPField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenIPFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenIPFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenIPFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenIPFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcLoginForbiddenIPFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcLoginForbiddenIPFieldType_slots_legacy,
 };
 #endif
 

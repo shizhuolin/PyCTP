@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcIndexPriceFieldType_members[] = {
     /// 指数现货收盘价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "ClosePrice",
+        /*.name =*/ "ClosePrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcIndexPriceFieldData, data.ClosePrice),
+        /*.offset =*/ offsetof(PyCThostFtdcIndexPriceFieldData, data.ClosePrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("指数现货收盘价")
+        /*.doc =*/ PyDoc_STR("指数现货收盘价")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcIndexPriceFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcIndexPriceFieldType_get_BrokerID,
-    .set = PyCThostFtdcIndexPriceFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcIndexPriceFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcIndexPriceFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcIndexPriceFieldType_get_reserve1,
-    .set = PyCThostFtdcIndexPriceFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcIndexPriceFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcIndexPriceFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcIndexPriceFieldType_get_InstrumentID,
-    .set = PyCThostFtdcIndexPriceFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcIndexPriceFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcIndexPriceFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcIndexPriceFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcIndexPriceFieldType_spec = {
-    .name = "PyCTP.CThostFtdcIndexPriceField",
+    /*.name =*/ "PyCTP.CThostFtdcIndexPriceField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcIndexPriceFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcIndexPriceFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcIndexPriceFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcIndexPriceFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcIndexPriceFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcIndexPriceFieldType_slots_legacy,
 };
 #endif
 

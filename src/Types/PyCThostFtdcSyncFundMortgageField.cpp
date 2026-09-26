@@ -316,19 +316,19 @@ static PyMemberDef PyCThostFtdcSyncFundMortgageFieldType_members[] = {
     /// 质押金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "MortgageAmount",
+        /*.name =*/ "MortgageAmount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncFundMortgageFieldData, data.MortgageAmount),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncFundMortgageFieldData, data.MortgageAmount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("质押金额")
+        /*.doc =*/ PyDoc_STR("质押金额")
     },
     {NULL}  /* Sentinel */
 };
@@ -337,42 +337,42 @@ static PyGetSetDef PyCThostFtdcSyncFundMortgageFieldType_getsets[] = {
     /// 货币质押流水号
     /// typedef char TThostFtdcDepositSeqNoType[15]
     {
-    .name = "MortgageSeqNo",
-    .get = PyCThostFtdcSyncFundMortgageFieldType_get_MortgageSeqNo,
-    .set = PyCThostFtdcSyncFundMortgageFieldType_set_MortgageSeqNo,
-    .doc = PyDoc_STR("货币质押流水号"),
+    /*.name =*/ "MortgageSeqNo",
+    /*.get =*/ PyCThostFtdcSyncFundMortgageFieldType_get_MortgageSeqNo,
+    /*.set =*/ PyCThostFtdcSyncFundMortgageFieldType_set_MortgageSeqNo,
+    /*.doc =*/ PyDoc_STR("货币质押流水号"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSyncFundMortgageFieldType_get_BrokerID,
-    .set = PyCThostFtdcSyncFundMortgageFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSyncFundMortgageFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSyncFundMortgageFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcSyncFundMortgageFieldType_get_InvestorID,
-    .set = PyCThostFtdcSyncFundMortgageFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcSyncFundMortgageFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcSyncFundMortgageFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 源币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "FromCurrencyID",
-    .get = PyCThostFtdcSyncFundMortgageFieldType_get_FromCurrencyID,
-    .set = PyCThostFtdcSyncFundMortgageFieldType_set_FromCurrencyID,
-    .doc = PyDoc_STR("源币种"),
+    /*.name =*/ "FromCurrencyID",
+    /*.get =*/ PyCThostFtdcSyncFundMortgageFieldType_get_FromCurrencyID,
+    /*.set =*/ PyCThostFtdcSyncFundMortgageFieldType_set_FromCurrencyID,
+    /*.doc =*/ PyDoc_STR("源币种"),
     },
     /// 目标币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "ToCurrencyID",
-    .get = PyCThostFtdcSyncFundMortgageFieldType_get_ToCurrencyID,
-    .set = PyCThostFtdcSyncFundMortgageFieldType_set_ToCurrencyID,
-    .doc = PyDoc_STR("目标币种"),
+    /*.name =*/ "ToCurrencyID",
+    /*.get =*/ PyCThostFtdcSyncFundMortgageFieldType_get_ToCurrencyID,
+    /*.set =*/ PyCThostFtdcSyncFundMortgageFieldType_set_ToCurrencyID,
+    /*.doc =*/ PyDoc_STR("目标币种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -398,15 +398,15 @@ static PyType_Slot PyCThostFtdcSyncFundMortgageFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncFundMortgageFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncFundMortgageField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncFundMortgageField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncFundMortgageFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncFundMortgageFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncFundMortgageFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncFundMortgageFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncFundMortgageFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncFundMortgageFieldType_slots_legacy,
 };
 #endif
 

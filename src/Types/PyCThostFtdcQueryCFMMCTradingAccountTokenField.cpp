@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_getsets[] 
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_get_BrokerID,
-    .set = PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_get_InvestorID,
-    .set = PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_slots_lega
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQueryCFMMCTradingAccountTokenField",
+    /*.name =*/ "PyCTP.CThostFtdcQueryCFMMCTradingAccountTokenField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQueryCFMMCTradingAccountTokenFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQueryCFMMCTradingAccountTokenFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQueryCFMMCTradingAccountTokenFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQueryCFMMCTradingAccountTokenFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQueryCFMMCTradingAccountTokenFieldType_slots_legacy,
 };
 #endif
 

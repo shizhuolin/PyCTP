@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcUserPasswordUpdateFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcUserPasswordUpdateFieldType_get_BrokerID,
-    .set = PyCThostFtdcUserPasswordUpdateFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcUserPasswordUpdateFieldType_get_UserID,
-    .set = PyCThostFtdcUserPasswordUpdateFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 原来的口令
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "OldPassword",
-    .get = PyCThostFtdcUserPasswordUpdateFieldType_get_OldPassword,
-    .set = PyCThostFtdcUserPasswordUpdateFieldType_set_OldPassword,
-    .doc = PyDoc_STR("原来的口令"),
+    /*.name =*/ "OldPassword",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFieldType_get_OldPassword,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFieldType_set_OldPassword,
+    /*.doc =*/ PyDoc_STR("原来的口令"),
     },
     /// 新的口令
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "NewPassword",
-    .get = PyCThostFtdcUserPasswordUpdateFieldType_get_NewPassword,
-    .set = PyCThostFtdcUserPasswordUpdateFieldType_set_NewPassword,
-    .doc = PyDoc_STR("新的口令"),
+    /*.name =*/ "NewPassword",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFieldType_get_NewPassword,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFieldType_set_NewPassword,
+    /*.doc =*/ PyDoc_STR("新的口令"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcUserPasswordUpdateFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcUserPasswordUpdateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcUserPasswordUpdateField",
+    /*.name =*/ "PyCTP.CThostFtdcUserPasswordUpdateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcUserPasswordUpdateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcUserPasswordUpdateFieldType_slots_legacy,
 };
 #endif
 

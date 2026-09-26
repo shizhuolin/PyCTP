@@ -371,58 +371,58 @@ static PyGetSetDef PyCThostFtdcBrokerTradingAlgosFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerTradingAlgosFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerTradingAlgosFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerTradingAlgosFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerTradingAlgosFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcBrokerTradingAlgosFieldType_get_ExchangeID,
-    .set = PyCThostFtdcBrokerTradingAlgosFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcBrokerTradingAlgosFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcBrokerTradingAlgosFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcBrokerTradingAlgosFieldType_get_reserve1,
-    .set = PyCThostFtdcBrokerTradingAlgosFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcBrokerTradingAlgosFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcBrokerTradingAlgosFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 持仓处理算法编号
     /// typedef char TThostFtdcHandlePositionAlgoIDType
     {
-    .name = "HandlePositionAlgoID",
-    .get = PyCThostFtdcBrokerTradingAlgosFieldType_get_HandlePositionAlgoID,
-    .set = PyCThostFtdcBrokerTradingAlgosFieldType_set_HandlePositionAlgoID,
-    .doc = PyDoc_STR("持仓处理算法编号"),
+    /*.name =*/ "HandlePositionAlgoID",
+    /*.get =*/ PyCThostFtdcBrokerTradingAlgosFieldType_get_HandlePositionAlgoID,
+    /*.set =*/ PyCThostFtdcBrokerTradingAlgosFieldType_set_HandlePositionAlgoID,
+    /*.doc =*/ PyDoc_STR("持仓处理算法编号"),
     },
     /// 寻找保证金率算法编号
     /// typedef char TThostFtdcFindMarginRateAlgoIDType
     {
-    .name = "FindMarginRateAlgoID",
-    .get = PyCThostFtdcBrokerTradingAlgosFieldType_get_FindMarginRateAlgoID,
-    .set = PyCThostFtdcBrokerTradingAlgosFieldType_set_FindMarginRateAlgoID,
-    .doc = PyDoc_STR("寻找保证金率算法编号"),
+    /*.name =*/ "FindMarginRateAlgoID",
+    /*.get =*/ PyCThostFtdcBrokerTradingAlgosFieldType_get_FindMarginRateAlgoID,
+    /*.set =*/ PyCThostFtdcBrokerTradingAlgosFieldType_set_FindMarginRateAlgoID,
+    /*.doc =*/ PyDoc_STR("寻找保证金率算法编号"),
     },
     /// 资金处理算法编号
     /// typedef char TThostFtdcHandleTradingAccountAlgoIDType
     {
-    .name = "HandleTradingAccountAlgoID",
-    .get = PyCThostFtdcBrokerTradingAlgosFieldType_get_HandleTradingAccountAlgoID,
-    .set = PyCThostFtdcBrokerTradingAlgosFieldType_set_HandleTradingAccountAlgoID,
-    .doc = PyDoc_STR("资金处理算法编号"),
+    /*.name =*/ "HandleTradingAccountAlgoID",
+    /*.get =*/ PyCThostFtdcBrokerTradingAlgosFieldType_get_HandleTradingAccountAlgoID,
+    /*.set =*/ PyCThostFtdcBrokerTradingAlgosFieldType_set_HandleTradingAccountAlgoID,
+    /*.doc =*/ PyDoc_STR("资金处理算法编号"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcBrokerTradingAlgosFieldType_get_InstrumentID,
-    .set = PyCThostFtdcBrokerTradingAlgosFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcBrokerTradingAlgosFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcBrokerTradingAlgosFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -448,15 +448,15 @@ static PyType_Slot PyCThostFtdcBrokerTradingAlgosFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerTradingAlgosFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerTradingAlgosField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerTradingAlgosField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingAlgosFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingAlgosFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingAlgosFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerTradingAlgosFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerTradingAlgosFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerTradingAlgosFieldType_slots_legacy,
 };
 #endif
 

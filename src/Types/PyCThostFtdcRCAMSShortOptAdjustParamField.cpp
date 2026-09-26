@@ -253,19 +253,19 @@ static PyMemberDef PyCThostFtdcRCAMSShortOptAdjustParamFieldType_members[] = {
     /// 空头期权风险调整标准
     /// typedef double TThostFtdcAdjustValueType
     {
-        .name = "AdjustValue",
+        /*.name =*/ "AdjustValue",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRCAMSShortOptAdjustParamFieldData, data.AdjustValue),
+        /*.offset =*/ offsetof(PyCThostFtdcRCAMSShortOptAdjustParamFieldData, data.AdjustValue),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("空头期权风险调整标准")
+        /*.doc =*/ PyDoc_STR("空头期权风险调整标准")
     },
     {NULL}  /* Sentinel */
 };
@@ -274,34 +274,34 @@ static PyGetSetDef PyCThostFtdcRCAMSShortOptAdjustParamFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_TradingDay,
-    .set = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_ExchangeID,
-    .set = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品组合代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "CombProductID",
-    .get = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_CombProductID,
-    .set = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_CombProductID,
-    .doc = PyDoc_STR("产品组合代码"),
+    /*.name =*/ "CombProductID",
+    /*.get =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_CombProductID,
+    /*.set =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_CombProductID,
+    /*.doc =*/ PyDoc_STR("产品组合代码"),
     },
     /// 投套标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投套标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投套标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -327,15 +327,15 @@ static PyType_Slot PyCThostFtdcRCAMSShortOptAdjustParamFieldType_slots_legacy[] 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRCAMSShortOptAdjustParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRCAMSShortOptAdjustParamField",
+    /*.name =*/ "PyCTP.CThostFtdcRCAMSShortOptAdjustParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRCAMSShortOptAdjustParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRCAMSShortOptAdjustParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRCAMSShortOptAdjustParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRCAMSShortOptAdjustParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRCAMSShortOptAdjustParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRCAMSShortOptAdjustParamFieldType_slots_legacy,
 };
 #endif
 

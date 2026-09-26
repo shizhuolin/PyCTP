@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQrySyncDelaySwapFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQrySyncDelaySwapFieldType_get_BrokerID,
-    .set = PyCThostFtdcQrySyncDelaySwapFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQrySyncDelaySwapFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQrySyncDelaySwapFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 延时换汇流水号
     /// typedef char TThostFtdcDepositSeqNoType[15]
     {
-    .name = "DelaySwapSeqNo",
-    .get = PyCThostFtdcQrySyncDelaySwapFieldType_get_DelaySwapSeqNo,
-    .set = PyCThostFtdcQrySyncDelaySwapFieldType_set_DelaySwapSeqNo,
-    .doc = PyDoc_STR("延时换汇流水号"),
+    /*.name =*/ "DelaySwapSeqNo",
+    /*.get =*/ PyCThostFtdcQrySyncDelaySwapFieldType_get_DelaySwapSeqNo,
+    /*.set =*/ PyCThostFtdcQrySyncDelaySwapFieldType_set_DelaySwapSeqNo,
+    /*.doc =*/ PyDoc_STR("延时换汇流水号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQrySyncDelaySwapFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySyncDelaySwapFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySyncDelaySwapField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySyncDelaySwapField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySyncDelaySwapFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySyncDelaySwapFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySyncDelaySwapFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySyncDelaySwapFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySyncDelaySwapFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySyncDelaySwapFieldType_slots_legacy,
 };
 #endif
 

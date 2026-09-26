@@ -383,155 +383,155 @@ static PyMemberDef PyCThostFtdcOptionInstrMarginAdjustFieldType_members[] = {
     /// 投机空头保证金调整系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "SShortMarginRatioByMoney",
+        /*.name =*/ "SShortMarginRatioByMoney",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.SShortMarginRatioByMoney),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.SShortMarginRatioByMoney),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("投机空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("投机空头保证金调整系数")
     },
     /// 投机空头保证金调整系数
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "SShortMarginRatioByVolume",
+        /*.name =*/ "SShortMarginRatioByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.SShortMarginRatioByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.SShortMarginRatioByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("投机空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("投机空头保证金调整系数")
     },
     /// 保值空头保证金调整系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "HShortMarginRatioByMoney",
+        /*.name =*/ "HShortMarginRatioByMoney",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.HShortMarginRatioByMoney),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.HShortMarginRatioByMoney),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("保值空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("保值空头保证金调整系数")
     },
     /// 保值空头保证金调整系数
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "HShortMarginRatioByVolume",
+        /*.name =*/ "HShortMarginRatioByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.HShortMarginRatioByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.HShortMarginRatioByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("保值空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("保值空头保证金调整系数")
     },
     /// 套利空头保证金调整系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "AShortMarginRatioByMoney",
+        /*.name =*/ "AShortMarginRatioByMoney",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.AShortMarginRatioByMoney),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.AShortMarginRatioByMoney),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("套利空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("套利空头保证金调整系数")
     },
     /// 套利空头保证金调整系数
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "AShortMarginRatioByVolume",
+        /*.name =*/ "AShortMarginRatioByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.AShortMarginRatioByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.AShortMarginRatioByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("套利空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("套利空头保证金调整系数")
     },
     /// 是否跟随交易所收取
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsRelative",
+        /*.name =*/ "IsRelative",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.IsRelative),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.IsRelative),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否跟随交易所收取")
+        /*.doc =*/ PyDoc_STR("是否跟随交易所收取")
     },
     /// 做市商空头保证金调整系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "MShortMarginRatioByMoney",
+        /*.name =*/ "MShortMarginRatioByMoney",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.MShortMarginRatioByMoney),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.MShortMarginRatioByMoney),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("做市商空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("做市商空头保证金调整系数")
     },
     /// 做市商空头保证金调整系数
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "MShortMarginRatioByVolume",
+        /*.name =*/ "MShortMarginRatioByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.MShortMarginRatioByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrMarginAdjustFieldData, data.MShortMarginRatioByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("做市商空头保证金调整系数")
+        /*.doc =*/ PyDoc_STR("做市商空头保证金调整系数")
     },
     {NULL}  /* Sentinel */
 };
@@ -540,42 +540,42 @@ static PyGetSetDef PyCThostFtdcOptionInstrMarginAdjustFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcOptionInstrMarginAdjustFieldType_get_reserve1,
-    .set = PyCThostFtdcOptionInstrMarginAdjustFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcOptionInstrMarginAdjustFieldType_get_InvestorRange,
-    .set = PyCThostFtdcOptionInstrMarginAdjustFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcOptionInstrMarginAdjustFieldType_get_BrokerID,
-    .set = PyCThostFtdcOptionInstrMarginAdjustFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcOptionInstrMarginAdjustFieldType_get_InvestorID,
-    .set = PyCThostFtdcOptionInstrMarginAdjustFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcOptionInstrMarginAdjustFieldType_get_InstrumentID,
-    .set = PyCThostFtdcOptionInstrMarginAdjustFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -601,15 +601,15 @@ static PyType_Slot PyCThostFtdcOptionInstrMarginAdjustFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcOptionInstrMarginAdjustFieldType_spec = {
-    .name = "PyCTP.CThostFtdcOptionInstrMarginAdjustField",
+    /*.name =*/ "PyCTP.CThostFtdcOptionInstrMarginAdjustField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcOptionInstrMarginAdjustFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcOptionInstrMarginAdjustFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcOptionInstrMarginAdjustFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcOptionInstrMarginAdjustFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcOptionInstrMarginAdjustFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcOptionInstrMarginAdjustFieldType_slots_legacy,
 };
 #endif
 

@@ -76,36 +76,36 @@ static PyMemberDef PyCThostFtdcDisseminationFieldType_members[] = {
     /// 序列系列号
     /// typedef short TThostFtdcSequenceSeriesType
     {
-        .name = "SequenceSeries",
+        /*.name =*/ "SequenceSeries",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_SHORT,
+        /*.type =*/ T_SHORT,
 #else
-        .type = Py_T_SHORT,
+        /*.type =*/ Py_T_SHORT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcDisseminationFieldData, data.SequenceSeries),
+        /*.offset =*/ offsetof(PyCThostFtdcDisseminationFieldData, data.SequenceSeries),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序列系列号")
+        /*.doc =*/ PyDoc_STR("序列系列号")
     },
     /// 序列号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SequenceNo",
+        /*.name =*/ "SequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcDisseminationFieldData, data.SequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcDisseminationFieldData, data.SequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序列号")
+        /*.doc =*/ PyDoc_STR("序列号")
     },
     {NULL}  /* Sentinel */
 };
@@ -135,15 +135,15 @@ static PyType_Slot PyCThostFtdcDisseminationFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcDisseminationFieldType_spec = {
-    .name = "PyCTP.CThostFtdcDisseminationField",
+    /*.name =*/ "PyCTP.CThostFtdcDisseminationField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcDisseminationFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcDisseminationFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcDisseminationFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcDisseminationFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcDisseminationFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcDisseminationFieldType_slots_legacy,
 };
 #endif
 

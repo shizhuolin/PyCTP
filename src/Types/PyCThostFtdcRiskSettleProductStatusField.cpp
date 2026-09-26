@@ -197,26 +197,26 @@ static PyGetSetDef PyCThostFtdcRiskSettleProductStatusFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcRiskSettleProductStatusFieldType_get_ExchangeID,
-    .set = PyCThostFtdcRiskSettleProductStatusFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcRiskSettleProductStatusFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcRiskSettleProductStatusFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品编号
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcRiskSettleProductStatusFieldType_get_ProductID,
-    .set = PyCThostFtdcRiskSettleProductStatusFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品编号"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcRiskSettleProductStatusFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcRiskSettleProductStatusFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品编号"),
     },
     /// 产品结算状态
     /// typedef char TThostFtdcProductStatusType
     {
-    .name = "ProductStatus",
-    .get = PyCThostFtdcRiskSettleProductStatusFieldType_get_ProductStatus,
-    .set = PyCThostFtdcRiskSettleProductStatusFieldType_set_ProductStatus,
-    .doc = PyDoc_STR("产品结算状态"),
+    /*.name =*/ "ProductStatus",
+    /*.get =*/ PyCThostFtdcRiskSettleProductStatusFieldType_get_ProductStatus,
+    /*.set =*/ PyCThostFtdcRiskSettleProductStatusFieldType_set_ProductStatus,
+    /*.doc =*/ PyDoc_STR("产品结算状态"),
     },
     {NULL}  /* Sentinel */
 };
@@ -242,15 +242,15 @@ static PyType_Slot PyCThostFtdcRiskSettleProductStatusFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRiskSettleProductStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRiskSettleProductStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcRiskSettleProductStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRiskSettleProductStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRiskSettleProductStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRiskSettleProductStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRiskSettleProductStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRiskSettleProductStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRiskSettleProductStatusFieldType_slots_legacy,
 };
 #endif
 

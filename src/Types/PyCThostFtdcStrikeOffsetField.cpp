@@ -340,19 +340,19 @@ static PyMemberDef PyCThostFtdcStrikeOffsetFieldType_members[] = {
     /// 执行偏移值
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Offset",
+        /*.name =*/ "Offset",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcStrikeOffsetFieldData, data.Offset),
+        /*.offset =*/ offsetof(PyCThostFtdcStrikeOffsetFieldData, data.Offset),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("执行偏移值")
+        /*.doc =*/ PyDoc_STR("执行偏移值")
     },
     {NULL}  /* Sentinel */
 };
@@ -361,50 +361,50 @@ static PyGetSetDef PyCThostFtdcStrikeOffsetFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcStrikeOffsetFieldType_get_reserve1,
-    .set = PyCThostFtdcStrikeOffsetFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcStrikeOffsetFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcStrikeOffsetFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcStrikeOffsetFieldType_get_InvestorRange,
-    .set = PyCThostFtdcStrikeOffsetFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcStrikeOffsetFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcStrikeOffsetFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcStrikeOffsetFieldType_get_BrokerID,
-    .set = PyCThostFtdcStrikeOffsetFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcStrikeOffsetFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcStrikeOffsetFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcStrikeOffsetFieldType_get_InvestorID,
-    .set = PyCThostFtdcStrikeOffsetFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcStrikeOffsetFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcStrikeOffsetFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 执行偏移类型
     /// typedef char TThostFtdcStrikeOffsetTypeType
     {
-    .name = "OffsetType",
-    .get = PyCThostFtdcStrikeOffsetFieldType_get_OffsetType,
-    .set = PyCThostFtdcStrikeOffsetFieldType_set_OffsetType,
-    .doc = PyDoc_STR("执行偏移类型"),
+    /*.name =*/ "OffsetType",
+    /*.get =*/ PyCThostFtdcStrikeOffsetFieldType_get_OffsetType,
+    /*.set =*/ PyCThostFtdcStrikeOffsetFieldType_set_OffsetType,
+    /*.doc =*/ PyDoc_STR("执行偏移类型"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcStrikeOffsetFieldType_get_InstrumentID,
-    .set = PyCThostFtdcStrikeOffsetFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcStrikeOffsetFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcStrikeOffsetFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -430,15 +430,15 @@ static PyType_Slot PyCThostFtdcStrikeOffsetFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcStrikeOffsetFieldType_spec = {
-    .name = "PyCTP.CThostFtdcStrikeOffsetField",
+    /*.name =*/ "PyCTP.CThostFtdcStrikeOffsetField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcStrikeOffsetFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcStrikeOffsetFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcStrikeOffsetFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcStrikeOffsetFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcStrikeOffsetFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcStrikeOffsetFieldType_slots_legacy,
 };
 #endif
 

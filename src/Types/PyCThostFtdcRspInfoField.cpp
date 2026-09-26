@@ -116,19 +116,19 @@ static PyMemberDef PyCThostFtdcRspInfoFieldType_members[] = {
     /// 错误代码
     /// typedef int TThostFtdcErrorIDType
     {
-        .name = "ErrorID",
+        /*.name =*/ "ErrorID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspInfoFieldData, data.ErrorID),
+        /*.offset =*/ offsetof(PyCThostFtdcRspInfoFieldData, data.ErrorID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("错误代码")
+        /*.doc =*/ PyDoc_STR("错误代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -137,10 +137,10 @@ static PyGetSetDef PyCThostFtdcRspInfoFieldType_getsets[] = {
     /// 错误信息
     /// typedef char TThostFtdcErrorMsgType[81]
     {
-    .name = "ErrorMsg",
-    .get = PyCThostFtdcRspInfoFieldType_get_ErrorMsg,
-    .set = PyCThostFtdcRspInfoFieldType_set_ErrorMsg,
-    .doc = PyDoc_STR("错误信息"),
+    /*.name =*/ "ErrorMsg",
+    /*.get =*/ PyCThostFtdcRspInfoFieldType_get_ErrorMsg,
+    /*.set =*/ PyCThostFtdcRspInfoFieldType_set_ErrorMsg,
+    /*.doc =*/ PyDoc_STR("错误信息"),
     },
     {NULL}  /* Sentinel */
 };
@@ -166,15 +166,15 @@ static PyType_Slot PyCThostFtdcRspInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcRspInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspInfoFieldType_slots_legacy,
 };
 #endif
 

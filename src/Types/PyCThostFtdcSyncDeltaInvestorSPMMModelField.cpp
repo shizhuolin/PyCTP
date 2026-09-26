@@ -303,19 +303,19 @@ static PyMemberDef PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_members[] = {
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInvestorSPMMModelFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInvestorSPMMModelFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -324,42 +324,42 @@ static PyGetSetDef PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_BrokerID,
-    .set = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_InvestorID,
-    .set = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// SPMM模板ID
     /// typedef char TThostFtdcSPMMModelIDType[33]
     {
-    .name = "SPMMModelID",
-    .get = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_SPMMModelID,
-    .set = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_SPMMModelID,
-    .doc = PyDoc_STR("SPMM模板ID"),
+    /*.name =*/ "SPMMModelID",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_SPMMModelID,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_SPMMModelID,
+    /*.doc =*/ PyDoc_STR("SPMM模板ID"),
     },
     /// 操作标志
     /// typedef char TThostFtdcActionDirectionType
     {
-    .name = "ActionDirection",
-    .get = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_ActionDirection,
-    .set = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_ActionDirection,
-    .doc = PyDoc_STR("操作标志"),
+    /*.name =*/ "ActionDirection",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_get_ActionDirection,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_set_ActionDirection,
+    /*.doc =*/ PyDoc_STR("操作标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -385,15 +385,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_slots_legacy[
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaInvestorSPMMModelField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaInvestorSPMMModelField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvestorSPMMModelFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvestorSPMMModelFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvestorSPMMModelFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvestorSPMMModelFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaInvestorSPMMModelFieldType_slots_legacy,
 };
 #endif
 

@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQryCombLegFieldType_getsets[] = {
     /// 单腿合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "LegInstrumentID",
-    .get = PyCThostFtdcQryCombLegFieldType_get_LegInstrumentID,
-    .set = PyCThostFtdcQryCombLegFieldType_set_LegInstrumentID,
-    .doc = PyDoc_STR("单腿合约代码"),
+    /*.name =*/ "LegInstrumentID",
+    /*.get =*/ PyCThostFtdcQryCombLegFieldType_get_LegInstrumentID,
+    /*.set =*/ PyCThostFtdcQryCombLegFieldType_set_LegInstrumentID,
+    /*.doc =*/ PyDoc_STR("单腿合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQryCombLegFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryCombLegFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryCombLegField",
+    /*.name =*/ "PyCTP.CThostFtdcQryCombLegField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryCombLegFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryCombLegFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryCombLegFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryCombLegFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryCombLegFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryCombLegFieldType_slots_legacy,
 };
 #endif
 

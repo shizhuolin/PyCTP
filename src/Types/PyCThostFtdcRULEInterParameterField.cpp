@@ -356,87 +356,87 @@ static PyMemberDef PyCThostFtdcRULEInterParameterFieldType_members[] = {
     /// 优先级
     /// typedef int TThostFtdcSpreadIdType
     {
-        .name = "SpreadId",
+        /*.name =*/ "SpreadId",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInterParameterFieldData, data.SpreadId),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInterParameterFieldData, data.SpreadId),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("优先级")
+        /*.doc =*/ PyDoc_STR("优先级")
     },
     /// 品种间对锁仓费率折扣比例
     /// typedef double TThostFtdcRatioType
     {
-        .name = "InterRate",
+        /*.name =*/ "InterRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInterParameterFieldData, data.InterRate),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInterParameterFieldData, data.InterRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("品种间对锁仓费率折扣比例")
+        /*.doc =*/ PyDoc_STR("品种间对锁仓费率折扣比例")
     },
     /// 腿1比例系数
     /// typedef int TThostFtdcCommonIntType
     {
-        .name = "Leg1PropFactor",
+        /*.name =*/ "Leg1PropFactor",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInterParameterFieldData, data.Leg1PropFactor),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInterParameterFieldData, data.Leg1PropFactor),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("腿1比例系数")
+        /*.doc =*/ PyDoc_STR("腿1比例系数")
     },
     /// 腿2比例系数
     /// typedef int TThostFtdcCommonIntType
     {
-        .name = "Leg2PropFactor",
+        /*.name =*/ "Leg2PropFactor",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInterParameterFieldData, data.Leg2PropFactor),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInterParameterFieldData, data.Leg2PropFactor),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("腿2比例系数")
+        /*.doc =*/ PyDoc_STR("腿2比例系数")
     },
     /// 商品群号
     /// typedef int TThostFtdcCommodityGroupIDType
     {
-        .name = "CommodityGroupID",
+        /*.name =*/ "CommodityGroupID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRULEInterParameterFieldData, data.CommodityGroupID),
+        /*.offset =*/ offsetof(PyCThostFtdcRULEInterParameterFieldData, data.CommodityGroupID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("商品群号")
+        /*.doc =*/ PyDoc_STR("商品群号")
     },
     {NULL}  /* Sentinel */
 };
@@ -445,42 +445,42 @@ static PyGetSetDef PyCThostFtdcRULEInterParameterFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcRULEInterParameterFieldType_get_TradingDay,
-    .set = PyCThostFtdcRULEInterParameterFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcRULEInterParameterFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcRULEInterParameterFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcRULEInterParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcRULEInterParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcRULEInterParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcRULEInterParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 第一腿构成品种
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "Leg1ProdFamilyCode",
-    .get = PyCThostFtdcRULEInterParameterFieldType_get_Leg1ProdFamilyCode,
-    .set = PyCThostFtdcRULEInterParameterFieldType_set_Leg1ProdFamilyCode,
-    .doc = PyDoc_STR("第一腿构成品种"),
+    /*.name =*/ "Leg1ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcRULEInterParameterFieldType_get_Leg1ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcRULEInterParameterFieldType_set_Leg1ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("第一腿构成品种"),
     },
     /// 第二腿构成品种
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "Leg2ProdFamilyCode",
-    .get = PyCThostFtdcRULEInterParameterFieldType_get_Leg2ProdFamilyCode,
-    .set = PyCThostFtdcRULEInterParameterFieldType_set_Leg2ProdFamilyCode,
-    .doc = PyDoc_STR("第二腿构成品种"),
+    /*.name =*/ "Leg2ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcRULEInterParameterFieldType_get_Leg2ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcRULEInterParameterFieldType_set_Leg2ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("第二腿构成品种"),
     },
     /// 商品群名称
     /// typedef char TThostFtdcInstrumentNameType[21]
     {
-    .name = "CommodityGroupName",
-    .get = PyCThostFtdcRULEInterParameterFieldType_get_CommodityGroupName,
-    .set = PyCThostFtdcRULEInterParameterFieldType_set_CommodityGroupName,
-    .doc = PyDoc_STR("商品群名称"),
+    /*.name =*/ "CommodityGroupName",
+    /*.get =*/ PyCThostFtdcRULEInterParameterFieldType_get_CommodityGroupName,
+    /*.set =*/ PyCThostFtdcRULEInterParameterFieldType_set_CommodityGroupName,
+    /*.doc =*/ PyDoc_STR("商品群名称"),
     },
     {NULL}  /* Sentinel */
 };
@@ -506,15 +506,15 @@ static PyType_Slot PyCThostFtdcRULEInterParameterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRULEInterParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRULEInterParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcRULEInterParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRULEInterParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRULEInterParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRULEInterParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRULEInterParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRULEInterParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRULEInterParameterFieldType_slots_legacy,
 };
 #endif
 

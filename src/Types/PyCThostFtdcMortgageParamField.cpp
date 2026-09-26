@@ -176,36 +176,36 @@ static PyMemberDef PyCThostFtdcMortgageParamFieldType_members[] = {
     /// 质押配比系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "MortgageBalance",
+        /*.name =*/ "MortgageBalance",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMortgageParamFieldData, data.MortgageBalance),
+        /*.offset =*/ offsetof(PyCThostFtdcMortgageParamFieldData, data.MortgageBalance),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("质押配比系数")
+        /*.doc =*/ PyDoc_STR("质押配比系数")
     },
     /// 开仓是否验证质押配比
     /// typedef int TThostFtdcBoolType
     {
-        .name = "CheckMortgageRatio",
+        /*.name =*/ "CheckMortgageRatio",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMortgageParamFieldData, data.CheckMortgageRatio),
+        /*.offset =*/ offsetof(PyCThostFtdcMortgageParamFieldData, data.CheckMortgageRatio),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("开仓是否验证质押配比")
+        /*.doc =*/ PyDoc_STR("开仓是否验证质押配比")
     },
     {NULL}  /* Sentinel */
 };
@@ -214,18 +214,18 @@ static PyGetSetDef PyCThostFtdcMortgageParamFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcMortgageParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcMortgageParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcMortgageParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcMortgageParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcMortgageParamFieldType_get_AccountID,
-    .set = PyCThostFtdcMortgageParamFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcMortgageParamFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcMortgageParamFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -251,15 +251,15 @@ static PyType_Slot PyCThostFtdcMortgageParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMortgageParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMortgageParamField",
+    /*.name =*/ "PyCTP.CThostFtdcMortgageParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMortgageParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMortgageParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMortgageParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMortgageParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMortgageParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMortgageParamFieldType_slots_legacy,
 };
 #endif
 

@@ -247,34 +247,34 @@ static PyGetSetDef PyCThostFtdcDepartmentUserFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcDepartmentUserFieldType_get_BrokerID,
-    .set = PyCThostFtdcDepartmentUserFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcDepartmentUserFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcDepartmentUserFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcDepartmentUserFieldType_get_UserID,
-    .set = PyCThostFtdcDepartmentUserFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcDepartmentUserFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcDepartmentUserFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcDepartmentRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcDepartmentUserFieldType_get_InvestorRange,
-    .set = PyCThostFtdcDepartmentUserFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcDepartmentUserFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcDepartmentUserFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcDepartmentUserFieldType_get_InvestorID,
-    .set = PyCThostFtdcDepartmentUserFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcDepartmentUserFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcDepartmentUserFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -300,15 +300,15 @@ static PyType_Slot PyCThostFtdcDepartmentUserFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcDepartmentUserFieldType_spec = {
-    .name = "PyCTP.CThostFtdcDepartmentUserField",
+    /*.name =*/ "PyCTP.CThostFtdcDepartmentUserField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcDepartmentUserFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcDepartmentUserFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcDepartmentUserFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcDepartmentUserFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcDepartmentUserFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcDepartmentUserFieldType_slots_legacy,
 };
 #endif
 

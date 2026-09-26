@@ -166,19 +166,19 @@ static PyMemberDef PyCThostFtdcQryMulticastInstrumentFieldType_members[] = {
     /// 主题号
     /// typedef int TThostFtdcInstallIDType
     {
-        .name = "TopicID",
+        /*.name =*/ "TopicID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQryMulticastInstrumentFieldData, data.TopicID),
+        /*.offset =*/ offsetof(PyCThostFtdcQryMulticastInstrumentFieldData, data.TopicID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("主题号")
+        /*.doc =*/ PyDoc_STR("主题号")
     },
     {NULL}  /* Sentinel */
 };
@@ -187,18 +187,18 @@ static PyGetSetDef PyCThostFtdcQryMulticastInstrumentFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryMulticastInstrumentFieldType_get_reserve1,
-    .set = PyCThostFtdcQryMulticastInstrumentFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryMulticastInstrumentFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryMulticastInstrumentFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryMulticastInstrumentFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryMulticastInstrumentFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryMulticastInstrumentFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryMulticastInstrumentFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -224,15 +224,15 @@ static PyType_Slot PyCThostFtdcQryMulticastInstrumentFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryMulticastInstrumentFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryMulticastInstrumentField",
+    /*.name =*/ "PyCTP.CThostFtdcQryMulticastInstrumentField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryMulticastInstrumentFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryMulticastInstrumentFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryMulticastInstrumentFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryMulticastInstrumentFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryMulticastInstrumentFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryMulticastInstrumentFieldType_slots_legacy,
 };
 #endif
 

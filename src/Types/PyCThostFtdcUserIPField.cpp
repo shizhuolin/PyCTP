@@ -410,58 +410,58 @@ static PyGetSetDef PyCThostFtdcUserIPFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcUserIPFieldType_get_BrokerID,
-    .set = PyCThostFtdcUserIPFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcUserIPFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcUserIPFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcUserIPFieldType_get_UserID,
-    .set = PyCThostFtdcUserIPFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcUserIPFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcUserIPFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcUserIPFieldType_get_reserve1,
-    .set = PyCThostFtdcUserIPFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcUserIPFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcUserIPFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcUserIPFieldType_get_reserve2,
-    .set = PyCThostFtdcUserIPFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcUserIPFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcUserIPFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// Mac地址
     /// typedef char TThostFtdcMacAddressType[21]
     {
-    .name = "MacAddress",
-    .get = PyCThostFtdcUserIPFieldType_get_MacAddress,
-    .set = PyCThostFtdcUserIPFieldType_set_MacAddress,
-    .doc = PyDoc_STR("Mac地址"),
+    /*.name =*/ "MacAddress",
+    /*.get =*/ PyCThostFtdcUserIPFieldType_get_MacAddress,
+    /*.set =*/ PyCThostFtdcUserIPFieldType_set_MacAddress,
+    /*.doc =*/ PyDoc_STR("Mac地址"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcUserIPFieldType_get_IPAddress,
-    .set = PyCThostFtdcUserIPFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcUserIPFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcUserIPFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     /// IP地址掩码
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPMask",
-    .get = PyCThostFtdcUserIPFieldType_get_IPMask,
-    .set = PyCThostFtdcUserIPFieldType_set_IPMask,
-    .doc = PyDoc_STR("IP地址掩码"),
+    /*.name =*/ "IPMask",
+    /*.get =*/ PyCThostFtdcUserIPFieldType_get_IPMask,
+    /*.set =*/ PyCThostFtdcUserIPFieldType_set_IPMask,
+    /*.doc =*/ PyDoc_STR("IP地址掩码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -487,15 +487,15 @@ static PyType_Slot PyCThostFtdcUserIPFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcUserIPFieldType_spec = {
-    .name = "PyCTP.CThostFtdcUserIPField",
+    /*.name =*/ "PyCTP.CThostFtdcUserIPField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcUserIPFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcUserIPFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcUserIPFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcUserIPFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcUserIPFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcUserIPFieldType_slots_legacy,
 };
 #endif
 

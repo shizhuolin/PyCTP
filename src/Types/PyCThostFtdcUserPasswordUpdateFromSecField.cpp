@@ -266,19 +266,19 @@ static PyMemberDef PyCThostFtdcUserPasswordUpdateFromSecFieldType_members[] = {
     /// 次席的交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "FromSec",
+        /*.name =*/ "FromSec",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcUserPasswordUpdateFromSecFieldData, data.FromSec),
+        /*.offset =*/ offsetof(PyCThostFtdcUserPasswordUpdateFromSecFieldData, data.FromSec),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("次席的交易中心代码")
+        /*.doc =*/ PyDoc_STR("次席的交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -287,34 +287,34 @@ static PyGetSetDef PyCThostFtdcUserPasswordUpdateFromSecFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_BrokerID,
-    .set = PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_UserID,
-    .set = PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 原来的口令
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "OldPassword",
-    .get = PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_OldPassword,
-    .set = PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_OldPassword,
-    .doc = PyDoc_STR("原来的口令"),
+    /*.name =*/ "OldPassword",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_OldPassword,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_OldPassword,
+    /*.doc =*/ PyDoc_STR("原来的口令"),
     },
     /// 新的口令
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "NewPassword",
-    .get = PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_NewPassword,
-    .set = PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_NewPassword,
-    .doc = PyDoc_STR("新的口令"),
+    /*.name =*/ "NewPassword",
+    /*.get =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_get_NewPassword,
+    /*.set =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_set_NewPassword,
+    /*.doc =*/ PyDoc_STR("新的口令"),
     },
     {NULL}  /* Sentinel */
 };
@@ -340,15 +340,15 @@ static PyType_Slot PyCThostFtdcUserPasswordUpdateFromSecFieldType_slots_legacy[]
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcUserPasswordUpdateFromSecFieldType_spec = {
-    .name = "PyCTP.CThostFtdcUserPasswordUpdateFromSecField",
+    /*.name =*/ "PyCTP.CThostFtdcUserPasswordUpdateFromSecField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFromSecFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFromSecFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFromSecFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcUserPasswordUpdateFromSecFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcUserPasswordUpdateFromSecFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcUserPasswordUpdateFromSecFieldType_slots_legacy,
 };
 #endif
 

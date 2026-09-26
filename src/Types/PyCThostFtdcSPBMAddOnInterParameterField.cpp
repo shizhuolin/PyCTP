@@ -276,36 +276,36 @@ static PyMemberDef PyCThostFtdcSPBMAddOnInterParameterFieldType_members[] = {
     /// 优先级
     /// typedef int TThostFtdcSpreadIdType
     {
-        .name = "SpreadId",
+        /*.name =*/ "SpreadId",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSPBMAddOnInterParameterFieldData, data.SpreadId),
+        /*.offset =*/ offsetof(PyCThostFtdcSPBMAddOnInterParameterFieldData, data.SpreadId),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("优先级")
+        /*.doc =*/ PyDoc_STR("优先级")
     },
     /// 品种间对锁仓附加费率折扣比例
     /// typedef double TThostFtdcRatioType
     {
-        .name = "AddOnInterRateZ2",
+        /*.name =*/ "AddOnInterRateZ2",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSPBMAddOnInterParameterFieldData, data.AddOnInterRateZ2),
+        /*.offset =*/ offsetof(PyCThostFtdcSPBMAddOnInterParameterFieldData, data.AddOnInterRateZ2),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("品种间对锁仓附加费率折扣比例")
+        /*.doc =*/ PyDoc_STR("品种间对锁仓附加费率折扣比例")
     },
     {NULL}  /* Sentinel */
 };
@@ -314,34 +314,34 @@ static PyGetSetDef PyCThostFtdcSPBMAddOnInterParameterFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSPBMAddOnInterParameterFieldType_get_TradingDay,
-    .set = PyCThostFtdcSPBMAddOnInterParameterFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSPBMAddOnInterParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSPBMAddOnInterParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 第一腿构成品种
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "Leg1ProdFamilyCode",
-    .get = PyCThostFtdcSPBMAddOnInterParameterFieldType_get_Leg1ProdFamilyCode,
-    .set = PyCThostFtdcSPBMAddOnInterParameterFieldType_set_Leg1ProdFamilyCode,
-    .doc = PyDoc_STR("第一腿构成品种"),
+    /*.name =*/ "Leg1ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_get_Leg1ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_set_Leg1ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("第一腿构成品种"),
     },
     /// 第二腿构成品种
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "Leg2ProdFamilyCode",
-    .get = PyCThostFtdcSPBMAddOnInterParameterFieldType_get_Leg2ProdFamilyCode,
-    .set = PyCThostFtdcSPBMAddOnInterParameterFieldType_set_Leg2ProdFamilyCode,
-    .doc = PyDoc_STR("第二腿构成品种"),
+    /*.name =*/ "Leg2ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_get_Leg2ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_set_Leg2ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("第二腿构成品种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -367,15 +367,15 @@ static PyType_Slot PyCThostFtdcSPBMAddOnInterParameterFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSPBMAddOnInterParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSPBMAddOnInterParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcSPBMAddOnInterParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSPBMAddOnInterParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSPBMAddOnInterParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSPBMAddOnInterParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSPBMAddOnInterParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSPBMAddOnInterParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSPBMAddOnInterParameterFieldType_slots_legacy,
 };
 #endif
 

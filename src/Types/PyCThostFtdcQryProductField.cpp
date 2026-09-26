@@ -247,34 +247,34 @@ static PyGetSetDef PyCThostFtdcQryProductFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryProductFieldType_get_reserve1,
-    .set = PyCThostFtdcQryProductFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryProductFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryProductFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 产品类型
     /// typedef char TThostFtdcProductClassType
     {
-    .name = "ProductClass",
-    .get = PyCThostFtdcQryProductFieldType_get_ProductClass,
-    .set = PyCThostFtdcQryProductFieldType_set_ProductClass,
-    .doc = PyDoc_STR("产品类型"),
+    /*.name =*/ "ProductClass",
+    /*.get =*/ PyCThostFtdcQryProductFieldType_get_ProductClass,
+    /*.set =*/ PyCThostFtdcQryProductFieldType_set_ProductClass,
+    /*.doc =*/ PyDoc_STR("产品类型"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryProductFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryProductFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryProductFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryProductFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcQryProductFieldType_get_ProductID,
-    .set = PyCThostFtdcQryProductFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcQryProductFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcQryProductFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -300,15 +300,15 @@ static PyType_Slot PyCThostFtdcQryProductFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryProductFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryProductField",
+    /*.name =*/ "PyCTP.CThostFtdcQryProductField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryProductFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryProductFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryProductFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryProductFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryProductFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryProductFieldType_slots_legacy,
 };
 #endif
 

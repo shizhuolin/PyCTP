@@ -490,19 +490,19 @@ static PyMemberDef PyCThostFtdcInstrumentStatusFieldType_members[] = {
     /// 交易阶段编号
     /// typedef int TThostFtdcTradingSegmentSNType
     {
-        .name = "TradingSegmentSN",
+        /*.name =*/ "TradingSegmentSN",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInstrumentStatusFieldData, data.TradingSegmentSN),
+        /*.offset =*/ offsetof(PyCThostFtdcInstrumentStatusFieldData, data.TradingSegmentSN),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易阶段编号")
+        /*.doc =*/ PyDoc_STR("交易阶段编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -511,74 +511,74 @@ static PyGetSetDef PyCThostFtdcInstrumentStatusFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_ExchangeID,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldExchangeInstIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_reserve1,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 结算组代码
     /// typedef char TThostFtdcSettlementGroupIDType[9]
     {
-    .name = "SettlementGroupID",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_SettlementGroupID,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_SettlementGroupID,
-    .doc = PyDoc_STR("结算组代码"),
+    /*.name =*/ "SettlementGroupID",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_SettlementGroupID,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_SettlementGroupID,
+    /*.doc =*/ PyDoc_STR("结算组代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_reserve2,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约交易状态
     /// typedef char TThostFtdcInstrumentStatusType
     {
-    .name = "InstrumentStatus",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_InstrumentStatus,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_InstrumentStatus,
-    .doc = PyDoc_STR("合约交易状态"),
+    /*.name =*/ "InstrumentStatus",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_InstrumentStatus,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_InstrumentStatus,
+    /*.doc =*/ PyDoc_STR("合约交易状态"),
     },
     /// 进入本状态时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "EnterTime",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_EnterTime,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_EnterTime,
-    .doc = PyDoc_STR("进入本状态时间"),
+    /*.name =*/ "EnterTime",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_EnterTime,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_EnterTime,
+    /*.doc =*/ PyDoc_STR("进入本状态时间"),
     },
     /// 进入本状态原因
     /// typedef char TThostFtdcInstStatusEnterReasonType
     {
-    .name = "EnterReason",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_EnterReason,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_EnterReason,
-    .doc = PyDoc_STR("进入本状态原因"),
+    /*.name =*/ "EnterReason",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_EnterReason,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_EnterReason,
+    /*.doc =*/ PyDoc_STR("进入本状态原因"),
     },
     /// 合约在交易所的代码
     /// typedef char TThostFtdcExchangeInstIDType[81]
     {
-    .name = "ExchangeInstID",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_ExchangeInstID,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_ExchangeInstID,
-    .doc = PyDoc_STR("合约在交易所的代码"),
+    /*.name =*/ "ExchangeInstID",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_ExchangeInstID,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_ExchangeInstID,
+    /*.doc =*/ PyDoc_STR("合约在交易所的代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcInstrumentStatusFieldType_get_InstrumentID,
-    .set = PyCThostFtdcInstrumentStatusFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcInstrumentStatusFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcInstrumentStatusFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -604,15 +604,15 @@ static PyType_Slot PyCThostFtdcInstrumentStatusFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInstrumentStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInstrumentStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcInstrumentStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInstrumentStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInstrumentStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInstrumentStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInstrumentStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInstrumentStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInstrumentStatusFieldType_slots_legacy,
 };
 #endif
 

@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcQrySettlementInfoConfirmFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQrySettlementInfoConfirmFieldType_get_BrokerID,
-    .set = PyCThostFtdcQrySettlementInfoConfirmFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQrySettlementInfoConfirmFieldType_get_InvestorID,
-    .set = PyCThostFtdcQrySettlementInfoConfirmFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcQrySettlementInfoConfirmFieldType_get_AccountID,
-    .set = PyCThostFtdcQrySettlementInfoConfirmFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcQrySettlementInfoConfirmFieldType_get_CurrencyID,
-    .set = PyCThostFtdcQrySettlementInfoConfirmFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcQrySettlementInfoConfirmFieldType_slots_legacy[] 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySettlementInfoConfirmFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySettlementInfoConfirmField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySettlementInfoConfirmField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySettlementInfoConfirmFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySettlementInfoConfirmFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySettlementInfoConfirmFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySettlementInfoConfirmFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySettlementInfoConfirmFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySettlementInfoConfirmFieldType_slots_legacy,
 };
 #endif
 

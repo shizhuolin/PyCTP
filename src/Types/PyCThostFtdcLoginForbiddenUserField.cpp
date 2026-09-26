@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcLoginForbiddenUserFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcLoginForbiddenUserFieldType_get_BrokerID,
-    .set = PyCThostFtdcLoginForbiddenUserFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcLoginForbiddenUserFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcLoginForbiddenUserFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcLoginForbiddenUserFieldType_get_UserID,
-    .set = PyCThostFtdcLoginForbiddenUserFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcLoginForbiddenUserFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcLoginForbiddenUserFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcLoginForbiddenUserFieldType_get_reserve1,
-    .set = PyCThostFtdcLoginForbiddenUserFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcLoginForbiddenUserFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcLoginForbiddenUserFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcLoginForbiddenUserFieldType_get_IPAddress,
-    .set = PyCThostFtdcLoginForbiddenUserFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcLoginForbiddenUserFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcLoginForbiddenUserFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcLoginForbiddenUserFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcLoginForbiddenUserFieldType_spec = {
-    .name = "PyCTP.CThostFtdcLoginForbiddenUserField",
+    /*.name =*/ "PyCTP.CThostFtdcLoginForbiddenUserField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenUserFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenUserFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenUserFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcLoginForbiddenUserFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcLoginForbiddenUserFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcLoginForbiddenUserFieldType_slots_legacy,
 };
 #endif
 

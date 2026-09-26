@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryOptionSelfCloseActionFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryOptionSelfCloseActionFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryOptionSelfCloseActionFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryOptionSelfCloseActionFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryOptionSelfCloseActionFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryOptionSelfCloseActionFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryOptionSelfCloseActionFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryOptionSelfCloseActionFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryOptionSelfCloseActionFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryOptionSelfCloseActionFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryOptionSelfCloseActionFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryOptionSelfCloseActionFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryOptionSelfCloseActionFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryOptionSelfCloseActionFieldType_slots_legacy[] 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryOptionSelfCloseActionFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryOptionSelfCloseActionField",
+    /*.name =*/ "PyCTP.CThostFtdcQryOptionSelfCloseActionField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryOptionSelfCloseActionFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryOptionSelfCloseActionFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryOptionSelfCloseActionFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryOptionSelfCloseActionFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryOptionSelfCloseActionFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryOptionSelfCloseActionFieldType_slots_legacy,
 };
 #endif
 

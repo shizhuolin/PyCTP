@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcAuthIPFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAuthIPFieldType_get_BrokerID,
-    .set = PyCThostFtdcAuthIPFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAuthIPFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAuthIPFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcAuthIPFieldType_get_AppID,
-    .set = PyCThostFtdcAuthIPFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcAuthIPFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcAuthIPFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcAuthIPFieldType_get_IPAddress,
-    .set = PyCThostFtdcAuthIPFieldType_set_IPAddress,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcAuthIPFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcAuthIPFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcAuthIPFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAuthIPFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAuthIPField",
+    /*.name =*/ "PyCTP.CThostFtdcAuthIPField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAuthIPFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAuthIPFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAuthIPFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAuthIPFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAuthIPFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAuthIPFieldType_slots_legacy,
 };
 #endif
 

@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcSpecificInstrumentFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcSpecificInstrumentFieldType_get_reserve1,
-    .set = PyCThostFtdcSpecificInstrumentFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcSpecificInstrumentFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcSpecificInstrumentFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcSpecificInstrumentFieldType_get_InstrumentID,
-    .set = PyCThostFtdcSpecificInstrumentFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcSpecificInstrumentFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcSpecificInstrumentFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcSpecificInstrumentFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSpecificInstrumentFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSpecificInstrumentField",
+    /*.name =*/ "PyCTP.CThostFtdcSpecificInstrumentField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSpecificInstrumentFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSpecificInstrumentFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSpecificInstrumentFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSpecificInstrumentFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSpecificInstrumentFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSpecificInstrumentFieldType_slots_legacy,
 };
 #endif
 

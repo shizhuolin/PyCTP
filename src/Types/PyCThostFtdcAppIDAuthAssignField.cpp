@@ -166,19 +166,19 @@ static PyMemberDef PyCThostFtdcAppIDAuthAssignFieldType_members[] = {
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DRIdentityID",
+        /*.name =*/ "DRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcAppIDAuthAssignFieldData, data.DRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcAppIDAuthAssignFieldData, data.DRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -187,18 +187,18 @@ static PyGetSetDef PyCThostFtdcAppIDAuthAssignFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAppIDAuthAssignFieldType_get_BrokerID,
-    .set = PyCThostFtdcAppIDAuthAssignFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAppIDAuthAssignFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAppIDAuthAssignFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcAppIDAuthAssignFieldType_get_AppID,
-    .set = PyCThostFtdcAppIDAuthAssignFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcAppIDAuthAssignFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcAppIDAuthAssignFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -224,15 +224,15 @@ static PyType_Slot PyCThostFtdcAppIDAuthAssignFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAppIDAuthAssignFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAppIDAuthAssignField",
+    /*.name =*/ "PyCTP.CThostFtdcAppIDAuthAssignField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAppIDAuthAssignFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAppIDAuthAssignFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAppIDAuthAssignFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAppIDAuthAssignFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAppIDAuthAssignFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAppIDAuthAssignFieldType_slots_legacy,
 };
 #endif
 

@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcReqGenSMSCodeFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcReqGenSMSCodeFieldType_get_BrokerID,
-    .set = PyCThostFtdcReqGenSMSCodeFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcReqGenSMSCodeFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcReqGenSMSCodeFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcReqGenSMSCodeFieldType_get_UserID,
-    .set = PyCThostFtdcReqGenSMSCodeFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcReqGenSMSCodeFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcReqGenSMSCodeFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 手机号
     /// typedef char TThostFtdcSMSPhoneType[17]
     {
-    .name = "Mobile",
-    .get = PyCThostFtdcReqGenSMSCodeFieldType_get_Mobile,
-    .set = PyCThostFtdcReqGenSMSCodeFieldType_set_Mobile,
-    .doc = PyDoc_STR("手机号"),
+    /*.name =*/ "Mobile",
+    /*.get =*/ PyCThostFtdcReqGenSMSCodeFieldType_get_Mobile,
+    /*.set =*/ PyCThostFtdcReqGenSMSCodeFieldType_set_Mobile,
+    /*.doc =*/ PyDoc_STR("手机号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcReqGenSMSCodeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqGenSMSCodeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqGenSMSCodeField",
+    /*.name =*/ "PyCTP.CThostFtdcReqGenSMSCodeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqGenSMSCodeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqGenSMSCodeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqGenSMSCodeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqGenSMSCodeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqGenSMSCodeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqGenSMSCodeFieldType_slots_legacy,
 };
 #endif
 

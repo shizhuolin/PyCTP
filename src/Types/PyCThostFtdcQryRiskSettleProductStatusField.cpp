@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQryRiskSettleProductStatusFieldType_getsets[] = {
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcQryRiskSettleProductStatusFieldType_get_ProductID,
-    .set = PyCThostFtdcQryRiskSettleProductStatusFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcQryRiskSettleProductStatusFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcQryRiskSettleProductStatusFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQryRiskSettleProductStatusFieldType_slots_legacy[
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryRiskSettleProductStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryRiskSettleProductStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcQryRiskSettleProductStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryRiskSettleProductStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryRiskSettleProductStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryRiskSettleProductStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryRiskSettleProductStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryRiskSettleProductStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryRiskSettleProductStatusFieldType_slots_legacy,
 };
 #endif
 

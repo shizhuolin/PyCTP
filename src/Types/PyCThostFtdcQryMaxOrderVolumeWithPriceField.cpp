@@ -487,36 +487,36 @@ static PyMemberDef PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_members[] = {
     /// 最大允许报单数量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "MaxVolume",
+        /*.name =*/ "MaxVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData, data.MaxVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData, data.MaxVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最大允许报单数量")
+        /*.doc =*/ PyDoc_STR("最大允许报单数量")
     },
     /// 报单价格
     /// typedef double TThostFtdcPriceType
     {
-        .name = "Price",
+        /*.name =*/ "Price",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData, data.Price),
+        /*.offset =*/ offsetof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData, data.Price),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("报单价格")
+        /*.doc =*/ PyDoc_STR("报单价格")
     },
     {NULL}  /* Sentinel */
 };
@@ -525,74 +525,74 @@ static PyGetSetDef PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_reserve1,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 买卖方向
     /// typedef char TThostFtdcDirectionType
     {
-    .name = "Direction",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_Direction,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_Direction,
-    .doc = PyDoc_STR("买卖方向"),
+    /*.name =*/ "Direction",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_Direction,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_Direction,
+    /*.doc =*/ PyDoc_STR("买卖方向"),
     },
     /// 开平标志
     /// typedef char TThostFtdcOffsetFlagType
     {
-    .name = "OffsetFlag",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_OffsetFlag,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_OffsetFlag,
-    .doc = PyDoc_STR("开平标志"),
+    /*.name =*/ "OffsetFlag",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_OffsetFlag,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_OffsetFlag,
+    /*.doc =*/ PyDoc_STR("开平标志"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -618,15 +618,15 @@ static PyType_Slot PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_slots_legacy[
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryMaxOrderVolumeWithPriceField",
+    /*.name =*/ "PyCTP.CThostFtdcQryMaxOrderVolumeWithPriceField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryMaxOrderVolumeWithPriceFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryMaxOrderVolumeWithPriceFieldType_slots_legacy,
 };
 #endif
 

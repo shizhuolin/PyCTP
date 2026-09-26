@@ -66,19 +66,19 @@ static PyMemberDef PyCThostFtdcRspGenUserTextFieldType_members[] = {
     /// 短信验证码序号
     /// typedef int TThostFtdcUserTextSeqType
     {
-        .name = "UserTextSeq",
+        /*.name =*/ "UserTextSeq",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspGenUserTextFieldData, data.UserTextSeq),
+        /*.offset =*/ offsetof(PyCThostFtdcRspGenUserTextFieldData, data.UserTextSeq),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("短信验证码序号")
+        /*.doc =*/ PyDoc_STR("短信验证码序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -108,15 +108,15 @@ static PyType_Slot PyCThostFtdcRspGenUserTextFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspGenUserTextFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspGenUserTextField",
+    /*.name =*/ "PyCTP.CThostFtdcRspGenUserTextField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspGenUserTextFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspGenUserTextFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspGenUserTextFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspGenUserTextFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspGenUserTextFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspGenUserTextFieldType_slots_legacy,
 };
 #endif
 

@@ -203,19 +203,19 @@ static PyMemberDef PyCThostFtdcSyncDeltaProductStatusFieldType_members[] = {
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaProductStatusFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaProductStatusFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -224,26 +224,26 @@ static PyGetSetDef PyCThostFtdcSyncDeltaProductStatusFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSyncDeltaProductStatusFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSyncDeltaProductStatusFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSyncDeltaProductStatusFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSyncDeltaProductStatusFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcSyncDeltaProductStatusFieldType_get_ProductID,
-    .set = PyCThostFtdcSyncDeltaProductStatusFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcSyncDeltaProductStatusFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcSyncDeltaProductStatusFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     /// 是否允许交易
     /// typedef char TThostFtdcProductStatusType
     {
-    .name = "ProductStatus",
-    .get = PyCThostFtdcSyncDeltaProductStatusFieldType_get_ProductStatus,
-    .set = PyCThostFtdcSyncDeltaProductStatusFieldType_set_ProductStatus,
-    .doc = PyDoc_STR("是否允许交易"),
+    /*.name =*/ "ProductStatus",
+    /*.get =*/ PyCThostFtdcSyncDeltaProductStatusFieldType_get_ProductStatus,
+    /*.set =*/ PyCThostFtdcSyncDeltaProductStatusFieldType_set_ProductStatus,
+    /*.doc =*/ PyDoc_STR("是否允许交易"),
     },
     {NULL}  /* Sentinel */
 };
@@ -269,15 +269,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaProductStatusFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaProductStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaProductStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaProductStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaProductStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaProductStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaProductStatusFieldType_slots_legacy,
 };
 #endif
 

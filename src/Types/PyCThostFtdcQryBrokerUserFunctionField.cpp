@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQryBrokerUserFunctionFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryBrokerUserFunctionFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryBrokerUserFunctionFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryBrokerUserFunctionFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryBrokerUserFunctionFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcQryBrokerUserFunctionFieldType_get_UserID,
-    .set = PyCThostFtdcQryBrokerUserFunctionFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcQryBrokerUserFunctionFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcQryBrokerUserFunctionFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQryBrokerUserFunctionFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryBrokerUserFunctionFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryBrokerUserFunctionField",
+    /*.name =*/ "PyCTP.CThostFtdcQryBrokerUserFunctionField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserFunctionFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserFunctionFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserFunctionFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserFunctionFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryBrokerUserFunctionFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryBrokerUserFunctionFieldType_slots_legacy,
 };
 #endif
 

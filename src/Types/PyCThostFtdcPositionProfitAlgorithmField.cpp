@@ -297,42 +297,42 @@ static PyGetSetDef PyCThostFtdcPositionProfitAlgorithmFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcPositionProfitAlgorithmFieldType_get_BrokerID,
-    .set = PyCThostFtdcPositionProfitAlgorithmFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcPositionProfitAlgorithmFieldType_get_AccountID,
-    .set = PyCThostFtdcPositionProfitAlgorithmFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 盈亏算法
     /// typedef char TThostFtdcAlgorithmType
     {
-    .name = "Algorithm",
-    .get = PyCThostFtdcPositionProfitAlgorithmFieldType_get_Algorithm,
-    .set = PyCThostFtdcPositionProfitAlgorithmFieldType_set_Algorithm,
-    .doc = PyDoc_STR("盈亏算法"),
+    /*.name =*/ "Algorithm",
+    /*.get =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_get_Algorithm,
+    /*.set =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_set_Algorithm,
+    /*.doc =*/ PyDoc_STR("盈亏算法"),
     },
     /// 备注
     /// typedef char TThostFtdcMemoType[161]
     {
-    .name = "Memo",
-    .get = PyCThostFtdcPositionProfitAlgorithmFieldType_get_Memo,
-    .set = PyCThostFtdcPositionProfitAlgorithmFieldType_set_Memo,
-    .doc = PyDoc_STR("备注"),
+    /*.name =*/ "Memo",
+    /*.get =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_get_Memo,
+    /*.set =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_set_Memo,
+    /*.doc =*/ PyDoc_STR("备注"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcPositionProfitAlgorithmFieldType_get_CurrencyID,
-    .set = PyCThostFtdcPositionProfitAlgorithmFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -358,15 +358,15 @@ static PyType_Slot PyCThostFtdcPositionProfitAlgorithmFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcPositionProfitAlgorithmFieldType_spec = {
-    .name = "PyCTP.CThostFtdcPositionProfitAlgorithmField",
+    /*.name =*/ "PyCTP.CThostFtdcPositionProfitAlgorithmField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcPositionProfitAlgorithmFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcPositionProfitAlgorithmFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcPositionProfitAlgorithmFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcPositionProfitAlgorithmFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcPositionProfitAlgorithmFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcPositionProfitAlgorithmFieldType_slots_legacy,
 };
 #endif
 

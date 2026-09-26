@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQrySecAgentTradeInfoFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQrySecAgentTradeInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcQrySecAgentTradeInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQrySecAgentTradeInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQrySecAgentTradeInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 境外中介机构资金帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "BrokerSecAgentID",
-    .get = PyCThostFtdcQrySecAgentTradeInfoFieldType_get_BrokerSecAgentID,
-    .set = PyCThostFtdcQrySecAgentTradeInfoFieldType_set_BrokerSecAgentID,
-    .doc = PyDoc_STR("境外中介机构资金帐号"),
+    /*.name =*/ "BrokerSecAgentID",
+    /*.get =*/ PyCThostFtdcQrySecAgentTradeInfoFieldType_get_BrokerSecAgentID,
+    /*.set =*/ PyCThostFtdcQrySecAgentTradeInfoFieldType_set_BrokerSecAgentID,
+    /*.doc =*/ PyDoc_STR("境外中介机构资金帐号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQrySecAgentTradeInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySecAgentTradeInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySecAgentTradeInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySecAgentTradeInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentTradeInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentTradeInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentTradeInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentTradeInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySecAgentTradeInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySecAgentTradeInfoFieldType_slots_legacy,
 };
 #endif
 

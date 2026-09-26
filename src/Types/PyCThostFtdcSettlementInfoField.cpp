@@ -376,36 +376,36 @@ static PyMemberDef PyCThostFtdcSettlementInfoFieldType_members[] = {
     /// 结算编号
     /// typedef int TThostFtdcSettlementIDType
     {
-        .name = "SettlementID",
+        /*.name =*/ "SettlementID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSettlementInfoFieldData, data.SettlementID),
+        /*.offset =*/ offsetof(PyCThostFtdcSettlementInfoFieldData, data.SettlementID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("结算编号")
+        /*.doc =*/ PyDoc_STR("结算编号")
     },
     /// 序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SequenceNo",
+        /*.name =*/ "SequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSettlementInfoFieldData, data.SequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSettlementInfoFieldData, data.SequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序号")
+        /*.doc =*/ PyDoc_STR("序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -414,50 +414,50 @@ static PyGetSetDef PyCThostFtdcSettlementInfoFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSettlementInfoFieldType_get_TradingDay,
-    .set = PyCThostFtdcSettlementInfoFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSettlementInfoFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSettlementInfoFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSettlementInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcSettlementInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSettlementInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSettlementInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcSettlementInfoFieldType_get_InvestorID,
-    .set = PyCThostFtdcSettlementInfoFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcSettlementInfoFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcSettlementInfoFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 消息正文
     /// typedef char TThostFtdcContentType[501]
     {
-    .name = "Content",
-    .get = PyCThostFtdcSettlementInfoFieldType_get_Content,
-    .set = PyCThostFtdcSettlementInfoFieldType_set_Content,
-    .doc = PyDoc_STR("消息正文"),
+    /*.name =*/ "Content",
+    /*.get =*/ PyCThostFtdcSettlementInfoFieldType_get_Content,
+    /*.set =*/ PyCThostFtdcSettlementInfoFieldType_set_Content,
+    /*.doc =*/ PyDoc_STR("消息正文"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcSettlementInfoFieldType_get_AccountID,
-    .set = PyCThostFtdcSettlementInfoFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcSettlementInfoFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcSettlementInfoFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcSettlementInfoFieldType_get_CurrencyID,
-    .set = PyCThostFtdcSettlementInfoFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcSettlementInfoFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcSettlementInfoFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -483,15 +483,15 @@ static PyType_Slot PyCThostFtdcSettlementInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSettlementInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSettlementInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcSettlementInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSettlementInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSettlementInfoFieldType_slots_legacy,
 };
 #endif
 

@@ -367,87 +367,87 @@ static PyMemberDef PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_members[] = {
     /// 多头保证金率
     /// typedef double TThostFtdcRatioType
     {
-        .name = "LongMarginRatioByMoney",
+        /*.name =*/ "LongMarginRatioByMoney",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.LongMarginRatioByMoney),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.LongMarginRatioByMoney),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("多头保证金率")
+        /*.doc =*/ PyDoc_STR("多头保证金率")
     },
     /// 多头保证金费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "LongMarginRatioByVolume",
+        /*.name =*/ "LongMarginRatioByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.LongMarginRatioByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.LongMarginRatioByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("多头保证金费")
+        /*.doc =*/ PyDoc_STR("多头保证金费")
     },
     /// 空头保证金率
     /// typedef double TThostFtdcRatioType
     {
-        .name = "ShortMarginRatioByMoney",
+        /*.name =*/ "ShortMarginRatioByMoney",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.ShortMarginRatioByMoney),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.ShortMarginRatioByMoney),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("空头保证金率")
+        /*.doc =*/ PyDoc_STR("空头保证金率")
     },
     /// 空头保证金费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ShortMarginRatioByVolume",
+        /*.name =*/ "ShortMarginRatioByVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.ShortMarginRatioByVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.ShortMarginRatioByVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("空头保证金费")
+        /*.doc =*/ PyDoc_STR("空头保证金费")
     },
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -456,50 +456,50 @@ static PyGetSetDef PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_getsets[] = {
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_InstrumentID,
-    .set = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_InvestorRange,
-    .set = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_BrokerID,
-    .set = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_InvestorID,
-    .set = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 操作标志
     /// typedef char TThostFtdcActionDirectionType
     {
-    .name = "ActionDirection",
-    .get = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_ActionDirection,
-    .set = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_ActionDirection,
-    .doc = PyDoc_STR("操作标志"),
+    /*.name =*/ "ActionDirection",
+    /*.get =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_get_ActionDirection,
+    /*.set =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_set_ActionDirection,
+    /*.doc =*/ PyDoc_STR("操作标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -525,15 +525,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_slots_legacy[
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaInvstMarginRateULField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaInvstMarginRateULField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInvstMarginRateULFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaInvstMarginRateULFieldType_slots_legacy,
 };
 #endif
 

@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcRspGenSMSCodeFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcRspGenSMSCodeFieldType_get_BrokerID,
-    .set = PyCThostFtdcRspGenSMSCodeFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcRspGenSMSCodeFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcRspGenSMSCodeFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcRspGenSMSCodeFieldType_get_UserID,
-    .set = PyCThostFtdcRspGenSMSCodeFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcRspGenSMSCodeFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcRspGenSMSCodeFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 生成时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "GenTime",
-    .get = PyCThostFtdcRspGenSMSCodeFieldType_get_GenTime,
-    .set = PyCThostFtdcRspGenSMSCodeFieldType_set_GenTime,
-    .doc = PyDoc_STR("生成时间"),
+    /*.name =*/ "GenTime",
+    /*.get =*/ PyCThostFtdcRspGenSMSCodeFieldType_get_GenTime,
+    /*.set =*/ PyCThostFtdcRspGenSMSCodeFieldType_set_GenTime,
+    /*.doc =*/ PyDoc_STR("生成时间"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcRspGenSMSCodeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspGenSMSCodeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspGenSMSCodeField",
+    /*.name =*/ "PyCTP.CThostFtdcRspGenSMSCodeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspGenSMSCodeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspGenSMSCodeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspGenSMSCodeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspGenSMSCodeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspGenSMSCodeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspGenSMSCodeFieldType_slots_legacy,
 };
 #endif
 

@@ -297,42 +297,42 @@ static PyGetSetDef PyCThostFtdcSPMMInstParamFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSPMMInstParamFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSPMMInstParamFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSPMMInstParamFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSPMMInstParamFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcSPMMInstParamFieldType_get_InstrumentID,
-    .set = PyCThostFtdcSPMMInstParamFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcSPMMInstParamFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcSPMMInstParamFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// SPMM合约保证金算法
     /// typedef char TThostFtdcInstMarginCalIDType
     {
-    .name = "InstMarginCalID",
-    .get = PyCThostFtdcSPMMInstParamFieldType_get_InstMarginCalID,
-    .set = PyCThostFtdcSPMMInstParamFieldType_set_InstMarginCalID,
-    .doc = PyDoc_STR("SPMM合约保证金算法"),
+    /*.name =*/ "InstMarginCalID",
+    /*.get =*/ PyCThostFtdcSPMMInstParamFieldType_get_InstMarginCalID,
+    /*.set =*/ PyCThostFtdcSPMMInstParamFieldType_set_InstMarginCalID,
+    /*.doc =*/ PyDoc_STR("SPMM合约保证金算法"),
     },
     /// 商品组代码
     /// typedef char TThostFtdcSPMMProductIDType[41]
     {
-    .name = "CommodityID",
-    .get = PyCThostFtdcSPMMInstParamFieldType_get_CommodityID,
-    .set = PyCThostFtdcSPMMInstParamFieldType_set_CommodityID,
-    .doc = PyDoc_STR("商品组代码"),
+    /*.name =*/ "CommodityID",
+    /*.get =*/ PyCThostFtdcSPMMInstParamFieldType_get_CommodityID,
+    /*.set =*/ PyCThostFtdcSPMMInstParamFieldType_set_CommodityID,
+    /*.doc =*/ PyDoc_STR("商品组代码"),
     },
     /// 商品群代码
     /// typedef char TThostFtdcSPMMProductIDType[41]
     {
-    .name = "CommodityGroupID",
-    .get = PyCThostFtdcSPMMInstParamFieldType_get_CommodityGroupID,
-    .set = PyCThostFtdcSPMMInstParamFieldType_set_CommodityGroupID,
-    .doc = PyDoc_STR("商品群代码"),
+    /*.name =*/ "CommodityGroupID",
+    /*.get =*/ PyCThostFtdcSPMMInstParamFieldType_get_CommodityGroupID,
+    /*.set =*/ PyCThostFtdcSPMMInstParamFieldType_set_CommodityGroupID,
+    /*.doc =*/ PyDoc_STR("商品群代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -358,15 +358,15 @@ static PyType_Slot PyCThostFtdcSPMMInstParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSPMMInstParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSPMMInstParamField",
+    /*.name =*/ "PyCTP.CThostFtdcSPMMInstParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSPMMInstParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSPMMInstParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSPMMInstParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSPMMInstParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSPMMInstParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSPMMInstParamFieldType_slots_legacy,
 };
 #endif
 

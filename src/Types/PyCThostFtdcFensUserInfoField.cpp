@@ -197,26 +197,26 @@ static PyGetSetDef PyCThostFtdcFensUserInfoFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcFensUserInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcFensUserInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcFensUserInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcFensUserInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcFensUserInfoFieldType_get_UserID,
-    .set = PyCThostFtdcFensUserInfoFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcFensUserInfoFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcFensUserInfoFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 登录模式
     /// typedef char TThostFtdcLoginModeType
     {
-    .name = "LoginMode",
-    .get = PyCThostFtdcFensUserInfoFieldType_get_LoginMode,
-    .set = PyCThostFtdcFensUserInfoFieldType_set_LoginMode,
-    .doc = PyDoc_STR("登录模式"),
+    /*.name =*/ "LoginMode",
+    /*.get =*/ PyCThostFtdcFensUserInfoFieldType_get_LoginMode,
+    /*.set =*/ PyCThostFtdcFensUserInfoFieldType_set_LoginMode,
+    /*.doc =*/ PyDoc_STR("登录模式"),
     },
     {NULL}  /* Sentinel */
 };
@@ -242,15 +242,15 @@ static PyType_Slot PyCThostFtdcFensUserInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcFensUserInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcFensUserInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcFensUserInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcFensUserInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcFensUserInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcFensUserInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcFensUserInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcFensUserInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcFensUserInfoFieldType_slots_legacy,
 };
 #endif
 

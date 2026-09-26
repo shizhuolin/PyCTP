@@ -263,36 +263,36 @@ static PyMemberDef PyCThostFtdcTransferFutureToBankReqFieldType_members[] = {
     /// 转账金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "TradeAmt",
+        /*.name =*/ "TradeAmt",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTransferFutureToBankReqFieldData, data.TradeAmt),
+        /*.offset =*/ offsetof(PyCThostFtdcTransferFutureToBankReqFieldData, data.TradeAmt),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("转账金额")
+        /*.doc =*/ PyDoc_STR("转账金额")
     },
     /// 客户手续费
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "CustFee",
+        /*.name =*/ "CustFee",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTransferFutureToBankReqFieldData, data.CustFee),
+        /*.offset =*/ offsetof(PyCThostFtdcTransferFutureToBankReqFieldData, data.CustFee),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("客户手续费")
+        /*.doc =*/ PyDoc_STR("客户手续费")
     },
     {NULL}  /* Sentinel */
 };
@@ -301,34 +301,34 @@ static PyGetSetDef PyCThostFtdcTransferFutureToBankReqFieldType_getsets[] = {
     /// 期货资金账户
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "FutureAccount",
-    .get = PyCThostFtdcTransferFutureToBankReqFieldType_get_FutureAccount,
-    .set = PyCThostFtdcTransferFutureToBankReqFieldType_set_FutureAccount,
-    .doc = PyDoc_STR("期货资金账户"),
+    /*.name =*/ "FutureAccount",
+    /*.get =*/ PyCThostFtdcTransferFutureToBankReqFieldType_get_FutureAccount,
+    /*.set =*/ PyCThostFtdcTransferFutureToBankReqFieldType_set_FutureAccount,
+    /*.doc =*/ PyDoc_STR("期货资金账户"),
     },
     /// 密码标志
     /// typedef char TThostFtdcFuturePwdFlagType
     {
-    .name = "FuturePwdFlag",
-    .get = PyCThostFtdcTransferFutureToBankReqFieldType_get_FuturePwdFlag,
-    .set = PyCThostFtdcTransferFutureToBankReqFieldType_set_FuturePwdFlag,
-    .doc = PyDoc_STR("密码标志"),
+    /*.name =*/ "FuturePwdFlag",
+    /*.get =*/ PyCThostFtdcTransferFutureToBankReqFieldType_get_FuturePwdFlag,
+    /*.set =*/ PyCThostFtdcTransferFutureToBankReqFieldType_set_FuturePwdFlag,
+    /*.doc =*/ PyDoc_STR("密码标志"),
     },
     /// 密码
     /// typedef char TThostFtdcFutureAccPwdType[17]
     {
-    .name = "FutureAccPwd",
-    .get = PyCThostFtdcTransferFutureToBankReqFieldType_get_FutureAccPwd,
-    .set = PyCThostFtdcTransferFutureToBankReqFieldType_set_FutureAccPwd,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "FutureAccPwd",
+    /*.get =*/ PyCThostFtdcTransferFutureToBankReqFieldType_get_FutureAccPwd,
+    /*.set =*/ PyCThostFtdcTransferFutureToBankReqFieldType_set_FutureAccPwd,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     /// 币种：RMB-人民币 USD-美圆 HKD-港元
     /// typedef char TThostFtdcCurrencyCodeType[4]
     {
-    .name = "CurrencyCode",
-    .get = PyCThostFtdcTransferFutureToBankReqFieldType_get_CurrencyCode,
-    .set = PyCThostFtdcTransferFutureToBankReqFieldType_set_CurrencyCode,
-    .doc = PyDoc_STR("币种：RMB-人民币 USD-美圆 HKD-港元"),
+    /*.name =*/ "CurrencyCode",
+    /*.get =*/ PyCThostFtdcTransferFutureToBankReqFieldType_get_CurrencyCode,
+    /*.set =*/ PyCThostFtdcTransferFutureToBankReqFieldType_set_CurrencyCode,
+    /*.doc =*/ PyDoc_STR("币种：RMB-人民币 USD-美圆 HKD-港元"),
     },
     {NULL}  /* Sentinel */
 };
@@ -354,15 +354,15 @@ static PyType_Slot PyCThostFtdcTransferFutureToBankReqFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTransferFutureToBankReqFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTransferFutureToBankReqField",
+    /*.name =*/ "PyCTP.CThostFtdcTransferFutureToBankReqField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTransferFutureToBankReqFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTransferFutureToBankReqFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTransferFutureToBankReqFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTransferFutureToBankReqFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTransferFutureToBankReqFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTransferFutureToBankReqFieldType_slots_legacy,
 };
 #endif
 

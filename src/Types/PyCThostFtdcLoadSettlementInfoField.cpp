@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcLoadSettlementInfoFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcLoadSettlementInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcLoadSettlementInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcLoadSettlementInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcLoadSettlementInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcLoadSettlementInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcLoadSettlementInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcLoadSettlementInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcLoadSettlementInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcLoadSettlementInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcLoadSettlementInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcLoadSettlementInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcLoadSettlementInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcLoadSettlementInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcLoadSettlementInfoFieldType_slots_legacy,
 };
 #endif
 

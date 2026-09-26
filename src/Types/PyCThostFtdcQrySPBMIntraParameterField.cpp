@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQrySPBMIntraParameterFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQrySPBMIntraParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQrySPBMIntraParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQrySPBMIntraParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQrySPBMIntraParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 品种代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProdFamilyCode",
-    .get = PyCThostFtdcQrySPBMIntraParameterFieldType_get_ProdFamilyCode,
-    .set = PyCThostFtdcQrySPBMIntraParameterFieldType_set_ProdFamilyCode,
-    .doc = PyDoc_STR("品种代码"),
+    /*.name =*/ "ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcQrySPBMIntraParameterFieldType_get_ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcQrySPBMIntraParameterFieldType_set_ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("品种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQrySPBMIntraParameterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySPBMIntraParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySPBMIntraParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySPBMIntraParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySPBMIntraParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySPBMIntraParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySPBMIntraParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySPBMIntraParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySPBMIntraParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySPBMIntraParameterFieldType_slots_legacy,
 };
 #endif
 

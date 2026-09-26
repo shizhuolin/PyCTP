@@ -203,19 +203,19 @@ static PyMemberDef PyCThostFtdcDiscountFieldType_members[] = {
     /// 资金折扣比例
     /// typedef double TThostFtdcRatioType
     {
-        .name = "Discount",
+        /*.name =*/ "Discount",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcDiscountFieldData, data.Discount),
+        /*.offset =*/ offsetof(PyCThostFtdcDiscountFieldData, data.Discount),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("资金折扣比例")
+        /*.doc =*/ PyDoc_STR("资金折扣比例")
     },
     {NULL}  /* Sentinel */
 };
@@ -224,26 +224,26 @@ static PyGetSetDef PyCThostFtdcDiscountFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcDiscountFieldType_get_BrokerID,
-    .set = PyCThostFtdcDiscountFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcDiscountFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcDiscountFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcDiscountFieldType_get_InvestorRange,
-    .set = PyCThostFtdcDiscountFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcDiscountFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcDiscountFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcDiscountFieldType_get_InvestorID,
-    .set = PyCThostFtdcDiscountFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcDiscountFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcDiscountFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -269,15 +269,15 @@ static PyType_Slot PyCThostFtdcDiscountFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcDiscountFieldType_spec = {
-    .name = "PyCTP.CThostFtdcDiscountField",
+    /*.name =*/ "PyCTP.CThostFtdcDiscountField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcDiscountFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcDiscountFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcDiscountFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcDiscountFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcDiscountFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcDiscountFieldType_slots_legacy,
 };
 #endif
 

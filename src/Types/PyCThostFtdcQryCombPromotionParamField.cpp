@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQryCombPromotionParamFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryCombPromotionParamFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryCombPromotionParamFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryCombPromotionParamFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryCombPromotionParamFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryCombPromotionParamFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryCombPromotionParamFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryCombPromotionParamFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryCombPromotionParamFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQryCombPromotionParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryCombPromotionParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryCombPromotionParamField",
+    /*.name =*/ "PyCTP.CThostFtdcQryCombPromotionParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryCombPromotionParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryCombPromotionParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryCombPromotionParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryCombPromotionParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryCombPromotionParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryCombPromotionParamFieldType_slots_legacy,
 };
 #endif
 

@@ -116,19 +116,19 @@ static PyMemberDef PyCThostFtdcSettlementRefFieldType_members[] = {
     /// 结算编号
     /// typedef int TThostFtdcSettlementIDType
     {
-        .name = "SettlementID",
+        /*.name =*/ "SettlementID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSettlementRefFieldData, data.SettlementID),
+        /*.offset =*/ offsetof(PyCThostFtdcSettlementRefFieldData, data.SettlementID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("结算编号")
+        /*.doc =*/ PyDoc_STR("结算编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -137,10 +137,10 @@ static PyGetSetDef PyCThostFtdcSettlementRefFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSettlementRefFieldType_get_TradingDay,
-    .set = PyCThostFtdcSettlementRefFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSettlementRefFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSettlementRefFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     {NULL}  /* Sentinel */
 };
@@ -166,15 +166,15 @@ static PyType_Slot PyCThostFtdcSettlementRefFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSettlementRefFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSettlementRefField",
+    /*.name =*/ "PyCTP.CThostFtdcSettlementRefField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSettlementRefFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSettlementRefFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSettlementRefFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSettlementRefFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSettlementRefFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSettlementRefFieldType_slots_legacy,
 };
 #endif
 

@@ -323,53 +323,53 @@ static PyMemberDef PyCThostFtdcCombinationLegFieldType_members[] = {
     /// 单腿编号
     /// typedef int TThostFtdcLegIDType
     {
-        .name = "LegID",
+        /*.name =*/ "LegID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCombinationLegFieldData, data.LegID),
+        /*.offset =*/ offsetof(PyCThostFtdcCombinationLegFieldData, data.LegID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("单腿编号")
+        /*.doc =*/ PyDoc_STR("单腿编号")
     },
     /// 单腿乘数
     /// typedef int TThostFtdcLegMultipleType
     {
-        .name = "LegMultiple",
+        /*.name =*/ "LegMultiple",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCombinationLegFieldData, data.LegMultiple),
+        /*.offset =*/ offsetof(PyCThostFtdcCombinationLegFieldData, data.LegMultiple),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("单腿乘数")
+        /*.doc =*/ PyDoc_STR("单腿乘数")
     },
     /// 派生层数
     /// typedef int TThostFtdcImplyLevelType
     {
-        .name = "ImplyLevel",
+        /*.name =*/ "ImplyLevel",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCombinationLegFieldData, data.ImplyLevel),
+        /*.offset =*/ offsetof(PyCThostFtdcCombinationLegFieldData, data.ImplyLevel),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("派生层数")
+        /*.doc =*/ PyDoc_STR("派生层数")
     },
     {NULL}  /* Sentinel */
 };
@@ -378,42 +378,42 @@ static PyGetSetDef PyCThostFtdcCombinationLegFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcCombinationLegFieldType_get_reserve1,
-    .set = PyCThostFtdcCombinationLegFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcCombinationLegFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcCombinationLegFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcCombinationLegFieldType_get_reserve2,
-    .set = PyCThostFtdcCombinationLegFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcCombinationLegFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcCombinationLegFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 买卖方向
     /// typedef char TThostFtdcDirectionType
     {
-    .name = "Direction",
-    .get = PyCThostFtdcCombinationLegFieldType_get_Direction,
-    .set = PyCThostFtdcCombinationLegFieldType_set_Direction,
-    .doc = PyDoc_STR("买卖方向"),
+    /*.name =*/ "Direction",
+    /*.get =*/ PyCThostFtdcCombinationLegFieldType_get_Direction,
+    /*.set =*/ PyCThostFtdcCombinationLegFieldType_set_Direction,
+    /*.doc =*/ PyDoc_STR("买卖方向"),
     },
     /// 组合合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "CombInstrumentID",
-    .get = PyCThostFtdcCombinationLegFieldType_get_CombInstrumentID,
-    .set = PyCThostFtdcCombinationLegFieldType_set_CombInstrumentID,
-    .doc = PyDoc_STR("组合合约代码"),
+    /*.name =*/ "CombInstrumentID",
+    /*.get =*/ PyCThostFtdcCombinationLegFieldType_get_CombInstrumentID,
+    /*.set =*/ PyCThostFtdcCombinationLegFieldType_set_CombInstrumentID,
+    /*.doc =*/ PyDoc_STR("组合合约代码"),
     },
     /// 单腿合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "LegInstrumentID",
-    .get = PyCThostFtdcCombinationLegFieldType_get_LegInstrumentID,
-    .set = PyCThostFtdcCombinationLegFieldType_set_LegInstrumentID,
-    .doc = PyDoc_STR("单腿合约代码"),
+    /*.name =*/ "LegInstrumentID",
+    /*.get =*/ PyCThostFtdcCombinationLegFieldType_get_LegInstrumentID,
+    /*.set =*/ PyCThostFtdcCombinationLegFieldType_set_LegInstrumentID,
+    /*.doc =*/ PyDoc_STR("单腿合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -439,15 +439,15 @@ static PyType_Slot PyCThostFtdcCombinationLegFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCombinationLegFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCombinationLegField",
+    /*.name =*/ "PyCTP.CThostFtdcCombinationLegField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCombinationLegFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCombinationLegFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCombinationLegFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCombinationLegFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCombinationLegFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCombinationLegFieldType_slots_legacy,
 };
 #endif
 

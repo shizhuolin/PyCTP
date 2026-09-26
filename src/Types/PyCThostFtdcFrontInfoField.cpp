@@ -126,36 +126,36 @@ static PyMemberDef PyCThostFtdcFrontInfoFieldType_members[] = {
     /// 查询流控
     /// typedef int TThostFtdcQueryFreqType
     {
-        .name = "QryFreq",
+        /*.name =*/ "QryFreq",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcFrontInfoFieldData, data.QryFreq),
+        /*.offset =*/ offsetof(PyCThostFtdcFrontInfoFieldData, data.QryFreq),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("查询流控")
+        /*.doc =*/ PyDoc_STR("查询流控")
     },
     /// FTD流控
     /// typedef int TThostFtdcQueryFreqType
     {
-        .name = "FTDPkgFreq",
+        /*.name =*/ "FTDPkgFreq",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcFrontInfoFieldData, data.FTDPkgFreq),
+        /*.offset =*/ offsetof(PyCThostFtdcFrontInfoFieldData, data.FTDPkgFreq),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("FTD流控")
+        /*.doc =*/ PyDoc_STR("FTD流控")
     },
     {NULL}  /* Sentinel */
 };
@@ -164,10 +164,10 @@ static PyGetSetDef PyCThostFtdcFrontInfoFieldType_getsets[] = {
     /// 前置地址
     /// typedef char TThostFtdcAddressType[101]
     {
-    .name = "FrontAddr",
-    .get = PyCThostFtdcFrontInfoFieldType_get_FrontAddr,
-    .set = PyCThostFtdcFrontInfoFieldType_set_FrontAddr,
-    .doc = PyDoc_STR("前置地址"),
+    /*.name =*/ "FrontAddr",
+    /*.get =*/ PyCThostFtdcFrontInfoFieldType_get_FrontAddr,
+    /*.set =*/ PyCThostFtdcFrontInfoFieldType_set_FrontAddr,
+    /*.doc =*/ PyDoc_STR("前置地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -193,15 +193,15 @@ static PyType_Slot PyCThostFtdcFrontInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcFrontInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcFrontInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcFrontInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcFrontInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcFrontInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcFrontInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcFrontInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcFrontInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcFrontInfoFieldType_slots_legacy,
 };
 #endif
 

@@ -163,36 +163,36 @@ static PyMemberDef PyCThostFtdcSyncDeltaInfoFieldType_members[] = {
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInfoFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInfoFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     /// 是否只有资金追平
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsOnlyTrdDelta",
+        /*.name =*/ "IsOnlyTrdDelta",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaInfoFieldData, data.IsOnlyTrdDelta),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaInfoFieldData, data.IsOnlyTrdDelta),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否只有资金追平")
+        /*.doc =*/ PyDoc_STR("是否只有资金追平")
     },
     {NULL}  /* Sentinel */
 };
@@ -201,18 +201,18 @@ static PyGetSetDef PyCThostFtdcSyncDeltaInfoFieldType_getsets[] = {
     /// 追平状态
     /// typedef char TThostFtdcSyncDeltaStatusType
     {
-    .name = "SyncDeltaStatus",
-    .get = PyCThostFtdcSyncDeltaInfoFieldType_get_SyncDeltaStatus,
-    .set = PyCThostFtdcSyncDeltaInfoFieldType_set_SyncDeltaStatus,
-    .doc = PyDoc_STR("追平状态"),
+    /*.name =*/ "SyncDeltaStatus",
+    /*.get =*/ PyCThostFtdcSyncDeltaInfoFieldType_get_SyncDeltaStatus,
+    /*.set =*/ PyCThostFtdcSyncDeltaInfoFieldType_set_SyncDeltaStatus,
+    /*.doc =*/ PyDoc_STR("追平状态"),
     },
     /// 追平描述
     /// typedef char TThostFtdcSyncDescriptionType[257]
     {
-    .name = "SyncDescription",
-    .get = PyCThostFtdcSyncDeltaInfoFieldType_get_SyncDescription,
-    .set = PyCThostFtdcSyncDeltaInfoFieldType_set_SyncDescription,
-    .doc = PyDoc_STR("追平描述"),
+    /*.name =*/ "SyncDescription",
+    /*.get =*/ PyCThostFtdcSyncDeltaInfoFieldType_get_SyncDescription,
+    /*.set =*/ PyCThostFtdcSyncDeltaInfoFieldType_set_SyncDescription,
+    /*.doc =*/ PyDoc_STR("追平描述"),
     },
     {NULL}  /* Sentinel */
 };
@@ -238,15 +238,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaInfoFieldType_slots_legacy,
 };
 #endif
 

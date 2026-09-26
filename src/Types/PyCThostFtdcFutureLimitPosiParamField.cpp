@@ -323,53 +323,53 @@ static PyMemberDef PyCThostFtdcFutureLimitPosiParamFieldType_members[] = {
     /// 当日投机开仓数量限制
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "SpecOpenVolume",
+        /*.name =*/ "SpecOpenVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcFutureLimitPosiParamFieldData, data.SpecOpenVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcFutureLimitPosiParamFieldData, data.SpecOpenVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("当日投机开仓数量限制")
+        /*.doc =*/ PyDoc_STR("当日投机开仓数量限制")
     },
     /// 当日套利开仓数量限制
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "ArbiOpenVolume",
+        /*.name =*/ "ArbiOpenVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcFutureLimitPosiParamFieldData, data.ArbiOpenVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcFutureLimitPosiParamFieldData, data.ArbiOpenVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("当日套利开仓数量限制")
+        /*.doc =*/ PyDoc_STR("当日套利开仓数量限制")
     },
     /// 当日投机+套利开仓数量限制
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "OpenVolume",
+        /*.name =*/ "OpenVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcFutureLimitPosiParamFieldData, data.OpenVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcFutureLimitPosiParamFieldData, data.OpenVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("当日投机+套利开仓数量限制")
+        /*.doc =*/ PyDoc_STR("当日投机+套利开仓数量限制")
     },
     {NULL}  /* Sentinel */
 };
@@ -378,42 +378,42 @@ static PyGetSetDef PyCThostFtdcFutureLimitPosiParamFieldType_getsets[] = {
     /// 投资者范围
     /// typedef char TThostFtdcInvestorRangeType
     {
-    .name = "InvestorRange",
-    .get = PyCThostFtdcFutureLimitPosiParamFieldType_get_InvestorRange,
-    .set = PyCThostFtdcFutureLimitPosiParamFieldType_set_InvestorRange,
-    .doc = PyDoc_STR("投资者范围"),
+    /*.name =*/ "InvestorRange",
+    /*.get =*/ PyCThostFtdcFutureLimitPosiParamFieldType_get_InvestorRange,
+    /*.set =*/ PyCThostFtdcFutureLimitPosiParamFieldType_set_InvestorRange,
+    /*.doc =*/ PyDoc_STR("投资者范围"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcFutureLimitPosiParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcFutureLimitPosiParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcFutureLimitPosiParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcFutureLimitPosiParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcFutureLimitPosiParamFieldType_get_InvestorID,
-    .set = PyCThostFtdcFutureLimitPosiParamFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcFutureLimitPosiParamFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcFutureLimitPosiParamFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcFutureLimitPosiParamFieldType_get_reserve1,
-    .set = PyCThostFtdcFutureLimitPosiParamFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcFutureLimitPosiParamFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcFutureLimitPosiParamFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcFutureLimitPosiParamFieldType_get_ProductID,
-    .set = PyCThostFtdcFutureLimitPosiParamFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcFutureLimitPosiParamFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcFutureLimitPosiParamFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -439,15 +439,15 @@ static PyType_Slot PyCThostFtdcFutureLimitPosiParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcFutureLimitPosiParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcFutureLimitPosiParamField",
+    /*.name =*/ "PyCTP.CThostFtdcFutureLimitPosiParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcFutureLimitPosiParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcFutureLimitPosiParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcFutureLimitPosiParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcFutureLimitPosiParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcFutureLimitPosiParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcFutureLimitPosiParamFieldType_slots_legacy,
 };
 #endif
 

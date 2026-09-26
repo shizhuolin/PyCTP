@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcRspGenUserCaptchaFieldType_members[] = {
     /// 图片信息长度
     /// typedef int TThostFtdcCaptchaInfoLenType
     {
-        .name = "CaptchaInfoLen",
+        /*.name =*/ "CaptchaInfoLen",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRspGenUserCaptchaFieldData, data.CaptchaInfoLen),
+        /*.offset =*/ offsetof(PyCThostFtdcRspGenUserCaptchaFieldData, data.CaptchaInfoLen),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("图片信息长度")
+        /*.doc =*/ PyDoc_STR("图片信息长度")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcRspGenUserCaptchaFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcRspGenUserCaptchaFieldType_get_BrokerID,
-    .set = PyCThostFtdcRspGenUserCaptchaFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcRspGenUserCaptchaFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcRspGenUserCaptchaFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcRspGenUserCaptchaFieldType_get_UserID,
-    .set = PyCThostFtdcRspGenUserCaptchaFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcRspGenUserCaptchaFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcRspGenUserCaptchaFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 图片信息
     /// typedef char TThostFtdcCaptchaInfoType[2561]
     {
-    .name = "CaptchaInfo",
-    .get = PyCThostFtdcRspGenUserCaptchaFieldType_get_CaptchaInfo,
-    .set = PyCThostFtdcRspGenUserCaptchaFieldType_set_CaptchaInfo,
-    .doc = PyDoc_STR("图片信息"),
+    /*.name =*/ "CaptchaInfo",
+    /*.get =*/ PyCThostFtdcRspGenUserCaptchaFieldType_get_CaptchaInfo,
+    /*.set =*/ PyCThostFtdcRspGenUserCaptchaFieldType_set_CaptchaInfo,
+    /*.doc =*/ PyDoc_STR("图片信息"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcRspGenUserCaptchaFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspGenUserCaptchaFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspGenUserCaptchaField",
+    /*.name =*/ "PyCTP.CThostFtdcRspGenUserCaptchaField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspGenUserCaptchaFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspGenUserCaptchaFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspGenUserCaptchaFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspGenUserCaptchaFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspGenUserCaptchaFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspGenUserCaptchaFieldType_slots_legacy,
 };
 #endif
 

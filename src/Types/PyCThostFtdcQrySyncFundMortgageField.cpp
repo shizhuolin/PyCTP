@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQrySyncFundMortgageFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQrySyncFundMortgageFieldType_get_BrokerID,
-    .set = PyCThostFtdcQrySyncFundMortgageFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQrySyncFundMortgageFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQrySyncFundMortgageFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 货币质押流水号
     /// typedef char TThostFtdcDepositSeqNoType[15]
     {
-    .name = "MortgageSeqNo",
-    .get = PyCThostFtdcQrySyncFundMortgageFieldType_get_MortgageSeqNo,
-    .set = PyCThostFtdcQrySyncFundMortgageFieldType_set_MortgageSeqNo,
-    .doc = PyDoc_STR("货币质押流水号"),
+    /*.name =*/ "MortgageSeqNo",
+    /*.get =*/ PyCThostFtdcQrySyncFundMortgageFieldType_get_MortgageSeqNo,
+    /*.set =*/ PyCThostFtdcQrySyncFundMortgageFieldType_set_MortgageSeqNo,
+    /*.doc =*/ PyDoc_STR("货币质押流水号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQrySyncFundMortgageFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySyncFundMortgageFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySyncFundMortgageField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySyncFundMortgageField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySyncFundMortgageFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySyncFundMortgageFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySyncFundMortgageFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySyncFundMortgageFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySyncFundMortgageFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySyncFundMortgageFieldType_slots_legacy,
 };
 #endif
 

@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcReturnResultFieldType_getsets[] = {
     /// 返回代码
     /// typedef char TThostFtdcReturnCodeType[7]
     {
-    .name = "ReturnCode",
-    .get = PyCThostFtdcReturnResultFieldType_get_ReturnCode,
-    .set = PyCThostFtdcReturnResultFieldType_set_ReturnCode,
-    .doc = PyDoc_STR("返回代码"),
+    /*.name =*/ "ReturnCode",
+    /*.get =*/ PyCThostFtdcReturnResultFieldType_get_ReturnCode,
+    /*.set =*/ PyCThostFtdcReturnResultFieldType_set_ReturnCode,
+    /*.doc =*/ PyDoc_STR("返回代码"),
     },
     /// 返回码描述
     /// typedef char TThostFtdcDescrInfoForReturnCodeType[129]
     {
-    .name = "DescrInfoForReturnCode",
-    .get = PyCThostFtdcReturnResultFieldType_get_DescrInfoForReturnCode,
-    .set = PyCThostFtdcReturnResultFieldType_set_DescrInfoForReturnCode,
-    .doc = PyDoc_STR("返回码描述"),
+    /*.name =*/ "DescrInfoForReturnCode",
+    /*.get =*/ PyCThostFtdcReturnResultFieldType_get_DescrInfoForReturnCode,
+    /*.set =*/ PyCThostFtdcReturnResultFieldType_set_DescrInfoForReturnCode,
+    /*.doc =*/ PyDoc_STR("返回码描述"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcReturnResultFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReturnResultFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReturnResultField",
+    /*.name =*/ "PyCTP.CThostFtdcReturnResultField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReturnResultFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReturnResultFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReturnResultFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReturnResultFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReturnResultFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReturnResultFieldType_slots_legacy,
 };
 #endif
 

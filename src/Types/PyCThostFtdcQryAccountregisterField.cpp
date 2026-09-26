@@ -310,42 +310,42 @@ static PyGetSetDef PyCThostFtdcQryAccountregisterFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryAccountregisterFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryAccountregisterFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryAccountregisterFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryAccountregisterFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcQryAccountregisterFieldType_get_AccountID,
-    .set = PyCThostFtdcQryAccountregisterFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcQryAccountregisterFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcQryAccountregisterFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 银行编码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcQryAccountregisterFieldType_get_BankID,
-    .set = PyCThostFtdcQryAccountregisterFieldType_set_BankID,
-    .doc = PyDoc_STR("银行编码"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcQryAccountregisterFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcQryAccountregisterFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行编码"),
     },
     /// 银行分支机构编码
     /// typedef char TThostFtdcBankBrchIDType[5]
     {
-    .name = "BankBranchID",
-    .get = PyCThostFtdcQryAccountregisterFieldType_get_BankBranchID,
-    .set = PyCThostFtdcQryAccountregisterFieldType_set_BankBranchID,
-    .doc = PyDoc_STR("银行分支机构编码"),
+    /*.name =*/ "BankBranchID",
+    /*.get =*/ PyCThostFtdcQryAccountregisterFieldType_get_BankBranchID,
+    /*.set =*/ PyCThostFtdcQryAccountregisterFieldType_set_BankBranchID,
+    /*.doc =*/ PyDoc_STR("银行分支机构编码"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcQryAccountregisterFieldType_get_CurrencyID,
-    .set = PyCThostFtdcQryAccountregisterFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcQryAccountregisterFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcQryAccountregisterFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -371,15 +371,15 @@ static PyType_Slot PyCThostFtdcQryAccountregisterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryAccountregisterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryAccountregisterField",
+    /*.name =*/ "PyCTP.CThostFtdcQryAccountregisterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryAccountregisterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryAccountregisterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryAccountregisterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryAccountregisterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryAccountregisterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryAccountregisterFieldType_slots_legacy,
 };
 #endif
 

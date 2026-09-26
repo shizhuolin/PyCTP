@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQrySPBMFutureParameterFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQrySPBMFutureParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQrySPBMFutureParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQrySPBMFutureParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQrySPBMFutureParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQrySPBMFutureParameterFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQrySPBMFutureParameterFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQrySPBMFutureParameterFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQrySPBMFutureParameterFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 品种代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProdFamilyCode",
-    .get = PyCThostFtdcQrySPBMFutureParameterFieldType_get_ProdFamilyCode,
-    .set = PyCThostFtdcQrySPBMFutureParameterFieldType_set_ProdFamilyCode,
-    .doc = PyDoc_STR("品种代码"),
+    /*.name =*/ "ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcQrySPBMFutureParameterFieldType_get_ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcQrySPBMFutureParameterFieldType_set_ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("品种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQrySPBMFutureParameterFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySPBMFutureParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySPBMFutureParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySPBMFutureParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySPBMFutureParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySPBMFutureParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySPBMFutureParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySPBMFutureParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySPBMFutureParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySPBMFutureParameterFieldType_slots_legacy,
 };
 #endif
 

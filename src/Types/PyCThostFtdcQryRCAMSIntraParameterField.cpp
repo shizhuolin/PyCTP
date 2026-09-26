@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQryRCAMSIntraParameterFieldType_getsets[] = {
     /// 产品组合代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "CombProductID",
-    .get = PyCThostFtdcQryRCAMSIntraParameterFieldType_get_CombProductID,
-    .set = PyCThostFtdcQryRCAMSIntraParameterFieldType_set_CombProductID,
-    .doc = PyDoc_STR("产品组合代码"),
+    /*.name =*/ "CombProductID",
+    /*.get =*/ PyCThostFtdcQryRCAMSIntraParameterFieldType_get_CombProductID,
+    /*.set =*/ PyCThostFtdcQryRCAMSIntraParameterFieldType_set_CombProductID,
+    /*.doc =*/ PyDoc_STR("产品组合代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQryRCAMSIntraParameterFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryRCAMSIntraParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryRCAMSIntraParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcQryRCAMSIntraParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSIntraParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSIntraParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSIntraParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSIntraParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryRCAMSIntraParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryRCAMSIntraParameterFieldType_slots_legacy,
 };
 #endif
 

@@ -353,19 +353,19 @@ static PyMemberDef PyCThostFtdcCFMMCBrokerKeyFieldType_members[] = {
     /// 密钥编号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "KeyID",
+        /*.name =*/ "KeyID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCFMMCBrokerKeyFieldData, data.KeyID),
+        /*.offset =*/ offsetof(PyCThostFtdcCFMMCBrokerKeyFieldData, data.KeyID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("密钥编号")
+        /*.doc =*/ PyDoc_STR("密钥编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -374,50 +374,50 @@ static PyGetSetDef PyCThostFtdcCFMMCBrokerKeyFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcCFMMCBrokerKeyFieldType_get_BrokerID,
-    .set = PyCThostFtdcCFMMCBrokerKeyFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 经纪公司统一编码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcCFMMCBrokerKeyFieldType_get_ParticipantID,
-    .set = PyCThostFtdcCFMMCBrokerKeyFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("经纪公司统一编码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("经纪公司统一编码"),
     },
     /// 密钥生成日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "CreateDate",
-    .get = PyCThostFtdcCFMMCBrokerKeyFieldType_get_CreateDate,
-    .set = PyCThostFtdcCFMMCBrokerKeyFieldType_set_CreateDate,
-    .doc = PyDoc_STR("密钥生成日期"),
+    /*.name =*/ "CreateDate",
+    /*.get =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_get_CreateDate,
+    /*.set =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_set_CreateDate,
+    /*.doc =*/ PyDoc_STR("密钥生成日期"),
     },
     /// 密钥生成时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "CreateTime",
-    .get = PyCThostFtdcCFMMCBrokerKeyFieldType_get_CreateTime,
-    .set = PyCThostFtdcCFMMCBrokerKeyFieldType_set_CreateTime,
-    .doc = PyDoc_STR("密钥生成时间"),
+    /*.name =*/ "CreateTime",
+    /*.get =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_get_CreateTime,
+    /*.set =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_set_CreateTime,
+    /*.doc =*/ PyDoc_STR("密钥生成时间"),
     },
     /// 动态密钥
     /// typedef char TThostFtdcCFMMCKeyType[21]
     {
-    .name = "CurrentKey",
-    .get = PyCThostFtdcCFMMCBrokerKeyFieldType_get_CurrentKey,
-    .set = PyCThostFtdcCFMMCBrokerKeyFieldType_set_CurrentKey,
-    .doc = PyDoc_STR("动态密钥"),
+    /*.name =*/ "CurrentKey",
+    /*.get =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_get_CurrentKey,
+    /*.set =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_set_CurrentKey,
+    /*.doc =*/ PyDoc_STR("动态密钥"),
     },
     /// 动态密钥类型
     /// typedef char TThostFtdcCFMMCKeyKindType
     {
-    .name = "KeyKind",
-    .get = PyCThostFtdcCFMMCBrokerKeyFieldType_get_KeyKind,
-    .set = PyCThostFtdcCFMMCBrokerKeyFieldType_set_KeyKind,
-    .doc = PyDoc_STR("动态密钥类型"),
+    /*.name =*/ "KeyKind",
+    /*.get =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_get_KeyKind,
+    /*.set =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_set_KeyKind,
+    /*.doc =*/ PyDoc_STR("动态密钥类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -443,15 +443,15 @@ static PyType_Slot PyCThostFtdcCFMMCBrokerKeyFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCFMMCBrokerKeyFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCFMMCBrokerKeyField",
+    /*.name =*/ "PyCTP.CThostFtdcCFMMCBrokerKeyField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCFMMCBrokerKeyFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCFMMCBrokerKeyFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCFMMCBrokerKeyFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCFMMCBrokerKeyFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCFMMCBrokerKeyFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCFMMCBrokerKeyFieldType_slots_legacy,
 };
 #endif
 

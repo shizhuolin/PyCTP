@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQryTraderAssignFieldType_getsets[] = {
     /// 交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcQryTraderAssignFieldType_get_TraderID,
-    .set = PyCThostFtdcQryTraderAssignFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcQryTraderAssignFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcQryTraderAssignFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易员代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQryTraderAssignFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryTraderAssignFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryTraderAssignField",
+    /*.name =*/ "PyCTP.CThostFtdcQryTraderAssignField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryTraderAssignFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryTraderAssignFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryTraderAssignFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryTraderAssignFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryTraderAssignFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryTraderAssignFieldType_slots_legacy,
 };
 #endif
 

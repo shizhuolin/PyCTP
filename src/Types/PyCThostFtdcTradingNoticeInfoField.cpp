@@ -326,36 +326,36 @@ static PyMemberDef PyCThostFtdcTradingNoticeInfoFieldType_members[] = {
     /// 序列系列号
     /// typedef short TThostFtdcSequenceSeriesType
     {
-        .name = "SequenceSeries",
+        /*.name =*/ "SequenceSeries",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_SHORT,
+        /*.type =*/ T_SHORT,
 #else
-        .type = Py_T_SHORT,
+        /*.type =*/ Py_T_SHORT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTradingNoticeInfoFieldData, data.SequenceSeries),
+        /*.offset =*/ offsetof(PyCThostFtdcTradingNoticeInfoFieldData, data.SequenceSeries),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序列系列号")
+        /*.doc =*/ PyDoc_STR("序列系列号")
     },
     /// 序列号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SequenceNo",
+        /*.name =*/ "SequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTradingNoticeInfoFieldData, data.SequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcTradingNoticeInfoFieldData, data.SequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序列号")
+        /*.doc =*/ PyDoc_STR("序列号")
     },
     {NULL}  /* Sentinel */
 };
@@ -364,42 +364,42 @@ static PyGetSetDef PyCThostFtdcTradingNoticeInfoFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTradingNoticeInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcTradingNoticeInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTradingNoticeInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTradingNoticeInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcTradingNoticeInfoFieldType_get_InvestorID,
-    .set = PyCThostFtdcTradingNoticeInfoFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcTradingNoticeInfoFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcTradingNoticeInfoFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 发送时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "SendTime",
-    .get = PyCThostFtdcTradingNoticeInfoFieldType_get_SendTime,
-    .set = PyCThostFtdcTradingNoticeInfoFieldType_set_SendTime,
-    .doc = PyDoc_STR("发送时间"),
+    /*.name =*/ "SendTime",
+    /*.get =*/ PyCThostFtdcTradingNoticeInfoFieldType_get_SendTime,
+    /*.set =*/ PyCThostFtdcTradingNoticeInfoFieldType_set_SendTime,
+    /*.doc =*/ PyDoc_STR("发送时间"),
     },
     /// 消息正文
     /// typedef char TThostFtdcContentType[501]
     {
-    .name = "FieldContent",
-    .get = PyCThostFtdcTradingNoticeInfoFieldType_get_FieldContent,
-    .set = PyCThostFtdcTradingNoticeInfoFieldType_set_FieldContent,
-    .doc = PyDoc_STR("消息正文"),
+    /*.name =*/ "FieldContent",
+    /*.get =*/ PyCThostFtdcTradingNoticeInfoFieldType_get_FieldContent,
+    /*.set =*/ PyCThostFtdcTradingNoticeInfoFieldType_set_FieldContent,
+    /*.doc =*/ PyDoc_STR("消息正文"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcTradingNoticeInfoFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcTradingNoticeInfoFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcTradingNoticeInfoFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcTradingNoticeInfoFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -425,15 +425,15 @@ static PyType_Slot PyCThostFtdcTradingNoticeInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTradingNoticeInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTradingNoticeInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcTradingNoticeInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTradingNoticeInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTradingNoticeInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTradingNoticeInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTradingNoticeInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTradingNoticeInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTradingNoticeInfoFieldType_slots_legacy,
 };
 #endif
 

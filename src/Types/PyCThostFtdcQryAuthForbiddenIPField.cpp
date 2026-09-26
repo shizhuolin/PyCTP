@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcQryAuthForbiddenIPFieldType_getsets[] = {
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcQryAuthForbiddenIPFieldType_get_IPAddress,
-    .set = PyCThostFtdcQryAuthForbiddenIPFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcQryAuthForbiddenIPFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcQryAuthForbiddenIPFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcQryAuthForbiddenIPFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryAuthForbiddenIPFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryAuthForbiddenIPField",
+    /*.name =*/ "PyCTP.CThostFtdcQryAuthForbiddenIPField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryAuthForbiddenIPFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryAuthForbiddenIPFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryAuthForbiddenIPFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryAuthForbiddenIPFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryAuthForbiddenIPFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryAuthForbiddenIPFieldType_slots_legacy,
 };
 #endif
 

@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcReqApiHandshakeFieldType_getsets[] = {
     /// api与front通信密钥版本号
     /// typedef char TThostFtdcCryptoKeyVersionType[31]
     {
-    .name = "CryptoKeyVersion",
-    .get = PyCThostFtdcReqApiHandshakeFieldType_get_CryptoKeyVersion,
-    .set = PyCThostFtdcReqApiHandshakeFieldType_set_CryptoKeyVersion,
-    .doc = PyDoc_STR("api与front通信密钥版本号"),
+    /*.name =*/ "CryptoKeyVersion",
+    /*.get =*/ PyCThostFtdcReqApiHandshakeFieldType_get_CryptoKeyVersion,
+    /*.set =*/ PyCThostFtdcReqApiHandshakeFieldType_set_CryptoKeyVersion,
+    /*.doc =*/ PyDoc_STR("api与front通信密钥版本号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcReqApiHandshakeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqApiHandshakeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqApiHandshakeField",
+    /*.name =*/ "PyCTP.CThostFtdcReqApiHandshakeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqApiHandshakeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqApiHandshakeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqApiHandshakeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqApiHandshakeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqApiHandshakeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqApiHandshakeFieldType_slots_legacy,
 };
 #endif
 

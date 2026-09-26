@@ -397,58 +397,58 @@ static PyGetSetDef PyCThostFtdcQryInvestorProductGroupMarginFieldType_getsets[] 
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_reserve1,
-    .set = PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 品种/跨品种标示
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductGroupID",
-    .get = PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_ProductGroupID,
-    .set = PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_ProductGroupID,
-    .doc = PyDoc_STR("品种/跨品种标示"),
+    /*.name =*/ "ProductGroupID",
+    /*.get =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_get_ProductGroupID,
+    /*.set =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_set_ProductGroupID,
+    /*.doc =*/ PyDoc_STR("品种/跨品种标示"),
     },
     {NULL}  /* Sentinel */
 };
@@ -474,15 +474,15 @@ static PyType_Slot PyCThostFtdcQryInvestorProductGroupMarginFieldType_slots_lega
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInvestorProductGroupMarginFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInvestorProductGroupMarginField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInvestorProductGroupMarginField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProductGroupMarginFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProductGroupMarginFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProductGroupMarginFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProductGroupMarginFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInvestorProductGroupMarginFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInvestorProductGroupMarginFieldType_slots_legacy,
 };
 #endif
 

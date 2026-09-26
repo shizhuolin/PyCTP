@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryRCAMSInterParameterFieldType_getsets[] = {
     /// 商品群代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductGroupID",
-    .get = PyCThostFtdcQryRCAMSInterParameterFieldType_get_ProductGroupID,
-    .set = PyCThostFtdcQryRCAMSInterParameterFieldType_set_ProductGroupID,
-    .doc = PyDoc_STR("商品群代码"),
+    /*.name =*/ "ProductGroupID",
+    /*.get =*/ PyCThostFtdcQryRCAMSInterParameterFieldType_get_ProductGroupID,
+    /*.set =*/ PyCThostFtdcQryRCAMSInterParameterFieldType_set_ProductGroupID,
+    /*.doc =*/ PyDoc_STR("商品群代码"),
     },
     /// 产品组合代码1
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "CombProduct1",
-    .get = PyCThostFtdcQryRCAMSInterParameterFieldType_get_CombProduct1,
-    .set = PyCThostFtdcQryRCAMSInterParameterFieldType_set_CombProduct1,
-    .doc = PyDoc_STR("产品组合代码1"),
+    /*.name =*/ "CombProduct1",
+    /*.get =*/ PyCThostFtdcQryRCAMSInterParameterFieldType_get_CombProduct1,
+    /*.set =*/ PyCThostFtdcQryRCAMSInterParameterFieldType_set_CombProduct1,
+    /*.doc =*/ PyDoc_STR("产品组合代码1"),
     },
     /// 产品组合代码2
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "CombProduct2",
-    .get = PyCThostFtdcQryRCAMSInterParameterFieldType_get_CombProduct2,
-    .set = PyCThostFtdcQryRCAMSInterParameterFieldType_set_CombProduct2,
-    .doc = PyDoc_STR("产品组合代码2"),
+    /*.name =*/ "CombProduct2",
+    /*.get =*/ PyCThostFtdcQryRCAMSInterParameterFieldType_get_CombProduct2,
+    /*.set =*/ PyCThostFtdcQryRCAMSInterParameterFieldType_set_CombProduct2,
+    /*.doc =*/ PyDoc_STR("产品组合代码2"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryRCAMSInterParameterFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryRCAMSInterParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryRCAMSInterParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcQryRCAMSInterParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInterParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInterParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInterParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryRCAMSInterParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryRCAMSInterParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryRCAMSInterParameterFieldType_slots_legacy,
 };
 #endif
 

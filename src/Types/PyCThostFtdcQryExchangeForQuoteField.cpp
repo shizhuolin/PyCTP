@@ -360,50 +360,50 @@ static PyGetSetDef PyCThostFtdcQryExchangeForQuoteFieldType_getsets[] = {
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcQryExchangeForQuoteFieldType_get_ParticipantID,
-    .set = PyCThostFtdcQryExchangeForQuoteFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcQryExchangeForQuoteFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcQryExchangeForQuoteFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 客户代码
     /// typedef char TThostFtdcClientIDType[11]
     {
-    .name = "ClientID",
-    .get = PyCThostFtdcQryExchangeForQuoteFieldType_get_ClientID,
-    .set = PyCThostFtdcQryExchangeForQuoteFieldType_set_ClientID,
-    .doc = PyDoc_STR("客户代码"),
+    /*.name =*/ "ClientID",
+    /*.get =*/ PyCThostFtdcQryExchangeForQuoteFieldType_get_ClientID,
+    /*.set =*/ PyCThostFtdcQryExchangeForQuoteFieldType_set_ClientID,
+    /*.doc =*/ PyDoc_STR("客户代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldExchangeInstIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryExchangeForQuoteFieldType_get_reserve1,
-    .set = PyCThostFtdcQryExchangeForQuoteFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryExchangeForQuoteFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryExchangeForQuoteFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryExchangeForQuoteFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryExchangeForQuoteFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryExchangeForQuoteFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryExchangeForQuoteFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcQryExchangeForQuoteFieldType_get_TraderID,
-    .set = PyCThostFtdcQryExchangeForQuoteFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcQryExchangeForQuoteFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcQryExchangeForQuoteFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     /// 合约在交易所的代码
     /// typedef char TThostFtdcExchangeInstIDType[81]
     {
-    .name = "ExchangeInstID",
-    .get = PyCThostFtdcQryExchangeForQuoteFieldType_get_ExchangeInstID,
-    .set = PyCThostFtdcQryExchangeForQuoteFieldType_set_ExchangeInstID,
-    .doc = PyDoc_STR("合约在交易所的代码"),
+    /*.name =*/ "ExchangeInstID",
+    /*.get =*/ PyCThostFtdcQryExchangeForQuoteFieldType_get_ExchangeInstID,
+    /*.set =*/ PyCThostFtdcQryExchangeForQuoteFieldType_set_ExchangeInstID,
+    /*.doc =*/ PyDoc_STR("合约在交易所的代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -429,15 +429,15 @@ static PyType_Slot PyCThostFtdcQryExchangeForQuoteFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryExchangeForQuoteFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryExchangeForQuoteField",
+    /*.name =*/ "PyCTP.CThostFtdcQryExchangeForQuoteField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeForQuoteFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeForQuoteFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeForQuoteFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeForQuoteFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryExchangeForQuoteFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryExchangeForQuoteFieldType_slots_legacy,
 };
 #endif
 

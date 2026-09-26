@@ -297,42 +297,42 @@ static PyGetSetDef PyCThostFtdcManualSyncBrokerUserOTPFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_BrokerID,
-    .set = PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_UserID,
-    .set = PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 动态令牌类型
     /// typedef char TThostFtdcOTPTypeType
     {
-    .name = "OTPType",
-    .get = PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_OTPType,
-    .set = PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_OTPType,
-    .doc = PyDoc_STR("动态令牌类型"),
+    /*.name =*/ "OTPType",
+    /*.get =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_OTPType,
+    /*.set =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_OTPType,
+    /*.doc =*/ PyDoc_STR("动态令牌类型"),
     },
     /// 第一个动态密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "FirstOTP",
-    .get = PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_FirstOTP,
-    .set = PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_FirstOTP,
-    .doc = PyDoc_STR("第一个动态密码"),
+    /*.name =*/ "FirstOTP",
+    /*.get =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_FirstOTP,
+    /*.set =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_FirstOTP,
+    /*.doc =*/ PyDoc_STR("第一个动态密码"),
     },
     /// 第二个动态密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "SecondOTP",
-    .get = PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_SecondOTP,
-    .set = PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_SecondOTP,
-    .doc = PyDoc_STR("第二个动态密码"),
+    /*.name =*/ "SecondOTP",
+    /*.get =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_get_SecondOTP,
+    /*.set =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_set_SecondOTP,
+    /*.doc =*/ PyDoc_STR("第二个动态密码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -358,15 +358,15 @@ static PyType_Slot PyCThostFtdcManualSyncBrokerUserOTPFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcManualSyncBrokerUserOTPFieldType_spec = {
-    .name = "PyCTP.CThostFtdcManualSyncBrokerUserOTPField",
+    /*.name =*/ "PyCTP.CThostFtdcManualSyncBrokerUserOTPField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcManualSyncBrokerUserOTPFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcManualSyncBrokerUserOTPFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcManualSyncBrokerUserOTPFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcManualSyncBrokerUserOTPFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcManualSyncBrokerUserOTPFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcManualSyncBrokerUserOTPFieldType_slots_legacy,
 };
 #endif
 

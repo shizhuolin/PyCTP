@@ -410,58 +410,58 @@ static PyGetSetDef PyCThostFtdcBrokerUserPasswordFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerUserPasswordFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerUserPasswordFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerUserPasswordFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerUserPasswordFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcBrokerUserPasswordFieldType_get_UserID,
-    .set = PyCThostFtdcBrokerUserPasswordFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcBrokerUserPasswordFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcBrokerUserPasswordFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcBrokerUserPasswordFieldType_get_Password,
-    .set = PyCThostFtdcBrokerUserPasswordFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcBrokerUserPasswordFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcBrokerUserPasswordFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     /// 上次修改时间
     /// typedef char TThostFtdcDateTimeType[17]
     {
-    .name = "LastUpdateTime",
-    .get = PyCThostFtdcBrokerUserPasswordFieldType_get_LastUpdateTime,
-    .set = PyCThostFtdcBrokerUserPasswordFieldType_set_LastUpdateTime,
-    .doc = PyDoc_STR("上次修改时间"),
+    /*.name =*/ "LastUpdateTime",
+    /*.get =*/ PyCThostFtdcBrokerUserPasswordFieldType_get_LastUpdateTime,
+    /*.set =*/ PyCThostFtdcBrokerUserPasswordFieldType_set_LastUpdateTime,
+    /*.doc =*/ PyDoc_STR("上次修改时间"),
     },
     /// 上次登陆时间
     /// typedef char TThostFtdcDateTimeType[17]
     {
-    .name = "LastLoginTime",
-    .get = PyCThostFtdcBrokerUserPasswordFieldType_get_LastLoginTime,
-    .set = PyCThostFtdcBrokerUserPasswordFieldType_set_LastLoginTime,
-    .doc = PyDoc_STR("上次登陆时间"),
+    /*.name =*/ "LastLoginTime",
+    /*.get =*/ PyCThostFtdcBrokerUserPasswordFieldType_get_LastLoginTime,
+    /*.set =*/ PyCThostFtdcBrokerUserPasswordFieldType_set_LastLoginTime,
+    /*.doc =*/ PyDoc_STR("上次登陆时间"),
     },
     /// 密码过期时间
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ExpireDate",
-    .get = PyCThostFtdcBrokerUserPasswordFieldType_get_ExpireDate,
-    .set = PyCThostFtdcBrokerUserPasswordFieldType_set_ExpireDate,
-    .doc = PyDoc_STR("密码过期时间"),
+    /*.name =*/ "ExpireDate",
+    /*.get =*/ PyCThostFtdcBrokerUserPasswordFieldType_get_ExpireDate,
+    /*.set =*/ PyCThostFtdcBrokerUserPasswordFieldType_set_ExpireDate,
+    /*.doc =*/ PyDoc_STR("密码过期时间"),
     },
     /// 弱密码过期时间
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "WeakExpireDate",
-    .get = PyCThostFtdcBrokerUserPasswordFieldType_get_WeakExpireDate,
-    .set = PyCThostFtdcBrokerUserPasswordFieldType_set_WeakExpireDate,
-    .doc = PyDoc_STR("弱密码过期时间"),
+    /*.name =*/ "WeakExpireDate",
+    /*.get =*/ PyCThostFtdcBrokerUserPasswordFieldType_get_WeakExpireDate,
+    /*.set =*/ PyCThostFtdcBrokerUserPasswordFieldType_set_WeakExpireDate,
+    /*.doc =*/ PyDoc_STR("弱密码过期时间"),
     },
     {NULL}  /* Sentinel */
 };
@@ -487,15 +487,15 @@ static PyType_Slot PyCThostFtdcBrokerUserPasswordFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerUserPasswordFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerUserPasswordField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerUserPasswordField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserPasswordFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserPasswordFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserPasswordFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserPasswordFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerUserPasswordFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerUserPasswordFieldType_slots_legacy,
 };
 #endif
 

@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcRCAMSIntraParameterFieldType_members[] = {
     /// 品种内对冲比率
     /// typedef double TThostFtdcHedgeRateType
     {
-        .name = "HedgeRate",
+        /*.name =*/ "HedgeRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcRCAMSIntraParameterFieldData, data.HedgeRate),
+        /*.offset =*/ offsetof(PyCThostFtdcRCAMSIntraParameterFieldData, data.HedgeRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("品种内对冲比率")
+        /*.doc =*/ PyDoc_STR("品种内对冲比率")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcRCAMSIntraParameterFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcRCAMSIntraParameterFieldType_get_TradingDay,
-    .set = PyCThostFtdcRCAMSIntraParameterFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcRCAMSIntraParameterFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcRCAMSIntraParameterFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcRCAMSIntraParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcRCAMSIntraParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcRCAMSIntraParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcRCAMSIntraParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品组合代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "CombProductID",
-    .get = PyCThostFtdcRCAMSIntraParameterFieldType_get_CombProductID,
-    .set = PyCThostFtdcRCAMSIntraParameterFieldType_set_CombProductID,
-    .doc = PyDoc_STR("产品组合代码"),
+    /*.name =*/ "CombProductID",
+    /*.get =*/ PyCThostFtdcRCAMSIntraParameterFieldType_get_CombProductID,
+    /*.set =*/ PyCThostFtdcRCAMSIntraParameterFieldType_set_CombProductID,
+    /*.doc =*/ PyDoc_STR("产品组合代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcRCAMSIntraParameterFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRCAMSIntraParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRCAMSIntraParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcRCAMSIntraParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRCAMSIntraParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRCAMSIntraParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRCAMSIntraParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRCAMSIntraParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRCAMSIntraParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRCAMSIntraParameterFieldType_slots_legacy,
 };
 #endif
 

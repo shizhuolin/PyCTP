@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcInvestorGroupFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorGroupFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorGroupFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorGroupFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorGroupFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者分组代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorGroupID",
-    .get = PyCThostFtdcInvestorGroupFieldType_get_InvestorGroupID,
-    .set = PyCThostFtdcInvestorGroupFieldType_set_InvestorGroupID,
-    .doc = PyDoc_STR("投资者分组代码"),
+    /*.name =*/ "InvestorGroupID",
+    /*.get =*/ PyCThostFtdcInvestorGroupFieldType_get_InvestorGroupID,
+    /*.set =*/ PyCThostFtdcInvestorGroupFieldType_set_InvestorGroupID,
+    /*.doc =*/ PyDoc_STR("投资者分组代码"),
     },
     /// 投资者分组名称
     /// typedef char TThostFtdcInvestorGroupNameType[41]
     {
-    .name = "InvestorGroupName",
-    .get = PyCThostFtdcInvestorGroupFieldType_get_InvestorGroupName,
-    .set = PyCThostFtdcInvestorGroupFieldType_set_InvestorGroupName,
-    .doc = PyDoc_STR("投资者分组名称"),
+    /*.name =*/ "InvestorGroupName",
+    /*.get =*/ PyCThostFtdcInvestorGroupFieldType_get_InvestorGroupName,
+    /*.set =*/ PyCThostFtdcInvestorGroupFieldType_set_InvestorGroupName,
+    /*.doc =*/ PyDoc_STR("投资者分组名称"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcInvestorGroupFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorGroupFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorGroupField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorGroupField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorGroupFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorGroupFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorGroupFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorGroupFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorGroupFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorGroupFieldType_slots_legacy,
 };
 #endif
 

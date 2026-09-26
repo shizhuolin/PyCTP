@@ -126,36 +126,36 @@ static PyMemberDef PyCThostFtdcBrokerUserRightAssignFieldType_members[] = {
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DRIdentityID",
+        /*.name =*/ "DRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserRightAssignFieldData, data.DRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserRightAssignFieldData, data.DRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     /// 能否交易
     /// typedef int TThostFtdcBoolType
     {
-        .name = "Tradeable",
+        /*.name =*/ "Tradeable",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserRightAssignFieldData, data.Tradeable),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserRightAssignFieldData, data.Tradeable),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("能否交易")
+        /*.doc =*/ PyDoc_STR("能否交易")
     },
     {NULL}  /* Sentinel */
 };
@@ -164,10 +164,10 @@ static PyGetSetDef PyCThostFtdcBrokerUserRightAssignFieldType_getsets[] = {
     /// 应用单元代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerUserRightAssignFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerUserRightAssignFieldType_set_BrokerID,
-    .doc = PyDoc_STR("应用单元代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerUserRightAssignFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerUserRightAssignFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("应用单元代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -193,15 +193,15 @@ static PyType_Slot PyCThostFtdcBrokerUserRightAssignFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerUserRightAssignFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerUserRightAssignField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerUserRightAssignField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserRightAssignFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserRightAssignFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserRightAssignFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserRightAssignFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerUserRightAssignFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerUserRightAssignFieldType_slots_legacy,
 };
 #endif
 

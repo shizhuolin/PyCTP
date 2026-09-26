@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryInvestorPortfSettingFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryInvestorPortfSettingFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryInvestorPortfSettingFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryInvestorPortfSettingFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryInvestorPortfSettingFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryInvestorPortfSettingFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryInvestorPortfSettingFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryInvestorPortfSettingFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryInvestorPortfSettingFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者编号
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryInvestorPortfSettingFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryInvestorPortfSettingFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者编号"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryInvestorPortfSettingFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryInvestorPortfSettingFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者编号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryInvestorPortfSettingFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInvestorPortfSettingFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInvestorPortfSettingField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInvestorPortfSettingField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPortfSettingFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPortfSettingFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPortfSettingFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPortfSettingFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInvestorPortfSettingFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInvestorPortfSettingFieldType_slots_legacy,
 };
 #endif
 

@@ -610,90 +610,90 @@ static PyGetSetDef PyCThostFtdcInputForQuoteFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_BrokerID,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_InvestorID,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_reserve1,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 询价引用
     /// typedef char TThostFtdcOrderRefType[13]
     {
-    .name = "ForQuoteRef",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_ForQuoteRef,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_ForQuoteRef,
-    .doc = PyDoc_STR("询价引用"),
+    /*.name =*/ "ForQuoteRef",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_ForQuoteRef,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_ForQuoteRef,
+    /*.doc =*/ PyDoc_STR("询价引用"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_UserID,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_ExchangeID,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_reserve2,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// Mac地址
     /// typedef char TThostFtdcMacAddressType[21]
     {
-    .name = "MacAddress",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_MacAddress,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_MacAddress,
-    .doc = PyDoc_STR("Mac地址"),
+    /*.name =*/ "MacAddress",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_MacAddress,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_MacAddress,
+    /*.doc =*/ PyDoc_STR("Mac地址"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_InstrumentID,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcInputForQuoteFieldType_get_IPAddress,
-    .set = PyCThostFtdcInputForQuoteFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcInputForQuoteFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcInputForQuoteFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -719,15 +719,15 @@ static PyType_Slot PyCThostFtdcInputForQuoteFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInputForQuoteFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInputForQuoteField",
+    /*.name =*/ "PyCTP.CThostFtdcInputForQuoteField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInputForQuoteFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInputForQuoteFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInputForQuoteFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInputForQuoteFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInputForQuoteFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInputForQuoteFieldType_slots_legacy,
 };
 #endif
 

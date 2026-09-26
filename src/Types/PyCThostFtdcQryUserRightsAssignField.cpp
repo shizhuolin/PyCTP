@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQryUserRightsAssignFieldType_getsets[] = {
     /// 应用单元代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryUserRightsAssignFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryUserRightsAssignFieldType_set_BrokerID,
-    .doc = PyDoc_STR("应用单元代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryUserRightsAssignFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryUserRightsAssignFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("应用单元代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcQryUserRightsAssignFieldType_get_UserID,
-    .set = PyCThostFtdcQryUserRightsAssignFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcQryUserRightsAssignFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcQryUserRightsAssignFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQryUserRightsAssignFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryUserRightsAssignFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryUserRightsAssignField",
+    /*.name =*/ "PyCTP.CThostFtdcQryUserRightsAssignField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryUserRightsAssignFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryUserRightsAssignFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryUserRightsAssignFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryUserRightsAssignFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryUserRightsAssignFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryUserRightsAssignFieldType_slots_legacy,
 };
 #endif
 

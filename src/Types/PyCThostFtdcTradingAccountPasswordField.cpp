@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcTradingAccountPasswordFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTradingAccountPasswordFieldType_get_BrokerID,
-    .set = PyCThostFtdcTradingAccountPasswordFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcTradingAccountPasswordFieldType_get_AccountID,
-    .set = PyCThostFtdcTradingAccountPasswordFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcTradingAccountPasswordFieldType_get_Password,
-    .set = PyCThostFtdcTradingAccountPasswordFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcTradingAccountPasswordFieldType_get_CurrencyID,
-    .set = PyCThostFtdcTradingAccountPasswordFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcTradingAccountPasswordFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTradingAccountPasswordFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTradingAccountPasswordField",
+    /*.name =*/ "PyCTP.CThostFtdcTradingAccountPasswordField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTradingAccountPasswordFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTradingAccountPasswordFieldType_slots_legacy,
 };
 #endif
 

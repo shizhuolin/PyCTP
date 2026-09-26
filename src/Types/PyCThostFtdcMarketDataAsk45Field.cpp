@@ -96,70 +96,70 @@ static PyMemberDef PyCThostFtdcMarketDataAsk45FieldType_members[] = {
     /// 申卖价四
     /// typedef double TThostFtdcPriceType
     {
-        .name = "AskPrice4",
+        /*.name =*/ "AskPrice4",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskPrice4),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskPrice4),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申卖价四")
+        /*.doc =*/ PyDoc_STR("申卖价四")
     },
     /// 申卖量四
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "AskVolume4",
+        /*.name =*/ "AskVolume4",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskVolume4),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskVolume4),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申卖量四")
+        /*.doc =*/ PyDoc_STR("申卖量四")
     },
     /// 申卖价五
     /// typedef double TThostFtdcPriceType
     {
-        .name = "AskPrice5",
+        /*.name =*/ "AskPrice5",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskPrice5),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskPrice5),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申卖价五")
+        /*.doc =*/ PyDoc_STR("申卖价五")
     },
     /// 申卖量五
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "AskVolume5",
+        /*.name =*/ "AskVolume5",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskVolume5),
+        /*.offset =*/ offsetof(PyCThostFtdcMarketDataAsk45FieldData, data.AskVolume5),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申卖量五")
+        /*.doc =*/ PyDoc_STR("申卖量五")
     },
     {NULL}  /* Sentinel */
 };
@@ -189,15 +189,15 @@ static PyType_Slot PyCThostFtdcMarketDataAsk45FieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMarketDataAsk45FieldType_spec = {
-    .name = "PyCTP.CThostFtdcMarketDataAsk45Field",
+    /*.name =*/ "PyCTP.CThostFtdcMarketDataAsk45Field",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMarketDataAsk45FieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMarketDataAsk45FieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataAsk45FieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMarketDataAsk45FieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMarketDataAsk45FieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMarketDataAsk45FieldType_slots_legacy,
 };
 #endif
 

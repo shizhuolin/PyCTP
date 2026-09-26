@@ -626,36 +626,36 @@ static PyMemberDef PyCThostFtdcTransferHeaderFieldType_members[] = {
     /// 会话编号，N/A
     /// typedef int TThostFtdcSessionIDType
     {
-        .name = "SessionID",
+        /*.name =*/ "SessionID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTransferHeaderFieldData, data.SessionID),
+        /*.offset =*/ offsetof(PyCThostFtdcTransferHeaderFieldData, data.SessionID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("会话编号，N/A")
+        /*.doc =*/ PyDoc_STR("会话编号，N/A")
     },
     /// 请求编号，N/A
     /// typedef int TThostFtdcRequestIDType
     {
-        .name = "RequestID",
+        /*.name =*/ "RequestID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTransferHeaderFieldData, data.RequestID),
+        /*.offset =*/ offsetof(PyCThostFtdcTransferHeaderFieldData, data.RequestID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("请求编号，N/A")
+        /*.doc =*/ PyDoc_STR("请求编号，N/A")
     },
     {NULL}  /* Sentinel */
 };
@@ -664,90 +664,90 @@ static PyGetSetDef PyCThostFtdcTransferHeaderFieldType_getsets[] = {
     /// 版本号，常量，1.0
     /// typedef char TThostFtdcVersionType[4]
     {
-    .name = "Version",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_Version,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_Version,
-    .doc = PyDoc_STR("版本号，常量，1.0"),
+    /*.name =*/ "Version",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_Version,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_Version,
+    /*.doc =*/ PyDoc_STR("版本号，常量，1.0"),
     },
     /// 交易代码，必填
     /// typedef char TThostFtdcTradeCodeType[7]
     {
-    .name = "TradeCode",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_TradeCode,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_TradeCode,
-    .doc = PyDoc_STR("交易代码，必填"),
+    /*.name =*/ "TradeCode",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_TradeCode,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_TradeCode,
+    /*.doc =*/ PyDoc_STR("交易代码，必填"),
     },
     /// 交易日期，必填，格式：yyyymmdd
     /// typedef char TThostFtdcTradeDateType[9]
     {
-    .name = "TradeDate",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_TradeDate,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_TradeDate,
-    .doc = PyDoc_STR("交易日期，必填，格式：yyyymmdd"),
+    /*.name =*/ "TradeDate",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_TradeDate,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_TradeDate,
+    /*.doc =*/ PyDoc_STR("交易日期，必填，格式：yyyymmdd"),
     },
     /// 交易时间，必填，格式：hhmmss
     /// typedef char TThostFtdcTradeTimeType[9]
     {
-    .name = "TradeTime",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_TradeTime,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_TradeTime,
-    .doc = PyDoc_STR("交易时间，必填，格式：hhmmss"),
+    /*.name =*/ "TradeTime",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_TradeTime,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_TradeTime,
+    /*.doc =*/ PyDoc_STR("交易时间，必填，格式：hhmmss"),
     },
     /// 发起方流水号，N/A
     /// typedef char TThostFtdcTradeSerialType[9]
     {
-    .name = "TradeSerial",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_TradeSerial,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_TradeSerial,
-    .doc = PyDoc_STR("发起方流水号，N/A"),
+    /*.name =*/ "TradeSerial",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_TradeSerial,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_TradeSerial,
+    /*.doc =*/ PyDoc_STR("发起方流水号，N/A"),
     },
     /// 期货公司代码，必填
     /// typedef char TThostFtdcFutureIDType[11]
     {
-    .name = "FutureID",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_FutureID,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_FutureID,
-    .doc = PyDoc_STR("期货公司代码，必填"),
+    /*.name =*/ "FutureID",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_FutureID,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_FutureID,
+    /*.doc =*/ PyDoc_STR("期货公司代码，必填"),
     },
     /// 银行代码，根据查询银行得到，必填
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_BankID,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_BankID,
-    .doc = PyDoc_STR("银行代码，根据查询银行得到，必填"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行代码，根据查询银行得到，必填"),
     },
     /// 银行分中心代码，根据查询银行得到，必填
     /// typedef char TThostFtdcBankBrchIDType[5]
     {
-    .name = "BankBrchID",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_BankBrchID,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_BankBrchID,
-    .doc = PyDoc_STR("银行分中心代码，根据查询银行得到，必填"),
+    /*.name =*/ "BankBrchID",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_BankBrchID,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_BankBrchID,
+    /*.doc =*/ PyDoc_STR("银行分中心代码，根据查询银行得到，必填"),
     },
     /// 操作员，N/A
     /// typedef char TThostFtdcOperNoType[17]
     {
-    .name = "OperNo",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_OperNo,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_OperNo,
-    .doc = PyDoc_STR("操作员，N/A"),
+    /*.name =*/ "OperNo",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_OperNo,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_OperNo,
+    /*.doc =*/ PyDoc_STR("操作员，N/A"),
     },
     /// 交易设备类型，N/A
     /// typedef char TThostFtdcDeviceIDType[3]
     {
-    .name = "DeviceID",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_DeviceID,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_DeviceID,
-    .doc = PyDoc_STR("交易设备类型，N/A"),
+    /*.name =*/ "DeviceID",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_DeviceID,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_DeviceID,
+    /*.doc =*/ PyDoc_STR("交易设备类型，N/A"),
     },
     /// 记录数，N/A
     /// typedef char TThostFtdcRecordNumType[7]
     {
-    .name = "RecordNum",
-    .get = PyCThostFtdcTransferHeaderFieldType_get_RecordNum,
-    .set = PyCThostFtdcTransferHeaderFieldType_set_RecordNum,
-    .doc = PyDoc_STR("记录数，N/A"),
+    /*.name =*/ "RecordNum",
+    /*.get =*/ PyCThostFtdcTransferHeaderFieldType_get_RecordNum,
+    /*.set =*/ PyCThostFtdcTransferHeaderFieldType_set_RecordNum,
+    /*.doc =*/ PyDoc_STR("记录数，N/A"),
     },
     {NULL}  /* Sentinel */
 };
@@ -773,15 +773,15 @@ static PyType_Slot PyCThostFtdcTransferHeaderFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTransferHeaderFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTransferHeaderField",
+    /*.name =*/ "PyCTP.CThostFtdcTransferHeaderField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTransferHeaderFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTransferHeaderFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTransferHeaderFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTransferHeaderFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTransferHeaderFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTransferHeaderFieldType_slots_legacy,
 };
 #endif
 

@@ -110,10 +110,10 @@ static PyGetSetDef PyCThostFtdcSyncSPBMParameterEndFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSyncSPBMParameterEndFieldType_get_TradingDay,
-    .set = PyCThostFtdcSyncSPBMParameterEndFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSyncSPBMParameterEndFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSyncSPBMParameterEndFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     {NULL}  /* Sentinel */
 };
@@ -139,15 +139,15 @@ static PyType_Slot PyCThostFtdcSyncSPBMParameterEndFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncSPBMParameterEndFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncSPBMParameterEndField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncSPBMParameterEndField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncSPBMParameterEndFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncSPBMParameterEndFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncSPBMParameterEndFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncSPBMParameterEndFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncSPBMParameterEndFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncSPBMParameterEndFieldType_slots_legacy,
 };
 #endif
 

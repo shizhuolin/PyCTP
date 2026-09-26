@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcTradingAccountReserveFieldType_members[] = {
     /// 基本准备金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Reserve",
+        /*.name =*/ "Reserve",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTradingAccountReserveFieldData, data.Reserve),
+        /*.offset =*/ offsetof(PyCThostFtdcTradingAccountReserveFieldData, data.Reserve),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("基本准备金")
+        /*.doc =*/ PyDoc_STR("基本准备金")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcTradingAccountReserveFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTradingAccountReserveFieldType_get_BrokerID,
-    .set = PyCThostFtdcTradingAccountReserveFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTradingAccountReserveFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTradingAccountReserveFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcTradingAccountReserveFieldType_get_AccountID,
-    .set = PyCThostFtdcTradingAccountReserveFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcTradingAccountReserveFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcTradingAccountReserveFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcTradingAccountReserveFieldType_get_CurrencyID,
-    .set = PyCThostFtdcTradingAccountReserveFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcTradingAccountReserveFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcTradingAccountReserveFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcTradingAccountReserveFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTradingAccountReserveFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTradingAccountReserveField",
+    /*.name =*/ "PyCTP.CThostFtdcTradingAccountReserveField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTradingAccountReserveFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTradingAccountReserveFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTradingAccountReserveFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTradingAccountReserveFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTradingAccountReserveFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTradingAccountReserveFieldType_slots_legacy,
 };
 #endif
 

@@ -166,19 +166,19 @@ static PyMemberDef PyCThostFtdcUserDRIBypassFieldType_members[] = {
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DRIdentityID",
+        /*.name =*/ "DRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcUserDRIBypassFieldData, data.DRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcUserDRIBypassFieldData, data.DRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -187,18 +187,18 @@ static PyGetSetDef PyCThostFtdcUserDRIBypassFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcUserDRIBypassFieldType_get_BrokerID,
-    .set = PyCThostFtdcUserDRIBypassFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcUserDRIBypassFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcUserDRIBypassFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcUserDRIBypassFieldType_get_UserID,
-    .set = PyCThostFtdcUserDRIBypassFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcUserDRIBypassFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcUserDRIBypassFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -224,15 +224,15 @@ static PyType_Slot PyCThostFtdcUserDRIBypassFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcUserDRIBypassFieldType_spec = {
-    .name = "PyCTP.CThostFtdcUserDRIBypassField",
+    /*.name =*/ "PyCTP.CThostFtdcUserDRIBypassField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcUserDRIBypassFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcUserDRIBypassFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcUserDRIBypassFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcUserDRIBypassFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcUserDRIBypassFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcUserDRIBypassFieldType_slots_legacy,
 };
 #endif
 

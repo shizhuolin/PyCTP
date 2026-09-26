@@ -843,87 +843,87 @@ static PyMemberDef PyCThostFtdcReqSyncKeyFieldType_members[] = {
     /// 银期平台消息流水号
     /// typedef int TThostFtdcSerialType
     {
-        .name = "PlateSerial",
+        /*.name =*/ "PlateSerial",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqSyncKeyFieldData, data.PlateSerial),
+        /*.offset =*/ offsetof(PyCThostFtdcReqSyncKeyFieldData, data.PlateSerial),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("银期平台消息流水号")
+        /*.doc =*/ PyDoc_STR("银期平台消息流水号")
     },
     /// 会话号
     /// typedef int TThostFtdcSessionIDType
     {
-        .name = "SessionID",
+        /*.name =*/ "SessionID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqSyncKeyFieldData, data.SessionID),
+        /*.offset =*/ offsetof(PyCThostFtdcReqSyncKeyFieldData, data.SessionID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("会话号")
+        /*.doc =*/ PyDoc_STR("会话号")
     },
     /// 安装编号
     /// typedef int TThostFtdcInstallIDType
     {
-        .name = "InstallID",
+        /*.name =*/ "InstallID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqSyncKeyFieldData, data.InstallID),
+        /*.offset =*/ offsetof(PyCThostFtdcReqSyncKeyFieldData, data.InstallID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("安装编号")
+        /*.doc =*/ PyDoc_STR("安装编号")
     },
     /// 请求编号
     /// typedef int TThostFtdcRequestIDType
     {
-        .name = "RequestID",
+        /*.name =*/ "RequestID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqSyncKeyFieldData, data.RequestID),
+        /*.offset =*/ offsetof(PyCThostFtdcReqSyncKeyFieldData, data.RequestID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("请求编号")
+        /*.doc =*/ PyDoc_STR("请求编号")
     },
     /// 交易ID
     /// typedef int TThostFtdcTIDType
     {
-        .name = "TID",
+        /*.name =*/ "TID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqSyncKeyFieldData, data.TID),
+        /*.offset =*/ offsetof(PyCThostFtdcReqSyncKeyFieldData, data.TID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易ID")
+        /*.doc =*/ PyDoc_STR("交易ID")
     },
     {NULL}  /* Sentinel */
 };
@@ -932,122 +932,122 @@ static PyGetSetDef PyCThostFtdcReqSyncKeyFieldType_getsets[] = {
     /// 业务功能码
     /// typedef char TThostFtdcTradeCodeType[7]
     {
-    .name = "TradeCode",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_TradeCode,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_TradeCode,
-    .doc = PyDoc_STR("业务功能码"),
+    /*.name =*/ "TradeCode",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_TradeCode,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_TradeCode,
+    /*.doc =*/ PyDoc_STR("业务功能码"),
     },
     /// 银行代码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_BankID,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_BankID,
-    .doc = PyDoc_STR("银行代码"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行代码"),
     },
     /// 银行分支机构代码
     /// typedef char TThostFtdcBankBrchIDType[5]
     {
-    .name = "BankBranchID",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_BankBranchID,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_BankBranchID,
-    .doc = PyDoc_STR("银行分支机构代码"),
+    /*.name =*/ "BankBranchID",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_BankBranchID,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_BankBranchID,
+    /*.doc =*/ PyDoc_STR("银行分支机构代码"),
     },
     /// 期商代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_BrokerID,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_BrokerID,
-    .doc = PyDoc_STR("期商代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("期商代码"),
     },
     /// 期商分支机构代码
     /// typedef char TThostFtdcFutureBranchIDType[31]
     {
-    .name = "BrokerBranchID",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_BrokerBranchID,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_BrokerBranchID,
-    .doc = PyDoc_STR("期商分支机构代码"),
+    /*.name =*/ "BrokerBranchID",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_BrokerBranchID,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_BrokerBranchID,
+    /*.doc =*/ PyDoc_STR("期商分支机构代码"),
     },
     /// 交易日期
     /// typedef char TThostFtdcTradeDateType[9]
     {
-    .name = "TradeDate",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_TradeDate,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_TradeDate,
-    .doc = PyDoc_STR("交易日期"),
+    /*.name =*/ "TradeDate",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_TradeDate,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_TradeDate,
+    /*.doc =*/ PyDoc_STR("交易日期"),
     },
     /// 交易时间
     /// typedef char TThostFtdcTradeTimeType[9]
     {
-    .name = "TradeTime",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_TradeTime,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_TradeTime,
-    .doc = PyDoc_STR("交易时间"),
+    /*.name =*/ "TradeTime",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_TradeTime,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_TradeTime,
+    /*.doc =*/ PyDoc_STR("交易时间"),
     },
     /// 银行流水号
     /// typedef char TThostFtdcBankSerialType[13]
     {
-    .name = "BankSerial",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_BankSerial,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_BankSerial,
-    .doc = PyDoc_STR("银行流水号"),
+    /*.name =*/ "BankSerial",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_BankSerial,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_BankSerial,
+    /*.doc =*/ PyDoc_STR("银行流水号"),
     },
     /// 交易系统日期 
     /// typedef char TThostFtdcTradeDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_TradingDay,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易系统日期 "),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易系统日期 "),
     },
     /// 最后分片标志
     /// typedef char TThostFtdcLastFragmentType
     {
-    .name = "LastFragment",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_LastFragment,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_LastFragment,
-    .doc = PyDoc_STR("最后分片标志"),
+    /*.name =*/ "LastFragment",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_LastFragment,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_LastFragment,
+    /*.doc =*/ PyDoc_STR("最后分片标志"),
     },
     /// 用户标识
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_UserID,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_UserID,
-    .doc = PyDoc_STR("用户标识"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户标识"),
     },
     /// 交易核心给银期报盘的消息
     /// typedef char TThostFtdcAddInfoType[129]
     {
-    .name = "Message",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_Message,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_Message,
-    .doc = PyDoc_STR("交易核心给银期报盘的消息"),
+    /*.name =*/ "Message",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_Message,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_Message,
+    /*.doc =*/ PyDoc_STR("交易核心给银期报盘的消息"),
     },
     /// 渠道标志
     /// typedef char TThostFtdcDeviceIDType[3]
     {
-    .name = "DeviceID",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_DeviceID,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_DeviceID,
-    .doc = PyDoc_STR("渠道标志"),
+    /*.name =*/ "DeviceID",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_DeviceID,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_DeviceID,
+    /*.doc =*/ PyDoc_STR("渠道标志"),
     },
     /// 期货公司银行编码
     /// typedef char TThostFtdcBankCodingForFutureType[33]
     {
-    .name = "BrokerIDByBank",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_BrokerIDByBank,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_BrokerIDByBank,
-    .doc = PyDoc_STR("期货公司银行编码"),
+    /*.name =*/ "BrokerIDByBank",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_BrokerIDByBank,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_BrokerIDByBank,
+    /*.doc =*/ PyDoc_STR("期货公司银行编码"),
     },
     /// 交易柜员
     /// typedef char TThostFtdcOperNoType[17]
     {
-    .name = "OperNo",
-    .get = PyCThostFtdcReqSyncKeyFieldType_get_OperNo,
-    .set = PyCThostFtdcReqSyncKeyFieldType_set_OperNo,
-    .doc = PyDoc_STR("交易柜员"),
+    /*.name =*/ "OperNo",
+    /*.get =*/ PyCThostFtdcReqSyncKeyFieldType_get_OperNo,
+    /*.set =*/ PyCThostFtdcReqSyncKeyFieldType_set_OperNo,
+    /*.doc =*/ PyDoc_STR("交易柜员"),
     },
     {NULL}  /* Sentinel */
 };
@@ -1073,15 +1073,15 @@ static PyType_Slot PyCThostFtdcReqSyncKeyFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqSyncKeyFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqSyncKeyField",
+    /*.name =*/ "PyCTP.CThostFtdcReqSyncKeyField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqSyncKeyFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqSyncKeyFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqSyncKeyFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqSyncKeyFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqSyncKeyFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqSyncKeyFieldType_slots_legacy,
 };
 #endif
 

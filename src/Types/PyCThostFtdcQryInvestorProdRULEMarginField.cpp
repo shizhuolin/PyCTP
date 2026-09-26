@@ -266,19 +266,19 @@ static PyMemberDef PyCThostFtdcQryInvestorProdRULEMarginFieldType_members[] = {
     /// 商品群号
     /// typedef int TThostFtdcCommodityGroupIDType
     {
-        .name = "CommodityGroupID",
+        /*.name =*/ "CommodityGroupID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQryInvestorProdRULEMarginFieldData, data.CommodityGroupID),
+        /*.offset =*/ offsetof(PyCThostFtdcQryInvestorProdRULEMarginFieldData, data.CommodityGroupID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("商品群号")
+        /*.doc =*/ PyDoc_STR("商品群号")
     },
     {NULL}  /* Sentinel */
 };
@@ -287,34 +287,34 @@ static PyGetSetDef PyCThostFtdcQryInvestorProdRULEMarginFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 品种代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProdFamilyCode",
-    .get = PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_ProdFamilyCode,
-    .set = PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_ProdFamilyCode,
-    .doc = PyDoc_STR("品种代码"),
+    /*.name =*/ "ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_get_ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_set_ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("品种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -340,15 +340,15 @@ static PyType_Slot PyCThostFtdcQryInvestorProdRULEMarginFieldType_slots_legacy[]
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInvestorProdRULEMarginFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInvestorProdRULEMarginField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInvestorProdRULEMarginField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProdRULEMarginFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProdRULEMarginFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProdRULEMarginFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorProdRULEMarginFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInvestorProdRULEMarginFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInvestorProdRULEMarginFieldType_slots_legacy,
 };
 #endif
 

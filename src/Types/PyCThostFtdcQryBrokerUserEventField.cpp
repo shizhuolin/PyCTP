@@ -197,26 +197,26 @@ static PyGetSetDef PyCThostFtdcQryBrokerUserEventFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryBrokerUserEventFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryBrokerUserEventFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryBrokerUserEventFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryBrokerUserEventFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcQryBrokerUserEventFieldType_get_UserID,
-    .set = PyCThostFtdcQryBrokerUserEventFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcQryBrokerUserEventFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcQryBrokerUserEventFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 用户事件类型
     /// typedef char TThostFtdcUserEventTypeType
     {
-    .name = "UserEventType",
-    .get = PyCThostFtdcQryBrokerUserEventFieldType_get_UserEventType,
-    .set = PyCThostFtdcQryBrokerUserEventFieldType_set_UserEventType,
-    .doc = PyDoc_STR("用户事件类型"),
+    /*.name =*/ "UserEventType",
+    /*.get =*/ PyCThostFtdcQryBrokerUserEventFieldType_get_UserEventType,
+    /*.set =*/ PyCThostFtdcQryBrokerUserEventFieldType_set_UserEventType,
+    /*.doc =*/ PyDoc_STR("用户事件类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -242,15 +242,15 @@ static PyType_Slot PyCThostFtdcQryBrokerUserEventFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryBrokerUserEventFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryBrokerUserEventField",
+    /*.name =*/ "PyCTP.CThostFtdcQryBrokerUserEventField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserEventFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserEventFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserEventFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryBrokerUserEventFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryBrokerUserEventFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryBrokerUserEventFieldType_slots_legacy,
 };
 #endif
 

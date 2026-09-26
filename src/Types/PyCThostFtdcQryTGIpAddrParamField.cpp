@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryTGIpAddrParamFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryTGIpAddrParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryTGIpAddrParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryTGIpAddrParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryTGIpAddrParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcQryTGIpAddrParamFieldType_get_UserID,
-    .set = PyCThostFtdcQryTGIpAddrParamFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcQryTGIpAddrParamFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcQryTGIpAddrParamFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcQryTGIpAddrParamFieldType_get_AppID,
-    .set = PyCThostFtdcQryTGIpAddrParamFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcQryTGIpAddrParamFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcQryTGIpAddrParamFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryTGIpAddrParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryTGIpAddrParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryTGIpAddrParamField",
+    /*.name =*/ "PyCTP.CThostFtdcQryTGIpAddrParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryTGIpAddrParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryTGIpAddrParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryTGIpAddrParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryTGIpAddrParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryTGIpAddrParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryTGIpAddrParamFieldType_slots_legacy,
 };
 #endif
 

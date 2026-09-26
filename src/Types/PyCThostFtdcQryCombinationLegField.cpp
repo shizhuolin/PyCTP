@@ -266,19 +266,19 @@ static PyMemberDef PyCThostFtdcQryCombinationLegFieldType_members[] = {
     /// 单腿编号
     /// typedef int TThostFtdcLegIDType
     {
-        .name = "LegID",
+        /*.name =*/ "LegID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQryCombinationLegFieldData, data.LegID),
+        /*.offset =*/ offsetof(PyCThostFtdcQryCombinationLegFieldData, data.LegID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("单腿编号")
+        /*.doc =*/ PyDoc_STR("单腿编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -287,34 +287,34 @@ static PyGetSetDef PyCThostFtdcQryCombinationLegFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryCombinationLegFieldType_get_reserve1,
-    .set = PyCThostFtdcQryCombinationLegFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryCombinationLegFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryCombinationLegFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcQryCombinationLegFieldType_get_reserve2,
-    .set = PyCThostFtdcQryCombinationLegFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcQryCombinationLegFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcQryCombinationLegFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 组合合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "CombInstrumentID",
-    .get = PyCThostFtdcQryCombinationLegFieldType_get_CombInstrumentID,
-    .set = PyCThostFtdcQryCombinationLegFieldType_set_CombInstrumentID,
-    .doc = PyDoc_STR("组合合约代码"),
+    /*.name =*/ "CombInstrumentID",
+    /*.get =*/ PyCThostFtdcQryCombinationLegFieldType_get_CombInstrumentID,
+    /*.set =*/ PyCThostFtdcQryCombinationLegFieldType_set_CombInstrumentID,
+    /*.doc =*/ PyDoc_STR("组合合约代码"),
     },
     /// 单腿合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "LegInstrumentID",
-    .get = PyCThostFtdcQryCombinationLegFieldType_get_LegInstrumentID,
-    .set = PyCThostFtdcQryCombinationLegFieldType_set_LegInstrumentID,
-    .doc = PyDoc_STR("单腿合约代码"),
+    /*.name =*/ "LegInstrumentID",
+    /*.get =*/ PyCThostFtdcQryCombinationLegFieldType_get_LegInstrumentID,
+    /*.set =*/ PyCThostFtdcQryCombinationLegFieldType_set_LegInstrumentID,
+    /*.doc =*/ PyDoc_STR("单腿合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -340,15 +340,15 @@ static PyType_Slot PyCThostFtdcQryCombinationLegFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryCombinationLegFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryCombinationLegField",
+    /*.name =*/ "PyCTP.CThostFtdcQryCombinationLegField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryCombinationLegFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryCombinationLegFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryCombinationLegFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryCombinationLegFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryCombinationLegFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryCombinationLegFieldType_slots_legacy,
 };
 #endif
 

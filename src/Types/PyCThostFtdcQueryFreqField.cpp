@@ -76,36 +76,36 @@ static PyMemberDef PyCThostFtdcQueryFreqFieldType_members[] = {
     /// 查询频率
     /// typedef int TThostFtdcQueryFreqType
     {
-        .name = "QueryFreq",
+        /*.name =*/ "QueryFreq",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQueryFreqFieldData, data.QueryFreq),
+        /*.offset =*/ offsetof(PyCThostFtdcQueryFreqFieldData, data.QueryFreq),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("查询频率")
+        /*.doc =*/ PyDoc_STR("查询频率")
     },
     /// FTD频率
     /// typedef int TThostFtdcQueryFreqType
     {
-        .name = "FTDPkgFreq",
+        /*.name =*/ "FTDPkgFreq",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQueryFreqFieldData, data.FTDPkgFreq),
+        /*.offset =*/ offsetof(PyCThostFtdcQueryFreqFieldData, data.FTDPkgFreq),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("FTD频率")
+        /*.doc =*/ PyDoc_STR("FTD频率")
     },
     {NULL}  /* Sentinel */
 };
@@ -135,15 +135,15 @@ static PyType_Slot PyCThostFtdcQueryFreqFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQueryFreqFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQueryFreqField",
+    /*.name =*/ "PyCTP.CThostFtdcQueryFreqField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQueryFreqFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQueryFreqFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQueryFreqFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQueryFreqFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQueryFreqFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQueryFreqFieldType_slots_legacy,
 };
 #endif
 

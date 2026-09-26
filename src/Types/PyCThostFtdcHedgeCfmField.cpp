@@ -1317,172 +1317,172 @@ static PyMemberDef PyCThostFtdcHedgeCfmFieldType_members[] = {
     /// 数量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "Volume",
+        /*.name =*/ "Volume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.Volume),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.Volume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("数量")
+        /*.doc =*/ PyDoc_STR("数量")
     },
     /// 请求编号
     /// typedef int TThostFtdcRequestIDType
     {
-        .name = "RequestID",
+        /*.name =*/ "RequestID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.RequestID),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.RequestID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("请求编号")
+        /*.doc =*/ PyDoc_STR("请求编号")
     },
     /// 前置编号
     /// typedef int TThostFtdcFrontIDType
     {
-        .name = "FrontID",
+        /*.name =*/ "FrontID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.FrontID),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.FrontID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("前置编号")
+        /*.doc =*/ PyDoc_STR("前置编号")
     },
     /// 会话编号
     /// typedef int TThostFtdcSessionIDType
     {
-        .name = "SessionID",
+        /*.name =*/ "SessionID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.SessionID),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.SessionID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("会话编号")
+        /*.doc =*/ PyDoc_STR("会话编号")
     },
     /// 经纪公司报单编号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "BrokerOrderSeq",
+        /*.name =*/ "BrokerOrderSeq",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.BrokerOrderSeq),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.BrokerOrderSeq),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("经纪公司报单编号")
+        /*.doc =*/ PyDoc_STR("经纪公司报单编号")
     },
     /// 序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SequenceNo",
+        /*.name =*/ "SequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.SequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.SequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("序号")
+        /*.doc =*/ PyDoc_STR("序号")
     },
     /// 成功处理数量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "DealVolume",
+        /*.name =*/ "DealVolume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.DealVolume),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.DealVolume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("成功处理数量")
+        /*.doc =*/ PyDoc_STR("成功处理数量")
     },
     /// 安装编号
     /// typedef int TThostFtdcInstallIDType
     {
-        .name = "InstallID",
+        /*.name =*/ "InstallID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.InstallID),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.InstallID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("安装编号")
+        /*.doc =*/ PyDoc_STR("安装编号")
     },
     /// 报单提示序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "NotifySequence",
+        /*.name =*/ "NotifySequence",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.NotifySequence),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.NotifySequence),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("报单提示序号")
+        /*.doc =*/ PyDoc_STR("报单提示序号")
     },
     /// 结算编号
     /// typedef int TThostFtdcSettlementIDType
     {
-        .name = "SettlementID",
+        /*.name =*/ "SettlementID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcHedgeCfmFieldData, data.SettlementID),
+        /*.offset =*/ offsetof(PyCThostFtdcHedgeCfmFieldData, data.SettlementID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("结算编号")
+        /*.doc =*/ PyDoc_STR("结算编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -1491,194 +1491,194 @@ static PyGetSetDef PyCThostFtdcHedgeCfmFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_BrokerID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_InvestorID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_InstrumentID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_UserID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 买卖方向
     /// typedef char TThostFtdcDirectionType
     {
-    .name = "Direction",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_Direction,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_Direction,
-    .doc = PyDoc_STR("买卖方向"),
+    /*.name =*/ "Direction",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_Direction,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_Direction,
+    /*.doc =*/ PyDoc_STR("买卖方向"),
     },
     /// 报单引用
     /// typedef char TThostFtdcOrderRefType[13]
     {
-    .name = "OrderRef",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_OrderRef,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_OrderRef,
-    .doc = PyDoc_STR("报单引用"),
+    /*.name =*/ "OrderRef",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_OrderRef,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_OrderRef,
+    /*.doc =*/ PyDoc_STR("报单引用"),
     },
     /// 操作用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "ActiveUserID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_ActiveUserID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_ActiveUserID,
-    .doc = PyDoc_STR("操作用户代码"),
+    /*.name =*/ "ActiveUserID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_ActiveUserID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_ActiveUserID,
+    /*.doc =*/ PyDoc_STR("操作用户代码"),
     },
     /// 报单编号
     /// typedef char TThostFtdcOrderSysIDType[21]
     {
-    .name = "OrderSysID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_OrderSysID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_OrderSysID,
-    .doc = PyDoc_STR("报单编号"),
+    /*.name =*/ "OrderSysID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_OrderSysID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_OrderSysID,
+    /*.doc =*/ PyDoc_STR("报单编号"),
     },
     /// 申请状态
     /// typedef char TThostFtdcApplyStatusType
     {
-    .name = "ApplyStatus",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_ApplyStatus,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_ApplyStatus,
-    .doc = PyDoc_STR("申请状态"),
+    /*.name =*/ "ApplyStatus",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_ApplyStatus,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_ApplyStatus,
+    /*.doc =*/ PyDoc_STR("申请状态"),
     },
     /// 报单日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "InsertDate",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_InsertDate,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_InsertDate,
-    .doc = PyDoc_STR("报单日期"),
+    /*.name =*/ "InsertDate",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_InsertDate,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_InsertDate,
+    /*.doc =*/ PyDoc_STR("报单日期"),
     },
     /// 委托时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "InsertTime",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_InsertTime,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_InsertTime,
-    .doc = PyDoc_STR("委托时间"),
+    /*.name =*/ "InsertTime",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_InsertTime,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_InsertTime,
+    /*.doc =*/ PyDoc_STR("委托时间"),
     },
     /// 撤销时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "CancelTime",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_CancelTime,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_CancelTime,
-    .doc = PyDoc_STR("撤销时间"),
+    /*.name =*/ "CancelTime",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_CancelTime,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_CancelTime,
+    /*.doc =*/ PyDoc_STR("撤销时间"),
     },
     /// 日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ReqDate",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_ReqDate,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_ReqDate,
-    .doc = PyDoc_STR("日期"),
+    /*.name =*/ "ReqDate",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_ReqDate,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_ReqDate,
+    /*.doc =*/ PyDoc_STR("日期"),
     },
     /// 本地报单编号
     /// typedef char TThostFtdcOrderLocalIDType[13]
     {
-    .name = "OrderLocalID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_OrderLocalID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_OrderLocalID,
-    .doc = PyDoc_STR("本地报单编号"),
+    /*.name =*/ "OrderLocalID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_OrderLocalID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_OrderLocalID,
+    /*.doc =*/ PyDoc_STR("本地报单编号"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_ExchangeID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_ParticipantID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 客户代码
     /// typedef char TThostFtdcClientIDType[11]
     {
-    .name = "ClientID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_ClientID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_ClientID,
-    .doc = PyDoc_STR("客户代码"),
+    /*.name =*/ "ClientID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_ClientID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_ClientID,
+    /*.doc =*/ PyDoc_STR("客户代码"),
     },
     /// 合约在交易所的代码
     /// typedef char TThostFtdcExchangeInstIDType[81]
     {
-    .name = "ExchangeInstID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_ExchangeInstID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_ExchangeInstID,
-    .doc = PyDoc_STR("合约在交易所的代码"),
+    /*.name =*/ "ExchangeInstID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_ExchangeInstID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_ExchangeInstID,
+    /*.doc =*/ PyDoc_STR("合约在交易所的代码"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_TraderID,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     /// 报单提交状态
     /// typedef char TThostFtdcOrderSubmitStatusType
     {
-    .name = "OrderSubmitStatus",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_OrderSubmitStatus,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_OrderSubmitStatus,
-    .doc = PyDoc_STR("报单提交状态"),
+    /*.name =*/ "OrderSubmitStatus",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_OrderSubmitStatus,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_OrderSubmitStatus,
+    /*.doc =*/ PyDoc_STR("报单提交状态"),
     },
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_TradingDay,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 状态信息
     /// typedef char TThostFtdcErrorMsgType[81]
     {
-    .name = "StatusMsg",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_StatusMsg,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_StatusMsg,
-    .doc = PyDoc_STR("状态信息"),
+    /*.name =*/ "StatusMsg",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_StatusMsg,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_StatusMsg,
+    /*.doc =*/ PyDoc_STR("状态信息"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_IPAddress,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     /// Mac地址
     /// typedef char TThostFtdcMacAddressType[21]
     {
-    .name = "MacAddress",
-    .get = PyCThostFtdcHedgeCfmFieldType_get_MacAddress,
-    .set = PyCThostFtdcHedgeCfmFieldType_set_MacAddress,
-    .doc = PyDoc_STR("Mac地址"),
+    /*.name =*/ "MacAddress",
+    /*.get =*/ PyCThostFtdcHedgeCfmFieldType_get_MacAddress,
+    /*.set =*/ PyCThostFtdcHedgeCfmFieldType_set_MacAddress,
+    /*.doc =*/ PyDoc_STR("Mac地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -1704,15 +1704,15 @@ static PyType_Slot PyCThostFtdcHedgeCfmFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcHedgeCfmFieldType_spec = {
-    .name = "PyCTP.CThostFtdcHedgeCfmField",
+    /*.name =*/ "PyCTP.CThostFtdcHedgeCfmField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcHedgeCfmFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcHedgeCfmFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcHedgeCfmFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcHedgeCfmFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcHedgeCfmFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcHedgeCfmFieldType_slots_legacy,
 };
 #endif
 

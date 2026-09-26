@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcNoticeFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcNoticeFieldType_get_BrokerID,
-    .set = PyCThostFtdcNoticeFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcNoticeFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcNoticeFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 消息正文
     /// typedef char TThostFtdcContentType[501]
     {
-    .name = "Content",
-    .get = PyCThostFtdcNoticeFieldType_get_Content,
-    .set = PyCThostFtdcNoticeFieldType_set_Content,
-    .doc = PyDoc_STR("消息正文"),
+    /*.name =*/ "Content",
+    /*.get =*/ PyCThostFtdcNoticeFieldType_get_Content,
+    /*.set =*/ PyCThostFtdcNoticeFieldType_set_Content,
+    /*.doc =*/ PyDoc_STR("消息正文"),
     },
     /// 经纪公司通知内容序列号
     /// typedef char TThostFtdcSequenceLabelType[2]
     {
-    .name = "SequenceLabel",
-    .get = PyCThostFtdcNoticeFieldType_get_SequenceLabel,
-    .set = PyCThostFtdcNoticeFieldType_set_SequenceLabel,
-    .doc = PyDoc_STR("经纪公司通知内容序列号"),
+    /*.name =*/ "SequenceLabel",
+    /*.get =*/ PyCThostFtdcNoticeFieldType_get_SequenceLabel,
+    /*.set =*/ PyCThostFtdcNoticeFieldType_set_SequenceLabel,
+    /*.doc =*/ PyDoc_STR("经纪公司通知内容序列号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcNoticeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcNoticeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcNoticeField",
+    /*.name =*/ "PyCTP.CThostFtdcNoticeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcNoticeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcNoticeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcNoticeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcNoticeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcNoticeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcNoticeFieldType_slots_legacy,
 };
 #endif
 

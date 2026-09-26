@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcQryStrikeOffsetFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryStrikeOffsetFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryStrikeOffsetFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryStrikeOffsetFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryStrikeOffsetFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryStrikeOffsetFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryStrikeOffsetFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryStrikeOffsetFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryStrikeOffsetFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryStrikeOffsetFieldType_get_reserve1,
-    .set = PyCThostFtdcQryStrikeOffsetFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryStrikeOffsetFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryStrikeOffsetFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryStrikeOffsetFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryStrikeOffsetFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryStrikeOffsetFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryStrikeOffsetFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcQryStrikeOffsetFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryStrikeOffsetFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryStrikeOffsetField",
+    /*.name =*/ "PyCTP.CThostFtdcQryStrikeOffsetField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryStrikeOffsetFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryStrikeOffsetFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryStrikeOffsetFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryStrikeOffsetFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryStrikeOffsetFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryStrikeOffsetFieldType_slots_legacy,
 };
 #endif
 

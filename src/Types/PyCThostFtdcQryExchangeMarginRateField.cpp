@@ -297,42 +297,42 @@ static PyGetSetDef PyCThostFtdcQryExchangeMarginRateFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryExchangeMarginRateFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryExchangeMarginRateFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryExchangeMarginRateFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryExchangeMarginRateFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryExchangeMarginRateFieldType_get_reserve1,
-    .set = PyCThostFtdcQryExchangeMarginRateFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryExchangeMarginRateFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryExchangeMarginRateFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcQryExchangeMarginRateFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcQryExchangeMarginRateFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcQryExchangeMarginRateFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcQryExchangeMarginRateFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryExchangeMarginRateFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryExchangeMarginRateFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryExchangeMarginRateFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryExchangeMarginRateFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcQryExchangeMarginRateFieldType_get_InstrumentID,
-    .set = PyCThostFtdcQryExchangeMarginRateFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcQryExchangeMarginRateFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcQryExchangeMarginRateFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -358,15 +358,15 @@ static PyType_Slot PyCThostFtdcQryExchangeMarginRateFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryExchangeMarginRateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryExchangeMarginRateField",
+    /*.name =*/ "PyCTP.CThostFtdcQryExchangeMarginRateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeMarginRateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeMarginRateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeMarginRateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeMarginRateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryExchangeMarginRateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryExchangeMarginRateFieldType_slots_legacy,
 };
 #endif
 

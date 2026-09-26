@@ -66,19 +66,19 @@ static PyMemberDef PyCThostFtdcCurrTransferIdentityFieldType_members[] = {
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "IdentityID",
+        /*.name =*/ "IdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCurrTransferIdentityFieldData, data.IdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcCurrTransferIdentityFieldData, data.IdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -108,15 +108,15 @@ static PyType_Slot PyCThostFtdcCurrTransferIdentityFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCurrTransferIdentityFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCurrTransferIdentityField",
+    /*.name =*/ "PyCTP.CThostFtdcCurrTransferIdentityField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCurrTransferIdentityFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCurrTransferIdentityFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCurrTransferIdentityFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCurrTransferIdentityFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCurrTransferIdentityFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCurrTransferIdentityFieldType_slots_legacy,
 };
 #endif
 

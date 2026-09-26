@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcAddrAppIDRelationFieldType_members[] = {
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DRIdentityID",
+        /*.name =*/ "DRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcAddrAppIDRelationFieldData, data.DRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcAddrAppIDRelationFieldData, data.DRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcAddrAppIDRelationFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAddrAppIDRelationFieldType_get_BrokerID,
-    .set = PyCThostFtdcAddrAppIDRelationFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAddrAppIDRelationFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAddrAppIDRelationFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 服务地址
     /// typedef char TThostFtdcIpAddrType[129]
     {
-    .name = "Address",
-    .get = PyCThostFtdcAddrAppIDRelationFieldType_get_Address,
-    .set = PyCThostFtdcAddrAppIDRelationFieldType_set_Address,
-    .doc = PyDoc_STR("服务地址"),
+    /*.name =*/ "Address",
+    /*.get =*/ PyCThostFtdcAddrAppIDRelationFieldType_get_Address,
+    /*.set =*/ PyCThostFtdcAddrAppIDRelationFieldType_set_Address,
+    /*.doc =*/ PyDoc_STR("服务地址"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcAddrAppIDRelationFieldType_get_AppID,
-    .set = PyCThostFtdcAddrAppIDRelationFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcAddrAppIDRelationFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcAddrAppIDRelationFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcAddrAppIDRelationFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAddrAppIDRelationFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAddrAppIDRelationField",
+    /*.name =*/ "PyCTP.CThostFtdcAddrAppIDRelationField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAddrAppIDRelationFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAddrAppIDRelationFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAddrAppIDRelationFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAddrAppIDRelationFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAddrAppIDRelationFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAddrAppIDRelationFieldType_slots_legacy,
 };
 #endif
 

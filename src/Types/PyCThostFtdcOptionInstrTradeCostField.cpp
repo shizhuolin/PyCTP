@@ -443,87 +443,87 @@ static PyMemberDef PyCThostFtdcOptionInstrTradeCostFieldType_members[] = {
     /// 期权合约保证金不变部分
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FixedMargin",
+        /*.name =*/ "FixedMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.FixedMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.FixedMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权合约保证金不变部分")
+        /*.doc =*/ PyDoc_STR("期权合约保证金不变部分")
     },
     /// 期权合约最小保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "MiniMargin",
+        /*.name =*/ "MiniMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.MiniMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.MiniMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权合约最小保证金")
+        /*.doc =*/ PyDoc_STR("期权合约最小保证金")
     },
     /// 期权合约权利金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Royalty",
+        /*.name =*/ "Royalty",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.Royalty),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.Royalty),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权合约权利金")
+        /*.doc =*/ PyDoc_STR("期权合约权利金")
     },
     /// 交易所期权合约保证金不变部分
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ExchFixedMargin",
+        /*.name =*/ "ExchFixedMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.ExchFixedMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.ExchFixedMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易所期权合约保证金不变部分")
+        /*.doc =*/ PyDoc_STR("交易所期权合约保证金不变部分")
     },
     /// 交易所期权合约最小保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "ExchMiniMargin",
+        /*.name =*/ "ExchMiniMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.ExchMiniMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionInstrTradeCostFieldData, data.ExchMiniMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易所期权合约最小保证金")
+        /*.doc =*/ PyDoc_STR("交易所期权合约最小保证金")
     },
     {NULL}  /* Sentinel */
 };
@@ -532,58 +532,58 @@ static PyGetSetDef PyCThostFtdcOptionInstrTradeCostFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcOptionInstrTradeCostFieldType_get_BrokerID,
-    .set = PyCThostFtdcOptionInstrTradeCostFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcOptionInstrTradeCostFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcOptionInstrTradeCostFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcOptionInstrTradeCostFieldType_get_InvestorID,
-    .set = PyCThostFtdcOptionInstrTradeCostFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcOptionInstrTradeCostFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcOptionInstrTradeCostFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcOptionInstrTradeCostFieldType_get_reserve1,
-    .set = PyCThostFtdcOptionInstrTradeCostFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcOptionInstrTradeCostFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcOptionInstrTradeCostFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcOptionInstrTradeCostFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcOptionInstrTradeCostFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcOptionInstrTradeCostFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcOptionInstrTradeCostFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcOptionInstrTradeCostFieldType_get_ExchangeID,
-    .set = PyCThostFtdcOptionInstrTradeCostFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcOptionInstrTradeCostFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcOptionInstrTradeCostFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcOptionInstrTradeCostFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcOptionInstrTradeCostFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcOptionInstrTradeCostFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcOptionInstrTradeCostFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcOptionInstrTradeCostFieldType_get_InstrumentID,
-    .set = PyCThostFtdcOptionInstrTradeCostFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcOptionInstrTradeCostFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcOptionInstrTradeCostFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -609,15 +609,15 @@ static PyType_Slot PyCThostFtdcOptionInstrTradeCostFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcOptionInstrTradeCostFieldType_spec = {
-    .name = "PyCTP.CThostFtdcOptionInstrTradeCostField",
+    /*.name =*/ "PyCTP.CThostFtdcOptionInstrTradeCostField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcOptionInstrTradeCostFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcOptionInstrTradeCostFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcOptionInstrTradeCostFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcOptionInstrTradeCostFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcOptionInstrTradeCostFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcOptionInstrTradeCostFieldType_slots_legacy,
 };
 #endif
 

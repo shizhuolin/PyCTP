@@ -176,36 +176,36 @@ static PyMemberDef PyCThostFtdcDRTransferFieldType_members[] = {
     /// 原交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "OrigDRIdentityID",
+        /*.name =*/ "OrigDRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcDRTransferFieldData, data.OrigDRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcDRTransferFieldData, data.OrigDRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("原交易中心代码")
+        /*.doc =*/ PyDoc_STR("原交易中心代码")
     },
     /// 目标交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DestDRIdentityID",
+        /*.name =*/ "DestDRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcDRTransferFieldData, data.DestDRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcDRTransferFieldData, data.DestDRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("目标交易中心代码")
+        /*.doc =*/ PyDoc_STR("目标交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -214,18 +214,18 @@ static PyGetSetDef PyCThostFtdcDRTransferFieldType_getsets[] = {
     /// 原应用单元代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "OrigBrokerID",
-    .get = PyCThostFtdcDRTransferFieldType_get_OrigBrokerID,
-    .set = PyCThostFtdcDRTransferFieldType_set_OrigBrokerID,
-    .doc = PyDoc_STR("原应用单元代码"),
+    /*.name =*/ "OrigBrokerID",
+    /*.get =*/ PyCThostFtdcDRTransferFieldType_get_OrigBrokerID,
+    /*.set =*/ PyCThostFtdcDRTransferFieldType_set_OrigBrokerID,
+    /*.doc =*/ PyDoc_STR("原应用单元代码"),
     },
     /// 目标易用单元代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "DestBrokerID",
-    .get = PyCThostFtdcDRTransferFieldType_get_DestBrokerID,
-    .set = PyCThostFtdcDRTransferFieldType_set_DestBrokerID,
-    .doc = PyDoc_STR("目标易用单元代码"),
+    /*.name =*/ "DestBrokerID",
+    /*.get =*/ PyCThostFtdcDRTransferFieldType_get_DestBrokerID,
+    /*.set =*/ PyCThostFtdcDRTransferFieldType_set_DestBrokerID,
+    /*.doc =*/ PyDoc_STR("目标易用单元代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -251,15 +251,15 @@ static PyType_Slot PyCThostFtdcDRTransferFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcDRTransferFieldType_spec = {
-    .name = "PyCTP.CThostFtdcDRTransferField",
+    /*.name =*/ "PyCTP.CThostFtdcDRTransferField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcDRTransferFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcDRTransferFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcDRTransferFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcDRTransferFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcDRTransferFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcDRTransferFieldType_slots_legacy,
 };
 #endif
 

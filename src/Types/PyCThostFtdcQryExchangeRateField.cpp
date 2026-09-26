@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryExchangeRateFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryExchangeRateFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryExchangeRateFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryExchangeRateFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryExchangeRateFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 源币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "FromCurrencyID",
-    .get = PyCThostFtdcQryExchangeRateFieldType_get_FromCurrencyID,
-    .set = PyCThostFtdcQryExchangeRateFieldType_set_FromCurrencyID,
-    .doc = PyDoc_STR("源币种"),
+    /*.name =*/ "FromCurrencyID",
+    /*.get =*/ PyCThostFtdcQryExchangeRateFieldType_get_FromCurrencyID,
+    /*.set =*/ PyCThostFtdcQryExchangeRateFieldType_set_FromCurrencyID,
+    /*.doc =*/ PyDoc_STR("源币种"),
     },
     /// 目标币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "ToCurrencyID",
-    .get = PyCThostFtdcQryExchangeRateFieldType_get_ToCurrencyID,
-    .set = PyCThostFtdcQryExchangeRateFieldType_set_ToCurrencyID,
-    .doc = PyDoc_STR("目标币种"),
+    /*.name =*/ "ToCurrencyID",
+    /*.get =*/ PyCThostFtdcQryExchangeRateFieldType_get_ToCurrencyID,
+    /*.set =*/ PyCThostFtdcQryExchangeRateFieldType_set_ToCurrencyID,
+    /*.doc =*/ PyDoc_STR("目标币种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryExchangeRateFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryExchangeRateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryExchangeRateField",
+    /*.name =*/ "PyCTP.CThostFtdcQryExchangeRateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeRateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryExchangeRateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeRateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryExchangeRateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryExchangeRateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryExchangeRateFieldType_slots_legacy,
 };
 #endif
 

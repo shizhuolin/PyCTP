@@ -573,53 +573,53 @@ static PyMemberDef PyCThostFtdcInputOffsetSettingFieldType_members[] = {
     /// 申请对冲的合约数量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "Volume",
+        /*.name =*/ "Volume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInputOffsetSettingFieldData, data.Volume),
+        /*.offset =*/ offsetof(PyCThostFtdcInputOffsetSettingFieldData, data.Volume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("申请对冲的合约数量")
+        /*.doc =*/ PyDoc_STR("申请对冲的合约数量")
     },
     /// 是否对冲
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsOffset",
+        /*.name =*/ "IsOffset",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInputOffsetSettingFieldData, data.IsOffset),
+        /*.offset =*/ offsetof(PyCThostFtdcInputOffsetSettingFieldData, data.IsOffset),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否对冲")
+        /*.doc =*/ PyDoc_STR("是否对冲")
     },
     /// 请求编号
     /// typedef int TThostFtdcRequestIDType
     {
-        .name = "RequestID",
+        /*.name =*/ "RequestID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcInputOffsetSettingFieldData, data.RequestID),
+        /*.offset =*/ offsetof(PyCThostFtdcInputOffsetSettingFieldData, data.RequestID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("请求编号")
+        /*.doc =*/ PyDoc_STR("请求编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -628,82 +628,82 @@ static PyGetSetDef PyCThostFtdcInputOffsetSettingFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_BrokerID,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_InvestorID,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_InstrumentID,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 标的期货合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "UnderlyingInstrID",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_UnderlyingInstrID,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_UnderlyingInstrID,
-    .doc = PyDoc_STR("标的期货合约代码"),
+    /*.name =*/ "UnderlyingInstrID",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_UnderlyingInstrID,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_UnderlyingInstrID,
+    /*.doc =*/ PyDoc_STR("标的期货合约代码"),
     },
     /// 产品代码
     /// typedef char TThostFtdcProductIDType[41]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_ProductID,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     /// 对冲类型
     /// typedef char TThostFtdcOffsetTypeType
     {
-    .name = "OffsetType",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_OffsetType,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_OffsetType,
-    .doc = PyDoc_STR("对冲类型"),
+    /*.name =*/ "OffsetType",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_OffsetType,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_OffsetType,
+    /*.doc =*/ PyDoc_STR("对冲类型"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_UserID,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_ExchangeID,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_IPAddress,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     /// Mac地址
     /// typedef char TThostFtdcMacAddressType[21]
     {
-    .name = "MacAddress",
-    .get = PyCThostFtdcInputOffsetSettingFieldType_get_MacAddress,
-    .set = PyCThostFtdcInputOffsetSettingFieldType_set_MacAddress,
-    .doc = PyDoc_STR("Mac地址"),
+    /*.name =*/ "MacAddress",
+    /*.get =*/ PyCThostFtdcInputOffsetSettingFieldType_get_MacAddress,
+    /*.set =*/ PyCThostFtdcInputOffsetSettingFieldType_set_MacAddress,
+    /*.doc =*/ PyDoc_STR("Mac地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -729,15 +729,15 @@ static PyType_Slot PyCThostFtdcInputOffsetSettingFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInputOffsetSettingFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInputOffsetSettingField",
+    /*.name =*/ "PyCTP.CThostFtdcInputOffsetSettingField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInputOffsetSettingFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInputOffsetSettingFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInputOffsetSettingFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInputOffsetSettingFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInputOffsetSettingFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInputOffsetSettingFieldType_slots_legacy,
 };
 #endif
 

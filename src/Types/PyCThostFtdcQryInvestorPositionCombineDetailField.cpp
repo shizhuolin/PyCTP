@@ -360,50 +360,50 @@ static PyGetSetDef PyCThostFtdcQryInvestorPositionCombineDetailFieldType_getsets
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_reserve1,
-    .set = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 组合持仓合约编码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "CombInstrumentID",
-    .get = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_CombInstrumentID,
-    .set = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_CombInstrumentID,
-    .doc = PyDoc_STR("组合持仓合约编码"),
+    /*.name =*/ "CombInstrumentID",
+    /*.get =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_get_CombInstrumentID,
+    /*.set =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_set_CombInstrumentID,
+    /*.doc =*/ PyDoc_STR("组合持仓合约编码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -429,15 +429,15 @@ static PyType_Slot PyCThostFtdcQryInvestorPositionCombineDetailFieldType_slots_l
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInvestorPositionCombineDetailFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInvestorPositionCombineDetailField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInvestorPositionCombineDetailField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPositionCombineDetailFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPositionCombineDetailFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPositionCombineDetailFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorPositionCombineDetailFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInvestorPositionCombineDetailFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInvestorPositionCombineDetailFieldType_slots_legacy,
 };
 #endif
 

@@ -563,36 +563,36 @@ static PyMemberDef PyCThostFtdcBrokerUserEventFieldType_members[] = {
     /// 用户事件序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "EventSequenceNo",
+        /*.name =*/ "EventSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserEventFieldData, data.EventSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserEventFieldData, data.EventSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("用户事件序号")
+        /*.doc =*/ PyDoc_STR("用户事件序号")
     },
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DRIdentityID",
+        /*.name =*/ "DRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcBrokerUserEventFieldData, data.DRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcBrokerUserEventFieldData, data.DRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -601,82 +601,82 @@ static PyGetSetDef PyCThostFtdcBrokerUserEventFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_BrokerID,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_UserID,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 用户事件类型
     /// typedef char TThostFtdcUserEventTypeType
     {
-    .name = "UserEventType",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_UserEventType,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_UserEventType,
-    .doc = PyDoc_STR("用户事件类型"),
+    /*.name =*/ "UserEventType",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_UserEventType,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_UserEventType,
+    /*.doc =*/ PyDoc_STR("用户事件类型"),
     },
     /// 事件发生日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "EventDate",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_EventDate,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_EventDate,
-    .doc = PyDoc_STR("事件发生日期"),
+    /*.name =*/ "EventDate",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_EventDate,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_EventDate,
+    /*.doc =*/ PyDoc_STR("事件发生日期"),
     },
     /// 事件发生时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "EventTime",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_EventTime,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_EventTime,
-    .doc = PyDoc_STR("事件发生时间"),
+    /*.name =*/ "EventTime",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_EventTime,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_EventTime,
+    /*.doc =*/ PyDoc_STR("事件发生时间"),
     },
     /// 用户事件信息
     /// typedef char TThostFtdcUserEventInfoType[1025]
     {
-    .name = "UserEventInfo",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_UserEventInfo,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_UserEventInfo,
-    .doc = PyDoc_STR("用户事件信息"),
+    /*.name =*/ "UserEventInfo",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_UserEventInfo,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_UserEventInfo,
+    /*.doc =*/ PyDoc_STR("用户事件信息"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_InvestorID,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_reserve1,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_InstrumentID,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcBrokerUserEventFieldType_get_TradingDay,
-    .set = PyCThostFtdcBrokerUserEventFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcBrokerUserEventFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcBrokerUserEventFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     {NULL}  /* Sentinel */
 };
@@ -702,15 +702,15 @@ static PyType_Slot PyCThostFtdcBrokerUserEventFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcBrokerUserEventFieldType_spec = {
-    .name = "PyCTP.CThostFtdcBrokerUserEventField",
+    /*.name =*/ "PyCTP.CThostFtdcBrokerUserEventField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserEventFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcBrokerUserEventFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserEventFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcBrokerUserEventFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcBrokerUserEventFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcBrokerUserEventFieldType_slots_legacy,
 };
 #endif
 

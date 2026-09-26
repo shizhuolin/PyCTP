@@ -263,36 +263,36 @@ static PyMemberDef PyCThostFtdcPortfTradeParamSettingFieldType_members[] = {
     /// 撤单是否验资
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsActionVerify",
+        /*.name =*/ "IsActionVerify",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcPortfTradeParamSettingFieldData, data.IsActionVerify),
+        /*.offset =*/ offsetof(PyCThostFtdcPortfTradeParamSettingFieldData, data.IsActionVerify),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("撤单是否验资")
+        /*.doc =*/ PyDoc_STR("撤单是否验资")
     },
     /// 平仓是否验资
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsCloseVerify",
+        /*.name =*/ "IsCloseVerify",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcPortfTradeParamSettingFieldData, data.IsCloseVerify),
+        /*.offset =*/ offsetof(PyCThostFtdcPortfTradeParamSettingFieldData, data.IsCloseVerify),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("平仓是否验资")
+        /*.doc =*/ PyDoc_STR("平仓是否验资")
     },
     {NULL}  /* Sentinel */
 };
@@ -301,34 +301,34 @@ static PyGetSetDef PyCThostFtdcPortfTradeParamSettingFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcPortfTradeParamSettingFieldType_get_ExchangeID,
-    .set = PyCThostFtdcPortfTradeParamSettingFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcPortfTradeParamSettingFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcPortfTradeParamSettingFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcPortfTradeParamSettingFieldType_get_BrokerID,
-    .set = PyCThostFtdcPortfTradeParamSettingFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcPortfTradeParamSettingFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcPortfTradeParamSettingFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcPortfTradeParamSettingFieldType_get_InvestorID,
-    .set = PyCThostFtdcPortfTradeParamSettingFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcPortfTradeParamSettingFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcPortfTradeParamSettingFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 组保算法
     /// typedef char TThostFtdcPortfolioType
     {
-    .name = "Portfolio",
-    .get = PyCThostFtdcPortfTradeParamSettingFieldType_get_Portfolio,
-    .set = PyCThostFtdcPortfTradeParamSettingFieldType_set_Portfolio,
-    .doc = PyDoc_STR("组保算法"),
+    /*.name =*/ "Portfolio",
+    /*.get =*/ PyCThostFtdcPortfTradeParamSettingFieldType_get_Portfolio,
+    /*.set =*/ PyCThostFtdcPortfTradeParamSettingFieldType_set_Portfolio,
+    /*.doc =*/ PyDoc_STR("组保算法"),
     },
     {NULL}  /* Sentinel */
 };
@@ -354,15 +354,15 @@ static PyType_Slot PyCThostFtdcPortfTradeParamSettingFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcPortfTradeParamSettingFieldType_spec = {
-    .name = "PyCTP.CThostFtdcPortfTradeParamSettingField",
+    /*.name =*/ "PyCTP.CThostFtdcPortfTradeParamSettingField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcPortfTradeParamSettingFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcPortfTradeParamSettingFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcPortfTradeParamSettingFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcPortfTradeParamSettingFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcPortfTradeParamSettingFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcPortfTradeParamSettingFieldType_slots_legacy,
 };
 #endif
 

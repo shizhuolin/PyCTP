@@ -103,19 +103,19 @@ static PyMemberDef PyCThostFtdcTGSessionQryStatusFieldType_members[] = {
     /// 最近30s的查询频率
     /// typedef int TThostFtdcCommonIntType
     {
-        .name = "LastQryFreq",
+        /*.name =*/ "LastQryFreq",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTGSessionQryStatusFieldData, data.LastQryFreq),
+        /*.offset =*/ offsetof(PyCThostFtdcTGSessionQryStatusFieldData, data.LastQryFreq),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最近30s的查询频率")
+        /*.doc =*/ PyDoc_STR("最近30s的查询频率")
     },
     {NULL}  /* Sentinel */
 };
@@ -124,10 +124,10 @@ static PyGetSetDef PyCThostFtdcTGSessionQryStatusFieldType_getsets[] = {
     /// 查询状态
     /// typedef char TThostFtdcTGSessionQryStatusType
     {
-    .name = "QryStatus",
-    .get = PyCThostFtdcTGSessionQryStatusFieldType_get_QryStatus,
-    .set = PyCThostFtdcTGSessionQryStatusFieldType_set_QryStatus,
-    .doc = PyDoc_STR("查询状态"),
+    /*.name =*/ "QryStatus",
+    /*.get =*/ PyCThostFtdcTGSessionQryStatusFieldType_get_QryStatus,
+    /*.set =*/ PyCThostFtdcTGSessionQryStatusFieldType_set_QryStatus,
+    /*.doc =*/ PyDoc_STR("查询状态"),
     },
     {NULL}  /* Sentinel */
 };
@@ -153,15 +153,15 @@ static PyType_Slot PyCThostFtdcTGSessionQryStatusFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTGSessionQryStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTGSessionQryStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcTGSessionQryStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTGSessionQryStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTGSessionQryStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTGSessionQryStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTGSessionQryStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTGSessionQryStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTGSessionQryStatusFieldType_slots_legacy,
 };
 #endif
 

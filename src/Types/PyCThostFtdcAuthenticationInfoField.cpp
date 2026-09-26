@@ -453,19 +453,19 @@ static PyMemberDef PyCThostFtdcAuthenticationInfoFieldType_members[] = {
     /// 是否为认证结果
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsResult",
+        /*.name =*/ "IsResult",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcAuthenticationInfoFieldData, data.IsResult),
+        /*.offset =*/ offsetof(PyCThostFtdcAuthenticationInfoFieldData, data.IsResult),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否为认证结果")
+        /*.doc =*/ PyDoc_STR("是否为认证结果")
     },
     {NULL}  /* Sentinel */
 };
@@ -474,66 +474,66 @@ static PyGetSetDef PyCThostFtdcAuthenticationInfoFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_UserID,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 用户端产品信息
     /// typedef char TThostFtdcProductInfoType[11]
     {
-    .name = "UserProductInfo",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_UserProductInfo,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_UserProductInfo,
-    .doc = PyDoc_STR("用户端产品信息"),
+    /*.name =*/ "UserProductInfo",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_UserProductInfo,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_UserProductInfo,
+    /*.doc =*/ PyDoc_STR("用户端产品信息"),
     },
     /// 认证信息
     /// typedef char TThostFtdcAuthInfoType[129]
     {
-    .name = "AuthInfo",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_AuthInfo,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_AuthInfo,
-    .doc = PyDoc_STR("认证信息"),
+    /*.name =*/ "AuthInfo",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_AuthInfo,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_AuthInfo,
+    /*.doc =*/ PyDoc_STR("认证信息"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_AppID,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     /// App类型
     /// typedef char TThostFtdcAppTypeType
     {
-    .name = "AppType",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_AppType,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_AppType,
-    .doc = PyDoc_STR("App类型"),
+    /*.name =*/ "AppType",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_AppType,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_AppType,
+    /*.doc =*/ PyDoc_STR("App类型"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_reserve1,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 终端IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "ClientIPAddress",
-    .get = PyCThostFtdcAuthenticationInfoFieldType_get_ClientIPAddress,
-    .set = PyCThostFtdcAuthenticationInfoFieldType_set_ClientIPAddress,
-    .doc = PyDoc_STR("终端IP地址"),
+    /*.name =*/ "ClientIPAddress",
+    /*.get =*/ PyCThostFtdcAuthenticationInfoFieldType_get_ClientIPAddress,
+    /*.set =*/ PyCThostFtdcAuthenticationInfoFieldType_set_ClientIPAddress,
+    /*.doc =*/ PyDoc_STR("终端IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -559,15 +559,15 @@ static PyType_Slot PyCThostFtdcAuthenticationInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcAuthenticationInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcAuthenticationInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcAuthenticationInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcAuthenticationInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcAuthenticationInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcAuthenticationInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcAuthenticationInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcAuthenticationInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcAuthenticationInfoFieldType_slots_legacy,
 };
 #endif
 

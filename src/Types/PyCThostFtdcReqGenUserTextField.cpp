@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcReqGenUserTextFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcReqGenUserTextFieldType_get_TradingDay,
-    .set = PyCThostFtdcReqGenUserTextFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcReqGenUserTextFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcReqGenUserTextFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcReqGenUserTextFieldType_get_BrokerID,
-    .set = PyCThostFtdcReqGenUserTextFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcReqGenUserTextFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcReqGenUserTextFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcReqGenUserTextFieldType_get_UserID,
-    .set = PyCThostFtdcReqGenUserTextFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcReqGenUserTextFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcReqGenUserTextFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcReqGenUserTextFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqGenUserTextFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqGenUserTextField",
+    /*.name =*/ "PyCTP.CThostFtdcReqGenUserTextField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqGenUserTextFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqGenUserTextFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqGenUserTextFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqGenUserTextFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqGenUserTextFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqGenUserTextFieldType_slots_legacy,
 };
 #endif
 

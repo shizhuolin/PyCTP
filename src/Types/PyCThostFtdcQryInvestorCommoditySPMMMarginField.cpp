@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_getsets[]
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_get_InvestorID,
-    .set = PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 商品组代码
     /// typedef char TThostFtdcSPMMProductIDType[41]
     {
-    .name = "CommodityID",
-    .get = PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_get_CommodityID,
-    .set = PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_set_CommodityID,
-    .doc = PyDoc_STR("商品组代码"),
+    /*.name =*/ "CommodityID",
+    /*.get =*/ PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_get_CommodityID,
+    /*.set =*/ PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_set_CommodityID,
+    /*.doc =*/ PyDoc_STR("商品组代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_slots_leg
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInvestorCommoditySPMMMarginField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInvestorCommoditySPMMMarginField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorCommoditySPMMMarginFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInvestorCommoditySPMMMarginFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorCommoditySPMMMarginFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInvestorCommoditySPMMMarginFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInvestorCommoditySPMMMarginFieldType_slots_legacy,
 };
 #endif
 

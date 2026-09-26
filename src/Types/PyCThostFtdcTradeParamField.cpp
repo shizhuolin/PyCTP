@@ -247,34 +247,34 @@ static PyGetSetDef PyCThostFtdcTradeParamFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTradeParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcTradeParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTradeParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTradeParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 参数代码
     /// typedef char TThostFtdcTradeParamIDType
     {
-    .name = "TradeParamID",
-    .get = PyCThostFtdcTradeParamFieldType_get_TradeParamID,
-    .set = PyCThostFtdcTradeParamFieldType_set_TradeParamID,
-    .doc = PyDoc_STR("参数代码"),
+    /*.name =*/ "TradeParamID",
+    /*.get =*/ PyCThostFtdcTradeParamFieldType_get_TradeParamID,
+    /*.set =*/ PyCThostFtdcTradeParamFieldType_set_TradeParamID,
+    /*.doc =*/ PyDoc_STR("参数代码"),
     },
     /// 参数代码值
     /// typedef char TThostFtdcSettlementParamValueType[256]
     {
-    .name = "TradeParamValue",
-    .get = PyCThostFtdcTradeParamFieldType_get_TradeParamValue,
-    .set = PyCThostFtdcTradeParamFieldType_set_TradeParamValue,
-    .doc = PyDoc_STR("参数代码值"),
+    /*.name =*/ "TradeParamValue",
+    /*.get =*/ PyCThostFtdcTradeParamFieldType_get_TradeParamValue,
+    /*.set =*/ PyCThostFtdcTradeParamFieldType_set_TradeParamValue,
+    /*.doc =*/ PyDoc_STR("参数代码值"),
     },
     /// 备注
     /// typedef char TThostFtdcMemoType[161]
     {
-    .name = "Memo",
-    .get = PyCThostFtdcTradeParamFieldType_get_Memo,
-    .set = PyCThostFtdcTradeParamFieldType_set_Memo,
-    .doc = PyDoc_STR("备注"),
+    /*.name =*/ "Memo",
+    /*.get =*/ PyCThostFtdcTradeParamFieldType_get_Memo,
+    /*.set =*/ PyCThostFtdcTradeParamFieldType_set_Memo,
+    /*.doc =*/ PyDoc_STR("备注"),
     },
     {NULL}  /* Sentinel */
 };
@@ -300,15 +300,15 @@ static PyType_Slot PyCThostFtdcTradeParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTradeParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTradeParamField",
+    /*.name =*/ "PyCTP.CThostFtdcTradeParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTradeParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTradeParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTradeParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTradeParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTradeParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTradeParamFieldType_slots_legacy,
 };
 #endif
 

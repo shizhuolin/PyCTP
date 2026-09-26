@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQryCommRateModelFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQryCommRateModelFieldType_get_BrokerID,
-    .set = PyCThostFtdcQryCommRateModelFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQryCommRateModelFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQryCommRateModelFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 手续费率模板代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "CommModelID",
-    .get = PyCThostFtdcQryCommRateModelFieldType_get_CommModelID,
-    .set = PyCThostFtdcQryCommRateModelFieldType_set_CommModelID,
-    .doc = PyDoc_STR("手续费率模板代码"),
+    /*.name =*/ "CommModelID",
+    /*.get =*/ PyCThostFtdcQryCommRateModelFieldType_get_CommModelID,
+    /*.set =*/ PyCThostFtdcQryCommRateModelFieldType_set_CommModelID,
+    /*.doc =*/ PyDoc_STR("手续费率模板代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQryCommRateModelFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryCommRateModelFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryCommRateModelField",
+    /*.name =*/ "PyCTP.CThostFtdcQryCommRateModelField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryCommRateModelFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryCommRateModelFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryCommRateModelFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryCommRateModelFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryCommRateModelFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryCommRateModelFieldType_slots_legacy,
 };
 #endif
 

@@ -197,26 +197,26 @@ static PyGetSetDef PyCThostFtdcInvestorTradingRightFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorTradingRightFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorTradingRightFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorTradingRightFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorTradingRightFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInvestorTradingRightFieldType_get_InvestorID,
-    .set = PyCThostFtdcInvestorTradingRightFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInvestorTradingRightFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInvestorTradingRightFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 交易权限
     /// typedef char TThostFtdcInvstTradingRightType
     {
-    .name = "InvstTradingRight",
-    .get = PyCThostFtdcInvestorTradingRightFieldType_get_InvstTradingRight,
-    .set = PyCThostFtdcInvestorTradingRightFieldType_set_InvstTradingRight,
-    .doc = PyDoc_STR("交易权限"),
+    /*.name =*/ "InvstTradingRight",
+    /*.get =*/ PyCThostFtdcInvestorTradingRightFieldType_get_InvstTradingRight,
+    /*.set =*/ PyCThostFtdcInvestorTradingRightFieldType_set_InvstTradingRight,
+    /*.doc =*/ PyDoc_STR("交易权限"),
     },
     {NULL}  /* Sentinel */
 };
@@ -242,15 +242,15 @@ static PyType_Slot PyCThostFtdcInvestorTradingRightFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorTradingRightFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorTradingRightField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorTradingRightField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorTradingRightFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorTradingRightFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorTradingRightFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorTradingRightFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorTradingRightFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorTradingRightFieldType_slots_legacy,
 };
 #endif
 

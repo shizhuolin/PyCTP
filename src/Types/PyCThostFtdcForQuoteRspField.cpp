@@ -410,58 +410,58 @@ static PyGetSetDef PyCThostFtdcForQuoteRspFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcForQuoteRspFieldType_get_TradingDay,
-    .set = PyCThostFtdcForQuoteRspFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcForQuoteRspFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcForQuoteRspFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcForQuoteRspFieldType_get_reserve1,
-    .set = PyCThostFtdcForQuoteRspFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcForQuoteRspFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcForQuoteRspFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 询价编号
     /// typedef char TThostFtdcOrderSysIDType[21]
     {
-    .name = "ForQuoteSysID",
-    .get = PyCThostFtdcForQuoteRspFieldType_get_ForQuoteSysID,
-    .set = PyCThostFtdcForQuoteRspFieldType_set_ForQuoteSysID,
-    .doc = PyDoc_STR("询价编号"),
+    /*.name =*/ "ForQuoteSysID",
+    /*.get =*/ PyCThostFtdcForQuoteRspFieldType_get_ForQuoteSysID,
+    /*.set =*/ PyCThostFtdcForQuoteRspFieldType_set_ForQuoteSysID,
+    /*.doc =*/ PyDoc_STR("询价编号"),
     },
     /// 询价时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "ForQuoteTime",
-    .get = PyCThostFtdcForQuoteRspFieldType_get_ForQuoteTime,
-    .set = PyCThostFtdcForQuoteRspFieldType_set_ForQuoteTime,
-    .doc = PyDoc_STR("询价时间"),
+    /*.name =*/ "ForQuoteTime",
+    /*.get =*/ PyCThostFtdcForQuoteRspFieldType_get_ForQuoteTime,
+    /*.set =*/ PyCThostFtdcForQuoteRspFieldType_set_ForQuoteTime,
+    /*.doc =*/ PyDoc_STR("询价时间"),
     },
     /// 业务日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ActionDay",
-    .get = PyCThostFtdcForQuoteRspFieldType_get_ActionDay,
-    .set = PyCThostFtdcForQuoteRspFieldType_set_ActionDay,
-    .doc = PyDoc_STR("业务日期"),
+    /*.name =*/ "ActionDay",
+    /*.get =*/ PyCThostFtdcForQuoteRspFieldType_get_ActionDay,
+    /*.set =*/ PyCThostFtdcForQuoteRspFieldType_set_ActionDay,
+    /*.doc =*/ PyDoc_STR("业务日期"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcForQuoteRspFieldType_get_ExchangeID,
-    .set = PyCThostFtdcForQuoteRspFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcForQuoteRspFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcForQuoteRspFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcForQuoteRspFieldType_get_InstrumentID,
-    .set = PyCThostFtdcForQuoteRspFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcForQuoteRspFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcForQuoteRspFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -487,15 +487,15 @@ static PyType_Slot PyCThostFtdcForQuoteRspFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcForQuoteRspFieldType_spec = {
-    .name = "PyCTP.CThostFtdcForQuoteRspField",
+    /*.name =*/ "PyCTP.CThostFtdcForQuoteRspField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcForQuoteRspFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcForQuoteRspFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcForQuoteRspFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcForQuoteRspFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcForQuoteRspFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcForQuoteRspFieldType_slots_legacy,
 };
 #endif
 

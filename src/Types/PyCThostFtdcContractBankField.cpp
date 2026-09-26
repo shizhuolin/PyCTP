@@ -310,42 +310,42 @@ static PyGetSetDef PyCThostFtdcContractBankFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcContractBankFieldType_get_BrokerID,
-    .set = PyCThostFtdcContractBankFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcContractBankFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcContractBankFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 银行代码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "BankID",
-    .get = PyCThostFtdcContractBankFieldType_get_BankID,
-    .set = PyCThostFtdcContractBankFieldType_set_BankID,
-    .doc = PyDoc_STR("银行代码"),
+    /*.name =*/ "BankID",
+    /*.get =*/ PyCThostFtdcContractBankFieldType_get_BankID,
+    /*.set =*/ PyCThostFtdcContractBankFieldType_set_BankID,
+    /*.doc =*/ PyDoc_STR("银行代码"),
     },
     /// 银行分中心代码
     /// typedef char TThostFtdcBankBrchIDType[5]
     {
-    .name = "BankBrchID",
-    .get = PyCThostFtdcContractBankFieldType_get_BankBrchID,
-    .set = PyCThostFtdcContractBankFieldType_set_BankBrchID,
-    .doc = PyDoc_STR("银行分中心代码"),
+    /*.name =*/ "BankBrchID",
+    /*.get =*/ PyCThostFtdcContractBankFieldType_get_BankBrchID,
+    /*.set =*/ PyCThostFtdcContractBankFieldType_set_BankBrchID,
+    /*.doc =*/ PyDoc_STR("银行分中心代码"),
     },
     /// 银行名称
     /// typedef char TThostFtdcBankNameType[101]
     {
-    .name = "BankName",
-    .get = PyCThostFtdcContractBankFieldType_get_BankName,
-    .set = PyCThostFtdcContractBankFieldType_set_BankName,
-    .doc = PyDoc_STR("银行名称"),
+    /*.name =*/ "BankName",
+    /*.get =*/ PyCThostFtdcContractBankFieldType_get_BankName,
+    /*.set =*/ PyCThostFtdcContractBankFieldType_set_BankName,
+    /*.doc =*/ PyDoc_STR("银行名称"),
     },
     /// 上报csrc的银行代码
     /// typedef char TThostFtdcBankIDType[4]
     {
-    .name = "csrcBankID",
-    .get = PyCThostFtdcContractBankFieldType_get_csrcBankID,
-    .set = PyCThostFtdcContractBankFieldType_set_csrcBankID,
-    .doc = PyDoc_STR("上报csrc的银行代码"),
+    /*.name =*/ "csrcBankID",
+    /*.get =*/ PyCThostFtdcContractBankFieldType_get_csrcBankID,
+    /*.set =*/ PyCThostFtdcContractBankFieldType_set_csrcBankID,
+    /*.doc =*/ PyDoc_STR("上报csrc的银行代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -371,15 +371,15 @@ static PyType_Slot PyCThostFtdcContractBankFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcContractBankFieldType_spec = {
-    .name = "PyCTP.CThostFtdcContractBankField",
+    /*.name =*/ "PyCTP.CThostFtdcContractBankField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcContractBankFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcContractBankFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcContractBankFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcContractBankFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcContractBankFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcContractBankFieldType_slots_legacy,
 };
 #endif
 

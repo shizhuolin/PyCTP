@@ -276,36 +276,36 @@ static PyMemberDef PyCThostFtdcForQuoteParamFieldType_members[] = {
     /// 最新价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "LastPrice",
+        /*.name =*/ "LastPrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcForQuoteParamFieldData, data.LastPrice),
+        /*.offset =*/ offsetof(PyCThostFtdcForQuoteParamFieldData, data.LastPrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最新价")
+        /*.doc =*/ PyDoc_STR("最新价")
     },
     /// 价差
     /// typedef double TThostFtdcPriceType
     {
-        .name = "PriceInterval",
+        /*.name =*/ "PriceInterval",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcForQuoteParamFieldData, data.PriceInterval),
+        /*.offset =*/ offsetof(PyCThostFtdcForQuoteParamFieldData, data.PriceInterval),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("价差")
+        /*.doc =*/ PyDoc_STR("价差")
     },
     {NULL}  /* Sentinel */
 };
@@ -314,34 +314,34 @@ static PyGetSetDef PyCThostFtdcForQuoteParamFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcForQuoteParamFieldType_get_BrokerID,
-    .set = PyCThostFtdcForQuoteParamFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcForQuoteParamFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcForQuoteParamFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcForQuoteParamFieldType_get_reserve1,
-    .set = PyCThostFtdcForQuoteParamFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcForQuoteParamFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcForQuoteParamFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcForQuoteParamFieldType_get_ExchangeID,
-    .set = PyCThostFtdcForQuoteParamFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcForQuoteParamFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcForQuoteParamFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcForQuoteParamFieldType_get_InstrumentID,
-    .set = PyCThostFtdcForQuoteParamFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcForQuoteParamFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcForQuoteParamFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -367,15 +367,15 @@ static PyType_Slot PyCThostFtdcForQuoteParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcForQuoteParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcForQuoteParamField",
+    /*.name =*/ "PyCTP.CThostFtdcForQuoteParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcForQuoteParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcForQuoteParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcForQuoteParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcForQuoteParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcForQuoteParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcForQuoteParamFieldType_slots_legacy,
 };
 #endif
 

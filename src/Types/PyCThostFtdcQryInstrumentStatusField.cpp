@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryInstrumentStatusFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryInstrumentStatusFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryInstrumentStatusFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryInstrumentStatusFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryInstrumentStatusFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldExchangeInstIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcQryInstrumentStatusFieldType_get_reserve1,
-    .set = PyCThostFtdcQryInstrumentStatusFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcQryInstrumentStatusFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcQryInstrumentStatusFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约在交易所的代码
     /// typedef char TThostFtdcExchangeInstIDType[81]
     {
-    .name = "ExchangeInstID",
-    .get = PyCThostFtdcQryInstrumentStatusFieldType_get_ExchangeInstID,
-    .set = PyCThostFtdcQryInstrumentStatusFieldType_set_ExchangeInstID,
-    .doc = PyDoc_STR("合约在交易所的代码"),
+    /*.name =*/ "ExchangeInstID",
+    /*.get =*/ PyCThostFtdcQryInstrumentStatusFieldType_get_ExchangeInstID,
+    /*.set =*/ PyCThostFtdcQryInstrumentStatusFieldType_set_ExchangeInstID,
+    /*.doc =*/ PyDoc_STR("合约在交易所的代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryInstrumentStatusFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryInstrumentStatusFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryInstrumentStatusField",
+    /*.name =*/ "PyCTP.CThostFtdcQryInstrumentStatusField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentStatusFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentStatusFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentStatusFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryInstrumentStatusFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryInstrumentStatusFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryInstrumentStatusFieldType_slots_legacy,
 };
 #endif
 

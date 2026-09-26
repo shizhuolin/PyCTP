@@ -266,19 +266,19 @@ static PyMemberDef PyCThostFtdcSettlementInfoConfirmFromSecFieldType_members[] =
     /// 次席的交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "FromSec",
+        /*.name =*/ "FromSec",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSettlementInfoConfirmFromSecFieldData, data.FromSec),
+        /*.offset =*/ offsetof(PyCThostFtdcSettlementInfoConfirmFromSecFieldData, data.FromSec),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("次席的交易中心代码")
+        /*.doc =*/ PyDoc_STR("次席的交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -287,34 +287,34 @@ static PyGetSetDef PyCThostFtdcSettlementInfoConfirmFromSecFieldType_getsets[] =
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_BrokerID,
-    .set = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_InvestorID,
-    .set = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 确认日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ConfirmDate",
-    .get = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_ConfirmDate,
-    .set = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_ConfirmDate,
-    .doc = PyDoc_STR("确认日期"),
+    /*.name =*/ "ConfirmDate",
+    /*.get =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_ConfirmDate,
+    /*.set =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_ConfirmDate,
+    /*.doc =*/ PyDoc_STR("确认日期"),
     },
     /// 确认时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "ConfirmTime",
-    .get = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_ConfirmTime,
-    .set = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_ConfirmTime,
-    .doc = PyDoc_STR("确认时间"),
+    /*.name =*/ "ConfirmTime",
+    /*.get =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_get_ConfirmTime,
+    /*.set =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_set_ConfirmTime,
+    /*.doc =*/ PyDoc_STR("确认时间"),
     },
     {NULL}  /* Sentinel */
 };
@@ -340,15 +340,15 @@ static PyType_Slot PyCThostFtdcSettlementInfoConfirmFromSecFieldType_slots_legac
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSettlementInfoConfirmFromSecFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSettlementInfoConfirmFromSecField",
+    /*.name =*/ "PyCTP.CThostFtdcSettlementInfoConfirmFromSecField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoConfirmFromSecFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoConfirmFromSecFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoConfirmFromSecFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSettlementInfoConfirmFromSecFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSettlementInfoConfirmFromSecFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSettlementInfoConfirmFromSecFieldType_slots_legacy,
 };
 #endif
 

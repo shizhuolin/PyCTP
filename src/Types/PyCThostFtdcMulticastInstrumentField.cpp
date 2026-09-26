@@ -206,87 +206,87 @@ static PyMemberDef PyCThostFtdcMulticastInstrumentFieldType_members[] = {
     /// 主题号
     /// typedef int TThostFtdcInstallIDType
     {
-        .name = "TopicID",
+        /*.name =*/ "TopicID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.TopicID),
+        /*.offset =*/ offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.TopicID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("主题号")
+        /*.doc =*/ PyDoc_STR("主题号")
     },
     /// 合约编号
     /// typedef int TThostFtdcInstallIDType
     {
-        .name = "InstrumentNo",
+        /*.name =*/ "InstrumentNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.InstrumentNo),
+        /*.offset =*/ offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.InstrumentNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("合约编号")
+        /*.doc =*/ PyDoc_STR("合约编号")
     },
     /// 基准价
     /// typedef double TThostFtdcPriceType
     {
-        .name = "CodePrice",
+        /*.name =*/ "CodePrice",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.CodePrice),
+        /*.offset =*/ offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.CodePrice),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("基准价")
+        /*.doc =*/ PyDoc_STR("基准价")
     },
     /// 合约数量乘数
     /// typedef int TThostFtdcVolumeMultipleType
     {
-        .name = "VolumeMultiple",
+        /*.name =*/ "VolumeMultiple",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.VolumeMultiple),
+        /*.offset =*/ offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.VolumeMultiple),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("合约数量乘数")
+        /*.doc =*/ PyDoc_STR("合约数量乘数")
     },
     /// 最小变动价位
     /// typedef double TThostFtdcPriceType
     {
-        .name = "PriceTick",
+        /*.name =*/ "PriceTick",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.PriceTick),
+        /*.offset =*/ offsetof(PyCThostFtdcMulticastInstrumentFieldData, data.PriceTick),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("最小变动价位")
+        /*.doc =*/ PyDoc_STR("最小变动价位")
     },
     {NULL}  /* Sentinel */
 };
@@ -295,18 +295,18 @@ static PyGetSetDef PyCThostFtdcMulticastInstrumentFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcMulticastInstrumentFieldType_get_reserve1,
-    .set = PyCThostFtdcMulticastInstrumentFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcMulticastInstrumentFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcMulticastInstrumentFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcMulticastInstrumentFieldType_get_InstrumentID,
-    .set = PyCThostFtdcMulticastInstrumentFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcMulticastInstrumentFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcMulticastInstrumentFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -332,15 +332,15 @@ static PyType_Slot PyCThostFtdcMulticastInstrumentFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMulticastInstrumentFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMulticastInstrumentField",
+    /*.name =*/ "PyCTP.CThostFtdcMulticastInstrumentField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMulticastInstrumentFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMulticastInstrumentFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMulticastInstrumentFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMulticastInstrumentFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMulticastInstrumentFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMulticastInstrumentFieldType_slots_legacy,
 };
 #endif
 

@@ -216,19 +216,19 @@ static PyMemberDef PyCThostFtdcCombPromotionParamFieldType_members[] = {
     /// 期权组合保证金比例
     /// typedef double TThostFtdcDiscountRatioType
     {
-        .name = "Xparameter",
+        /*.name =*/ "Xparameter",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcCombPromotionParamFieldData, data.Xparameter),
+        /*.offset =*/ offsetof(PyCThostFtdcCombPromotionParamFieldData, data.Xparameter),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权组合保证金比例")
+        /*.doc =*/ PyDoc_STR("期权组合保证金比例")
     },
     {NULL}  /* Sentinel */
 };
@@ -237,26 +237,26 @@ static PyGetSetDef PyCThostFtdcCombPromotionParamFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcCombPromotionParamFieldType_get_ExchangeID,
-    .set = PyCThostFtdcCombPromotionParamFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcCombPromotionParamFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcCombPromotionParamFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcCombPromotionParamFieldType_get_InstrumentID,
-    .set = PyCThostFtdcCombPromotionParamFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcCombPromotionParamFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcCombPromotionParamFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcCombHedgeFlagType[5]
     {
-    .name = "CombHedgeFlag",
-    .get = PyCThostFtdcCombPromotionParamFieldType_get_CombHedgeFlag,
-    .set = PyCThostFtdcCombPromotionParamFieldType_set_CombHedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "CombHedgeFlag",
+    /*.get =*/ PyCThostFtdcCombPromotionParamFieldType_get_CombHedgeFlag,
+    /*.set =*/ PyCThostFtdcCombPromotionParamFieldType_set_CombHedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -282,15 +282,15 @@ static PyType_Slot PyCThostFtdcCombPromotionParamFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcCombPromotionParamFieldType_spec = {
-    .name = "PyCTP.CThostFtdcCombPromotionParamField",
+    /*.name =*/ "PyCTP.CThostFtdcCombPromotionParamField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcCombPromotionParamFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcCombPromotionParamFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcCombPromotionParamFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcCombPromotionParamFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcCombPromotionParamFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcCombPromotionParamFieldType_slots_legacy,
 };
 #endif
 

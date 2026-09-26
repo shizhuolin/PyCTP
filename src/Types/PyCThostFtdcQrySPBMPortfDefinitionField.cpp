@@ -166,19 +166,19 @@ static PyMemberDef PyCThostFtdcQrySPBMPortfDefinitionFieldType_members[] = {
     /// 组合保证金套餐代码
     /// typedef int TThostFtdcPortfolioDefIDType
     {
-        .name = "PortfolioDefID",
+        /*.name =*/ "PortfolioDefID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcQrySPBMPortfDefinitionFieldData, data.PortfolioDefID),
+        /*.offset =*/ offsetof(PyCThostFtdcQrySPBMPortfDefinitionFieldData, data.PortfolioDefID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("组合保证金套餐代码")
+        /*.doc =*/ PyDoc_STR("组合保证金套餐代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -187,18 +187,18 @@ static PyGetSetDef PyCThostFtdcQrySPBMPortfDefinitionFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQrySPBMPortfDefinitionFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQrySPBMPortfDefinitionFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQrySPBMPortfDefinitionFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQrySPBMPortfDefinitionFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 品种代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProdFamilyCode",
-    .get = PyCThostFtdcQrySPBMPortfDefinitionFieldType_get_ProdFamilyCode,
-    .set = PyCThostFtdcQrySPBMPortfDefinitionFieldType_set_ProdFamilyCode,
-    .doc = PyDoc_STR("品种代码"),
+    /*.name =*/ "ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcQrySPBMPortfDefinitionFieldType_get_ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcQrySPBMPortfDefinitionFieldType_set_ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("品种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -224,15 +224,15 @@ static PyType_Slot PyCThostFtdcQrySPBMPortfDefinitionFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySPBMPortfDefinitionFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySPBMPortfDefinitionField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySPBMPortfDefinitionField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySPBMPortfDefinitionFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySPBMPortfDefinitionFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySPBMPortfDefinitionFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySPBMPortfDefinitionFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySPBMPortfDefinitionFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySPBMPortfDefinitionFieldType_slots_legacy,
 };
 #endif
 

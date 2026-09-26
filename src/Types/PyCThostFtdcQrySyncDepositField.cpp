@@ -160,18 +160,18 @@ static PyGetSetDef PyCThostFtdcQrySyncDepositFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQrySyncDepositFieldType_get_BrokerID,
-    .set = PyCThostFtdcQrySyncDepositFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQrySyncDepositFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQrySyncDepositFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 出入金流水号
     /// typedef char TThostFtdcDepositSeqNoType[15]
     {
-    .name = "DepositSeqNo",
-    .get = PyCThostFtdcQrySyncDepositFieldType_get_DepositSeqNo,
-    .set = PyCThostFtdcQrySyncDepositFieldType_set_DepositSeqNo,
-    .doc = PyDoc_STR("出入金流水号"),
+    /*.name =*/ "DepositSeqNo",
+    /*.get =*/ PyCThostFtdcQrySyncDepositFieldType_get_DepositSeqNo,
+    /*.set =*/ PyCThostFtdcQrySyncDepositFieldType_set_DepositSeqNo,
+    /*.doc =*/ PyDoc_STR("出入金流水号"),
     },
     {NULL}  /* Sentinel */
 };
@@ -197,15 +197,15 @@ static PyType_Slot PyCThostFtdcQrySyncDepositFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySyncDepositFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySyncDepositField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySyncDepositField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySyncDepositFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySyncDepositFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySyncDepositFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySyncDepositFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySyncDepositFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySyncDepositFieldType_slots_legacy,
 };
 #endif
 

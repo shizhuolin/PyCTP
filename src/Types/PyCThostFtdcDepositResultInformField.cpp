@@ -326,36 +326,36 @@ static PyMemberDef PyCThostFtdcDepositResultInformFieldType_members[] = {
     /// 入金金额
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "Deposit",
+        /*.name =*/ "Deposit",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcDepositResultInformFieldData, data.Deposit),
+        /*.offset =*/ offsetof(PyCThostFtdcDepositResultInformFieldData, data.Deposit),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("入金金额")
+        /*.doc =*/ PyDoc_STR("入金金额")
     },
     /// 请求编号
     /// typedef int TThostFtdcRequestIDType
     {
-        .name = "RequestID",
+        /*.name =*/ "RequestID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcDepositResultInformFieldData, data.RequestID),
+        /*.offset =*/ offsetof(PyCThostFtdcDepositResultInformFieldData, data.RequestID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("请求编号")
+        /*.doc =*/ PyDoc_STR("请求编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -364,42 +364,42 @@ static PyGetSetDef PyCThostFtdcDepositResultInformFieldType_getsets[] = {
     /// 出入金流水号，该流水号为银期报盘返回的流水号
     /// typedef char TThostFtdcDepositSeqNoType[15]
     {
-    .name = "DepositSeqNo",
-    .get = PyCThostFtdcDepositResultInformFieldType_get_DepositSeqNo,
-    .set = PyCThostFtdcDepositResultInformFieldType_set_DepositSeqNo,
-    .doc = PyDoc_STR("出入金流水号，该流水号为银期报盘返回的流水号"),
+    /*.name =*/ "DepositSeqNo",
+    /*.get =*/ PyCThostFtdcDepositResultInformFieldType_get_DepositSeqNo,
+    /*.set =*/ PyCThostFtdcDepositResultInformFieldType_set_DepositSeqNo,
+    /*.doc =*/ PyDoc_STR("出入金流水号，该流水号为银期报盘返回的流水号"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcDepositResultInformFieldType_get_BrokerID,
-    .set = PyCThostFtdcDepositResultInformFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcDepositResultInformFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcDepositResultInformFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcDepositResultInformFieldType_get_InvestorID,
-    .set = PyCThostFtdcDepositResultInformFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcDepositResultInformFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcDepositResultInformFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 返回代码
     /// typedef char TThostFtdcReturnCodeType[7]
     {
-    .name = "ReturnCode",
-    .get = PyCThostFtdcDepositResultInformFieldType_get_ReturnCode,
-    .set = PyCThostFtdcDepositResultInformFieldType_set_ReturnCode,
-    .doc = PyDoc_STR("返回代码"),
+    /*.name =*/ "ReturnCode",
+    /*.get =*/ PyCThostFtdcDepositResultInformFieldType_get_ReturnCode,
+    /*.set =*/ PyCThostFtdcDepositResultInformFieldType_set_ReturnCode,
+    /*.doc =*/ PyDoc_STR("返回代码"),
     },
     /// 返回码描述
     /// typedef char TThostFtdcDescrInfoForReturnCodeType[129]
     {
-    .name = "DescrInfoForReturnCode",
-    .get = PyCThostFtdcDepositResultInformFieldType_get_DescrInfoForReturnCode,
-    .set = PyCThostFtdcDepositResultInformFieldType_set_DescrInfoForReturnCode,
-    .doc = PyDoc_STR("返回码描述"),
+    /*.name =*/ "DescrInfoForReturnCode",
+    /*.get =*/ PyCThostFtdcDepositResultInformFieldType_get_DescrInfoForReturnCode,
+    /*.set =*/ PyCThostFtdcDepositResultInformFieldType_set_DescrInfoForReturnCode,
+    /*.doc =*/ PyDoc_STR("返回码描述"),
     },
     {NULL}  /* Sentinel */
 };
@@ -425,15 +425,15 @@ static PyType_Slot PyCThostFtdcDepositResultInformFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcDepositResultInformFieldType_spec = {
-    .name = "PyCTP.CThostFtdcDepositResultInformField",
+    /*.name =*/ "PyCTP.CThostFtdcDepositResultInformField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcDepositResultInformFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcDepositResultInformFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcDepositResultInformFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcDepositResultInformFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcDepositResultInformFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcDepositResultInformFieldType_slots_legacy,
 };
 #endif
 

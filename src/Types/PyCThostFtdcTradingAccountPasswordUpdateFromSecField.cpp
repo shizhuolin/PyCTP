@@ -316,19 +316,19 @@ static PyMemberDef PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_memb
     /// 次席的交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "FromSec",
+        /*.name =*/ "FromSec",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldData, data.FromSec),
+        /*.offset =*/ offsetof(PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldData, data.FromSec),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("次席的交易中心代码")
+        /*.doc =*/ PyDoc_STR("次席的交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -337,42 +337,42 @@ static PyGetSetDef PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_gets
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_BrokerID,
-    .set = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者帐号
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_AccountID,
-    .set = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_AccountID,
-    .doc = PyDoc_STR("投资者帐号"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("投资者帐号"),
     },
     /// 原来的口令
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "OldPassword",
-    .get = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_OldPassword,
-    .set = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_OldPassword,
-    .doc = PyDoc_STR("原来的口令"),
+    /*.name =*/ "OldPassword",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_OldPassword,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_OldPassword,
+    /*.doc =*/ PyDoc_STR("原来的口令"),
     },
     /// 新的口令
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "NewPassword",
-    .get = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_NewPassword,
-    .set = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_NewPassword,
-    .doc = PyDoc_STR("新的口令"),
+    /*.name =*/ "NewPassword",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_NewPassword,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_NewPassword,
+    /*.doc =*/ PyDoc_STR("新的口令"),
     },
     /// 币种代码
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_CurrencyID,
-    .set = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种代码"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -398,15 +398,15 @@ static PyType_Slot PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_slot
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_spec = {
-    .name = "PyCTP.CThostFtdcTradingAccountPasswordUpdateFromSecField",
+    /*.name =*/ "PyCTP.CThostFtdcTradingAccountPasswordUpdateFromSecField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcTradingAccountPasswordUpdateFromSecFieldType_slots_legacy,
 };
 #endif
 

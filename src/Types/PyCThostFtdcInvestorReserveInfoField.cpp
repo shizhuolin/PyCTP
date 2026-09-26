@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcInvestorReserveInfoFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorReserveInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorReserveInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorReserveInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorReserveInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcInvestorReserveInfoFieldType_get_UserID,
-    .set = PyCThostFtdcInvestorReserveInfoFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcInvestorReserveInfoFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcInvestorReserveInfoFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 预留信息
     /// typedef char TThostFtdcReserveInfoType[65]
     {
-    .name = "ReserveInfo",
-    .get = PyCThostFtdcInvestorReserveInfoFieldType_get_ReserveInfo,
-    .set = PyCThostFtdcInvestorReserveInfoFieldType_set_ReserveInfo,
-    .doc = PyDoc_STR("预留信息"),
+    /*.name =*/ "ReserveInfo",
+    /*.get =*/ PyCThostFtdcInvestorReserveInfoFieldType_get_ReserveInfo,
+    /*.set =*/ PyCThostFtdcInvestorReserveInfoFieldType_set_ReserveInfo,
+    /*.doc =*/ PyDoc_STR("预留信息"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcInvestorReserveInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorReserveInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorReserveInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorReserveInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorReserveInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorReserveInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorReserveInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorReserveInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorReserveInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorReserveInfoFieldType_slots_legacy,
 };
 #endif
 

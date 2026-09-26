@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcMarginModelFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcMarginModelFieldType_get_BrokerID,
-    .set = PyCThostFtdcMarginModelFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcMarginModelFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcMarginModelFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 保证金率模板代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "MarginModelID",
-    .get = PyCThostFtdcMarginModelFieldType_get_MarginModelID,
-    .set = PyCThostFtdcMarginModelFieldType_set_MarginModelID,
-    .doc = PyDoc_STR("保证金率模板代码"),
+    /*.name =*/ "MarginModelID",
+    /*.get =*/ PyCThostFtdcMarginModelFieldType_get_MarginModelID,
+    /*.set =*/ PyCThostFtdcMarginModelFieldType_set_MarginModelID,
+    /*.doc =*/ PyDoc_STR("保证金率模板代码"),
     },
     /// 模板名称
     /// typedef char TThostFtdcCommModelNameType[161]
     {
-    .name = "MarginModelName",
-    .get = PyCThostFtdcMarginModelFieldType_get_MarginModelName,
-    .set = PyCThostFtdcMarginModelFieldType_set_MarginModelName,
-    .doc = PyDoc_STR("模板名称"),
+    /*.name =*/ "MarginModelName",
+    /*.get =*/ PyCThostFtdcMarginModelFieldType_get_MarginModelName,
+    /*.set =*/ PyCThostFtdcMarginModelFieldType_set_MarginModelName,
+    /*.doc =*/ PyDoc_STR("模板名称"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcMarginModelFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcMarginModelFieldType_spec = {
-    .name = "PyCTP.CThostFtdcMarginModelField",
+    /*.name =*/ "PyCTP.CThostFtdcMarginModelField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMarginModelFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMarginModelFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMarginModelFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMarginModelFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcMarginModelFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcMarginModelFieldType_slots_legacy,
 };
 #endif
 

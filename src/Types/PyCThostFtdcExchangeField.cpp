@@ -197,26 +197,26 @@ static PyGetSetDef PyCThostFtdcExchangeFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcExchangeFieldType_get_ExchangeID,
-    .set = PyCThostFtdcExchangeFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcExchangeFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcExchangeFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 交易所名称
     /// typedef char TThostFtdcExchangeNameType[61]
     {
-    .name = "ExchangeName",
-    .get = PyCThostFtdcExchangeFieldType_get_ExchangeName,
-    .set = PyCThostFtdcExchangeFieldType_set_ExchangeName,
-    .doc = PyDoc_STR("交易所名称"),
+    /*.name =*/ "ExchangeName",
+    /*.get =*/ PyCThostFtdcExchangeFieldType_get_ExchangeName,
+    /*.set =*/ PyCThostFtdcExchangeFieldType_set_ExchangeName,
+    /*.doc =*/ PyDoc_STR("交易所名称"),
     },
     /// 交易所属性
     /// typedef char TThostFtdcExchangePropertyType
     {
-    .name = "ExchangeProperty",
-    .get = PyCThostFtdcExchangeFieldType_get_ExchangeProperty,
-    .set = PyCThostFtdcExchangeFieldType_set_ExchangeProperty,
-    .doc = PyDoc_STR("交易所属性"),
+    /*.name =*/ "ExchangeProperty",
+    /*.get =*/ PyCThostFtdcExchangeFieldType_get_ExchangeProperty,
+    /*.set =*/ PyCThostFtdcExchangeFieldType_set_ExchangeProperty,
+    /*.doc =*/ PyDoc_STR("交易所属性"),
     },
     {NULL}  /* Sentinel */
 };
@@ -242,15 +242,15 @@ static PyType_Slot PyCThostFtdcExchangeFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcExchangeFieldType_spec = {
-    .name = "PyCTP.CThostFtdcExchangeField",
+    /*.name =*/ "PyCTP.CThostFtdcExchangeField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcExchangeFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcExchangeFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcExchangeFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcExchangeFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcExchangeFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcExchangeFieldType_slots_legacy,
 };
 #endif
 

@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcVerifyInvestorPasswordFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcVerifyInvestorPasswordFieldType_get_BrokerID,
-    .set = PyCThostFtdcVerifyInvestorPasswordFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcVerifyInvestorPasswordFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcVerifyInvestorPasswordFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcVerifyInvestorPasswordFieldType_get_InvestorID,
-    .set = PyCThostFtdcVerifyInvestorPasswordFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcVerifyInvestorPasswordFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcVerifyInvestorPasswordFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcVerifyInvestorPasswordFieldType_get_Password,
-    .set = PyCThostFtdcVerifyInvestorPasswordFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcVerifyInvestorPasswordFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcVerifyInvestorPasswordFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcVerifyInvestorPasswordFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcVerifyInvestorPasswordFieldType_spec = {
-    .name = "PyCTP.CThostFtdcVerifyInvestorPasswordField",
+    /*.name =*/ "PyCTP.CThostFtdcVerifyInvestorPasswordField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcVerifyInvestorPasswordFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcVerifyInvestorPasswordFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcVerifyInvestorPasswordFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcVerifyInvestorPasswordFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcVerifyInvestorPasswordFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcVerifyInvestorPasswordFieldType_slots_legacy,
 };
 #endif
 

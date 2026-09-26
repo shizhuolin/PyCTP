@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcInvestorPortfMarginModelFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorPortfMarginModelFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorPortfMarginModelFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginModelFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginModelFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInvestorPortfMarginModelFieldType_get_InvestorID,
-    .set = PyCThostFtdcInvestorPortfMarginModelFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginModelFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginModelFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 保证金系数模板
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "MarginModelID",
-    .get = PyCThostFtdcInvestorPortfMarginModelFieldType_get_MarginModelID,
-    .set = PyCThostFtdcInvestorPortfMarginModelFieldType_set_MarginModelID,
-    .doc = PyDoc_STR("保证金系数模板"),
+    /*.name =*/ "MarginModelID",
+    /*.get =*/ PyCThostFtdcInvestorPortfMarginModelFieldType_get_MarginModelID,
+    /*.set =*/ PyCThostFtdcInvestorPortfMarginModelFieldType_set_MarginModelID,
+    /*.doc =*/ PyDoc_STR("保证金系数模板"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcInvestorPortfMarginModelFieldType_slots_legacy[] 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorPortfMarginModelFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorPortfMarginModelField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorPortfMarginModelField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginModelFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginModelFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginModelFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorPortfMarginModelFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorPortfMarginModelFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorPortfMarginModelFieldType_slots_legacy,
 };
 #endif
 

@@ -333,70 +333,70 @@ static PyMemberDef PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_members[] = 
     /// 标准合约保证金
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "StdInstrMargin",
+        /*.name =*/ "StdInstrMargin",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.StdInstrMargin),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.StdInstrMargin),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("标准合约保证金")
+        /*.doc =*/ PyDoc_STR("标准合约保证金")
     },
     /// 一般月份合约组合保证金系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "UsualIntraRate",
+        /*.name =*/ "UsualIntraRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.UsualIntraRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.UsualIntraRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("一般月份合约组合保证金系数")
+        /*.doc =*/ PyDoc_STR("一般月份合约组合保证金系数")
     },
     /// 临近交割合约组合保证金系数
     /// typedef double TThostFtdcRatioType
     {
-        .name = "DeliveryIntraRate",
+        /*.name =*/ "DeliveryIntraRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.DeliveryIntraRate),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.DeliveryIntraRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("临近交割合约组合保证金系数")
+        /*.doc =*/ PyDoc_STR("临近交割合约组合保证金系数")
     },
     /// 追平序号
     /// typedef int TThostFtdcSequenceNoType
     {
-        .name = "SyncDeltaSequenceNo",
+        /*.name =*/ "SyncDeltaSequenceNo",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.SyncDeltaSequenceNo),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData, data.SyncDeltaSequenceNo),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("追平序号")
+        /*.doc =*/ PyDoc_STR("追平序号")
     },
     {NULL}  /* Sentinel */
 };
@@ -405,42 +405,42 @@ static PyGetSetDef PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_getsets[] = 
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_TradingDay,
-    .set = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_ExchangeID,
-    .set = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 品种代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProdFamilyCode",
-    .get = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_ProdFamilyCode,
-    .set = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_ProdFamilyCode,
-    .doc = PyDoc_STR("品种代码"),
+    /*.name =*/ "ProdFamilyCode",
+    /*.get =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_ProdFamilyCode,
+    /*.set =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_ProdFamilyCode,
+    /*.doc =*/ PyDoc_STR("品种代码"),
     },
     /// 标准合约
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "StdInstrumentID",
-    .get = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_StdInstrumentID,
-    .set = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_StdInstrumentID,
-    .doc = PyDoc_STR("标准合约"),
+    /*.name =*/ "StdInstrumentID",
+    /*.get =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_StdInstrumentID,
+    /*.set =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_StdInstrumentID,
+    /*.doc =*/ PyDoc_STR("标准合约"),
     },
     /// 操作标志
     /// typedef char TThostFtdcActionDirectionType
     {
-    .name = "ActionDirection",
-    .get = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_ActionDirection,
-    .set = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_ActionDirection,
-    .doc = PyDoc_STR("操作标志"),
+    /*.name =*/ "ActionDirection",
+    /*.get =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_get_ActionDirection,
+    /*.set =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_set_ActionDirection,
+    /*.doc =*/ PyDoc_STR("操作标志"),
     },
     {NULL}  /* Sentinel */
 };
@@ -466,15 +466,15 @@ static PyType_Slot PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_slots_legacy
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDeltaRULEIntraParameterField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDeltaRULEIntraParameterField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDeltaRULEIntraParameterFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDeltaRULEIntraParameterFieldType_slots_legacy,
 };
 #endif
 

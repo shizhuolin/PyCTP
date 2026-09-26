@@ -266,19 +266,19 @@ static PyMemberDef PyCThostFtdcProductExchRateFieldType_members[] = {
     /// 汇率
     /// typedef double TThostFtdcExchangeRateType
     {
-        .name = "ExchangeRate",
+        /*.name =*/ "ExchangeRate",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcProductExchRateFieldData, data.ExchangeRate),
+        /*.offset =*/ offsetof(PyCThostFtdcProductExchRateFieldData, data.ExchangeRate),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("汇率")
+        /*.doc =*/ PyDoc_STR("汇率")
     },
     {NULL}  /* Sentinel */
 };
@@ -287,34 +287,34 @@ static PyGetSetDef PyCThostFtdcProductExchRateFieldType_getsets[] = {
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcProductExchRateFieldType_get_reserve1,
-    .set = PyCThostFtdcProductExchRateFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcProductExchRateFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcProductExchRateFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 报价币种类型
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "QuoteCurrencyID",
-    .get = PyCThostFtdcProductExchRateFieldType_get_QuoteCurrencyID,
-    .set = PyCThostFtdcProductExchRateFieldType_set_QuoteCurrencyID,
-    .doc = PyDoc_STR("报价币种类型"),
+    /*.name =*/ "QuoteCurrencyID",
+    /*.get =*/ PyCThostFtdcProductExchRateFieldType_get_QuoteCurrencyID,
+    /*.set =*/ PyCThostFtdcProductExchRateFieldType_set_QuoteCurrencyID,
+    /*.doc =*/ PyDoc_STR("报价币种类型"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcProductExchRateFieldType_get_ExchangeID,
-    .set = PyCThostFtdcProductExchRateFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcProductExchRateFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcProductExchRateFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 产品代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "ProductID",
-    .get = PyCThostFtdcProductExchRateFieldType_get_ProductID,
-    .set = PyCThostFtdcProductExchRateFieldType_set_ProductID,
-    .doc = PyDoc_STR("产品代码"),
+    /*.name =*/ "ProductID",
+    /*.get =*/ PyCThostFtdcProductExchRateFieldType_get_ProductID,
+    /*.set =*/ PyCThostFtdcProductExchRateFieldType_set_ProductID,
+    /*.doc =*/ PyDoc_STR("产品代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -340,15 +340,15 @@ static PyType_Slot PyCThostFtdcProductExchRateFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcProductExchRateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcProductExchRateField",
+    /*.name =*/ "PyCTP.CThostFtdcProductExchRateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcProductExchRateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcProductExchRateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcProductExchRateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcProductExchRateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcProductExchRateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcProductExchRateFieldType_slots_legacy,
 };
 #endif
 

@@ -266,19 +266,19 @@ static PyMemberDef PyCThostFtdcLocalAddrConfigFieldType_members[] = {
     /// 交易中心代码
     /// typedef int TThostFtdcDRIdentityIDType
     {
-        .name = "DRIdentityID",
+        /*.name =*/ "DRIdentityID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcLocalAddrConfigFieldData, data.DRIdentityID),
+        /*.offset =*/ offsetof(PyCThostFtdcLocalAddrConfigFieldData, data.DRIdentityID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("交易中心代码")
+        /*.doc =*/ PyDoc_STR("交易中心代码")
     },
     {NULL}  /* Sentinel */
 };
@@ -287,34 +287,34 @@ static PyGetSetDef PyCThostFtdcLocalAddrConfigFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcLocalAddrConfigFieldType_get_BrokerID,
-    .set = PyCThostFtdcLocalAddrConfigFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcLocalAddrConfigFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcLocalAddrConfigFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 对端地址
     /// typedef char TThostFtdcIpAddrType[129]
     {
-    .name = "PeerAddr",
-    .get = PyCThostFtdcLocalAddrConfigFieldType_get_PeerAddr,
-    .set = PyCThostFtdcLocalAddrConfigFieldType_set_PeerAddr,
-    .doc = PyDoc_STR("对端地址"),
+    /*.name =*/ "PeerAddr",
+    /*.get =*/ PyCThostFtdcLocalAddrConfigFieldType_get_PeerAddr,
+    /*.set =*/ PyCThostFtdcLocalAddrConfigFieldType_set_PeerAddr,
+    /*.doc =*/ PyDoc_STR("对端地址"),
     },
     /// 子网掩码
     /// typedef char TThostFtdcIpAddrType[129]
     {
-    .name = "NetMask",
-    .get = PyCThostFtdcLocalAddrConfigFieldType_get_NetMask,
-    .set = PyCThostFtdcLocalAddrConfigFieldType_set_NetMask,
-    .doc = PyDoc_STR("子网掩码"),
+    /*.name =*/ "NetMask",
+    /*.get =*/ PyCThostFtdcLocalAddrConfigFieldType_get_NetMask,
+    /*.set =*/ PyCThostFtdcLocalAddrConfigFieldType_set_NetMask,
+    /*.doc =*/ PyDoc_STR("子网掩码"),
     },
     /// 内网服务地址
     /// typedef char TThostFtdcIpAddrType[129]
     {
-    .name = "LocalAddress",
-    .get = PyCThostFtdcLocalAddrConfigFieldType_get_LocalAddress,
-    .set = PyCThostFtdcLocalAddrConfigFieldType_set_LocalAddress,
-    .doc = PyDoc_STR("内网服务地址"),
+    /*.name =*/ "LocalAddress",
+    /*.get =*/ PyCThostFtdcLocalAddrConfigFieldType_get_LocalAddress,
+    /*.set =*/ PyCThostFtdcLocalAddrConfigFieldType_set_LocalAddress,
+    /*.doc =*/ PyDoc_STR("内网服务地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -340,15 +340,15 @@ static PyType_Slot PyCThostFtdcLocalAddrConfigFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcLocalAddrConfigFieldType_spec = {
-    .name = "PyCTP.CThostFtdcLocalAddrConfigField",
+    /*.name =*/ "PyCTP.CThostFtdcLocalAddrConfigField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcLocalAddrConfigFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcLocalAddrConfigFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcLocalAddrConfigFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcLocalAddrConfigFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcLocalAddrConfigFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcLocalAddrConfigFieldType_slots_legacy,
 };
 #endif
 

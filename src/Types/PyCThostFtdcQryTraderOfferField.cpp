@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcQryTraderOfferFieldType_getsets[] = {
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcQryTraderOfferFieldType_get_ExchangeID,
-    .set = PyCThostFtdcQryTraderOfferFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcQryTraderOfferFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcQryTraderOfferFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcQryTraderOfferFieldType_get_ParticipantID,
-    .set = PyCThostFtdcQryTraderOfferFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcQryTraderOfferFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcQryTraderOfferFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcQryTraderOfferFieldType_get_TraderID,
-    .set = PyCThostFtdcQryTraderOfferFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcQryTraderOfferFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcQryTraderOfferFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcQryTraderOfferFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQryTraderOfferFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQryTraderOfferField",
+    /*.name =*/ "PyCTP.CThostFtdcQryTraderOfferField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQryTraderOfferFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQryTraderOfferFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQryTraderOfferFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQryTraderOfferFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQryTraderOfferFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQryTraderOfferFieldType_slots_legacy,
 };
 #endif
 

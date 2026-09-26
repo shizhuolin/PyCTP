@@ -210,26 +210,26 @@ static PyGetSetDef PyCThostFtdcInvestorDepartmentFlatFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcInvestorDepartmentFlatFieldType_get_BrokerID,
-    .set = PyCThostFtdcInvestorDepartmentFlatFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcInvestorDepartmentFlatFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcInvestorDepartmentFlatFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcInvestorDepartmentFlatFieldType_get_InvestorID,
-    .set = PyCThostFtdcInvestorDepartmentFlatFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcInvestorDepartmentFlatFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcInvestorDepartmentFlatFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 组织架构代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "DepartmentID",
-    .get = PyCThostFtdcInvestorDepartmentFlatFieldType_get_DepartmentID,
-    .set = PyCThostFtdcInvestorDepartmentFlatFieldType_set_DepartmentID,
-    .doc = PyDoc_STR("组织架构代码"),
+    /*.name =*/ "DepartmentID",
+    /*.get =*/ PyCThostFtdcInvestorDepartmentFlatFieldType_get_DepartmentID,
+    /*.set =*/ PyCThostFtdcInvestorDepartmentFlatFieldType_set_DepartmentID,
+    /*.doc =*/ PyDoc_STR("组织架构代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -255,15 +255,15 @@ static PyType_Slot PyCThostFtdcInvestorDepartmentFlatFieldType_slots_legacy[] = 
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcInvestorDepartmentFlatFieldType_spec = {
-    .name = "PyCTP.CThostFtdcInvestorDepartmentFlatField",
+    /*.name =*/ "PyCTP.CThostFtdcInvestorDepartmentFlatField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcInvestorDepartmentFlatFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcInvestorDepartmentFlatFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcInvestorDepartmentFlatFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcInvestorDepartmentFlatFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcInvestorDepartmentFlatFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcInvestorDepartmentFlatFieldType_slots_legacy,
 };
 #endif
 

@@ -276,36 +276,36 @@ static PyMemberDef PyCThostFtdcSyncDelaySwapFrozenFieldType_members[] = {
     /// 源剩余换汇额度(可提冻结)
     /// typedef double TThostFtdcMoneyType
     {
-        .name = "FromRemainSwap",
+        /*.name =*/ "FromRemainSwap",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_DOUBLE,
+        /*.type =*/ T_DOUBLE,
 #else
-        .type = Py_T_DOUBLE,
+        /*.type =*/ Py_T_DOUBLE,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDelaySwapFrozenFieldData, data.FromRemainSwap),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDelaySwapFrozenFieldData, data.FromRemainSwap),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("源剩余换汇额度(可提冻结)")
+        /*.doc =*/ PyDoc_STR("源剩余换汇额度(可提冻结)")
     },
     /// 是否手工换汇
     /// typedef int TThostFtdcBoolType
     {
-        .name = "IsManualSwap",
+        /*.name =*/ "IsManualSwap",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcSyncDelaySwapFrozenFieldData, data.IsManualSwap),
+        /*.offset =*/ offsetof(PyCThostFtdcSyncDelaySwapFrozenFieldData, data.IsManualSwap),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("是否手工换汇")
+        /*.doc =*/ PyDoc_STR("是否手工换汇")
     },
     {NULL}  /* Sentinel */
 };
@@ -314,34 +314,34 @@ static PyGetSetDef PyCThostFtdcSyncDelaySwapFrozenFieldType_getsets[] = {
     /// 换汇流水号
     /// typedef char TThostFtdcDepositSeqNoType[15]
     {
-    .name = "DelaySwapSeqNo",
-    .get = PyCThostFtdcSyncDelaySwapFrozenFieldType_get_DelaySwapSeqNo,
-    .set = PyCThostFtdcSyncDelaySwapFrozenFieldType_set_DelaySwapSeqNo,
-    .doc = PyDoc_STR("换汇流水号"),
+    /*.name =*/ "DelaySwapSeqNo",
+    /*.get =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_get_DelaySwapSeqNo,
+    /*.set =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_set_DelaySwapSeqNo,
+    /*.doc =*/ PyDoc_STR("换汇流水号"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcSyncDelaySwapFrozenFieldType_get_BrokerID,
-    .set = PyCThostFtdcSyncDelaySwapFrozenFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcSyncDelaySwapFrozenFieldType_get_InvestorID,
-    .set = PyCThostFtdcSyncDelaySwapFrozenFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 源币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "FromCurrencyID",
-    .get = PyCThostFtdcSyncDelaySwapFrozenFieldType_get_FromCurrencyID,
-    .set = PyCThostFtdcSyncDelaySwapFrozenFieldType_set_FromCurrencyID,
-    .doc = PyDoc_STR("源币种"),
+    /*.name =*/ "FromCurrencyID",
+    /*.get =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_get_FromCurrencyID,
+    /*.set =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_set_FromCurrencyID,
+    /*.doc =*/ PyDoc_STR("源币种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -367,15 +367,15 @@ static PyType_Slot PyCThostFtdcSyncDelaySwapFrozenFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcSyncDelaySwapFrozenFieldType_spec = {
-    .name = "PyCTP.CThostFtdcSyncDelaySwapFrozenField",
+    /*.name =*/ "PyCTP.CThostFtdcSyncDelaySwapFrozenField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcSyncDelaySwapFrozenFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcSyncDelaySwapFrozenFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcSyncDelaySwapFrozenFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcSyncDelaySwapFrozenFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcSyncDelaySwapFrozenFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcSyncDelaySwapFrozenFieldType_slots_legacy,
 };
 #endif
 

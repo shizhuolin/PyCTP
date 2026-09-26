@@ -116,19 +116,19 @@ static PyMemberDef PyCThostFtdcReqVerifyApiKeyFieldType_members[] = {
     /// 握手回复数据长度
     /// typedef int TThostFtdcHandshakeDataLenType
     {
-        .name = "ApiHandshakeDataLen",
+        /*.name =*/ "ApiHandshakeDataLen",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqVerifyApiKeyFieldData, data.ApiHandshakeDataLen),
+        /*.offset =*/ offsetof(PyCThostFtdcReqVerifyApiKeyFieldData, data.ApiHandshakeDataLen),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("握手回复数据长度")
+        /*.doc =*/ PyDoc_STR("握手回复数据长度")
     },
     {NULL}  /* Sentinel */
 };
@@ -137,10 +137,10 @@ static PyGetSetDef PyCThostFtdcReqVerifyApiKeyFieldType_getsets[] = {
     /// 握手回复数据
     /// typedef char TThostFtdcHandshakeDataType[301]
     {
-    .name = "ApiHandshakeData",
-    .get = PyCThostFtdcReqVerifyApiKeyFieldType_get_ApiHandshakeData,
-    .set = PyCThostFtdcReqVerifyApiKeyFieldType_set_ApiHandshakeData,
-    .doc = PyDoc_STR("握手回复数据"),
+    /*.name =*/ "ApiHandshakeData",
+    /*.get =*/ PyCThostFtdcReqVerifyApiKeyFieldType_get_ApiHandshakeData,
+    /*.set =*/ PyCThostFtdcReqVerifyApiKeyFieldType_set_ApiHandshakeData,
+    /*.doc =*/ PyDoc_STR("握手回复数据"),
     },
     {NULL}  /* Sentinel */
 };
@@ -166,15 +166,15 @@ static PyType_Slot PyCThostFtdcReqVerifyApiKeyFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqVerifyApiKeyFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqVerifyApiKeyField",
+    /*.name =*/ "PyCTP.CThostFtdcReqVerifyApiKeyField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqVerifyApiKeyFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqVerifyApiKeyFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqVerifyApiKeyFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqVerifyApiKeyFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqVerifyApiKeyFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqVerifyApiKeyFieldType_slots_legacy,
 };
 #endif
 

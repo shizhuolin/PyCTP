@@ -1280,87 +1280,87 @@ static PyMemberDef PyCThostFtdcOptionSelfCloseActionFieldType_members[] = {
     /// 期权自对冲操作引用
     /// typedef int TThostFtdcOrderActionRefType
     {
-        .name = "OptionSelfCloseActionRef",
+        /*.name =*/ "OptionSelfCloseActionRef",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.OptionSelfCloseActionRef),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.OptionSelfCloseActionRef),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("期权自对冲操作引用")
+        /*.doc =*/ PyDoc_STR("期权自对冲操作引用")
     },
     /// 请求编号
     /// typedef int TThostFtdcRequestIDType
     {
-        .name = "RequestID",
+        /*.name =*/ "RequestID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.RequestID),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.RequestID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("请求编号")
+        /*.doc =*/ PyDoc_STR("请求编号")
     },
     /// 前置编号
     /// typedef int TThostFtdcFrontIDType
     {
-        .name = "FrontID",
+        /*.name =*/ "FrontID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.FrontID),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.FrontID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("前置编号")
+        /*.doc =*/ PyDoc_STR("前置编号")
     },
     /// 会话编号
     /// typedef int TThostFtdcSessionIDType
     {
-        .name = "SessionID",
+        /*.name =*/ "SessionID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.SessionID),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.SessionID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("会话编号")
+        /*.doc =*/ PyDoc_STR("会话编号")
     },
     /// 安装编号
     /// typedef int TThostFtdcInstallIDType
     {
-        .name = "InstallID",
+        /*.name =*/ "InstallID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.InstallID),
+        /*.offset =*/ offsetof(PyCThostFtdcOptionSelfCloseActionFieldData, data.InstallID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("安装编号")
+        /*.doc =*/ PyDoc_STR("安装编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -1369,194 +1369,194 @@ static PyGetSetDef PyCThostFtdcOptionSelfCloseActionFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_BrokerID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_InvestorID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 期权自对冲引用
     /// typedef char TThostFtdcOrderRefType[13]
     {
-    .name = "OptionSelfCloseRef",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_OptionSelfCloseRef,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_OptionSelfCloseRef,
-    .doc = PyDoc_STR("期权自对冲引用"),
+    /*.name =*/ "OptionSelfCloseRef",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_OptionSelfCloseRef,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_OptionSelfCloseRef,
+    /*.doc =*/ PyDoc_STR("期权自对冲引用"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_ExchangeID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 期权自对冲操作编号
     /// typedef char TThostFtdcOrderSysIDType[21]
     {
-    .name = "OptionSelfCloseSysID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_OptionSelfCloseSysID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_OptionSelfCloseSysID,
-    .doc = PyDoc_STR("期权自对冲操作编号"),
+    /*.name =*/ "OptionSelfCloseSysID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_OptionSelfCloseSysID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_OptionSelfCloseSysID,
+    /*.doc =*/ PyDoc_STR("期权自对冲操作编号"),
     },
     /// 操作标志
     /// typedef char TThostFtdcActionFlagType
     {
-    .name = "ActionFlag",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionFlag,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionFlag,
-    .doc = PyDoc_STR("操作标志"),
+    /*.name =*/ "ActionFlag",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionFlag,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionFlag,
+    /*.doc =*/ PyDoc_STR("操作标志"),
     },
     /// 操作日期
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "ActionDate",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionDate,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionDate,
-    .doc = PyDoc_STR("操作日期"),
+    /*.name =*/ "ActionDate",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionDate,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionDate,
+    /*.doc =*/ PyDoc_STR("操作日期"),
     },
     /// 操作时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "ActionTime",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionTime,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionTime,
-    .doc = PyDoc_STR("操作时间"),
+    /*.name =*/ "ActionTime",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionTime,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionTime,
+    /*.doc =*/ PyDoc_STR("操作时间"),
     },
     /// 交易所交易员代码
     /// typedef char TThostFtdcTraderIDType[21]
     {
-    .name = "TraderID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_TraderID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_TraderID,
-    .doc = PyDoc_STR("交易所交易员代码"),
+    /*.name =*/ "TraderID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_TraderID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_TraderID,
+    /*.doc =*/ PyDoc_STR("交易所交易员代码"),
     },
     /// 本地期权自对冲编号
     /// typedef char TThostFtdcOrderLocalIDType[13]
     {
-    .name = "OptionSelfCloseLocalID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_OptionSelfCloseLocalID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_OptionSelfCloseLocalID,
-    .doc = PyDoc_STR("本地期权自对冲编号"),
+    /*.name =*/ "OptionSelfCloseLocalID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_OptionSelfCloseLocalID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_OptionSelfCloseLocalID,
+    /*.doc =*/ PyDoc_STR("本地期权自对冲编号"),
     },
     /// 操作本地编号
     /// typedef char TThostFtdcOrderLocalIDType[13]
     {
-    .name = "ActionLocalID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionLocalID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionLocalID,
-    .doc = PyDoc_STR("操作本地编号"),
+    /*.name =*/ "ActionLocalID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_ActionLocalID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_ActionLocalID,
+    /*.doc =*/ PyDoc_STR("操作本地编号"),
     },
     /// 会员代码
     /// typedef char TThostFtdcParticipantIDType[11]
     {
-    .name = "ParticipantID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_ParticipantID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_ParticipantID,
-    .doc = PyDoc_STR("会员代码"),
+    /*.name =*/ "ParticipantID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_ParticipantID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_ParticipantID,
+    /*.doc =*/ PyDoc_STR("会员代码"),
     },
     /// 客户代码
     /// typedef char TThostFtdcClientIDType[11]
     {
-    .name = "ClientID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_ClientID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_ClientID,
-    .doc = PyDoc_STR("客户代码"),
+    /*.name =*/ "ClientID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_ClientID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_ClientID,
+    /*.doc =*/ PyDoc_STR("客户代码"),
     },
     /// 业务单元
     /// typedef char TThostFtdcBusinessUnitType[21]
     {
-    .name = "BusinessUnit",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_BusinessUnit,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_BusinessUnit,
-    .doc = PyDoc_STR("业务单元"),
+    /*.name =*/ "BusinessUnit",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_BusinessUnit,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_BusinessUnit,
+    /*.doc =*/ PyDoc_STR("业务单元"),
     },
     /// 报单操作状态
     /// typedef char TThostFtdcOrderActionStatusType
     {
-    .name = "OrderActionStatus",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_OrderActionStatus,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_OrderActionStatus,
-    .doc = PyDoc_STR("报单操作状态"),
+    /*.name =*/ "OrderActionStatus",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_OrderActionStatus,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_OrderActionStatus,
+    /*.doc =*/ PyDoc_STR("报单操作状态"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_UserID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 状态信息
     /// typedef char TThostFtdcErrorMsgType[81]
     {
-    .name = "StatusMsg",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_StatusMsg,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_StatusMsg,
-    .doc = PyDoc_STR("状态信息"),
+    /*.name =*/ "StatusMsg",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_StatusMsg,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_StatusMsg,
+    /*.doc =*/ PyDoc_STR("状态信息"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_reserve1,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 营业部编号
     /// typedef char TThostFtdcBranchIDType[9]
     {
-    .name = "BranchID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_BranchID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_BranchID,
-    .doc = PyDoc_STR("营业部编号"),
+    /*.name =*/ "BranchID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_BranchID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_BranchID,
+    /*.doc =*/ PyDoc_STR("营业部编号"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve2",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_reserve2,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_reserve2,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve2",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_reserve2,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_reserve2,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// Mac地址
     /// typedef char TThostFtdcMacAddressType[21]
     {
-    .name = "MacAddress",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_MacAddress,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_MacAddress,
-    .doc = PyDoc_STR("Mac地址"),
+    /*.name =*/ "MacAddress",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_MacAddress,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_MacAddress,
+    /*.doc =*/ PyDoc_STR("Mac地址"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_InstrumentID,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     /// IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "IPAddress",
-    .get = PyCThostFtdcOptionSelfCloseActionFieldType_get_IPAddress,
-    .set = PyCThostFtdcOptionSelfCloseActionFieldType_set_IPAddress,
-    .doc = PyDoc_STR("IP地址"),
+    /*.name =*/ "IPAddress",
+    /*.get =*/ PyCThostFtdcOptionSelfCloseActionFieldType_get_IPAddress,
+    /*.set =*/ PyCThostFtdcOptionSelfCloseActionFieldType_set_IPAddress,
+    /*.doc =*/ PyDoc_STR("IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -1582,15 +1582,15 @@ static PyType_Slot PyCThostFtdcOptionSelfCloseActionFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcOptionSelfCloseActionFieldType_spec = {
-    .name = "PyCTP.CThostFtdcOptionSelfCloseActionField",
+    /*.name =*/ "PyCTP.CThostFtdcOptionSelfCloseActionField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcOptionSelfCloseActionFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcOptionSelfCloseActionFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcOptionSelfCloseActionFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcOptionSelfCloseActionFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcOptionSelfCloseActionFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcOptionSelfCloseActionFieldType_slots_legacy,
 };
 #endif
 

@@ -426,36 +426,36 @@ static PyMemberDef PyCThostFtdcWechatUserSystemInfoFieldType_members[] = {
     /// 微信小程序等用户端系统内部信息长度
     /// typedef int TThostFtdcSystemInfoLenType
     {
-        .name = "WechatCltSysInfoLen",
+        /*.name =*/ "WechatCltSysInfoLen",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcWechatUserSystemInfoFieldData, data.WechatCltSysInfoLen),
+        /*.offset =*/ offsetof(PyCThostFtdcWechatUserSystemInfoFieldData, data.WechatCltSysInfoLen),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("微信小程序等用户端系统内部信息长度")
+        /*.doc =*/ PyDoc_STR("微信小程序等用户端系统内部信息长度")
     },
     /// 终端IP端口
     /// typedef int TThostFtdcIPPortType
     {
-        .name = "ClientIPPort",
+        /*.name =*/ "ClientIPPort",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcWechatUserSystemInfoFieldData, data.ClientIPPort),
+        /*.offset =*/ offsetof(PyCThostFtdcWechatUserSystemInfoFieldData, data.ClientIPPort),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("终端IP端口")
+        /*.doc =*/ PyDoc_STR("终端IP端口")
     },
     {NULL}  /* Sentinel */
 };
@@ -464,58 +464,58 @@ static PyGetSetDef PyCThostFtdcWechatUserSystemInfoFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcWechatUserSystemInfoFieldType_get_BrokerID,
-    .set = PyCThostFtdcWechatUserSystemInfoFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcWechatUserSystemInfoFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcWechatUserSystemInfoFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcWechatUserSystemInfoFieldType_get_UserID,
-    .set = PyCThostFtdcWechatUserSystemInfoFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcWechatUserSystemInfoFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcWechatUserSystemInfoFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 微信小程序等用户端系统内部信息
     /// typedef char TThostFtdcClientSystemInfoType[273]
     {
-    .name = "WechatCltSysInfo",
-    .get = PyCThostFtdcWechatUserSystemInfoFieldType_get_WechatCltSysInfo,
-    .set = PyCThostFtdcWechatUserSystemInfoFieldType_set_WechatCltSysInfo,
-    .doc = PyDoc_STR("微信小程序等用户端系统内部信息"),
+    /*.name =*/ "WechatCltSysInfo",
+    /*.get =*/ PyCThostFtdcWechatUserSystemInfoFieldType_get_WechatCltSysInfo,
+    /*.set =*/ PyCThostFtdcWechatUserSystemInfoFieldType_set_WechatCltSysInfo,
+    /*.doc =*/ PyDoc_STR("微信小程序等用户端系统内部信息"),
     },
     /// 登录成功时间
     /// typedef char TThostFtdcTimeType[9]
     {
-    .name = "ClientLoginTime",
-    .get = PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientLoginTime,
-    .set = PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientLoginTime,
-    .doc = PyDoc_STR("登录成功时间"),
+    /*.name =*/ "ClientLoginTime",
+    /*.get =*/ PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientLoginTime,
+    /*.set =*/ PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientLoginTime,
+    /*.doc =*/ PyDoc_STR("登录成功时间"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "ClientAppID",
-    .get = PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientAppID,
-    .set = PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientAppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "ClientAppID",
+    /*.get =*/ PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientAppID,
+    /*.set =*/ PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientAppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     /// 用户公网IP
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "ClientPublicIP",
-    .get = PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientPublicIP,
-    .set = PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientPublicIP,
-    .doc = PyDoc_STR("用户公网IP"),
+    /*.name =*/ "ClientPublicIP",
+    /*.get =*/ PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientPublicIP,
+    /*.set =*/ PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientPublicIP,
+    /*.doc =*/ PyDoc_STR("用户公网IP"),
     },
     /// 客户登录备注2
     /// typedef char TThostFtdcClientLoginRemarkType[151]
     {
-    .name = "ClientLoginRemark",
-    .get = PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientLoginRemark,
-    .set = PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientLoginRemark,
-    .doc = PyDoc_STR("客户登录备注2"),
+    /*.name =*/ "ClientLoginRemark",
+    /*.get =*/ PyCThostFtdcWechatUserSystemInfoFieldType_get_ClientLoginRemark,
+    /*.set =*/ PyCThostFtdcWechatUserSystemInfoFieldType_set_ClientLoginRemark,
+    /*.doc =*/ PyDoc_STR("客户登录备注2"),
     },
     {NULL}  /* Sentinel */
 };
@@ -541,15 +541,15 @@ static PyType_Slot PyCThostFtdcWechatUserSystemInfoFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcWechatUserSystemInfoFieldType_spec = {
-    .name = "PyCTP.CThostFtdcWechatUserSystemInfoField",
+    /*.name =*/ "PyCTP.CThostFtdcWechatUserSystemInfoField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcWechatUserSystemInfoFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcWechatUserSystemInfoFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcWechatUserSystemInfoFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcWechatUserSystemInfoFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcWechatUserSystemInfoFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcWechatUserSystemInfoFieldType_slots_legacy,
 };
 #endif
 

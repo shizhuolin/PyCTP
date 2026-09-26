@@ -490,19 +490,19 @@ static PyMemberDef PyCThostFtdcEWarrantOffsetFieldType_members[] = {
     /// 数量
     /// typedef int TThostFtdcVolumeType
     {
-        .name = "Volume",
+        /*.name =*/ "Volume",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcEWarrantOffsetFieldData, data.Volume),
+        /*.offset =*/ offsetof(PyCThostFtdcEWarrantOffsetFieldData, data.Volume),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("数量")
+        /*.doc =*/ PyDoc_STR("数量")
     },
     {NULL}  /* Sentinel */
 };
@@ -511,74 +511,74 @@ static PyGetSetDef PyCThostFtdcEWarrantOffsetFieldType_getsets[] = {
     /// 交易日期
     /// typedef char TThostFtdcTradeDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_TradingDay,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日期"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日期"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_BrokerID,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 投资者代码
     /// typedef char TThostFtdcInvestorIDType[13]
     {
-    .name = "InvestorID",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_InvestorID,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_InvestorID,
-    .doc = PyDoc_STR("投资者代码"),
+    /*.name =*/ "InvestorID",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_InvestorID,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_InvestorID,
+    /*.doc =*/ PyDoc_STR("投资者代码"),
     },
     /// 交易所代码
     /// typedef char TThostFtdcExchangeIDType[9]
     {
-    .name = "ExchangeID",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_ExchangeID,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_ExchangeID,
-    .doc = PyDoc_STR("交易所代码"),
+    /*.name =*/ "ExchangeID",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_ExchangeID,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_ExchangeID,
+    /*.doc =*/ PyDoc_STR("交易所代码"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldInstrumentIDType[31]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_reserve1,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 买卖方向
     /// typedef char TThostFtdcDirectionType
     {
-    .name = "Direction",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_Direction,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_Direction,
-    .doc = PyDoc_STR("买卖方向"),
+    /*.name =*/ "Direction",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_Direction,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_Direction,
+    /*.doc =*/ PyDoc_STR("买卖方向"),
     },
     /// 投机套保标志
     /// typedef char TThostFtdcHedgeFlagType
     {
-    .name = "HedgeFlag",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_HedgeFlag,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_HedgeFlag,
-    .doc = PyDoc_STR("投机套保标志"),
+    /*.name =*/ "HedgeFlag",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_HedgeFlag,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_HedgeFlag,
+    /*.doc =*/ PyDoc_STR("投机套保标志"),
     },
     /// 投资单元代码
     /// typedef char TThostFtdcInvestUnitIDType[17]
     {
-    .name = "InvestUnitID",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_InvestUnitID,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_InvestUnitID,
-    .doc = PyDoc_STR("投资单元代码"),
+    /*.name =*/ "InvestUnitID",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_InvestUnitID,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_InvestUnitID,
+    /*.doc =*/ PyDoc_STR("投资单元代码"),
     },
     /// 合约代码
     /// typedef char TThostFtdcInstrumentIDType[81]
     {
-    .name = "InstrumentID",
-    .get = PyCThostFtdcEWarrantOffsetFieldType_get_InstrumentID,
-    .set = PyCThostFtdcEWarrantOffsetFieldType_set_InstrumentID,
-    .doc = PyDoc_STR("合约代码"),
+    /*.name =*/ "InstrumentID",
+    /*.get =*/ PyCThostFtdcEWarrantOffsetFieldType_get_InstrumentID,
+    /*.set =*/ PyCThostFtdcEWarrantOffsetFieldType_set_InstrumentID,
+    /*.doc =*/ PyDoc_STR("合约代码"),
     },
     {NULL}  /* Sentinel */
 };
@@ -604,15 +604,15 @@ static PyType_Slot PyCThostFtdcEWarrantOffsetFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcEWarrantOffsetFieldType_spec = {
-    .name = "PyCTP.CThostFtdcEWarrantOffsetField",
+    /*.name =*/ "PyCTP.CThostFtdcEWarrantOffsetField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcEWarrantOffsetFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcEWarrantOffsetFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcEWarrantOffsetFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcEWarrantOffsetFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcEWarrantOffsetFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcEWarrantOffsetFieldType_slots_legacy,
 };
 #endif
 

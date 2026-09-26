@@ -297,42 +297,42 @@ static PyGetSetDef PyCThostFtdcRspAuthenticateFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcRspAuthenticateFieldType_get_BrokerID,
-    .set = PyCThostFtdcRspAuthenticateFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcRspAuthenticateFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcRspAuthenticateFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcRspAuthenticateFieldType_get_UserID,
-    .set = PyCThostFtdcRspAuthenticateFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcRspAuthenticateFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcRspAuthenticateFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 用户端产品信息
     /// typedef char TThostFtdcProductInfoType[11]
     {
-    .name = "UserProductInfo",
-    .get = PyCThostFtdcRspAuthenticateFieldType_get_UserProductInfo,
-    .set = PyCThostFtdcRspAuthenticateFieldType_set_UserProductInfo,
-    .doc = PyDoc_STR("用户端产品信息"),
+    /*.name =*/ "UserProductInfo",
+    /*.get =*/ PyCThostFtdcRspAuthenticateFieldType_get_UserProductInfo,
+    /*.set =*/ PyCThostFtdcRspAuthenticateFieldType_set_UserProductInfo,
+    /*.doc =*/ PyDoc_STR("用户端产品信息"),
     },
     /// App代码
     /// typedef char TThostFtdcAppIDType[33]
     {
-    .name = "AppID",
-    .get = PyCThostFtdcRspAuthenticateFieldType_get_AppID,
-    .set = PyCThostFtdcRspAuthenticateFieldType_set_AppID,
-    .doc = PyDoc_STR("App代码"),
+    /*.name =*/ "AppID",
+    /*.get =*/ PyCThostFtdcRspAuthenticateFieldType_get_AppID,
+    /*.set =*/ PyCThostFtdcRspAuthenticateFieldType_set_AppID,
+    /*.doc =*/ PyDoc_STR("App代码"),
     },
     /// App类型
     /// typedef char TThostFtdcAppTypeType
     {
-    .name = "AppType",
-    .get = PyCThostFtdcRspAuthenticateFieldType_get_AppType,
-    .set = PyCThostFtdcRspAuthenticateFieldType_set_AppType,
-    .doc = PyDoc_STR("App类型"),
+    /*.name =*/ "AppType",
+    /*.get =*/ PyCThostFtdcRspAuthenticateFieldType_get_AppType,
+    /*.set =*/ PyCThostFtdcRspAuthenticateFieldType_set_AppType,
+    /*.doc =*/ PyDoc_STR("App类型"),
     },
     {NULL}  /* Sentinel */
 };
@@ -358,15 +358,15 @@ static PyType_Slot PyCThostFtdcRspAuthenticateFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcRspAuthenticateFieldType_spec = {
-    .name = "PyCTP.CThostFtdcRspAuthenticateField",
+    /*.name =*/ "PyCTP.CThostFtdcRspAuthenticateField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcRspAuthenticateFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcRspAuthenticateFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcRspAuthenticateFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcRspAuthenticateFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcRspAuthenticateFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcRspAuthenticateFieldType_slots_legacy,
 };
 #endif
 

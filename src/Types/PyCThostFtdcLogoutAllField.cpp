@@ -126,36 +126,36 @@ static PyMemberDef PyCThostFtdcLogoutAllFieldType_members[] = {
     /// 前置编号
     /// typedef int TThostFtdcFrontIDType
     {
-        .name = "FrontID",
+        /*.name =*/ "FrontID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcLogoutAllFieldData, data.FrontID),
+        /*.offset =*/ offsetof(PyCThostFtdcLogoutAllFieldData, data.FrontID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("前置编号")
+        /*.doc =*/ PyDoc_STR("前置编号")
     },
     /// 会话编号
     /// typedef int TThostFtdcSessionIDType
     {
-        .name = "SessionID",
+        /*.name =*/ "SessionID",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcLogoutAllFieldData, data.SessionID),
+        /*.offset =*/ offsetof(PyCThostFtdcLogoutAllFieldData, data.SessionID),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("会话编号")
+        /*.doc =*/ PyDoc_STR("会话编号")
     },
     {NULL}  /* Sentinel */
 };
@@ -164,10 +164,10 @@ static PyGetSetDef PyCThostFtdcLogoutAllFieldType_getsets[] = {
     /// 系统名称
     /// typedef char TThostFtdcSystemNameType[41]
     {
-    .name = "SystemName",
-    .get = PyCThostFtdcLogoutAllFieldType_get_SystemName,
-    .set = PyCThostFtdcLogoutAllFieldType_set_SystemName,
-    .doc = PyDoc_STR("系统名称"),
+    /*.name =*/ "SystemName",
+    /*.get =*/ PyCThostFtdcLogoutAllFieldType_get_SystemName,
+    /*.set =*/ PyCThostFtdcLogoutAllFieldType_set_SystemName,
+    /*.doc =*/ PyDoc_STR("系统名称"),
     },
     {NULL}  /* Sentinel */
 };
@@ -193,15 +193,15 @@ static PyType_Slot PyCThostFtdcLogoutAllFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcLogoutAllFieldType_spec = {
-    .name = "PyCTP.CThostFtdcLogoutAllField",
+    /*.name =*/ "PyCTP.CThostFtdcLogoutAllField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcLogoutAllFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcLogoutAllFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcLogoutAllFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcLogoutAllFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcLogoutAllFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcLogoutAllFieldType_slots_legacy,
 };
 #endif
 

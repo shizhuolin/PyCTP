@@ -260,34 +260,34 @@ static PyGetSetDef PyCThostFtdcQrySecAgentACIDMapFieldType_getsets[] = {
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcQrySecAgentACIDMapFieldType_get_BrokerID,
-    .set = PyCThostFtdcQrySecAgentACIDMapFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcQrySecAgentACIDMapFieldType_get_UserID,
-    .set = PyCThostFtdcQrySecAgentACIDMapFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 资金账户
     /// typedef char TThostFtdcAccountIDType[13]
     {
-    .name = "AccountID",
-    .get = PyCThostFtdcQrySecAgentACIDMapFieldType_get_AccountID,
-    .set = PyCThostFtdcQrySecAgentACIDMapFieldType_set_AccountID,
-    .doc = PyDoc_STR("资金账户"),
+    /*.name =*/ "AccountID",
+    /*.get =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_get_AccountID,
+    /*.set =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_set_AccountID,
+    /*.doc =*/ PyDoc_STR("资金账户"),
     },
     /// 币种
     /// typedef char TThostFtdcCurrencyIDType[4]
     {
-    .name = "CurrencyID",
-    .get = PyCThostFtdcQrySecAgentACIDMapFieldType_get_CurrencyID,
-    .set = PyCThostFtdcQrySecAgentACIDMapFieldType_set_CurrencyID,
-    .doc = PyDoc_STR("币种"),
+    /*.name =*/ "CurrencyID",
+    /*.get =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_get_CurrencyID,
+    /*.set =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_set_CurrencyID,
+    /*.doc =*/ PyDoc_STR("币种"),
     },
     {NULL}  /* Sentinel */
 };
@@ -313,15 +313,15 @@ static PyType_Slot PyCThostFtdcQrySecAgentACIDMapFieldType_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcQrySecAgentACIDMapFieldType_spec = {
-    .name = "PyCTP.CThostFtdcQrySecAgentACIDMapField",
+    /*.name =*/ "PyCTP.CThostFtdcQrySecAgentACIDMapField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentACIDMapFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentACIDMapFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentACIDMapFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcQrySecAgentACIDMapFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcQrySecAgentACIDMapFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcQrySecAgentACIDMapFieldType_slots_legacy,
 };
 #endif
 

@@ -666,19 +666,19 @@ static PyMemberDef PyCThostFtdcReqUserLoginWithCaptchaFieldType_members[] = {
     /// 终端IP端口
     /// typedef int TThostFtdcIPPortType
     {
-        .name = "ClientIPPort",
+        /*.name =*/ "ClientIPPort",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_INT,
+        /*.type =*/ T_INT,
 #else
-        .type = Py_T_INT,
+        /*.type =*/ Py_T_INT,
 #endif // PY_VERSION_HEX
-        .offset = offsetof(PyCThostFtdcReqUserLoginWithCaptchaFieldData, data.ClientIPPort),
+        /*.offset =*/ offsetof(PyCThostFtdcReqUserLoginWithCaptchaFieldData, data.ClientIPPort),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("终端IP端口")
+        /*.doc =*/ PyDoc_STR("终端IP端口")
     },
     {NULL}  /* Sentinel */
 };
@@ -687,98 +687,98 @@ static PyGetSetDef PyCThostFtdcReqUserLoginWithCaptchaFieldType_getsets[] = {
     /// 交易日
     /// typedef char TThostFtdcDateType[9]
     {
-    .name = "TradingDay",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_TradingDay,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_TradingDay,
-    .doc = PyDoc_STR("交易日"),
+    /*.name =*/ "TradingDay",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_TradingDay,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_TradingDay,
+    /*.doc =*/ PyDoc_STR("交易日"),
     },
     /// 经纪公司代码
     /// typedef char TThostFtdcBrokerIDType[11]
     {
-    .name = "BrokerID",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_BrokerID,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_BrokerID,
-    .doc = PyDoc_STR("经纪公司代码"),
+    /*.name =*/ "BrokerID",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_BrokerID,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_BrokerID,
+    /*.doc =*/ PyDoc_STR("经纪公司代码"),
     },
     /// 用户代码
     /// typedef char TThostFtdcUserIDType[16]
     {
-    .name = "UserID",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_UserID,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_UserID,
-    .doc = PyDoc_STR("用户代码"),
+    /*.name =*/ "UserID",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_UserID,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_UserID,
+    /*.doc =*/ PyDoc_STR("用户代码"),
     },
     /// 密码
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Password",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_Password,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_Password,
-    .doc = PyDoc_STR("密码"),
+    /*.name =*/ "Password",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_Password,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_Password,
+    /*.doc =*/ PyDoc_STR("密码"),
     },
     /// 用户端产品信息
     /// typedef char TThostFtdcProductInfoType[11]
     {
-    .name = "UserProductInfo",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_UserProductInfo,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_UserProductInfo,
-    .doc = PyDoc_STR("用户端产品信息"),
+    /*.name =*/ "UserProductInfo",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_UserProductInfo,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_UserProductInfo,
+    /*.doc =*/ PyDoc_STR("用户端产品信息"),
     },
     /// 接口端产品信息
     /// typedef char TThostFtdcProductInfoType[11]
     {
-    .name = "InterfaceProductInfo",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_InterfaceProductInfo,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_InterfaceProductInfo,
-    .doc = PyDoc_STR("接口端产品信息"),
+    /*.name =*/ "InterfaceProductInfo",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_InterfaceProductInfo,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_InterfaceProductInfo,
+    /*.doc =*/ PyDoc_STR("接口端产品信息"),
     },
     /// 协议信息
     /// typedef char TThostFtdcProtocolInfoType[11]
     {
-    .name = "ProtocolInfo",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_ProtocolInfo,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_ProtocolInfo,
-    .doc = PyDoc_STR("协议信息"),
+    /*.name =*/ "ProtocolInfo",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_ProtocolInfo,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_ProtocolInfo,
+    /*.doc =*/ PyDoc_STR("协议信息"),
     },
     /// Mac地址
     /// typedef char TThostFtdcMacAddressType[21]
     {
-    .name = "MacAddress",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_MacAddress,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_MacAddress,
-    .doc = PyDoc_STR("Mac地址"),
+    /*.name =*/ "MacAddress",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_MacAddress,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_MacAddress,
+    /*.doc =*/ PyDoc_STR("Mac地址"),
     },
     /// 保留的无效字段
     /// typedef char TThostFtdcOldIPAddressType[16]
     {
-    .name = "reserve1",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_reserve1,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_reserve1,
-    .doc = PyDoc_STR("保留的无效字段"),
+    /*.name =*/ "reserve1",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_reserve1,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_reserve1,
+    /*.doc =*/ PyDoc_STR("保留的无效字段"),
     },
     /// 登录备注
     /// typedef char TThostFtdcLoginRemarkType[36]
     {
-    .name = "LoginRemark",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_LoginRemark,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_LoginRemark,
-    .doc = PyDoc_STR("登录备注"),
+    /*.name =*/ "LoginRemark",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_LoginRemark,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_LoginRemark,
+    /*.doc =*/ PyDoc_STR("登录备注"),
     },
     /// 图形验证码的文字内容
     /// typedef char TThostFtdcPasswordType[41]
     {
-    .name = "Captcha",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_Captcha,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_Captcha,
-    .doc = PyDoc_STR("图形验证码的文字内容"),
+    /*.name =*/ "Captcha",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_Captcha,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_Captcha,
+    /*.doc =*/ PyDoc_STR("图形验证码的文字内容"),
     },
     /// 终端IP地址
     /// typedef char TThostFtdcIPAddressType[33]
     {
-    .name = "ClientIPAddress",
-    .get = PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_ClientIPAddress,
-    .set = PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_ClientIPAddress,
-    .doc = PyDoc_STR("终端IP地址"),
+    /*.name =*/ "ClientIPAddress",
+    /*.get =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_get_ClientIPAddress,
+    /*.set =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_set_ClientIPAddress,
+    /*.doc =*/ PyDoc_STR("终端IP地址"),
     },
     {NULL}  /* Sentinel */
 };
@@ -804,15 +804,15 @@ static PyType_Slot PyCThostFtdcReqUserLoginWithCaptchaFieldType_slots_legacy[] =
     {0, NULL}
 };
 static PyType_Spec PyCThostFtdcReqUserLoginWithCaptchaFieldType_spec = {
-    .name = "PyCTP.CThostFtdcReqUserLoginWithCaptchaField",
+    /*.name =*/ "PyCTP.CThostFtdcReqUserLoginWithCaptchaField",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithCaptchaFieldData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithCaptchaFieldData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithCaptchaFieldData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcReqUserLoginWithCaptchaFieldData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = PyCThostFtdcReqUserLoginWithCaptchaFieldType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ PyCThostFtdcReqUserLoginWithCaptchaFieldType_slots_legacy,
 };
 #endif
 

@@ -18,3 +18,4 @@ PyCTP.sln
 PyCTP.vcxproj
 PyCTP.vcxproj.user
 pkg/PyCTP/libs/
+tests/*.con

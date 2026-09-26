@@ -219,19 +219,19 @@ static PyMemberDef Py{{ struct.name }}Type_members[] = {
     /// {{ member.comment | map('trim', '/') | join(' ')  }}
     /// typedef {{ member.type_base }} {{ member.type_alias }}
     {
-        .name = "{{ member.name }}",
+        /*.name =*/ "{{ member.name }}",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .type = T_{{ member.type_base | upper }},
+        /*.type =*/ T_{{ member.type_base | upper }},
 #else
-        .type = Py_T_{{ member.type_base | upper }},
+        /*.type =*/ Py_T_{{ member.type_base | upper }},
 #endif // PY_VERSION_HEX
-        .offset = offsetof(Py{{ struct.name }}Data, data.{{ member.name }}),
+        /*.offset =*/ offsetof(Py{{ struct.name }}Data, data.{{ member.name }}),
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-        .flags = 0,
+        /*.flags =*/ 0,
 #else
-        .flags = Py_RELATIVE_OFFSET,
+        /*.flags =*/ Py_RELATIVE_OFFSET,
 #endif // PY_VERSION_HEX
-        .doc = PyDoc_STR("{{ member.comment | map('trim', '/') | join(' ')  }}")
+        /*.doc =*/ PyDoc_STR("{{ member.comment | map('trim', '/') | join(' ')  }}")
     },
     {% elif member.type_base == 'char' %}
     {% else %}
@@ -251,10 +251,10 @@ static PyGetSetDef Py{{ struct.name }}Type_getsets[] = {
     /// typedef {{ member.type_base }} {{ member.type_alias }}
         {% endif %}
     {
-    .name = "{{ member.name }}",
-    .get = Py{{ struct.name }}Type_get_{{ member.name }},
-    .set = Py{{ struct.name }}Type_set_{{ member.name }},
-    .doc = PyDoc_STR("{{ member.comment | map('trim', '/') | join(' ')  }}"),
+    /*.name =*/ "{{ member.name }}",
+    /*.get =*/ Py{{ struct.name }}Type_get_{{ member.name }},
+    /*.set =*/ Py{{ struct.name }}Type_set_{{ member.name }},
+    /*.doc =*/ PyDoc_STR("{{ member.comment | map('trim', '/') | join(' ')  }}"),
     },
     {% elif member.type_base in ('double', 'int', 'short') and not member.type_is_array %}
     {% else %}
@@ -285,15 +285,15 @@ static PyType_Slot Py{{ struct.name }}Type_slots_legacy[] = {
     {0, NULL}
 };
 static PyType_Spec Py{{ struct.name }}Type_spec = {
-    .name = "PyCTP.{{ struct.name }}",
+    /*.name =*/ "PyCTP.{{ struct.name }}",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(Py{{ struct.name }}Data),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(Py{{ struct.name }}Data),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(Py{{ struct.name }}Data),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(Py{{ struct.name }}Data),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT,
-    .slots = Py{{ struct.name }}Type_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT,
+    /*.slots =*/ Py{{ struct.name }}Type_slots_legacy,
 };
 #endif
 

@@ -10009,71 +10009,71 @@ static PyMethodDef PyCThostFtdcTraderApiType_methods[] = {
     ///@param bIsProductionMode true:使用生产版本的API  false:使用测评版本的API
     ///@return 创建出的UserApi
     {
-    .ml_name="CreateFtdcTraderApi",
-    .ml_meth=(PyCFunction)PyCThostFtdcTraderApiType_method_CreateFtdcTraderApi,
-    .ml_flags=METH_VARARGS | METH_CLASS,
-    .ml_doc=PyDoc_STR("创建TraderApi"),
+    /*.ml_name=*/"CreateFtdcTraderApi",
+    /*.ml_meth=*/(PyCFunction)PyCThostFtdcTraderApiType_method_CreateFtdcTraderApi,
+    /*.ml_flags=*/METH_VARARGS | METH_CLASS,
+    /*.ml_doc=*/PyDoc_STR("创建TraderApi"),
     },
     ///获取API的版本信息
     ///@retrun 获取到的版本号
     {
-    .ml_name="GetApiVersion",
-    .ml_meth=PyCThostFtdcTraderApiType_method_GetApiVersion,
-    .ml_flags=METH_NOARGS | METH_STATIC,
-    .ml_doc=PyDoc_STR("获取API的版本信息"),
+    /*.ml_name=*/"GetApiVersion",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_GetApiVersion,
+    /*.ml_flags=*/METH_NOARGS | METH_STATIC,
+    /*.ml_doc=*/PyDoc_STR("获取API的版本信息"),
     },
     ///删除接口对象本身
     ///@remark 不再使用本接口对象时,调用该函数删除接口对象
     {
-    .ml_name="Release",
-    .ml_meth=PyCThostFtdcTraderApiType_method_Release,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("删除接口对象本身"),
+    /*.ml_name=*/"Release",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_Release,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("删除接口对象本身"),
     },
     ///初始化
     ///@remark 初始化运行环境,只有调用后,接口才开始工作
     {
-    .ml_name="Init",
-    .ml_meth=PyCThostFtdcTraderApiType_method_Init,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("初始化"),
+    /*.ml_name=*/"Init",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_Init,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("初始化"),
     },
     ///等待接口线程结束运行
     ///@return 线程退出代码
     {
-    .ml_name="Join",
-    .ml_meth=PyCThostFtdcTraderApiType_method_Join,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("等待接口线程结束运行"),
+    /*.ml_name=*/"Join",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_Join,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("等待接口线程结束运行"),
     },
     ///获取当前交易日
     ///@retrun 获取到的交易日
     ///@remark 只有登录成功后,才能得到正确的交易日
     {
-    .ml_name="GetTradingDay",
-    .ml_meth=PyCThostFtdcTraderApiType_method_GetTradingDay,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("获取当前交易日"),
+    /*.ml_name=*/"GetTradingDay",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_GetTradingDay,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("获取当前交易日"),
     },
     ///获取已连接的前置的信息
     /// @param pFrontInfo：输入输出参数，用于存储获取到的前置信息，不能为空
     /// @remark 连接成功后，可获取正确的前置地址信息
     /// @remark 登录成功后，可获取正确的前置流控信息
     {
-    .ml_name="GetFrontInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_GetFrontInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("获取已连接的前置的信息"),
+    /*.ml_name=*/"GetFrontInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_GetFrontInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("获取已连接的前置的信息"),
     },
     ///注册前置机网络地址
     ///@param pszFrontAddress：前置机网络地址。
     ///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。
     ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
     {
-    .ml_name="RegisterFront",
-    .ml_meth=PyCThostFtdcTraderApiType_method_RegisterFront,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册前置机网络地址"),
+    /*.ml_name=*/"RegisterFront",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_RegisterFront,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册前置机网络地址"),
     },
     ///注册名字服务器网络地址
     ///@param pszNsAddress：名字服务器网络地址。
@@ -10081,26 +10081,26 @@ static PyMethodDef PyCThostFtdcTraderApiType_methods[] = {
     ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
     ///@remark RegisterNameServer优先于RegisterFront
     {
-    .ml_name="RegisterNameServer",
-    .ml_meth=PyCThostFtdcTraderApiType_method_RegisterNameServer,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册名字服务器网络地址"),
+    /*.ml_name=*/"RegisterNameServer",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_RegisterNameServer,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册名字服务器网络地址"),
     },
     ///注册名字服务器用户信息
     ///@param pFensUserInfo：用户信息。
     {
-    .ml_name="RegisterFensUserInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_RegisterFensUserInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册名字服务器用户信息"),
+    /*.ml_name=*/"RegisterFensUserInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_RegisterFensUserInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册名字服务器用户信息"),
     },
     ///注册回调接口
     ///@param pSpi 派生自回调接口类的实例
     {
-    .ml_name="RegisterSpi",
-    .ml_meth=PyCThostFtdcTraderApiType_method_RegisterSpi,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册回调接口"),
+    /*.ml_name=*/"RegisterSpi",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_RegisterSpi,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册回调接口"),
     },
     ///订阅私有流。
     ///@param nResumeType 私有流重传方式
@@ -10111,10 +10111,10 @@ static PyMethodDef PyCThostFtdcTraderApiType_methods[] = {
     ///@param nSeqNo 私有流序号，只在THOST_TERT_RESUME_FROM_SEQ_NO模式下有效
     ///@remark 该方法要在Init方法前调用。若不调用则不会收到私有流的数据。
     {
-    .ml_name="SubscribePrivateTopic",
-    .ml_meth=PyCThostFtdcTraderApiType_method_SubscribePrivateTopic,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("订阅私有流。"),
+    /*.ml_name=*/"SubscribePrivateTopic",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_SubscribePrivateTopic,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("订阅私有流。"),
     },
     ///订阅公共流。
     ///@param nResumeType 公共流重传方式
@@ -10124,915 +10124,915 @@ static PyMethodDef PyCThostFtdcTraderApiType_methods[] = {
     ///        THOST_TERT_NONE:取消订阅公共流
     ///@remark 该方法要在Init方法前调用。若不调用则不会收到公共流的数据。
     {
-    .ml_name="SubscribePublicTopic",
-    .ml_meth=PyCThostFtdcTraderApiType_method_SubscribePublicTopic,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("订阅公共流。"),
+    /*.ml_name=*/"SubscribePublicTopic",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_SubscribePublicTopic,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("订阅公共流。"),
     },
     ///客户端认证请求
     {
-    .ml_name="ReqAuthenticate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqAuthenticate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("客户端认证请求"),
+    /*.ml_name=*/"ReqAuthenticate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqAuthenticate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("客户端认证请求"),
     },
     ///注册用户终端信息，用于中继服务器多连接模式
     ///需要在终端认证成功后，用户登录前调用该接口
     {
-    .ml_name="RegisterUserSystemInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_RegisterUserSystemInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册用户终端信息，用于中继服务器多连接模式"),
+    /*.ml_name=*/"RegisterUserSystemInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_RegisterUserSystemInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册用户终端信息，用于中继服务器多连接模式"),
     },
     ///上报用户终端信息，用于中继服务器操作员登录模式
     ///操作员登录后，可以多次调用该接口上报客户信息
     {
-    .ml_name="SubmitUserSystemInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_SubmitUserSystemInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("上报用户终端信息，用于中继服务器操作员登录模式"),
+    /*.ml_name=*/"SubmitUserSystemInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_SubmitUserSystemInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("上报用户终端信息，用于中继服务器操作员登录模式"),
     },
     ///注册用户终端信息，用于中继服务器多连接模式.用于微信小程序等应用上报信息.
     {
-    .ml_name="RegisterWechatUserSystemInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_RegisterWechatUserSystemInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册用户终端信息，用于中继服务器多连接模式.用于微信小程序等应用上报信息."),
+    /*.ml_name=*/"RegisterWechatUserSystemInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_RegisterWechatUserSystemInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册用户终端信息，用于中继服务器多连接模式.用于微信小程序等应用上报信息."),
     },
     ///上报用户终端信息，用于中继服务器操作员登录模式.用于微信小程序等应用上报信息.
     {
-    .ml_name="SubmitWechatUserSystemInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_SubmitWechatUserSystemInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("上报用户终端信息，用于中继服务器操作员登录模式.用于微信小程序等应用上报信息."),
+    /*.ml_name=*/"SubmitWechatUserSystemInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_SubmitWechatUserSystemInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("上报用户终端信息，用于中继服务器操作员登录模式.用于微信小程序等应用上报信息."),
     },
     ///用户登录请求
     {
-    .ml_name="ReqUserLogin",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqUserLogin,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户登录请求"),
+    /*.ml_name=*/"ReqUserLogin",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqUserLogin,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户登录请求"),
     },
     ///登出请求
     {
-    .ml_name="ReqUserLogout",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqUserLogout,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("登出请求"),
+    /*.ml_name=*/"ReqUserLogout",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqUserLogout,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("登出请求"),
     },
     ///用户口令更新请求
     {
-    .ml_name="ReqUserPasswordUpdate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqUserPasswordUpdate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户口令更新请求"),
+    /*.ml_name=*/"ReqUserPasswordUpdate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqUserPasswordUpdate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户口令更新请求"),
     },
     ///资金账户口令更新请求
     {
-    .ml_name="ReqTradingAccountPasswordUpdate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqTradingAccountPasswordUpdate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("资金账户口令更新请求"),
+    /*.ml_name=*/"ReqTradingAccountPasswordUpdate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqTradingAccountPasswordUpdate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("资金账户口令更新请求"),
     },
     ///查询用户当前支持的认证模式
     {
-    .ml_name="ReqUserAuthMethod",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqUserAuthMethod,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("查询用户当前支持的认证模式"),
+    /*.ml_name=*/"ReqUserAuthMethod",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqUserAuthMethod,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("查询用户当前支持的认证模式"),
     },
     ///用户发出获取图形验证码请求
     {
-    .ml_name="ReqGenUserCaptcha",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqGenUserCaptcha,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户发出获取图形验证码请求"),
+    /*.ml_name=*/"ReqGenUserCaptcha",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqGenUserCaptcha,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户发出获取图形验证码请求"),
     },
     ///用户发出获取短信验证码请求
     {
-    .ml_name="ReqGenUserText",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqGenUserText,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户发出获取短信验证码请求"),
+    /*.ml_name=*/"ReqGenUserText",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqGenUserText,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户发出获取短信验证码请求"),
     },
     ///用户发出带有图片验证码的登陆请求
     {
-    .ml_name="ReqUserLoginWithCaptcha",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqUserLoginWithCaptcha,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户发出带有图片验证码的登陆请求"),
+    /*.ml_name=*/"ReqUserLoginWithCaptcha",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqUserLoginWithCaptcha,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户发出带有图片验证码的登陆请求"),
     },
     ///用户发出带有短信验证码的登陆请求
     {
-    .ml_name="ReqUserLoginWithText",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqUserLoginWithText,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户发出带有短信验证码的登陆请求"),
+    /*.ml_name=*/"ReqUserLoginWithText",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqUserLoginWithText,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户发出带有短信验证码的登陆请求"),
     },
     ///用户发出带有动态口令的登陆请求
     {
-    .ml_name="ReqUserLoginWithOTP",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqUserLoginWithOTP,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户发出带有动态口令的登陆请求"),
+    /*.ml_name=*/"ReqUserLoginWithOTP",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqUserLoginWithOTP,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户发出带有动态口令的登陆请求"),
     },
     ///报单录入请求
     {
-    .ml_name="ReqOrderInsert",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqOrderInsert,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("报单录入请求"),
+    /*.ml_name=*/"ReqOrderInsert",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqOrderInsert,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("报单录入请求"),
     },
     ///预埋单录入请求
     {
-    .ml_name="ReqParkedOrderInsert",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqParkedOrderInsert,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("预埋单录入请求"),
+    /*.ml_name=*/"ReqParkedOrderInsert",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqParkedOrderInsert,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("预埋单录入请求"),
     },
     ///预埋撤单录入请求
     {
-    .ml_name="ReqParkedOrderAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqParkedOrderAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("预埋撤单录入请求"),
+    /*.ml_name=*/"ReqParkedOrderAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqParkedOrderAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("预埋撤单录入请求"),
     },
     ///报单操作请求
     {
-    .ml_name="ReqOrderAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqOrderAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("报单操作请求"),
+    /*.ml_name=*/"ReqOrderAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqOrderAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("报单操作请求"),
     },
     ///查询最大报单数量请求
     {
-    .ml_name="ReqQryMaxOrderVolume",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryMaxOrderVolume,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("查询最大报单数量请求"),
+    /*.ml_name=*/"ReqQryMaxOrderVolume",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryMaxOrderVolume,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("查询最大报单数量请求"),
     },
     ///投资者结算结果确认
     {
-    .ml_name="ReqSettlementInfoConfirm",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqSettlementInfoConfirm,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者结算结果确认"),
+    /*.ml_name=*/"ReqSettlementInfoConfirm",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqSettlementInfoConfirm,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者结算结果确认"),
     },
     ///请求删除预埋单
     {
-    .ml_name="ReqRemoveParkedOrder",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqRemoveParkedOrder,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求删除预埋单"),
+    /*.ml_name=*/"ReqRemoveParkedOrder",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqRemoveParkedOrder,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求删除预埋单"),
     },
     ///请求删除预埋撤单
     {
-    .ml_name="ReqRemoveParkedOrderAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqRemoveParkedOrderAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求删除预埋撤单"),
+    /*.ml_name=*/"ReqRemoveParkedOrderAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqRemoveParkedOrderAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求删除预埋撤单"),
     },
     ///执行宣告录入请求
     {
-    .ml_name="ReqExecOrderInsert",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqExecOrderInsert,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("执行宣告录入请求"),
+    /*.ml_name=*/"ReqExecOrderInsert",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqExecOrderInsert,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("执行宣告录入请求"),
     },
     ///执行宣告操作请求
     {
-    .ml_name="ReqExecOrderAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqExecOrderAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("执行宣告操作请求"),
+    /*.ml_name=*/"ReqExecOrderAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqExecOrderAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("执行宣告操作请求"),
     },
     ///询价录入请求
     {
-    .ml_name="ReqForQuoteInsert",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqForQuoteInsert,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("询价录入请求"),
+    /*.ml_name=*/"ReqForQuoteInsert",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqForQuoteInsert,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("询价录入请求"),
     },
     ///报价录入请求
     {
-    .ml_name="ReqQuoteInsert",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQuoteInsert,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("报价录入请求"),
+    /*.ml_name=*/"ReqQuoteInsert",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQuoteInsert,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("报价录入请求"),
     },
     ///报价操作请求
     {
-    .ml_name="ReqQuoteAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQuoteAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("报价操作请求"),
+    /*.ml_name=*/"ReqQuoteAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQuoteAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("报价操作请求"),
     },
     ///批量报单操作请求
     {
-    .ml_name="ReqBatchOrderAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqBatchOrderAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("批量报单操作请求"),
+    /*.ml_name=*/"ReqBatchOrderAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqBatchOrderAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("批量报单操作请求"),
     },
     ///期权自对冲录入请求
     {
-    .ml_name="ReqOptionSelfCloseInsert",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqOptionSelfCloseInsert,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("期权自对冲录入请求"),
+    /*.ml_name=*/"ReqOptionSelfCloseInsert",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqOptionSelfCloseInsert,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("期权自对冲录入请求"),
     },
     ///期权自对冲操作请求
     {
-    .ml_name="ReqOptionSelfCloseAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqOptionSelfCloseAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("期权自对冲操作请求"),
+    /*.ml_name=*/"ReqOptionSelfCloseAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqOptionSelfCloseAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("期权自对冲操作请求"),
     },
     ///申请组合录入请求
     {
-    .ml_name="ReqCombActionInsert",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqCombActionInsert,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("申请组合录入请求"),
+    /*.ml_name=*/"ReqCombActionInsert",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqCombActionInsert,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("申请组合录入请求"),
     },
     ///请求查询报单
     {
-    .ml_name="ReqQryOrder",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryOrder,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询报单"),
+    /*.ml_name=*/"ReqQryOrder",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryOrder,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询报单"),
     },
     ///请求查询成交
     {
-    .ml_name="ReqQryTrade",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryTrade,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询成交"),
+    /*.ml_name=*/"ReqQryTrade",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryTrade,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询成交"),
     },
     ///请求查询投资者持仓
     {
-    .ml_name="ReqQryInvestorPosition",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorPosition,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询投资者持仓"),
+    /*.ml_name=*/"ReqQryInvestorPosition",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorPosition,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询投资者持仓"),
     },
     ///请求查询资金账户
     {
-    .ml_name="ReqQryTradingAccount",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryTradingAccount,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询资金账户"),
+    /*.ml_name=*/"ReqQryTradingAccount",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryTradingAccount,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询资金账户"),
     },
     ///请求查询投资者
     {
-    .ml_name="ReqQryInvestor",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestor,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询投资者"),
+    /*.ml_name=*/"ReqQryInvestor",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestor,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询投资者"),
     },
     ///请求查询交易编码
     {
-    .ml_name="ReqQryTradingCode",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryTradingCode,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询交易编码"),
+    /*.ml_name=*/"ReqQryTradingCode",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryTradingCode,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询交易编码"),
     },
     ///请求查询合约保证金率
     {
-    .ml_name="ReqQryInstrumentMarginRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInstrumentMarginRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询合约保证金率"),
+    /*.ml_name=*/"ReqQryInstrumentMarginRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInstrumentMarginRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询合约保证金率"),
     },
     ///请求查询合约手续费率
     {
-    .ml_name="ReqQryInstrumentCommissionRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInstrumentCommissionRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询合约手续费率"),
+    /*.ml_name=*/"ReqQryInstrumentCommissionRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInstrumentCommissionRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询合约手续费率"),
     },
     ///请求查询用户会话
     {
-    .ml_name="ReqQryUserSession",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryUserSession,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询用户会话"),
+    /*.ml_name=*/"ReqQryUserSession",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryUserSession,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询用户会话"),
     },
     ///请求查询交易所
     {
-    .ml_name="ReqQryExchange",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryExchange,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询交易所"),
+    /*.ml_name=*/"ReqQryExchange",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryExchange,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询交易所"),
     },
     ///请求查询产品
     {
-    .ml_name="ReqQryProduct",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryProduct,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询产品"),
+    /*.ml_name=*/"ReqQryProduct",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryProduct,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询产品"),
     },
     ///请求查询合约
     {
-    .ml_name="ReqQryInstrument",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInstrument,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询合约"),
+    /*.ml_name=*/"ReqQryInstrument",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInstrument,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询合约"),
     },
     ///请求查询行情
     {
-    .ml_name="ReqQryDepthMarketData",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryDepthMarketData,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询行情"),
+    /*.ml_name=*/"ReqQryDepthMarketData",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryDepthMarketData,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询行情"),
     },
     ///请求查询交易员报盘机
     {
-    .ml_name="ReqQryTraderOffer",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryTraderOffer,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询交易员报盘机"),
+    /*.ml_name=*/"ReqQryTraderOffer",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryTraderOffer,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询交易员报盘机"),
     },
     ///请求查询投资者结算结果
     {
-    .ml_name="ReqQrySettlementInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySettlementInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询投资者结算结果"),
+    /*.ml_name=*/"ReqQrySettlementInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySettlementInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询投资者结算结果"),
     },
     ///请求查询转帐银行
     {
-    .ml_name="ReqQryTransferBank",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryTransferBank,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询转帐银行"),
+    /*.ml_name=*/"ReqQryTransferBank",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryTransferBank,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询转帐银行"),
     },
     ///请求查询投资者持仓明细
     {
-    .ml_name="ReqQryInvestorPositionDetail",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorPositionDetail,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询投资者持仓明细"),
+    /*.ml_name=*/"ReqQryInvestorPositionDetail",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorPositionDetail,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询投资者持仓明细"),
     },
     ///请求查询客户通知
     {
-    .ml_name="ReqQryNotice",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryNotice,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询客户通知"),
+    /*.ml_name=*/"ReqQryNotice",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryNotice,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询客户通知"),
     },
     ///请求查询结算信息确认
     {
-    .ml_name="ReqQrySettlementInfoConfirm",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySettlementInfoConfirm,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询结算信息确认"),
+    /*.ml_name=*/"ReqQrySettlementInfoConfirm",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySettlementInfoConfirm,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询结算信息确认"),
     },
     ///请求查询投资者持仓明细
     {
-    .ml_name="ReqQryInvestorPositionCombineDetail",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorPositionCombineDetail,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询投资者持仓明细"),
+    /*.ml_name=*/"ReqQryInvestorPositionCombineDetail",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorPositionCombineDetail,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询投资者持仓明细"),
     },
     ///请求查询保证金监管系统经纪公司资金账户密钥
     {
-    .ml_name="ReqQryCFMMCTradingAccountKey",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryCFMMCTradingAccountKey,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询保证金监管系统经纪公司资金账户密钥"),
+    /*.ml_name=*/"ReqQryCFMMCTradingAccountKey",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryCFMMCTradingAccountKey,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询保证金监管系统经纪公司资金账户密钥"),
     },
     ///请求查询仓单折抵信息
     {
-    .ml_name="ReqQryEWarrantOffset",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryEWarrantOffset,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询仓单折抵信息"),
+    /*.ml_name=*/"ReqQryEWarrantOffset",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryEWarrantOffset,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询仓单折抵信息"),
     },
     ///请求查询投资者品种/跨品种保证金
     {
-    .ml_name="ReqQryInvestorProductGroupMargin",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorProductGroupMargin,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询投资者品种/跨品种保证金"),
+    /*.ml_name=*/"ReqQryInvestorProductGroupMargin",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorProductGroupMargin,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询投资者品种/跨品种保证金"),
     },
     ///请求查询交易所保证金率
     {
-    .ml_name="ReqQryExchangeMarginRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryExchangeMarginRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询交易所保证金率"),
+    /*.ml_name=*/"ReqQryExchangeMarginRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryExchangeMarginRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询交易所保证金率"),
     },
     ///请求查询交易所调整保证金率
     {
-    .ml_name="ReqQryExchangeMarginRateAdjust",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryExchangeMarginRateAdjust,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询交易所调整保证金率"),
+    /*.ml_name=*/"ReqQryExchangeMarginRateAdjust",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryExchangeMarginRateAdjust,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询交易所调整保证金率"),
     },
     ///请求查询汇率
     {
-    .ml_name="ReqQryExchangeRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryExchangeRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询汇率"),
+    /*.ml_name=*/"ReqQryExchangeRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryExchangeRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询汇率"),
     },
     ///请求查询二级代理操作员银期权限
     {
-    .ml_name="ReqQrySecAgentACIDMap",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySecAgentACIDMap,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询二级代理操作员银期权限"),
+    /*.ml_name=*/"ReqQrySecAgentACIDMap",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySecAgentACIDMap,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询二级代理操作员银期权限"),
     },
     ///请求查询产品报价汇率
     {
-    .ml_name="ReqQryProductExchRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryProductExchRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询产品报价汇率"),
+    /*.ml_name=*/"ReqQryProductExchRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryProductExchRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询产品报价汇率"),
     },
     ///请求查询产品组
     {
-    .ml_name="ReqQryProductGroup",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryProductGroup,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询产品组"),
+    /*.ml_name=*/"ReqQryProductGroup",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryProductGroup,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询产品组"),
     },
     ///请求查询做市商合约手续费率
     {
-    .ml_name="ReqQryMMInstrumentCommissionRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryMMInstrumentCommissionRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询做市商合约手续费率"),
+    /*.ml_name=*/"ReqQryMMInstrumentCommissionRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryMMInstrumentCommissionRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询做市商合约手续费率"),
     },
     ///请求查询做市商期权合约手续费
     {
-    .ml_name="ReqQryMMOptionInstrCommRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryMMOptionInstrCommRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询做市商期权合约手续费"),
+    /*.ml_name=*/"ReqQryMMOptionInstrCommRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryMMOptionInstrCommRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询做市商期权合约手续费"),
     },
     ///请求查询报单手续费
     {
-    .ml_name="ReqQryInstrumentOrderCommRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInstrumentOrderCommRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询报单手续费"),
+    /*.ml_name=*/"ReqQryInstrumentOrderCommRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInstrumentOrderCommRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询报单手续费"),
     },
     ///请求查询资金账户
     {
-    .ml_name="ReqQrySecAgentTradingAccount",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySecAgentTradingAccount,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询资金账户"),
+    /*.ml_name=*/"ReqQrySecAgentTradingAccount",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySecAgentTradingAccount,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询资金账户"),
     },
     ///请求查询二级代理商资金校验模式
     {
-    .ml_name="ReqQrySecAgentCheckMode",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySecAgentCheckMode,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询二级代理商资金校验模式"),
+    /*.ml_name=*/"ReqQrySecAgentCheckMode",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySecAgentCheckMode,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询二级代理商资金校验模式"),
     },
     ///请求查询二级代理商信息
     {
-    .ml_name="ReqQrySecAgentTradeInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySecAgentTradeInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询二级代理商信息"),
+    /*.ml_name=*/"ReqQrySecAgentTradeInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySecAgentTradeInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询二级代理商信息"),
     },
     ///请求查询期权交易成本
     {
-    .ml_name="ReqQryOptionInstrTradeCost",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryOptionInstrTradeCost,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询期权交易成本"),
+    /*.ml_name=*/"ReqQryOptionInstrTradeCost",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryOptionInstrTradeCost,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询期权交易成本"),
     },
     ///请求查询期权合约手续费
     {
-    .ml_name="ReqQryOptionInstrCommRate",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryOptionInstrCommRate,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询期权合约手续费"),
+    /*.ml_name=*/"ReqQryOptionInstrCommRate",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryOptionInstrCommRate,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询期权合约手续费"),
     },
     ///请求查询执行宣告
     {
-    .ml_name="ReqQryExecOrder",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryExecOrder,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询执行宣告"),
+    /*.ml_name=*/"ReqQryExecOrder",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryExecOrder,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询执行宣告"),
     },
     ///请求查询询价
     {
-    .ml_name="ReqQryForQuote",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryForQuote,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询询价"),
+    /*.ml_name=*/"ReqQryForQuote",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryForQuote,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询询价"),
     },
     ///请求查询报价
     {
-    .ml_name="ReqQryQuote",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryQuote,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询报价"),
+    /*.ml_name=*/"ReqQryQuote",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryQuote,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询报价"),
     },
     ///请求查询期权自对冲
     {
-    .ml_name="ReqQryOptionSelfClose",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryOptionSelfClose,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询期权自对冲"),
+    /*.ml_name=*/"ReqQryOptionSelfClose",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryOptionSelfClose,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询期权自对冲"),
     },
     ///请求查询投资单元
     {
-    .ml_name="ReqQryInvestUnit",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestUnit,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询投资单元"),
+    /*.ml_name=*/"ReqQryInvestUnit",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestUnit,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询投资单元"),
     },
     ///请求查询组合合约安全系数
     {
-    .ml_name="ReqQryCombInstrumentGuard",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryCombInstrumentGuard,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询组合合约安全系数"),
+    /*.ml_name=*/"ReqQryCombInstrumentGuard",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryCombInstrumentGuard,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询组合合约安全系数"),
     },
     ///请求查询申请组合
     {
-    .ml_name="ReqQryCombAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryCombAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询申请组合"),
+    /*.ml_name=*/"ReqQryCombAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryCombAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询申请组合"),
     },
     ///请求查询转帐流水
     {
-    .ml_name="ReqQryTransferSerial",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryTransferSerial,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询转帐流水"),
+    /*.ml_name=*/"ReqQryTransferSerial",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryTransferSerial,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询转帐流水"),
     },
     ///请求查询银期签约关系
     {
-    .ml_name="ReqQryAccountregister",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryAccountregister,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询银期签约关系"),
+    /*.ml_name=*/"ReqQryAccountregister",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryAccountregister,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询银期签约关系"),
     },
     ///请求查询签约银行
     {
-    .ml_name="ReqQryContractBank",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryContractBank,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询签约银行"),
+    /*.ml_name=*/"ReqQryContractBank",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryContractBank,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询签约银行"),
     },
     ///请求查询预埋单
     {
-    .ml_name="ReqQryParkedOrder",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryParkedOrder,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询预埋单"),
+    /*.ml_name=*/"ReqQryParkedOrder",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryParkedOrder,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询预埋单"),
     },
     ///请求查询预埋撤单
     {
-    .ml_name="ReqQryParkedOrderAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryParkedOrderAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询预埋撤单"),
+    /*.ml_name=*/"ReqQryParkedOrderAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryParkedOrderAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询预埋撤单"),
     },
     ///请求查询交易通知
     {
-    .ml_name="ReqQryTradingNotice",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryTradingNotice,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询交易通知"),
+    /*.ml_name=*/"ReqQryTradingNotice",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryTradingNotice,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询交易通知"),
     },
     ///请求查询经纪公司交易参数
     {
-    .ml_name="ReqQryBrokerTradingParams",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryBrokerTradingParams,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询经纪公司交易参数"),
+    /*.ml_name=*/"ReqQryBrokerTradingParams",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryBrokerTradingParams,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询经纪公司交易参数"),
     },
     ///请求查询经纪公司交易算法
     {
-    .ml_name="ReqQryBrokerTradingAlgos",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryBrokerTradingAlgos,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询经纪公司交易算法"),
+    /*.ml_name=*/"ReqQryBrokerTradingAlgos",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryBrokerTradingAlgos,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询经纪公司交易算法"),
     },
     ///请求查询监控中心用户令牌
     {
-    .ml_name="ReqQueryCFMMCTradingAccountToken",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQueryCFMMCTradingAccountToken,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询监控中心用户令牌"),
+    /*.ml_name=*/"ReqQueryCFMMCTradingAccountToken",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQueryCFMMCTradingAccountToken,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询监控中心用户令牌"),
     },
     ///期货发起银行资金转期货请求
     {
-    .ml_name="ReqFromBankToFutureByFuture",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqFromBankToFutureByFuture,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("期货发起银行资金转期货请求"),
+    /*.ml_name=*/"ReqFromBankToFutureByFuture",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqFromBankToFutureByFuture,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("期货发起银行资金转期货请求"),
     },
     ///期货发起期货资金转银行请求
     {
-    .ml_name="ReqFromFutureToBankByFuture",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqFromFutureToBankByFuture,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("期货发起期货资金转银行请求"),
+    /*.ml_name=*/"ReqFromFutureToBankByFuture",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqFromFutureToBankByFuture,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("期货发起期货资金转银行请求"),
     },
     ///期货发起查询银行余额请求
     {
-    .ml_name="ReqQueryBankAccountMoneyByFuture",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQueryBankAccountMoneyByFuture,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("期货发起查询银行余额请求"),
+    /*.ml_name=*/"ReqQueryBankAccountMoneyByFuture",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQueryBankAccountMoneyByFuture,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("期货发起查询银行余额请求"),
     },
     ///请求查询分类合约
     {
-    .ml_name="ReqQryClassifiedInstrument",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryClassifiedInstrument,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询分类合约"),
+    /*.ml_name=*/"ReqQryClassifiedInstrument",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryClassifiedInstrument,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询分类合约"),
     },
     ///请求组合优惠比例
     {
-    .ml_name="ReqQryCombPromotionParam",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryCombPromotionParam,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求组合优惠比例"),
+    /*.ml_name=*/"ReqQryCombPromotionParam",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryCombPromotionParam,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求组合优惠比例"),
     },
     ///投资者风险结算持仓查询
     {
-    .ml_name="ReqQryRiskSettleInvstPosition",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRiskSettleInvstPosition,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者风险结算持仓查询"),
+    /*.ml_name=*/"ReqQryRiskSettleInvstPosition",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRiskSettleInvstPosition,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者风险结算持仓查询"),
     },
     ///风险结算产品查询
     {
-    .ml_name="ReqQryRiskSettleProductStatus",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRiskSettleProductStatus,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("风险结算产品查询"),
+    /*.ml_name=*/"ReqQryRiskSettleProductStatus",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRiskSettleProductStatus,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("风险结算产品查询"),
     },
     ///SPBM期货合约参数查询
     {
-    .ml_name="ReqQrySPBMFutureParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPBMFutureParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPBM期货合约参数查询"),
+    /*.ml_name=*/"ReqQrySPBMFutureParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPBMFutureParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPBM期货合约参数查询"),
     },
     ///SPBM期权合约参数查询
     {
-    .ml_name="ReqQrySPBMOptionParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPBMOptionParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPBM期权合约参数查询"),
+    /*.ml_name=*/"ReqQrySPBMOptionParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPBMOptionParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPBM期权合约参数查询"),
     },
     ///SPBM品种内对锁仓折扣参数查询
     {
-    .ml_name="ReqQrySPBMIntraParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPBMIntraParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPBM品种内对锁仓折扣参数查询"),
+    /*.ml_name=*/"ReqQrySPBMIntraParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPBMIntraParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPBM品种内对锁仓折扣参数查询"),
     },
     ///SPBM跨品种抵扣参数查询
     {
-    .ml_name="ReqQrySPBMInterParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPBMInterParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPBM跨品种抵扣参数查询"),
+    /*.ml_name=*/"ReqQrySPBMInterParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPBMInterParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPBM跨品种抵扣参数查询"),
     },
     ///SPBM组合保证金套餐查询
     {
-    .ml_name="ReqQrySPBMPortfDefinition",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPBMPortfDefinition,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPBM组合保证金套餐查询"),
+    /*.ml_name=*/"ReqQrySPBMPortfDefinition",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPBMPortfDefinition,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPBM组合保证金套餐查询"),
     },
     ///投资者SPBM套餐选择查询
     {
-    .ml_name="ReqQrySPBMInvestorPortfDef",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPBMInvestorPortfDef,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者SPBM套餐选择查询"),
+    /*.ml_name=*/"ReqQrySPBMInvestorPortfDef",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPBMInvestorPortfDef,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者SPBM套餐选择查询"),
     },
     ///投资者新型组合保证金系数查询
     {
-    .ml_name="ReqQryInvestorPortfMarginRatio",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorPortfMarginRatio,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者新型组合保证金系数查询"),
+    /*.ml_name=*/"ReqQryInvestorPortfMarginRatio",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorPortfMarginRatio,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者新型组合保证金系数查询"),
     },
     ///投资者产品SPBM明细查询
     {
-    .ml_name="ReqQryInvestorProdSPBMDetail",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorProdSPBMDetail,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者产品SPBM明细查询"),
+    /*.ml_name=*/"ReqQryInvestorProdSPBMDetail",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorProdSPBMDetail,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者产品SPBM明细查询"),
     },
     ///投资者商品组SPMM记录查询
     {
-    .ml_name="ReqQryInvestorCommoditySPMMMargin",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorCommoditySPMMMargin,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者商品组SPMM记录查询"),
+    /*.ml_name=*/"ReqQryInvestorCommoditySPMMMargin",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorCommoditySPMMMargin,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者商品组SPMM记录查询"),
     },
     ///投资者商品群SPMM记录查询
     {
-    .ml_name="ReqQryInvestorCommodityGroupSPMMMargin",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorCommodityGroupSPMMMargin,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者商品群SPMM记录查询"),
+    /*.ml_name=*/"ReqQryInvestorCommodityGroupSPMMMargin",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorCommodityGroupSPMMMargin,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者商品群SPMM记录查询"),
     },
     ///SPMM合约参数查询
     {
-    .ml_name="ReqQrySPMMInstParam",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPMMInstParam,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPMM合约参数查询"),
+    /*.ml_name=*/"ReqQrySPMMInstParam",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPMMInstParam,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPMM合约参数查询"),
     },
     ///SPMM产品参数查询
     {
-    .ml_name="ReqQrySPMMProductParam",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPMMProductParam,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPMM产品参数查询"),
+    /*.ml_name=*/"ReqQrySPMMProductParam",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPMMProductParam,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPMM产品参数查询"),
     },
     ///SPBM附加跨品种抵扣参数查询
     {
-    .ml_name="ReqQrySPBMAddOnInterParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySPBMAddOnInterParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("SPBM附加跨品种抵扣参数查询"),
+    /*.ml_name=*/"ReqQrySPBMAddOnInterParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySPBMAddOnInterParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("SPBM附加跨品种抵扣参数查询"),
     },
     ///RCAMS产品组合信息查询
     {
-    .ml_name="ReqQryRCAMSCombProductInfo",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRCAMSCombProductInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RCAMS产品组合信息查询"),
+    /*.ml_name=*/"ReqQryRCAMSCombProductInfo",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRCAMSCombProductInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RCAMS产品组合信息查询"),
     },
     ///RCAMS同合约风险对冲参数查询
     {
-    .ml_name="ReqQryRCAMSInstrParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRCAMSInstrParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RCAMS同合约风险对冲参数查询"),
+    /*.ml_name=*/"ReqQryRCAMSInstrParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRCAMSInstrParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RCAMS同合约风险对冲参数查询"),
     },
     ///RCAMS品种内风险对冲参数查询
     {
-    .ml_name="ReqQryRCAMSIntraParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRCAMSIntraParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RCAMS品种内风险对冲参数查询"),
+    /*.ml_name=*/"ReqQryRCAMSIntraParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRCAMSIntraParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RCAMS品种内风险对冲参数查询"),
     },
     ///RCAMS跨品种风险折抵参数查询
     {
-    .ml_name="ReqQryRCAMSInterParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRCAMSInterParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RCAMS跨品种风险折抵参数查询"),
+    /*.ml_name=*/"ReqQryRCAMSInterParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRCAMSInterParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RCAMS跨品种风险折抵参数查询"),
     },
     ///RCAMS空头期权风险调整参数查询
     {
-    .ml_name="ReqQryRCAMSShortOptAdjustParam",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRCAMSShortOptAdjustParam,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RCAMS空头期权风险调整参数查询"),
+    /*.ml_name=*/"ReqQryRCAMSShortOptAdjustParam",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRCAMSShortOptAdjustParam,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RCAMS空头期权风险调整参数查询"),
     },
     ///RCAMS策略组合持仓查询
     {
-    .ml_name="ReqQryRCAMSInvestorCombPosition",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRCAMSInvestorCombPosition,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RCAMS策略组合持仓查询"),
+    /*.ml_name=*/"ReqQryRCAMSInvestorCombPosition",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRCAMSInvestorCombPosition,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RCAMS策略组合持仓查询"),
     },
     ///投资者品种RCAMS保证金查询
     {
-    .ml_name="ReqQryInvestorProdRCAMSMargin",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorProdRCAMSMargin,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者品种RCAMS保证金查询"),
+    /*.ml_name=*/"ReqQryInvestorProdRCAMSMargin",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorProdRCAMSMargin,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者品种RCAMS保证金查询"),
     },
     ///RULE合约保证金参数查询
     {
-    .ml_name="ReqQryRULEInstrParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRULEInstrParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RULE合约保证金参数查询"),
+    /*.ml_name=*/"ReqQryRULEInstrParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRULEInstrParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RULE合约保证金参数查询"),
     },
     ///RULE品种内对锁仓折扣参数查询
     {
-    .ml_name="ReqQryRULEIntraParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRULEIntraParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RULE品种内对锁仓折扣参数查询"),
+    /*.ml_name=*/"ReqQryRULEIntraParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRULEIntraParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RULE品种内对锁仓折扣参数查询"),
     },
     ///RULE跨品种抵扣参数查询
     {
-    .ml_name="ReqQryRULEInterParameter",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryRULEInterParameter,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("RULE跨品种抵扣参数查询"),
+    /*.ml_name=*/"ReqQryRULEInterParameter",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryRULEInterParameter,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("RULE跨品种抵扣参数查询"),
     },
     ///投资者产品RULE保证金查询
     {
-    .ml_name="ReqQryInvestorProdRULEMargin",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorProdRULEMargin,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者产品RULE保证金查询"),
+    /*.ml_name=*/"ReqQryInvestorProdRULEMargin",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorProdRULEMargin,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者产品RULE保证金查询"),
     },
     ///投资者新型组合保证金开关查询
     {
-    .ml_name="ReqQryInvestorPortfSetting",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorPortfSetting,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者新型组合保证金开关查询"),
+    /*.ml_name=*/"ReqQryInvestorPortfSetting",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorPortfSetting,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者新型组合保证金开关查询"),
     },
     ///投资者申报费阶梯收取记录查询
     {
-    .ml_name="ReqQryInvestorInfoCommRec",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryInvestorInfoCommRec,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者申报费阶梯收取记录查询"),
+    /*.ml_name=*/"ReqQryInvestorInfoCommRec",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryInvestorInfoCommRec,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者申报费阶梯收取记录查询"),
     },
     ///组合腿信息查询
     {
-    .ml_name="ReqQryCombLeg",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryCombLeg,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("组合腿信息查询"),
+    /*.ml_name=*/"ReqQryCombLeg",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryCombLeg,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("组合腿信息查询"),
     },
     ///对冲设置请求
     {
-    .ml_name="ReqOffsetSetting",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqOffsetSetting,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("对冲设置请求"),
+    /*.ml_name=*/"ReqOffsetSetting",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqOffsetSetting,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("对冲设置请求"),
     },
     ///对冲设置撤销请求
     {
-    .ml_name="ReqCancelOffsetSetting",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqCancelOffsetSetting,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("对冲设置撤销请求"),
+    /*.ml_name=*/"ReqCancelOffsetSetting",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqCancelOffsetSetting,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("对冲设置撤销请求"),
     },
     ///投资者对冲设置查询
     {
-    .ml_name="ReqQryOffsetSetting",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryOffsetSetting,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("投资者对冲设置查询"),
+    /*.ml_name=*/"ReqQryOffsetSetting",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryOffsetSetting,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("投资者对冲设置查询"),
     },
     ///申请短信验证码请求
     {
-    .ml_name="ReqGenSMSCode",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqGenSMSCode,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("申请短信验证码请求"),
+    /*.ml_name=*/"ReqGenSMSCode",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqGenSMSCode,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("申请短信验证码请求"),
     },
     ///套利确认请求
     {
-    .ml_name="ReqSpdApply",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqSpdApply,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("套利确认请求"),
+    /*.ml_name=*/"ReqSpdApply",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqSpdApply,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("套利确认请求"),
     },
     ///套利确认撤销请求
     {
-    .ml_name="ReqSpdApplyAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqSpdApplyAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("套利确认撤销请求"),
+    /*.ml_name=*/"ReqSpdApplyAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqSpdApplyAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("套利确认撤销请求"),
     },
     ///套利确认查询请求
     {
-    .ml_name="ReqQrySpdApply",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQrySpdApply,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("套利确认查询请求"),
+    /*.ml_name=*/"ReqQrySpdApply",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQrySpdApply,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("套利确认查询请求"),
     },
     ///套保确认请求
     {
-    .ml_name="ReqHedgeCfm",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqHedgeCfm,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("套保确认请求"),
+    /*.ml_name=*/"ReqHedgeCfm",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqHedgeCfm,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("套保确认请求"),
     },
     ///套保确认撤销请求
     {
-    .ml_name="ReqHedgeCfmAction",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqHedgeCfmAction,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("套保确认撤销请求"),
+    /*.ml_name=*/"ReqHedgeCfmAction",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqHedgeCfmAction,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("套保确认撤销请求"),
     },
     ///套保确认查询请求
     {
-    .ml_name="ReqQryHedgeCfm",
-    .ml_meth=PyCThostFtdcTraderApiType_method_ReqQryHedgeCfm,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("套保确认查询请求"),
+    /*.ml_name=*/"ReqQryHedgeCfm",
+    /*.ml_meth=*/PyCThostFtdcTraderApiType_method_ReqQryHedgeCfm,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("套保确认查询请求"),
     },
     {NULL}  /* Sentinel */
 };
@@ -11055,15 +11055,15 @@ static PyType_Slot PyCThostFtdcTraderApiType_slots_legacy[] = {
     {0, NULL}  /* Sentinel */
 };
 static PyType_Spec PyCThostFtdcTraderApiType_spec = {
-    .name = "PyCTP.CThostFtdcTraderApi",
+    /*.name =*/ "PyCTP.CThostFtdcTraderApi",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcTraderApiData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcTraderApiData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcTraderApiData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcTraderApiData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
-    .slots = PyCThostFtdcTraderApiType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
+    /*.slots =*/ PyCThostFtdcTraderApiType_slots_legacy,
 };
 #endif
 

@@ -53,12 +53,13 @@ static PyModuleDef_Slot PyCTP_module_slots_legacy[] = {
     {Py_mod_exec, (void *)PyCTP_module_exec},
     {0, NULL}  /* Sentinel */
 };
-static struct PyModuleDef PyCTP_Module = {
-    .m_base = PyModuleDef_HEAD_INIT,
-    .m_name = MODULE_NAME,
-    .m_doc = MODULE_DOC,
-    .m_size = 0,
-    .m_slots = PyCTP_module_slots_legacy,
+static PyModuleDef PyCTP_Module = {
+    /*.m_base =*/ PyModuleDef_HEAD_INIT,
+    /*.m_name =*/ MODULE_NAME,
+    /*.m_doc =*/ MODULE_DOC,
+    /*.m_size =*/ 0,
+    /*.m_methods =*/ NULL,
+    /*.m_slots =*/ PyCTP_module_slots_legacy,
 };
 #endif // PY_VERSION_HEX
 

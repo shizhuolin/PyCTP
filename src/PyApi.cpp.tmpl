@@ -466,15 +466,15 @@ static PyMethodDef Py{{ api_class.name }}Type_methods[] = {
             {% if method.access=='public' %}
                 {{- method.comment | map('trim') | join('\n') | indent(4, first=True) }}
     {
-    .ml_name="{{ method.name }}",
-    .ml_meth=   {%- if method.name.startswith('CreateFtdc') and method.name.endswith('Api') %}(PyCFunction){% endif %}Py{{ api_class.name }}Type_method_{{ method.name }},
-    .ml_flags=  {%- if method.params %}METH_VARARGS{% else %}METH_NOARGS{% endif -%}
+    /*.ml_name=*/"{{ method.name }}",
+    /*.ml_meth=*/   {%- if method.name.startswith('CreateFtdc') and method.name.endswith('Api') %}(PyCFunction){% endif %}Py{{ api_class.name }}Type_method_{{ method.name }},
+    /*.ml_flags=*/  {%- if method.params %}METH_VARARGS{% else %}METH_NOARGS{% endif -%}
                 {%- if method.is_static -%}
                     {%- if method.name.startswith('CreateFtdc') and method.name.endswith('Api') %} | METH_CLASS
                     {%- else %} | METH_STATIC
                     {%- endif -%}
                 {%- endif -%},
-    .ml_doc=PyDoc_STR("{{ method.comment[0] | trim('\s\t\/') }}"),
+    /*.ml_doc=*/PyDoc_STR("{{ method.comment[0] | trim('\s\t\/') }}"),
     },
             {% endif %}
         {% endfor %}
@@ -499,15 +499,15 @@ static PyType_Slot Py{{ api_class.name }}Type_slots_legacy[] = {
     {0, NULL}  /* Sentinel */
 };
 static PyType_Spec Py{{ api_class.name }}Type_spec = {
-    .name = "PyCTP.{{ api_class.name }}",
+    /*.name =*/ "PyCTP.{{ api_class.name }}",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(Py{{ api_class.name }}Data),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(Py{{ api_class.name }}Data),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(Py{{ api_class.name }}Data),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(Py{{ api_class.name }}Data),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
-    .slots = Py{{ api_class.name }}Type_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
+    /*.slots =*/ Py{{ api_class.name }}Type_slots_legacy,
 };
 #endif
 

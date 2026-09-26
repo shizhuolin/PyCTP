@@ -893,61 +893,61 @@ static PyMethodDef PyCThostFtdcMdApiType_methods[] = {
     ///@return 创建出的UserApi
     ///modify for udp marketdata
     {
-    .ml_name="CreateFtdcMdApi",
-    .ml_meth=(PyCFunction)PyCThostFtdcMdApiType_method_CreateFtdcMdApi,
-    .ml_flags=METH_VARARGS | METH_CLASS,
-    .ml_doc=PyDoc_STR("创建MdApi"),
+    /*.ml_name=*/"CreateFtdcMdApi",
+    /*.ml_meth=*/(PyCFunction)PyCThostFtdcMdApiType_method_CreateFtdcMdApi,
+    /*.ml_flags=*/METH_VARARGS | METH_CLASS,
+    /*.ml_doc=*/PyDoc_STR("创建MdApi"),
     },
     ///获取API的版本信息
     ///@retrun 获取到的版本号
     {
-    .ml_name="GetApiVersion",
-    .ml_meth=PyCThostFtdcMdApiType_method_GetApiVersion,
-    .ml_flags=METH_NOARGS | METH_STATIC,
-    .ml_doc=PyDoc_STR("获取API的版本信息"),
+    /*.ml_name=*/"GetApiVersion",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_GetApiVersion,
+    /*.ml_flags=*/METH_NOARGS | METH_STATIC,
+    /*.ml_doc=*/PyDoc_STR("获取API的版本信息"),
     },
     ///删除接口对象本身
     ///@remark 不再使用本接口对象时,调用该函数删除接口对象
     {
-    .ml_name="Release",
-    .ml_meth=PyCThostFtdcMdApiType_method_Release,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("删除接口对象本身"),
+    /*.ml_name=*/"Release",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_Release,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("删除接口对象本身"),
     },
     ///初始化
     ///@remark 初始化运行环境,只有调用后,接口才开始工作
     {
-    .ml_name="Init",
-    .ml_meth=PyCThostFtdcMdApiType_method_Init,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("初始化"),
+    /*.ml_name=*/"Init",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_Init,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("初始化"),
     },
     ///等待接口线程结束运行
     ///@return 线程退出代码
     {
-    .ml_name="Join",
-    .ml_meth=PyCThostFtdcMdApiType_method_Join,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("等待接口线程结束运行"),
+    /*.ml_name=*/"Join",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_Join,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("等待接口线程结束运行"),
     },
     ///获取当前交易日
     ///@retrun 获取到的交易日
     ///@remark 只有登录成功后,才能得到正确的交易日
     {
-    .ml_name="GetTradingDay",
-    .ml_meth=PyCThostFtdcMdApiType_method_GetTradingDay,
-    .ml_flags=METH_NOARGS,
-    .ml_doc=PyDoc_STR("获取当前交易日"),
+    /*.ml_name=*/"GetTradingDay",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_GetTradingDay,
+    /*.ml_flags=*/METH_NOARGS,
+    /*.ml_doc=*/PyDoc_STR("获取当前交易日"),
     },
     ///注册前置机网络地址
     ///@param pszFrontAddress：前置机网络地址。
     ///@remark 网络地址的格式为：“protocol://ipaddress:port”，如：”tcp://127.0.0.1:17001”。
     ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”17001”代表服务器端口号。
     {
-    .ml_name="RegisterFront",
-    .ml_meth=PyCThostFtdcMdApiType_method_RegisterFront,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册前置机网络地址"),
+    /*.ml_name=*/"RegisterFront",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_RegisterFront,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册前置机网络地址"),
     },
     ///注册名字服务器网络地址
     ///@param pszNsAddress：名字服务器网络地址。
@@ -955,87 +955,87 @@ static PyMethodDef PyCThostFtdcMdApiType_methods[] = {
     ///@remark “tcp”代表传输协议，“127.0.0.1”代表服务器地址。”12001”代表服务器端口号。
     ///@remark RegisterNameServer优先于RegisterFront
     {
-    .ml_name="RegisterNameServer",
-    .ml_meth=PyCThostFtdcMdApiType_method_RegisterNameServer,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册名字服务器网络地址"),
+    /*.ml_name=*/"RegisterNameServer",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_RegisterNameServer,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册名字服务器网络地址"),
     },
     ///注册名字服务器用户信息
     ///@param pFensUserInfo：用户信息。
     {
-    .ml_name="RegisterFensUserInfo",
-    .ml_meth=PyCThostFtdcMdApiType_method_RegisterFensUserInfo,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册名字服务器用户信息"),
+    /*.ml_name=*/"RegisterFensUserInfo",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_RegisterFensUserInfo,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册名字服务器用户信息"),
     },
     ///注册回调接口
     ///@param pSpi 派生自回调接口类的实例
     {
-    .ml_name="RegisterSpi",
-    .ml_meth=PyCThostFtdcMdApiType_method_RegisterSpi,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("注册回调接口"),
+    /*.ml_name=*/"RegisterSpi",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_RegisterSpi,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("注册回调接口"),
     },
     ///订阅行情。
     ///@param ppInstrumentID 合约ID
     ///@param nCount 要订阅/退订行情的合约个数
     ///@remark
     {
-    .ml_name="SubscribeMarketData",
-    .ml_meth=PyCThostFtdcMdApiType_method_SubscribeMarketData,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("订阅行情。"),
+    /*.ml_name=*/"SubscribeMarketData",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_SubscribeMarketData,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("订阅行情。"),
     },
     ///退订行情。
     ///@param ppInstrumentID 合约ID
     ///@param nCount 要订阅/退订行情的合约个数
     ///@remark
     {
-    .ml_name="UnSubscribeMarketData",
-    .ml_meth=PyCThostFtdcMdApiType_method_UnSubscribeMarketData,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("退订行情。"),
+    /*.ml_name=*/"UnSubscribeMarketData",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_UnSubscribeMarketData,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("退订行情。"),
     },
     ///订阅询价。
     ///@param ppInstrumentID 合约ID
     ///@param nCount 要订阅/退订行情的合约个数
     ///@remark
     {
-    .ml_name="SubscribeForQuoteRsp",
-    .ml_meth=PyCThostFtdcMdApiType_method_SubscribeForQuoteRsp,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("订阅询价。"),
+    /*.ml_name=*/"SubscribeForQuoteRsp",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_SubscribeForQuoteRsp,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("订阅询价。"),
     },
     ///退订询价。
     ///@param ppInstrumentID 合约ID
     ///@param nCount 要订阅/退订行情的合约个数
     ///@remark
     {
-    .ml_name="UnSubscribeForQuoteRsp",
-    .ml_meth=PyCThostFtdcMdApiType_method_UnSubscribeForQuoteRsp,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("退订询价。"),
+    /*.ml_name=*/"UnSubscribeForQuoteRsp",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_UnSubscribeForQuoteRsp,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("退订询价。"),
     },
     ///用户登录请求
     {
-    .ml_name="ReqUserLogin",
-    .ml_meth=PyCThostFtdcMdApiType_method_ReqUserLogin,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("用户登录请求"),
+    /*.ml_name=*/"ReqUserLogin",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_ReqUserLogin,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("用户登录请求"),
     },
     ///登出请求
     {
-    .ml_name="ReqUserLogout",
-    .ml_meth=PyCThostFtdcMdApiType_method_ReqUserLogout,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("登出请求"),
+    /*.ml_name=*/"ReqUserLogout",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_ReqUserLogout,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("登出请求"),
     },
     ///请求查询组播合约
     {
-    .ml_name="ReqQryMulticastInstrument",
-    .ml_meth=PyCThostFtdcMdApiType_method_ReqQryMulticastInstrument,
-    .ml_flags=METH_VARARGS,
-    .ml_doc=PyDoc_STR("请求查询组播合约"),
+    /*.ml_name=*/"ReqQryMulticastInstrument",
+    /*.ml_meth=*/PyCThostFtdcMdApiType_method_ReqQryMulticastInstrument,
+    /*.ml_flags=*/METH_VARARGS,
+    /*.ml_doc=*/PyDoc_STR("请求查询组播合约"),
     },
     {NULL}  /* Sentinel */
 };
@@ -1058,15 +1058,15 @@ static PyType_Slot PyCThostFtdcMdApiType_slots_legacy[] = {
     {0, NULL}  /* Sentinel */
 };
 static PyType_Spec PyCThostFtdcMdApiType_spec = {
-    .name = "PyCTP.CThostFtdcMdApi",
+    /*.name =*/ "PyCTP.CThostFtdcMdApi",
 #if PY_VERSION_HEX < 0x030c0000  // Python 3.12
-    .basicsize = (Py_ssize_t)sizeof(PyCThostFtdcMdApiData),
+    /*.basicsize =*/ (Py_ssize_t)sizeof(PyCThostFtdcMdApiData),
 #else
-    .basicsize = -(Py_ssize_t)sizeof(PyCThostFtdcMdApiData),
+    /*.basicsize =*/ -(Py_ssize_t)sizeof(PyCThostFtdcMdApiData),
 #endif // PY_VERSION_HEX
-    .itemsize = 0,
-    .flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
-    .slots = PyCThostFtdcMdApiType_slots_legacy,
+    /*.itemsize =*/ 0,
+    /*.flags =*/ Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
+    /*.slots =*/ PyCThostFtdcMdApiType_slots_legacy,
 };
 #endif
 

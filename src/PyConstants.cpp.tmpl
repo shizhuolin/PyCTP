@@ -39,7 +39,8 @@ int PyModule_AddStrConstant(PyObject *m, const char *name, const char *value) {
 int PyCTP_module_add_PyConstants_exec(PyObject *m) {
 
 {% for enum in enums %}
-    {% if enum.name.startswith('THOST_') and enum.underlying_type == 'unsigned int' %}
+    {# libclang reports underlying_type as "unsigned int" on Linux but "int" on Windows; both end with "int". #}
+    {% if enum.name.startswith('THOST_') and enum.underlying_type.endswith('int') %}
         {% if enum.comment %}
     {{- enum.comment|join('\n')|indent(4, first=True) }}
         {% endif %}

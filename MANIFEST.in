@@ -4,7 +4,7 @@ include ctpgenbyast.py
 include tests/test_pyctp.py
 recursive-include src *.h *.c *.cpp *.tmpl
 recursive-include ctp *.h *.so *.dll *.lib
+recursive-include pkg/PyCTP/libs *.so *.dll
 exclude AGENTS.md
 exclude opencode.json
-prune pkg/PyCTP/libs
 prune pkg/PyCTP.egg-info

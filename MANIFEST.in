@@ -1,5 +1,10 @@
 include README.md
 include LICENSE
-recursive-include src/ *
-recursive-include ctp/ *
-exclude tests/*
+include ctpgenbyast.py
+include tests/test_pyctp.py
+recursive-include src *.h *.c *.cpp *.tmpl
+recursive-include ctp *.h *.so *.dll *.lib
+exclude AGENTS.md
+exclude opencode.json
+prune pkg/PyCTP/libs
+prune pkg/PyCTP.egg-info

@@ -8,7 +8,7 @@ CTP 期货接口的 Python 封装。
 |---|---|
 | CTP 标准版 | `v6.7.13_20260225_trader` |
 | CTP 国密版 | `v6.7.13_20260225_traderSM` |
-| Python | 3.5 ~ 3.15 |
+| Python | 3.5 or higher |
 | 平台 | Linux x86_64 / Windows x86 / Windows x64 |
 
 ## 安装
@@ -23,15 +23,6 @@ CTP 期货接口的 Python 封装。
 ```bash
     pip install .
 ```
-默认从 `ctp/v6.7.13_20260225_trader` 读取 CTP SDK。
-
-### 指定 CTP SDK 路径
-
-```bash
-    PYCTP_CTP_ROOT=/path/to/ctp pip install .
-```
-
-`PYCTP_CTP_ROOT` 指向包含头文件和库文件的目录, SDK 目录内头文件和库文件需在同一目录下。
 
 ### 构建 abi3 wheel（跨 Python 版本）
 ```bash
@@ -40,10 +31,19 @@ CTP 期货接口的 Python 封装。
 生成 `pyctp-x.x.x-cpXX-abi3-<platform>.whl`，
 可安装到编译时的 Python 版本及以上。
 
-### 切换到国密版
+### 指定 CTP SDK 路径
+
+```bash
+    PYCTP_CTP_ROOT=/path/to/ctp pip install .
+```
+
+默认从 `ctp/v6.7.13_20260225_trader` 读取 CTP SDK。
+`PYCTP_CTP_ROOT` 指向包含头文件和库文件的目录, SDK 目录内头文件和库文件需在同一目录下。
+
+### 国密版
 ```bash
     PYCTP_CTP_ROOT=ctp/v6.7.13_20260225_traderSM python ctpgenbyast.py
-    PYCTP_CTP_ROOT=ctp/v6.7.13_20260225_traderSM pip install .
+    PYCTP_CTP_ROOT=ctp/v6.7.13_20260225_traderSM PYCTP_ABI3=1 pip wheel .
 ```
 
 ## 使用
